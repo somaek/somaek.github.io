@@ -45,7 +45,7 @@
         <main class="p-4 md:p-6">
             <p class="text-gray-700 mb-6">
                 Here are the current standings. Click on any column header to sort the table.
-                This data is loaded from the <code>leaderboard.csv</code> file in the repository.
+                This data is loaded from the <code>Leaderboard.csv</code> file in the repository.
             </p>
             <!-- 
               DYNAMIC TABLE CONTAINER
