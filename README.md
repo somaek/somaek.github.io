@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Racing Series Leaderboard</title>
+    <title>ARWR Leaderboard</title>
     <!-- Loads Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Loads PapaParse to read the CSV file -->
@@ -47,7 +47,7 @@
           to match your screenshot.
         -->
         <header class="bg-red-700 text-white p-6">
-            <h1 class="text-2xl md:text-3xl font-bold">Our Racing Leaderboard</h1>
+            <h1 class="text-2xl md:text-3xl font-bold">ARWR Leaderboard</h1>
         </header>        
         <main class="p-4 md:p-6">
             <p class="text-gray-700 mb-6">
