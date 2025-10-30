@@ -84,7 +84,7 @@
              * Fetches and parses the CSV file
              */
             function loadLeaderboard() {
-                Papa.parse("leaderboard.csv", {
+                Papa.parse("Leaderboard.csv", {
                     download: true,
                     header: true,
                     skipEmptyLines: true,
