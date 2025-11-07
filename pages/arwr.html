@@ -1,0 +1,190 @@
+<style>
+  #leaderboard-banner {
+    margin-bottom: 20px; 
+    text-align: center;
+    max-width: 100%; 
+  }
+  #leaderboard-banner img {
+    max-width: 100%; 
+    height: auto;
+    display: block; 
+    margin: 0 auto;
+  }
+  #leaderboard-container {
+    font-size: 0.9rem;
+    line-height: 1.15;
+  } 
+  #leaderboard-container .gridjs-table {
+    border-collapse: collapse;
+    border: 10px solid #3b0687;
+  }
+  #leaderboard-container .gridjs-tr .gridjs-td:nth-child(4) {
+    font-weight: bold;
+  }
+  
+  }
+  /* This targets the sort button INSIDE the container */
+  #leaderboard-container .gridjs-sort {
+    /* display: none !important; */
+    width: 1px !important;
+    height: 1px !important;
+  }
+  #leaderboard-container .gridjs-sort svg {
+    width: 1px !important; 
+    height: 1px !important;
+  }
+  #leaderboard-container .gridjs-th,
+  #leaderboard-container .gridjs-td {
+    /* These properties apply to ALL headers and ALL data cells */
+    border: 1px solid #000000;
+    padding: 3px;
+    text-align: center;
+  }
+  #leaderboard-container .gridjs-td:nth-child(2),
+  #leaderboard-container .gridjs-td:nth-child(3) {
+    text-align: left;
+  }
+  #leaderboard-container .gridjs-th:nth-child(2) .gridjs-th-content,
+  #leaderboard-container .gridjs-th:nth-child(3) .gridjs-th-content {
+    text-align: left; 
+  }
+  #leaderboard-container .gridjs-th {
+    /* Properties specific to just the header cells */
+    background-color: #ff0054;
+    color: #ffffff;
+    vertical-align: middle;
+  }
+
+  #leaderboard-container .gridjs-tr:nth-child(even) .gridjs-td {
+    background-color: #ddcdf5;
+  } 
+  @media (max-width: 1200px) {
+    #leaderboard-container {
+      font-size: 0.65rem;
+      width: auto;
+    }
+  @media (max-width: 768px) {
+    #leaderboard-container {
+      font-size: 0.5rem;
+      width: auto;
+    }
+    /* Hides the 5th, 6th, 7th, and 8th column headers and data cells */
+    /* This targets the columns you want to drop on small screens */
+    #leaderboard-container .gridjs-th:nth-child(5),
+    #leaderboard-container .gridjs-td:nth-child(5),
+    #leaderboard-container .gridjs-th:nth-child(6),
+    #leaderboard-container .gridjs-td:nth-child(6),
+    #leaderboard-container .gridjs-th:nth-child(7),
+    #leaderboard-container .gridjs-td:nth-child(7),
+    #leaderboard-container .gridjs-th:nth-child(8),
+    #leaderboard-container .gridjs-td:nth-child(8) {
+      display: none !important;
+  }
+
+    /* Apply the common line-height for all smaller screens here */
+    #leaderboard-container .gridjs-th,
+    #leaderboard-container .gridjs-td {
+      line-height: 1.1; 
+      padding: 2px !important; /* Only the padding is specific to this breakpoint */
+    }
+  }
+
+</style>
+<div id="leaderboard-banner">
+    <img src="https://images.squarespace-cdn.com/content/v1/67923821e4c4707b718004e3/d3bd6383-287b-4c90-b7d6-e20a05c1c8f4/ARWR+RESULTS+MASTER.png" alt="Leaderboard Banner" />
+</div>
+
+<div id="leaderboard-container">Loading leaderboard...</div>
+
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+<script src="https://unpkg.com/gridjs-responsive/dist/responsive.umd.js"></script>
+<script>
+  // --- This is your Google Sheet link ---
+  const csvURL = 'https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/arwr.csv';  
+
+  // Find the container element
+  const container = document.getElementById('leaderboard-container');
+  
+  /**
+   * This is a more robust CSV parser that respects quotes.
+   */
+  function parseCSVRow(row) {
+    const result = [];
+    let current = '';
+    let inQuote = false;
+    for (let i = 0; i < row.length; i++) {
+      const char = row[i];
+      
+      if (char === '"') {
+        inQuote = !inQuote;
+      } else if (char === ',' && !inQuote) {
+        result.push(current.trim().replace(/^"|"$/g, '')); 
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim().replace(/^"|"$/g, '')); 
+    return result;
+  }
+  let grid;
+  // Fetch the data from your Google Sheet via the proxy
+  fetch(csvURL)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(csvData => {
+      
+      const rows = csvData.trim().split('\n');
+      const headers = parseCSVRow(rows[0]);
+      
+      // Map the rest of the rows into arrays of data
+      const data = rows.slice(1).map(row => {
+        const cells = parseCSVRow(row);
+        return cells.map(cell => {
+          if (cell.trim() === "") return cell;
+          const num = Number(cell);
+          return isNaN(num) ? cell : num;
+        });
+      });
+
+      // --- SET DEFAULT SORT ---
+      const defaultSortColumnName = 'Total'; 
+      const defaultSortColumnIndex = headers.indexOf(defaultSortColumnName);
+
+
+      // Clear the "Loading..." message
+      container.innerHTML = '';
+
+      // Initialize the Grid.js table
+      grid = new gridjs.Grid({
+        columns: headers,
+        data: data,
+        search: true, 
+        responsive: true,
+        
+      // --- SORT CONFIG ---
+      sort: {
+        enabled: true,
+        index: defaultSortColumnIndex >= 0 ? defaultSortColumnIndex : 0,
+        direction: -1 // This now sorts by 'Total' (descending) on load
+      },
+
+       
+
+        pagination: {
+          limit: 300
+        }
+      }).render(container);
+     
+      
+    })
+    .catch(error => {
+      console.error('Error fetching or parsing data:', error);
+      container.innerHTML = 'Error loading leaderboard. Wait a moment and then try refreshing.';
+    });
+</script>
