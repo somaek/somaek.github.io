@@ -9,19 +9,18 @@ on:
 jobs:
   scheduled_fetch:
     runs-on: ubuntu-latest
+    # ADDED: Grants write permission to the default GITHUB_TOKEN for this job
+    permissions:
+      contents: write 
+
     steps:
-      # 1. CRITICAL: Check out the repository so the action can find/modify files
+      # 1. Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
-        # The 'persist-credentials: false' is recommended if you aren't using the GITHUB_TOKEN here.
         
       # 2. Run the Flat Data action
       - name: Fetch and commit the CSV
         uses: githubocto/flat@v3
         with:
-          # REQUIRED: The output file name
           downloaded_filename: 'arwr.csv'
-          # REQUIRED: The Google Sheet public export URL
           http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=745704294&single=true&output=csv'
-          # NOTE: commit_message and github_token are no longer valid inputs for this action.
-          # The flat@v3 action handles the commit using the default repository token.
