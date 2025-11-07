@@ -1,26 +1,27 @@
 name: Sync Google Sheet CSV
 on:
-  # This line is indented two spaces from 'on:'
+  # Run every hour
   schedule:
-    # This line is indented four spaces from 'on:' (two from 'schedule:')
     - cron: '0 * * * *'
+  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 jobs:
-  # This line is indented two spaces from 'jobs:'
   scheduled_fetch:
-    # This line is indented four spaces from 'jobs:'
     runs-on: ubuntu-latest
-    # This line is indented four spaces from 'jobs:'
     steps:
-      # This line is indented six spaces from 'jobs:'
+      # 1. CRITICAL: Check out the repository so the action can find/modify files
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # The 'persist-credentials: false' is recommended if you aren't using the GITHUB_TOKEN here.
+        
+      # 2. Run the Flat Data action
       - name: Fetch and commit the CSV
-        # This line is indented eight spaces from 'jobs:'
         uses: githubocto/flat@v3
-        # This line is indented eight spaces from 'jobs:'
         with:
-          # These lines are indented ten spaces from 'jobs:'
+          # REQUIRED: The output file name
           downloaded_filename: 'arwr.csv'
+          # REQUIRED: The Google Sheet public export URL
           http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=745704294&single=true&output=csv'
-          commit_message: "Automated data sync from Google Sheet"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # NOTE: commit_message and github_token are no longer valid inputs for this action.
+          # The flat@v3 action handles the commit using the default repository token.
