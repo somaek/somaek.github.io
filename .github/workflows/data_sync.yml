@@ -1,22 +1,26 @@
 name: Sync Google Sheet CSV
 on:
-  # Run every hour
+  # This line is indented two spaces from 'on:'
   schedule:
+    # This line is indented four spaces from 'on:' (two from 'schedule:')
     - cron: '0 * * * *'
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 jobs:
+  # This line is indented two spaces from 'jobs:'
   scheduled_fetch:
+    # This line is indented four spaces from 'jobs:'
     runs-on: ubuntu-latest
+    # This line is indented four spaces from 'jobs:'
     steps:
+      # This line is indented six spaces from 'jobs:'
       - name: Fetch and commit the CSV
+        # This line is indented eight spaces from 'jobs:'
         uses: githubocto/flat@v3
+        # This line is indented eight spaces from 'jobs:'
         with:
-          # The exact Google Sheet public export URL
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=745704294&single=true&output=csv'
-          # The file name to save the data as in your repo
-          downloaded_filename: 'arwr.csv' 
-          # Use the default GitHub token for committing changes
+          # These lines are indented ten spaces from 'jobs:'
+          downloaded_filename: 'arwr.csv'
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=745704294&single=true&output=csv'
           commit_message: "Automated data sync from Google Sheet"
           github_token: ${{ secrets.GITHUB_TOKEN }}
