@@ -19,8 +19,16 @@ jobs:
         uses: actions/checkout@v4
         
       # 2. Run the Flat Data action
-      - name: Fetch and commit the CSV
+      - name: Fetch and commit the arwr.csv
         uses: githubocto/flat@v3
         with:
           downloaded_filename: 'arwr.csv'
           http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=745704294&single=true&output=csv'
+        continue-on-error: true
+
+      - name: Fetch and commit classicsL.csv
+        uses: githubocto/flat@v3
+        with: 
+          downloaded_filename: 'classicsL.csv'
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvhxu0K_Xo9xfMRuphtXMsu4NDZejmGdOMvQW-H1NackeL8_LvkIonBTkc2nAxAAJUbobOnL4E_dJh/pub?gid=1430084053&single=true&output=csv'
+          
