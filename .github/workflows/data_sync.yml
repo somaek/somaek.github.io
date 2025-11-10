@@ -33,6 +33,13 @@ jobs:
           http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRvhxu0K_Xo9xfMRuphtXMsu4NDZejmGdOMvQW-H1NackeL8_LvkIonBTkc2nAxAAJUbobOnL4E_dJh/pub?gid=1269985083&single=true&output=csv'
         continue-on-error: true
 
+      - name: Fetch and commit the INDI500D.csv
+        uses: githubocto/flat@v3
+        with:
+          downloaded_filename: 'INDI500D.csv'
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi7daX6SydkW-0Cq75kHiWdOLVbuVcz8eVNFzNZ9YVTx4LhMJsfxh5sknLQ2qyZ7Zk3jJZftensLPq/pub?gid=1930646479&single=true&output=csv'
+        continue-on-error: true
+
       - name: Fetch and commit classicsL.csv
         uses: githubocto/flat@v3
         with: 
