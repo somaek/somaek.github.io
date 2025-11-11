@@ -46,6 +46,13 @@ jobs:
           downloaded_filename: 'INDI500P.csv'
           http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi7daX6SydkW-0Cq75kHiWdOLVbuVcz8eVNFzNZ9YVTx4LhMJsfxh5sknLQ2qyZ7Zk3jJZftensLPq/pub?gid=436262005&single=true&output=csv'
         continue-on-error: true
+
+      - name: Fetch and commit the INDI500G.csv
+      uses: githubocto/flat@v3
+      with:
+        downloaded_filename: 'INDI500G.csv'
+        http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi7daX6SydkW-0Cq75kHiWdOLVbuVcz8eVNFzNZ9YVTx4LhMJsfxh5sknLQ2qyZ7Zk3jJZftensLPq/pub?gid=1868790515&single=true&output=csv'
+      continue-on-error: true
         
 
       - name: Fetch and commit classicsL.csv
