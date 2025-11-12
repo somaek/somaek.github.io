@@ -69,6 +69,15 @@
     #leaderboard-container .gridjs-th:nth-child(2) .gridjs-th-content {
         text-align: left;
     }
+    #leaderboard-container .highlighted-name-cell {
+        /* Apply dark purple background and ensure it covers the cell's background */
+        display: block; /* Make the span take up full cell width/height */
+        padding: inherit; /* Keep the original padding for the text */
+        margin: -3px -3px; /* Compensate for the cell padding (3px in your .gridjs-td style) */
+        background-color: #663fa8 !important; /* Dark Purple (from your existing border color) */
+        color: #00ffea !important; /* Bright Teal (Already in JS, but good to ensure) */
+        font-weight: bold !important;
+    }
 
     /* Header Styling */
     #leaderboard-container .gridjs-th {
@@ -197,19 +206,19 @@
     }
 </style>
 <div id="leaderboard-banner">
-        <img src="https://github.com/somaek/somaek.github.io/blob/main/INDI%20500%20PLATINUM.png?raw=true" alt="Leaderboard Banner" />
+    <img src="https://github.com/somaek/somaek.github.io/blob/main/INDI%20500%20PLATINUM.png?raw=true" alt="Leaderboard Banner" />
 </div>
 
 <div class="search-and-filters-wrapper">
-        <div id="gridjs-search-placeholder"></div>
-        <div class="filter-controls">
-                <div style="margin-bottom: 0;">
-                        <label for="gender-filter">   </label>
-                        <select id="gender-filter">
-                                <option value="">Bots and Humans</option>
-                            </select>
-                    </div>
-            </div>
+    <div id="gridjs-search-placeholder"></div>
+    <div class="filter-controls">
+       <div style="margin-bottom: 0;">
+            <label for="gender-filter"></label>
+            <select id="gender-filter">
+                <option value="">Bots and Humans</option>
+            </select>
+       </div>
+    </div>
 </div>
 
 <div id="leaderboard-container">Loading leaderboard...</div>
@@ -221,8 +230,9 @@
 
     // --- Grid.js Column Index Reference (The data now matches CSV indexing) ---
     // CSV Header Index | Data Array Index | Grid Column Index (0-based)
-    // 0 (e.g. Rank)      | 0                  | 0
-    // 1 (Name)           | 1                  | 1
+    // 0 (e.g. Rank)    | 0                | 0
+    // 1 (Name)         | 1                | 1
+    // 2 (Gender)       | 2                | 2
     // ...
     // -------------------------------------------------------------------
 
@@ -285,40 +295,43 @@
             const headers = parseCSVRow(rows[0]);
 
             // Define column names to find
+            const nameColumnName = 'Name';
             const genderColumnName = 'Gender';
             const defaultSortColumnName = 'Total';
 
             // Find column indices
+            const nameColumnIndex = headers.indexOf(nameColumnName); // CSV header index
             const genderColumnIndex = headers.indexOf(genderColumnName); // CSV header index
             const defaultSortColumnIndex = headers.indexOf(defaultSortColumnName); // CSV header index
 
             // Error check
-            if (defaultSortColumnIndex === -1 || genderColumnIndex === -1) {
-                throw new Error('Required CSV headers (Toal, Gender) not found.');
+            if (nameColumnIndex === -1 || defaultSortColumnIndex === -1 || genderColumnIndex === -1) {
+                throw new Error('Required CSV headers (Name, Total, Gender) not found.');
             }
 
             // Data array index is now the same as the CSV header index
+            const nameDataIndex = nameColumnIndex;
             const genderDataIndex = genderColumnIndex;
 
             const expectedColumnCount = headers.length;
 
             const data = rows.slice(1).map(row => {
-                    const cells = parseCSVRow(row);
-                    if (cells.length !== expectedColumnCount) {
-                        return null;
+                const cells = parseCSVRow(row);
+                if (cells.length !== expectedColumnCount) {
+                    return null;
+                }
+                const dataRow = [];
+                cells.forEach(cell => {
+                    if (cell === "") {
+                        dataRow.push(null);
+                    } else {
+                        const num = Number(cell);
+                        dataRow.push(isNaN(num) ? cell : num);
                     }
-                    const dataRow = []; // NO longer prepending null for the CSS counter column ('#')
-                    cells.forEach(cell => {
-                        if (cell === "") {
-                            dataRow.push(null);
-                        } else {
-                            const num = Number(cell);
-                            dataRow.push(isNaN(num) ? cell : num);
-                        }
-                    });
-                    return dataRow;
-                })
-                .filter(row => row !== null);
+                });
+                return dataRow;
+            })
+            .filter(row => row !== null);
 
             const allData = data;
 
@@ -342,13 +355,40 @@
 
             container.innerHTML = '';
 
-            const columnObjects = headers.map(header => {
+            // --- MODIFIED: Custom Formatter for Name Column ---
+            const columnObjects = headers.map((header, index) => {
+                if (index === nameDataIndex) {
+                    return {
+                        name: header,
+                        // 'row' is a Grid.js Row object
+                        formatter: (cell, row) => {
+                            // Get the Gender value using its data array index
+                            const genderValue = row.cells[genderDataIndex].data;
+
+                            // Check if the Gender is NOT 'Bot'
+                            if (genderValue && String(genderValue) !== 'Bot') {
+                                // Create a span with the desired styling
+                                return gridjs.h('span', {
+                                    className: 'highlighted-name-cell', 
+                                    style: { 
+                                        // The JS part handles the text color and bold, 
+                                        // The CSS class handles the background fill.
+                                        color: '#00ffff' // Bright Teal
+                                    }
+                                }, cell); // 'cell' is the Name value
+                            }
+                            
+                            // For 'Bot' or other entries, return the original cell value
+                            return cell;
+                        }
+                    };
+                }
+
                 return {
                     name: header
                 };
             });
-
-            // REMOVED: Prepend the '#' column object
+            // --- END MODIFIED ---
 
             gridInstance = new gridjs.Grid({
                 columns: columnObjects,
