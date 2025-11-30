@@ -1,19 +1,19 @@
 #,Name,Team,Total,Crit,Classics,INDI 500,Races,ARR
 1,Alexandre Peigne,Race3R,441,140,257,45,15,1797
-2,Ryan Yates,Allkin Racing,313,69,245,0,11,1319
-3,Frederik Foulon,Race3R,301,122,158,21,14,1203
-4,christophe contant,Pedalers,300,0,253,47,9,1688
+2,Ryan Yates,Allkin Racing,345,69,276,0,12,1270
+3,christophe contant,Pedalers,335,0,287,47,10,1682
+4,Frederik Foulon,Race3R,301,122,158,21,14,1203
 5,Gregory Frison,M4shup Collective,288,71,217,0,9,1817
-6,J D O,DIRT,275,0,252,24,8,1546
-7,Uli T,Race3R,258,0,258,0,9,1176
-8,Matthieu Hubert,Race3R,251,0,196,55,9,1405
-9,Even Øistensen,Race3R,250,0,230,20,8,1494
-10,Jamie Bishop,Newhall.cc,240,0,154,86,11,1185
-11,Ingmar van Bers  ЯƦ,Rasio Racing,232,0,232,0,7,1479
-12,Doug Hart,Ilkley CC,229,0,229,0,7,1439
-13,Per Olav Meder Kalvaa,Allkin Racing,226,62,164,0,9,1285
-14,Matthew James,M4shup Collective,219,46,150,23,7,1761
-15,Kurt Angus,Allkin Racing,218,141,26,51,11,1196
+6,Even Øistensen,Race3R,282,0,262,20,9,1487
+7,J D O,DIRT,275,0,252,24,8,1546
+8,Uli T,Race3R,258,0,258,0,9,1176
+9,Matthieu Hubert,Race3R,251,0,196,55,9,1405
+10,Kurt Angus,Allkin Racing,247,141,56,51,12,1201
+11,Jamie Bishop,Newhall.cc,240,0,154,86,11,1185
+12,Ingmar van Bers  ЯƦ,Rasio Racing,232,0,232,0,7,1479
+13,Doug Hart,Ilkley CC,229,0,229,0,7,1439
+14,Per Olav Meder Kalvaa,Allkin Racing,226,62,164,0,9,1285
+15,Matthew James,M4shup Collective,219,46,150,23,7,1761
 16,✓︎ Eugeni Streshnev,Allkin CC,200,18,134,48,9,200
 17,Soeren Lindner,BHC,200,23,177,0,6,1676
 18,Mikael Engmark,FilsøAktivNatur-BikePro,179,0,179,0,7,300
@@ -23,21 +23,21 @@
 22,Daniel Schoch,Moon Riders,132,0,132,0,4,1744
 23,Tom Ghan,Allkin Racing,128,0,128,0,6,967
 24,Jan van der Linden,Pocomotion,112,22,89,0,4,1514
-25,marc brazeau73,,109,0,109,0,5,1152
-26,Jurgen N_,Flandria,107,0,107,0,7,827
-27,Matthew Forshaw,M4shup Collective,104,0,104,0,3,1882
-28,Dirk Segers,Moon Riders,103,0,103,0,3,1426
-29,Thomas Helveg,Pure Power,103,10,63,30,7,1055
-30,Andrew Walker,Wadenterror,98,0,90,9,4,1171
-31,Peter Austin,TROuble,96,12,22,62,6,1239
-32,Matija Meden,Riki Team Black,91,0,32,59,4,200
-33,Donald Munro,indieVelo Founders Club,91,0,58,33,7,828
-34,Dan Stimson,Race3R,85,85,0,0,4,1595
-35,Anthony dubre,Pedalers,83,23,37,24,3,1724
-36,Mark Siega,Race3R,83,0,65,19,3,1297
-37,Jan Vana,Race3R,83,23,37,23,3,1837
-38,ML Martin,Monkey Cycling,78,0,0,78,5,1228
-39,Ludvig Karlberg,M4shup Collective,74,0,74,0,2,1908
+25,Ludvig Karlberg,Mashup Collective,110,0,110,0,3,1647
+26,marc brazeau73,,109,0,109,0,5,1152
+27,Jurgen N_,Flandria,107,0,107,0,7,827
+28,Matthew Forshaw,M4shup Collective,104,0,104,0,3,1882
+29,Dirk Segers,Moon Riders,103,0,103,0,3,1426
+30,Thomas Helveg,Pure Power,103,10,63,30,7,1055
+31,Andrew Walker,Wadenterror,98,0,90,9,4,1171
+32,Peter Austin,TROuble,96,12,22,62,6,1239
+33,Matija Meden,Riki Team Black,91,0,32,59,4,200
+34,Donald Munro,indieVelo Founders Club,91,0,58,33,7,828
+35,Dan Stimson,Race3R,85,85,0,0,4,1595
+36,Anthony dubre,Pedalers,83,23,37,24,3,1724
+37,Mark Siega,Race3R,83,0,65,19,3,1297
+38,Jan Vana,Race3R,83,23,37,23,3,1837
+39,ML Martin,Monkey Cycling,78,0,0,78,5,1228
 40,Mathias Bach,eCKD Eagles,72,0,72,0,2,1747
 41,Brenon Daly,,70,0,70,0,2,100
 42,Jonas Knudsen-BikePro.dk,FilsøAktivNatur-BikePro,69,0,69,0,2,1515
@@ -86,41 +86,42 @@
 85,Ryan Hamilton,,28,0,28,0,1,1335
 86,Guillaume FAUCON,,27,0,27,0,1,100
 87,Joel Vigneau,Riders Givrés du Trainer,26,0,26,0,1,1636
-88,Renan Petersen-Wagner,Ilkley CC,26,0,26,0,1,1296
-89,Ian Mulligan,Absque Fines,25,0,25,0,1,1648
-90,Stian Lersveen,Kalas eSRT,24,0,24,0,1,1474
-91,Kurt Nørum Pedersen,FilsøAktivNatur-BikePro,23,0,23,0,1,1140
-92,Thomas Willer,eCykle Klub Danmark,23,0,23,0,1,670
-93,Gyula Wachtler,,23,0,23,0,1,100
-94,Rasmus Feldballe,Draft,23,23,0,0,1,1692
-95,Alex Pleger - яʀ,Rasio Racing,23,23,0,0,1,1627
-96,Marcus Malzahn,,22,0,22,0,1,100
-97,Marty Algire,,21,0,0,21,1,1468
-98,Stepan  Lee,eCKD Eagles,21,0,21,0,1,814
-99,Roger Hughes,TROuble,20,0,0,20,1,1599
-100,Mathieu DRUJON,Riders Givrés du Trainer,20,0,0,20,1,1403
-101,Christophe Hermant,Riders Givrés du Trainer,20,20,0,0,1,1226
-102,Jacob Eriksen,Draft,20,20,0,0,1,1113
-103,David Pichler,Allkin Racing,20,0,20,0,1,100
-104,Nathaniel Brewster,Woodberry Forest School,20,0,0,20,1,100
-105,Maciej Zywek,Tripower,20,20,0,0,1,100
-106,Peter Davidsen,,20,20,0,0,1,300
-107,Casey Schumm,DIRT,19,0,0,19,1,1552
-108,Daniel Neugebauer,Pedalers,19,19,0,0,1,1502
-109,Kevin Barclay,OTR eRacing,19,19,0,0,1,1562
-110,Guillaume Pot,Pedalers,19,0,0,19,1,1443
-111,Jasper Mosevang Vinten,Christiansen & Essenbaek,19,0,0,19,1,1473
-112,Roussel Frederic,React ECT,17,0,17,0,1,1320
-113,Sam Carr,Rage Against The Machines,17,0,17,0,1,1030
-114,Alexander  Thornfeldt,Pedalers,16,0,16,0,1,100
-115,Matt Keiper,indieVelo Founders Club,16,16,0,0,1,1061
-116,Laurens Deneve,Race3R,16,0,0,16,1,1232
-117,Sam Beeson,Allkin Racing,15,0,15,0,1,200
-118,Larri Naga,,10,0,0,10,1,100
-119,Florian Felderer,,9,0,0,9,1,200
-120,Klas Svensson,,9,0,9,0,1,100
-121,andrew hammersley,,9,0,0,9,1,200
-122,Rocco Colangelo,Team Lou,9,0,0,9,1,1005
-123,Daniel Holdener,indieVelo Founders Club,9,0,0,9,1,633
-124,david durok,,7,0,0,7,1,871
-125,Jose Miguel Carvajal,,6,6,0,0,1,100
+88,Tobias Korte,,26,0,26,0,1,100
+89,Renan Petersen-Wagner,Ilkley CC,26,0,26,0,1,1296
+90,Ian Mulligan,Absque Fines,25,0,25,0,1,1648
+91,Stian Lersveen,Kalas eSRT,24,0,24,0,1,1474
+92,Kurt Nørum Pedersen,FilsøAktivNatur-BikePro,23,0,23,0,1,1140
+93,Thomas Willer,eCykle Klub Danmark,23,0,23,0,1,670
+94,Gyula Wachtler,,23,0,23,0,1,100
+95,Rasmus Feldballe,Draft,23,23,0,0,1,1692
+96,Alex Pleger - яʀ,Rasio Racing,23,23,0,0,1,1627
+97,Marcus Malzahn,,22,0,22,0,1,100
+98,Marty Algire,,21,0,0,21,1,1468
+99,Stepan  Lee,eCKD Eagles,21,0,21,0,1,814
+100,Roger Hughes,TROuble,20,0,0,20,1,1599
+101,Mathieu DRUJON,Riders Givrés du Trainer,20,0,0,20,1,1403
+102,Christophe Hermant,Riders Givrés du Trainer,20,20,0,0,1,1226
+103,Jacob Eriksen,Draft,20,20,0,0,1,1113
+104,David Pichler,Allkin Racing,20,0,20,0,1,100
+105,Nathaniel Brewster,Woodberry Forest School,20,0,0,20,1,100
+106,Maciej Zywek,Tripower,20,20,0,0,1,100
+107,Peter Davidsen,,20,20,0,0,1,300
+108,Casey Schumm,DIRT,19,0,0,19,1,1552
+109,Daniel Neugebauer,Pedalers,19,19,0,0,1,1502
+110,Kevin Barclay,OTR eRacing,19,19,0,0,1,1562
+111,Guillaume Pot,Pedalers,19,0,0,19,1,1443
+112,Jasper Mosevang Vinten,Christiansen & Essenbaek,19,0,0,19,1,1473
+113,Roussel Frederic,React ECT,17,0,17,0,1,1320
+114,Sam Carr,Rage Against The Machines,17,0,17,0,1,1030
+115,Alexander  Thornfeldt,Pedalers,16,0,16,0,1,100
+116,Matt Keiper,indieVelo Founders Club,16,16,0,0,1,1061
+117,Laurens Deneve,Race3R,16,0,0,16,1,1232
+118,Sam Beeson,Allkin Racing,15,0,15,0,1,200
+119,Larri Naga,,10,0,0,10,1,100
+120,Florian Felderer,,9,0,0,9,1,200
+121,Klas Svensson,,9,0,9,0,1,100
+122,andrew hammersley,,9,0,0,9,1,200
+123,Rocco Colangelo,Team Lou,9,0,0,9,1,1005
+124,Daniel Holdener,indieVelo Founders Club,9,0,0,9,1,633
+125,david durok,,7,0,0,7,1,871
+126,Jose Miguel Carvajal,,6,6,0,0,1,100
