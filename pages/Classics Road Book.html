@@ -540,10 +540,16 @@
 
             // Use safe values to prevent division by zero
             const safeTotalDistance = totalDistance > 0 ? totalDistance : 1;
-            const safeEleRange = maxEle - minEle > 0 ? maxEle - minEle : 1;
+
+            // --- SCALE ADJUSTMENT ---
+            // Determine effective max elevation for scaling (min 400m range)
+            // If the actual range is less than 400m, force the top of the chart to minEle + 400
+            const effectiveMaxEle = (maxEle - minEle) < 400 ? minEle + 400 : maxEle;
+            const safeEleRange = effectiveMaxEle - minEle > 0 ? effectiveMaxEle - minEle : 1;
 
             // Scaling functions
             const getX = (dist) => hPadding + (dist / safeTotalDistance) * (width - hPadding * 2);
+            // We use safeEleRange (which is based on effectiveMaxEle) for Y scaling
             const getY = (ele) => height - vPadding - ((ele - minEle) / safeEleRange * (height - vPadding * 2));
 
             // Create the main path string for the elevation line
@@ -614,7 +620,7 @@
                   numberCoords: { x: numberX, y: numberY, ele: startPoint.ele }
                 };
               }).filter(c => c !== null);
-            }, [climbs, points, safeEleRange, safeTotalDistance, minEle, maxEle]);
+            }, [climbs, points, safeEleRange, safeTotalDistance, minEle, maxEle]); // Dependent on scaling
 
             // Calculate y-axis labels and horizontal grid lines
             const eleInterval = Math.ceil(safeEleRange / 4 / 10) * 10; // Round up to nearest 10 for grid lines
@@ -622,12 +628,13 @@
               const lines = [];
               if (eleInterval <= 0) return lines;
 
-              for (let ele = minEle + eleInterval; ele < maxEle; ele += eleInterval) {
+              // Use effectiveMaxEle so the grid lines cover the full chart height even if the route is flat
+              for (let ele = minEle + eleInterval; ele < effectiveMaxEle; ele += eleInterval) {
                 lines.push({ ele, y: getY(ele) });
               }
               return lines;
               // eslint-disable-next-line react-hooks/exhaustive-deps
-            }, [minEle, maxEle, eleInterval]);
+            }, [minEle, effectiveMaxEle, eleInterval]);
 
             // Calculate x-axis labels
             const distInterval = totalDistance / 5; // 5 major ticks
@@ -765,7 +772,8 @@
                 ))}
 
                 {/* Y-Axis Labels (Elevation) */}
-                <text x={hPadding} y={vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(maxEle)}m</text>
+                {/* Updated to use effectiveMaxEle to reflect the forced scale */}
+                <text x={hPadding} y={vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(effectiveMaxEle)}m</text>
                 <text x={hPadding} y={height - vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(minEle)}m</text>
                 {gridLines.map((line, i) => (
                   <text
