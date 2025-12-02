@@ -5,6 +5,37 @@ import { Upload, FileText, Activity, Mountain, TrendingUp, Info, RotateCw } from
  * UTILITY FUNCTIONS
  */
 
+// Function to get hex color based on finalScore for the chart
+const getScoreHexColor = (score) => {
+  // Score mapping: 1-5 (Green) up to 46+ (Dark Red)
+  if (score >= 46) return '#991b1b'; // Red 800
+  if (score >= 41) return '#b91c1c'; // Red 700
+  if (score >= 36) return '#dc2626'; // Red 600
+  if (score >= 31) return '#ef4444'; // Red 500
+  if (score >= 26) return '#f87171'; // Red 400
+  if (score >= 21) return '#fb923c'; // Orange 400
+  if (score >= 16) return '#fbbf24'; // Amber 400
+  if (score >= 11) return '#facc15'; // Yellow 400
+  if (score >= 6) return '#a3e635';  // Lime 400
+  return '#4ade80'; // Green 400 (for 1-5)
+};
+
+// Function to get Tailwind class based on finalScore for the table
+const getScoreClass = (score) => {
+    // Score mapping: 1-5 (Green) up to 46+ (Dark Red)
+    if (score >= 46) return 'text-red-800 print:text-red-800 bg-red-900/70';
+    if (score >= 41) return 'text-red-700 print:text-red-700 bg-red-900/60';
+    if (score >= 36) return 'text-red-600 print:text-red-600 bg-red-900/50';
+    if (score >= 31) return 'text-red-500 print:text-red-500 bg-red-900/40';
+    if (score >= 26) return 'text-red-400 print:text-red-400 bg-red-900/30';
+    if (score >= 21) return 'text-orange-400 print:text-orange-400 bg-orange-900/30';
+    if (score >= 16) return 'text-amber-400 print:text-amber-400 bg-amber-900/30';
+    if (score >= 11) return 'text-yellow-400 print:text-yellow-400 bg-yellow-900/30';
+    if (score >= 6) return 'text-lime-400 print:text-lime-400 bg-lime-900/30';
+    return 'text-green-400 print:text-green-400 bg-green-900/30'; // 1-5
+};
+
+
 // Calculate distance between two lat/lon points in km
 const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const R = 6371; // Radius of the earth in km
@@ -400,6 +431,13 @@ const App = () => {
             table, th, td {
                 color: black !important;
             }
+            /* Ensure all dynamic colors are reset to standard text/bg for printing */
+            .print\\:text-green-400, .print\\:text-lime-400, .print\\:text-yellow-400, .print\\:text-amber-400, .print\\:text-orange-400, .print\\:text-red-400, .print\\:text-red-500, .print\\:text-red-600, .print\\:text-red-700, .print\\:text-red-800 {
+                color: black !important; /* General text color for print */
+            }
+            .print\\:bg-green-900\\/30, .print\\:bg-lime-900\\/30, .print\\:bg-yellow-900\\/30, .print\\:bg-amber-900\\/30, .print\\:bg-orange-900\\/30, .print\\:bg-red-900\\/30, .print\\:bg-red-900\\/40, .print\\:bg-red-900\\/50, .print\\:bg-red-900\\/60, .print\\:bg-red-900\\/70 {
+                background-color: #f0f0f0 !important; /* Light gray background for print */
+            }
           }
         `}
       </style>
@@ -584,7 +622,7 @@ const App = () => {
                       <th className="px-6 py-4 border-b border-[#5e31a9]">Length</th>
                       <th className="px-6 py-4 border-b border-[#5e31a9]">Avg %</th>
                       <th className="px-6 py-4 border-b border-[#5e31a9]">Max %</th>
-                      <th className="px-6 py-4 border-b border-[#5e31a9]">Score</th>
+                      <th className="px-6 py-4 border-b border-[#5e31a9]">Raw Score</th>
                       <th className="px-6 py-4 border-b border-[#5e31a9] text-right">To Finish</th>
                     </tr>
                   </thead>
@@ -608,16 +646,11 @@ const App = () => {
                             />
                           </td>
                           <td className="px-6 py-4 text-white font-medium print:text-black">{climb.lengthKm.toFixed(2)} km</td>
-                          {/* Avg Grade */}
-                          <td className="px-6 py-4">
-                            <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide ${
-                              climb.gradientAvg > 8 ? 'text-red-400 print:text-red-700' :
-                                climb.gradientAvg > 5 ? 'text-orange-400 print:text-orange-700' : 'text-lime-400 print:text-green-700'
-                              }`}>
+                          {/* Avg Grade - Removed color coding */}
+                          <td className="px-6 py-4 text-neutral-200 font-medium print:text-black">
                               {climb.gradientAvg.toFixed(1)}%
-                            </span>
                           </td>
-                          {/* Max Grade */}
+                          {/* Max Grade - Kept max grade highlight */}
                           <td className="px-6 py-4">
                             <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${
                               climb.maxGradient > 12 ? 'bg-red-900/30 text-red-400 print:bg-red-100 print:text-red-700' :
@@ -626,8 +659,12 @@ const App = () => {
                               {climb.maxGradient.toFixed(1)}%
                             </span>
                           </td>
-                          {/* Difficulty (Raw Score) */}
-                          <td className="px-6 py-4 text-neutral-200 font-mono print:text-black">{Math.round(climb.rawScore)}</td>
+                          {/* Raw Score (Color Coded with 10 steps based on raw score) */}
+                          <td className="px-6 py-4">
+                            <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded ${getScoreClass(climb.rawScore)}`}>
+                              {Math.round(climb.rawScore)}
+                            </span>
+                          </td>
                           {/* To Finish */}
                           <td className="px-6 py-4 text-right text-white font-bold print:text-black">{climb.distFromFinish.toFixed(1)} km</td>
                         </tr>
@@ -644,9 +681,11 @@ const App = () => {
               <div>
                 <p className="font-bold uppercase text-white font-oswald mb-1 print:text-black">Scoring Methodology</p>
                 <p className="opacity-80 leading-relaxed font-light print:opacity-100">
-                  Climb Difficulty = <code>(Gradient/2)² * Length (km)</code>. <br />
+                  Raw Climb Score = <code>(Gradient/2)² * Length (km)</code>. <br />
                   Climbs with less than 20m vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the final list. <br />
                   Weighted by position: Climbs within the final 75km receive progressive multipliers (up to 100% value in final 10km).<br />
+                  <span className="font-semibold text-white print:text-black">Score Clarification:</span> The score shown in the table and used for color coding is the unweighted **RAW SCORE**. The overall "Profile Score" (top cards) uses the weighted Final Score.<br/>
+                  <span className="font-semibold text-white print:text-black">Color Guide:</span> The score is color-coded using a 10-step gradient, where colors change every 5 points from Green (1-5) to Dark Red (46+).<br/>
                   <span className="font-semibold text-white print:text-black">Note:</span> Uphill segments separated by less than 0.25 km are merged into a single climb.
                 </p>
               </div>
@@ -777,8 +816,8 @@ const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle }) => {
           Z
       `;
 
-      // Color coding climbs based on average gradient
-      const color = climb.gradientAvg > 8 ? '#ef4444' : climb.gradientAvg > 5 ? '#f97316' : '#10b981';
+      // Color coding climbs based on FINAL SCORE (new logic)
+      const color = getScoreHexColor(climb.finalScore);
 
       // Coordinates for placing the climb number (at the start point, much higher up)
       const numberX = getX(startPoint.dist);
