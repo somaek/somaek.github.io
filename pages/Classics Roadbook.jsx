@@ -816,8 +816,8 @@ const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle }) => {
           Z
       `;
 
-      // Color coding climbs based on FINAL SCORE (new logic)
-      const color = getScoreHexColor(climb.finalScore);
+      // Color coding climbs based on RAW SCORE (new logic)
+      const color = getScoreHexColor(climb.rawScore);
 
       // Coordinates for placing the climb number (at the start point, much higher up)
       const numberX = getX(startPoint.dist);
