@@ -1,229 +1,1018 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARWR Leaderboard</title>
-    <!-- Loads Tailwind CSS for styling -->
+    <title>Allkin Classics Road Book Analyzer</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Loads PapaParse to read the CSV file -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <!-- React & ReactDOM CDNs -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel CDN for JSX/ES6 in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-        /* Ensures the Inter font is used */
+        /* Define the Noto and Oswald/Roboto font stacks */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        /* Apply fonts */
+        .font-oswald {
+            font-family: 'Oswald', sans-serif;
+        }
+        .font-roboto {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Set defaults for body elements */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
-        /* Style for the sortable table headers */
-        th.sortable {
-            cursor: pointer;
-            position: relative;
-            user-select: none;
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
         }
-        /* Arrows for sorting */
-        th.sortable::after {
-            content: ' \25B2'; /* Up arrow */
-            position: absolute;
-            right: 8px;
-            opacity: 0.3;
-        }
-        th.sortable.desc::after {
-            content: ' \25BC'; /* Down arrow */
-        }
-        th.sortable.asc::after {
-            opacity: 1;
+
+        /* Print styles for road book export (copied from original component) */
+        @media print {
+            .print\:hidden {
+              display: none !important;
+            }
+            body {
+              background-color: white !important;
+            }
+            .print\:text-black {
+              color: black !important;
+            }
+            .print\:bg-white {
+              background-color: white !important;
+            }
+            .print\:border-black {
+              border-color: black !important;
+            }
+            /* Ensure text contrast for printing tables/inputs */
+            .bg-\[\#2c3e50\], .bg-\[\#34495e\] {
+                background-color: #f0f0f0 !important;
+            }
+            table, th, td {
+                color: black !important;
+            }
+            /* Ensure all dynamic colors are reset to standard text/bg for printing */
+            .print\:text-green-400, .print\:text-lime-400, .print\:text-yellow-400, .print\:text-amber-400, .print\:text-orange-400, .print\:text-red-400, .print\:text-red-500, .print\:text-red-600, .print\:text-red-700, .print\:text-red-800 {
+                color: black !important; /* General text color for print */
+            }
+            .print\:bg-green-900\/30, .print\:bg-lime-900\/30, .print\:bg-yellow-900\/30, .print\:bg-amber-900\/30, .print\:bg-orange-900\/30, .print\:bg-red-900\/30, .print\:bg-red-900\/40, .print\:bg-red-900\/50, .print\:bg-red-900\/60, .print\:bg-red-900\/70 {
+                background-color: #f0f0f0 !important; /* Light gray background for print */
+            }
+            /* Fix for the textarea resize utility not applying in print */
+            .resize-none {
+                resize: none !important;
+            }
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-100 p-4 md:p-8">
-    <!-- 
-      FIX 1: Removed 'max-w-7xl' to make the container wider.
-      I also adjusted the margin 'md:m-8' to give it some space on large screens.
-    -->
-    <div class="w-full mx-auto bg-white rounded-lg shadow-xl overflow-hidden md:m-8">
-        <!-- 
-          FIX 2 (Color): Changed header from 'bg-gray-800' to 'bg-red-700' 
-          to match your screenshot.
-        -->
-        <header class="bg-red-700 text-white p-6">
-            <h1 class="text-2xl md:text-3xl font-bold">ARWR Leaderboard</h1>
-        </header>        
-        <main class="p-4 md:p-6">
-            <p class="text-gray-700 mb-6">
-                Here are the current standings. Click on any column header to sort the table.
-            </p>
-            <!-- 
-              DYNAMIC TABLE CONTAINER
-              This div will hold the table generated from the CSV file.
-            -->
-            <div id="table-container" class="w-full overflow-x-auto rounded-lg border border-gray-300">
-                <table id="Leaderboard-table" class="w-full min-w-[1000px] text-left text-sm">
-                    <!-- 
-                      FIX 3 (Color): Changed table header from 'bg-gray-100' to 'bg-blue-100'
-                      and adjusted text color.
-                    -->
-                    <thead class="bg-blue-100 text-blue-900 uppercase tracking-wider">
-                    </thead>
-                    <!-- Table body will be generated by JavaScript -->
-                    <tbody class="divide-y divide-gray-200">
-                    </tbody>
-                </table>
-            </div>
-            <div id="loading-message" class="text-center p-8 text-gray-500">
-                Loading Leaderboard...
-            </div>
-        </main>        
-        <!-- FIX 4 (Color): Changed footer to 'bg-gray-100' to match body -->
-        <footer class="p-6 bg-gray-100 border-t border-gray-200">
-            <p class="text-center text-gray-500 text-sm">
-                &copy; 2025 Your Race Series. All rights reserved.
-            </alert>
-        </footer>
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const tableElement = document.getElementById("Leaderboard-table");
-            const thead = tableElement.querySelector("thead");
-            const tbody = tableElement.querySelector("tbody");
-            const loadingMessage = document.getElementById("loading-message");
-            let tableData = []; // To store the parsed data
-            let sortColumn = 0; // Default sort column (Rank)
-            let sortDirection = 'asc'; // Default sort direction
-            /**
-             * Fetches and parses the CSV file
-             */
-            async function loadLeaderboard() {
-                try {
-                    // Use fetch() to manually get the file.
-                    // This resolves relative paths correctly even in blob/iframe contexts.
-                    const response = await fetch("Leaderboard.csv");                    
-                    if (!response.ok) {
-                        // Handle file not found or other HTTP errors
-                        throw new Error(`HTTP error! status: ${response.status}. Make sure 'Leaderboard.csv' is in the same folder as index.html.`);
-                    }
-                    // Get the raw text from the file
-                    const csvText = await response.text();
-                    // Now parse the text content using PapaParse
-                    Papa.parse(csvText, {
-                        // download: true, // REMOVED: We are passing text directly, not a URL
-                        header: true,
-                        skipEmptyLines: true,
-                        complete: (results) => {
-                            if (results.data && results.data.length > 0) {
-                                tableData = results.data;
-                                buildTable();
-                                loadingMessage.style.display = 'none';
-                                tableElement.style.display = 'table';
-                            } else {
-                                loadingMessage.textContent = "Could not parse Leaderboard.csv. Is the file empty or formatted incorrectly?";
-                                console.error("PapaParse errors:", results.errors);
-                            }
-                        },
-                        error: (err) => {
-                            // This error is now for parsing errors
-                            loadingMessage.textContent = "Error parsing CSV data.";
-                            console.error("PapaParse parsing error:", err);
-                        }
-                    });
-                } catch (err) {
-                    // This error is for fetching errors (e.g., 404 Not Found)
-                    loadingMessage.textContent = "Error fetching Leaderboard.csv. File not found.";
-                    console.error("Error fetching CSV:", err);
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useRef, useEffect } = React;
+
+        // --- Lucide Icon Replacements (Inline SVG) ---
+        const Upload = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>;
+        const FileText = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>;
+        const Activity = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12H18l-5 9L9 3l-5 9H2"/></svg>;
+        const Mountain = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3l4 8l5-5l5 7H1L8 3z"/></svg>;
+        const TrendingUp = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 18 11 14 7 10 11 6 7 2 11"/><line x1="18" x2="22" y1="7" y2="11"/></svg>;
+        const Info = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>;
+        const RotateCw = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 0 0-9-9c-2.3 0-4.3 1.1-5.6 2.7"/><path d="M3 12a9 9 0 0 0 9 9c2.3 0 4.3-1.1 5.6-2.7"/><path d="M18 18L21 15L18 12"/></svg>;
+        // --- END Lucide Icon Replacements ---
+
+
+        /**
+         * UTILITY FUNCTIONS
+         */
+
+        // Function to get hex color based on finalScore for the chart
+        const getScoreHexColor = (score) => {
+          // Score mapping: 1-5 (Green) up to 46+ (Dark Red). This gradient is for analysis, not theme, so it remains.
+          if (score >= 46) return '#991b1b'; // Red 800
+          if (score >= 41) return '#b91c1c'; // Red 700
+          if (score >= 36) return '#dc2626'; // Red 600
+          if (score >= 31) return '#ef4444'; // Red 500
+          if (score >= 26) return '#f87171'; // Red 400
+          if (score >= 21) return '#fb923c'; // Orange 400
+          if (score >= 16) return '#fbbf24'; // Amber 400
+          if (score >= 11) return '#facc15'; // Yellow 400
+          if (score >= 6) return '#a3e635';  // Lime 400
+          return '#4ade80'; // Green 400 (for 1-5)
+        };
+
+        // Function to get Tailwind class based on finalScore for the table
+        const getScoreClass = (score) => {
+            // Score mapping: 1-5 (Green) up to 46+ (Dark Red). Remains the same.
+            if (score >= 46) return 'text-red-800 print:text-red-800 bg-red-900/70';
+            if (score >= 41) return 'text-red-700 print:text-red-700 bg-red-900/60';
+            if (score >= 36) return 'text-red-600 print:text-red-600 bg-red-900/50';
+            if (score >= 31) return 'text-red-500 print:text-red-500 bg-red-900/40';
+            if (score >= 26) return 'text-red-400 print:text-red-400 bg-red-900/30';
+            if (score >= 21) return 'text-orange-400 print:text-orange-400 bg-orange-900/30';
+            if (score >= 16) return 'text-amber-400 print:text-amber-400 bg-amber-900/30';
+            if (score >= 11) return 'text-yellow-400 print:text-yellow-400 bg-yellow-900/30';
+            if (score >= 6) return 'text-lime-400 print:text-lime-400 bg-lime-900/30';
+            return 'text-green-400 print:text-green-400 bg-green-900/30'; // 1-5
+        };
+
+
+        // Calculate distance between two lat/lon points in km
+        const haversineDistance = (lat1, lon1, lat2, lon2) => {
+          const R = 6371; // Radius of the earth in km
+          const dLat = (lat2 - lat1) * (Math.PI / 180);
+          const dLon = (lon2 - lon1) * (Math.PI / 180);
+          const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * (Math.PI / 180)) *
+            Math.cos(lat2 * (Math.PI / 180)) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          return R * c;
+        };
+
+        // Moving average smoothing to reduce GPS noise
+        const smoothElevation = (points, windowSize = 5) => {
+          return points.map((point, i) => {
+            let sum = 0;
+            let count = 0;
+            for (let j = Math.max(0, i - windowSize); j <= Math.min(points.length - 1, i + windowSize); j++) {
+              sum += points[j].ele;
+              count++;
+            }
+            return { ...point, ele: sum / count };
+          });
+        };
+
+        const App = () => {
+          const [dragActive, setDragActive] = useState(false);
+          const [fileData, setFileData] = useState(null);
+          const [baseData, setBaseData] = useState(null); // Store single lap data
+          const [laps, setLaps] = useState(1);
+          const [isProcessing, setIsProcessing] = useState(false);
+          // NEW: State for storing the uploaded file name
+          const [fileName, setFileName] = useState(null); 
+
+          const fileInputRef = useRef(null);
+
+          // Recalculate when base data or laps change
+          useEffect(() => {
+            if (!baseData) return;
+
+            // Calculate the new total distance of the course
+            const totalDistance = baseData.distance * laps;
+
+            // Generate multi-lap points
+            let fullPoints = [];
+
+            for (let i = 0; i < laps; i++) {
+              const lapOffset = i * baseData.distance;
+
+              // Map points, adding the offset to the distance
+              const lapPoints = baseData.points.map(p => ({
+                ...p,
+                dist: p.dist + lapOffset
+              }));
+              fullPoints = fullPoints.concat(lapPoints);
+            }
+
+            // Pass the calculated total distance
+            analyzeRoute(fullPoints, totalDistance);
+            // Re-run whenever baseData or laps changes
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+          }, [baseData, laps]);
+
+          const handleDrag = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.type === 'dragenter' || e.type === 'dragover') {
+              setDragActive(true);
+            } else if (e.type === 'dragleave') {
+              setDragActive(false);
+            }
+          };
+
+          const processGPX = (text) => {
+            try {
+              const parser = new DOMParser();
+              const xmlDoc = parser.parseFromString(text, 'text/xml');
+              const trkpts = xmlDoc.getElementsByTagName('trkpt');
+
+              if (trkpts.length === 0) {
+                console.error('No track points found in GPX file.');
+                return;
+              }
+
+              let rawPoints = [];
+              for (let i = 0; i < trkpts.length; i++) {
+                const p = trkpts[i];
+                const lat = parseFloat(p.getAttribute('lat'));
+                const lon = parseFloat(p.getAttribute('lon'));
+                // Safely extract elevation, default to 0 if tag is missing
+                const ele = parseFloat(p.getElementsByTagName('ele')[0]?.textContent || 0);
+                rawPoints.push({ lat, lon, ele });
+              }
+
+              let totalDist = 0;
+              let pointsWithDist = rawPoints.map((p, i) => {
+                if (i > 0) {
+                  totalDist += haversineDistance(
+                    rawPoints[i - 1].lat,
+                    rawPoints[i - 1].lon,
+                    p.lat,
+                    p.lon
+                  );
                 }
+                return { ...p, dist: totalDist };
+              });
+
+              // Smooth elevation data to reduce noise
+              const smoothedPoints = smoothElevation(pointsWithDist, 3);
+
+              // Reset controls and data upon successful upload
+              setLaps(1);
+              setBaseData({
+                points: smoothedPoints,
+                distance: totalDist
+              });
+
+            } catch (error) {
+              console.error(error);
+              console.error('Error parsing GPX file.');
+            } finally {
+              setIsProcessing(false);
             }
-            /**
-             * Builds the table header and body
-             */
-            function buildTable() {
-                // Clear existing table content
-                thead.innerHTML = "";
-                tbody.innerHTML = "";
-                // 1. Build Header
-                const headers = Object.keys(tableData[0]);
-                const headerRow = document.createElement("tr");
-                headers.forEach((header, index) => {
-                    const th = document.createElement("th");
-                    th.textContent = header;
-                    th.className = "p-4 font-semibold sortable";
-                    th.dataset.colIndex = index;
-                    // Add sorting class
-                    if (index === sortColumn) {
-                        th.classList.add(sortDirection);
-                    }
-                    // FIX 5 (Color): Add special styling for specific headers
-                    if (header.toLowerCase() === 'total') {
-                        th.classList.add("bg-purple-100", "text-purple-900");
-                    } else if (header.toLowerCase() === 'arr') {
-                        th.classList.add("bg-cyan-100", "text-cyan-900");
-                    }
-                    // Add click event for sorting
-                    th.addEventListener("click", () => handleSort(index));
-                    headerRow.appendChild(th);
-                });
-                thead.appendChild(headerRow);
-                // 2. Build Body
-                // FIX 6 (Color): Added 'rowIndex' to add alternating row colors
-                tableData.forEach((row, rowIndex) => {
-                    const tr = document.createElement("tr");
-                    tr.className = "hover:bg-gray-50";
-                    // Add alternating row color
-                    if (rowIndex % 2 !== 0) {
-                        tr.classList.add("bg-blue-50"); // Light blue for odd rows
-                    }                    
-                    // FIX 7 (Color): Added 'headerIndex' to style specific columns
-                    headers.forEach((header, headerIndex) => {
-                        const td = document.createElement("td");
-                        td.textContent = row[header];
-                        td.className = "p-4";
-                        // Add special styling based on header name
-                        if (header.toLowerCase() === '#' || header.toLowerCase() === 'rank') {
-                            td.classList.add("font-bold", "text-gray-900");
-                        } else if (header.toLowerCase() === 'total') {
-                            td.classList.add("font-bold", "text-purple-800", "bg-purple-50");
-                        } else if (header.toLowerCase() === 'arr') {
-                            td.classList.add("font-semibold", "text-cyan-800", "bg-cyan-50");
-                        }
-                        tr.appendChild(td);
-                    });
-                    tbody.appendChild(tr);
-                });
+          };
+
+          const handleDrop = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setDragActive(false);
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+              handleFile(e.dataTransfer.files[0]);
             }
-            /**
-             * Handles the logic for sorting the table
-             */
-            function handleSort(columnIndex) {
-                // Toggle direction if clicking the same column
-                if (columnIndex === sortColumn) {
-                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+          };
+
+          const handleChange = (e) => {
+            e.preventDefault();
+            if (e.target.files && e.target.files[0]) {
+              handleFile(e.target.files[0]);
+            }
+          };
+
+          const handleFile = (file) => {
+            // Only process .gpx files
+            if (file.name.split('.').pop().toLowerCase() !== 'gpx') {
+              console.error("Please upload a valid .gpx file.");
+              setIsProcessing(false);
+              return;
+            }
+
+            // Extract filename without extension and store it
+            const name = file.name.replace(/\.gpx$/i, '');
+            setFileName(name);
+
+            setIsProcessing(true);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              processGPX(e.target.result);
+            };
+            reader.readAsText(file);
+          };
+
+          const updateClimbName = (index, value) => {
+            // This function is still present to maintain data structure compatibility 
+            // even though the input field for climb name has been removed.
+            setFileData(prev => {
+              if (!prev) return null;
+              const newClimbs = [...prev.climbs];
+              // Ensure index is valid before updating and maintain immutability
+              if (index >= 0 && index < newClimbs.length) {
+                newClimbs[index] = { ...newClimbs[index], name: value };
+              }
+              return { ...prev, climbs: newClimbs };
+            });
+          };
+
+          const analyzeRoute = (points, totalDistance) => {
+            const CHUNK_SIZE = 0.04; // Analyze route in 40m chunks 
+            const MIN_UPHILL_GRADIENT = 1.5; // Threshold for considering it an uphill segment
+            const MAX_MERGE_GAP_KM = 0.25; // User requirement: merge climbs if gap is <= 0.25 km
+
+            let chunks = [];
+
+            // 1. Break route into distance chunks to calculate local gradient
+            for (let i = 0; i < points.length; i++) {
+              const start = points[i];
+              let j = i + 1;
+              while (j < points.length && points[j].dist - start.dist < CHUNK_SIZE) {
+                j++;
+              }
+              if (j < points.length) {
+                const end = points[j];
+                const dist = end.dist - start.dist;
+                const gain = end.ele - start.ele;
+                // Gradient = (Elevation Change / Distance in meters) * 100
+                const gradient = (gain / (dist * 1000)) * 100;
+                chunks.push({ startDist: start.dist, endDist: end.dist, gradient, gain, startEle: start.ele, endEle: end.ele });
+                i = j - 1; // Move the index to the end of the analyzed chunk
+              }
+            }
+
+            // 2. Identify Raw Uphill Runs (contiguous chunks > 1.5% gradient)
+            let rawUphillRuns = [];
+            let currentRun = null;
+
+            chunks.forEach((chunk) => {
+              const isUphill = chunk.gradient > MIN_UPHILL_GRADIENT;
+
+              if (isUphill) {
+                if (!currentRun) {
+                  // Start of a new run
+                  currentRun = {
+                    startDist: chunk.startDist,
+                    endDist: chunk.endDist,
+                    gain: chunk.gain,
+                    chunks: [chunk]
+                  };
                 } else {
-                    sortColumn = columnIndex;
-                    sortDirection = 'asc';
+                  // Continuation
+                  currentRun.endDist = chunk.endDist;
+                  currentRun.gain += chunk.gain;
+                  currentRun.chunks.push(chunk);
                 }
-                const headerKey = Object.keys(tableData[0])[sortColumn];
-                // Sort the data
-                tableData.sort((a, b) => {
-                    const valA = a[headerKey];
-                    const valB = b[headerKey];
-                    // Try to sort as numbers first
-                    const numA = parseFloat(valA);
-                    const numB = parseFloat(valB);
-                    let comparison = 0;
-                    if (!isNaN(numA) && !isNaN(numB)) {
-                        comparison = numA - numB; // Number comparison
-                    } else {
-                        // Fallback to string comparison
-                        comparison = String(valA).localeCompare(String(valB));
-                    }
-                    return sortDirection === 'asc' ? comparison : -comparison;
-                });
-                // Re-build the table with sorted data
-                buildTable();
+              } else {
+                if (currentRun) {
+                  // End of the run
+                  rawUphillRuns.push(currentRun);
+                  currentRun = null;
+                }
+              }
+            });
+            // Push the last run if the route ends on an uphill
+            if (currentRun) rawUphillRuns.push(currentRun);
+
+
+            // 3. Merge Runs if the gap between them is <= 0.25 km
+            let climbs = []; // This will hold the finalized, merged climbs
+            let currentClimbToBuild = null;
+
+            rawUphillRuns.forEach((run, index) => {
+              if (!currentClimbToBuild) {
+                // Case A: Start a brand new, major climb
+                currentClimbToBuild = { ...run };
+              } else {
+                // Case B: Check if we should merge the current run into the previous one
+
+                // The gap is the distance between the end of the previous run and the start of the new run.
+                const gap = run.startDist - currentClimbToBuild.endDist;
+
+                if (gap <= MAX_MERGE_GAP_KM) {
+                  // MERGE: The gap is small enough.
+                  // Extend the current climb's distance and total gain.
+                  currentClimbToBuild.endDist = run.endDist;
+                  currentClimbToBuild.gain += run.gain;
+                  // Concatenate the chunks for visualization (maintaining only uphill chunks)
+                  currentClimbToBuild.chunks = currentClimbToBuild.chunks.concat(run.chunks);
+
+                } else {
+                  // NO MERGE: The gap is too large. Finalize the current climb and start a new one.
+                  climbs.push(currentClimbToBuild);
+                  currentClimbToBuild = { ...run };
+                }
+              }
+
+              // If this is the last run, finalize the final climb segment
+              if (index === rawUphillRuns.length - 1) {
+                climbs.push(currentClimbToBuild);
+              }
+            });
+
+            // Handle case where rawUphillRuns was empty (i.e., no climbs)
+            if (rawUphillRuns.length === 0) {
+              climbs = [];
             }
-            // Initial load
-            tableElement.style.display = 'none'; // Hide table until data is loaded
-            loadLeaderboard();
-        });
+
+
+            // 4. Filter, score, and finalize climb data (using the 'climbs' array generated in Step 3)
+            let validClimbs = climbs.filter(c => c.gain > 20).map((c) => { // Only count climbs with > 20m gain
+              // The length now includes the merged gap(s)
+              const lengthKm = c.endDist - c.startDist;
+
+              // To calculate the average gradient of the MERGED climb, we use the total GAIN 
+              // of the uphill segments over the total DISTANCE (including the flat/descent gap).
+              const gradientAvg = lengthKm > 0 ? (c.gain / (lengthKm * 1000)) * 100 : 0;
+
+              // Max gradient is still based on the max of the individual uphill chunks
+              const maxGradient = Math.max(...c.chunks.map(chunk => chunk.gradient));
+
+              // Raw Score: (Avg Gradient / 2)^2 * Length
+              const rawScore = Math.pow(gradientAvg / 2, 2) * lengthKm;
+
+              // Apply positional multiplier based on distance to finish
+              const distFromFinish = totalDistance - c.endDist;
+              let multiplier = 0.2;
+
+              if (distFromFinish <= 10) multiplier = 1.0;
+              else if (distFromFinish <= 25) multiplier = 0.8;
+              else if (distFromFinish <= 50) multiplier = 0.6;
+              else if (distFromFinish <= 75) multiplier = 0.4;
+
+              return {
+                ...c,
+                lengthKm,
+                gradientAvg,
+                maxGradient,
+                rawScore,
+                multiplier,
+                finalScore: rawScore * multiplier,
+                distFromFinish
+              };
+            }).sort((a, b) => a.startDist - b.startDist); // Sort by appearance on the course
+
+
+            // NEW FILTER STEP: Remove climbs where (Avg Grade < 2% AND Max Grade < 3%)
+            validClimbs = validClimbs.filter(climb => {
+              const isTooEasy = climb.gradientAvg < 2 && climb.maxGradient < 3;
+              // Keep the climb UNLESS both conditions are met
+              return !isTooEasy;
+            });
+
+            // Re-index the remaining climbs (id) and initialize the name field
+            validClimbs = validClimbs.map((climb, index) => ({
+              ...climb,
+              id: index + 1, // Reassign ID based on the new filtered list
+              name: '' // Ensure name is initialized here
+            }));
+
+
+            // Calculate overall statistics
+            const totalScore = validClimbs.reduce((acc, c) => acc + c.finalScore, 0);
+            const finalZoneStart = totalDistance - 25;
+            const finalClimbs = validClimbs.filter(c => c.endDist >= finalZoneStart);
+            const finalProfileScore = finalClimbs.reduce((acc, c) => acc + c.finalScore, 0);
+
+            let totalClimbing = 0;
+            for (let i = 1; i < points.length; i++) {
+              const elevationChange = points[i].ele - points[i - 1].ele;
+              if (elevationChange > 0) {
+                // Only accumulate positive elevation change (gain)
+                totalClimbing += elevationChange;
+              }
+            }
+
+            setFileData({
+              points,
+              totalDistance,
+              totalClimbing,
+              totalGain: points[points.length - 1].ele - points[0].ele,
+              maxEle: Math.max(...points.map(p => p.ele)),
+              minEle: Math.min(...points.map(p => p.ele)),
+              climbs: validClimbs,
+              totalScore,
+              finalProfileScore,
+            });
+          };
+
+          // Component for displaying key statistics
+          const StatCard = ({ title, value, icon, highlight }) => {
+            // Determine the base color class of the icon (using new red highlight)
+            const baseIconClass = highlight ? 'text-[#ab4849]' : 'text-neutral-300';
+
+            // Clone the icon element and explicitly apply base and print classes for safety
+            const clonedIcon = React.cloneElement(icon, {
+              className: `w-5 h-5 ${baseIconClass} print:text-black`
+            });
+
+            return (
+              <div className={`
+                p-6 rounded-sm border flex flex-col justify-between relative overflow-hidden group
+                ${highlight ? 'bg-[#2c3e50] border-[#ab4849]/50' : 'bg-[#34495e] border-[#4e6a81]'}
+                print:bg-white print:border-black print:text-black
+              `}>
+                {/* Animated Corner accent */}
+                {highlight && <div className="absolute top-0 right-0 w-16 h-16 bg-[#ab4849]/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden"></div>}
+
+                <div className="flex justify-between items-start mb-4 relative z-10">
+                  <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? 'text-[#ab4849] print:text-black' : 'text-neutral-400 print:text-black/70'}`}>{title}</span>
+                  {clonedIcon}
+                </div>
+                <div className={`text-3xl md:text-4xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-white print:text-black' : 'text-neutral-100 print:text-black'}`}>
+                  {value}
+                </div>
+              </div>
+            );
+          };
+
+          // Custom SVG Chart for zero-dependency rendering of the elevation profile
+          const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle }) => {
+            // Memoize displayed points to thin out massive datasets for performance
+            const displayPoints = useMemo(() => {
+              // If fewer than 500 points, use all of them
+              if (points.length < 500) return points;
+              // Otherwise, sample every Nth point to keep it manageable
+              const factor = Math.floor(points.length / 500);
+              return points.filter((_, i) => i % factor === 0);
+            }, [points]);
+
+            const height = 250;
+            const width = 800; // Fixed internal SVG width
+
+            // Use separate padding for vertical and horizontal axes
+            const vPadding = 20; // Vertical padding for top/bottom labels
+            const hPadding = 5;  // Reduced horizontal padding to hug the edges
+
+            // Use safe values to prevent division by zero
+            const safeTotalDistance = totalDistance > 0 ? totalDistance : 1;
+
+            // --- SCALE ADJUSTMENT ---
+            // Determine effective max elevation for scaling (min 400m range)
+            // If the actual range is less than 400m, force the top of the chart to minEle + 400
+            const effectiveMaxEle = (maxEle - minEle) < 400 ? minEle + 400 : maxEle;
+            const safeEleRange = effectiveMaxEle - minEle > 0 ? effectiveMaxEle - minEle : 1;
+
+            // Scaling functions
+            const getX = (dist) => hPadding + (dist / safeTotalDistance) * (width - hPadding * 2);
+            // We use safeEleRange (which is based on effectiveMaxEle) for Y scaling
+            const getY = (ele) => height - vPadding - ((ele - minEle) / safeEleRange * (height - vPadding * 2));
+
+            // Create the main path string for the elevation line
+            const pathD = displayPoints.map((p, i) =>
+              `${i === 0 ? 'M' : 'L'} ${getX(p.dist)} ${getY(p.ele)}`
+            ).join(' ');
+
+            // Create the path string for the area fill (closing the shape to the bottom)
+            const fillD = `
+              ${pathD} 
+              L ${getX(displayPoints[displayPoints.length - 1]?.dist || 0)} ${height - vPadding} 
+              L ${getX(0)} ${height - vPadding} 
+              Z
+            `;
+
+            // Memoize climb paths and coordinates for optimal rendering and numbering
+            const climbData = useMemo(() => {
+              return climbs.map((climb, index) => {
+                // Find all points within the merged start/end distance for visualization
+                const climbPoints = points.filter(p => p.dist >= climb.startDist && p.dist <= climb.endDist);
+
+                // Find the point closest to the START distance (start point for number placement)
+                const startPoint = points.reduce((prev, curr) =>
+                  (Math.abs(curr.dist - climb.startDist) < Math.abs(prev.dist - climb.startDist) ? curr : prev),
+                  points[0] // Fallback to first point
+                );
+
+                // We only draw the line highlight for the *uphill* chunks (stored in climb.chunks)
+                const topPathSegments = climb.chunks.map(chunk => {
+                  // Find points corresponding to this specific uphill chunk
+                  const chunkPoints = points.filter(p => p.dist >= chunk.startDist && p.dist <= chunk.endDist);
+                  if (chunkPoints.length < 2) return '';
+
+                  // Create a path segment for this uphill run
+                  return chunkPoints.map((p, idx) =>
+                    `${idx === 0 ? 'M' : 'L'} ${getX(p.dist)} ${getY(p.ele)}`
+                  ).join(' ');
+                }).join(' ');
+
+                // Create a path for the area fill (span the full merged distance)
+                const fillPoints = points.filter(p => p.dist >= climb.startDist && p.dist <= climb.endDist);
+                if (fillPoints.length < 2) return null;
+
+                const topFillPath = fillPoints.map((p, idx) =>
+                  `${idx === 0 ? 'M' : 'L'} ${getX(p.dist)} ${getY(p.ele)}`
+                ).join(' ');
+
+                const fillD = `
+                    M ${getX(climb.startDist)} ${height - vPadding} 
+                    ${topFillPath.replace('M', 'L')} 
+                    L ${getX(climb.endDist)} ${height - vPadding} 
+                    Z
+                `;
+
+                // Color coding climbs based on RAW SCORE (new logic)
+                const color = getScoreHexColor(climb.rawScore);
+
+                // Coordinates for placing the climb number (at the start point, much higher up)
+                const numberX = getX(startPoint.dist);
+                const numberY = getY(startPoint.ele) - 40; // Increased offset to move higher
+
+                return {
+                  fillD,
+                  lineD: topPathSegments, // This contains multiple 'M' commands for merged segments
+                  color,
+                  id: climb.id,
+                  key: climb.startDist + climb.endDist,
+                  numberCoords: { x: numberX, y: numberY, ele: startPoint.ele }
+                };
+              }).filter(c => c !== null);
+            }, [climbs, points, safeEleRange, safeTotalDistance, minEle, maxEle]); // Dependent on scaling
+
+            // Calculate y-axis labels and horizontal grid lines
+            const eleInterval = Math.ceil(safeEleRange / 4 / 10) * 10; // Round up to nearest 10 for grid lines
+            const gridLines = useMemo(() => {
+              const lines = [];
+              if (eleInterval <= 0) return lines;
+
+              // Use effectiveMaxEle so the grid lines cover the full chart height even if the route is flat
+              for (let ele = minEle + eleInterval; ele < effectiveMaxEle; ele += eleInterval) {
+                lines.push({ ele, y: getY(ele) });
+              }
+              return lines;
+              // eslint-disable-next-line react-hooks/exhaustive-deps
+            }, [minEle, effectiveMaxEle, eleInterval]);
+
+            // Calculate x-axis labels
+            const distInterval = totalDistance / 5; // 5 major ticks
+            const xLabels = useMemo(() => {
+              const labels = [];
+              for (let i = 1; i <= 4; i++) {
+                const dist = distInterval * i;
+                labels.push({ dist, x: getX(dist) });
+              }
+              return labels;
+              // eslint-disable-next-line react-hooks/exhaustive-deps
+            }, [totalDistance, distInterval]);
+
+
+            return (
+              <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full preserve-3d">
+                <defs>
+                  <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+                    {/* Main Area Gradient - Coca-Cola Red hint */}
+                    <stop offset="0%" stopColor="#ab4849" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#ab4849" stopOpacity="0.0" />
+                  </linearGradient>
+                </defs>
+
+                {/* Grid Lines - Muted Slate for background context */}
+                {/* X-Axis and Y-Axis baselines */}
+                <line x1={hPadding} y1={height - vPadding} x2={width - hPadding} y2={height - vPadding} stroke="#4e6a81" strokeWidth="1" />
+                <line x1={hPadding} y1={vPadding} x2={hPadding} y2={height - vPadding} stroke="#4e6a81" strokeWidth="1" />
+
+                {/* Horizontal Grid Lines */}
+                {gridLines.map((line, i) => (
+                  <line
+                    key={i}
+                    x1={hPadding}
+                    y1={line.y}
+                    x2={width - hPadding}
+                    y2={line.y}
+                    stroke="#4e6a81"
+                    strokeWidth="0.5"
+                    strokeDasharray="4 4"
+                  />
+                ))}
+
+                {/* Vertical Grid Lines */}
+                {xLabels.map((label, i) => (
+                  <line
+                    key={`x-${i}`}
+                    x1={label.x}
+                    y1={vPadding}
+                    x2={label.x}
+                    y2={height - vPadding}
+                    stroke="#4e6a81"
+                    strokeWidth="0.5"
+                    strokeDasharray="4 4"
+                  />
+                ))}
+
+                {/* Elevation Area Fill */}
+                <path d={fillD} fill="url(#gradient)" opacity="0.6" className="print:hidden" />
+                <path d={fillD} fill="none" stroke="#ccc" strokeWidth="0.5" className="hidden print:block" />
+
+                {/* Climb Area Fills (span the full merged distance) */}
+                {climbData.map((c) => (
+                  <path
+                    key={`fill-${c.key}`}
+                    d={c.fillD}
+                    fill={c.color}
+                    opacity="0.4"
+                    stroke="none"
+                    className="print:opacity-20"
+                  />
+                ))}
+
+                {/* Main Elevation Line */}
+                <path
+                  d={pathD}
+                  stroke="#ccc"
+                  strokeWidth="1.5"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="print:stroke-black print:stroke-1"
+                />
+
+                {/* Climb Highlight Lines (thicker lines on the uphill segments only) */}
+                {climbData.map((c) => (
+                  <path
+                    key={`line-${c.key}`}
+                    d={c.lineD} // This path string contains multiple separate uphill segments (M/L commands)
+                    stroke={c.color}
+                    strokeWidth="3"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="print:stroke-[2px]"
+                  />
+                ))}
+
+                {/* Climb Numbers */}
+                {climbData.map((c) => (
+                  <text
+                    key={`num-${c.id}`}
+                    x={c.numberCoords.x}
+                    y={c.numberCoords.y}
+                    dx="-5"
+                    fill={c.color}
+                    fontSize="12"
+                    fontWeight="bold"
+                    textAnchor="middle"
+                    fontFamily="Oswald"
+                    className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] print:fill-black"
+                  >
+                    {c.id}
+                  </text>
+                ))}
+
+
+                {/* X-Axis Labels (Distance) */}
+                <text x={hPadding} y={height} fill="#ccc" fontSize="10" dy="-5" fontFamily="Roboto" className="print:fill-black">0km</text>
+                <text x={width - hPadding} y={height} fill="#ccc" fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto" className="print:fill-black">{totalDistance.toFixed(0)}km</text>
+                {xLabels.map((label, i) => (
+                  <text
+                    key={`l-x-${i}`}
+                    x={label.x}
+                    y={height}
+                    fill="#ccc"
+                    fontSize="10"
+                    textAnchor="middle"
+                    dy="-5"
+                    fontFamily="Roboto"
+                    className="print:fill-black"
+                  >
+                    {label.dist.toFixed(0)}km
+                  </text>
+                ))}
+
+                {/* Y-Axis Labels (Elevation) */}
+                {/* Updated to use effectiveMaxEle to reflect the forced scale */}
+                <text x={hPadding} y={vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(effectiveMaxEle)}m</text>
+                <text x={hPadding} y={height - vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(minEle)}m</text>
+                {gridLines.map((line, i) => (
+                  <text
+                    key={`l-y-${i}`}
+                    x={hPadding}
+                    y={line.y}
+                    fill="#ccc"
+                    fontSize="10"
+                    textAnchor="end"
+                    dy="3"
+                    dx="-5"
+                    fontFamily="Roboto"
+                    className="print:fill-black"
+                  >
+                    {Math.round(line.ele)}m
+                  </text>
+                ))}
+
+              </svg>
+            );
+          };
+
+          const defaultTitle = 'Allkin Classics Road Book';
+
+          return (
+            // THEME: Dark Slate (#2c3e50) background and Coca-Cola Red (#ab4849) accents.
+            <div className="min-h-screen bg-[#2c3e50] text-white font-roboto selection:bg-[#ab4849] selection:text-black p-4 md:p-8">
+              <div className="max-w-6xl mx-auto space-y-8">
+
+                {/* Header (Text and Info) - Now the first visible element */}
+                <header className="flex items-center space-x-4 border-b border-[#4e6a81] pb-6 print:hidden">
+                  <Activity className="w-8 h-8 text-[#ab4849]" />
+                  <div>
+                    {/* UPDATED: Dynamic title from uploaded GPX file name */}
+                    <h1 className="text-3xl font-bold tracking-wide uppercase text-white font-oswald">{fileName || defaultTitle}</h1>
+                    <p className="text-neutral-300 text-sm tracking-wide">Profile Analyzer</p>
+                  </div>
+                </header>
+
+                {/* Input Section */}
+                {!fileData && (
+                  <div
+                    className={`
+                      border-2 border-dashed rounded-sm p-16 text-center transition-all cursor-pointer group
+                      ${dragActive ? 'border-[#ab4849] bg-[#ab4849]/10' : 'border-[#4e6a81] hover:border-[#ab4849]/50 bg-[#34495e]'}
+                    `}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".gpx"
+                      className="hidden"
+                      onChange={handleChange}
+                    />
+                    <div className="flex flex-col items-center gap-6">
+                      <div className="w-20 h-20 bg-[#4e6a81] rounded-full flex items-center justify-center group-hover:bg-[#4e6a81] transition-colors">
+                        <Upload className="w-10 h-10 text-neutral-400 group-hover:text-[#ab4849] transition-colors" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold uppercase text-white font-oswald tracking-wide">Upload GPX Route File</h3>
+                        <p className="text-neutral-400 mt-2 font-light">Drag & drop a .gpx file here to begin analysis</p>
+                      </div>
+                      {isProcessing && <p className="text-[#ab4849] font-bold animate-pulse tracking-widest uppercase">Processing...</p>}
+                    </div>
+                  </div>
+                )}
+
+                {/* Results Dashboard */}
+                {fileData && (
+                  <div className="space-y-6">
+
+                    {/* Controls Bar (Laps) */}
+                    <div className="bg-[#34495e] rounded-sm p-4 border border-[#4e6a81] flex flex-wrap items-center justify-between gap-4 print:hidden">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#2c3e50] p-2 rounded-sm">
+                          <RotateCw className="w-5 h-5 text-[#ab4849]" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold uppercase text-sm text-white font-oswald tracking-wide">Course Laps</h3>
+                          <p className="text-xs text-neutral-400">Adjusts total distance & scoring</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center bg-[#2c3e50] rounded-sm p-1 border border-[#4e6a81]">
+                          <button
+                            onClick={() => setLaps(Math.max(1, laps - 1))}
+                            className="px-4 py-1 text-neutral-400 hover:text-white hover:bg-[#4e6a81] rounded-sm transition-colors font-bold"
+                            aria-label="Decrease laps"
+                          >-</button>
+                          <div className="w-12 text-center font-oswald font-bold text-xl text-[#ab4849]">{laps}</div>
+                          <button
+                            onClick={() => setLaps(laps + 1)}
+                            className="px-4 py-1 text-neutral-400 hover:text-white hover:bg-[#4e6a81] rounded-sm transition-colors font-bold"
+                            aria-label="Increase laps"
+                          >+</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Top Stats Cards */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                      <StatCard
+                        title="Profile Score"
+                        value={Math.round(fileData.totalScore)}
+                        icon={<Activity className="w-5 h-5 text-[#ab4849]" />}
+                        highlight
+                      />
+                      <StatCard
+                        title="Final 25km Score"
+                        value={Math.round(fileData.finalProfileScore)}
+                        icon={<TrendingUp className="w-5 h-5 text-neutral-300" />}
+                      />
+                      <StatCard
+                        title="Total Distance"
+                        value={`${fileData.totalDistance.toFixed(1)} km`}
+                        icon={<FileText className="w-5 h-5 text-neutral-300" />}
+                      />
+                      <StatCard
+                        title="Total Climbing"
+                        value={`${Math.round(fileData.totalClimbing)} m`}
+                        icon={<Mountain className="w-5 h-5 text-neutral-300" />}
+                      />
+                    </div>
+
+                    {/* Elevation Profile Graph */}
+                    <div className="bg-[#34495e] rounded-sm p-6 border border-[#4e6a81] shadow-xl overflow-hidden print:bg-white print:border-black relative">
+                      <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
+                        <Mountain className="w-32 h-32 text-[#ab4849]" />
+                      </div>
+                      <div className="flex justify-between items-center mb-6 relative z-10">
+                        <h3 className="font-bold text-xl uppercase tracking-wide flex items-center gap-2 font-oswald text-white print:text-black">
+                          <span className="w-2 h-8 bg-[#ab4849] inline-block mr-2"></span>
+                          Elevation Profile
+                        </h3>
+                      </div>
+
+                      <div className="h-64 w-full relative z-10">
+                        <ElevationChart
+                          points={fileData.points}
+                          climbs={fileData.climbs}
+                          totalDistance={fileData.totalDistance}
+                          minEle={fileData.minEle}
+                          maxEle={fileData.maxEle}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Detected Climbs Table */}
+                    <div className="bg-[#34495e] rounded-sm overflow-hidden border border-[#4e6a81] shadow-lg">
+                      <div className="p-5 border-b border-[#4e6a81] bg-[#2c3e50] flex justify-between items-end">
+                        <div>
+                          <h3 className="font-bold text-xl uppercase tracking-wide text-white font-oswald">Scored Climbs</h3>
+                        </div>
+                      </div>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-sm text-left">
+                          <thead className="text-neutral-400 bg-[#2c3e50] uppercase text-xs font-bold tracking-wider font-oswald">
+                            <tr>
+                              <th className="px-6 py-4 w-10 border-b border-[#4e6a81]">No.</th>
+                              <th className="px-6 py-4 border-b border-[#4e6a81]">To Finish</th>
+                              <th className="px-6 py-4 border-b border-[#4e6a81]">Length</th>
+                              <th className="px-6 py-4 border-b border-[#4e6a81]">Avg %</th>
+                              <th className="px-6 py-4 border-b border-[#4e6a81]">Max %</th>
+                              <th className="px-6 py-4 border-b border-[#4e6a81]">Raw Score</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {fileData.climbs.length === 0 ? (
+                              <tr><td colSpan="6" className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
+                            ) : (
+                              fileData.climbs.map((climb, idx) => (
+                                <tr key={idx} className="hover:bg-[#4e6a81] transition-colors group print:text-black">
+                                  <td className="px-6 py-3 font-bold text-[#ab4849] font-oswald print:text-black">
+                                    {climb.id}
+                                  </td>
+                                  {/* Distance to Finish (Column 2) */}
+                                  <td className="px-6 py-4 text-white font-bold print:text-black">
+                                    {climb.distFromFinish.toFixed(1)} km
+                                  </td>
+                                  <td className="px-6 py-4 text-white font-medium print:text-black">{climb.lengthKm.toFixed(2)} km</td>
+                                  <td className="px-6 py-4 text-neutral-200 font-medium print:text-black">
+                                      {climb.gradientAvg.toFixed(1)}%
+                                  </td>
+                                  <td className="px-6 py-4">
+                                    <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${
+                                      climb.maxGradient > 12 ? 'bg-red-900/30 text-red-400 print:bg-red-100 print:text-red-700' :
+                                        climb.maxGradient > 8 ? 'bg-orange-900/30 text-orange-400 print:bg-orange-100 print:text-orange-700' : 'bg-lime-900/30 text-lime-400 print:bg-green-100 print:text-green-700'
+                                      }`}>
+                                      {climb.maxGradient.toFixed(1)}%
+                                    </span>
+                                  </td>
+                                  {/* Raw Score (Color Coded with 10 steps based on raw score) */}
+                                  <td className="px-6 py-4">
+                                    <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded ${getScoreClass(climb.rawScore)}`}>
+                                      {Math.round(climb.rawScore)}
+                                    </span>
+                                  </td>
+                                </tr>
+                              ))
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    {/* Methodology Note */}
+                    <div className="bg-[#34495e] border border-[#4e6a81] rounded-sm p-5 flex gap-4 text-sm text-neutral-300 items-start print:bg-white print:border-black print:text-black">
+                      <Info className="w-5 h-5 shrink-0 text-[#ab4849] mt-0.5 print:text-black" />
+                      <div>
+                        <p className="font-bold uppercase text-white font-oswald mb-1 print:text-black">Scoring Methodology</p>
+                        <p className="opacity-80 leading-relaxed font-light print:opacity-100">
+                          Raw Climb Score = <code>(Gradient/2)² * Length (km)</code>. <br />
+                          Climbs with less than 20m vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the final list. <br />
+                          Weighted by position: Climbs within the final 75km receive progressive multipliers (up to 100% value in final 10km).<br />
+                          <span className="font-semibold text-white print:text-black">Score Clarification:</span> The score shown in the table and used for color coding is the unweighted **RAW SCORE**. The overall "Profile Score" (top cards) uses the weighted Final Score.<br/>
+                          <span className="font-semibold text-white print:text-black">Color Guide:</span> The score is color-coded using a 10-step gradient, where colors change every 5 points from Green (1-5) to Dark Red (46+).<br/>
+                          <span className="font-semibold text-white print:text-black">Note:</span> Uphill segments separated by less than 0.25 km are merged into a single climb.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Buttons for Export and Analysis - Print button removed */}
+                    <div className="flex justify-center pt-8 pb-12 gap-4 print:hidden">
+                      <button
+                        onClick={() => {
+                          setFileData(null);
+                          setFileName(null); // Reset the file name when starting a new analysis
+                        }}
+                        className="px-8 py-3 bg-[#ab4849] hover:bg-[#ab4849]/80 text-black font-bold uppercase tracking-widest rounded-sm text-sm transition-colors shadow-lg hover:shadow-[#ab4849]/40 flex items-center gap-2"
+                      >
+                        <Upload className="w-4 h-4" /> New Analysis
+                      </button>
+                    </div>
+
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        };
+
+        // Render the App component
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
