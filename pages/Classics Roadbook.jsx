@@ -76,6 +76,7 @@ const App = () => {
   const [raceDescription, setRaceDescription] = useState("");
 
   const fileInputRef = useRef(null);
+  const textareaRef = useRef(null);
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -113,6 +114,17 @@ const App = () => {
     // Re-run whenever baseData or laps changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [baseData, laps]);
+
+  // Auto-resize textarea when content changes
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      // Reset height to auto to correctly calculate scrollHeight if text was deleted
+      textarea.style.height = 'auto';
+      // Set height to scrollHeight to fit content
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  }, [raceDescription]);
 
   const processGPX = (text) => {
     try {
@@ -521,10 +533,11 @@ const App = () => {
               <div>
                 <label htmlFor="race-desc" className="block text-xs font-bold text-[#00B4FF] uppercase tracking-widest mb-2">Description / Notes</label>
                 <textarea
+                  ref={textareaRef}
                   id="race-desc"
                   value={raceDescription}
                   onChange={(e) => setRaceDescription(e.target.value)}
-                  className="w-full bg-[#3b0687] border border-[#5e31a9] rounded-none px-4 py-3 text-neutral-200 focus:outline-none focus:border-[#00B4FF] focus:ring-1 focus:ring-[#00B4FF] h-24 resize-none transition-all placeholder-neutral-500 print:text-black print:bg-white print:border-black"
+                  className="w-full bg-[#3b0687] border border-[#5e31a9] rounded-none px-4 py-3 text-neutral-200 focus:outline-none focus:border-[#00B4FF] focus:ring-1 focus:ring-[#00B4FF] min-h-[6rem] resize-none transition-all placeholder-neutral-500 print:text-black print:bg-white print:border-black overflow-hidden"
                   placeholder="Add race details, start time, or key segments..."
                 />
               </div>
