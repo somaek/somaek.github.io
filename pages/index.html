@@ -303,7 +303,7 @@
           const analyzeRoute = (points, totalDistance) => {
             const CHUNK_SIZE = 0.04; // Analyze route in 40m chunks 
             const MIN_UPHILL_GRADIENT = 1.5; // Threshold for considering it an uphill segment
-            const MAX_MERGE_GAP_KM = 0.25; // User requirement: merge climbs if gap is <= 0.25 km
+            const MAX_MERGE_GAP_KM = 0.35; // User requirement: merge climbs if gap is <= 0.25 km
 
             let chunks = [];
 
