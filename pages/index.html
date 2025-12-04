@@ -109,16 +109,16 @@
         // Function to get Tailwind class based on finalScore for the table
         const getScoreClass = (score) => {
             // Score mapping: 1-5 (Green) up to 46+ (Dark Red). Remains the same.
-            if (score >= 46) return 'text-red-800 print:text-red-800 bg-red-900/70';
-            if (score >= 41) return 'text-red-700 print:text-red-700 bg-red-900/60';
-            if (score >= 36) return 'text-red-600 print:text-red-600 bg-red-900/50';
-            if (score >= 31) return 'text-red-500 print:text-red-500 bg-red-900/40';
-            if (score >= 26) return 'text-red-400 print:text-red-400 bg-red-900/30';
-            if (score >= 21) return 'text-orange-400 print:text-orange-400 bg-orange-900/30';
-            if (score >= 16) return 'text-amber-400 print:text-amber-400 bg-amber-900/30';
-            if (score >= 11) return 'text-yellow-400 print:text-yellow-400 bg-yellow-900/30';
-            if (score >= 6) return 'text-lime-400 print:text-lime-400 bg-lime-900/30';
-            return 'text-green-400 print:text-green-400 bg-green-900/30'; // 1-5
+            if (score >= 46) return 'text-red-300 print:text-red-800 bg-red-900/70';
+            if (score >= 41) return 'text-red-300 print:text-red-700 bg-red-900/60';
+            if (score >= 36) return 'text-red-300 print:text-red-600 bg-red-900/50';
+            if (score >= 31) return 'text-red-300 print:text-red-500 bg-red-900/40';
+            if (score >= 26) return 'text-red-300 print:text-red-400 bg-red-900/30';
+            if (score >= 21) return 'text-orange-300 print:text-orange-400 bg-orange-900/30';
+            if (score >= 16) return 'text-amber-300 print:text-amber-400 bg-amber-900/30';
+            if (score >= 11) return 'text-yellow-300 print:text-yellow-400 bg-yellow-900/30';
+            if (score >= 6) return 'text-lime-300 print:text-lime-400 bg-lime-900/30';
+            return 'text-green-400 print:text-green-300 bg-green-900/30'; // 1-5
         };
 
 
