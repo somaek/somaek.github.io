@@ -250,6 +250,70 @@
             }
           };
 
+          const processJSON = (text) => {
+            try {
+                const data = JSON.parse(text);
+                
+                // Try to find the valid segment: preferably 'lap', else 'leadin', else root 'coordinates'
+                // The attached file has 'leadin' and 'lap'. We prioritize 'lap' for the looping mechanic.
+                let coords = null;
+                if (data.lap && data.lap.coordinates) {
+                    coords = data.lap.coordinates;
+                } else if (data.leadin && data.leadin.coordinates) {
+                    coords = data.leadin.coordinates;
+                } else if (data.coordinates) {
+                    coords = data.coordinates;
+                }
+
+                if (!coords) {
+                    console.error("No valid coordinate data found in JSON");
+                    return;
+                }
+
+                let totalDist = 0;
+                // Convert to point structure
+                const rawPoints = coords.map((p, i) => {
+                     // Calculate distance from previous point
+                     if (i > 0) {
+                         const prev = coords[i-1];
+                         // Cartesian Distance using X and Z (Horizontal Plane)
+                         const dx = p.x - prev.x;
+                         const dz = p.z - prev.z; 
+                         // Euclidean distance
+                         const distMeters = Math.sqrt(dx * dx + dz * dz);
+                         totalDist += (distMeters / 1000); // Add km
+                     }
+                     return {
+                         // Y is Up (Elevation) in this coordinate system
+                         ele: p.y, 
+                         dist: totalDist,
+                         lat: 0, // Not available/needed
+                         lon: 0
+                     };
+                });
+
+                // Smooth
+                const smoothedPoints = smoothElevation(rawPoints, 3);
+
+                setLaps(1);
+                setBaseData({
+                    points: smoothedPoints,
+                    distance: totalDist
+                });
+                
+                // If the JSON has a specific name, update the display name
+                if (data.name) {
+                    setFileName(data.name);
+                }
+
+            } catch (error) {
+                console.error(error);
+                console.error('Error parsing JSON file.');
+            } finally {
+                setIsProcessing(false);
+            }
+          };
+
           const handleDrop = (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -267,21 +331,26 @@
           };
 
           const handleFile = (file) => {
-            // Only process .gpx files
-            if (file.name.split('.').pop().toLowerCase() !== 'gpx') {
-              console.error("Please upload a valid .gpx file.");
+            const ext = file.name.split('.').pop().toLowerCase();
+            // Only process .gpx or .json files
+            if (ext !== 'gpx' && ext !== 'json') {
+              console.error("Please upload a valid .gpx or .json file.");
               setIsProcessing(false);
               return;
             }
 
             // Extract filename without extension and store it
-            const name = file.name.replace(/\.gpx$/i, '');
+            const name = file.name.replace(/\.(gpx|json)$/i, '');
             setFileName(name);
 
             setIsProcessing(true);
             const reader = new FileReader();
             reader.onload = (e) => {
-              processGPX(e.target.result);
+              if (ext === 'json') {
+                  processJSON(e.target.result);
+              } else {
+                  processGPX(e.target.result);
+              }
             };
             reader.readAsText(file);
           };
@@ -819,7 +888,7 @@
                     <input
                       ref={fileInputRef}
                       type="file"
-                      accept=".gpx"
+                      accept=".gpx,.json"
                       className="hidden"
                       onChange={handleChange}
                     />
@@ -828,8 +897,8 @@
                         <Upload className="w-10 h-10 text-neutral-400 group-hover:text-[#f75758] transition-colors" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold uppercase text-white font-oswald tracking-wide">Upload GPX Route File</h3>
-                        <p className="text-neutral-400 mt-2 font-light">Drag & drop a .gpx file here to begin analysis</p>
+                        <h3 className="text-2xl font-bold uppercase text-white font-oswald tracking-wide">Upload Route File</h3>
+                        <p className="text-neutral-400 mt-2 font-light">Drag & drop a .gpx or .json file here to begin analysis</p>
                       </div>
                       {isProcessing && <p className="text-[#f75758] font-bold animate-pulse tracking-widest uppercase">Processing...</p>}
                     </div>
