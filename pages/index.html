@@ -165,21 +165,50 @@
           useEffect(() => {
             if (!baseData) return;
 
-            // Calculate the new total distance of the course
-            const totalDistance = baseData.distance * laps;
-
-            // Generate multi-lap points
             let fullPoints = [];
+            let totalDistance = 0;
 
-            for (let i = 0; i < laps; i++) {
-              const lapOffset = i * baseData.distance;
+            // Handle Composite Data (Lead-in + Lap Loop)
+            if (baseData.type === 'composite') {
+                // 1. Add Lead-in (always exactly once)
+                fullPoints = [...baseData.leadin.points];
+                
+                // Track current accumulated distance, starting after the lead-in
+                let currentTotalDist = baseData.leadin.distance;
 
-              // Map points, adding the offset to the distance
-              const lapPoints = baseData.points.map(p => ({
-                ...p,
-                dist: p.dist + lapOffset
-              }));
-              fullPoints = fullPoints.concat(lapPoints);
+                // 2. Add Laps (Loop the 'lap' segment)
+                for (let i = 0; i < laps; i++) {
+                    const offset = currentTotalDist;
+                    
+                    // Add lap points shifted by the current accumulated distance
+                    // Note: lap points internally start at dist 0 relative to the lap start
+                    const currentLapPoints = baseData.lap.points.map(p => ({
+                        ...p,
+                        dist: p.dist + offset
+                    }));
+                    
+                    fullPoints = fullPoints.concat(currentLapPoints);
+                    
+                    // Increment total distance by one lap length
+                    currentTotalDist += baseData.lap.distance;
+                }
+                totalDistance = currentTotalDist;
+
+            } else {
+                // Standard Single Loop Logic (GPX or Simple JSON)
+                totalDistance = baseData.distance * laps;
+
+                // Generate multi-lap points
+                for (let i = 0; i < laps; i++) {
+                  const lapOffset = i * baseData.distance;
+
+                  // Map points, adding the offset to the distance
+                  const lapPoints = baseData.points.map(p => ({
+                    ...p,
+                    dist: p.dist + lapOffset
+                  }));
+                  fullPoints = fullPoints.concat(lapPoints);
+                }
             }
 
             // Pass the calculated total distance
@@ -238,6 +267,7 @@
               // Reset controls and data upon successful upload
               setLaps(1);
               setBaseData({
+                type: 'single', // Explicitly type as single for logic clarity
                 points: smoothedPoints,
                 distance: totalDist
               });
@@ -254,52 +284,84 @@
             try {
                 const data = JSON.parse(text);
                 
-                // Try to find the valid segment: preferably 'lap', else 'leadin', else root 'coordinates'
-                // The attached file has 'leadin' and 'lap'. We prioritize 'lap' for the looping mechanic.
-                let coords = null;
-                if (data.lap && data.lap.coordinates) {
-                    coords = data.lap.coordinates;
-                } else if (data.leadin && data.leadin.coordinates) {
-                    coords = data.leadin.coordinates;
-                } else if (data.coordinates) {
-                    coords = data.coordinates;
+                // Helper to process raw coordinates into points with distance
+                // Returns array of points and total distance
+                const processCoords = (coords) => {
+                    let totalDist = 0;
+                    const pts = coords.map((p, i) => {
+                         // Calculate distance from previous point
+                         if (i > 0) {
+                             const prev = coords[i-1];
+                             // Cartesian Distance using X and Z (Horizontal Plane)
+                             const dx = p.x - prev.x;
+                             const dz = p.z - prev.z; 
+                             // Euclidean distance
+                             const distMeters = Math.sqrt(dx * dx + dz * dz);
+                             totalDist += (distMeters / 1000); // Add km
+                         }
+                         return {
+                             // Y is Up (Elevation) in this coordinate system
+                             ele: p.y, 
+                             dist: totalDist,
+                             lat: 0, // Not available/needed
+                             lon: 0
+                         };
+                    });
+                    return { points: pts, distance: totalDist };
+                };
+
+                // STRATEGY: Check if we have BOTH leadin and lap data.
+                if (data.lap && data.lap.coordinates && data.leadin && data.leadin.coordinates) {
+                    
+                    // Process both chunks
+                    const leadinData = processCoords(data.leadin.coordinates);
+                    const lapData = processCoords(data.lap.coordinates);
+
+                    // Smooth them individually to prepare for merging later
+                    const smoothedLeadinPoints = smoothElevation(leadinData.points, 3);
+                    const smoothedLapPoints = smoothElevation(lapData.points, 3);
+
+                    setLaps(1);
+                    setBaseData({
+                        type: 'composite', // Flag to use the leadin + loop logic
+                        leadin: {
+                            points: smoothedLeadinPoints,
+                            distance: leadinData.distance
+                        },
+                        lap: {
+                            points: smoothedLapPoints,
+                            distance: lapData.distance
+                        }
+                    });
+
+                } else {
+                    // FALLBACK: Original logic for simple files (only one set of coords)
+                    
+                    // Try to find the valid segment: preferably 'lap', else 'leadin', else root 'coordinates'
+                    let coords = null;
+                    if (data.lap && data.lap.coordinates) {
+                        coords = data.lap.coordinates;
+                    } else if (data.leadin && data.leadin.coordinates) {
+                        coords = data.leadin.coordinates;
+                    } else if (data.coordinates) {
+                        coords = data.coordinates;
+                    }
+
+                    if (!coords) {
+                        console.error("No valid coordinate data found in JSON");
+                        return;
+                    }
+
+                    const result = processCoords(coords);
+                    const smoothedPoints = smoothElevation(result.points, 3);
+
+                    setLaps(1);
+                    setBaseData({
+                        type: 'single',
+                        points: smoothedPoints,
+                        distance: result.distance
+                    });
                 }
-
-                if (!coords) {
-                    console.error("No valid coordinate data found in JSON");
-                    return;
-                }
-
-                let totalDist = 0;
-                // Convert to point structure
-                const rawPoints = coords.map((p, i) => {
-                     // Calculate distance from previous point
-                     if (i > 0) {
-                         const prev = coords[i-1];
-                         // Cartesian Distance using X and Z (Horizontal Plane)
-                         const dx = p.x - prev.x;
-                         const dz = p.z - prev.z; 
-                         // Euclidean distance
-                         const distMeters = Math.sqrt(dx * dx + dz * dz);
-                         totalDist += (distMeters / 1000); // Add km
-                     }
-                     return {
-                         // Y is Up (Elevation) in this coordinate system
-                         ele: p.y, 
-                         dist: totalDist,
-                         lat: 0, // Not available/needed
-                         lon: 0
-                     };
-                });
-
-                // Smooth
-                const smoothedPoints = smoothElevation(rawPoints, 3);
-
-                setLaps(1);
-                setBaseData({
-                    points: smoothedPoints,
-                    distance: totalDist
-                });
                 
                 // If the JSON has a specific name, update the display name
                 if (data.name) {
