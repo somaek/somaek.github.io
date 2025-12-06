@@ -601,30 +601,6 @@
 
             // --- STAGE TYPE CLASSIFICATION LOGIC ---
             
-            // 1. Calculate Finish Gradient (Final 500m)
-            const finishLookbackDist = 0.5; // km
-            const finishStartDist = Math.max(0, totalDistance - finishLookbackDist);
-
-            // Find point closest to finishStartDist
-            // Search backwards for efficiency since it's at the end
-            let pFinishStart = points[0];
-            for(let i=points.length-1; i>=0; i--) {
-                if (points[i].dist <= finishStartDist) {
-                    pFinishStart = points[i];
-                    break;
-                }
-            }
-            
-            const pFinishEnd = points[points.length - 1];
-            // Ensure we actually have distance to measure
-            const finishSegDist = pFinishEnd.dist - pFinishStart.dist;
-            
-            let finishGradient = 0;
-            if (finishSegDist > 0.05) { // Ensure we have at least 50m to judge
-                const finishGain = pFinishEnd.ele - pFinishStart.ele;
-                finishGradient = (finishGain / (finishSegDist * 1000)) * 100;
-            }
-
             // 2. Determine Terrain Type based on Profile Score Ratio
             let ratio = 0;
             if (totalDistance >= 40) {
@@ -640,8 +616,15 @@
             else if (ratio >= 0.25) terrainType = "Punchy";
 
             // 3. Determine Finish Type
+            // UPDATED LOGIC: Check if any scored climb finishes within the last 1 km.
             let finishType = "flat finish";
-            if (finishGradient > 3) finishType = "uphill finish";
+            
+            // We check the 'distFromFinish' of the climbs. 
+            // Note: climb.distFromFinish = totalDistance - climb.endDist
+            // So we want any climb where distFromFinish <= 1.0
+            const hasUphillFinish = validClimbs.some(c => c.distFromFinish <= 1.0);
+
+            if (hasUphillFinish) finishType = "uphill finish";
 
             const stageType = `${terrainType}, ${finishType}`;
 
@@ -1049,16 +1032,17 @@
                     </div>
 
                     {/* Top Stats Cards */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                      {/* New Stage Type Card */}
-                      <div className="col-span-2 sm:col-span-2">
+                    {/* Updated Layout to 5 columns on md screens to fit the new card */}
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                      {/* Stage Type Card - Spans 2 cols */}
+                      <div className="col-span-2 md:col-span-2">
                         <StatCard
                             title="Stage Type"
                             value={fileData.stageType}
                             icon={<Flag className="w-5 h-5 text-neutral-300" />}
                         />
                       </div>
-                      <div className="col-span-1 sm:col-span-1">
+                      <div className="col-span-1 md:col-span-1">
                         <StatCard
                           title="Profile Score"
                           value={Math.round(fileData.totalScore)}
@@ -1066,11 +1050,19 @@
                           highlight
                         />
                       </div>
-                      <div className="col-span-1 sm:col-span-1">
+                      <div className="col-span-1 md:col-span-1">
                         <StatCard
                           title="Distance"
                           value={`${fileData.totalDistance.toFixed(1)} km`}
                           icon={<FileText className="w-5 h-5 text-neutral-300" />}
+                        />
+                      </div>
+                      {/* NEW CARD: Total Climbing */}
+                      <div className="col-span-1 md:col-span-1">
+                        <StatCard
+                          title="Total Climbing"
+                          value={`${Math.round(fileData.totalClimbing)} m`}
+                          icon={<TrendingUp className="w-5 h-5 text-neutral-300" />}
                         />
                       </div>
                     </div>
