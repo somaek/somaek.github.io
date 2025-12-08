@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPX File Profile and Climb Analyzer</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React & ReactDOM CDNs -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- Babel CDN for JSX/ES6 in the browser -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         /* Define the Noto and Oswald/Roboto font stacks */
@@ -489,7 +486,7 @@
             });
             // Push the last run if the route ends on an uphill
             if (currentRun) rawUphillRuns.push(currentRun);
-
+            rawUphillRuns = rawUphillRuns.filter(run => run.gain >= 8);
 
             // 3. Merge Runs if the gap between them is <= 0.25 km
             let climbs = []; // This will hold the finalized, merged climbs
@@ -533,7 +530,7 @@
 
 
             // 4. Filter, score, and finalize climb data (using the 'climbs' array generated in Step 3)
-            let validClimbs = climbs.filter(c => c.gain > 20).map((c) => { // Only count climbs with > 20m gain
+            let allClimbs = climbs.filter(c => c.gain > 20).map((c) => { // Only count climbs with > 20m gain
               // The length now includes the merged gap(s)
               const lengthKm = c.endDist - c.startDist;
 
@@ -569,12 +566,15 @@
             }).sort((a, b) => a.startDist - b.startDist); // Sort by appearance on the course
 
 
-            // NEW FILTER STEP: Remove climbs where (Avg Grade < 2% AND Max Grade < 3%)
-            validClimbs = validClimbs.filter(climb => {
+            // NEW FILTER STEP 1: Remove climbs where (Avg Grade < 2% AND Max Grade < 3%)
+            let scoredClimbsForTotal = allClimbs.filter(climb => {
               const isTooEasy = climb.gradientAvg < 2 && climb.maxGradient < 3;
               // Keep the climb UNLESS both conditions are met
               return !isTooEasy;
             });
+            
+            // NEW FILTER STEP 2 (USER REQUIREMENT): Filter OUT climbs that score below 2 (finalScore) for display only.
+            let validClimbs = scoredClimbsForTotal.filter(climb => climb.finalScore >= 2);
 
             // Re-index the remaining climbs (id) and initialize the name field
             validClimbs = validClimbs.map((climb, index) => ({
@@ -584,10 +584,10 @@
             }));
 
 
-            // Calculate overall statistics
-            const totalScore = validClimbs.reduce((acc, c) => acc + c.finalScore, 0);
+            // Calculate overall statistics: MUST use the 'scoredClimbsForTotal' array
+            const totalScore = scoredClimbsForTotal.reduce((acc, c) => acc + c.finalScore, 0);
             const finalZoneStart = totalDistance - 25;
-            const finalClimbs = validClimbs.filter(c => c.endDist >= finalZoneStart);
+            const finalClimbs = scoredClimbsForTotal.filter(c => c.endDist >= finalZoneStart);
             const finalProfileScore = finalClimbs.reduce((acc, c) => acc + c.finalScore, 0);
 
             let totalClimbing = 0;
@@ -619,10 +619,10 @@
             // UPDATED LOGIC: Check if any scored climb finishes within the last 1 km.
             let finishType = "flat finish";
             
-            // We check the 'distFromFinish' of the climbs. 
+            // Use the full 'scoredClimbsForTotal' list to determine the finish type
             // Note: climb.distFromFinish = totalDistance - climb.endDist
             // So we want any climb where distFromFinish <= 1.0
-            const hasUphillFinish = validClimbs.some(c => c.distFromFinish <= 1.0);
+            const hasUphillFinish = scoredClimbsForTotal.some(c => c.distFromFinish <= 1.0);
 
             if (hasUphillFinish) finishType = "uphill finish";
 
@@ -636,8 +636,8 @@
               totalGain: points[points.length - 1].ele - points[0].ele,
               maxEle: Math.max(...points.map(p => p.ele)),
               minEle: Math.min(...points.map(p => p.ele)),
-              climbs: validClimbs,
-              totalScore,
+              climbs: validClimbs, // Pass the filtered list for display
+              totalScore, // Pass the score calculated from the full list
               finalProfileScore,
               stageType, // Add to state
             });
@@ -1155,7 +1155,8 @@
                         <p className="font-bold uppercase text-white font-oswald mb-1 print:text-black">Scoring Methodology</p>
                         <p className="opacity-80 leading-relaxed font-light print:opacity-100">
                           Raw Climb Score = <code>(Gradient/2)² * Length (km)</code>. <br />
-                          Climbs with less than 20m vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the final list. <br />
+                          Climbs with less than 20m vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the initial filter. <br />
+                          <span className="font-semibold text-white print:text-black">New Display Filter:</span> Climbs with a final (weighted) score below **2.0** are now **excluded** from the table and profile display, but still contribute to the overall Profile Score. <br />
                           Weighted by position: Climbs within the final 75km receive progressive multipliers (up to 100% value in final 10km).<br />
                           <span className="font-semibold text-white print:text-black">Score Clarification:</span> The score shown in the table and used for color coding is the unweighted **RAW SCORE**. The overall "Profile Score" (top cards) uses the weighted Final Score.<br/>
                           <span className="font-semibold text-white print:text-black">Color Guide:</span> The score is color-coded using a 10-step gradient, where colors change every 5 points from Green (1-5) to Dark Red (46+).<br/>
