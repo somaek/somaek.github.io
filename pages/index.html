@@ -82,6 +82,7 @@
         const Info = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>;
         const RotateCw = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 0 0-9-9c-2.3 0-4.3 1.1-5.6 2.7"/><path d="M3 12a9 9 0 0 0 9 9c2.3 0 4.3-1.1 5.6-2.7"/><path d="M18 18L21 15L18 12"/></svg>;
         const Flag = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>;
+        const Ruler = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>;
         // --- END Lucide Icon Replacements ---
 
 
@@ -153,11 +154,65 @@
           const [fileData, setFileData] = useState(null);
           const [baseData, setBaseData] = useState(null); // Store single lap data
           const [laps, setLaps] = useState(1);
+          const [units, setUnits] = useState('metric'); // 'metric' or 'imperial'
           const [isProcessing, setIsProcessing] = useState(false);
-          // NEW: State for storing the uploaded file name
           const [fileName, setFileName] = useState(null); 
 
           const fileInputRef = useRef(null);
+
+          // Unit Conversion Factors
+          const KM_TO_MILES = 0.621371;
+          const M_TO_FEET = 3.28084;
+
+          // Helper to get current unit labels
+          const unitLabels = units === 'metric' ? { dist: 'km', alt: 'm' } : { dist: 'mi', alt: 'ft' };
+
+          // Derived state for display data
+          const displayData = useMemo(() => {
+            if (!fileData) return null;
+            
+            // If metric, return original data
+            if (units === 'metric') return fileData;
+
+            // Helper conversion functions
+            const toMiles = (km) => km * KM_TO_MILES;
+            const toFeet = (m) => m * M_TO_FEET;
+
+            // Deep clone and convert
+            return {
+                ...fileData,
+                totalDistance: toMiles(fileData.totalDistance),
+                totalClimbing: toFeet(fileData.totalClimbing),
+                minEle: toFeet(fileData.minEle),
+                maxEle: toFeet(fileData.maxEle),
+                // Convert all points
+                points: fileData.points.map(p => ({
+                    ...p,
+                    dist: toMiles(p.dist),
+                    ele: toFeet(p.ele)
+                })),
+                // Convert climbs
+                climbs: fileData.climbs.map(c => ({
+                    ...c,
+                    startDist: toMiles(c.startDist),
+                    endDist: toMiles(c.endDist),
+                    lengthKm: toMiles(c.lengthKm), // Holds length in current units
+                    gain: toFeet(c.gain),
+                    distFromFinish: toMiles(c.distFromFinish),
+                    // Convert chunks for chart highlighting
+                    chunks: c.chunks.map(chk => ({
+                        ...chk,
+                        startDist: toMiles(chk.startDist),
+                        endDist: toMiles(chk.endDist),
+                        gain: toFeet(chk.gain),
+                        startEle: toFeet(chk.startEle),
+                        endEle: toFeet(chk.endEle)
+                        // gradient is unitless (%), so it remains same
+                    }))
+                }))
+            };
+          }, [fileData, units]);
+
 
           // Recalculate when base data or laps change
           useEffect(() => {
@@ -415,20 +470,6 @@
             reader.readAsText(file);
           };
 
-          const updateClimbName = (index, value) => {
-            // This function is still present to maintain data structure compatibility 
-            // even though the input field for climb name has been removed.
-            setFileData(prev => {
-              if (!prev) return null;
-              const newClimbs = [...prev.climbs];
-              // Ensure index is valid before updating and maintain immutability
-              if (index >= 0 && index < newClimbs.length) {
-                newClimbs[index] = { ...newClimbs[index], name: value };
-              }
-              return { ...prev, climbs: newClimbs };
-            });
-          };
-
           const analyzeRoute = (points, totalDistance) => {
             const CHUNK_SIZE = 0.04; // Analyze route in 40m chunks 
             const MIN_UPHILL_GRADIENT = 1.5; // Threshold for considering it an uphill segment
@@ -674,7 +715,7 @@
           };
 
           // Custom SVG Chart for zero-dependency rendering of the elevation profile
-          const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle }) => {
+          const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle, unitLabels }) => {
             // Memoize displayed points to thin out massive datasets for performance
             const displayPoints = useMemo(() => {
               // If fewer than 500 points, use all of them
@@ -695,9 +736,10 @@
             const safeTotalDistance = totalDistance > 0 ? totalDistance : 1;
 
             // --- SCALE ADJUSTMENT ---
-            // Determine effective max elevation for scaling (min 400m range)
-            // If the actual range is less than 400m, force the top of the chart to minEle + 400
-            const effectiveMaxEle = (maxEle - minEle) < 400 ? minEle + 400 : maxEle;
+            // Determine effective max elevation for scaling (min 400m range or ~1300ft range)
+            // If the actual range is less than 400m (approx 1300ft), force the top of the chart higher
+            const MIN_RANGE = unitLabels.alt === 'm' ? 400 : 1300;
+            const effectiveMaxEle = (maxEle - minEle) < MIN_RANGE ? minEle + MIN_RANGE : maxEle;
             const safeEleRange = effectiveMaxEle - minEle > 0 ? effectiveMaxEle - minEle : 1;
 
             // Scaling functions
@@ -776,7 +818,10 @@
             }, [climbs, points, safeEleRange, safeTotalDistance, minEle, maxEle]); // Dependent on scaling
 
             // Calculate y-axis labels and horizontal grid lines
-            const eleInterval = Math.ceil(safeEleRange / 4 / 10) * 10; // Round up to nearest 10 for grid lines
+            // Round up to nearest 10 for grid lines, or 50 if feet
+            const step = unitLabels.alt === 'm' ? 10 : 50;
+            const eleInterval = Math.ceil(safeEleRange / 4 / step) * step; 
+            
             const gridLines = useMemo(() => {
               const lines = [];
               if (eleInterval <= 0) return lines;
@@ -906,8 +951,8 @@
 
 
                 {/* X-Axis Labels (Distance) */}
-                <text x={hPadding} y={height} fill="#ccc" fontSize="10" dy="-5" fontFamily="Roboto" className="print:fill-black">0km</text>
-                <text x={width - hPadding} y={height} fill="#ccc" fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto" className="print:fill-black">{totalDistance.toFixed(0)}km</text>
+                <text x={hPadding} y={height} fill="#ccc" fontSize="10" dy="-5" fontFamily="Roboto" className="print:fill-black">0{unitLabels.dist}</text>
+                <text x={width - hPadding} y={height} fill="#ccc" fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto" className="print:fill-black">{totalDistance.toFixed(0)}{unitLabels.dist}</text>
                 {xLabels.map((label, i) => (
                   <text
                     key={`l-x-${i}`}
@@ -920,14 +965,14 @@
                     fontFamily="Roboto"
                     className="print:fill-black"
                   >
-                    {label.dist.toFixed(0)}km
+                    {label.dist.toFixed(0)}{unitLabels.dist}
                   </text>
                 ))}
 
                 {/* Y-Axis Labels (Elevation) */}
                 {/* Updated to use effectiveMaxEle to reflect the forced scale */}
-                <text x={hPadding} y={vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(effectiveMaxEle)}m</text>
-                <text x={hPadding} y={height - vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(minEle)}m</text>
+                <text x={hPadding} y={vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(effectiveMaxEle)}{unitLabels.alt}</text>
+                <text x={hPadding} y={height - vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(minEle)}{unitLabels.alt}</text>
                 {gridLines.map((line, i) => (
                   <text
                     key={`l-y-${i}`}
@@ -941,7 +986,7 @@
                     fontFamily="Roboto"
                     className="print:fill-black"
                   >
-                    {Math.round(line.ele)}m
+                    {Math.round(line.ele)}{unitLabels.alt}
                   </text>
                 ))}
 
@@ -967,7 +1012,7 @@
                 </header>
 
                 {/* Input Section */}
-                {!fileData && (
+                {!displayData && (
                   <div
                     className={`
                       border-2 border-dashed rounded-sm p-16 text-center transition-all cursor-pointer group
@@ -1000,33 +1045,55 @@
                 )}
 
                 {/* Results Dashboard */}
-                {fileData && (
+                {displayData && (
                   <div className="space-y-6">
 
-                    {/* Controls Bar (Laps) */}
+                    {/* Controls Bar (Laps & Units) */}
                     <div className="bg-[#34495e] rounded-sm p-4 border border-[#4e6a81] flex flex-wrap items-center justify-between gap-4 print:hidden">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-[#2c3e50] p-2 rounded-sm">
-                          <RotateCw className="w-5 h-5 text-[#f75758]" />
+                      {/* Left: Laps Control */}
+                      <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-[#2c3e50] p-2 rounded-sm">
+                            <RotateCw className="w-5 h-5 text-[#f75758]" />
+                            </div>
+                            <div>
+                            <h3 className="font-bold uppercase text-sm text-white font-oswald tracking-wide">Course Laps</h3>
+                            <p className="text-xs text-neutral-400">Total Dist</p>
+                            </div>
                         </div>
-                        <div>
-                          <h3 className="font-bold uppercase text-sm text-white font-oswald tracking-wide">Course Laps</h3>
-                          <p className="text-xs text-neutral-400">Adjusts total distance & scoring</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
                         <div className="flex items-center bg-[#2c3e50] rounded-sm p-1 border border-[#4e6a81]">
-                          <button
+                            <button
                             onClick={() => setLaps(Math.max(1, laps - 1))}
                             className="px-4 py-1 text-neutral-400 hover:text-white hover:bg-[#4e6a81] rounded-sm transition-colors font-bold"
                             aria-label="Decrease laps"
-                          >-</button>
-                          <div className="w-12 text-center font-oswald font-bold text-xl text-[#f75758]">{laps}</div>
-                          <button
+                            >-</button>
+                            <div className="w-12 text-center font-oswald font-bold text-xl text-[#f75758]">{laps}</div>
+                            <button
                             onClick={() => setLaps(laps + 1)}
                             className="px-4 py-1 text-neutral-400 hover:text-white hover:bg-[#4e6a81] rounded-sm transition-colors font-bold"
                             aria-label="Increase laps"
-                          >+</button>
+                            >+</button>
+                        </div>
+                      </div>
+
+                       {/* Right: Units Control */}
+                      <div className="flex items-center gap-3">
+                        <div className="bg-[#2c3e50] p-2 rounded-sm">
+                          <Ruler className="w-5 h-5 text-[#f75758]" />
+                        </div>
+                        <div className="flex bg-[#2c3e50] rounded-sm p-1 border border-[#4e6a81]">
+                           <button 
+                             onClick={() => setUnits('metric')}
+                             className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'metric' ? 'bg-[#f75758] text-white' : 'text-neutral-400 hover:text-white'}`}
+                           >
+                            Metric
+                           </button>
+                           <button 
+                             onClick={() => setUnits('imperial')}
+                             className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'imperial' ? 'bg-[#f75758] text-white' : 'text-neutral-400 hover:text-white'}`}
+                           >
+                            Imperial
+                           </button>
                         </div>
                       </div>
                     </div>
@@ -1038,14 +1105,14 @@
                       <div className="col-span-2 md:col-span-2">
                         <StatCard
                             title="Stage Type"
-                            value={fileData.stageType}
+                            value={displayData.stageType}
                             icon={<Flag className="w-5 h-5 text-neutral-300" />}
                         />
                       </div>
                       <div className="col-span-1 md:col-span-1">
                         <StatCard
                           title="Profile Score"
-                          value={Math.round(fileData.totalScore)}
+                          value={Math.round(displayData.totalScore)}
                           icon={<Activity className="w-5 h-5 text-[#f56466]" />}
                           highlight
                         />
@@ -1053,7 +1120,7 @@
                       <div className="col-span-1 md:col-span-1">
                         <StatCard
                           title="Distance"
-                          value={`${fileData.totalDistance.toFixed(1)} km`}
+                          value={`${displayData.totalDistance.toFixed(1)} ${unitLabels.dist}`}
                           icon={<FileText className="w-5 h-5 text-neutral-300" />}
                         />
                       </div>
@@ -1061,7 +1128,7 @@
                       <div className="col-span-1 md:col-span-1">
                         <StatCard
                           title="Total Climbing"
-                          value={`${Math.round(fileData.totalClimbing)} m`}
+                          value={`${Math.round(displayData.totalClimbing)} ${unitLabels.alt}`}
                           icon={<TrendingUp className="w-5 h-5 text-neutral-300" />}
                         />
                       </div>
@@ -1081,11 +1148,12 @@
 
                       <div className="h-64 w-full relative z-10">
                         <ElevationChart
-                          points={fileData.points}
-                          climbs={fileData.climbs}
-                          totalDistance={fileData.totalDistance}
-                          minEle={fileData.minEle}
-                          maxEle={fileData.maxEle}
+                          points={displayData.points}
+                          climbs={displayData.climbs}
+                          totalDistance={displayData.totalDistance}
+                          minEle={displayData.minEle}
+                          maxEle={displayData.maxEle}
+                          unitLabels={unitLabels}
                         />
                       </div>
                     </div>
@@ -1110,19 +1178,19 @@
                             </tr>
                           </thead>
                           <tbody>
-                            {fileData.climbs.length === 0 ? (
+                            {displayData.climbs.length === 0 ? (
                               <tr><td colSpan="6" className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
                             ) : (
-                              fileData.climbs.map((climb, idx) => (
+                              displayData.climbs.map((climb, idx) => (
                                 <tr key={idx} className="hover:bg-[#4e6a81] transition-colors group print:text-black">
                                   <td className="px-6 py-3 font-bold text-[#f75758] font-oswald print:text-black">
                                     {climb.id}
                                   </td>
                                   {/* Distance to Finish (Column 2) */}
                                   <td className="px-6 py-4 text-white font-bold print:text-black">
-                                    {climb.distFromFinish.toFixed(1)} km
+                                    {climb.distFromFinish.toFixed(1)} {unitLabels.dist}
                                   </td>
-                                  <td className="px-6 py-4 text-white font-medium print:text-black">{climb.lengthKm.toFixed(2)} km</td>
+                                  <td className="px-6 py-4 text-white font-medium print:text-black">{climb.lengthKm.toFixed(2)} {unitLabels.dist}</td>
                                   <td className="px-6 py-4 text-neutral-200 font-medium print:text-black">
                                       {climb.gradientAvg.toFixed(1)}%
                                   </td>
@@ -1155,12 +1223,12 @@
                         <p className="font-bold uppercase text-white font-oswald mb-1 print:text-black">Scoring Methodology</p>
                         <p className="opacity-80 leading-relaxed font-light print:opacity-100">
                           Raw Climb Score = <code>(Gradient/2)² * Length (km)</code>. <br />
-                          Climbs with less than 20m vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the initial filter. <br />
+                          Climbs with less than {units === 'metric' ? '20m' : '66ft'} vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the initial filter. <br />
                           <span className="font-semibold text-white print:text-black">New Display Filter:</span> Climbs with a final (weighted) score below **2.0** are now **excluded** from the table and profile display, but still contribute to the overall Profile Score. <br />
-                          Weighted by position: Climbs within the final 75km receive progressive multipliers (up to 100% value in final 10km).<br />
+                          Weighted by position: Climbs within the final {units === 'metric' ? '75km' : '47mi'} receive progressive multipliers (up to 100% value in final {units === 'metric' ? '10km' : '6.2mi'}).<br />
                           <span className="font-semibold text-white print:text-black">Score Clarification:</span> The score shown in the table and used for color coding is the unweighted **RAW SCORE**. The overall "Profile Score" (top cards) uses the weighted Final Score.<br/>
                           <span className="font-semibold text-white print:text-black">Color Guide:</span> The score is color-coded using a 10-step gradient, where colors change every 5 points from Green (1-5) to Dark Red (46+).<br/>
-                          <span className="font-semibold text-white print:text-black">Note:</span> Uphill segments separated by less than 0.25 km are merged into a single climb.
+                          <span className="font-semibold text-white print:text-black">Note:</span> Uphill segments separated by less than {units === 'metric' ? '0.25 km' : '0.15 mi'} are merged into a single climb.
                         </p>
                       </div>
                     </div>
