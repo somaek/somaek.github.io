@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPX File Profile and Climb Analyzer</title>
+    <title>GPX Route Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -28,7 +28,7 @@
             font-family: 'Oswald', sans-serif;
         }
 
-        /* Print styles for road book export */
+        /* Print styles for road book export - Updated for new color scheme */
         @media print {
             .print\:hidden {
               display: none !important;
@@ -46,12 +46,13 @@
               border-color: black !important;
             }
             /* Ensure text contrast for printing tables/inputs */
-            .bg-\[\#2c3e50\], .bg-\[\#34495e\] {
+            .bg-\[\#2c0c5c\], .bg-\[\#4a217c\] { /* New background colors */
                 background-color: #f0f0f0 !important;
             }
             table, th, td {
                 color: black !important;
             }
+            /* Ensure climb colors/scores are visible */
             .print\:text-green-400, .print\:text-lime-400, .print\:text-yellow-400, .print\:text-amber-400, .print\:text-orange-400, .print\:text-red-400, .print\:text-red-500, .print\:text-red-600, .print\:text-red-700, .print\:text-red-800 {
                 color: black !important;
             }
@@ -343,6 +344,17 @@
             } else if (e.type === 'dragleave') {
               setDragActive(false);
             }
+          };
+          const updateClimbName = (index, value) => {
+            setFileData(prev => {
+              if (!prev) return null;
+              const newClimbs = [...prev.climbs];
+              // Ensure index is valid before updating and maintain immutability
+              if (index >= 0 && index < newClimbs.length) {
+                newClimbs[index] = { ...newClimbs[index], name: value };
+              }
+              return { ...prev, climbs: newClimbs };
+            });
           };
 
           const processGPX = (text) => {
@@ -674,7 +686,14 @@
           };
 
           const StatCard = ({ title, value, icon, highlight }) => {
-            const baseIconClass = highlight ? 'text-[#f75758]' : 'text-neutral-300';
+            // Updated colors for Allkin Classics style
+            const PRIMARY_ACCENT = '#00FFFF'; // Bright Cyan
+            const SECONDARY_ACCENT = '#ff4500'; // Bright Orange/Red for highlight
+            const BG_LIGHT = '#4a217c'; // Darker Purple
+            const BG_DARK = '#2c0c5c'; // Deep Purple
+            const BORDER_COLOR = '#6c3f9c'; // Lighter Purple for border
+            
+            const baseIconClass = highlight ? `text-[${SECONDARY_ACCENT}]` : 'text-neutral-300';
             const clonedIcon = React.cloneElement(icon, {
               className: `w-5 h-5 ${baseIconClass} print:text-black`
             });
@@ -682,13 +701,13 @@
             return (
               <div className={`
                 p-6 rounded-sm border flex flex-col justify-between relative overflow-hidden group
-                ${highlight ? 'bg-[#2c3e50] border-[#f75758]/50' : 'bg-[#34495e] border-[#4e6a81]'}
+                ${highlight ? `bg-[${BG_DARK}] border-[${SECONDARY_ACCENT}]/50` : `bg-[${BG_LIGHT}] border-[${BORDER_COLOR}]`}
                 print:bg-white print:border-black print:text-black
               `}>
-                {highlight && <div className="absolute top-0 right-0 w-16 h-16 bg-[#f75758]/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden"></div>}
+                {highlight && <div className={`absolute top-0 right-0 w-16 h-16 bg-[${SECONDARY_ACCENT}]/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden`}></div>}
 
                 <div className="flex justify-between items-start mb-4 relative z-10">
-                  <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? 'text-[#f75758] print:text-black' : 'text-neutral-400 print:text-black/70'}`}>{title}</span>
+                  <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? `text-[${SECONDARY_ACCENT}] print:text-black` : 'text-neutral-400 print:text-black/70'}`}>{title}</span>
                   {clonedIcon}
                 </div>
                 <div className={`text-3xl md:text-4xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-white print:text-black' : 'text-neutral-100 print:text-black'}`}>
@@ -699,6 +718,9 @@
           };
 
           const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle, unitLabels }) => {
+            const PRIMARY_ACCENT = '#00FFFF'; // Bright Cyan
+            const BORDER_COLOR = '#6c3f9c'; // Lighter Purple for border
+            
             const displayPoints = useMemo(() => {
               if (points.length < 500) return points;
               const factor = Math.floor(points.length / 500);
@@ -801,14 +823,16 @@
             return (
               <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full preserve-3d">
                 <defs>
+                  {/* Updated gradient color to match the accent */}
                   <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#f75758" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#f75758" stopOpacity="0.0" />
+                    <stop offset="0%" stopColor={PRIMARY_ACCENT} stopOpacity="0.3" />
+                    <stop offset="100%" stopColor={PRIMARY_ACCENT} stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
 
-                <line x1={hPadding} y1={height - vPadding} x2={width - hPadding} y2={height - vPadding} stroke="#4e6a81" strokeWidth="1" />
-                <line x1={hPadding} y1={vPadding} x2={hPadding} y2={height - vPadding} stroke="#4e6a81" strokeWidth="1" />
+                {/* Updated grid and axis colors */}
+                <line x1={hPadding} y1={height - vPadding} x2={width - hPadding} y2={height - vPadding} stroke={BORDER_COLOR} strokeWidth="1" />
+                <line x1={hPadding} y1={vPadding} x2={hPadding} y2={height - vPadding} stroke={BORDER_COLOR} strokeWidth="1" />
 
                 {gridLines.map((line, i) => (
                   <line
@@ -817,7 +841,7 @@
                     y1={line.y}
                     x2={width - hPadding}
                     y2={line.y}
-                    stroke="#4e6a81"
+                    stroke={BORDER_COLOR}
                     strokeWidth="0.5"
                     strokeDasharray="4 4"
                   />
@@ -830,7 +854,7 @@
                     y1={vPadding}
                     x2={label.x}
                     y2={height - vPadding}
-                    stroke="#4e6a81"
+                    stroke={BORDER_COLOR}
                     strokeWidth="0.5"
                     strokeDasharray="4 4"
                   />
@@ -852,8 +876,8 @@
 
                 <path
                   d={pathD}
-                  stroke="#ccc"
-                  strokeWidth="1.5"
+                  stroke={PRIMARY_ACCENT} /* Updated line color to accent */
+                  strokeWidth="2.0" // Slightly thicker line
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -890,6 +914,7 @@
                   </text>
                 ))}
 
+                {/* Updated axis label colors */}
                 <text x={hPadding} y={height} fill="#ccc" fontSize="10" dy="-5" fontFamily="Roboto" className="print:fill-black">0{unitLabels.dist}</text>
                 <text x={width - hPadding} y={height} fill="#ccc" fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto" className="print:fill-black">{totalDistance.toFixed(0)}{unitLabels.dist}</text>
                 {xLabels.map((label, i) => (
@@ -931,17 +956,23 @@
             );
           };
 
-          const defaultTitle = 'GPX File Profile and Climb Analyzer';
+          const defaultTitle = 'Route Profile';
+          const PRIMARY_ACCENT = '#00FFFF'; // Bright Cyan
+          const SECONDARY_ACCENT = '#ff4500'; // Bright Orange/Red for highlight
+          const BG_LIGHT = '#4a217c'; // Darker Purple
+          const BG_DARK = '#2c0c5c'; // Deep Purple
+          const BORDER_COLOR = '#6c3f9c'; // Lighter Purple for border
 
           return (
-            <div className="min-h-screen bg-[#2c3e50] text-white font-roboto selection:bg-[#f75758] selection:text-black p-4 md:p-8">
+            <div className={`min-h-screen bg-[${BG_DARK}] text-white font-roboto selection:bg-[${PRIMARY_ACCENT}] selection:text-black p-4 md:p-8`}>
               <div className="max-w-6xl mx-auto space-y-8">
 
-                <header className="flex items-center space-x-4 border-b border-[#4e6a81] pb-6 print:hidden">
-                  <Activity className="w-8 h-8 text-[#f75758]" />
+                <header className={`flex items-center space-x-4 border-b border-[${BORDER_COLOR}] pb-6 print:hidden`}>
+                  <Activity className={`w-8 h-8 text-[${PRIMARY_ACCENT}]`} />
                   <div>
+                    {/* Updated Header Text */}
                     <h1 className="text-3xl font-bold tracking-wide uppercase text-white font-oswald">{fileName || defaultTitle}</h1>
-                    <p className="text-neutral-300 text-sm tracking-wide">Profile Analyzer</p>
+                    <p className={`text-neutral-300 text-sm tracking-widest uppercase font-oswald mt-1 text-[${SECONDARY_ACCENT}]`}>GPX PROFILE ANALYZER</p>
                   </div>
                 </header>
 
@@ -949,7 +980,7 @@
                   <div
                     className={`
                       border-2 border-dashed rounded-sm p-16 text-center transition-all cursor-pointer group
-                      ${dragActive ? 'border-[#f75758] bg-[#f75758]/10' : 'border-[#4e6a81] hover:border-[#f75758]/50 bg-[#34495e]'}
+                      ${dragActive ? `border-[${PRIMARY_ACCENT}] bg-[${PRIMARY_ACCENT}]/10` : `border-[${BORDER_COLOR}] hover:border-[${PRIMARY_ACCENT}]/50 bg-[${BG_LIGHT}]`}
                     `}
                     onDragEnter={handleDrag}
                     onDragLeave={handleDrag}
@@ -965,14 +996,14 @@
                       onChange={handleChange}
                     />
                     <div className="flex flex-col items-center gap-6">
-                      <div className="w-20 h-20 bg-[#4e6a81] rounded-full flex items-center justify-center group-hover:bg-[#4e6a81] transition-colors">
-                        <Upload className="w-10 h-10 text-neutral-400 group-hover:text-[#f75758] transition-colors" />
+                      <div className={`w-20 h-20 bg-[${BORDER_COLOR}] rounded-full flex items-center justify-center group-hover:bg-[${BORDER_COLOR}] transition-colors`}>
+                        <Upload className={`w-10 h-10 text-neutral-400 group-hover:text-[${PRIMARY_ACCENT}] transition-colors`} />
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold uppercase text-white font-oswald tracking-wide">Upload Route File</h3>
                         <p className="text-neutral-400 mt-2 font-light">Drag & drop a .gpx or .json file here to begin analysis</p>
                       </div>
-                      {isProcessing && <p className="text-[#f75758] font-bold animate-pulse tracking-widest uppercase">Processing...</p>}
+                      {isProcessing && <p className={`text-[${PRIMARY_ACCENT}] font-bold animate-pulse tracking-widest uppercase`}>Processing...</p>}
                     </div>
                   </div>
                 )}
@@ -981,41 +1012,41 @@
                   <div className="space-y-6">
 
                     {/* Controls Bar */}
-                    <div className="bg-[#34495e] rounded-sm p-4 border border-[#4e6a81] flex flex-wrap items-center justify-between gap-4 print:hidden">
+                    <div className={`bg-[${BG_LIGHT}] rounded-sm p-4 border border-[${BORDER_COLOR}] flex flex-wrap items-center justify-between gap-4 print:hidden`}>
                       
                       {/* Left: Distance Controls (Combined Laps + Input) */}
                       <div className="flex flex-wrap items-center gap-6">
                         
                         {/* 1. Lap Controls */}
                         <div className="flex items-center gap-3">
-                            <div className="bg-[#2c3e50] p-2 rounded-sm hidden sm:block">
-                                <RotateCw className="w-5 h-5 text-[#f75758]" />
+                            <div className={`bg-[${BG_DARK}] p-2 rounded-sm hidden sm:block`}>
+                                <RotateCw className={`w-5 h-5 text-[${PRIMARY_ACCENT}]`} />
                             </div>
                             <div className="flex flex-col">
                                 <h3 className="font-bold uppercase text-sm text-white font-oswald tracking-wide">Laps</h3>
                                 <p className="text-xs text-neutral-400">{getDisplayLaps()} Laps</p>
                             </div>
-                            <div className="flex items-center bg-[#2c3e50] rounded-sm p-1 border border-[#4e6a81]">
+                            <div className={`flex items-center bg-[${BG_DARK}] rounded-sm p-1 border border-[${BORDER_COLOR}]`}>
                                 <button
                                     onClick={() => adjustLaps(-1)}
-                                    className="px-3 py-1 text-neutral-400 hover:text-white hover:bg-[#4e6a81] rounded-sm transition-colors font-bold"
+                                    className={`px-3 py-1 text-neutral-400 hover:text-white hover:bg-[${BORDER_COLOR}] rounded-sm transition-colors font-bold`}
                                     aria-label="Decrease laps"
                                 >-</button>
                                 <button
                                     onClick={() => adjustLaps(1)}
-                                    className="px-3 py-1 text-neutral-400 hover:text-white hover:bg-[#4e6a81] rounded-sm transition-colors font-bold"
+                                    className={`px-3 py-1 text-neutral-400 hover:text-white hover:bg-[${BORDER_COLOR}] rounded-sm transition-colors font-bold`}
                                     aria-label="Increase laps"
                                 >+</button>
                             </div>
                         </div>
 
                         {/* Divider */}
-                        <div className="w-px h-8 bg-[#4e6a81] hidden sm:block"></div>
+                        <div className={`w-px h-8 bg-[${BORDER_COLOR}] hidden sm:block`}></div>
 
                         {/* 2. Custom Distance Input */}
                         <div className="flex items-center gap-3">
                             <div className="flex flex-row items-center gap-4">
-                                <label className="font-bold uppercase text-xs text-[#f75758] font-oswald tracking-wide">Custom Distance ({unitLabels.dist})</label>
+                                <label className={`font-bold uppercase text-xs text-[${PRIMARY_ACCENT}] font-oswald tracking-wide`}>Custom Distance ({unitLabels.dist})</label>
                                 <div className="flex items-center">
                                     <input 
                                         type="number"
@@ -1023,7 +1054,7 @@
                                         step="0.5"
                                         value={units === 'metric' ? targetDistance.toFixed(1) : (targetDistance * KM_TO_MILES).toFixed(1)}
                                         onChange={handleDistanceInputChange}
-                                        className="bg-[#2c3e50] border border-[#4e6a81] text-white text-lg font-bold font-oswald px-3 py-1 w-28 rounded-sm focus:outline-none focus:border-[#f75758] transition-colors"
+                                        className={`bg-[${BG_DARK}] border border-[${BORDER_COLOR}] text-white text-lg font-bold font-oswald px-3 py-1 w-28 rounded-sm focus:outline-none focus:border-[${PRIMARY_ACCENT}] transition-colors`}
                                     />
                                 </div>
                             </div>
@@ -1033,19 +1064,19 @@
 
                        {/* Right: Units Control */}
                       <div className="flex items-center gap-3">
-                        <div className="bg-[#2c3e50] p-2 rounded-sm hidden sm:block">
-                          <Ruler className="w-5 h-5 text-[#f75758]" />
+                        <div className={`bg-[${BG_DARK}] p-2 rounded-sm hidden sm:block`}>
+                          <Ruler className={`w-5 h-5 text-[${PRIMARY_ACCENT}]`} />
                         </div>
-                        <div className="flex bg-[#2c3e50] rounded-sm p-1 border border-[#4e6a81]">
+                        <div className={`flex bg-[${BG_DARK}] rounded-sm p-1 border border-[${BORDER_COLOR}]`}>
                            <button 
                              onClick={() => setUnits('metric')}
-                             className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'metric' ? 'bg-[#f75758] text-white' : 'text-neutral-400 hover:text-white'}`}
+                             className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'metric' ? `bg-[${PRIMARY_ACCENT}] text-black` : 'text-neutral-400 hover:text-white'}`}
                            >
                             Metric
                            </button>
                            <button 
                              onClick={() => setUnits('imperial')}
-                             className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'imperial' ? 'bg-[#f75758] text-white' : 'text-neutral-400 hover:text-white'}`}
+                             className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'imperial' ? `bg-[${PRIMARY_ACCENT}] text-black` : 'text-neutral-400 hover:text-white'}`}
                            >
                             Imperial
                            </button>
@@ -1065,7 +1096,7 @@
                         <StatCard
                           title="Profile Score"
                           value={Math.round(displayData.totalScore)}
-                          icon={<Activity className="w-5 h-5 text-[#f56466]" />}
+                          icon={<Activity className={`w-5 h-5 text-[${SECONDARY_ACCENT}]`} />}
                           highlight
                         />
                       </div>
@@ -1085,13 +1116,13 @@
                       </div>
                     </div>
 
-                    <div className="bg-[#34495e] rounded-sm p-6 border border-[#4e6a81] shadow-xl overflow-hidden print:bg-white print:border-black relative">
+                    <div className={`bg-[${BG_LIGHT}] rounded-sm p-6 border border-[${BORDER_COLOR}] shadow-xl overflow-hidden print:bg-white print:border-black relative`}>
                       <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
-                        <Mountain className="w-32 h-32 text-[#f75758]" />
+                        <Mountain className={`w-32 h-32 text-[${PRIMARY_ACCENT}]`} />
                       </div>
                       <div className="flex justify-between items-center mb-6 relative z-10">
                         <h3 className="font-bold text-xl uppercase tracking-wide flex items-center gap-2 font-oswald text-white print:text-black">
-                          <span className="w-2 h-8 bg-[#f75758] inline-block mr-2"></span>
+                          <span className={`w-2 h-8 bg-[${PRIMARY_ACCENT}] inline-block mr-2`}></span>
                           Elevation Profile
                         </h3>
                       </div>
@@ -1108,32 +1139,42 @@
                       </div>
                     </div>
 
-                    <div className="bg-[#34495e] rounded-sm overflow-hidden border border-[#4e6a81] shadow-lg">
-                      <div className="p-5 border-b border-[#4e6a81] bg-[#2c3e50] flex justify-between items-end">
+                    <div className={`bg-[${BG_LIGHT}] rounded-sm overflow-hidden border border-[${BORDER_COLOR}] shadow-lg`}>
+                      <div className={`p-5 border-b border-[${BORDER_COLOR}] bg-[${BG_DARK}] flex justify-between items-end`}>
                         <div>
                           <h3 className="font-bold text-xl uppercase tracking-wide text-white font-oswald">Scored Climbs</h3>
                         </div>
                       </div>
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left">
-                          <thead className="text-neutral-400 bg-[#2c3e50] uppercase text-xs font-bold tracking-wider font-oswald">
+                          <thead className={`text-neutral-400 bg-[${BG_DARK}] uppercase text-xs font-bold tracking-wider font-oswald`}>
                             <tr>
-                              <th className="px-6 py-4 w-10 border-b border-[#4e6a81]">No.</th>
-                              <th className="px-6 py-4 border-b border-[#4e6a81]">To Finish</th>
-                              <th className="px-6 py-4 border-b border-[#4e6a81]">Length</th>
-                              <th className="px-6 py-4 border-b border-[#4e6a81]">Avg %</th>
-                              <th className="px-6 py-4 border-b border-[#4e6a81]">Max %</th>
-                              <th className="px-6 py-4 border-b border-[#4e6a81]">Raw Score</th>
+                              <th className={`px-6 py-4 w-10 border-b border-[${BORDER_COLOR}]`}>No.</th>
+                              <th className="px-6 py-4 w-64 border-b border-[#5e31a9]">Climb Name</th>
+                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>To Finish</th>
+                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Length</th>
+                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Avg %</th>
+                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Max %</th>
+                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Raw Score</th>
                             </tr>
                           </thead>
                           <tbody>
                             {displayData.climbs.length === 0 ? (
-                              <tr><td colSpan="6" className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
+                              <tr><td colSpan="7" className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
                             ) : (
                               displayData.climbs.map((climb, idx) => (
-                                <tr key={idx} className="hover:bg-[#4e6a81] transition-colors group print:text-black">
-                                  <td className="px-6 py-3 font-bold text-[#f75758] font-oswald print:text-black">
+                                <tr key={idx} className={`hover:bg-[${BORDER_COLOR}] transition-colors group print:text-black`}>
+                                  <td className={`px-6 py-3 font-bold text-[${PRIMARY_ACCENT}] font-oswald print:text-black`}>
                                     {climb.id}
+                                  </td>
+                                   <td className="px-6 py-3">
+                                    <input
+                                      type="text"
+                                      placeholder="NAME..."
+                                      value={climb.name}
+                                      onChange={(e) => updateClimbName(idx, e.target.value)}
+                                      className="bg-[#3b0687] border border-[#5e31a9] rounded-none px-3 py-1 text-white w-full focus:border-[#00B4FF] focus:outline-none focus:ring-1 focus:ring-[#00B4FF] placeholder-neutral-500 uppercase font-bold text-sm print:text-black print:bg-white print:border-black transition-all"
+                                    />
                                   </td>
                                   <td className="px-6 py-4 text-white font-bold print:text-black">
                                     {climb.distFromFinish.toFixed(1)} {unitLabels.dist}
@@ -1163,8 +1204,8 @@
                       </div>
                     </div>
 
-                    <div className="bg-[#34495e] border border-[#4e6a81] rounded-sm p-5 flex gap-4 text-sm text-neutral-300 items-start print:bg-white print:border-black print:text-black">
-                      <Info className="w-5 h-5 shrink-0 text-[#f75758] mt-0.5 print:text-black" />
+                    <div className={`bg-[${BG_LIGHT}] border border-[${BORDER_COLOR}] rounded-sm p-5 flex gap-4 text-sm text-neutral-300 items-start print:bg-white print:border-black print:text-black`}>
+                      <Info className={`w-5 h-5 shrink-0 text-[${PRIMARY_ACCENT}] mt-0.5 print:text-black`} />
                       <div>
                         <p className="font-bold uppercase text-white font-oswald mb-1 print:text-black">Scoring Methodology</p>
                         <p className="opacity-80 leading-relaxed font-light print:opacity-100">
@@ -1185,7 +1226,7 @@
                           setFileData(null);
                           setFileName(null);
                         }}
-                        className="px-8 py-3 bg-[#f75758] hover:bg-[#f75758]/80 text-black font-bold uppercase tracking-widest rounded-sm text-sm transition-colors shadow-lg hover:shadow-[#f75758]/40 flex items-center gap-2"
+                        className={`px-8 py-3 bg-[${PRIMARY_ACCENT}] hover:bg-[${PRIMARY_ACCENT}]/80 text-black font-bold uppercase tracking-widest rounded-sm text-sm transition-colors shadow-lg hover:shadow-[${PRIMARY_ACCENT}]/40 flex items-center gap-2`}
                       >
                         <Upload className="w-4 h-4" /> New Analysis
                       </button>
