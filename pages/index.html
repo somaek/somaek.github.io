@@ -82,6 +82,8 @@
         const RotateCw = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 0 0-9-9c-2.3 0-4.3 1.1-5.6 2.7"/><path d="M3 12a9 9 0 0 0 9 9c2.3 0 4.3-1.1 5.6-2.7"/><path d="M18 18L21 15L18 12"/></svg>;
         const Flag = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>;
         const Ruler = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>;
+        const Eye = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>;
+        const EyeOff = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.29-1.44"/><line x1="2" x2="22" y1="2" y2="22"/></svg>;
         // --- END Lucide Icon Replacements ---
 
 
@@ -154,6 +156,8 @@
           const [units, setUnits] = useState('metric'); // 'metric' or 'imperial'
           const [isProcessing, setIsProcessing] = useState(false);
           const [fileName, setFileName] = useState(null); 
+          // --- NEW STATE FOR CLIMB NAME VISIBILITY ---
+          const [showClimbName, setShowClimbName] = useState(true);
 
           const fileInputRef = useRef(null);
 
@@ -1144,13 +1148,23 @@
                         <div>
                           <h3 className="font-bold text-xl uppercase tracking-wide text-white font-oswald">Scored Climbs</h3>
                         </div>
+                        {/* --- NEW TOGGLE BUTTON --- */}
+                        <button
+                          onClick={() => setShowClimbName(prev => !prev)}
+                          className="px-3 py-1 bg-[#3b0687] hover:bg-[#5e31a9] text-neutral-300 hover:text-white rounded-sm text-xs font-bold uppercase tracking-widest flex items-center gap-1 transition-colors print:hidden"
+                        >
+                          {showClimbName ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                          {showClimbName ? 'Hide Names' : 'Show Names'}
+                        </button>
+                        {/* --- END NEW TOGGLE BUTTON --- */}
                       </div>
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left">
                           <thead className={`text-neutral-400 bg-[${BG_DARK}] uppercase text-xs font-bold tracking-wider font-oswald`}>
                             <tr>
                               <th className={`px-6 py-4 w-10 border-b border-[${BORDER_COLOR}]`}>No.</th>
-                              <th className="px-6 py-4 w-64 border-b border-[#5e31a9]">Climb Name</th>
+                              {/* --- CONDITIONAL HEADER --- */}
+                              {showClimbName && <th className="px-6 py-4 w-64 border-b border-[#5e31a9]">Climb Name</th>}
                               <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>To Finish</th>
                               <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Length</th>
                               <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Avg %</th>
@@ -1160,22 +1174,25 @@
                           </thead>
                           <tbody>
                             {displayData.climbs.length === 0 ? (
-                              <tr><td colSpan="7" className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
+                              <tr><td colSpan={showClimbName ? "7" : "6"} className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
                             ) : (
                               displayData.climbs.map((climb, idx) => (
                                 <tr key={idx} className={`hover:bg-[${BORDER_COLOR}] transition-colors group print:text-black`}>
                                   <td className={`px-6 py-3 font-bold text-[${PRIMARY_ACCENT}] font-oswald print:text-black`}>
                                     {climb.id}
                                   </td>
-                                   <td className="px-6 py-3">
-                                    <input
-                                      type="text"
-                                      placeholder="NAME..."
-                                      value={climb.name}
-                                      onChange={(e) => updateClimbName(idx, e.target.value)}
-                                      className="bg-[#3b0687] border border-[#5e31a9] rounded-none px-3 py-1 text-white w-full focus:border-[#00B4FF] focus:outline-none focus:ring-1 focus:ring-[#00B4FF] placeholder-neutral-500 uppercase font-bold text-sm print:text-black print:bg-white print:border-black transition-all"
-                                    />
-                                  </td>
+                                   {/* --- CONDITIONAL DATA CELL --- */}
+                                   {showClimbName && (
+                                      <td className="px-6 py-3">
+                                          <input
+                                            type="text"
+                                            placeholder="NAME..."
+                                            value={climb.name}
+                                            onChange={(e) => updateClimbName(idx, e.target.value)}
+                                            className="bg-[#3b0687] border border-[#5e31a9] rounded-none px-3 py-1 text-white w-full focus:border-[#00B4FF] focus:outline-none focus:ring-1 focus:ring-[#00B4FF] placeholder-neutral-500 uppercase font-bold text-sm print:text-black print:bg-white print:border-black transition-all"
+                                          />
+                                      </td>
+                                   )}
                                   <td className="px-6 py-4 text-white font-bold print:text-black">
                                     {climb.distFromFinish.toFixed(1)} {unitLabels.dist}
                                   </td>
