@@ -637,7 +637,7 @@
               return !isTooEasy;
             });
             
-            let validClimbs = scoredClimbsForTotal.filter(climb => climb.finalScore >= minScoreThreshold);
+            let validClimbs = scoredClimbsForTotal.filter(climb => climb.rawScore >= minScoreThreshold);
             validClimbs = validClimbs.map((climb, index) => ({
               ...climb,
               id: index + 1, 
