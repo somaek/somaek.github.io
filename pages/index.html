@@ -152,6 +152,7 @@
           
           // Target Distance determines the analysis length. Stored internally in KM.
           const [targetDistance, setTargetDistance] = useState(0); 
+          const [minScoreThreshold, setMinScoreThreshold] = useState(2.0);
 
           const [units, setUnits] = useState('metric'); // 'metric' or 'imperial'
           const [isProcessing, setIsProcessing] = useState(false);
@@ -274,7 +275,7 @@
             // Run analysis on the generated fullPoints
             analyzeRoute(fullPoints, currentDistOffset);
 
-          }, [baseData, targetDistance]);
+          }, [baseData, targetDistance, minScoreThreshold]);
 
 
           // --- HANDLERS ---
@@ -636,8 +637,7 @@
               return !isTooEasy;
             });
             
-            let validClimbs = scoredClimbsForTotal.filter(climb => climb.finalScore >= 2);
-
+            let validClimbs = scoredClimbsForTotal.filter(climb => climb.finalScore >= minScoreThreshold);
             validClimbs = validClimbs.map((climb, index) => ({
               ...climb,
               id: index + 1, 
@@ -1059,6 +1059,25 @@
                                         value={units === 'metric' ? targetDistance.toFixed(1) : (targetDistance * KM_TO_MILES).toFixed(1)}
                                         onChange={handleDistanceInputChange}
                                         className={`bg-[${BG_DARK}] border border-[${BORDER_COLOR}] text-white text-lg font-bold font-oswald px-3 py-1 w-28 rounded-sm focus:outline-none focus:border-[${PRIMARY_ACCENT}] transition-colors`}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        {/* Divider */}
+                        <div className="w-px h-8 bg-[#6c3f9c] hidden lg:block"></div>
+                    
+                        {/* NEW: Custom Score Filter Input */}
+                        <div className="flex items-center gap-3">
+                            <div className="flex flex-row items-center gap-4">
+                                <label className="font-bold uppercase text-xs text-[#00FFFF] font-oswald tracking-wide">Min Score Filter</label>
+                                <div className="flex items-center">
+                                    <input 
+                                        type="number"
+                                        min="0"
+                                        step="0.5"
+                                        value={minScoreThreshold}
+                                        onChange={(e) => setMinScoreThreshold(parseFloat(e.target.value) || 0)}
+                                        className="bg-[#2c0c5c] border border-[#6c3f9c] text-white text-lg font-bold font-oswald px-3 py-1 w-20 rounded-sm focus:outline-none focus:border-[#00FFFF] transition-colors"
                                     />
                                 </div>
                             </div>
