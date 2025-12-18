@@ -116,6 +116,14 @@
             if (score >= 6) return 'text-lime-300 print:text-lime-400 bg-lime-900/30';
             return 'text-green-400 print:text-green-300 bg-green-900/30';
         };
+        const getClimbCategory = (score) => {
+            if (score < 10) return null;
+            if (score > 150) return 'HC';
+            if (score > 75) return '1';
+            if (score > 37) return '2';
+            if (score > 18) return '3';
+            return '4';
+        };
 
         const haversineDistance = (lat1, lon1, lat2, lon2) => {
           const R = 6371; // Radius of the earth in km
@@ -1179,21 +1187,21 @@
                       </div>
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left">
-                          <thead className={`text-neutral-400 bg-[${BG_DARK}] uppercase text-xs font-bold tracking-wider font-oswald`}>
-                            <tr>
-                              <th className={`px-6 py-4 w-10 border-b border-[${BORDER_COLOR}]`}>No.</th>
-                              {/* --- CONDITIONAL HEADER --- */}
-                              {showClimbName && <th className="px-6 py-4 w-64 border-b border-[#5e31a9]">Climb Name</th>}
-                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>To Finish</th>
-                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Length</th>
-                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Avg %</th>
-                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Max %</th>
-                              <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Raw Score</th>
-                            </tr>
-                          </thead>
+                            <thead className={`text-neutral-400 bg-[${BG_DARK}] uppercase text-xs font-bold tracking-wider font-oswald`}>
+                                <tr>
+                                    <th className={`px-6 py-4 w-10 border-b border-[${BORDER_COLOR}]`}>No.</th>
+                                    {showClimbName && <th className="px-6 py-4 w-64 border-b border-[#5e31a9]">Climb Name</th>}
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>To Finish</th>
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Length</th>
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Avg %</th>
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Max %</th>
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Raw Score</th>
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Category</th> {/* NEW COLUMN */}
+                                </tr>
+                            </thead>
                           <tbody>
                             {displayData.climbs.length === 0 ? (
-                              <tr><td colSpan={showClimbName ? "7" : "6"} className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
+                              <tr><td colSpan={showClimbName ? "8" : "7"} className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
                             ) : (
                               displayData.climbs.map((climb, idx) => (
                                 <tr key={idx} className={`hover:bg-[${BORDER_COLOR}] transition-colors group print:text-black`}>
@@ -1232,6 +1240,11 @@
                                       {Math.round(climb.rawScore)}
                                     </span>
                                   </td>
+                                  <td className="px-6 py-4">
+                                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#2c0c5c] border border-[#6c3f9c] text-white font-bold font-oswald text-xs">
+                                        {getClimbCategory(climb.rawScore)}
+                                    </span>
+                                </td>
                                 </tr>
                               ))
                             )}
