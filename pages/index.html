@@ -1260,11 +1260,8 @@
                         <p className="opacity-80 leading-relaxed font-light print:opacity-100">
                           Raw Climb Score = <code>(Gradient/2)² * Length (km)</code>. <br />
                           Climbs with less than {units === 'metric' ? '20m' : '66ft'} vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the initial filter. <br />
-                          <span className="font-semibold text-white print:text-black">New Display Filter:</span> Climbs with a final (weighted) score below **2.0** are now **excluded** from the table and profile display, but still contribute to the overall Profile Score. <br />
                           Weighted by position: Climbs within the final {units === 'metric' ? '75km' : '47mi'} receive progressive multipliers (up to 100% value in final {units === 'metric' ? '10km' : '6.2mi'}).<br />
-                          <span className="font-semibold text-white print:text-black">Score Clarification:</span> The score shown in the table and used for color coding is the unweighted **RAW SCORE**. The overall "Profile Score" (top cards) uses the weighted Final Score.<br/>
-                          <span className="font-semibold text-white print:text-black">Color Guide:</span> The score is color-coded using a 10-step gradient, where colors change every 5 points from Green (1-5) to Dark Red (46+).<br/>
-                          <span className="font-semibold text-white print:text-black">Note:</span> Uphill segments separated by less than {units === 'metric' ? '0.25 km' : '0.15 mi'} are merged into a single climb.
+                          
                         </p>
                       </div>
                     </div>
