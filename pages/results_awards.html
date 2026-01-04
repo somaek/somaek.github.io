@@ -49,7 +49,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Toggle Switch Styling */
         .switch {
             position: relative;
             display: inline-block;
@@ -76,6 +75,17 @@
         }
         input:checked + .slider { background-color: #3b82f6; }
         input:checked + .slider:before { transform: translateX(20px); }
+
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25em 1.25em;
+            padding-right: 2.75rem !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -89,10 +99,15 @@
                 <p class="text-slate-400 font-medium">Performance analytics and podium celebrations.</p>
             </div>
             
-            <div class="flex flex-col sm:flex-row items-center gap-6">
-                <!-- Bot Toggle -->
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div id="penSelectorContainer" class="hidden flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700">
+                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Pen</span>
+                    <select id="penSelect" class="bg-slate-900 text-white text-sm font-bold py-1.5 pl-4 pr-10 rounded-lg border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all cursor-pointer">
+                    </select>
+                </div>
+
                 <div class="flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700">
-                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Include Bots</span>
+                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Bots</span>
                     <label class="switch">
                         <input type="checkbox" id="botToggle">
                         <span class="slider"></span>
@@ -102,7 +117,7 @@
                 <div class="shrink-0">
                     <label class="group flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all cursor-pointer shadow-lg shadow-blue-900/20">
                         <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                        <span>UPLOAD RESULTS</span>
+                        <span>UPLOAD</span>
                         <input type='file' class="hidden" id="csvFile" accept=".csv" />
                     </label>
                 </div>
@@ -113,7 +128,6 @@
     <main id="dashboard" class="max-w-6xl mx-auto px-6 py-8 hidden space-y-8">
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            
             <!-- Overall Winner -->
             <div id="overall-winner" class="glass-card accent-border border-gold rounded-2xl p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -174,7 +188,7 @@
                 <p class="text-red-400 font-mono text-sm" id="dt-watts">-- Watts</p>
             </div>
 
-            <!-- The Workhorse (Most kJ) -->
+            <!-- The Workhorse -->
             <div id="workhorse" class="glass-card accent-border border-pink rounded-2xl p-6">
                 <div class="flex justify-between items-start mb-4">
                     <div class="p-2 bg-pink-500/10 rounded-lg">
@@ -188,7 +202,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Top 5 Leaderboard -->
             <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500">
                 <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
                     <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
@@ -208,7 +221,6 @@
                 </div>
             </div>
 
-            <!-- Age Group Winners -->
             <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-400">
                 <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
                     <div class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
@@ -231,15 +243,23 @@
     </main>
 
     <script>
-        let rawRaceData = []; // Store raw data for re-processing
+        let rawRaceData = []; 
         const botToggle = document.getElementById('botToggle');
+        const penSelect = document.getElementById('penSelect');
+        const penContainer = document.getElementById('penSelectorContainer');
 
         document.getElementById('csvFile').addEventListener('change', handleFile);
+        
         botToggle.addEventListener('change', () => {
             if (rawRaceData.length > 0) processRaceData(rawRaceData);
         });
 
+        penSelect.addEventListener('change', () => {
+            if (rawRaceData.length > 0) processRaceData(rawRaceData);
+        });
+
         function formatTime(milliseconds) {
+            if (isNaN(milliseconds)) return "--:--:--";
             const seconds = Math.floor(milliseconds / 1000);
             const h = Math.floor(seconds / 3600);
             const m = Math.floor((seconds % 3600) / 60);
@@ -261,46 +281,79 @@
                 skipEmptyLines: true,
                 complete: function(results) {
                     rawRaceData = results.data;
+                    updatePenOptions(rawRaceData);
                     processRaceData(rawRaceData);
                 }
             });
         }
 
+        function updatePenOptions(data) {
+            const pens = [...new Set(data.map(item => item.pen !== undefined && item.pen !== null ? String(item.pen) : null).filter(Boolean))].sort();
+            
+            if (pens.length > 0) {
+                penSelect.innerHTML = pens.map(p => `<option value="${p}">Pen ${p}</option>`).join('');
+                if (pens.length > 1) {
+                    penContainer.classList.remove('hidden');
+                } else {
+                    penContainer.classList.add('hidden');
+                }
+            } else {
+                penSelect.innerHTML = '';
+                penContainer.classList.add('hidden');
+            }
+        }
+
         function processRaceData(data) {
             const includeBots = botToggle.checked;
+            const selectedPen = penSelect.value;
 
             const riders = data.filter(row => {
                 const isBot = String(row.isBot).toLowerCase() === 'true';
                 const isDNF = String(row.isDNF).toLowerCase() === 'true';
-                
-                // Always exclude DNF and players past position 200
-                if (isDNF || row.position > 200) return false;
-                
-                // Check bot preference
+                if (isDNF) return false;
+                if (selectedPen) {
+                    const rowPen = row.pen !== undefined && row.pen !== null ? String(row.pen) : null;
+                    if (rowPen !== selectedPen) return false;
+                }
                 if (!includeBots && isBot) return false;
-                
                 return true;
-            }).sort((a, b) => a.time - b.time);
+            }).sort((a, b) => (a.time || 0) - (b.time || 0));
 
-            if (riders.length === 0) return;
+            if (riders.length === 0) {
+                document.getElementById('dashboard').classList.add('hidden');
+                return;
+            }
+            
             document.getElementById('dashboard').classList.remove('hidden');
 
-            // Winner
+            // 1. Overall Winner
             const winner = riders[0];
             document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}${String(winner.isBot).toLowerCase() === 'true' ? ' [BOT]' : ''}`;
             document.getElementById('ow-time').textContent = `Finishing Time: ${formatTime(winner.time)}`;
 
-            // Efficiency
-            const powerRanked = [...riders].sort((a, b) => a.avgPower - b.avgPower);
-            const efficiencyList = riders.map((h, timeIndex) => {
-                const powerIndex = powerRanked.findIndex(p => p.playerId === h.playerId);
-                return { ...h, effScore: (timeIndex + 1) + (powerIndex + 1), powerRank: powerIndex + 1, timeRank: timeIndex + 1 };
+            // 2. Efficiency Expert (The "Draft Master")
+            // We want someone who placed well (Low Time Rank) but used low power (Low Power Rank).
+            // Sort by power ascending: Lowest Watts = Rank 1, Highest Watts = Rank N.
+            const powerRanked = [...riders].sort((a, b) => (a.avgPower || 0) - (b.avgPower || 0));
+            const efficiencyList = riders.map((rider, timeIdx) => {
+                const powerIdx = powerRanked.findIndex(p => p.playerId === rider.playerId);
+                const timeRank = timeIdx + 1;
+                const powerRank = powerIdx + 1;
+                // Score = Time Rank + Power Rank. 
+                // A rider who finishes 1st (#1) with the absolute lowest power (#1) gets score 2.
+                return { 
+                    ...rider, 
+                    effScore: timeRank + powerRank, 
+                    pRank: powerRank, 
+                    tRank: timeRank 
+                };
             }).sort((a, b) => a.effScore - b.effScore);
+
             const expert = efficiencyList[0];
             document.getElementById('ee-name').textContent = `${expert.firstName} ${expert.lastName}`;
-            document.getElementById('ee-stats').textContent = `Placed ${expert.timeRank} with #${expert.powerRank} Power`;
+            document.getElementById('ee-stats').textContent = `Placed ${expert.tRank} using only ${Math.round(expert.avgPower)}W avg`;
 
-            // Photo Finisher
+            // 3. Photo Finisher
             let minGap = Infinity;
             let pfWinner = null;
             let pfRunnerUp = null;
@@ -317,31 +370,30 @@
                 document.getElementById('pf-beat').textContent = `Beat ${pfRunnerUp.firstName} ${pfRunnerUp.lastName.charAt(0)}. by ${formatGap(minGap)}`;
             }
 
-            // Sprint Star
-            let sprintWinner = riders[0];
-            let sprintRunnerUp = riders[1];
-            if (sprintWinner && sprintRunnerUp) {
+            // 4. Sprint Star
+            if (riders.length >= 2) {
+                let sprintWinner = riders[0];
+                let sprintRunnerUp = riders[1];
                 let sprintGap = Math.abs(sprintRunnerUp.time - sprintWinner.time);
                 document.getElementById('ss-name').textContent = `${sprintWinner.firstName} ${sprintWinner.lastName}`;
                 document.getElementById('ss-beat').textContent = `Beat ${sprintRunnerUp.firstName} ${sprintRunnerUp.lastName.charAt(0)}. by ${formatGap(sprintGap)} at the line`;
             }
 
-            // Detonator
-            const detonator = [...riders].sort((a, b) => b.maxPower - a.maxPower)[0];
+            // 5. Detonator
+            const detonator = [...riders].sort((a, b) => (b.maxPower || 0) - (a.maxPower || 0))[0];
             document.getElementById('dt-name').textContent = `${detonator.firstName} ${detonator.lastName}`;
-            document.getElementById('dt-watts').textContent = `${detonator.maxPower}W peak output`;
+            document.getElementById('dt-watts').textContent = `${detonator.maxPower || 0}W peak output`;
 
-            // THE WORKHORSE
+            // 6. Workhorse
             const ridersWithKj = riders.map(h => {
-                const kj = (h.avgPower * (h.time / 1000)) / 1000;
+                const kj = ((h.avgPower || 0) * ((h.time || 0) / 1000)) / 1000;
                 return { ...h, kj };
             }).sort((a, b) => b.kj - a.kj);
-            
             const workhorse = ridersWithKj[0];
             document.getElementById('wh-name').textContent = `${workhorse.firstName} ${workhorse.lastName}`;
-            document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj).toLocaleString()} kJ Expended`;
+            document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj || 0).toLocaleString()} kJ Expended`;
 
-            // Top 5 Leaderboard
+            // 7. Top 5 Leaderboard
             const topFiveList = document.getElementById('top-five-list');
             topFiveList.innerHTML = '';
             riders.slice(0, 5).forEach((w, i) => {
@@ -358,10 +410,10 @@
                 topFiveList.appendChild(row);
             });
 
-            // Age Group Winners
+            // 8. Age Group Winners
             const ageGroupWinners = {};
             riders.forEach(h => {
-                const group = h.ageBand || "Bot";
+                const group = h.ageBand || "Uncategorized";
                 if (!ageGroupWinners[group] || h.time < ageGroupWinners[group].time) ageGroupWinners[group] = h;
             });
             const ageGroupList = document.getElementById('age-group-list');
@@ -377,7 +429,6 @@
                 ageGroupList.appendChild(row);
             });
             
-            // Only scroll on initial load or if not already in view
             if (document.getElementById('dashboard').classList.contains('hidden')) {
                 document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
             }
