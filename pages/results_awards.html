@@ -361,7 +361,7 @@
             // Age Group Winners
             const ageGroupWinners = {};
             riders.forEach(h => {
-                const group = h.ageBand || "Open";
+                const group = h.ageBand || "Bot";
                 if (!ageGroupWinners[group] || h.time < ageGroupWinners[group].time) ageGroupWinners[group] = h;
             });
             const ageGroupList = document.getElementById('age-group-list');
