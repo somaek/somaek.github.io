@@ -289,14 +289,10 @@
 
         function updatePenOptions(data) {
             const pens = [...new Set(data.map(item => item.pen !== undefined && item.pen !== null ? String(item.pen) : null).filter(Boolean))].sort();
-            
             if (pens.length > 0) {
                 penSelect.innerHTML = pens.map(p => `<option value="${p}">Pen ${p}</option>`).join('');
-                if (pens.length > 1) {
-                    penContainer.classList.remove('hidden');
-                } else {
-                    penContainer.classList.add('hidden');
-                }
+                if (pens.length > 1) penContainer.classList.remove('hidden');
+                else penContainer.classList.add('hidden');
             } else {
                 penSelect.innerHTML = '';
                 penContainer.classList.add('hidden');
@@ -331,52 +327,62 @@
             document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}${String(winner.isBot).toLowerCase() === 'true' ? ' [BOT]' : ''}`;
             document.getElementById('ow-time').textContent = `Finishing Time: ${formatTime(winner.time)}`;
 
-            // 2. Efficiency Expert (The "Draft Master")
-            // We want someone who placed well (Low Time Rank) but used low power (Low Power Rank).
-            // Sort by power ascending: Lowest Watts = Rank 1, Highest Watts = Rank N.
+            // 2. Efficiency Expert
             const powerRanked = [...riders].sort((a, b) => (a.avgPower || 0) - (b.avgPower || 0));
             const efficiencyList = riders.map((rider, timeIdx) => {
                 const powerIdx = powerRanked.findIndex(p => p.playerId === rider.playerId);
                 const timeRank = timeIdx + 1;
                 const powerRank = powerIdx + 1;
-                // Score = Time Rank + Power Rank. 
-                // A rider who finishes 1st (#1) with the absolute lowest power (#1) gets score 2.
-                return { 
-                    ...rider, 
-                    effScore: timeRank + powerRank, 
-                    pRank: powerRank, 
-                    tRank: timeRank 
-                };
+                return { ...rider, effScore: timeRank + powerRank, pRank: powerRank, tRank: timeRank };
             }).sort((a, b) => a.effScore - b.effScore);
 
             const expert = efficiencyList[0];
             document.getElementById('ee-name').textContent = `${expert.firstName} ${expert.lastName}`;
             document.getElementById('ee-stats').textContent = `Placed ${expert.tRank} using only ${Math.round(expert.avgPower)}W avg`;
 
-            // 3. Photo Finisher
-            let minGap = Infinity;
+            // 3. Photo Finisher (Absolute closest finish between any two filtered riders)
+            let absoluteMinGap = Infinity;
             let pfWinner = null;
-            let pfRunnerUp = null;
+            let pfTarget = null;
+            
             for (let i = 0; i < riders.length - 1; i++) {
-                let gap = Math.abs(riders[i+1].time - riders[i].time);
-                if (gap < minGap) {
-                    minGap = gap;
+                const gap = Math.abs(riders[i+1].time - riders[i].time);
+                if (gap < absoluteMinGap) {
+                    absoluteMinGap = gap;
                     pfWinner = riders[i];
-                    pfRunnerUp = riders[i+1];
+                    pfTarget = riders[i+1];
                 }
             }
-            if (pfWinner) {
+
+            if (pfWinner && absoluteMinGap <= 1000) {
                 document.getElementById('pf-winner').textContent = `${pfWinner.firstName} ${pfWinner.lastName}`;
-                document.getElementById('pf-beat').textContent = `Beat ${pfRunnerUp.firstName} ${pfRunnerUp.lastName.charAt(0)}. by ${formatGap(minGap)}`;
+                document.getElementById('pf-beat').textContent = `Beat ${pfTarget.firstName} ${pfTarget.lastName.charAt(0)}. by ${formatGap(absoluteMinGap)} in rank ${riders.indexOf(pfWinner) + 1}`;
+            } else {
+                document.getElementById('pf-winner').textContent = "Clear Finish";
+                document.getElementById('pf-beat').textContent = "No gaps under 1s found";
             }
 
-            // 4. Sprint Star
-            if (riders.length >= 2) {
-                let sprintWinner = riders[0];
-                let sprintRunnerUp = riders[1];
-                let sprintGap = Math.abs(sprintRunnerUp.time - sprintWinner.time);
-                document.getElementById('ss-name').textContent = `${sprintWinner.firstName} ${sprintWinner.lastName}`;
-                document.getElementById('ss-beat').textContent = `Beat ${sprintRunnerUp.firstName} ${sprintRunnerUp.lastName.charAt(0)}. by ${formatGap(sprintGap)} at the line`;
+            // 4. Sprint Star (Highest placed rider who beat someone by 10s or less)
+            let sprintStar = null;
+            let sprintTarget = null;
+            let finalGap = 0;
+            
+            for (let i = 0; i < riders.length - 1; i++) {
+                const gap = Math.abs(riders[i+1].time - riders[i].time);
+                if (gap <= 10000) { // 10 seconds
+                    sprintStar = riders[i];
+                    sprintTarget = riders[i+1];
+                    finalGap = gap;
+                    break;
+                }
+            }
+
+            if (sprintStar) {
+                document.getElementById('ss-name').textContent = `${sprintStar.firstName} ${sprintStar.lastName}`;
+                document.getElementById('ss-beat').textContent = `Beat ${sprintTarget.firstName} ${sprintTarget.lastName.charAt(0)}. by ${formatGap(finalGap)} in rank ${riders.indexOf(sprintStar) + 1}`;
+            } else {
+                document.getElementById('ss-name').textContent = "Solo Finish";
+                document.getElementById('ss-beat').textContent = "No gaps under 10s found";
             }
 
             // 5. Detonator
@@ -393,7 +399,7 @@
             document.getElementById('wh-name').textContent = `${workhorse.firstName} ${workhorse.lastName}`;
             document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj || 0).toLocaleString()} kJ Expended`;
 
-            // 7. Top 5 Leaderboard
+            // 7. Top 5
             const topFiveList = document.getElementById('top-five-list');
             topFiveList.innerHTML = '';
             riders.slice(0, 5).forEach((w, i) => {
