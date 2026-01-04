@@ -135,25 +135,25 @@
                 <p class="text-red-400 font-mono text-sm" id="dt-watts">-- Watts</p>
             </div>
 
-            <!-- Iron Heart / The Engine -->
-            <div id="iron-heart" class="glass-card accent-border border-pink rounded-2xl p-6">
+            <!-- The Workhorse (Most kJ) -->
+            <div id="workhorse" class="glass-card accent-border border-pink rounded-2xl p-6">
                 <div class="flex justify-between items-start mb-4">
                     <div class="p-2 bg-pink-500/10 rounded-lg">
-                        <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                        <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                     </div>
-                    <span class="text-[10px] font-black tracking-widest text-pink-500 uppercase">The Engine</span>
+                    <span class="text-[10px] font-black tracking-widest text-pink-500 uppercase">The Workhorse</span>
                 </div>
-                <h2 class="text-xl font-bold text-white mb-1" id="ih-name">---</h2>
-                <p class="text-pink-400 text-sm" id="ih-stats">-- Watts NP</p>
+                <h2 class="text-xl font-bold text-white mb-1" id="wh-name">---</h2>
+                <p class="text-pink-400 text-sm" id="wh-stats">-- kJ Expended</p>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Hardest Workers -->
+            <!-- Top 5 Humans -->
             <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500">
                 <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
                     <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
-                    The Grind: Top 5 kJ
+                    Top 5 Finishing Times
                 </h3>
                 <div class="overflow-x-auto no-scrollbar">
                     <table class="w-full text-left text-sm">
@@ -161,10 +161,10 @@
                             <tr>
                                 <th class="pb-3">Rank</th>
                                 <th class="pb-3">Rider</th>
-                                <th class="pb-3 text-right">Energy (kJ)</th>
+                                <th class="pb-3 text-right">Time</th>
                             </tr>
                         </thead>
-                        <tbody id="worker-list" class="divide-y divide-slate-800"></tbody>
+                        <tbody id="top-five-list" class="divide-y divide-slate-800"></tbody>
                     </table>
                 </div>
             </div>
@@ -245,7 +245,7 @@
             document.getElementById('ee-name').textContent = `${expert.firstName} ${expert.lastName}`;
             document.getElementById('ee-stats').textContent = `Placed ${expert.timeRank} with #${expert.powerRank} Power`;
 
-            // PHOTO FINISHER (Tightest Gap between any two consecutive riders)
+            // Photo Finisher
             let minGap = Infinity;
             let pfWinner = null;
             let pfRunnerUp = null;
@@ -257,52 +257,50 @@
                     pfRunnerUp = humans[i+1];
                 }
             }
-            document.getElementById('pf-winner').textContent = `${pfWinner.firstName} ${pfWinner.lastName}`;
-            document.getElementById('pf-beat').textContent = `Beat ${pfRunnerUp.firstName} ${pfRunnerUp.lastName.charAt(0)}. by ${formatGap(minGap)}`;
+            if (pfWinner) {
+                document.getElementById('pf-winner').textContent = `${pfWinner.firstName} ${pfWinner.lastName}`;
+                document.getElementById('pf-beat').textContent = `Beat ${pfRunnerUp.firstName} ${pfRunnerUp.lastName.charAt(0)}. by ${formatGap(minGap)}`;
+            }
 
-            // SPRINT STAR (Fast Twitch - specifically the winner of the final bunch sprint)
-            // We'll define a bunch sprint as riders within 0.5s of each other at the front
+            // Sprint Star
             let sprintWinner = humans[0];
             let sprintRunnerUp = humans[1];
-            let sprintGap = Math.abs(humans[1].time - humans[0].time);
-            
-            document.getElementById('ss-name').textContent = `${sprintWinner.firstName} ${sprintWinner.lastName}`;
-            document.getElementById('ss-beat').textContent = `Beat ${sprintRunnerUp.firstName} ${sprintRunnerUp.lastName.charAt(0)}. by ${formatGap(sprintGap)} at the line`;
+            if (sprintWinner && sprintRunnerUp) {
+                let sprintGap = Math.abs(sprintRunnerUp.time - sprintWinner.time);
+                document.getElementById('ss-name').textContent = `${sprintWinner.firstName} ${sprintWinner.lastName}`;
+                document.getElementById('ss-beat').textContent = `Beat ${sprintRunnerUp.firstName} ${sprintRunnerUp.lastName.charAt(0)}. by ${formatGap(sprintGap)} at the line`;
+            }
 
             // Detonator
             const detonator = [...humans].sort((a, b) => b.maxPower - a.maxPower)[0];
             document.getElementById('dt-name').textContent = `${detonator.firstName} ${detonator.lastName}`;
             document.getElementById('dt-watts').textContent = `${detonator.maxPower}W peak output`;
 
-            // 6. THE ENGINE (Highest NP)
-            // Column names can vary; looking for 'weightedAvgPower' (NP) or fallback to 'avgPower'
-            const engine = [...humans].sort((a, b) => {
-                const npA = a.weightedAvgPower || a.avgPower || 0;
-                const npB = b.weightedAvgPower || b.avgPower || 0;
-                return npB - npA;
-            })[0];
-            const npValue = engine.weightedAvgPower || engine.avgPower;
-            document.getElementById('ih-name').textContent = `${engine.firstName} ${engine.lastName}`;
-            document.getElementById('ih-stats').textContent = `${Math.round(npValue)}W Normalized Power`;
-
-            // Hardest Workers
-            const workers = humans.map(h => {
+            // THE WORKHORSE (Person who did the most work in kJ)
+            const humansWithKj = humans.map(h => {
+                // kj = (Avg Power * Time in seconds) / 1000
                 const kj = (h.avgPower * (h.time / 1000)) / 1000;
                 return { ...h, kj };
-            }).sort((a, b) => b.kj - a.kj).slice(0, 5);
-            const workerList = document.getElementById('worker-list');
-            workerList.innerHTML = '';
-            workers.forEach((w, i) => {
+            }).sort((a, b) => b.kj - a.kj);
+            
+            const workhorse = humansWithKj[0];
+            document.getElementById('wh-name').textContent = `${workhorse.firstName} ${workhorse.lastName}`;
+            document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj).toLocaleString()} kJ Expended`;
+
+            // Top 5 Leaderboard
+            const topFiveList = document.getElementById('top-five-list');
+            topFiveList.innerHTML = '';
+            humans.slice(0, 5).forEach((w, i) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="py-3 font-bold text-slate-500">#${i + 1}</td>
                     <td class="py-3 text-white font-medium">${w.firstName} ${w.lastName}</td>
-                    <td class="py-3 text-right font-mono font-bold text-purple-400">${Math.round(w.kj).toLocaleString()}</td>
+                    <td class="py-3 text-right font-mono font-bold text-purple-400">${formatTime(w.time)}</td>
                 `;
-                workerList.appendChild(row);
+                topFiveList.appendChild(row);
             });
 
-            // Age Groupers
+            // Age Group Winners
             const ageGroupWinners = {};
             humans.forEach(h => {
                 const group = h.ageBand || "Open";
