@@ -48,6 +48,34 @@
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Toggle Switch Styling */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #334155;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; width: 18px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #3b82f6; }
+        input:checked + .slider:before { transform: translateX(20px); }
     </style>
 </head>
 <body class="min-h-screen">
@@ -61,12 +89,23 @@
                 <p class="text-slate-400 font-medium">Performance analytics and podium celebrations.</p>
             </div>
             
-            <div class="shrink-0">
-                <label class="group flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all cursor-pointer shadow-lg shadow-blue-900/20">
-                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                    <span>UPLOAD RESULTS</span>
-                    <input type='file' class="hidden" id="csvFile" accept=".csv" />
-                </label>
+            <div class="flex flex-col sm:flex-row items-center gap-6">
+                <!-- Bot Toggle -->
+                <div class="flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700">
+                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Include Bots</span>
+                    <label class="switch">
+                        <input type="checkbox" id="botToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="shrink-0">
+                    <label class="group flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all cursor-pointer shadow-lg shadow-blue-900/20">
+                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        <span>UPLOAD RESULTS</span>
+                        <input type='file' class="hidden" id="csvFile" accept=".csv" />
+                    </label>
+                </div>
             </div>
         </div>
     </header>
@@ -149,7 +188,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Top 5 Humans -->
+            <!-- Top 5 Leaderboard -->
             <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500">
                 <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
                     <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
@@ -192,7 +231,13 @@
     </main>
 
     <script>
+        let rawRaceData = []; // Store raw data for re-processing
+        const botToggle = document.getElementById('botToggle');
+
         document.getElementById('csvFile').addEventListener('change', handleFile);
+        botToggle.addEventListener('change', () => {
+            if (rawRaceData.length > 0) processRaceData(rawRaceData);
+        });
 
         function formatTime(milliseconds) {
             const seconds = Math.floor(milliseconds / 1000);
@@ -215,29 +260,39 @@
                 dynamicTyping: true,
                 skipEmptyLines: true,
                 complete: function(results) {
-                    processRaceData(results.data);
+                    rawRaceData = results.data;
+                    processRaceData(rawRaceData);
                 }
             });
         }
 
         function processRaceData(data) {
-            const humans = data.filter(row => 
-                String(row.isBot).toLowerCase() === 'false' && 
-                row.position <= 200 &&
-                String(row.isDNF).toLowerCase() === 'false'
-            ).sort((a, b) => a.time - b.time);
+            const includeBots = botToggle.checked;
 
-            if (humans.length === 0) return;
+            const riders = data.filter(row => {
+                const isBot = String(row.isBot).toLowerCase() === 'true';
+                const isDNF = String(row.isDNF).toLowerCase() === 'true';
+                
+                // Always exclude DNF and players past position 200
+                if (isDNF || row.position > 200) return false;
+                
+                // Check bot preference
+                if (!includeBots && isBot) return false;
+                
+                return true;
+            }).sort((a, b) => a.time - b.time);
+
+            if (riders.length === 0) return;
             document.getElementById('dashboard').classList.remove('hidden');
 
             // Winner
-            const winner = humans[0];
-            document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}`;
+            const winner = riders[0];
+            document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}${String(winner.isBot).toLowerCase() === 'true' ? ' [BOT]' : ''}`;
             document.getElementById('ow-time').textContent = `Finishing Time: ${formatTime(winner.time)}`;
 
             // Efficiency
-            const powerRanked = [...humans].sort((a, b) => a.avgPower - b.avgPower);
-            const efficiencyList = humans.map((h, timeIndex) => {
+            const powerRanked = [...riders].sort((a, b) => a.avgPower - b.avgPower);
+            const efficiencyList = riders.map((h, timeIndex) => {
                 const powerIndex = powerRanked.findIndex(p => p.playerId === h.playerId);
                 return { ...h, effScore: (timeIndex + 1) + (powerIndex + 1), powerRank: powerIndex + 1, timeRank: timeIndex + 1 };
             }).sort((a, b) => a.effScore - b.effScore);
@@ -249,12 +304,12 @@
             let minGap = Infinity;
             let pfWinner = null;
             let pfRunnerUp = null;
-            for (let i = 0; i < humans.length - 1; i++) {
-                let gap = Math.abs(humans[i+1].time - humans[i].time);
+            for (let i = 0; i < riders.length - 1; i++) {
+                let gap = Math.abs(riders[i+1].time - riders[i].time);
                 if (gap < minGap) {
                     minGap = gap;
-                    pfWinner = humans[i];
-                    pfRunnerUp = humans[i+1];
+                    pfWinner = riders[i];
+                    pfRunnerUp = riders[i+1];
                 }
             }
             if (pfWinner) {
@@ -263,8 +318,8 @@
             }
 
             // Sprint Star
-            let sprintWinner = humans[0];
-            let sprintRunnerUp = humans[1];
+            let sprintWinner = riders[0];
+            let sprintRunnerUp = riders[1];
             if (sprintWinner && sprintRunnerUp) {
                 let sprintGap = Math.abs(sprintRunnerUp.time - sprintWinner.time);
                 document.getElementById('ss-name').textContent = `${sprintWinner.firstName} ${sprintWinner.lastName}`;
@@ -272,29 +327,32 @@
             }
 
             // Detonator
-            const detonator = [...humans].sort((a, b) => b.maxPower - a.maxPower)[0];
+            const detonator = [...riders].sort((a, b) => b.maxPower - a.maxPower)[0];
             document.getElementById('dt-name').textContent = `${detonator.firstName} ${detonator.lastName}`;
             document.getElementById('dt-watts').textContent = `${detonator.maxPower}W peak output`;
 
-            // THE WORKHORSE (Person who did the most work in kJ)
-            const humansWithKj = humans.map(h => {
-                // kj = (Avg Power * Time in seconds) / 1000
+            // THE WORKHORSE
+            const ridersWithKj = riders.map(h => {
                 const kj = (h.avgPower * (h.time / 1000)) / 1000;
                 return { ...h, kj };
             }).sort((a, b) => b.kj - a.kj);
             
-            const workhorse = humansWithKj[0];
+            const workhorse = ridersWithKj[0];
             document.getElementById('wh-name').textContent = `${workhorse.firstName} ${workhorse.lastName}`;
             document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj).toLocaleString()} kJ Expended`;
 
             // Top 5 Leaderboard
             const topFiveList = document.getElementById('top-five-list');
             topFiveList.innerHTML = '';
-            humans.slice(0, 5).forEach((w, i) => {
+            riders.slice(0, 5).forEach((w, i) => {
+                const isBot = String(w.isBot).toLowerCase() === 'true';
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="py-3 font-bold text-slate-500">#${i + 1}</td>
-                    <td class="py-3 text-white font-medium">${w.firstName} ${w.lastName}</td>
+                    <td class="py-3 text-white font-medium">
+                        ${w.firstName} ${w.lastName}
+                        ${isBot ? '<span class="ml-2 text-[8px] bg-slate-700 text-slate-400 px-1 rounded">BOT</span>' : ''}
+                    </td>
                     <td class="py-3 text-right font-mono font-bold text-purple-400">${formatTime(w.time)}</td>
                 `;
                 topFiveList.appendChild(row);
@@ -302,7 +360,7 @@
 
             // Age Group Winners
             const ageGroupWinners = {};
-            humans.forEach(h => {
+            riders.forEach(h => {
                 const group = h.ageBand || "Open";
                 if (!ageGroupWinners[group] || h.time < ageGroupWinners[group].time) ageGroupWinners[group] = h;
             });
@@ -318,7 +376,11 @@
                 `;
                 ageGroupList.appendChild(row);
             });
-            document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+            
+            // Only scroll on initial load or if not already in view
+            if (document.getElementById('dashboard').classList.contains('hidden')) {
+                document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+            }
         }
     </script>
 </body>
