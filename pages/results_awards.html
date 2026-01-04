@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Race Awards Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 950 */
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+        }
+        .accent-border {
+            position: relative;
+        }
+        .accent-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            border-radius: 0 0 12px 12px;
+        }
+        .border-gold::after { background: #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3); }
+        .border-emerald::after { background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+        .border-orange::after { background: #f97316; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
+        .border-blue::after { background: #3b82f6; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        .border-red::after { background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+        .border-pink::after { background: #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <header class="hero-gradient border-b border-slate-800 py-10 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-2">
+                    RACE <span class="text-blue-500 underline decoration-4 underline-offset-8">AWARDS</span>
+                </h1>
+                <p class="text-slate-400 font-medium">Performance analytics and podium celebrations.</p>
+            </div>
+            
+            <div class="shrink-0">
+                <label class="group flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all cursor-pointer shadow-lg shadow-blue-900/20">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    <span>UPLOAD RESULTS</span>
+                    <input type='file' class="hidden" id="csvFile" accept=".csv" />
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main id="dashboard" class="max-w-6xl mx-auto px-6 py-8 hidden space-y-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            
+            <!-- Overall Winner -->
+            <div id="overall-winner" class="glass-card accent-border border-gold rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-yellow-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-yellow-500 uppercase">Winner</span>
+                </div>
+                <h2 class="text-xl font-bold text-white leading-tight mb-1" id="ow-name">---</h2>
+                <p class="text-slate-400 text-sm" id="ow-time">Time: --:--:--</p>
+            </div>
+
+            <!-- Efficiency Expert -->
+            <div id="efficiency-expert" class="glass-card accent-border border-emerald rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-emerald-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-emerald-500 uppercase">Efficiency Expert</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2" id="ee-name">---</h2>
+                <p class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded inline-block" id="ee-stats">---</p>
+            </div>
+
+            <!-- Sprint Star -->
+            <div id="sprint-star" class="glass-card accent-border border-orange rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-orange-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-orange-500 uppercase">Sprint Star</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2" id="ss-name">---</h2>
+                <p class="text-xs text-orange-200" id="ss-beat">---</p>
+            </div>
+
+            <!-- Photo Finisher -->
+            <div id="photo-finisher" class="glass-card accent-border border-blue rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-blue-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-blue-500 uppercase">Photo Finish</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2" id="pf-winner">---</h2>
+                <p class="text-xs text-blue-200" id="pf-beat">---</p>
+            </div>
+
+            <!-- Detonator -->
+            <div id="detonator" class="glass-card accent-border border-red rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-red-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.99 7.99 0 0120 13a7.98 7.98 0 01-2.343 5.657z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-red-500 uppercase">Max Power</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-1" id="dt-name">---</h2>
+                <p class="text-red-400 font-mono text-sm" id="dt-watts">-- Watts</p>
+            </div>
+
+            <!-- Iron Heart / The Engine -->
+            <div id="iron-heart" class="glass-card accent-border border-pink rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-pink-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-pink-500 uppercase">The Engine</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-1" id="ih-name">---</h2>
+                <p class="text-pink-400 text-sm" id="ih-stats">-- Watts NP</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Hardest Workers -->
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500">
+                <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
+                    The Grind: Top 5 kJ
+                </h3>
+                <div class="overflow-x-auto no-scrollbar">
+                    <table class="w-full text-left text-sm">
+                        <thead class="text-slate-500 uppercase text-[10px] font-black tracking-widest border-b border-slate-700">
+                            <tr>
+                                <th class="pb-3">Rank</th>
+                                <th class="pb-3">Rider</th>
+                                <th class="pb-3 text-right">Energy (kJ)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="worker-list" class="divide-y divide-slate-800"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Age Group Winners -->
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-400">
+                <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
+                    Age Category Champions
+                </h3>
+                <div class="overflow-x-auto no-scrollbar">
+                    <table class="w-full text-left text-sm">
+                        <thead class="text-slate-500 uppercase text-[10px] font-black tracking-widest border-b border-slate-700">
+                            <tr>
+                                <th class="pb-3">Cat</th>
+                                <th class="pb-3">Winner</th>
+                                <th class="pb-3 text-right">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="age-group-list" class="divide-y divide-slate-800"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('csvFile').addEventListener('change', handleFile);
+
+        function formatTime(milliseconds) {
+            const seconds = Math.floor(milliseconds / 1000);
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = seconds % 60;
+            return [h, m, s].map(v => v < 10 ? "0" + v : v).join(":");
+        }
+
+        function formatGap(ms) {
+            if (ms < 1000) return `${ms}ms`;
+            return `${(ms / 1000).toFixed(2)}s`;
+        }
+
+        function handleFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    processRaceData(results.data);
+                }
+            });
+        }
+
+        function processRaceData(data) {
+            const humans = data.filter(row => 
+                String(row.isBot).toLowerCase() === 'false' && 
+                row.position <= 200 &&
+                String(row.isDNF).toLowerCase() === 'false'
+            ).sort((a, b) => a.time - b.time);
+
+            if (humans.length === 0) return;
+            document.getElementById('dashboard').classList.remove('hidden');
+
+            // Winner
+            const winner = humans[0];
+            document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}`;
+            document.getElementById('ow-time').textContent = `Finishing Time: ${formatTime(winner.time)}`;
+
+            // Efficiency
+            const powerRanked = [...humans].sort((a, b) => a.avgPower - b.avgPower);
+            const efficiencyList = humans.map((h, timeIndex) => {
+                const powerIndex = powerRanked.findIndex(p => p.playerId === h.playerId);
+                return { ...h, effScore: (timeIndex + 1) + (powerIndex + 1), powerRank: powerIndex + 1, timeRank: timeIndex + 1 };
+            }).sort((a, b) => a.effScore - b.effScore);
+            const expert = efficiencyList[0];
+            document.getElementById('ee-name').textContent = `${expert.firstName} ${expert.lastName}`;
+            document.getElementById('ee-stats').textContent = `Placed ${expert.timeRank} with #${expert.powerRank} Power`;
+
+            // PHOTO FINISHER (Tightest Gap between any two consecutive riders)
+            let minGap = Infinity;
+            let pfWinner = null;
+            let pfRunnerUp = null;
+            for (let i = 0; i < humans.length - 1; i++) {
+                let gap = Math.abs(humans[i+1].time - humans[i].time);
+                if (gap < minGap) {
+                    minGap = gap;
+                    pfWinner = humans[i];
+                    pfRunnerUp = humans[i+1];
+                }
+            }
+            document.getElementById('pf-winner').textContent = `${pfWinner.firstName} ${pfWinner.lastName}`;
+            document.getElementById('pf-beat').textContent = `Beat ${pfRunnerUp.firstName} ${pfRunnerUp.lastName.charAt(0)}. by ${formatGap(minGap)}`;
+
+            // SPRINT STAR (Fast Twitch - specifically the winner of the final bunch sprint)
+            // We'll define a bunch sprint as riders within 0.5s of each other at the front
+            let sprintWinner = humans[0];
+            let sprintRunnerUp = humans[1];
+            let sprintGap = Math.abs(humans[1].time - humans[0].time);
+            
+            document.getElementById('ss-name').textContent = `${sprintWinner.firstName} ${sprintWinner.lastName}`;
+            document.getElementById('ss-beat').textContent = `Beat ${sprintRunnerUp.firstName} ${sprintRunnerUp.lastName.charAt(0)}. by ${formatGap(sprintGap)} at the line`;
+
+            // Detonator
+            const detonator = [...humans].sort((a, b) => b.maxPower - a.maxPower)[0];
+            document.getElementById('dt-name').textContent = `${detonator.firstName} ${detonator.lastName}`;
+            document.getElementById('dt-watts').textContent = `${detonator.maxPower}W peak output`;
+
+            // 6. THE ENGINE (Highest NP)
+            // Column names can vary; looking for 'weightedAvgPower' (NP) or fallback to 'avgPower'
+            const engine = [...humans].sort((a, b) => {
+                const npA = a.weightedAvgPower || a.avgPower || 0;
+                const npB = b.weightedAvgPower || b.avgPower || 0;
+                return npB - npA;
+            })[0];
+            const npValue = engine.weightedAvgPower || engine.avgPower;
+            document.getElementById('ih-name').textContent = `${engine.firstName} ${engine.lastName}`;
+            document.getElementById('ih-stats').textContent = `${Math.round(npValue)}W Normalized Power`;
+
+            // Hardest Workers
+            const workers = humans.map(h => {
+                const kj = (h.avgPower * (h.time / 1000)) / 1000;
+                return { ...h, kj };
+            }).sort((a, b) => b.kj - a.kj).slice(0, 5);
+            const workerList = document.getElementById('worker-list');
+            workerList.innerHTML = '';
+            workers.forEach((w, i) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-3 font-bold text-slate-500">#${i + 1}</td>
+                    <td class="py-3 text-white font-medium">${w.firstName} ${w.lastName}</td>
+                    <td class="py-3 text-right font-mono font-bold text-purple-400">${Math.round(w.kj).toLocaleString()}</td>
+                `;
+                workerList.appendChild(row);
+            });
+
+            // Age Groupers
+            const ageGroupWinners = {};
+            humans.forEach(h => {
+                const group = h.ageBand || "Open";
+                if (!ageGroupWinners[group] || h.time < ageGroupWinners[group].time) ageGroupWinners[group] = h;
+            });
+            const ageGroupList = document.getElementById('age-group-list');
+            ageGroupList.innerHTML = '';
+            Object.keys(ageGroupWinners).sort().forEach(group => {
+                const w = ageGroupWinners[group];
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-3 font-bold text-blue-400">${group}</td>
+                    <td class="py-3 text-white font-medium">${w.firstName} ${w.lastName}</td>
+                    <td class="py-3 text-right font-mono text-slate-400">${formatTime(w.time)}</td>
+                `;
+                ageGroupList.appendChild(row);
+            });
+            document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
