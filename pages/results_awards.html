@@ -137,7 +137,7 @@
                     <span class="text-[10px] font-black tracking-widest text-yellow-500 uppercase">Winner</span>
                 </div>
                 <h2 class="text-xl font-bold text-white leading-tight mb-1" id="ow-name">---</h2>
-                <p class="text-slate-400 text-sm" id="ow-time">Time: --:--:--</p>
+                <p class="text-slate-400 text-sm" id="ow-time">Position: -- | Time: --:--:--</p>
             </div>
 
             <!-- Efficiency Expert -->
@@ -205,13 +205,13 @@
             <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500">
                 <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
                     <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
-                    Top 5 Finishing Times
+                    Top 5 Finishing Positions
                 </h3>
                 <div class="overflow-x-auto no-scrollbar">
                     <table class="w-full text-left text-sm">
                         <thead class="text-slate-500 uppercase text-[10px] font-black tracking-widest border-b border-slate-700">
                             <tr>
-                                <th class="pb-3">Rank</th>
+                                <th class="pb-3">Pos</th>
                                 <th class="pb-3">Rider</th>
                                 <th class="pb-3 text-right">Time</th>
                             </tr>
@@ -303,6 +303,7 @@
             const includeBots = botToggle.checked;
             const selectedPen = penSelect.value;
 
+            // Filter riders and sort by Position first, then time as fallback
             const riders = data.filter(row => {
                 const isBot = String(row.isBot).toLowerCase() === 'true';
                 const isDNF = String(row.isDNF).toLowerCase() === 'true';
@@ -313,7 +314,14 @@
                 }
                 if (!includeBots && isBot) return false;
                 return true;
-            }).sort((a, b) => (a.time || 0) - (b.time || 0));
+            }).sort((a, b) => {
+                // Primary sort: Position (Ascending)
+                const posA = parseInt(a.position) || 9999;
+                const posB = parseInt(b.position) || 9999;
+                if (posA !== posB) return posA - posB;
+                // Secondary sort: Time (Ascending)
+                return (a.time || 0) - (b.time || 0);
+            });
 
             if (riders.length === 0) {
                 document.getElementById('dashboard').classList.add('hidden');
@@ -322,25 +330,25 @@
             
             document.getElementById('dashboard').classList.remove('hidden');
 
-            // 1. Overall Winner
+            // 1. Overall Winner (Top position)
             const winner = riders[0];
             document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}${String(winner.isBot).toLowerCase() === 'true' ? ' [BOT]' : ''}`;
-            document.getElementById('ow-time').textContent = `Finishing Time: ${formatTime(winner.time)}`;
+            document.getElementById('ow-time').textContent = `Position: ${winner.position} | Time: ${formatTime(winner.time)}`;
 
             // 2. Efficiency Expert
             const powerRanked = [...riders].sort((a, b) => (a.avgPower || 0) - (b.avgPower || 0));
-            const efficiencyList = riders.map((rider, timeIdx) => {
+            const efficiencyList = riders.map((rider, posIdx) => {
                 const powerIdx = powerRanked.findIndex(p => p.playerId === rider.playerId);
-                const timeRank = timeIdx + 1;
+                const posRank = posIdx + 1; // Based on finishing position
                 const powerRank = powerIdx + 1;
-                return { ...rider, effScore: timeRank + powerRank, pRank: powerRank, tRank: timeRank };
+                return { ...rider, effScore: posRank + powerRank, pRank: powerRank, tRank: posRank };
             }).sort((a, b) => a.effScore - b.effScore);
 
             const expert = efficiencyList[0];
             document.getElementById('ee-name').textContent = `${expert.firstName} ${expert.lastName}`;
-            document.getElementById('ee-stats').textContent = `Placed ${expert.tRank} using only ${Math.round(expert.avgPower)}W avg`;
+            document.getElementById('ee-stats').textContent = `Placed ${expert.position || expert.tRank} using only ${Math.round(expert.avgPower)}W avg`;
 
-            // 3. Photo Finisher (Absolute closest finish between any two filtered riders)
+            // 3. Photo Finisher (Smallest time gap between consecutive finishers)
             let absoluteMinGap = Infinity;
             let pfWinner = null;
             let pfTarget = null;
@@ -356,7 +364,7 @@
 
             if (pfWinner && absoluteMinGap <= 1000) {
                 document.getElementById('pf-winner').textContent = `${pfWinner.firstName} ${pfWinner.lastName}`;
-                document.getElementById('pf-beat').textContent = `Beat ${pfTarget.firstName} ${pfTarget.lastName.charAt(0)}. by ${formatGap(absoluteMinGap)} in rank ${riders.indexOf(pfWinner) + 1}`;
+                document.getElementById('pf-beat').textContent = `Beat ${pfTarget.firstName} ${pfTarget.lastName.charAt(0)}. by ${formatGap(absoluteMinGap)} for Pos ${pfWinner.position}`;
             } else {
                 document.getElementById('pf-winner').textContent = "Clear Finish";
                 document.getElementById('pf-beat').textContent = "No gaps under 1s found";
@@ -379,7 +387,7 @@
 
             if (sprintStar) {
                 document.getElementById('ss-name').textContent = `${sprintStar.firstName} ${sprintStar.lastName}`;
-                document.getElementById('ss-beat').textContent = `Beat ${sprintTarget.firstName} ${sprintTarget.lastName.charAt(0)}. by ${formatGap(finalGap)} in rank ${riders.indexOf(sprintStar) + 1}`;
+                document.getElementById('ss-beat').textContent = `Beat ${sprintTarget.firstName} ${sprintTarget.lastName.charAt(0)}. by ${formatGap(finalGap)} for Pos ${sprintStar.position}`;
             } else {
                 document.getElementById('ss-name').textContent = "Solo Finish";
                 document.getElementById('ss-beat').textContent = "No gaps under 10s found";
@@ -399,14 +407,14 @@
             document.getElementById('wh-name').textContent = `${workhorse.firstName} ${workhorse.lastName}`;
             document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj || 0).toLocaleString()} kJ Expended`;
 
-            // 7. Top 5
+            // 7. Top 5 (By Position)
             const topFiveList = document.getElementById('top-five-list');
             topFiveList.innerHTML = '';
             riders.slice(0, 5).forEach((w, i) => {
                 const isBot = String(w.isBot).toLowerCase() === 'true';
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td class="py-3 font-bold text-slate-500">#${i + 1}</td>
+                    <td class="py-3 font-bold text-slate-500">#${w.position || (i + 1)}</td>
                     <td class="py-3 text-white font-medium">
                         ${w.firstName} ${w.lastName}
                         ${isBot ? '<span class="ml-2 text-[8px] bg-slate-700 text-slate-400 px-1 rounded">BOT</span>' : ''}
@@ -416,11 +424,21 @@
                 topFiveList.appendChild(row);
             });
 
-            // 8. Age Group Winners
+            // 8. Age Group Winners (By Position)
             const ageGroupWinners = {};
             riders.forEach(h => {
                 const group = h.ageBand || "Uncategorized";
-                if (!ageGroupWinners[group] || h.time < ageGroupWinners[group].time) ageGroupWinners[group] = h;
+                const currentPos = parseInt(h.position) || 9999;
+                if (!ageGroupWinners[group]) {
+                    ageGroupWinners[group] = h;
+                } else {
+                    const existingPos = parseInt(ageGroupWinners[group].position) || 9999;
+                    if (currentPos < existingPos) {
+                        ageGroupWinners[group] = h;
+                    } else if (currentPos === existingPos && h.time < ageGroupWinners[group].time) {
+                        ageGroupWinners[group] = h;
+                    }
+                }
             });
             const ageGroupList = document.getElementById('age-group-list');
             ageGroupList.innerHTML = '';
