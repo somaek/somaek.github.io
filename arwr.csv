@@ -17,16 +17,16 @@
 16,✓︎ Eugeni Streshnev,Allkin CC,217,18,134,64,10,200
 17,Mikael Engmark,FilsøAktivNatur-BikePro,210,0,210,0,9,300
 18,Soeren Lindner,BHC,200,23,177,0,6,1676
-19,Priit Alumaa,Fingolia Continental,184,88,0,95,12,924
+19,Priit Alumaa,Fingolia Continental,198,88,0,110,13,923
 20,Rob Miller,Race3R,182,88,94,0,7,1190
 21,Tom Ghan,Allkin Racing,181,0,181,0,8,974
 22,Mark Siega,Race3R,171,0,153,19,6,1284
-23,Ludvig Karlberg,M4shup Collective,145,0,145,0,4,1641
-24,Ben Russell,M4shup Collective,144,0,144,0,4,1864
-25,Jan van der Linden,Pocomotion,142,22,120,0,5,1514
-26,Jay  Santi,Pedalers,138,0,113,25,7,1180
-27,Daniel Schoch,Moon Riders,132,0,132,0,4,1744
-28,ML Martin,Monkey Cycling,131,0,0,131,8,1200
+23,ML Martin,Monkey Cycling,150,0,0,150,9,1201
+24,Ludvig Karlberg,M4shup Collective,145,0,145,0,4,1641
+25,Ben Russell,M4shup Collective,144,0,144,0,4,1864
+26,Jan van der Linden,Pocomotion,142,22,120,0,5,1514
+27,Jay  Santi,Pedalers,138,0,113,25,7,1180
+28,Daniel Schoch,Moon Riders,132,0,132,0,4,1744
 29,Matija Meden,Riki Team Black,131,0,32,99,6,200
 30,Thomas Helveg,Pure Power,130,10,63,57,9,1029
 31,Jurgen N_,Flandria,118,0,118,0,8,821
@@ -43,16 +43,16 @@
 42,Dan Stimson,Race3R,85,85,0,0,4,1595
 43,Anthony dubre,Pedalers,83,23,37,24,3,1724
 44,Christian Nistri,Allkin CC,83,0,64,19,5,805
-45,Mathias Bach,eCKD Eagles,72,0,72,0,2,1747
-46,Brenon Daly,,70,0,70,0,2,100
-47,David Talbott,Ride 4 Claire,69,0,69,0,2,1716
-48,Jonas Knudsen-BikePro.dk,FilsøAktivNatur-BikePro,69,0,69,0,2,1515
-49,Jeppe Tolbøll,Cycling Universe Race Team,68,0,68,0,2,1717
-50,Zeb Norman,M4shup Collective,67,0,67,0,2,1703
-51,Luciano VLOdrome,Tarados Cycling Squad,64,0,64,0,2,1393
-52,Toto LeKoala,Riders Givrés du Trainer,63,0,63,0,3,1225
-53,Juho Väisänen,Coalition,63,0,63,0,3,1446
-54,jean pierre fournier,Riders Givrés du Trainer,61,0,61,0,3,961
+45,jean pierre fournier,Riders Givrés du Trainer,72,0,61,11,4,946
+46,Mathias Bach,eCKD Eagles,72,0,72,0,2,1747
+47,Brenon Daly,,70,0,70,0,2,100
+48,David Talbott,Ride 4 Claire,69,0,69,0,2,1716
+49,Jonas Knudsen-BikePro.dk,FilsøAktivNatur-BikePro,69,0,69,0,2,1515
+50,Jeppe Tolbøll,Cycling Universe Race Team,68,0,68,0,2,1717
+51,Zeb Norman,M4shup Collective,67,0,67,0,2,1703
+52,Luciano VLOdrome,Tarados Cycling Squad,64,0,64,0,2,1393
+53,Toto LeKoala,Riders Givrés du Trainer,63,0,63,0,3,1225
+54,Juho Väisänen,Coalition,63,0,63,0,3,1446
 55,Sam Carr,,60,0,60,0,3,1006
 56,John Sammut,Pocomotion,60,23,36,0,2,1786
 57,Dan Kobberup,eCKD Eagles,57,0,57,0,2,1153
@@ -126,20 +126,22 @@
 125,Tanya Konshak,,19,0,19,0,1,100
 126,Jasper Mosevang Vinten,Christiansen & Essenbaek,19,0,0,19,1,1473
 127,Roussel Frederic,React ECT,17,0,17,0,1,1320
-128,Alexander  Thornfeldt,Pedalers,16,0,16,0,1,100
-129,Paul Lengermann,NeXT pb Enshored,16,0,16,0,1,100
-130,Matt Keiper,indieVelo Founders Club,16,16,0,0,1,1061
-131,Laurens Deneve,Race3R,16,0,0,16,1,1232
-132,John Rodgers,Tyrone Power Racing,16,0,16,0,1,629
-133,Ben Nichols,,15,0,0,15,1,100
-134,Sam Beeson,Allkin Racing,15,0,15,0,1,200
-135,Richard Dowling,,13,0,0,13,1,300
-136,Larri Naga,,10,0,0,10,1,100
-137,Adam Morgan,Wadenterror,10,0,0,10,1,1002
-138,Florian Felderer,,9,0,0,9,1,200
-139,Klas Svensson,,9,0,9,0,1,100
-140,andrew hammersley,,9,0,0,9,1,200
-141,Rocco Colangelo,Team Lou,9,0,0,9,1,1005
-142,Chris White,,8,0,0,8,1,100
-143,david durok,,7,0,0,7,1,871
-144,Jose Miguel Carvajal,,6,6,0,0,1,100
+128,Ryan Allen,,17,0,0,17,1,100
+129,Alexander  Thornfeldt,Pedalers,16,0,16,0,1,100
+130,Paul Lengermann,NeXT pb Enshored,16,0,16,0,1,100
+131,Matt Keiper,indieVelo Founders Club,16,16,0,0,1,1061
+132,Laurens Deneve,Race3R,16,0,0,16,1,1232
+133,John Rodgers,Tyrone Power Racing,16,0,16,0,1,629
+134,Ben Nichols,,15,0,0,15,1,100
+135,Sam Beeson,Allkin Racing,15,0,15,0,1,200
+136,Richard Dowling,,13,0,0,13,1,300
+137,Larri Naga,,10,0,0,10,1,100
+138,Adam Morgan,Wadenterror,10,0,0,10,1,1002
+139,Florian Felderer,,9,0,0,9,1,200
+140,Klas Svensson,,9,0,9,0,1,100
+141,andrew hammersley,,9,0,0,9,1,200
+142,Rocco Colangelo,Team Lou,9,0,0,9,1,1005
+143,Chris White,,8,0,0,8,1,100
+144,david durok,,7,0,0,7,1,871
+145,Huw Jarse 58,,6,0,0,6,1,300
+146,Jose Miguel Carvajal,,6,6,0,0,1,100
