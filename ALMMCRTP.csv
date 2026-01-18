@@ -1,53 +1,53 @@
-Position, Name, Team, Country, Total,Week 1,Week 2,Week 3,Week 4,Week 5,Week 6,Week 7,Week 8,Week 9,Week 10,Week 11,Week 12
-1,Simo Vic,,ITA,148,148,,,,,,,,,,,
-2,Hugo Mathieu,,FRA,147,147,,,,,,,,,,,
-3,Joseph Stein,,AUT,145,145,,,,,,,,,,,
-4,Jochen Hübner,,SUI,144,144,,,,,,,,,,,
-5,Wilson Lewis,,AUS,142,142,,,,,,,,,,,
-6,Hassan Al-Khatib,,SYR,141,141,,,,,,,,,,,
-7,Linus Keller,,GER,139,139,,,,,,,,,,,
-8,Seojoon Rim,Aria Olefson,KOR,138,138,,,,,,,,,,,
-9,Marcin Pawlak,,POL,136,136,,,,,,,,,,,
-10,Andres Romero,,PAN,135,135,,,,,,,,,,,
-11,Oleg Subašić,Systech,CZE,133,133,,,,,,,,,,,
-12,Marco Fortin,,CAN,132,132,,,,,,,,,,,
-13,Stephen Burgess,Formix,BER,130,130,,,,,,,,,,,
-14,Allan Reyna,Saitama,USA,129,129,,,,,,,,,,,
-15,Birger Hedegaard,eVOX,DEN,127,127,,,,,,,,,,,
-16,Antoine Barbier,,FRA,126,126,,,,,,,,,,,
-17,Forrest Beck,,AUS,124,124,,,,,,,,,,,
-18,Joshua Atkins,,RSA,123,123,,,,,,,,,,,
-19,Stan Richard,,USA,121,121,,,,,,,,,,,
-20,Dwayne Williams,eVOX,VIN,120,120,,,,,,,,,,,
-21,Russ Ashley,,ENG,118,118,,,,,,,,,,,
-22,Elijah Smith,Patriot,WAL,117,117,,,,,,,,,,,
-23,Maxime Fontaine,,FRA,115,115,,,,,,,,,,,
-24,Roger Craig,,RSA,114,114,,,,,,,,,,,
-25,Emilio Dougherty,Titans,ENG,112,112,,,,,,,,,,,
-26,Ron Crane,,AUS,111,111,,,,,,,,,,,
-27,Gilbert Meyer,,FRA,109,109,,,,,,,,,,,
-28,George Clucas,Monova,IOM,108,108,,,,,,,,,,,
-29,Yurui Ten,Windsail,CHN,106,106,,,,,,,,,,,
-30,Lionel Martel,,CAN,105,105,,,,,,,,,,,
-31,Fraser Kinnaird,,SCO,104,104,,,,,,,,,,,
-32,Minjun Ran,,KOR,102,102,,,,,,,,,,,
-33,Joon Yeop,Eckleson,KOR,101,101,,,,,,,,,,,
-34,Marcel Bourgeois,,FRA,99,99,,,,,,,,,,,
-35,Theodore Burton,,SGP,98,98,,,,,,,,,,,
-36,Matej Đurasović,,CZE,96,96,,,,,,,,,,,
-37,Van Montgomery,,GBR,95,95,,,,,,,,,,,
-38,Kyeong Yeong,,KOR,93,93,,,,,,,,,,,
-39,Richard De Jonge,,NED,92,92,,,,,,,,,,,
-40,Matthew Ekwona,,NRU,90,90,,,,,,,,,,,
-41,Lorenzo Sullivan,Zonkify,USA,89,89,,,,,,,,,,,
-42,Jerry Elliott,,AUS,87,87,,,,,,,,,,,
-43,Aldo Esposito,,ITA,86,86,,,,,,,,,,,
-44,Pierre Kasongo,Eckleson,CGO,84,84,,,,,,,,,,,
-45,Carlos Carmona,,ESP,83,83,,,,,,,,,,,
-46,Onni Kettunen,,FIN,81,81,,,,,,,,,,,
-47,Daishi Abe,,JPN,80,80,,,,,,,,,,,
-48,Stefanos Panagiotopoulos,Eckleson,GRE,78,78,,,,,,,,,,,
-49,Philippe Fabre,,FRA,77,77,,,,,,,,,,,
+Position,Name,Team,Total,Week 1,Week 2,Week 3,Week 4,Week 5,Week 6,Week 7,Week 8,Week 9,Week 10,Week 11,Week 12,Gender
+1,Simo Vic,,148,148,,,,,,,,,,,,Male
+2,Hugo Mathieu,,147,147,,,,,,,,,,,,Bot
+3,Joseph Stein,,145,145,,,,,,,,,,,,Bot
+4,Jochen Hübner,,144,144,,,,,,,,,,,,Bot
+5,Wilson Lewis,,142,142,,,,,,,,,,,,Bot
+6,Hassan Al-Khatib,,141,141,,,,,,,,,,,,Bot
+7,Linus Keller,,139,139,,,,,,,,,,,,Bot
+8,Seojoon Rim,Aria Olefson,138,138,,,,,,,,,,,,Bot
+9,Marcin Pawlak,,136,136,,,,,,,,,,,,Bot
+10,Andres Romero,,135,135,,,,,,,,,,,,Bot
+11,Oleg Subašić,Systech,133,133,,,,,,,,,,,,Bot
+12,Marco Fortin,,132,132,,,,,,,,,,,,Bot
+13,Stephen Burgess,Formix,130,130,,,,,,,,,,,,Bot
+14,Allan Reyna,Saitama,129,129,,,,,,,,,,,,Bot
+15,Birger Hedegaard,eVOX,127,127,,,,,,,,,,,,Bot
+16,Antoine Barbier,,126,126,,,,,,,,,,,,Bot
+17,Forrest Beck,,124,124,,,,,,,,,,,,Bot
+18,Joshua Atkins,,123,123,,,,,,,,,,,,Bot
+19,Stan Richard,,121,121,,,,,,,,,,,,Bot
+20,Dwayne Williams,eVOX,120,120,,,,,,,,,,,,Bot
+21,Russ Ashley,,118,118,,,,,,,,,,,,Bot
+22,Elijah Smith,Patriot,117,117,,,,,,,,,,,,Bot
+23,Maxime Fontaine,,115,115,,,,,,,,,,,,Bot
+24,Roger Craig,,114,114,,,,,,,,,,,,Bot
+25,Emilio Dougherty,Titans,112,112,,,,,,,,,,,,Bot
+26,Ron Crane,,111,111,,,,,,,,,,,,Bot
+27,Gilbert Meyer,,109,109,,,,,,,,,,,,Bot
+28,George Clucas,Monova,108,108,,,,,,,,,,,,Bot
+29,Yurui Ten,Windsail,106,106,,,,,,,,,,,,Bot
+30,Lionel Martel,,105,105,,,,,,,,,,,,Bot
+31,Fraser Kinnaird,,104,104,,,,,,,,,,,,Bot
+32,Minjun Ran,,102,102,,,,,,,,,,,,Bot
+33,Joon Yeop,Eckleson,101,101,,,,,,,,,,,,Bot
+34,Marcel Bourgeois,,99,99,,,,,,,,,,,,Bot
+35,Theodore Burton,,98,98,,,,,,,,,,,,Bot
+36,Matej Đurasović,,96,96,,,,,,,,,,,,Bot
+37,Van Montgomery,,95,95,,,,,,,,,,,,Bot
+38,Kyeong Yeong,,93,93,,,,,,,,,,,,Bot
+39,Richard De Jonge,,92,92,,,,,,,,,,,,Bot
+40,Matthew Ekwona,,90,90,,,,,,,,,,,,Bot
+41,Lorenzo Sullivan,Zonkify,89,89,,,,,,,,,,,,Bot
+42,Jerry Elliott,,87,87,,,,,,,,,,,,Bot
+43,Aldo Esposito,,86,86,,,,,,,,,,,,Bot
+44,Pierre Kasongo,Eckleson,84,84,,,,,,,,,,,,Bot
+45,Carlos Carmona,,83,83,,,,,,,,,,,,Bot
+46,Onni Kettunen,,81,81,,,,,,,,,,,,Bot
+47,Daishi Abe,,80,80,,,,,,,,,,,,Bot
+48,Stefanos Panagiotopoulos,Eckleson,78,78,,,,,,,,,,,,Bot
+49,Philippe Fabre,,77,77,,,,,,,,,,,,Bot
 50,,,,,,,,,,,,,,,,
 51,,,,,,,,,,,,,,,,
 52,,,,,,,,,,,,,,,,
