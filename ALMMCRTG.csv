@@ -1,50 +1,97 @@
 Position,Name,Team,Total,Week 1,Week 2,Week 3,Week 4,Week 5,Week 6,Week 7,Week 8,Week 9,Week 10,Week 11,Week 12,Gender
 1,Jackie Ventura,,210,210,,,,,,,,,,,,Bot
-2,Matthew Salazar,Titans,208,208,,,,,,,,,,,,Bot
-3,Jun’ichi Okada,,206,206,,,,,,,,,,,,Bot
-4,Kurt Angus,Allkin Racing,203,203,,,,,,,,,,,,Male
-5,André Martinez,,201,201,,,,,,,,,,,,Bot
-6,Christopher Dixon,Titans,199,199,,,,,,,,,,,,Bot
-7,Badr Al Mutairi,Krowen,197,197,,,,,,,,,,,,Bot
-8,Erwin Dougherty,,195,195,,,,,,,,,,,,Bot
-9,Herman Espinosa,,192,192,,,,,,,,,,,,Bot
-10,Yoobin Pi,,190,190,,,,,,,,,,,,Bot
-11,Konstantinos Pappas,,188,188,,,,,,,,,,,,Bot
-12,Raya Anwar,,186,186,,,,,,,,,,,,Bot
-13,Chunghee Cha,,184,184,,,,,,,,,,,,Bot
-14,Emil Pilc,Systech,181,181,,,,,,,,,,,,Bot
-15,Igor Jastrow,AMO Solutions,179,179,,,,,,,,,,,,Bot
-16,Zhengyu Loong,,177,177,,,,,,,,,,,,Bot
-17,Johan Londoño,,175,175,,,,,,,,,,,,Bot
-18,Ross Davies,True Form,173,173,,,,,,,,,,,,Bot
-19,Banri Takata,,171,171,,,,,,,,,,,,Bot
-20,Anaïs Michel,Base,168,168,,,,,,,,,,,,Bot
-21,Jamil Ansari,,166,166,,,,,,,,,,,,Bot
-22,Albin Jonsson,,164,164,,,,,,,,,,,,Bot
-23,Risto Aalto,,162,162,,,,,,,,,,,,Bot
-24,Toby Vu,Hector,160,160,,,,,,,,,,,,Bot
-25,Darren Harris,,157,157,,,,,,,,,,,,Bot
-26,Jan Sadowski,,155,155,,,,,,,,,,,,Bot
-27,Michael Van Dam,,153,153,,,,,,,,,,,,Bot
-28,Oliwier Jasiński,,151,151,,,,,,,,,,,,Bot
-29,Glen Dupuis,,149,149,,,,,,,,,,,,Bot
-30,Judson Cook,,146,146,,,,,,,,,,,,Bot
-31,Ernest Ball,Saint,144,144,,,,,,,,,,,,Bot
-32,Akira Wada,,142,142,,,,,,,,,,,,Bot
-33,Nasser Pillai,,140,140,,,,,,,,,,,,Bot
-34,Fotios Ioannou,Fujikai,138,138,,,,,,,,,,,,Bot
-35,Ramon Miles,,136,136,,,,,,,,,,,,Bot
-36,Annie David,AI Thunder,133,133,,,,,,,,,,,,Bot
-37,Maria Soriano,,131,131,,,,,,,,,,,,Bot
-38,Faustino Meyer,,129,129,,,,,,,,,,,,Bot
-39,Tom Schreiner,,127,127,,,,,,,,,,,,Bot
-40,Fatou Njie,,125,125,,,,,,,,,,,,Bot
-41,Joseph Kramer,,122,122,,,,,,,,,,,,Bot
-42,Dirk Rabenstein,,120,120,,,,,,,,,,,,Bot
-43,Raimo Rautiainen,Windsail,118,118,,,,,,,,,,,,Bot
-44,Stan Barajas,,116,116,,,,,,,,,,,,Bot
-45,Lelia Mercado,Eckleson,114,114,,,,,,,,,,,,Bot
-46,Silke Herrmann,,112,112,,,,,,,,,,,,Bot
-47,Ramón Vera,,109,109,,,,,,,,,,,,Bot
-48,Ronald Verhoeven,Pioma,107,107,,,,,,,,,,,,Bot
-49,Txarrena RTX,,105,105,,,,,,,,,,,,Male
+2,Roy Jackson,,208,208,,,,,,,,,,,,Bot
+3,Matthew Salazar,Titans,208,208,,,,,,,,,,,,Bot
+4,Jun Ōta,,206,206,,,,,,,,,,,,Bot
+5,Jun’ichi Okada,,206,206,,,,,,,,,,,,Bot
+6,Xavier Silva,,204,204,,,,,,,,,,,,Bot
+7,Kurt Angus,Allkin Racing,203,203,,,,,,,,,,,,Male
+8,Kaique Correia,,201,201,,,,,,,,,,,,Bot
+9,André Martinez,,201,201,,,,,,,,,,,,Bot
+10,William Roberts,,199,199,,,,,,,,,,,,Bot
+11,Christopher Dixon,Titans,199,199,,,,,,,,,,,,Bot
+12,Emiliano Martini,,197,197,,,,,,,,,,,,Bot
+13,Badr Al Mutairi,Krowen,197,197,,,,,,,,,,,,Bot
+14,Scott Wright,,195,195,,,,,,,,,,,,Bot
+15,Erwin Dougherty,,195,195,,,,,,,,,,,,Bot
+16,Uli T,Race3R,193,193,,,,,,,,,,,,Male
+17,Herman Espinosa,,192,192,,,,,,,,,,,,Bot
+18,Adrian Wolf,,191,191,,,,,,,,,,,,Bot
+19,Yoobin Pi,,190,190,,,,,,,,,,,,Bot
+20,Augustine Conner,,188,188,,,,,,,,,,,,Bot
+21,Konstantinos Pappas,,188,188,,,,,,,,,,,,Bot
+22,Kartik Mishra,Dashix,186,186,,,,,,,,,,,,Bot
+23,Raya Anwar,,186,186,,,,,,,,,,,,Bot
+24,Bert Verhoeven,Dashix,184,184,,,,,,,,,,,,Bot
+25,Chunghee Cha,,184,184,,,,,,,,,,,,Bot
+26,Niilo Lindholm,,182,182,,,,,,,,,,,,Bot
+27,Emil Pilc,Systech,181,181,,,,,,,,,,,,Bot
+28,Suleiman Krishnan,,180,180,,,,,,,,,,,,Bot
+29,Igor Jastrow,AMO Solutions,179,179,,,,,,,,,,,,Bot
+30,Liam Mungroo,Eckleson,178,178,,,,,,,,,,,,Bot
+31,Zhengyu Loong,,177,177,,,,,,,,,,,,Bot
+32,Håkan Hedlund,,175,175,,,,,,,,,,,,Bot
+33,Johan Londoño,,175,175,,,,,,,,,,,,Bot
+34,Stefan Groß,,173,173,,,,,,,,,,,,Bot
+35,Ross Davies,True Form,173,173,,,,,,,,,,,,Bot
+36,Colin York,,171,171,,,,,,,,,,,,Bot
+37,Banri Takata,,171,171,,,,,,,,,,,,Bot
+38,Anaïs Michel,Base,168,168,,,,,,,,,,,,Bot
+39,Ludovic Giorgi,,167,167,,,,,,,,,,,,Bot
+40,Jamil Ansari,,166,166,,,,,,,,,,,,Bot
+41,Isamu Noguchi,,165,165,,,,,,,,,,,,Bot
+42,Albin Jonsson,,164,164,,,,,,,,,,,,Bot
+43,Goran Ješić,Orbit,162,162,,,,,,,,,,,,Bot
+44,Risto Aalto,,162,162,,,,,,,,,,,,Bot
+45,Yosyp Makarenko,Nuvio,160,160,,,,,,,,,,,,Bot
+46,Toby Vu,Hector,160,160,,,,,,,,,,,,Bot
+47,Kai Schulz,,158,158,,,,,,,,,,,,Bot
+48,Darren Harris,,157,157,,,,,,,,,,,,Bot
+49,Jean-Luc Hill,Capital,156,156,,,,,,,,,,,,Bot
+50,Jan Sadowski,,155,155,,,,,,,,,,,,Bot
+51,Michael Griffith,,154,154,,,,,,,,,,,,Bot
+52,Michael Van Dam,,153,153,,,,,,,,,,,,Bot
+53,Sven Nordin,Saitama,152,152,,,,,,,,,,,,Bot
+54,Oliwier Jasiński,,151,151,,,,,,,,,,,,Bot
+55,Antonia Rios,,149,149,,,,,,,,,,,,Bot
+56,Glen Dupuis,,149,149,,,,,,,,,,,,Bot
+57,Kálmán Deák,Saitama,147,147,,,,,,,,,,,,Bot
+58,Judson Cook,,146,146,,,,,,,,,,,,Bot
+59,Fernand Chevalier,,145,145,,,,,,,,,,,,Bot
+60,Ernest Ball,Saint,144,144,,,,,,,,,,,,Bot
+61,Xianquan Chau,,143,143,,,,,,,,,,,,Bot
+62,Akira Wada,,142,142,,,,,,,,,,,,Bot
+63,Kevin Medina,,141,141,,,,,,,,,,,,Bot
+64,Nasser Pillai,,140,140,,,,,,,,,,,,Bot
+65,Sten Michaelsen,,139,139,,,,,,,,,,,,Bot
+66,Fotios Ioannou,Fujikai,138,138,,,,,,,,,,,,Bot
+67,Given Banda,,136,136,,,,,,,,,,,,Bot
+68,Ramon Miles,,136,136,,,,,,,,,,,,Bot
+69,Chance Ramsey,,134,134,,,,,,,,,,,,Bot
+70,Annie David,AI Thunder,133,133,,,,,,,,,,,,Bot
+71,Guy Kongbo,Capital,132,132,,,,,,,,,,,,Bot
+72,Maria Soriano,,131,131,,,,,,,,,,,,Bot
+73,Sam Henry,,130,130,,,,,,,,,,,,Bot
+74,Faustino Meyer,,129,129,,,,,,,,,,,,Bot
+75,Hugo Schmitt,,128,128,,,,,,,,,,,,Bot
+76,Tom Schreiner,,127,127,,,,,,,,,,,,Bot
+77,Ton De Vries,,126,126,,,,,,,,,,,,Bot
+78,Fatou Njie,,125,125,,,,,,,,,,,,Bot
+79,Santiago Rivas,,123,123,,,,,,,,,,,,Bot
+80,Joseph Kramer,,122,122,,,,,,,,,,,,Bot
+81,Vitor Guerreiro,,121,121,,,,,,,,,,,,Bot
+82,Dirk Rabenstein,,120,120,,,,,,,,,,,,Bot
+83,Per Ali,,119,119,,,,,,,,,,,,Bot
+84,Raimo Rautiainen,Windsail,118,118,,,,,,,,,,,,Bot
+85,Noble Blanchard,,117,117,,,,,,,,,,,,Bot
+86,Stan Barajas,,116,116,,,,,,,,,,,,Bot
+87,Nolan Harvey,Zonkify,115,115,,,,,,,,,,,,Bot
+88,Lelia Mercado,Eckleson,114,114,,,,,,,,,,,,Bot
+89,Neil Walker,Wadenterror,113,113,,,,,,,,,,,,Male
+90,Silke Herrmann,,112,112,,,,,,,,,,,,Bot
+91,Christian Schulte,,110,110,,,,,,,,,,,,Bot
+92,Ramón Vera,,109,109,,,,,,,,,,,,Bot
+93,Ronald Verhoeven,Pioma,107,107,,,,,,,,,,,,Bot
+94,Txarrena RTX,,105,105,,,,,,,,,,,,Male
+95,Ben Regan,,0,,,,,,,,,,,,,Bot
+96,Roland Renaud,,0,,,,,,,,,,,,,Bot
