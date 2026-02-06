@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allkin Crit Series Leaderboard</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        const CSV_URL = 'https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/ALMMCRTD.csv';
+
+        const App = () => {
+            const [data, setData] = useState([]);
+            const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(null);
+            const [searchTerm, setSearchTerm] = useState('');
+            const [expandedId, setExpandedId] = useState(null);
+            const [filterRank, setFilterRank] = useState('All');
+            const [filterGender, setFilterGender] = useState('All');
+
+            useEffect(() => {
+                const fetchData = async () => {
+                    try {
+                        setLoading(true);
+                        const response = await fetch(CSV_URL);
+                        if (!response.ok) throw new Error('Failed to fetch leaderboard data');
+                        const csvText = await response.text();
+                        
+                        const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
+                        const headers = lines[0].split(',').map(h => h.trim());
+                        
+                        const result = lines.slice(1).map(line => {
+                            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                            const obj = {};
+                            headers.forEach((header, i) => {
+                                let val = values[i]?.trim() || '';
+                                obj[header] = val.replace(/^"|"$/g, '');
+                            });
+                            return obj;
+                        });
+                        
+                        setData(result);
+                        setError(null);
+                    } catch (err) {
+                        console.error('Error loading CSV:', err);
+                        setError('Could not load the leaderboard. Please try again later.');
+                    } finally {
+                        setLoading(false);
+                    }
+                };
+
+                fetchData();
+            }, []);
+
+            const filteredData = useMemo(() => {
+                return data.filter(rider => {
+                    const matchesSearch = rider.Name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                                          rider.Team?.toLowerCase().includes(searchTerm.toLowerCase());
+                    const matchesRank = filterRank === 'All' || rider.Rank === filterRank;
+                    const matchesGender = filterGender === 'All' || rider.Gender === filterGender;
+                    
+                    return matchesSearch && matchesRank && matchesGender;
+                });
+            }, [data, searchTerm, filterRank, filterGender]);
+
+            const ranks = ['All', 'Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze'];
+            const genders = ['All', 'Male', 'Female', 'Bot'];
+
+            const getRankColor = (rank) => {
+                switch (rank) {
+                    case 'Diamond': return 'text-cyan-400 bg-cyan-400/10 border-cyan-400/20';
+                    case 'Platinum': return 'text-indigo-300 bg-indigo-300/10 border-indigo-300/20';
+                    case 'Gold': return 'text-amber-400 bg-amber-400/10 border-amber-400/20';
+                    case 'Silver': return 'text-slate-300 bg-slate-300/10 border-slate-300/20';
+                    case 'Bronze': return 'text-orange-400 bg-orange-400/10 border-orange-400/20';
+                    default: return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+                }
+            };
+
+            const toggleExpand = (pos) => {
+                setExpandedId(expandedId === pos ? null : pos);
+            };
+
+            return (
+                <div className="min-h-screen selection:bg-cyan-500/30 pb-20">
+                    <header className="relative overflow-hidden border-b border-slate-800 bg-slate-900/50 backdrop-blur-md">
+                        <div className="absolute top-0 right-0 p-8 opacity-10">
+                            <i className="fa-solid fa-person-cycling text-[200px] text-cyan-500 rotate-12"></i>
+                        </div>
+                        
+                        <div className="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="px-2 py-0.5 bg-cyan-500 text-slate-950 text-xs font-bold rounded uppercase tracking-wider">Live Series</span>
+                                        <span className="text-slate-400 text-sm font-medium">S4 Rankings</span>
+                                    </div>
+                                    <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter text-white uppercase">
+                                        Allkin <span className="text-cyan-400">Crit Series</span>
+                                    </h1>
+                                    <p className="text-slate-400 mt-2 max-w-md">
+                                        The ultimate virtual criterium championship. Results update live from source.
+                                    </p>
+                                </div>
+                                
+                                <div className="flex gap-4">
+                                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm min-w-[120px]">
+                                        <div className="text-slate-400 text-xs uppercase font-bold mb-1 text-center">Riders</div>
+                                        <div className="text-2xl font-mono font-bold text-center">{loading ? '...' : data.length}</div>
+                                    </div>
+                                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm min-w-[120px]">
+                                        <div className="text-slate-400 text-xs uppercase font-bold mb-1 text-center">Active Week</div>
+                                        <div className="text-2xl font-mono font-bold text-cyan-400 text-center">WK 4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main className="max-w-6xl mx-auto px-6 py-8">
+                        {error && (
+                            <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 text-red-400">
+                                <i className="fa-solid fa-circle-exclamation"></i>
+                                <p>{error}</p>
+                            </div>
+                        )}
+
+                        <div className="space-y-6 mb-8">
+                            <div className="relative">
+                                <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                                <input 
+                                    type="text" 
+                                    placeholder="Search rider or team..." 
+                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all text-lg"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    disabled={loading}
+                                />
+                            </div>
+                            
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
+                                        <i className="fa-solid fa-filter text-[10px]"></i> Rank Category
+                                    </div>
+                                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                        {ranks.map(rank => (
+                                            <button
+                                                key={rank}
+                                                disabled={loading}
+                                                onClick={() => setFilterRank(rank)}
+                                                className={`px-4 py-2 rounded-xl border text-sm font-medium whitespace-nowrap transition-all ${
+                                                    filterRank === rank 
+                                                        ? 'bg-cyan-500 border-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20' 
+                                                        : 'bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-500 disabled:opacity-50'
+                                                }`}
+                                            >
+                                                {rank}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
+                                        <i className="fa-solid fa-user text-[10px]"></i> Rider Type
+                                    </div>
+                                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                        {genders.map(gender => (
+                                            <button
+                                                key={gender}
+                                                disabled={loading}
+                                                onClick={() => setFilterGender(gender)}
+                                                className={`px-4 py-2 rounded-xl border text-sm font-medium whitespace-nowrap transition-all ${
+                                                    filterGender === gender 
+                                                        ? 'bg-white border-white text-slate-950 shadow-lg shadow-white/10' 
+                                                        : 'bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-500 disabled:opacity-50'
+                                                }`}
+                                            >
+                                                {gender === 'Bot' ? '🤖 Bots' : gender === 'Male' ? '♂ Male' : gender === 'Female' ? '♀ Female' : 'All Types'}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-widest text-slate-500 border-b border-slate-800">
+                            <div className="col-span-1">Pos</div>
+                            <div className="col-span-5 md:col-span-6">Rider</div>
+                            <div className="col-span-3 md:col-span-2 text-right">Rank</div>
+                            <div className="col-span-3 md:col-span-3 text-right">Points</div>
+                        </div>
+
+                        <div className="space-y-2 mt-2">
+                            {loading ? (
+                                <div className="py-20 flex flex-col items-center justify-center text-slate-500">
+                                    <i className="fa-solid fa-spinner animate-spin text-4xl mb-4"></i>
+                                    <p className="font-medium">Syncing with race server...</p>
+                                </div>
+                            ) : filteredData.length > 0 ? (
+                                filteredData.map((rider, index) => (
+                                    <div key={`${rider.Position}-${rider.Name}`} className="group">
+                                        <div 
+                                            onClick={() => toggleExpand(rider.Position)}
+                                            className={`grid grid-cols-12 gap-4 px-6 py-4 items-center cursor-pointer rounded-xl transition-all duration-200 border ${
+                                                expandedId === rider.Position 
+                                                    ? 'bg-slate-800 border-slate-600 shadow-lg scale-[1.01]' 
+                                                    : 'bg-slate-900/40 border-slate-800 hover:bg-slate-800/60 hover:border-slate-700'
+                                            }`}
+                                        >
+                                            <div className="col-span-1 font-mono font-bold text-slate-400">
+                                                {index + 1 === 1 && filterGender === 'All' && filterRank === 'All' ? (
+                                                    <i className="fa-solid fa-trophy text-yellow-400"></i>
+                                                ) : (
+                                                    index + 1
+                                                )}
+                                            </div>
+                                            
+                                            <div className="col-span-5 md:col-span-6">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="font-bold text-white group-hover:text-cyan-400 transition-colors truncate">
+                                                        {rider.Name}
+                                                    </div>
+                                                    {rider.Gender === 'Bot' && <span title="Bot Account">🤖</span>}
+                                                </div>
+                                                <div className="text-xs text-slate-500 flex items-center gap-1">
+                                                    <i className="fa-solid fa-users text-[10px]"></i> {rider.Team || 'Independent'}
+                                                </div>
+                                            </div>
+
+                                            <div className="col-span-3 md:col-span-2 text-right">
+                                                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${getRankColor(rider.Rank)}`}>
+                                                    {rider.Rank}
+                                                </span>
+                                            </div>
+
+                                            <div className="col-span-3 md:col-span-3 text-right flex items-center justify-end gap-3">
+                                                <div className="text-lg font-mono font-black text-white">
+                                                    {rider.Total}
+                                                </div>
+                                                <div className="text-slate-600">
+                                                    <i className={`fa-solid ${expandedId === rider.Position ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {expandedId === rider.Position && (
+                                            <div className="mx-2 p-6 bg-slate-800 border-x border-b border-slate-700 rounded-b-xl animate-in slide-in-from-top-4 duration-300">
+                                                <div className="flex justify-between items-start mb-4">
+                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                                                        <i className="fa-solid fa-bolt text-cyan-400"></i> Season Performance
+                                                    </h4>
+                                                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">
+                                                        Category: {rider.Gender}
+                                                    </span>
+                                                </div>
+                                                
+                                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                                                    {[...Array(12)].map((_, i) => {
+                                                        const wk = `WK${i + 1}`;
+                                                        const score = rider[wk];
+                                                        const isActive = !!score && score !== '0' && score !== '';
+                                                        
+                                                        return (
+                                                            <div key={wk} className={`p-3 rounded-lg border flex flex-col items-center justify-center transition-all ${
+                                                                isActive 
+                                                                    ? 'bg-slate-900 border-cyan-500/30 shadow-inner' 
+                                                                    : 'bg-slate-900/30 border-slate-700/50 opacity-40'
+                                                            }`}>
+                                                                <span className="text-[10px] font-bold text-slate-500 mb-1">{wk}</span>
+                                                                <span className={`text-sm font-mono font-bold ${isActive ? 'text-white' : 'text-slate-600'}`}>
+                                                                    {isActive ? score : '-'}
+                                                                </span>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                                
+                                                <div className="mt-6 pt-6 border-t border-slate-700 flex flex-col md:flex-row justify-between gap-4">
+                                                    <div className="flex gap-4">
+                                                         <div className="text-xs text-slate-400">
+                                                             <span className="block font-bold text-slate-500 uppercase">Avg Score</span>
+                                                             <span className="text-lg font-mono text-white">
+                                                                 {Math.round(parseInt(rider.Total || 0) / ([...Array(12)].filter((_, i) => {
+                                                                     const val = rider[`WK${i+1}`];
+                                                                     return val && val !== '0' && val !== '';
+                                                                 }).length || 1))}
+                                                             </span>
+                                                         </div>
+                                                         <div className="text-xs text-slate-400">
+                                                             <span className="block font-bold text-slate-500 uppercase">Races Done</span>
+                                                             <span className="text-lg font-mono text-white">
+                                                                 {[...Array(12)].filter((_, i) => {
+                                                                     const val = rider[`WK${i+1}`];
+                                                                     return val && val !== '0' && val !== '';
+                                                                 }).length}
+                                                             </span>
+                                                         </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                         <span className="text-[10px] font-bold text-slate-500 uppercase">Raw Position: #{rider.Position}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="py-20 text-center bg-slate-900/20 border border-dashed border-slate-800 rounded-2xl">
+                                    <i className="fa-solid fa-award text-5xl text-slate-700 mb-4"></i>
+                                    <p className="text-slate-500 font-medium">No riders found matching those filters.</p>
+                                    <button 
+                                        onClick={() => {setFilterRank('All'); setFilterGender('All'); setSearchTerm('');}}
+                                        className="mt-4 text-cyan-400 text-sm font-bold hover:underline"
+                                    >
+                                        Clear all filters
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </main>
+
+                    <footer className="mt-20 border-t border-slate-800 bg-slate-900 py-12">
+                        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+                            <div className="flex items-center gap-3">
+                                 <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center italic font-black text-slate-950">A</div>
+                                 <div>
+                                     <div className="text-white font-bold">Allkin Crit Series</div>
+                                     <div className="text-xs text-slate-500">© 2025 Allkin Virtual Racing</div>
+                                 </div>
+                            </div>
+                            <div className="flex gap-8 text-sm text-slate-400 font-medium">
+                                <a href="#" className="hover:text-cyan-400 transition-colors">Rules</a>
+                                <a href="#" className="hover:text-cyan-400 transition-colors">Schedule</a>
+                                <a href="#" className="hover:text-cyan-400 transition-colors">Discord</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
