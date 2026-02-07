@@ -1,153 +1,93 @@
-#,Name,Team,Total,Crit,Classics,INDI 500,Races,ARR
-1,Alexandre Peigne,Race3R,441,140,257,45,15,1797
-2,Ryan Yates,Allkin Racing,377,69,308,0,13,1263
-3,Gregory Frison,M4shup Collective,357,71,286,0,11,1818
-4,Uli T,Race3R,343,0,343,0,12,1168
-5,christophe contant,Pedalers,335,0,287,47,10,1682
-6,James Osborne,DIRT,331,0,286,45,10,1527
-7,Even Øistensen,Race3R,315,0,295,20,10,1487
-8,Jamie Bishop,Newhall.cc,313,0,213,100,14,1183
-9,Frederik Foulon,Race3R,301,122,158,21,14,1203
-10,Doug Hart,Ilkley CC,262,0,262,0,8,1440
-11,Matthieu Hubert,Race3R,251,0,196,55,9,1405
-12,Kurt Angus,Allkin Racing,247,141,56,51,12,1201
-13,Ingmar van Bers  ЯƦ,Rasio Racing,232,0,232,0,7,1479
-14,Priit Alumaa,Fingolia Continental,229,88,0,140,15,926
-15,Per Olav Meder Kalvaa,Allkin Racing,226,62,164,0,9,1285
-16,Matthew James,M4shup Collective,219,46,150,23,7,1761
-17,✓︎ Eugeni Streshnev,Allkin CC,217,18,134,64,10,200
-18,Mikael Engmark,FilsøAktivNatur-BikePro,210,0,210,0,9,300
-19,Soeren Lindner,BHC,200,23,177,0,6,1676
-20,ML Martin,Monkey Cycling,199,0,0,199,12,1210
-21,Rob Miller,Race3R,182,88,94,0,7,1190
-22,Tom Ghan,Allkin Racing,181,0,181,0,8,974
-23,Matija Meden,Riki Team Black,172,0,32,140,8,200
-24,Mark Siega,Race3R,171,0,153,19,6,1284
-25,Ludvig Karlberg,M4shup Collective,145,0,145,0,4,1641
-26,Ben Russell,M4shup Collective,144,0,144,0,4,1864
-27,Jan van der Linden,Pocomotion,142,22,120,0,5,1514
-28,Jay  Santi,Pedalers,138,0,113,25,7,1180
-29,Daniel Schoch,Moon Riders,132,0,132,0,4,1744
-30,Thomas Helveg,Pure Power,130,10,63,57,10,1011
-31,marc brazeau73,,119,0,109,10,6,1075
-32,Jurgen N_,Flandria,118,0,118,0,8,821
-33,Jan Vana,Race3R,113,23,67,23,4,1655
-34,Donald Munro,indieVelo Founders Club,112,0,72,41,9,802
-35,Tony Coyley,Men With Ven,106,0,44,62,8,862
-36,Matthew Forshaw,M4shup Collective,104,0,104,0,3,1882
-37,Dirk Segers,Moon Riders,103,0,103,0,3,1426
-38,Andrew Walker,Wadenterror,98,0,90,9,4,1171
-39,Peter Austin,TROuble,96,12,22,62,6,1239
-40,Tony Burm,,89,0,89,0,3,100
-41,Kevin Broadstreet,Rhino Racing,88,0,88,0,3,1227
-42,Dan Stimson,Race3R,85,85,0,0,4,1595
-43,Anthony dubre,Pedalers,83,23,37,24,3,1724
-44,Christian Nistri,Allkin CC,83,0,64,19,5,805
-45,jean pierre fournier,Riders Givrés du Trainer,72,0,61,11,4,946
-46,Mathias Bach,eCKD Eagles,72,0,72,0,2,1747
-47,Brenon Daly,,70,0,70,0,2,100
-48,David Talbott,Ride 4 Claire,69,0,69,0,2,1716
-49,Jonas Knudsen-BikePro.dk,FilsøAktivNatur-BikePro,69,0,69,0,2,1515
-50,Jeppe Tolbøll,Cycling Universe Race Team,68,0,68,0,2,1717
-51,Zeb Norman,M4shup Collective,67,0,67,0,2,1703
-52,Luciano VLOdrome,Tarados Cycling Squad,64,0,64,0,2,1393
-53,Toto LeKoala,Riders Givrés du Trainer,63,0,63,0,3,1225
-54,Pete D,,63,0,0,63,4,200
-55,Juho Väisänen,Coalition,63,0,63,0,3,1446
-56,Sam Carr,,60,0,60,0,3,1006
-57,John Sammut,Pocomotion,60,23,36,0,2,1786
-58,Dan Kobberup,eCKD Eagles,57,0,57,0,2,1153
-59,David Pichler,Allkin Racing,54,0,54,0,2,100
-60,Richard Golding,Equipe Velo,53,0,53,0,2,1170
-61,Joern Fjeldavlie,,51,0,51,0,2,100
-62,Lem Curran,Team Lou,51,0,51,0,2,1176
-63,Kurt Nørum Pedersen,FilsøAktivNatur-BikePro,43,0,43,0,2,1055
-64,Ryan Giunchi,Riders Givrés du Trainer,41,41,0,0,2,1462
-65,Rhys britton,,39,0,39,0,1,100
-66,Joonas Meri,,38,0,38,0,1,100
-67,Henrik Andersson,,37,0,37,0,1,100
-68,Jake Saunders,Ride 4 Claire,37,0,37,0,1,1845
-69,Jørgen van Bers,Rasio Racing,36,0,36,0,1,1637
-70,Ewan Farrow,Ilkley CC,36,0,36,0,1,1590
-71,Money Matt,Ride 4 Claire,36,0,36,0,1,1585
-72,Tim Simpkins,Newhall.cc,35,0,27,8,2,1015
-73,Henrik Mård,Pedalers,35,0,15,20,2,1459
-74,Andy Hall,Ilkley CC,34,0,34,0,1,1528
-75,Mic Bart,Pedalers,34,19,16,0,2,1275
-76,Mark Turnbull,,34,0,34,0,1,100
-77,Bernd Wegscheider,Tuttlinger Sportfreunde,34,0,34,0,1,100
-78,kudos games,DIRT,34,0,34,0,1,1681
-79,Peter Rossi,,34,0,34,0,1,1623
-80,Neil Walker,Wadenterror,34,20,0,13,2,1335
-81,alexandre ferreira,,33,0,33,0,2,200
-82,Josh Mahlandt,,33,0,33,0,1,100
-83,Neil Atherton,Coalition,33,0,33,0,1,1312
-84,Nicolas Pivotto,Riders Givrés du Trainer,32,0,32,0,1,1532
-85,Conor Mullervy,Clif Family Drifters,32,0,32,0,1,1352
-86,Adam Chamberlin,,31,0,31,0,1,100
-87,Pawel Lejk,,31,0,31,0,1,100
-88,Ruairi O'Driscoll,Ilkley CC,30,0,30,0,1,100
-89,Tony Martin Lake,Wadenterror,30,0,30,0,1,1298
-90,Wulf Riedel,,30,0,30,0,1,200
-91,Tobias Jae,,29,0,29,0,1,100
-92,Jouff Qunqun,Riders Givrés du Trainer,29,10,20,0,2,1425
-93,Jakob Mathiasen,FilsøAktivNatur-BikePro,29,0,29,0,1,1066
-94,i p richardson,,29,0,29,0,1,300
-95,Daniel Neugebauer,Pedalers,28,19,0,9,2,1185
-96,Ryan Hamilton,,28,0,28,0,1,1335
-97,Guillaume FAUCON,,27,0,27,0,1,100
-98,David Konshak,,27,0,27,0,1,100
-99,Joel Vigneau,Riders Givrés du Trainer,26,0,26,0,1,1636
-100,AleX GoLd,Rage Against The Machines,26,0,26,0,1,1241
-101,Tobias Korte,,26,0,26,0,1,100
-102,Renan Petersen-Wagner,Ilkley CC,26,0,26,0,1,1296
-103,Brean Shea,,26,0,26,0,1,100
-104,Ian Mulligan,Absque Fines,25,0,25,0,1,1648
-105,Stian Lersveen,Kalas eSRT,24,0,24,0,1,1474
-106,Thomas Willer,eCykle Klub Danmark,23,0,23,0,1,670
-107,Gyula Wachtler,,23,0,23,0,1,100
-108,Rasmus Feldballe,Draft,23,23,0,0,1,1692
-109,Alex Pleger - яʀ,Rasio Racing,23,23,0,0,1,1627
-110,Marcus Malzahn,,22,0,22,0,1,100
-111,Vilgot Wallmark,,22,0,0,22,1,200
-112,Marty Algire,,21,0,0,21,1,1468
-113,Birgit S,WATTFabrik,21,0,21,0,1,836
-114,Stepan  Lee,eCKD Eagles,21,0,21,0,1,814
-115,Daniel Holdener,indieVelo Founders Club,21,0,12,9,2,630
-116,Roger Hughes,TROuble,20,0,0,20,1,1599
-117,Mathieu DRUJON,Riders Givrés du Trainer,20,0,0,20,1,1403
-118,Christophe Hermant,Riders Givrés du Trainer,20,20,0,0,1,1226
-119,Jacob Eriksen,Draft,20,20,0,0,1,1113
-120,Nathaniel Brewster,Woodberry Forest School,20,0,0,20,1,100
-121,Maciej Zywek,Tripower,20,20,0,0,1,100
-122,Peter Davidsen,,20,20,0,0,1,300
-123,Casey Schumm,DIRT,19,0,0,19,1,1552
-124,Osian Lloyd-Jones,,19,0,0,19,1,100
-125,tyler bronder,Allkin Racing,19,0,0,19,1,1234
-126,Kevin Barclay,OTR eRacing,19,19,0,0,1,1562
-127,Guillaume Pot,Pedalers,19,0,0,19,1,1443
-128,Tanya Konshak,,19,0,19,0,1,100
-129,Jasper Mosevang Vinten,Christiansen & Essenbaek,19,0,0,19,1,1473
-130,Moritz Thoemen,,18,0,0,18,1,100
-131,Roussel Frederic,React ECT,17,0,17,0,1,1320
-132,Ryan Allen,,17,0,0,17,1,100
-133,Alexander  Thornfeldt,Pedalers,16,0,16,0,1,100
-134,Paul Lengermann,NeXT pb Enshored,16,0,16,0,1,100
-135,Matt Keiper,indieVelo Founders Club,16,16,0,0,1,1061
-136,Laurens Deneve,Race3R,16,0,0,16,1,1232
-137,John Rodgers,Tyrone Power Racing,16,0,16,0,1,629
-138,Ben Nichols,,15,0,0,15,1,100
-139,Sam Beeson,Allkin Racing,15,0,15,0,1,200
-140,Josue Garro,,14,0,0,14,1,100
-141,Richard Dowling,,13,0,0,13,1,300
-142,Beau Lock 58,,13,0,0,13,2,300
-143,jesper hvisthule,FilsøAktivNatur-BikePro,11,0,0,11,1,1015
-144,Larri Naga,,10,0,0,10,1,100
-145,Adam Morgan,Wadenterror,10,0,0,10,1,1002
-146,Florian Felderer,,9,0,0,9,1,200
-147,Klas Svensson,,9,0,9,0,1,100
-148,andrew hammersley,,9,0,0,9,1,200
-149,Rocco Colangelo,Team Lou,9,0,0,9,1,1005
-150,Chris White,,8,0,0,8,1,100
-151,david durok,,7,0,0,7,1,871
-152,Jose Miguel Carvajal,,6,6,0,0,1,100
+EventKey,Pen,Position,Name,Team,Country,Time,DeltaTime,Distance,DeltaDistance,Points,Gender,UID,ARR,ARRBand,EventRating,EventRatingBand,AgeBand,Pen Group,Week,Type,Points,Climb,Pen Size,Rank,Pen Rating
+101383,0,1,Michael Carilli,Ride 4 Claire,USA,"6,214.12",0,78294.882,0,0,Male,BDEFB7D89F966E00,100,Bronze 1,1374,Platinum 1,35-39,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,387,477,47,Platinum,72239
+101383,0,2,Mathias Bach,eCKD Eagles,DEN,"6,214.38",0.263,78294.882,0:00:00,0,Male,4A4D56B7BF4E90CA,1736,Diamond 2,1736,Diamond 2,U23,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,381.0,477,47,Diamond,72239
+101383,0,3,J D O,M4shup Collective,USA,"6,216.00",1.884,78294.882,0:00:00,0,Male,242BF89E66D4067D,1548,Platinum 3,1548,Platinum 3,40-44,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,374.6,477,47,Platinum,72239
+101383,0,4,David Talbott,Ride 4 Claire,USA,"6,232.68",18.564,78294.882,0:00:00,0,Male,40B0170FB0748402,1722,Diamond 2,1722,Diamond 2,35-39,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,368.2,477,47,Diamond,72239
+101383,0,5,Money Matt,Ride 4 Claire,USA,"6,233.73",19.612,78294.882,0:00:00,0,Male,AF1EE59E08C91C62,1613,Diamond 1,1613,Diamond 1,40-44,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,361.9,477,47,Diamond,72239
+101383,0,6,Alexandre Peigne,Race3R,FRA,"6,233.80",19.682,78294.882,0:00:00,0,Male,9A5A42A2AAD1410F,1526,Platinum 3,1526,Platinum 3,45-49,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,355.5,477,47,Platinum,72239
+101383,0,7,Paul  Watkins,TTT Project,WAL,"6,234.28",20.163,78294.882,0:00:00,0,Male,1C187305EC910212,1830,Diamond 3,1830,Diamond 3,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,349.2,477,47,Diamond,72239
+101383,0,8,Ben Goodfellow,,GBR,"6,241.36",27.241,78294.882,0:00:00,0,Male,1BD254BED961385E,300,Bronze 1,1437,Platinum 2,Senior,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,342.8,477,47,Platinum,72239
+101383,0,9,Doug Hart,Ilkley CC,GBR,"6,392.72",178.602,78294.882,0:00:00,0,Male,11799A7C1CF76DE9,1444,Platinum 2,1444,Platinum 2,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,336.4,477,47,Platinum,72239
+101383,0,10,Flemming Bach,eCKD Eagles,DEN,"6,394.23",180.111,78294.882,0:00:00,0,Male,2869664A5B9DCC58,1250,Gold 3,1250,Gold 3,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,330.1,477,47,Gold,72239
+101383,0,11,J McMurray,BaseCamp Train Where You Belong,USA,"6,521.68",307.559,78294.882,0:00:00,0,Male,A57692F853784DDF,100,Bronze 1,1395,Platinum 1,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,323.7,477,47,Platinum,72239
+101383,0,12,Ryan Yates,Allkin Racing,USA,"6,592.73",378.615,78294.882,0:00:00,0,Male,2FDBB5DD4345DCB5,1230,Gold 3,1230,Gold 3,40-44,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,317.4,477,47,Gold,72239
+101383,0,13,Renan Petersen-Wagner,Ilkley CC,BRA,"6,596.37",382.253,78294.882,0:00:00,0,Male,F106556B8DA97C60,1289,Gold 3,1289,Gold 3,45-49,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,311.0,477,47,Gold,72239
+101383,0,14,Dan Kobberup,eCKD Eagles,DEN,"6,596.61",382.491,78294.882,0:00:00,0,Male,319BC9F89743F1B8,1132,Gold 2,1132,Gold 2,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,304.6,477,47,Gold,72239
+101383,0,15,tyler bronder,Allkin Racing,USA,"6,597.17",383.051,78294.882,0:00:00,0,Male,94361D719CD465DD,1239,Gold 3,1239,Gold 3,45-49,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,298.3,477,47,Gold,72239
+101383,0,16,Jay  Santi,Pedalers,CAN,"6,602.65",388.537,78294.882,0:00:00,0,Male,DEE9CDE9AAFC3773,1171,Gold 2,1171,Gold 2,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,291.9,477,47,Gold,72239
+101383,0,17,Jonas Knudsen-BikePro.dk,FilsøAktivNatur-BikePro,DEN,"6,656.27",442.152,78294.882,0:00:00,0,Male,F9817BC42F7C0FDF,1502,Platinum 3,1502,Platinum 3,35-39,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,285.5,477,47,Platinum,72239
+101383,0,18,marc brazeau73,,CAN,"6,657.13",443.014,78294.882,0:00:00,0,Male,D60DC4E2489B21F4,1062,Gold 1,1062,Gold 1,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,279.2,477,47,Gold,72239
+101383,0,20,John Oakes,,USA,"6,663.28",449.159,78294.882,0:00:00,0,Male,4BC3E4FD4C9DD137,100,Bronze 1,1376,Platinum 1,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,266.5,477,47,Platinum,72239
+101383,0,21,Ben Barnard,,USA,"6,780.36",566.246,78294.882,0:00:00,0,Male,57EEDD4AF25DBCF8,100,Bronze 1,826,Silver 2,50-54,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,260.1,477,47,Silver,72239
+101383,0,24,Tom Ghan,Allkin Racing,USA,"7,050.28",836.159,78294.882,0:00:00,0,Male,59E553BC6444171B,971,Silver 3,971,Silver 3,60-64,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,241.0,477,47,Silver,72239
+101383,0,45,Angelo De Lima,,BRA,"8,804.83",2590.71,78294.882,0:00:00,0,Male,4D1C1421768E5CA9,100,Bronze 1,186,Bronze 1,45-49,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,107.4,477,47,Bronze,72239
+101383,0,46,Beau Lock 58,,AUS,"8,908.02",2693.9,78294.882,0:00:00,0,Male,368E2C9C15917DCC,300,Bronze 1,893,Silver 2,55-59,Platinum 1,Week 02 | Trofeo Palma,Spring Classics 2026,101.1,477,47,Silver,72239
+100617,6,10,John Rodgers,Tyrone Power Racing,IRL,"3,830.61",103.202,40000,0:00:00,0,Male,955E8E8A9DFDDCF6,591,Bronze 2,591,Bronze 2,50-54,Silver 2,Week 3,Monday Mixer Crit,105.6,182,49,Bronze,30712
+100617,6,44,Daniel Holdener,indieVelo Founders Club,SUI,"4,514.64",787.237,40000,0:00:00,0,Male,B8BBC9C64CAB2D89,681,Bronze 3,681,Bronze 3,50-54,Silver 2,Week 3,Monday Mixer Crit,64.3,182,49,Bronze,30712
+100616,5,1,Ben Goold,,GBR,"3,563.15",0,40000,0:00:00,0,Male,6276FB0D6BC7C060,100,Bronze 1,733,Silver 1,Senior,Silver 1,Week 3,Monday Mixer Crit,149.7,182,49,Silver,39442
+100615,4,17,Neil Walker,Wadenterror,SCO,"3,502.20",143.216,40000,0:00:00,0,Male,3207C693E9137DB5,1123,Gold 2,1123,Gold 2,50-54,Gold 3,Week 3,Monday Mixer Crit,161.0,182,49,Gold,50917
+100615,4,18,Firas Al,,GER,"3,504.43",145.449,40000,0:00:00,0,Male,13AB181191D6F6D5,982,Silver 3,982,Silver 3,40-44,Gold 3,Week 3,Monday Mixer Crit,159.0,182,49,Silver,50917
+100614,3,1,Karl-Axel Zander Persson,,SWE,"3,287.65",0,40000,0:00:00,0,Male,BC96A2DC24F9FA4F,1153,Gold 2,1153,Gold 2,Senior,Gold 2,Week 3,Monday Mixer Crit,218.9,182,49,Gold,57681
+100614,3,2,Anders Østergaard,Race3R,DEN,"3,289.73",2.08,40000,0:00:00,0,Male,1AB6C5B0BB19EA62,1325,Platinum 1,1325,Platinum 1,35-39,Gold 2,Week 3,Monday Mixer Crit,216.6,182,49,Platinum,57681
+100614,3,6,Kurt Angus,Allkin Racing,GBR,"3,305.40",17.745,40000,0:00:00,0,Male,AE665891E96CC699,1229,Gold 3,1229,Gold 3,45-49,Gold 2,Week 3,Monday Mixer Crit,207.5,182,49,Gold,57681
+100614,3,13,Jørgen Kolvig Raun,Stjær e-Cycling,DEN,"3,325.06",37.404,40000,0:00:00,0,Male,5ECF68222C70A8F1,1181,Gold 2,1181,Gold 2,55-59,Gold 2,Week 3,Monday Mixer Crit,191.5,182,49,Gold,57681
+100613,1,1,Gregory Frison,M4shup Collective,FRA,"3,159.58",0,40000,0:00:00,0,Male,25238B3BC618DB07,1828,Diamond 3,1828,Diamond 3,35-39,Diamond 3,Week 3,Monday Mixer Crit,269.2,182,49,Diamond,70939
+100613,1,3,Paul  Watkins,TTT Project,WAL,"3,172.35",12.77,40000,0:00:00,0,Male,1C187305EC910212,1831,Diamond 3,1831,Diamond 3,50-54,Diamond 3,Week 3,Monday Mixer Crit,263.6,182,49,Diamond,70939
+100612,2,1,Bradley Dickerson,Ilkley CC,GBR,"3,263.23",0,40000,0:00:00,0,Male,611523914552F328,1535,Platinum 3,1535,Platinum 3,35-39,Platinum 3,Week 3,Monday Mixer Crit,247.6,182,49,Platinum,65247
+100612,2,2,Even Øistensen,Race3R,NOR,"3,269.16",5.933,40000,0:00:00,0,Male,A4DD9760300BDC00,1474,Platinum 2,1474,Platinum 2,50-54,Platinum 3,Week 3,Monday Mixer Crit,245.0,182,49,Platinum,65247
+100420,6,1,Hugo Gómez,,ESP,"3,964.03",0,40000,0:00:00,0,Male,D85DEB2EE4AA34C6,100,Bronze 1,94,Bronze 1,Junior,Bronze 1,Week 3,Monday Mixer Crit,67.9,182,49,Bronze,17886
+100419,3,1,Jonas Tredemy,,LUX,"3,556.31",0,40000,0:00:00,0,Male,59D464255D9543C1,100,Bronze 1,714,Silver 1,U23,Silver 1,Week 3,Monday Mixer Crit,158.5,182,49,Silver,41770
+100418,1,1,Manu Sola Arjona,,ESP,"3,317.49",0,40000,0:00:00,0,Male,E428FC58F34AED4F,1406,Platinum 2,1406,Platinum 2,Senior,Platinum 2,Week 3,Monday Mixer Crit,225.5,182,49,Platinum,59431
+100417,2,16,Thomas Helveg,Pure Power,DEN,"3,532.27",136.764,40000,0:00:00,0,Male,1380A6ADAED1F442,1004,Gold 1,1004,Gold 1,55-59,Gold 3,Week 3,Monday Mixer Crit,163.4,182,49,Gold,51025
+100214,0,2,David Talbott,Ride 4 Claire,USA,"5,806.02",59.053,70499.843,0:00:00,0,Male,40B0170FB0748402,1721,Diamond 2,1721,Diamond 2,35-39,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,411.8,807,32,Diamond,50096
+100214,0,3,Money Matt,Ride 4 Claire,USA,"5,822.36",75.386,70499.843,0:00:00,0,Male,AF1EE59E08C91C62,1610,Diamond 1,1610,Diamond 1,40-44,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,401.5,807,32,Diamond,50096
+100214,0,4,Michael Carilli,Ride 4 Claire,USA,"5,822.58",75.614,70499.843,0:00:00,0,Male,BDEFB7D89F966E00,100,Bronze 1,1358,Platinum 1,35-39,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,391.2,807,32,Platinum,50096
+100214,0,6,Johan Nordlund,,FIN,"5,855.65",108.683,70499.843,0:00:00,0,Male,1EB278C6D11F98B9,100,Bronze 1,1470,Platinum 2,45-49,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,370.5,807,32,Platinum,50096
+100214,0,8,David Semianczuk,,USA,"5,886.03",139.055,70499.843,0:00:00,0,Male,3EA530BE060EAFB2,100,Bronze 1,236,Bronze 1,Senior,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,349.9,807,32,Bronze,50096
+100214,0,9,Alexandre Peigne,Race3R,FRA,"6,048.92",301.952,70499.843,0:00:00,0,Male,9A5A42A2AAD1410F,1521,Platinum 3,1521,Platinum 3,45-49,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,339.6,807,32,Platinum,50096
+100214,0,10,Mike Raasch,,USA,"6,322.76",575.786,70499.843,0:00:00,0,Male,8148071B8BEDD546,1366,Platinum 1,1366,Platinum 1,40-44,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,329.3,807,32,Platinum,50096
+100214,0,12,Jay  Santi,Pedalers,CAN,"6,544.76",797.788,70499.843,0:00:00,0,Male,DEE9CDE9AAFC3773,1155,Gold 2,1155,Gold 2,50-54,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,308.6,807,32,Gold,50096
+100214,0,13,Matthieu Hubert,Race3R,FRA,"6,598.33",851.361,70499.843,0:00:00,0,Male,E1D0C43C683EFE3B,1393,Platinum 1,1393,Platinum 1,45-49,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,298.3,807,32,Platinum,50096
+100214,0,14,Ben Barnard,,USA,"6,598.47",851.502,70499.843,0:00:00,0,Male,57EEDD4AF25DBCF8,100,Bronze 1,790,Silver 1,50-54,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,288.0,807,32,Silver,50096
+100214,0,15,marc brazeau73,,CAN,"6,665.20",918.233,70499.843,0:00:00,0,Male,D60DC4E2489B21F4,1070,Gold 1,1070,Gold 1,50-54,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,277.7,807,32,Gold,50096
+100214,0,16,Ryan Yates,Allkin Racing,USA,"6,679.47",932.496,70499.843,0:00:00,0,Male,2FDBB5DD4345DCB5,1274,Gold 3,1274,Gold 3,40-44,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,267.4,807,32,Gold,50096
+100214,0,17,Sam Carr,,IRL,"6,696.72",949.751,70499.843,0:00:00,0,Male,43E79B19CD19653E,1050,Gold 1,1050,Gold 1,Senior,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,257.1,807,32,Gold,50096
+100214,0,18,J McMurray,BaseCamp Train Where You Belong,USA,"6,769.89",1022.918,70499.843,0:00:00,0,Male,A57692F853784DDF,100,Bronze 1,1416,Platinum 2,50-54,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,246.8,807,32,Platinum,50096
+100214,0,19,jesper hvisthule,FilsøAktivNatur-BikePro,DEN,"6,770.18",1023.212,70499.843,0:00:00,0,Male,26A831C3832714A4,989,Silver 3,989,Silver 3,60-64,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,236.4,807,32,Silver,50096
+100214,0,26,Gary Desselle,,GBR,"7,695.92",1948.951,70499.843,0:00:00,0,Male,6D31F9C8F4E80B58,100,Bronze 1,298,Bronze 1,45-49,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,164.2,807,32,Bronze,50096
+99481,5,4,John Rodgers,Tyrone Power Racing,IRL,"4,183.73",194.02,42564.789,0:00:00,0,Male,955E8E8A9DFDDCF6,584,Bronze 2,584,Bronze 2,50-54,Bronze 3,Week 2,Monday Mixer Crit,106.3,254,49,Bronze,27756
+99481,5,17,Daniel Holdener,indieVelo Founders Club,SUI,"4,247.29",257.571,42564.789,0:00:00,0,Male,B8BBC9C64CAB2D89,681,Bronze 3,681,Bronze 3,50-54,Bronze 3,Week 2,Monday Mixer Crit,91.5,254,49,Bronze,27756
+99480,4,8,Firas Al,,GER,"3,988.88",148.535,42564.789,0:00:00,0,Male,13AB181191D6F6D5,981,Silver 3,981,Silver 3,40-44,Silver 3,Week 2,Monday Mixer Crit,150.6,254,49,Silver,41068
+99479,3,2,Tony Martin Lake,Wadenterror,GBR,"3,692.60",3.264,42564.789,0:00:00,0,Male,E63A1CC4E80ACFFC,1299,Gold 3,1299,Gold 3,50-54,Gold 3,Week 2,Monday Mixer Crit,208.6,254,49,Gold,53303
+99478,2,1,Alexandre Peigne,Race3R,FRA,"3,524.10",0,42564.789,0:00:00,0,Male,9A5A42A2AAD1410F,1518,Platinum 3,1518,Platinum 3,45-49,Platinum 3,Week 2,Monday Mixer Crit,262.5,254,49,Platinum,66390
+99478,2,2,Dirk Segers,Moon Riders,BEL,"3,533.52",9.416,42564.789,0:00:00,0,Male,D06C0BEB784ACF99,1426,Platinum 2,1426,Platinum 2,45-49,Platinum 3,Week 2,Monday Mixer Crit,259.8,254,49,Platinum,66390
+99478,2,3,Anders Østergaard,Race3R,DEN,"3,536.40",12.301,42564.789,0:00:00,0,Male,1AB6C5B0BB19EA62,1322,Platinum 1,1322,Platinum 1,35-39,Platinum 3,Week 2,Monday Mixer Crit,257.1,254,49,Platinum,66390
+99478,2,9,Manu Sola Arjona,,ESP,"3,574.03",49.93,42564.789,0:00:00,0,Male,E428FC58F34AED4F,1381,Platinum 1,1381,Platinum 1,Senior,Platinum 3,Week 2,Monday Mixer Crit,240.7,254,49,Platinum,66390
+99477,1,3,Paul  Watkins,TTT Project,WAL,"3,428.74",1.704,42564.789,0:00:00,0,Male,1C187305EC910212,1832,Diamond 3,1832,Diamond 3,50-54,Diamond 2,Week 2,Monday Mixer Crit,285.2,254,49,Diamond,73645
+99274,2,4,henrik simonsen,Stjær e-Cycling,DEN,"3,786.55",13.337,42564.789,0:00:00,0,Male,8174DDAFEC8FC8D1,1107,Gold 2,1107,Gold 2,55-59,Gold 2,Week 2,Monday Mixer Crit,203.6,254,49,Gold,53141
+99273,1,11,Mark Skilling,Race3R,SCO,"3,631.49",56.132,42564.789,0:00:00,0,Male,758C554B721A0502,1346,Platinum 1,1346,Platinum 1,50-54,Platinum 3,Week 2,Monday Mixer Crit,239.1,254,49,Platinum,67503
+99273,1,45,Michael Goertemoeller,DIRT,USA,"3,688.61",113.25,42564.789,0:00:00,0,Male,BAE588195F2A07C2,100,Bronze 1,1463,Platinum 2,50-54,Platinum 3,Week 2,Monday Mixer Crit,144.6,254,49,Platinum,67503
+99272,3,45,Birgit S,WATTFabrik,GER,"4,180.54",382.452,42564.789,0:00:00,0,Female,962336672CEDE7CD,802,Silver 2,802,Silver 2,45-49,Silver 3,Week 2,Monday Mixer Crit,92.7,254,49,Silver,43289
+99240,4,1,Miguel Angel,,ESP,"4,164.74",0,42564.789,0:00:00,0,Male,875382C1CA4C25E1,100,Bronze 1,585,Bronze 2,40-44,Bronze 2,Week 2,Monday Mixer Crit,100.5,254,49,Bronze,25424
+99240,4,48,Astrid Schmitz,,GER,"5,653.27",1488.531,42564.789,0:00:00,0,Female,80A2B78DD96C64F8,100,Bronze 1,92,Bronze 1,55-59,Bronze 2,Week 2,Monday Mixer Crit,51.3,254,49,Bronze,25424
+99239,3,1,Vladislav Mihaylov,,BUL,"3,834.92",0,42564.789,0:00:00,0,Male,A8F7D301F44FA05E,100,Bronze 1,839,Silver 2,Senior,Silver 2,Week 2,Monday Mixer Crit,167.4,254,49,Silver,42343
+99239,3,2,Lasse Klier,,GER,"3,852.69",17.775,42564.789,0:00:00,0,Male,5A1DA4EED41F2B97,100,Bronze 1,866,Silver 2,U23,Silver 2,Week 2,Monday Mixer Crit,165.7,254,49,Silver,42343
+98343,4,1,Mike hurley,Team Otterhaus/Kelley Acres,USA,"3,767.91",0,41196.941,0:00:00,0,Male,FFE064DB302CB21C,100,Bronze 1,702,Silver 1,55-59,Silver 1,Week 1,Monday Mixer Crit,159.1,215,49,Silver,41119
+98342,3,8,Uli T,Race3R,GER,"3,654.02",16.792,41196.941,0:00:00,0,Male,22995BE6D636B74A,1169,Gold 2,1169,Gold 2,45-49,Gold 2,Week 1,Monday Mixer Crit,192.8,215,49,Gold,53757
+98342,3,45,Neil Walker,Wadenterror,SCO,"3,969.27",332.043,41196.941,0:00:00,0,Male,3207C693E9137DB5,1141,Gold 2,1141,Gold 2,50-54,Gold 2,Week 1,Monday Mixer Crit,112.6,215,49,Gold,53757
+98341,1,1,Gregory Frison,M4shup Collective,FRA,"3,443.55",0,41196.941,0:00:00,0,Male,25238B3BC618DB07,1821,Diamond 3,1821,Diamond 3,35-39,Diamond 3,Week 1,Monday Mixer Crit,271.5,215,49,Diamond,70185
+98340,2,1,Alexandre Peigne,Race3R,FRA,"3,575.38",0,41196.941,0:00:00,0,Male,9A5A42A2AAD1410F,1531,Platinum 3,1531,Platinum 3,45-49,Platinum 3,Week 1,Monday Mixer Crit,249.2,215,49,Platinum,64425
+98340,2,2,Anthony dubre,Pedalers,FRA,"3,582.02",6.637,41196.941,0:00:00,0,Male,9A019D18CD2C2021,1436,Platinum 2,1436,Platinum 2,35-39,Platinum 3,Week 1,Monday Mixer Crit,246.6,215,49,Platinum,64425
+98148,3,32,Mihkel Kõrgesaar,,EST,"4,225.56",296.244,41196.941,0:00:00,0,Male,6FF8E9DF2A7A2C6A,100,Bronze 1,101,Bronze 1,40-44,Bronze 3,Week 1,Monday Mixer Crit,72.9,215,49,Bronze,27845
+98124,4,1,Miguel Angel,,ESP,"3,969.67",0,41196.941,0:00:00,0,Male,875382C1CA4C25E1,100,Bronze 1,525,Bronze 2,40-44,Bronze 2,Week 1,Monday Mixer Crit,106.0,215,49,Bronze,27397
+98123,1,1,Simo Vic,,ITA,"3,540.15",0,41196.941,0:00:00,0,Male,5B41936AB66334FA,100,Bronze 1,1336,Platinum 1,45-49,Platinum 1,Week 1,Monday Mixer Crit,256.4,215,49,Platinum,66287
+98122,2,4,Kurt Angus,Allkin Racing,GBR,"3,671.20",15.322,41196.941,0:00:00,0,Male,AE665891E96CC699,1210,Gold 3,1210,Gold 3,45-49,Gold 3,Week 1,Monday Mixer Crit,203.3,215,49,Gold,54262
+98122,2,49,Txarrena RTX,,BSQ,"4,539.18",883.307,41196.941,0:00:00,0,Male,4B359623A4F7D02D,100,Bronze 1,1059,Gold 1,50-54,Gold 3,Week 1,Monday Mixer Crit,104.9,215,49,Gold,54262
+61835,0,1,Matthew Forshaw,M4shup Collective,gbr,"6,028,685.00",0,78294.882,0:00:00,0,Male,347714C6B348797B,1692,Diamond 1,1692,Diamond 1,55-59,Diamond 1,Week 02 | Trofeo Palma,Spring Classics 2026,403.5,477,48,Diamond,76848
+61835,0,11,Ben Russell,M4shup Collective,gbr,"6,031,139.00",2454,78294.882,0:00:00,0,Male,1F07CD9C7D4685AC,1572,Platinum 3,1572,Platinum 3,35-39,Diamond 1,Week 02 | Trofeo Palma,Spring Classics 2026,344.7,477,48,Platinum,76848
+61835,0,25,Sam Carr,,irl,"6,688,701.00",660016,78294.882,0:00:00,0,Male,43E79B19CD19653E,1060,Gold 1,1060,Gold 1,Senior,Diamond 1,Week 02 | Trofeo Palma,Spring Classics 2026,262.5,477,48,Gold,76848
+61835,0,40,Daniel Neugebauer,Pedalers,ger,"7,287,092.00",1258407,78294.882,0:00:00,0,Male,C94F3871AB55BBBC,1153,Gold 2,1153,Gold 2,45-49,Diamond 1,Week 02 | Trofeo Palma,Spring Classics 2026,174.4,477,48,Gold,76848
+60618,0,1,Mattia Ceccarelli,,ita,"6,321,617.00",0,70499.843,0:00:00,0,Male,BCCED860EC8A2731,200,Carbon 2,1178,Gold 2,35-39,Gold 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,305.8,807,43,Gold,48762
+60618,0,27,Tom Ghan,Allkin Racing,usa,"6,919,349.00",597732,70499.843,0:00:00,0,Male,59E553BC6444171B,974,Silver 3,974,Silver 3,60-64,Gold 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,191.8,807,43,Silver,48762
+60597,0,13,Ben Russell,M4shup Collective,gbr,"5,891,543.00",82553,70499.843,0:00:00,0,Male,1F07CD9C7D4685AC,1578,Platinum 3,1578,Platinum 3,35-39,Diamond 2,Week 01 | Great Ocean Road Race,Spring Classics 2026,367.8,807,46,Platinum,73899
+60058,0,40,Even Øistensen,Race3R,nor,"6,241,896.00",376325,70499.843,0:00:00,0,Male,A4DD9760300BDC00,1485,Platinum 2,1485,Platinum 2,50-54,Platinum 3,Week 01 | Great Ocean Road Race,Spring Classics 2026,192.2,807,40,Platinum,59740
