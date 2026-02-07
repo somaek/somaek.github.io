@@ -1,384 +1,345 @@
-<style>
-    #leaderboard-banner {
-        margin-bottom: 20px;
-        text-align: center;
-        max-width: 100%;
-    }
-    #leaderboard-banner img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-    #leaderboard-container {
-        font-size: 0.9rem;
-        line-height: 1.15;
-    }
-    #leaderboard-container .gridjs-table {
-        border-collapse: collapse;
-        border: 10px solid #3b0687;
-        width: 100%; /* Ensure the table uses all available space */
-    }
-    #leaderboard-container .gridjs-tr .gridjs-td:nth-child(3) {
-        font-weight: bold;
-    }
-    /* --- CSS COUNTER FOR AUTO-RANKING --- */
-    #leaderboard-container .gridjs-tbody {
-        counter-reset: leaderboard-rank;
-    }
-    #leaderboard-container .gridjs-search {
-    display: none;
-    }
-    #leaderboard-container .gridjs-tr {
-        counter-increment: leaderboard-rank;
-    }
-    #leaderboard-container .gridjs-td:first-child::before {
-        content: counter(leaderboard-rank);
-    }
-
-    /* --- COLUMN WIDTH FIXES --- */
-
-    /* Column 1: '#' */
-    #leaderboard-container .gridjs-th:first-child,
-    #leaderboard-container .gridjs-td:first-child {
-        text-align: center;
-    }
-    #leaderboard-container .gridjs-th:nth-child(3),
-    #leaderboard-container .gridjs-td:nth-child(3),
-    #leaderboard-container .gridjs-th:nth-child(4),
-    #leaderboard-container .gridjs-td:nth-child(4),
-    #leaderboard-container .gridjs-th:nth-child(5),
-    #leaderboard-container .gridjs-td:nth-child(5),
-    #leaderboard-container .gridjs-th:nth-child(6),
-    #leaderboard-container .gridjs-td:nth-child(6) {
-      width: 10% !important;
-    }
-    /* Apply wrapping to the long headers */
-    #leaderboard-container .gridjs-th:nth-child(4) .gridjs-th-content,
-    #leaderboard-container .gridjs-th:nth-child(5) .gridjs-th-content,
-    #leaderboard-container .gridjs-th:nth-child(6) .gridjs-th-content {
-        white-space: normal;
-        word-break: break-word;
-        line-height: 1.1;
-        text-align: center;
-    }
-
-    /* General Cell Styling */
-    #leaderboard-container .gridjs-th,
-    #leaderboard-container .gridjs-td {
-        border: 2px solid #3b0687;
-        padding: 3px;
-        text-align: center;
-    }
-    /* Name column aligns left */
-    #leaderboard-container .gridjs-td:nth-child(2) {
-        text-align: left;
-    }
-    #leaderboard-container .gridjs-th:nth-child(2) .gridjs-th-content {
-        text-align: left;
-    }
-
-    /* Header Styling */
-    #leaderboard-container .gridjs-th {
-        background-color: #ff0054;
-        color: #ffffff;
-        vertical-align: middle;
-    }
-
-    /* Stripe rows */
-    #leaderboard-container .gridjs-tr:nth-child(even) .gridjs-td {
-        background-color: #ddcdf5;
-    }
-
-    /* Filter Container Styling */
-    .filter-controls {
-        display: flex; /* Arranges filters side-by-side */
-        gap: 20px;
-        margin-bottom: 15px;
-        flex-wrap: wrap; /* Allows wrapping on small screens */
-    }
-    .search-and-filters-wrapper {
-        display: flex; /* Enable flexbox for horizontal alignment */
-        align-items: center; /* Vertically align items in the center */
-        justify-content: flex-start; /* Move things to the start */
-        margin-bottom: 15px;
-        flex-wrap: wrap; /* Allow wrapping on smaller screens */
-        gap: 10px; /* Space between search and filters */
-    }
-
-    /* Target the Grid.js Search box container */
-    .gridjs-search {
-        /* Set a max width so it doesn't consume all available space */
-        max-width: 300px;
-        flex-grow: 1; /* Allow it to grow, but respecting max-width */
-    }
-
-    /* Filter Container Styling (Adjusted for side-by-side) */
-    .filter-controls {
-        display: flex; /* Arranges filters side-by-side */
-        gap: 15px; /* Reduced gap between filter dropdowns */
-        margin-bottom: 0; /* No need for bottom margin here */
-        flex-shrink: 0; /* Prevent filters from shrinking too much */
-        flex-wrap: wrap; /* Allows wrapping on small screens */
-    }
-    /* Style for the Grid.js Search Input Box */
-    .gridjs-search input[type='text'] {
-        background-color: #663fa8 !important; /* Interior color */
-        border: 2px solid #3b0687 !important; /* Exterior/Border color */
-        color: white !important; /* Text color */
-        /* Placeholder color for search */
-        /* Note: For more consistent cross-browser placeholder color, you might need additional rules like ::placeholder, but this covers the main input text */
-    }
-
-    /* Style for the Custom Filter Dropdown Boxes (<select>) */
-    .filter-controls select {
-        background-color: #663fa8; /* Interior color */
-        border: 2px solid #3b0687; /* Exterior/Border color */
-        color: white; /* Text color */
-        padding: 5px;
-        border-radius: 3px;
-        /* Optional: Apply same background/color to the option elements */
-    }
-
-    /* Style for the Filter Labels (Text next to the dropdowns) */
-    .filter-controls label {
-        color: #3b0687; /* Use the dark purple for better visibility next to the colored boxes */
-        font-weight: bold;
-    }
-    
-    /* Media Queries (Updated Font Size) */
-    @media (max-width: 1200px) {
-        #leaderboard-container {
-            font-size: 0.65rem;
-            width: auto;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allkin Classics Leaderboard</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --accent: #3D1087;
         }
-        #leaderboard-container .gridjs-th,
-        #leaderboard-container .gridjs-td {
-            line-height: 1.1;
-            padding: 2px !important;
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #ffffff;
+            -webkit-tap-highlight-color: transparent;
         }
-    }
-    @media (max-width: 768px) {
-        #leaderboard-container {
-            font-size: 0.6rem;
+
+        .header-banner {
+            background-image: url('https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/ALLKIN_CLASSICS.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 0;
+            padding-top: 35.5%;
         }
-        #leaderboard-container .gridjs-th:nth-child(3),
-        #leaderboard-container .gridjs-td:nth-child(3) {
-          width: 25% !important;
-        }
-        #leaderboard-container .gridjs-th:nth-child(4),
-        #leaderboard-container .gridjs-td:nth-child(4),
-        #leaderboard-container .gridjs-th:nth-child(5),
-        #leaderboard-container .gridjs-td:nth-child(5),
-        #leaderboard-container .gridjs-th:nth-child(6),
-        #leaderboard-container .gridjs-td:nth-child(6),
-        #leaderboard-container .gridjs-th:nth-child(8),
-        #leaderboard-container .gridjs-td:nth-child(8),
-        #leaderboard-container .gridjs-th:nth-child(9),
-        #leaderboard-container .gridjs-td:nth-child(9) {
-          display: none !important;
-        }
-    }
-</style>
-<div id="leaderboard-banner">
-    <img src="https://github.com/somaek/somaek.github.io/blob/main/CLASSICS%20BANNER.png?raw=true" alt="Leaderboard Banner" />
-</div>
 
-<div class="search-and-filters-wrapper">
-    <div id="gridjs-search-placeholder"></div>
-    <div class="filter-controls">
-        <div style="margin-bottom: 0;">
-            <label for="rank-filter">   </label>
-            <select id="rank-filter">
-                <option value="">All Ranks</option>
-            </select>
-        </div>
-        <div style="margin-bottom: 0;">
-            <label for="age-filter">   </label>
-            <select id="age-filter">
-                <option value="">All Ages</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div id="leaderboard-container">Loading leaderboard...</div>
-
-<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
-<script>
-    let gridInstance;
-    const RANK_ORDER = ['Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze']; // For custom sorting the rank filter
-
-    // --- Grid.js Column Index Reference (The data has '#' prepended) ---
-    // CSV Header Index | Data Array Index | Header Name
-    // 0                | 1                | Name
-    // 1                | 2                | All Rounder
-    // ...
-    // [Rank column index] | [Rank column index] + 1 | Rank
-    // [Age column index]  | [Age column index] + 1  | Age
-    // -------------------------------------------------------------------
-
-    const csvURL = 'https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/classicsL.csv';
-
-    const container = document.getElementById('leaderboard-container');
-    const rankFilterSelect = document.getElementById('rank-filter');
-    const ageFilterSelect = document.getElementById('age-filter'); // NEW AGE DROPDOWN
-
-    function parseCSVRow(row) {
-        const result = [];
-        let current = '';
-        let inQuote = false;
-        for (let i = 0; i < row.length; i++) {
-            const char = row[i];
-            if (char === '"') {
-                inQuote = !inQuote;
-            } else if (char === ',' && !inQuote) {
-                result.push(current.trim().replace(/^"|"$/g, ''));
-                current = '';
-            } else {
-                current += char;
+        @media (max-width: 640px) {
+            .header-banner {
+                padding-top: 52%; 
             }
         }
-        result.push(current.trim().replace(/^"|"$/g, ''));
-        return result;
-    }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-slate-900">
+    <div id="root"></div>
 
-    // This function will apply the filtering based on BOTH dropdowns
-    function applyCombinedFilter(allData, rankDataIndex, ageDataIndex) {
-        if (!gridInstance) return;
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
 
-        const selectedRank = rankFilterSelect.value;
-        const selectedAge = ageFilterSelect.value; // Get the selected age
+        const CSV_URL = 'https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/classicsL.csv';
+        const ACCENT_COLOR = '#3D1087';
 
-        let filteredData = allData.filter(row => {
-            const rankMatch = selectedRank === "" || String(row[rankDataIndex]) === selectedRank;
-            const ageMatch = selectedAge === "" || String(row[ageDataIndex]) === selectedAge; // Check age match
-            return rankMatch && ageMatch; // MUST match both filters
-        });
+        const App = () => {
+            const [data, setData] = useState([]);
+            const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(null);
+            const [searchTerm, setSearchTerm] = useState('');
+            const [expandedId, setExpandedId] = useState(null);
+            const [filterRank, setFilterRank] = useState('All');
+            const [filterGender, setFilterGender] = useState('All');
+            const [filterAge, setFilterAge] = useState('All');
+            const [activeCategory, setActiveCategory] = useState('Total Points');
 
-        gridInstance.updateConfig({
-            data: filteredData
-        }).forceRender();
-    }
+            useEffect(() => {
+                const fetchData = async () => {
+                    try {
+                        setLoading(true);
+                        const response = await fetch(CSV_URL);
+                        if (!response.ok) throw new Error('Failed to fetch data');
+                        const csvText = await response.text();
+                        
+                        const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
+                        const headers = lines[0].split(',').map(h => h.trim());
+                        
+                        const result = lines.slice(1).map(line => {
+                            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                            const obj = {};
+                            headers.forEach((header, i) => {
+                                let val = values[i]?.trim() || '';
+                                obj[header] = val.replace(/^"|"$/g, '');
+                            });
+                            return obj;
+                        });
+                        
+                        setData(result);
+                    } catch (err) {
+                        setError('Could not load leaderboard.');
+                        console.error(err);
+                    } finally {
+                        setLoading(false);
+                    }
+                };
+                fetchData();
+            }, []);
 
-    fetch(csvURL)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(csvData => {
-            const rows = csvData.trim().split(/\r\n|\r|\n/);
-            const headers = parseCSVRow(rows[0]);
+            const ageBands = useMemo(() => {
+                const bands = new Set(data.map(r => r.AgeBand).filter(Boolean));
+                return ['All', ...Array.from(bands).sort()];
+            }, [data]);
 
-            const rankColumnName = 'Rank';
-            const ageColumnName = 'Age'; // NEW AGE COLUMN NAME
-            const defaultSortColumnName = 'All Rounder';
+            const ranks = ['All', 'Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze'];
+            const genders = ['All', 'Male', 'Female', 'Bot'];
+            const categories = [
+                { id: 'Total Points', label: 'Total' },
+                { id: 'All Rounder', label: 'All Rounder' },
+                { id: 'Climb', label: 'Climb' },
+                { id: 'Hills', label: 'Hills' },
+                { id: 'Sprint', label: 'Sprint' }
+            ];
 
-            const rankColumnIndex = headers.indexOf(rankColumnName);
-            const ageColumnIndex = headers.indexOf(ageColumnName); // NEW AGE INDEX
-            const defaultSortColumnIndex = headers.indexOf(defaultSortColumnName);
+            const filteredAndSortedData = useMemo(() => {
+                const filtered = data.filter(rider => {
+                    const name = rider.Name || '';
+                    const team = rider.Team || '';
+                    const matchesSearch = name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                                          team.toLowerCase().includes(searchTerm.toLowerCase());
+                    const matchesRank = filterRank === 'All' || rider.Rank === filterRank;
+                    const matchesGender = filterGender === 'All' || rider.Gender === filterGender;
+                    const matchesAge = filterAge === 'All' || rider.AgeBand === filterAge;
+                    return matchesSearch && matchesRank && matchesGender && matchesAge;
+                });
 
-            if (rankColumnIndex === -1 || ageColumnIndex === -1 || defaultSortColumnIndex === -1) {
-                throw new Error('Required CSV headers (Rank, Age, All Rounder) not found.');
-            }
+                // Sort based on active category points
+                return filtered.sort((a, b) => {
+                    const valA = parseInt(a[activeCategory]) || 0;
+                    const valB = parseInt(b[activeCategory]) || 0;
+                    return valB - valA;
+                });
+            }, [data, searchTerm, filterRank, filterGender, filterAge, activeCategory]);
 
-            const rankDataIndex = rankColumnIndex + 1;
-            const ageDataIndex = ageColumnIndex + 1; // Index in the data array is +1
+            const toggleExpand = (id) => {
+                setExpandedId(prev => (prev === id ? null : id));
+            };
 
-            const expectedColumnCount = headers.length;
-
-            const data = rows.slice(1).map(row => {
-                const cells = parseCSVRow(row);
-                if (cells.length !== expectedColumnCount) {
-                    return null;
+            const getRankColor = (rank) => {
+                switch (rank) {
+                    case 'Diamond': return 'text-cyan-700 bg-cyan-50 border-cyan-200';
+                    case 'Platinum': return 'text-indigo-700 bg-indigo-50 border-indigo-200';
+                    case 'Gold': return 'text-amber-700 bg-amber-50 border-amber-200';
+                    case 'Silver': return 'text-slate-600 bg-slate-100 border-slate-200';
+                    case 'Bronze': return 'text-orange-700 bg-orange-50 border-orange-200';
+                    default: return 'text-slate-500 bg-slate-50 border-slate-200';
                 }
-                const dataRow = [null];
-                cells.forEach(cell => {
-                    const num = Number(cell);
-                    dataRow.push(isNaN(num) ? cell : num);
-                });
-                return dataRow;
-            })
-            .filter(row => row !== null);
+            };
 
-            const allData = data;
+            return (
+                <div className="min-h-screen bg-white">
+                    <header className="header-banner"></header>
 
-            // --- RANK FILTER POPULATION ---
-            if (rankColumnIndex >= 0) {
-                const allRankValues = allData.map(row => String(row[rankDataIndex]));
-                const uniqueRankValues = [...new Set(allRankValues)]
-                    .filter(rank => RANK_ORDER.includes(rank))
-                    .sort((a, b) => RANK_ORDER.indexOf(a) - RANK_ORDER.indexOf(b));
+                    <main className="max-w-6xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-10 relative z-20 pb-20">
+                        {/* Search & Filters */}
+                        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-10">
+                            <div className="space-y-6">
+                                <div className="relative">
+                                    <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Search rider or team..." 
+                                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-indigo-200 transition-all text-base font-medium"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                    />
+                                </div>
+                                
+                                <div className="space-y-6">
+                                    {/* Points Category Filter */}
+                                    <div className="space-y-2">
+                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Points Standing</div>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {categories.map(cat => (
+                                                <button
+                                                    key={cat.id}
+                                                    onClick={() => setActiveCategory(cat.id)}
+                                                    className={`px-4 py-2 rounded-xl border text-sm font-bold transition-all shadow-sm ${
+                                                        activeCategory === cat.id ? 'text-white border-transparent' : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300'
+                                                    }`}
+                                                    style={activeCategory === cat.id ? {backgroundColor: ACCENT_COLOR} : {}}
+                                                >
+                                                    {cat.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
 
-                uniqueRankValues.forEach(rank => {
-                    const option = document.createElement('option');
-                    option.value = rank;
-                    option.text = rank;
-                    rankFilterSelect.appendChild(option);
-                });
+                                    {/* Tier Filter */}
+                                    <div className="space-y-2">
+                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Tier</div>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {ranks.map(rank => (
+                                                <button
+                                                    key={rank}
+                                                    onClick={() => setFilterRank(rank)}
+                                                    className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+                                                        filterRank === rank ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
+                                                    }`}
+                                                >
+                                                    {rank}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
 
-                // Attach event listener for RANK FILTER
-                rankFilterSelect.addEventListener('change', () => applyCombinedFilter(allData, rankDataIndex, ageDataIndex));
-            }
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Class</div>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {genders.map(g => (
+                                                    <button
+                                                        key={g}
+                                                        onClick={() => setFilterGender(g)}
+                                                        className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+                                                            filterGender === g ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
+                                                        }`}
+                                                    >
+                                                        {g === 'All' ? 'All' : g === 'Bot' ? '🤖 Bot' : g}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
 
-            // --- NEW AGE FILTER POPULATION ---
-            if (ageColumnIndex >= 0) {
-                const allAgeValues = allData.map(row => String(row[ageDataIndex]));
-                const uniqueAgeValues = [...new Set(allAgeValues)].sort(); // Sort age categories alphabetically/numerically
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Age Category</div>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {ageBands.map(band => (
+                                                    <button
+                                                        key={band}
+                                                        onClick={() => setFilterAge(band)}
+                                                        className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+                                                            filterAge === band ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
+                                                        }`}
+                                                    >
+                                                        {band}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                uniqueAgeValues.forEach(age => {
-                    const option = document.createElement('option');
-                    option.value = age;
-                    option.text = age;
-                    ageFilterSelect.appendChild(option);
-                });
+                        {/* List Header */}
+                        <div className="grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100">
+                            <div className="col-span-2 sm:col-span-1">Rank</div>
+                            <div className="col-span-7 sm:col-span-6">Competitor</div>
+                            <div className="hidden sm:block sm:col-span-2 text-right">Races</div>
+                            <div className="col-span-3 sm:col-span-3 text-right">
+                                {categories.find(c => c.id === activeCategory)?.label}
+                            </div>
+                        </div>
 
-                // Attach event listener for AGE FILTER
-                ageFilterSelect.addEventListener('change', () => applyCombinedFilter(allData, rankDataIndex, ageDataIndex));
-            }
-            // ------------------------------------
+                        {/* Results */}
+                        <div className="divide-y divide-slate-100">
+                            {loading ? (
+                                <div className="py-20 text-center text-slate-400 animate-pulse">Loading standings...</div>
+                            ) : error ? (
+                                <div className="py-20 text-center text-red-400">{error}</div>
+                            ) : filteredAndSortedData.map((rider, index) => {
+                                const riderId = `${rider.Name}-${index}`;
+                                return (
+                                <div key={riderId}>
+                                    <div 
+                                        onClick={() => toggleExpand(riderId)}
+                                        className={`grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 items-center cursor-pointer transition-colors ${expandedId === riderId ? 'bg-slate-50' : 'hover:bg-slate-50/50'}`}
+                                    >
+                                        <div className="col-span-2 sm:col-span-1 font-mono font-bold text-slate-900">
+                                            {(index + 1).toString().padStart(2, '0')}
+                                        </div>
+                                        <div className="col-span-7 sm:col-span-6 pr-2">
+                                            <div className="font-bold text-slate-900 truncate leading-tight flex items-center gap-2">
+                                                {rider.Name}
+                                                <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold border ${getRankColor(rider.Rank)}`}>
+                                                    {rider.Rank}
+                                                </span>
+                                            </div>
+                                            <div className="text-[10px] text-slate-400 uppercase font-medium truncate">
+                                                {rider.Team || 'Independent'} • {rider.AgeBand}
+                                            </div>
+                                        </div>
+                                        <div className="hidden sm:block sm:col-span-2 text-right font-mono font-bold text-slate-500">
+                                            {rider.Races}
+                                        </div>
+                                        <div className="col-span-3 sm:col-span-3 text-right flex items-center justify-end gap-3 sm:gap-6">
+                                            <div className="text-lg sm:text-2xl font-mono font-black text-slate-900">{rider[activeCategory] || '0'}</div>
+                                            <i className={`text-slate-300 text-xs fa-solid ${expandedId === riderId ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+                                        </div>
+                                    </div>
 
-            container.innerHTML = '';
+                                    {expandedId === riderId && (
+                                        <div className="p-4 sm:p-8 bg-slate-50 border-t border-slate-200">
+                                            <div className="flex justify-between items-center mb-6">
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Full Scorecard</span>
+                                                <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[9px] font-bold border bg-white">{rider.Rank}</span>
+                                            </div>
+                                            
+                                            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                                                {categories.map(cat => (
+                                                    <div key={cat.id} className={`p-4 rounded-xl border shadow-sm transition-all ${activeCategory === cat.id ? 'bg-white border-indigo-200 ring-2 ring-indigo-50' : 'bg-white/60 border-slate-200'}`}>
+                                                        <div className={`text-[9px] font-black uppercase mb-1 ${activeCategory === cat.id ? 'text-indigo-600' : 'text-slate-400'}`}>{cat.label}</div>
+                                                        <div className="text-xl font-mono font-bold text-slate-900">{rider[cat.id] || '0'}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
 
-            const columnObjects = headers.map(header => {
-                if (header === 'All Rounder') {
-                    return { name: header, width: '70px' };
-                }
-                return { name: header };
-            });
+                                            <div className="mt-6 flex flex-wrap gap-8 border-t border-slate-200 pt-6">
+                                                <div>
+                                                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Age Band</div>
+                                                    <div className="text-base font-bold text-slate-700">{rider.AgeBand || 'N/A'}</div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Class</div>
+                                                    <div className="text-base font-bold text-slate-700 flex items-center gap-1">
+                                                        {rider.Gender === 'Bot' ? <span>🤖 Bot</span> : rider.Gender}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Total Races</div>
+                                                    <div className="text-base font-bold text-slate-700">{rider.Races}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                                );
+                            })}
+                            {!loading && filteredAndSortedData.length === 0 && (
+                                <div className="py-20 text-center text-slate-400">No riders found matching your criteria.</div>
+                            )}
+                        </div>
+                    </main>
+                </div>
+            );
+        };
 
-            columnObjects.unshift({
-                name: '#',
-                width: '30px',
-                sort: false,
-            });
-
-            gridInstance = new gridjs.Grid({
-                columns: columnObjects,
-                data: allData,
-                search: true,
-                autoWidth: true,
-                sort: {
-                    enabled: true,
-                    index: defaultSortColumnIndex >= 0 ? (defaultSortColumnIndex + 1) : 2,
-                    direction: -1
-                },
-                pagination: {
-                    limit: 300
-                },
-            }).render(container);
-            const gridSearchPlaceholder = document.getElementById('gridjs-search-placeholder');
-            const gridSearchElement = container.querySelector('.gridjs-search');
-
-            if (gridSearchElement) {
-                gridSearchPlaceholder.appendChild(gridSearchElement);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching or parsing data:', error);
-            container.innerHTML = 'Error loading leaderboard. Wait a moment and then try refreshing.';
-        });
-</script>
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
