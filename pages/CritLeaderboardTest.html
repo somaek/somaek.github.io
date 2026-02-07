@@ -11,18 +11,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        
+        :root {
+            --accent: #3D1087;
+            --accent-light: #f5f3ff;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #ffffff;
+        }
+
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .accent-bg { background-color: var(--accent); }
+        .accent-text { color: var(--accent); }
+        .accent-border { border-color: var(--accent); }
+        .accent-ring:focus { --tw-ring-color: var(--accent); }
+        
+        .rank-card {
+            transition: all 0.2s ease;
+        }
+        
+        .rider-row:hover {
+            background-color: #f8fafc;
+        }
+
+        .header-banner {
+            background-image: url('https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/pages/MMCRITLeaderboardbanner.png');
+            background-size: contain;
+            background-position: center top;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 0;
+            padding-top: 35.5%; /* Specific ratio for this banner */
+        }
+
+        @media (max-width: 768px) {
+            .header-banner {
+                padding-top: 45%; 
+            }
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100">
+<body class="text-slate-900">
     <div id="root"></div>
 
     <script type="text/babel">
         const { useState, useMemo, useEffect } = React;
 
         const CSV_URL = 'https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/ALMMCRTD.csv';
+        const ACCENT_COLOR = '#3D1087';
 
         const App = () => {
             const [data, setData] = useState([]);
@@ -58,7 +98,7 @@
                         setError(null);
                     } catch (err) {
                         console.error('Error loading CSV:', err);
-                        setError('Could not load the leaderboard. Please try again later.');
+                        setError('Could not load the leaderboard. Please check your connection.');
                     } finally {
                         setLoading(false);
                     }
@@ -83,12 +123,12 @@
 
             const getRankColor = (rank) => {
                 switch (rank) {
-                    case 'Diamond': return 'text-cyan-400 bg-cyan-400/10 border-cyan-400/20';
-                    case 'Platinum': return 'text-indigo-300 bg-indigo-300/10 border-indigo-300/20';
-                    case 'Gold': return 'text-amber-400 bg-amber-400/10 border-amber-400/20';
-                    case 'Silver': return 'text-slate-300 bg-slate-300/10 border-slate-300/20';
-                    case 'Bronze': return 'text-orange-400 bg-orange-400/10 border-orange-400/20';
-                    default: return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+                    case 'Diamond': return 'text-cyan-700 bg-cyan-50 border-cyan-200';
+                    case 'Platinum': return 'text-indigo-700 bg-indigo-50 border-indigo-200';
+                    case 'Gold': return 'text-amber-700 bg-amber-50 border-amber-200';
+                    case 'Silver': return 'text-slate-600 bg-slate-100 border-slate-200';
+                    case 'Bronze': return 'text-orange-700 bg-orange-50 border-orange-200';
+                    default: return 'text-slate-500 bg-slate-50 border-slate-200';
                 }
             };
 
@@ -97,215 +137,207 @@
             };
 
             return (
-                <div className="min-h-screen selection:bg-cyan-500/30 pb-20">
-                    <header className="relative overflow-hidden border-b border-slate-800 bg-slate-900/50 backdrop-blur-md">
-                        <div className="absolute top-0 right-0 p-8 opacity-10">
-                            <i className="fa-solid fa-person-cycling text-[200px] text-cyan-500 rotate-12"></i>
-                        </div>
-                        
-                        <div className="max-w-6xl mx-auto px-6 py-12 relative z-10">
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="px-2 py-0.5 bg-cyan-500 text-slate-950 text-xs font-bold rounded uppercase tracking-wider">Live Series</span>
-                                        <span className="text-slate-400 text-sm font-medium">S4 Rankings</span>
-                                    </div>
-                                    <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter text-white uppercase">
-                                        Allkin <span className="text-cyan-400">Crit Series</span>
-                                    </h1>
-                                    <p className="text-slate-400 mt-2 max-w-md">
-                                        The ultimate virtual criterium championship. Results update live from source.
-                                    </p>
-                                </div>
-                                
-                                <div className="flex gap-4">
-                                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm min-w-[120px]">
-                                        <div className="text-slate-400 text-xs uppercase font-bold mb-1 text-center">Riders</div>
-                                        <div className="text-2xl font-mono font-bold text-center">{loading ? '...' : data.length}</div>
-                                    </div>
-                                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm min-w-[120px]">
-                                        <div className="text-slate-400 text-xs uppercase font-bold mb-1 text-center">Active Week</div>
-                                        <div className="text-2xl font-mono font-bold text-cyan-400 text-center">WK 4</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
+                <div className="min-h-screen bg-white">
+                    {/* Header Section - Banner Only */}
+                    <div className="bg-white">
+                        <header className="header-banner"></header>
+                    </div>
 
-                    <main className="max-w-6xl mx-auto px-6 py-8">
+                    <main className="max-w-6xl mx-auto px-6 mt-4 relative z-20 pb-20">
                         {error && (
-                            <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 text-red-400">
+                            <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-600">
                                 <i className="fa-solid fa-circle-exclamation"></i>
-                                <p>{error}</p>
+                                <p className="font-semibold">{error}</p>
                             </div>
                         )}
 
-                        <div className="space-y-6 mb-8">
-                            <div className="relative">
-                                <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                                <input 
-                                    type="text" 
-                                    placeholder="Search rider or team..." 
-                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all text-lg"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    disabled={loading}
-                                />
-                            </div>
-                            
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
-                                        <i className="fa-solid fa-filter text-[10px]"></i> Rank Category
-                                    </div>
-                                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                                        {ranks.map(rank => (
-                                            <button
-                                                key={rank}
-                                                disabled={loading}
-                                                onClick={() => setFilterRank(rank)}
-                                                className={`px-4 py-2 rounded-xl border text-sm font-medium whitespace-nowrap transition-all ${
-                                                    filterRank === rank 
-                                                        ? 'bg-cyan-500 border-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20' 
-                                                        : 'bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-500 disabled:opacity-50'
-                                                }`}
-                                            >
-                                                {rank}
-                                            </button>
-                                        ))}
-                                    </div>
+                        {/* Search and Filters Card */}
+                        <div className="bg-white border border-slate-200 rounded-3xl shadow-2xl shadow-slate-300/10 p-6 md:p-8 mb-10">
+                            <div className="space-y-8">
+                                <div className="relative">
+                                    <i className="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Search by rider name or team..." 
+                                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl py-5 pl-14 pr-6 focus:outline-none focus:border-slate-300 transition-all text-lg font-medium accent-ring"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        disabled={loading}
+                                    />
                                 </div>
-
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">
-                                        <i className="fa-solid fa-user text-[10px]"></i> Rider Type
+                                
+                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                                    {/* Rank Filter */}
+                                    <div className="lg:col-span-6 space-y-3">
+                                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">
+                                            <i className="fa-solid fa-medal"></i> Tier Category
+                                        </div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {ranks.map(rank => (
+                                                <button
+                                                    key={rank}
+                                                    disabled={loading}
+                                                    onClick={() => setFilterRank(rank)}
+                                                    className={`px-5 py-2.5 rounded-xl border-2 text-sm font-bold transition-all ${
+                                                        filterRank === rank 
+                                                            ? 'text-white border-transparent shadow-md' 
+                                                            : 'bg-white border-slate-100 text-slate-400 hover:border-slate-200 disabled:opacity-50'
+                                                    }`}
+                                                    style={filterRank === rank ? {backgroundColor: ACCENT_COLOR} : {}}
+                                                >
+                                                    {rank}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
-                                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                                        {genders.map(gender => (
-                                            <button
-                                                key={gender}
-                                                disabled={loading}
-                                                onClick={() => setFilterGender(gender)}
-                                                className={`px-4 py-2 rounded-xl border text-sm font-medium whitespace-nowrap transition-all ${
-                                                    filterGender === gender 
-                                                        ? 'bg-white border-white text-slate-950 shadow-lg shadow-white/10' 
-                                                        : 'bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-500 disabled:opacity-50'
-                                                }`}
-                                            >
-                                                {gender === 'Bot' ? '🤖 Bots' : gender === 'Male' ? '♂ Male' : gender === 'Female' ? '♀ Female' : 'All Types'}
-                                            </button>
-                                        ))}
+
+                                    {/* Classification Filter */}
+                                    <div className="lg:col-span-3 space-y-3">
+                                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">
+                                            <i className="fa-solid fa-users"></i> Classification
+                                        </div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {genders.map(gender => (
+                                                <button
+                                                    key={gender}
+                                                    disabled={loading}
+                                                    onClick={() => setFilterGender(gender)}
+                                                    className={`px-4 py-2.5 rounded-xl border-2 text-xs font-bold transition-all ${
+                                                        filterGender === gender 
+                                                            ? 'bg-slate-900 border-slate-900 text-white shadow-md' 
+                                                            : 'bg-white border-slate-100 text-slate-400 hover:border-slate-200 disabled:opacity-50'
+                                                    }`}
+                                                >
+                                                    {gender === 'Bot' ? '🤖' : gender === 'Male' ? '♂' : gender === 'Female' ? '♀' : 'All'}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Stats (Moved from Header) */}
+                                    <div className="lg:col-span-3 grid grid-cols-2 gap-3 border-l-0 lg:border-l lg:border-slate-100 lg:pl-10">
+                                        <div>
+                                            <div className="text-slate-400 text-[9px] uppercase font-black mb-1">Athletes</div>
+                                            <div className="text-2xl font-mono font-bold text-slate-900 tracking-tighter">{loading ? '--' : data.length}</div>
+                                        </div>
+                                        <div>
+                                            <div className="text-slate-400 text-[9px] uppercase font-black mb-1">Round</div>
+                                            <div className="text-2xl font-mono font-bold tracking-tighter" style={{color: ACCENT_COLOR}}>WK 04</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-12 gap-4 px-6 py-4 text-xs font-bold uppercase tracking-widest text-slate-500 border-b border-slate-800">
-                            <div className="col-span-1">Pos</div>
-                            <div className="col-span-5 md:col-span-6">Rider</div>
-                            <div className="col-span-3 md:col-span-2 text-right">Rank</div>
-                            <div className="col-span-3 md:col-span-3 text-right">Points</div>
+                        {/* List Header */}
+                        <div className="grid grid-cols-12 gap-4 px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b-2 border-slate-100">
+                            <div className="col-span-1">Rank</div>
+                            <div className="col-span-5 md:col-span-6">Competitor</div>
+                            <div className="col-span-3 md:col-span-2 text-right">Category</div>
+                            <div className="col-span-3 md:col-span-3 text-right">Series Pts</div>
                         </div>
 
-                        <div className="space-y-2 mt-2">
+                        {/* Results List */}
+                        <div className="space-y-3 mt-4">
                             {loading ? (
-                                <div className="py-20 flex flex-col items-center justify-center text-slate-500">
-                                    <i className="fa-solid fa-spinner animate-spin text-4xl mb-4"></i>
-                                    <p className="font-medium">Syncing with race server...</p>
+                                <div className="py-24 flex flex-col items-center justify-center text-slate-400">
+                                    <i className="fa-solid fa-circle-notch animate-spin text-5xl mb-6" style={{color: ACCENT_COLOR}}></i>
+                                    <p className="font-bold uppercase tracking-widest text-xs">Calibrating Standings...</p>
                                 </div>
                             ) : filteredData.length > 0 ? (
                                 filteredData.map((rider, index) => (
                                     <div key={`${rider.Position}-${rider.Name}`} className="group">
                                         <div 
                                             onClick={() => toggleExpand(rider.Position)}
-                                            className={`grid grid-cols-12 gap-4 px-6 py-4 items-center cursor-pointer rounded-xl transition-all duration-200 border ${
+                                            className={`grid grid-cols-12 gap-4 px-8 py-6 items-center cursor-pointer rounded-2xl transition-all duration-200 border-2 ${
                                                 expandedId === rider.Position 
-                                                    ? 'bg-slate-800 border-slate-600 shadow-lg scale-[1.01]' 
-                                                    : 'bg-slate-900/40 border-slate-800 hover:bg-slate-800/60 hover:border-slate-700'
+                                                    ? 'bg-slate-50 border-slate-200 shadow-sm translate-x-1' 
+                                                    : 'bg-white border-transparent hover:border-slate-100 hover:bg-slate-50/50'
                                             }`}
                                         >
-                                            <div className="col-span-1 font-mono font-bold text-slate-400">
+                                            <div className="col-span-1 font-mono font-black text-slate-900 text-lg">
                                                 {index + 1 === 1 && filterGender === 'All' && filterRank === 'All' ? (
-                                                    <i className="fa-solid fa-trophy text-yellow-400"></i>
+                                                    <i className="fa-solid fa-crown text-amber-500"></i>
                                                 ) : (
-                                                    index + 1
+                                                    (index + 1).toString().padStart(2, '0')
                                                 )}
                                             </div>
                                             
                                             <div className="col-span-5 md:col-span-6">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="font-bold text-white group-hover:text-cyan-400 transition-colors truncate">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="font-extrabold text-slate-900 group-hover:accent-text transition-colors text-lg truncate">
                                                         {rider.Name}
                                                     </div>
-                                                    {rider.Gender === 'Bot' && <span title="Bot Account">🤖</span>}
+                                                    {rider.Gender === 'Bot' && <span className="grayscale opacity-50 text-xs" title="Bot Account">🤖</span>}
                                                 </div>
-                                                <div className="text-xs text-slate-500 flex items-center gap-1">
-                                                    <i className="fa-solid fa-users text-[10px]"></i> {rider.Team || 'Independent'}
+                                                <div className="text-xs font-bold text-slate-400 uppercase tracking-wide flex items-center gap-2 mt-0.5">
+                                                    {rider.Team || 'No Team'}
                                                 </div>
                                             </div>
 
                                             <div className="col-span-3 md:col-span-2 text-right">
-                                                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${getRankColor(rider.Rank)}`}>
+                                                <span className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter border ${getRankColor(rider.Rank)}`}>
                                                     {rider.Rank}
                                                 </span>
                                             </div>
 
-                                            <div className="col-span-3 md:col-span-3 text-right flex items-center justify-end gap-3">
-                                                <div className="text-lg font-mono font-black text-white">
+                                            <div className="col-span-3 md:col-span-3 text-right flex items-center justify-end gap-5">
+                                                <div className="text-2xl font-mono font-black text-slate-900">
                                                     {rider.Total}
                                                 </div>
-                                                <div className="text-slate-600">
-                                                    <i className={`fa-solid ${expandedId === rider.Position ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+                                                <div className="text-slate-300 group-hover:text-slate-500 transition-colors">
+                                                    <i className={`fa-solid ${expandedId === rider.Position ? 'fa-angle-up' : 'fa-angle-down'}`}></i>
                                                 </div>
                                             </div>
                                         </div>
 
                                         {expandedId === rider.Position && (
-                                            <div className="mx-2 p-6 bg-slate-800 border-x border-b border-slate-700 rounded-b-xl animate-in slide-in-from-top-4 duration-300">
-                                                <div className="flex justify-between items-start mb-4">
-                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
-                                                        <i className="fa-solid fa-bolt text-cyan-400"></i> Season Performance
-                                                    </h4>
-                                                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">
-                                                        Category: {rider.Gender}
-                                                    </span>
+                                            <div className="mx-4 p-8 bg-slate-50 border-x-2 border-b-2 border-slate-200 rounded-b-3xl animate-in fade-in slide-in-from-top-2 duration-300">
+                                                <div className="flex justify-between items-end mb-8">
+                                                    <div>
+                                                        <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-1">Detailed Scorecard</h4>
+                                                        <div className="text-slate-900 font-bold">Week-by-week performance analysis</div>
+                                                    </div>
+                                                    <div className="bg-white px-4 py-2 rounded-lg border border-slate-200 text-[10px] font-black text-slate-500 uppercase">
+                                                        Class: {rider.Gender}
+                                                    </div>
                                                 </div>
                                                 
-                                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-3">
                                                     {[...Array(12)].map((_, i) => {
                                                         const wk = `WK${i + 1}`;
                                                         const score = rider[wk];
                                                         const isActive = !!score && score !== '0' && score !== '';
                                                         
                                                         return (
-                                                            <div key={wk} className={`p-3 rounded-lg border flex flex-col items-center justify-center transition-all ${
+                                                            <div key={wk} className={`p-4 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${
                                                                 isActive 
-                                                                    ? 'bg-slate-900 border-cyan-500/30 shadow-inner' 
-                                                                    : 'bg-slate-900/30 border-slate-700/50 opacity-40'
+                                                                    ? 'bg-white border-slate-200 shadow-sm' 
+                                                                    : 'bg-slate-100 border-transparent opacity-40'
                                                             }`}>
-                                                                <span className="text-[10px] font-bold text-slate-500 mb-1">{wk}</span>
-                                                                <span className={`text-sm font-mono font-bold ${isActive ? 'text-white' : 'text-slate-600'}`}>
-                                                                    {isActive ? score : '-'}
+                                                                <span className="text-[9px] font-black text-slate-400 mb-2">{wk}</span>
+                                                                <span className={`text-sm font-mono font-black ${isActive ? 'text-slate-900' : 'text-slate-300'}`}>
+                                                                    {isActive ? score : '—'}
                                                                 </span>
                                                             </div>
                                                         );
                                                     })}
                                                 </div>
                                                 
-                                                <div className="mt-6 pt-6 border-t border-slate-700 flex flex-col md:flex-row justify-between gap-4">
-                                                    <div className="flex gap-4">
-                                                         <div className="text-xs text-slate-400">
-                                                             <span className="block font-bold text-slate-500 uppercase">Avg Score</span>
-                                                             <span className="text-lg font-mono text-white">
+                                                <div className="mt-10 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+                                                    <div className="flex gap-10">
+                                                         <div className="text-center">
+                                                             <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Avg Score</span>
+                                                             <span className="text-2xl font-mono font-black text-slate-900">
                                                                  {Math.round(parseInt(rider.Total || 0) / ([...Array(12)].filter((_, i) => {
                                                                      const val = rider[`WK${i+1}`];
                                                                      return val && val !== '0' && val !== '';
                                                                  }).length || 1))}
                                                              </span>
                                                          </div>
-                                                         <div className="text-xs text-slate-400">
-                                                             <span className="block font-bold text-slate-500 uppercase">Races Done</span>
-                                                             <span className="text-lg font-mono text-white">
+                                                         <div className="text-center">
+                                                             <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Races</span>
+                                                             <span className="text-2xl font-mono font-black text-slate-900">
                                                                  {[...Array(12)].filter((_, i) => {
                                                                      const val = rider[`WK${i+1}`];
                                                                      return val && val !== '0' && val !== '';
@@ -313,45 +345,26 @@
                                                              </span>
                                                          </div>
                                                     </div>
-                                                    <div className="flex items-center gap-2">
-                                                         <span className="text-[10px] font-bold text-slate-500 uppercase">Raw Position: #{rider.Position}</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                         )}
                                     </div>
                                 ))
                             ) : (
-                                <div className="py-20 text-center bg-slate-900/20 border border-dashed border-slate-800 rounded-2xl">
-                                    <i className="fa-solid fa-award text-5xl text-slate-700 mb-4"></i>
-                                    <p className="text-slate-500 font-medium">No riders found matching those filters.</p>
+                                <div className="py-32 text-center bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl">
+                                    <i className="fa-solid fa-magnifying-glass text-4xl text-slate-200 mb-6"></i>
+                                    <p className="text-slate-500 font-bold text-xl">No riders match your current filters.</p>
                                     <button 
                                         onClick={() => {setFilterRank('All'); setFilterGender('All'); setSearchTerm('');}}
-                                        className="mt-4 text-cyan-400 text-sm font-bold hover:underline"
+                                        className="mt-6 text-sm font-black uppercase tracking-widest underline decoration-2 underline-offset-8"
+                                        style={{color: ACCENT_COLOR}}
                                     >
-                                        Clear all filters
+                                        Reset all filters
                                     </button>
                                 </div>
                             )}
                         </div>
                     </main>
-
-                    <footer className="mt-20 border-t border-slate-800 bg-slate-900 py-12">
-                        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-                            <div className="flex items-center gap-3">
-                                 <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center italic font-black text-slate-950">A</div>
-                                 <div>
-                                     <div className="text-white font-bold">Allkin Crit Series</div>
-                                     <div className="text-xs text-slate-500">© 2025 Allkin Virtual Racing</div>
-                                 </div>
-                            </div>
-                            <div className="flex gap-8 text-sm text-slate-400 font-medium">
-                                <a href="#" className="hover:text-cyan-400 transition-colors">Rules</a>
-                                <a href="#" className="hover:text-cyan-400 transition-colors">Schedule</a>
-                                <a href="#" className="hover:text-cyan-400 transition-colors">Discord</a>
-                            </div>
-                        </div>
-                    </footer>
                 </div>
             );
         };
