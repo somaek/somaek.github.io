@@ -30,14 +30,6 @@
         .accent-border { border-color: var(--accent); }
         .accent-ring:focus { --tw-ring-color: var(--accent); }
         
-        .rank-card {
-            transition: all 0.2s ease;
-        }
-        
-        .rider-row:hover {
-            background-color: #f8fafc;
-        }
-
         .header-banner {
             background-image: url('https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/pages/MMCRITLeaderboardbanner.png');
             background-size: contain;
@@ -45,7 +37,7 @@
             background-repeat: no-repeat;
             width: 100%;
             height: 0;
-            padding-top: 35.5%; /* Specific ratio for this banner */
+            padding-top: 35.5%;
         }
 
         @media (max-width: 768px) {
@@ -138,7 +130,6 @@
 
             return (
                 <div className="min-h-screen bg-white">
-                    {/* Header Section - Banner Only */}
                     <div className="bg-white">
                         <header className="header-banner"></header>
                     </div>
@@ -167,7 +158,6 @@
                                 </div>
                                 
                                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                                    {/* Rank Filter */}
                                     <div className="lg:col-span-6 space-y-3">
                                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">
                                             <i className="fa-solid fa-medal"></i> Tier Category
@@ -191,7 +181,6 @@
                                         </div>
                                     </div>
 
-                                    {/* Classification Filter */}
                                     <div className="lg:col-span-3 space-y-3">
                                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">
                                             <i className="fa-solid fa-users"></i> Classification
@@ -214,7 +203,6 @@
                                         </div>
                                     </div>
 
-                                    {/* Stats (Moved from Header) */}
                                     <div className="lg:col-span-3 grid grid-cols-2 gap-3 border-l-0 lg:border-l lg:border-slate-100 lg:pl-10">
                                         <div>
                                             <div className="text-slate-400 text-[9px] uppercase font-black mb-1">Athletes</div>
@@ -238,7 +226,7 @@
                         </div>
 
                         {/* Results List */}
-                        <div className="space-y-3 mt-4">
+                        <div className="mt-2 divide-y divide-slate-100">
                             {loading ? (
                                 <div className="py-24 flex flex-col items-center justify-center text-slate-400">
                                     <i className="fa-solid fa-circle-notch animate-spin text-5xl mb-6" style={{color: ACCENT_COLOR}}></i>
@@ -249,10 +237,10 @@
                                     <div key={`${rider.Position}-${rider.Name}`} className="group">
                                         <div 
                                             onClick={() => toggleExpand(rider.Position)}
-                                            className={`grid grid-cols-12 gap-4 px-8 py-6 items-center cursor-pointer rounded-2xl transition-all duration-200 border-2 ${
+                                            className={`grid grid-cols-12 gap-4 px-8 py-5 items-center cursor-pointer transition-all duration-200 border-l-4 ${
                                                 expandedId === rider.Position 
-                                                    ? 'bg-slate-50 border-slate-200 shadow-sm translate-x-1' 
-                                                    : 'bg-white border-transparent hover:border-slate-100 hover:bg-slate-50/50'
+                                                    ? 'bg-slate-50 border-indigo-600' 
+                                                    : 'bg-white border-transparent hover:bg-slate-50/50 hover:border-slate-100'
                                             }`}
                                         >
                                             <div className="col-span-1 font-mono font-black text-slate-900 text-lg">
@@ -292,7 +280,7 @@
                                         </div>
 
                                         {expandedId === rider.Position && (
-                                            <div className="mx-4 p-8 bg-slate-50 border-x-2 border-b-2 border-slate-200 rounded-b-3xl animate-in fade-in slide-in-from-top-2 duration-300">
+                                            <div className="p-8 bg-slate-50 border-t border-slate-200 animate-in fade-in slide-in-from-top-2 duration-300">
                                                 <div className="flex justify-between items-end mb-8">
                                                     <div>
                                                         <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-1">Detailed Scorecard</h4>
@@ -324,7 +312,7 @@
                                                     })}
                                                 </div>
                                                 
-                                                <div className="mt-10 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+                                                <div className="mt-8 pt-6 border-t border-slate-200">
                                                     <div className="flex gap-10">
                                                          <div className="text-center">
                                                              <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Avg Score</span>
@@ -351,7 +339,7 @@
                                     </div>
                                 ))
                             ) : (
-                                <div className="py-32 text-center bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl">
+                                <div className="py-32 text-center bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl mt-4">
                                     <i className="fa-solid fa-magnifying-glass text-4xl text-slate-200 mb-6"></i>
                                     <p className="text-slate-500 font-bold text-xl">No riders match your current filters.</p>
                                     <button 
