@@ -23,7 +23,7 @@ jobs:
         uses: githubocto/flat@v3
         with:
           downloaded_filename: 'arwr.csv'
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=745704294&single=true&output=csv'
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=635705779&single=true&output=csv'
         continue-on-error: true
 
       - name: Fetch and commit the classicsW.csv
