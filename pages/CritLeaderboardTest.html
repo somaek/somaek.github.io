@@ -14,35 +14,27 @@
         
         :root {
             --accent: #3D1087;
-            --accent-light: #f5f3ff;
         }
 
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #ffffff;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .accent-bg { background-color: var(--accent); }
-        .accent-text { color: var(--accent); }
-        .accent-border { border-color: var(--accent); }
-        .accent-ring:focus { --tw-ring-color: var(--accent); }
-        
         .header-banner {
             background-image: url('https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/pages/MMCRITLeaderboardbanner.png');
-            background-size: contain;
-            background-position: center top;
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             width: 100%;
             height: 0;
             padding-top: 35.5%;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
             .header-banner {
-                padding-top: 45%; 
+                padding-top: 50%; 
             }
         }
     </style>
@@ -70,7 +62,7 @@
                     try {
                         setLoading(true);
                         const response = await fetch(CSV_URL);
-                        if (!response.ok) throw new Error('Failed to fetch leaderboard data');
+                        if (!response.ok) throw new Error('Failed to fetch data');
                         const csvText = await response.text();
                         
                         const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
@@ -87,31 +79,33 @@
                         });
                         
                         setData(result);
-                        setError(null);
                     } catch (err) {
-                        console.error('Error loading CSV:', err);
-                        setError('Could not load the leaderboard. Please check your connection.');
+                        setError('Could not load leaderboard.');
                     } finally {
                         setLoading(false);
                     }
                 };
-
                 fetchData();
             }, []);
 
             const filteredData = useMemo(() => {
                 return data.filter(rider => {
-                    const matchesSearch = rider.Name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                                          rider.Team?.toLowerCase().includes(searchTerm.toLowerCase());
+                    const name = rider.Name || '';
+                    const team = rider.Team || '';
+                    const matchesSearch = name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                                          team.toLowerCase().includes(searchTerm.toLowerCase());
                     const matchesRank = filterRank === 'All' || rider.Rank === filterRank;
                     const matchesGender = filterGender === 'All' || rider.Gender === filterGender;
-                    
                     return matchesSearch && matchesRank && matchesGender;
                 });
             }, [data, searchTerm, filterRank, filterGender]);
 
             const ranks = ['All', 'Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze'];
             const genders = ['All', 'Male', 'Female', 'Bot'];
+
+            const toggleExpand = (id) => {
+                setExpandedId(prev => (prev === id ? null : id));
+            };
 
             const getRankColor = (rank) => {
                 switch (rank) {
@@ -124,54 +118,35 @@
                 }
             };
 
-            const toggleExpand = (pos) => {
-                setExpandedId(expandedId === pos ? null : pos);
-            };
-
             return (
                 <div className="min-h-screen bg-white">
-                    <div className="bg-white">
-                        <header className="header-banner"></header>
-                    </div>
+                    <header className="header-banner"></header>
 
-                    <main className="max-w-6xl mx-auto px-6 mt-4 relative z-20 pb-20">
-                        {error && (
-                            <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-600">
-                                <i className="fa-solid fa-circle-exclamation"></i>
-                                <p className="font-semibold">{error}</p>
-                            </div>
-                        )}
-
-                        {/* Search and Filters Card */}
-                        <div className="bg-white border border-slate-200 rounded-3xl shadow-2xl shadow-slate-300/10 p-6 md:p-8 mb-10">
-                            <div className="space-y-8">
+                    <main className="max-w-6xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-10 relative z-20 pb-20">
+                        {/* Search & Filters */}
+                        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-10">
+                            <div className="space-y-6">
                                 <div className="relative">
-                                    <i className="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                    <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                                     <input 
                                         type="text" 
-                                        placeholder="Search by rider name or team..." 
-                                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl py-5 pl-14 pr-6 focus:outline-none focus:border-slate-300 transition-all text-lg font-medium accent-ring"
+                                        placeholder="Search rider..." 
+                                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-indigo-200 transition-all text-base font-medium"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        disabled={loading}
                                     />
                                 </div>
                                 
-                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                                    <div className="lg:col-span-6 space-y-3">
-                                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">
-                                            <i className="fa-solid fa-medal"></i> Tier Category
-                                        </div>
-                                        <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-col lg:flex-row gap-6">
+                                    <div className="flex-1 space-y-2">
+                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Tier</div>
+                                        <div className="flex flex-wrap gap-1.5">
                                             {ranks.map(rank => (
                                                 <button
                                                     key={rank}
-                                                    disabled={loading}
                                                     onClick={() => setFilterRank(rank)}
-                                                    className={`px-5 py-2.5 rounded-xl border-2 text-sm font-bold transition-all ${
-                                                        filterRank === rank 
-                                                            ? 'text-white border-transparent shadow-md' 
-                                                            : 'bg-white border-slate-100 text-slate-400 hover:border-slate-200 disabled:opacity-50'
+                                                    className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+                                                        filterRank === rank ? 'text-white border-transparent' : 'bg-white border-slate-100 text-slate-400'
                                                     }`}
                                                     style={filterRank === rank ? {backgroundColor: ACCENT_COLOR} : {}}
                                                 >
@@ -180,176 +155,110 @@
                                             ))}
                                         </div>
                                     </div>
-
-                                    <div className="lg:col-span-3 space-y-3">
-                                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">
-                                            <i className="fa-solid fa-users"></i> Classification
-                                        </div>
-                                        <div className="flex flex-wrap gap-2">
-                                            {genders.map(gender => (
+                                    <div className="lg:w-48 space-y-2">
+                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Class</div>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {genders.map(g => (
                                                 <button
-                                                    key={gender}
-                                                    disabled={loading}
-                                                    onClick={() => setFilterGender(gender)}
-                                                    className={`px-4 py-2.5 rounded-xl border-2 text-xs font-bold transition-all ${
-                                                        filterGender === gender 
-                                                            ? 'bg-slate-900 border-slate-900 text-white shadow-md' 
-                                                            : 'bg-white border-slate-100 text-slate-400 hover:border-slate-200 disabled:opacity-50'
+                                                    key={g}
+                                                    onClick={() => setFilterGender(g)}
+                                                    className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
+                                                        filterGender === g ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400'
                                                     }`}
                                                 >
-                                                    {gender === 'Bot' ? '🤖' : gender === 'Male' ? '♂' : gender === 'Female' ? '♀' : 'All'}
+                                                    {g === 'All' ? 'All' : g === 'Bot' ? '🤖' : g === 'Male' ? '♂' : '♀'}
                                                 </button>
                                             ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="lg:col-span-3 grid grid-cols-2 gap-3 border-l-0 lg:border-l lg:border-slate-100 lg:pl-10">
-                                        <div>
-                                            <div className="text-slate-400 text-[9px] uppercase font-black mb-1">Athletes</div>
-                                            <div className="text-2xl font-mono font-bold text-slate-900 tracking-tighter">{loading ? '--' : data.length}</div>
-                                        </div>
-                                        <div>
-                                            <div className="text-slate-400 text-[9px] uppercase font-black mb-1">Round</div>
-                                            <div className="text-2xl font-mono font-bold tracking-tighter" style={{color: ACCENT_COLOR}}>WK 04</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* List Header */}
-                        <div className="grid grid-cols-12 gap-4 px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b-2 border-slate-100">
-                            <div className="col-span-1">Rank</div>
-                            <div className="col-span-5 md:col-span-6">Competitor</div>
-                            <div className="col-span-3 md:col-span-2 text-right">Category</div>
-                            <div className="col-span-3 md:col-span-3 text-right">Series Pts</div>
+                        {/* List Header - Responsive Columns */}
+                        <div className="grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100">
+                            <div className="col-span-2 sm:col-span-1">Rank</div>
+                            <div className="col-span-7 sm:col-span-6">Competitor</div>
+                            <div className="hidden sm:block sm:col-span-2 text-right">Tier</div>
+                            <div className="col-span-3 sm:col-span-3 text-right">Points</div>
                         </div>
 
-                        {/* Results List */}
-                        <div className="mt-2 divide-y divide-slate-100">
+                        {/* Results */}
+                        <div className="divide-y divide-slate-100">
                             {loading ? (
-                                <div className="py-24 flex flex-col items-center justify-center text-slate-400">
-                                    <i className="fa-solid fa-circle-notch animate-spin text-5xl mb-6" style={{color: ACCENT_COLOR}}></i>
-                                    <p className="font-bold uppercase tracking-widest text-xs">Calibrating Standings...</p>
-                                </div>
-                            ) : filteredData.length > 0 ? (
-                                filteredData.map((rider, index) => (
-                                    <div key={`${rider.Position}-${rider.Name}`} className="group">
-                                        <div 
-                                            onClick={() => toggleExpand(rider.Position)}
-                                            className={`grid grid-cols-12 gap-4 px-8 py-5 items-center cursor-pointer transition-all duration-200 border-l-4 ${
-                                                expandedId === rider.Position 
-                                                    ? 'bg-slate-50 border-indigo-600' 
-                                                    : 'bg-white border-transparent hover:bg-slate-50/50 hover:border-slate-100'
-                                            }`}
-                                        >
-                                            <div className="col-span-1 font-mono font-black text-slate-900 text-lg">
-                                                {index + 1 === 1 && filterGender === 'All' && filterRank === 'All' ? (
-                                                    <i className="fa-solid fa-crown text-amber-500"></i>
-                                                ) : (
-                                                    (index + 1).toString().padStart(2, '0')
-                                                )}
+                                <div className="py-20 text-center text-slate-400 animate-pulse">Loading standings...</div>
+                            ) : filteredData.map((rider, index) => {
+                                const riderId = rider.Position || index;
+                                return (
+                                <div key={`${rider.Name}-${index}`}>
+                                    <div 
+                                        onClick={() => toggleExpand(riderId)}
+                                        className={`grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 items-center cursor-pointer transition-colors ${expandedId === riderId ? 'bg-slate-50' : 'hover:bg-slate-50/50'}`}
+                                    >
+                                        <div className="col-span-2 sm:col-span-1 font-mono font-bold text-slate-900">
+                                            {(index + 1).toString().padStart(2, '0')}
+                                        </div>
+                                        <div className="col-span-7 sm:col-span-6 pr-2">
+                                            <div className="font-bold text-slate-900 truncate leading-tight">{rider.Name}</div>
+                                            <div className="text-[10px] text-slate-400 uppercase font-medium truncate">{rider.Team || 'Independent'}</div>
+                                        </div>
+                                        <div className="hidden sm:block sm:col-span-2 text-right">
+                                            <span className={`px-2 py-0.5 rounded text-[9px] font-bold border ${getRankColor(rider.Rank)}`}>
+                                                {rider.Rank}
+                                            </span>
+                                        </div>
+                                        <div className="col-span-3 sm:col-span-3 text-right flex items-center justify-end gap-3 sm:gap-6">
+                                            <div className="text-lg sm:text-2xl font-mono font-black text-slate-900">{rider.Total}</div>
+                                            <i className={`text-slate-300 text-xs fa-solid ${expandedId === riderId ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+                                        </div>
+                                    </div>
+
+                                    {expandedId === riderId && (
+                                        <div className="p-4 sm:p-8 bg-slate-50 border-t border-slate-200">
+                                            <div className="flex justify-between items-center mb-6">
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Weekly Scorecard</span>
+                                                <span className="sm:hidden px-2 py-0.5 rounded text-[9px] font-bold border bg-white">{rider.Rank}</span>
                                             </div>
-                                            
-                                            <div className="col-span-5 md:col-span-6">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="font-extrabold text-slate-900 group-hover:accent-text transition-colors text-lg truncate">
-                                                        {rider.Name}
+                                            <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-2">
+                                                {[...Array(12)].map((_, i) => {
+                                                    const val = rider[`WK${i+1}`];
+                                                    const active = val && val !== '0' && val !== '';
+                                                    return (
+                                                        <div key={i} className={`p-2 rounded-lg border text-center ${active ? 'bg-white border-slate-200' : 'opacity-30 border-transparent'}`}>
+                                                            <div className="text-[8px] font-bold text-slate-400 mb-1">W{i+1}</div>
+                                                            <div className="text-xs font-mono font-bold">{active ? val : '-'}</div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                            <div className="mt-6 flex gap-6 border-t border-slate-200 pt-6">
+                                                <div>
+                                                    <div className="text-[9px] font-black text-slate-400 uppercase">Avg Pts</div>
+                                                    <div className="text-xl font-mono font-bold">
+                                                        {(() => {
+                                                            const total = parseInt(rider.Total) || 0;
+                                                            const weeks = [...Array(12)].filter((_, i) => {
+                                                                const v = rider[`WK${i+1}`];
+                                                                return v && v !== '0' && v !== '';
+                                                            }).length;
+                                                            return weeks > 0 ? Math.round(total / weeks) : 0;
+                                                        })()}
                                                     </div>
-                                                    {rider.Gender === 'Bot' && <span className="grayscale opacity-50 text-xs" title="Bot Account">🤖</span>}
                                                 </div>
-                                                <div className="text-xs font-bold text-slate-400 uppercase tracking-wide flex items-center gap-2 mt-0.5">
-                                                    {rider.Team || 'No Team'}
-                                                </div>
-                                            </div>
-
-                                            <div className="col-span-3 md:col-span-2 text-right">
-                                                <span className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter border ${getRankColor(rider.Rank)}`}>
-                                                    {rider.Rank}
-                                                </span>
-                                            </div>
-
-                                            <div className="col-span-3 md:col-span-3 text-right flex items-center justify-end gap-5">
-                                                <div className="text-2xl font-mono font-black text-slate-900">
-                                                    {rider.Total}
-                                                </div>
-                                                <div className="text-slate-300 group-hover:text-slate-500 transition-colors">
-                                                    <i className={`fa-solid ${expandedId === rider.Position ? 'fa-angle-up' : 'fa-angle-down'}`}></i>
+                                                <div>
+                                                    <div className="text-[9px] font-black text-slate-400 uppercase">Class</div>
+                                                    <div className="text-xl font-bold flex items-center gap-1">
+                                                        {rider.Gender === 'Bot' ? <span>🤖 Bot</span> : rider.Gender}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {expandedId === rider.Position && (
-                                            <div className="p-8 bg-slate-50 border-t border-slate-200 animate-in fade-in slide-in-from-top-2 duration-300">
-                                                <div className="flex justify-between items-end mb-8">
-                                                    <div>
-                                                        <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-1">Detailed Scorecard</h4>
-                                                        <div className="text-slate-900 font-bold">Week-by-week performance analysis</div>
-                                                    </div>
-                                                    <div className="bg-white px-4 py-2 rounded-lg border border-slate-200 text-[10px] font-black text-slate-500 uppercase">
-                                                        Class: {rider.Gender}
-                                                    </div>
-                                                </div>
-                                                
-                                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-3">
-                                                    {[...Array(12)].map((_, i) => {
-                                                        const wk = `WK${i + 1}`;
-                                                        const score = rider[wk];
-                                                        const isActive = !!score && score !== '0' && score !== '';
-                                                        
-                                                        return (
-                                                            <div key={wk} className={`p-4 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${
-                                                                isActive 
-                                                                    ? 'bg-white border-slate-200 shadow-sm' 
-                                                                    : 'bg-slate-100 border-transparent opacity-40'
-                                                            }`}>
-                                                                <span className="text-[9px] font-black text-slate-400 mb-2">{wk}</span>
-                                                                <span className={`text-sm font-mono font-black ${isActive ? 'text-slate-900' : 'text-slate-300'}`}>
-                                                                    {isActive ? score : '—'}
-                                                                </span>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                                
-                                                <div className="mt-8 pt-6 border-t border-slate-200">
-                                                    <div className="flex gap-10">
-                                                         <div className="text-center">
-                                                             <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Avg Score</span>
-                                                             <span className="text-2xl font-mono font-black text-slate-900">
-                                                                 {Math.round(parseInt(rider.Total || 0) / ([...Array(12)].filter((_, i) => {
-                                                                     const val = rider[`WK${i+1}`];
-                                                                     return val && val !== '0' && val !== '';
-                                                                 }).length || 1))}
-                                                             </span>
-                                                         </div>
-                                                         <div className="text-center">
-                                                             <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Races</span>
-                                                             <span className="text-2xl font-mono font-black text-slate-900">
-                                                                 {[...Array(12)].filter((_, i) => {
-                                                                     const val = rider[`WK${i+1}`];
-                                                                     return val && val !== '0' && val !== '';
-                                                                 }).length}
-                                                             </span>
-                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                ))
-                            ) : (
-                                <div className="py-32 text-center bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl mt-4">
-                                    <i className="fa-solid fa-magnifying-glass text-4xl text-slate-200 mb-6"></i>
-                                    <p className="text-slate-500 font-bold text-xl">No riders match your current filters.</p>
-                                    <button 
-                                        onClick={() => {setFilterRank('All'); setFilterGender('All'); setSearchTerm('');}}
-                                        className="mt-6 text-sm font-black uppercase tracking-widest underline decoration-2 underline-offset-8"
-                                        style={{color: ACCENT_COLOR}}
-                                    >
-                                        Reset all filters
-                                    </button>
+                                    )}
                                 </div>
+                                );
+                            })}
+                            {!loading && filteredData.length === 0 && (
+                                <div className="py-20 text-center text-slate-400">No riders found matching your criteria.</div>
                             )}
                         </div>
                     </main>
