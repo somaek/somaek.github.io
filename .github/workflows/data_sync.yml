@@ -26,11 +26,11 @@ jobs:
           http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFFpRBp56INVL1XqmHbGBrISvVdzqQ1C3N-sf9xox4oJugyPqYw7OwbxpkyolEjx8BPIkd7mb2ICza/pub?gid=635705779&single=true&output=csv'
         continue-on-error: true
 
-      - name: Fetch and commit the classicsW.csv
+      - name: Fetch and commit the SpringC.csv
         uses: githubocto/flat@v3
         with:
-          downloaded_filename: 'classicsW.csv'
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQa0NYgMt6C6iQz2B0WJOpqapV_4_qrivfmCriV0CddxN3Ihe1FhfJ-6yXf7rG7g4GJkYzazBHCF50Y/pub?gid=369680030&single=true&output=csv'
+          downloaded_filename: 'SpringC.csv'
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQa0NYgMt6C6iQz2B0WJOpqapV_4_qrivfmCriV0CddxN3Ihe1FhfJ-6yXf7rG7g4GJkYzazBHCF50Y/pub?gid=635705779&single=true&output=csv'
         continue-on-error: true
 
       - name: Fetch and commit the ClassCal.csv
