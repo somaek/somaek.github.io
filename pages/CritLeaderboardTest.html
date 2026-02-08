@@ -22,20 +22,18 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .header-banner {
-            background-image: url('https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/pages/MMCRITLeaderboardbanner.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 0;
-            padding-top: 35.5%;
+        /* Smooth transition for filter expansion matching arwr.html style */
+        .filter-content {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
         }
-
-        @media (max-width: 640px) {
-            .header-banner {
-                padding-top: 50%; 
-            }
+        
+        .filter-content.expanded {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 1.5rem;
         }
     </style>
 </head>
@@ -56,6 +54,7 @@
             const [expandedId, setExpandedId] = useState(null);
             const [filterRank, setFilterRank] = useState('All');
             const [filterGender, setFilterGender] = useState('All');
+            const [isFilterExpanded, setIsFilterExpanded] = useState(false);
 
             useEffect(() => {
                 const fetchData = async () => {
@@ -100,6 +99,12 @@
                 });
             }, [data, searchTerm, filterRank, filterGender]);
 
+            const activeFiltersCount = [
+                filterRank !== 'All',
+                filterGender !== 'All',
+                searchTerm !== ''
+            ].filter(Boolean).length;
+
             const ranks = ['All', 'Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze'];
             const genders = ['All', 'Male', 'Female', 'Bot'];
 
@@ -120,57 +125,93 @@
 
             return (
                 <div className="min-h-screen bg-white">
-                    <header className="header-banner"></header>
-
-                    <main className="max-w-6xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-10 relative z-20 pb-20">
-                        {/* Search & Filters */}
-                        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-10">
-                            <div className="space-y-6">
-                                <div className="relative">
-                                    <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Search rider..." 
-                                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-indigo-200 transition-all text-base font-medium"
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                    />
+                    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 relative z-20 pb-20">
+                        
+                        {/* ARWR-Styled Collapsible Filter Card */}
+                        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 mb-6">
+                            {/* Toggle Header */}
+                            <button 
+                                onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+                                className="w-full flex items-center justify-between group transition-colors"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all">
+                                        <i className={`fa-solid ${isFilterExpanded ? 'fa-filter-circle-xmark' : 'fa-filter'}`}></i>
+                                    </div>
+                                    <div className="text-left">
+                                        <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 leading-none">Filters & Search</h3>
+                                        <p className="text-[10px] text-slate-400 uppercase font-bold mt-1">
+                                            {activeFiltersCount > 0 
+                                                ? `${activeFiltersCount} filter(s) active` 
+                                                : 'Click to find specific riders or tiers'}
+                                        </p>
+                                    </div>
                                 </div>
-                                
-                                <div className="flex flex-col lg:flex-row gap-6">
-                                    <div className="flex-1 space-y-2">
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Tier</div>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {ranks.map(rank => (
-                                                <button
-                                                    key={rank}
-                                                    onClick={() => setFilterRank(rank)}
-                                                    className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
-                                                        filterRank === rank ? 'text-white border-transparent' : 'bg-white border-slate-100 text-slate-400'
-                                                    }`}
-                                                    style={filterRank === rank ? {backgroundColor: ACCENT_COLOR} : {}}
-                                                >
-                                                    {rank}
-                                                </button>
-                                            ))}
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isFilterExpanded ? 'bg-indigo-50 text-indigo-600 rotate-180' : 'bg-slate-50 text-slate-300'}`}>
+                                    <i className="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </button>
+
+                            {/* Collapsible Content */}
+                            <div className={`filter-content ${isFilterExpanded ? 'expanded' : ''}`}>
+                                <div className="space-y-6 pt-2">
+                                    <div className="relative">
+                                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Search rider or team..." 
+                                            className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-indigo-200 transition-all text-sm font-medium"
+                                            value={searchTerm}
+                                            onChange={(e) => setSearchTerm(e.target.value)}
+                                        />
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Tier</div>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {ranks.map(rank => (
+                                                    <button
+                                                        key={rank}
+                                                        onClick={() => setFilterRank(rank)}
+                                                        className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all ${
+                                                            filterRank === rank ? 'text-white border-transparent' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
+                                                        }`}
+                                                        style={filterRank === rank ? {backgroundColor: ACCENT_COLOR} : {}}
+                                                    >
+                                                        {rank}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Class</div>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {genders.map(g => (
+                                                    <button
+                                                        key={g}
+                                                        onClick={() => setFilterGender(g)}
+                                                        className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all ${
+                                                            filterGender === g ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
+                                                        }`}
+                                                    >
+                                                        {g === 'All' ? 'All' : g === 'Bot' ? '🤖 Bot' : g}
+                                                    </button>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="lg:w-48 space-y-2">
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Class</div>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {genders.map(g => (
-                                                <button
-                                                    key={g}
-                                                    onClick={() => setFilterGender(g)}
-                                                    className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
-                                                        filterGender === g ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400'
-                                                    }`}
-                                                >
-                                                    {g === 'All' ? 'All' : g === 'Bot' ? '🤖' : g === 'Male' ? 'Male' : 'Female'}
-                                                </button>
-                                            ))}
+
+                                    {activeFiltersCount > 0 && (
+                                        <div className="pt-4 border-t border-slate-50 flex justify-end">
+                                            <button 
+                                                onClick={() => {setFilterRank('All'); setFilterGender('All'); setSearchTerm('');}}
+                                                className="text-[10px] font-bold text-slate-400 hover:text-red-500 transition-colors uppercase tracking-wider"
+                                            >
+                                                Reset All
+                                            </button>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
