@@ -35,6 +35,12 @@
             opacity: 1;
             margin-top: 1.5rem;
         }
+
+        .week-card-hover:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(61, 16, 135, 0.08);
+        }
     </style>
 </head>
 <body class="text-slate-900">
@@ -55,6 +61,10 @@
             const [filterRank, setFilterRank] = useState('All');
             const [filterGender, setFilterGender] = useState('All');
             const [isFilterExpanded, setIsFilterExpanded] = useState(false);
+            
+            // New state for weekly view
+            const [viewMode, setViewMode] = useState('series'); // 'series' or 'weekly'
+            const [selectedWeek, setSelectedWeek] = useState(null); // 1, 2, 3...
 
             useEffect(() => {
                 const fetchData = async () => {
@@ -87,7 +97,7 @@
                 fetchData();
             }, []);
 
-            const filteredData = useMemo(() => {
+            const filteredSeriesData = useMemo(() => {
                 return data.filter(rider => {
                     const name = rider.Name || '';
                     const team = rider.Team || '';
@@ -98,6 +108,20 @@
                     return matchesSearch && matchesRank && matchesGender;
                 });
             }, [data, searchTerm, filterRank, filterGender]);
+
+            const filteredWeeklyData = useMemo(() => {
+                if (viewMode !== 'weekly' || !selectedWeek) return [];
+                const weekKey = `WK${selectedWeek}`;
+                
+                return data
+                    .filter(rider => {
+                        // Humans only (Male or Female)
+                        const isHuman = rider.Gender === 'Male' || rider.Gender === 'Female';
+                        const hasPoints = rider[weekKey] && rider[weekKey] !== '0' && rider[weekKey] !== '';
+                        return isHuman && hasPoints;
+                    })
+                    .sort((a, b) => (parseInt(b[weekKey]) || 0) - (parseInt(a[weekKey]) || 0));
+            }, [data, viewMode, selectedWeek]);
 
             const activeFiltersCount = [
                 filterRank !== 'All',
@@ -123,185 +147,262 @@
                 }
             };
 
+            const handleWeekClick = (weekNum) => {
+                setSelectedWeek(weekNum);
+                setViewMode('weekly');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const resetToSeries = () => {
+                setViewMode('series');
+                setSelectedWeek(null);
+            };
+
             return (
                 <div className="min-h-screen bg-white">
                     <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 relative z-20 pb-20">
                         
-                        {/* ARWR-Styled Collapsible Filter Card */}
-                        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 mb-6">
-                            {/* Toggle Header */}
-                            <button 
-                                onClick={() => setIsFilterExpanded(!isFilterExpanded)}
-                                className="w-full flex items-center justify-between group transition-colors"
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all">
-                                        <i className={`fa-solid ${isFilterExpanded ? 'fa-filter-circle-xmark' : 'fa-filter'}`}></i>
-                                    </div>
-                                    <div className="text-left">
-                                        <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 leading-none">Filters & Search</h3>
-                                        <p className="text-[10px] text-slate-400 uppercase font-bold mt-1">
-                                            {activeFiltersCount > 0 
-                                                ? `${activeFiltersCount} filter(s) active` 
-                                                : 'Click to find specific riders or tiers'}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isFilterExpanded ? 'bg-indigo-50 text-indigo-600 rotate-180' : 'bg-slate-50 text-slate-300'}`}>
-                                    <i className="fa-solid fa-chevron-down text-xs"></i>
-                                </div>
-                            </button>
+                        {viewMode === 'series' ? (
+                            <>
+                                {/* ARWR-Styled Collapsible Filter Card */}
+                                <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 mb-6">
+                                    <button 
+                                        onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+                                        className="w-full flex items-center justify-between group transition-colors"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all">
+                                                <i className={`fa-solid ${isFilterExpanded ? 'fa-filter-circle-xmark' : 'fa-filter'}`}></i>
+                                            </div>
+                                            <div className="text-left">
+                                                <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 leading-none">Filters & Search</h3>
+                                                <p className="text-[10px] text-slate-400 uppercase font-bold mt-1">
+                                                    {activeFiltersCount > 0 
+                                                        ? `${activeFiltersCount} filter(s) active` 
+                                                        : 'Click to find specific riders or tiers'}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isFilterExpanded ? 'bg-indigo-50 text-indigo-600 rotate-180' : 'bg-slate-50 text-slate-300'}`}>
+                                            <i className="fa-solid fa-chevron-down text-xs"></i>
+                                        </div>
+                                    </button>
 
-                            {/* Collapsible Content */}
-                            <div className={`filter-content ${isFilterExpanded ? 'expanded' : ''}`}>
-                                <div className="space-y-6 pt-2">
-                                    <div className="relative">
-                                        <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                        <input 
-                                            type="text" 
-                                            placeholder="Search rider or team..." 
-                                            className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-indigo-200 transition-all text-sm font-medium"
-                                            value={searchTerm}
-                                            onChange={(e) => setSearchTerm(e.target.value)}
-                                        />
+                                    <div className={`filter-content ${isFilterExpanded ? 'expanded' : ''}`}>
+                                        <div className="space-y-6 pt-2">
+                                            <div className="relative">
+                                                <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="Search rider or team..." 
+                                                    className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-indigo-200 transition-all text-sm font-medium"
+                                                    value={searchTerm}
+                                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                                />
+                                            </div>
+                                            
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div className="space-y-2">
+                                                    <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Tier</div>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {ranks.map(rank => (
+                                                            <button
+                                                                key={rank}
+                                                                onClick={() => setFilterRank(rank)}
+                                                                className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all ${
+                                                                    filterRank === rank ? 'text-white border-transparent' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
+                                                                }`}
+                                                                style={filterRank === rank ? {backgroundColor: ACCENT_COLOR} : {}}
+                                                            >
+                                                                {rank}
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Class</div>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {genders.map(g => (
+                                                            <button
+                                                                key={g}
+                                                                onClick={() => setFilterGender(g)}
+                                                                className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all ${
+                                                                    filterGender === g ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
+                                                                }`}
+                                                            >
+                                                                {g === 'All' ? 'All' : g === 'Bot' ? '🤖 Bot' : g}
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {activeFiltersCount > 0 && (
+                                                <div className="pt-4 border-t border-slate-50 flex justify-end">
+                                                    <button 
+                                                        onClick={() => {setFilterRank('All'); setFilterGender('All'); setSearchTerm('');}}
+                                                        className="text-[10px] font-bold text-slate-400 hover:text-red-500 transition-colors uppercase tracking-wider"
+                                                    >
+                                                        Reset All
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* List Header */}
+                                <div className="grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100">
+                                    <div className="col-span-2 sm:col-span-1">Rank</div>
+                                    <div className="col-span-7 sm:col-span-6">Competitor</div>
+                                    <div className="hidden sm:block sm:col-span-2 text-right">Tier</div>
+                                    <div className="col-span-3 sm:col-span-3 text-right">Points</div>
+                                </div>
+
+                                {/* Results */}
+                                <div className="divide-y divide-slate-100">
+                                    {loading ? (
+                                        <div className="py-20 text-center text-slate-400 animate-pulse">Loading standings...</div>
+                                    ) : filteredSeriesData.map((rider, index) => {
+                                        const riderId = rider.Position || index;
+                                        return (
+                                        <div key={`${rider.Name}-${index}`}>
+                                            <div 
+                                                onClick={() => toggleExpand(riderId)}
+                                                className={`grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 items-center cursor-pointer transition-colors ${expandedId === riderId ? 'bg-slate-50' : 'hover:bg-slate-50/50'}`}
+                                            >
+                                                <div className="col-span-2 sm:col-span-1 font-mono font-bold text-slate-900">
+                                                    {(index + 1).toString().padStart(2, '0')}
+                                                </div>
+                                                <div className="col-span-7 sm:col-span-6 pr-2">
+                                                    <div className="font-bold text-slate-900 truncate leading-tight">{rider.Name}</div>
+                                                    <div className="text-[10px] text-slate-400 uppercase font-medium truncate">{rider.Team || 'Independent'}</div>
+                                                </div>
+                                                <div className="hidden sm:block sm:col-span-2 text-right">
+                                                    <span className={`px-2 py-0.5 rounded text-[9px] font-bold border ${getRankColor(rider.Rank)}`}>
+                                                        {rider.Rank}
+                                                    </span>
+                                                </div>
+                                                <div className="col-span-3 sm:col-span-3 text-right flex items-center justify-end gap-3 sm:gap-6">
+                                                    <div className="text-lg sm:text-2xl font-mono font-black text-slate-900">{rider.Total}</div>
+                                                    <i className={`text-slate-300 text-xs fa-solid ${expandedId === riderId ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+                                                </div>
+                                            </div>
+
+                                            {expandedId === riderId && (
+                                                <div className="p-4 sm:p-8 bg-slate-50 border-t border-slate-200 animate-in fade-in duration-300">
+                                                    <div className="flex justify-between items-center mb-6">
+                                                        <div>
+                                                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Weekly Scorecard</span>
+                                                            <p className="text-[9px] text-indigo-600 font-bold uppercase mt-0.5">Click a result to view week standings</p>
+                                                        </div>
+                                                        <span className="sm:hidden px-2 py-0.5 rounded text-[9px] font-bold border bg-white">{rider.Rank}</span>
+                                                    </div>
+                                                    <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-2">
+                                                        {[...Array(12)].map((_, i) => {
+                                                            const weekNum = i + 1;
+                                                            const val = rider[`WK${weekNum}`];
+                                                            const active = val && val !== '0' && val !== '';
+                                                            return (
+                                                                <div 
+                                                                    key={i} 
+                                                                    onClick={(e) => {
+                                                                        if (active) {
+                                                                            e.stopPropagation();
+                                                                            handleWeekClick(weekNum);
+                                                                        }
+                                                                    }}
+                                                                    className={`p-2 rounded-lg border text-center transition-all ${active ? 'bg-white border-slate-200 cursor-pointer week-card-hover' : 'opacity-30 border-transparent cursor-default'}`}
+                                                                >
+                                                                    <div className="text-[8px] font-bold text-slate-400 mb-1">W{weekNum}</div>
+                                                                    <div className="text-xs font-mono font-bold">{active ? val : '-'}</div>
+                                                                </div>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                    <div className="mt-6 flex gap-6 border-t border-slate-200 pt-6">
+                                                        <div>
+                                                            <div className="text-[9px] font-black text-slate-400 uppercase">Avg Pts</div>
+                                                            <div className="text-xl font-mono font-bold">
+                                                                {(() => {
+                                                                    const total = parseInt(rider.Total) || 0;
+                                                                    const weeks = [...Array(12)].filter((_, i) => {
+                                                                        const v = rider[`WK${i+1}`];
+                                                                        return v && v !== '0' && v !== '';
+                                                                    }).length;
+                                                                    return weeks > 0 ? Math.round(total / weeks) : 0;
+                                                                })()}
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div className="text-[9px] font-black text-slate-400 uppercase">Class</div>
+                                                            <div className="text-xl font-bold flex items-center gap-1">
+                                                                {rider.Gender === 'Bot' ? <span>🤖 Bot</span> : rider.Gender}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                        );
+                                    })}
+                                    {!loading && filteredSeriesData.length === 0 && (
+                                        <div className="py-20 text-center text-slate-400">No riders found matching your criteria.</div>
+                                    )}
+                                </div>
+                            </>
+                        ) : (
+                            /* Weekly Leaderboard View */
+                            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <div className="flex items-center justify-between mb-8">
+                                    <button 
+                                        onClick={resetToSeries}
+                                        className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl transition-colors font-bold text-xs uppercase tracking-wider"
+                                    >
+                                        <i className="fa-solid fa-arrow-left"></i>
+                                        Back to Series
+                                    </button>
+                                    <div className="text-right">
+                                        <h2 className="text-2xl font-black text-slate-900 uppercase">Week {selectedWeek}</h2>
+                                        <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest">Individual Results (Humans Only)</p>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
+                                    <div className="grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 border-b border-slate-100">
+                                        <div className="col-span-2 sm:col-span-1">Pos</div>
+                                        <div className="col-span-7 sm:col-span-6">Competitor</div>
+                                        <div className="hidden sm:block sm:col-span-2 text-right">Tier</div>
+                                        <div className="col-span-3 sm:col-span-3 text-right">Points</div>
                                     </div>
                                     
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Tier</div>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {ranks.map(rank => (
-                                                    <button
-                                                        key={rank}
-                                                        onClick={() => setFilterRank(rank)}
-                                                        className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all ${
-                                                            filterRank === rank ? 'text-white border-transparent' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
-                                                        }`}
-                                                        style={filterRank === rank ? {backgroundColor: ACCENT_COLOR} : {}}
-                                                    >
-                                                        {rank}
-                                                    </button>
-                                                ))}
+                                    <div className="divide-y divide-slate-100">
+                                        {filteredWeeklyData.map((rider, index) => (
+                                            <div key={index} className="grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 items-center hover:bg-slate-50/50 transition-colors">
+                                                <div className="col-span-2 sm:col-span-1 font-mono font-bold text-slate-400 italic">
+                                                    {(index + 1)}
+                                                </div>
+                                                <div className="col-span-7 sm:col-span-6 pr-2">
+                                                    <div className="font-bold text-slate-900 truncate leading-tight">{rider.Name}</div>
+                                                    <div className="text-[10px] text-slate-400 uppercase font-medium truncate">{rider.Team || 'Independent'}</div>
+                                                </div>
+                                                <div className="hidden sm:block sm:col-span-2 text-right">
+                                                    <span className={`px-2 py-0.5 rounded text-[9px] font-bold border ${getRankColor(rider.Rank)}`}>
+                                                        {rider.Rank}
+                                                    </span>
+                                                </div>
+                                                <div className="col-span-3 sm:col-span-3 text-right font-mono font-black text-lg text-slate-900">
+                                                    {rider[`WK${selectedWeek}`]}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Class</div>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {genders.map(g => (
-                                                    <button
-                                                        key={g}
-                                                        onClick={() => setFilterGender(g)}
-                                                        className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all ${
-                                                            filterGender === g ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
-                                                        }`}
-                                                    >
-                                                        {g === 'All' ? 'All' : g === 'Bot' ? '🤖 Bot' : g}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
+                                        ))}
+                                        {filteredWeeklyData.length === 0 && (
+                                            <div className="py-20 text-center text-slate-400">No human results recorded for this week.</div>
+                                        )}
                                     </div>
-
-                                    {activeFiltersCount > 0 && (
-                                        <div className="pt-4 border-t border-slate-50 flex justify-end">
-                                            <button 
-                                                onClick={() => {setFilterRank('All'); setFilterGender('All'); setSearchTerm('');}}
-                                                className="text-[10px] font-bold text-slate-400 hover:text-red-500 transition-colors uppercase tracking-wider"
-                                            >
-                                                Reset All
-                                            </button>
-                                        </div>
-                                    )}
                                 </div>
                             </div>
-                        </div>
-
-                        {/* List Header - Responsive Columns */}
-                        <div className="grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100">
-                            <div className="col-span-2 sm:col-span-1">Rank</div>
-                            <div className="col-span-7 sm:col-span-6">Competitor</div>
-                            <div className="hidden sm:block sm:col-span-2 text-right">Tier</div>
-                            <div className="col-span-3 sm:col-span-3 text-right">Points</div>
-                        </div>
-
-                        {/* Results */}
-                        <div className="divide-y divide-slate-100">
-                            {loading ? (
-                                <div className="py-20 text-center text-slate-400 animate-pulse">Loading standings...</div>
-                            ) : filteredData.map((rider, index) => {
-                                const riderId = rider.Position || index;
-                                return (
-                                <div key={`${rider.Name}-${index}`}>
-                                    <div 
-                                        onClick={() => toggleExpand(riderId)}
-                                        className={`grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 items-center cursor-pointer transition-colors ${expandedId === riderId ? 'bg-slate-50' : 'hover:bg-slate-50/50'}`}
-                                    >
-                                        <div className="col-span-2 sm:col-span-1 font-mono font-bold text-slate-900">
-                                            {(index + 1).toString().padStart(2, '0')}
-                                        </div>
-                                        <div className="col-span-7 sm:col-span-6 pr-2">
-                                            <div className="font-bold text-slate-900 truncate leading-tight">{rider.Name}</div>
-                                            <div className="text-[10px] text-slate-400 uppercase font-medium truncate">{rider.Team || 'Independent'}</div>
-                                        </div>
-                                        <div className="hidden sm:block sm:col-span-2 text-right">
-                                            <span className={`px-2 py-0.5 rounded text-[9px] font-bold border ${getRankColor(rider.Rank)}`}>
-                                                {rider.Rank}
-                                            </span>
-                                        </div>
-                                        <div className="col-span-3 sm:col-span-3 text-right flex items-center justify-end gap-3 sm:gap-6">
-                                            <div className="text-lg sm:text-2xl font-mono font-black text-slate-900">{rider.Total}</div>
-                                            <i className={`text-slate-300 text-xs fa-solid ${expandedId === riderId ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
-                                        </div>
-                                    </div>
-
-                                    {expandedId === riderId && (
-                                        <div className="p-4 sm:p-8 bg-slate-50 border-t border-slate-200">
-                                            <div className="flex justify-between items-center mb-6">
-                                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Weekly Scorecard</span>
-                                                <span className="sm:hidden px-2 py-0.5 rounded text-[9px] font-bold border bg-white">{rider.Rank}</span>
-                                            </div>
-                                            <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-2">
-                                                {[...Array(12)].map((_, i) => {
-                                                    const val = rider[`WK${i+1}`];
-                                                    const active = val && val !== '0' && val !== '';
-                                                    return (
-                                                        <div key={i} className={`p-2 rounded-lg border text-center ${active ? 'bg-white border-slate-200' : 'opacity-30 border-transparent'}`}>
-                                                            <div className="text-[8px] font-bold text-slate-400 mb-1">W{i+1}</div>
-                                                            <div className="text-xs font-mono font-bold">{active ? val : '-'}</div>
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                            <div className="mt-6 flex gap-6 border-t border-slate-200 pt-6">
-                                                <div>
-                                                    <div className="text-[9px] font-black text-slate-400 uppercase">Avg Pts</div>
-                                                    <div className="text-xl font-mono font-bold">
-                                                        {(() => {
-                                                            const total = parseInt(rider.Total) || 0;
-                                                            const weeks = [...Array(12)].filter((_, i) => {
-                                                                const v = rider[`WK${i+1}`];
-                                                                return v && v !== '0' && v !== '';
-                                                            }).length;
-                                                            return weeks > 0 ? Math.round(total / weeks) : 0;
-                                                        })()}
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="text-[9px] font-black text-slate-400 uppercase">Class</div>
-                                                    <div className="text-xl font-bold flex items-center gap-1">
-                                                        {rider.Gender === 'Bot' ? <span>🤖 Bot</span> : rider.Gender}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                );
-                            })}
-                            {!loading && filteredData.length === 0 && (
-                                <div className="py-20 text-center text-slate-400">No riders found matching your criteria.</div>
-                            )}
-                        </div>
+                        )}
                     </main>
                 </div>
             );
