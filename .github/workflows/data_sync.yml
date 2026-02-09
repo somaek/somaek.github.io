@@ -40,32 +40,12 @@ jobs:
           http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQa0NYgMt6C6iQz2B0WJOpqapV_4_qrivfmCriV0CddxN3Ihe1FhfJ-6yXf7rG7g4GJkYzazBHCF50Y/pub?gid=489390654&single=true&output=csv'
         continue-on-error: true
 
-      - name: Fetch and commit the INDI500P.csv
-        uses: githubocto/flat@v3
-        with:
-          downloaded_filename: 'INDI500P.csv'
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi7daX6SydkW-0Cq75kHiWdOLVbuVcz8eVNFzNZ9YVTx4LhMJsfxh5sknLQ2qyZ7Zk3jJZftensLPq/pub?gid=436262005&single=true&output=csv'
-        continue-on-error: true
 
-      - name: Fetch and commit the INDI500G.csv
+      - name: Fetch and commit the MM.csv
         uses: githubocto/flat@v3
         with:
-          downloaded_filename: 'INDI500G.csv'
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi7daX6SydkW-0Cq75kHiWdOLVbuVcz8eVNFzNZ9YVTx4LhMJsfxh5sknLQ2qyZ7Zk3jJZftensLPq/pub?gid=1868790515&single=true&output=csv'
-        continue-on-error: true
-      
-      - name: Fetch and commit the INDI500S.csv
-        uses: githubocto/flat@v3
-        with:
-          downloaded_filename: 'INDI500S.csv'
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi7daX6SydkW-0Cq75kHiWdOLVbuVcz8eVNFzNZ9YVTx4LhMJsfxh5sknLQ2qyZ7Zk3jJZftensLPq/pub?gid=1053430943&single=true&output=csv'
-        continue-on-error: true
-
-      - name: Fetch and commit the ALMMCRTD.csv
-        uses: githubocto/flat@v3
-        with:
-          downloaded_filename: 'ALMMCRTD.csv'
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSubWCvIak_wQaqp4Wn7u3FB-v3Y0HqjhI08ypiX8fLMdmjPpAEUzJhc6zbgt8oTJupXEIyvVyiglnq/pub?gid=1930646479&single=true&output=csv'
+          downloaded_filename: 'MM.csv'
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSubWCvIak_wQaqp4Wn7u3FB-v3Y0HqjhI08ypiX8fLMdmjPpAEUzJhc6zbgt8oTJupXEIyvVyiglnq/pub?gid=1371672655&single=true&output=csv'
         continue-on-error: true
     
       - name: Fetch and commit classicsL.csv
