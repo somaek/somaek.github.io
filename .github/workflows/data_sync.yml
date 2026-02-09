@@ -72,5 +72,5 @@ jobs:
         uses: githubocto/flat@v3
         with: 
           downloaded_filename: 'classicsL.csv'
-          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQa0NYgMt6C6iQz2B0WJOpqapV_4_qrivfmCriV0CddxN3Ihe1FhfJ-6yXf7rG7g4GJkYzazBHCF50Y/pub?gid=1430084053&single=true&output=csv'
+          http_url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQa0NYgMt6C6iQz2B0WJOpqapV_4_qrivfmCriV0CddxN3Ihe1FhfJ-6yXf7rG7g4GJkYzazBHCF50Y/pubhtml?gid=635705779&single=true'
           
