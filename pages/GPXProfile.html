@@ -186,9 +186,16 @@
         const ClimbDetailModal = ({ climb, allPoints, onClose, units, unitLabels }) => {
             if (!climb) return null;
 
-            // 1. Calculate 10 Segments
+            // 1. Calculate Segments
             const segments = useMemo(() => {
-                const segmentCount = 10;
+                // Dynamic Segmentation Logic:
+                // Goal: ~250m (0.25km) segments for longer climbs.
+                // Constraints: Min 10, Max 40.
+                
+                const targetLen = units === 'metric' ? 0.25 : 0.155; // 250m or ~0.15 miles
+                const optimalCount = Math.round(climb.lengthKm / targetLen);
+                const segmentCount = Math.max(10, Math.min(30, optimalCount));
+
                 const segmentLength = climb.lengthKm / segmentCount;
                 const result = [];
                 
@@ -266,7 +273,7 @@
                             <div>
                                 <h2 className="text-2xl font-bold font-oswald text-white uppercase tracking-wide flex items-center gap-3">
                                     <span className="bg-[#00FFFF] text-black px-2 py-0.5 rounded text-lg">#{climb.id}</span>
-                                    {climb.name || ''}
+                                    {climb.name || 'Unnamed Climb'}
                                 </h2>
                                 <div className="text-neutral-300 text-sm mt-1 flex gap-4">
                                     <span>Length: <strong className="text-white">{climb.lengthKm.toFixed(2)} {unitLabels.dist}</strong></span>
@@ -282,7 +289,7 @@
                         {/* Content */}
                         <div className="p-6">
                             <div className="bg-[#1a053a] rounded border border-[#6c3f9c] p-4 mb-6 relative">
-                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider">Segment Analysis (10 splits)</h3>
+                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider">Segment Analysis ({segments.length} splits)</h3>
                                 
                                 <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
                                     {/* Grid Lines Y */}
@@ -304,14 +311,14 @@
                                             {/* Gradient Text */}
                                             <text 
                                                 x={(getX(seg.startDist) + getX(seg.endDist)) / 2} 
-                                                y={(height - padding) - 10} 
+                                                y={(getY(seg.endEle)) - 10} 
                                                 textAnchor="middle" 
                                                 fill="#fff" 
                                                 fontSize="10" 
                                                 fontWeight="bold"
                                                 className="drop-shadow-md"
                                             >
-                                                {seg.gradient.toFixed(1)}%
+                                                {seg.gradient.toFixed(0)}%
                                             </text>
                                         </g>
                                     ))}
