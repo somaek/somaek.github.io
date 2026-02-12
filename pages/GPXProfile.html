@@ -85,8 +85,8 @@
         const Eye = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>;
         const EyeOff = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.29-1.44"/><line x1="2" x2="22" y1="2" y2="22"/></svg>;
         const ArrowLeftRight = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="M16 21l4-4-4-4"/><path d="M20 17H4"/></svg>;
-        // --- END Lucide Icon Replacements ---
-
+        const X = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 18 18"/></svg>;
+        const Search = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>;
 
         /**
          * UTILITY FUNCTIONS
@@ -103,6 +103,15 @@
           if (score >= 11) return '#facc15'; // Yellow 400
           if (score >= 6) return '#a3e635';  // Lime 400
           return '#4ade80'; // Green 400 (for 1-5)
+        };
+
+        const getGradientColor = (gradient) => {
+            if (gradient >= 12) return '#991b1b'; // Dark Red
+            if (gradient >= 10) return '#dc2626'; // Red
+            if (gradient >= 8) return '#fb923c';  // Orange
+            if (gradient >= 5) return '#facc15';  // Yellow
+            if (gradient >= 3) return '#a3e635';  // Lime
+            return '#4ade80'; // Green
         };
 
         const getScoreClass = (score) => {
@@ -152,6 +161,216 @@
           });
         };
 
+        // Linear interpolation to get elevation at any exact distance
+        const getElevationAt = (targetDist, points) => {
+            if (!points || points.length === 0) return 0;
+            if (targetDist <= points[0].dist) return points[0].ele;
+            if (targetDist >= points[points.length-1].dist) return points[points.length-1].ele;
+
+            // Since we need to do this often, a linear scan is okay given array sizes aren't massive (usually < 10k points)
+            // A binary search would be faster but for this use case logic simplicity is preferred
+            for (let i = 0; i < points.length - 1; i++) {
+                if (targetDist >= points[i].dist && targetDist <= points[i+1].dist) {
+                    const p1 = points[i];
+                    const p2 = points[i+1];
+                    const range = p2.dist - p1.dist;
+                    if (range === 0) return p1.ele;
+                    const ratio = (targetDist - p1.dist) / range;
+                    return p1.ele + (p2.ele - p1.ele) * ratio;
+                }
+            }
+            return 0;
+        };
+
+        // --- NEW COMPONENT: Detailed Climb Modal ---
+        const ClimbDetailModal = ({ climb, allPoints, onClose, units, unitLabels }) => {
+            if (!climb) return null;
+
+            // 1. Calculate 10 Segments
+            const segments = useMemo(() => {
+                const segmentCount = 10;
+                const segmentLength = climb.lengthKm / segmentCount;
+                const result = [];
+                
+                // Determine unit multiplier for gradient calculation
+                // Gradient % = (Elevation Change / Distance Change) * 100
+                // If units=metric: Ele in M, Dist in KM. Denom factor = 1000.
+                // If units=imperial: Ele in Ft, Dist in Mi. Denom factor = 5280.
+                const denomFactor = units === 'metric' ? 1000 : 5280;
+
+                for(let i=0; i<segmentCount; i++) {
+                    const startDist = climb.startDist + (i * segmentLength);
+                    const endDist = startDist + segmentLength;
+                    
+                    const startEle = getElevationAt(startDist, allPoints);
+                    const endEle = getElevationAt(endDist, allPoints);
+                    
+                    const gain = endEle - startEle;
+                    const gradient = (gain / (segmentLength * denomFactor)) * 100;
+                    
+                    result.push({
+                        id: i+1,
+                        startDist,
+                        endDist,
+                        startEle,
+                        endEle,
+                        gradient,
+                        length: segmentLength
+                    });
+                }
+                return result;
+            }, [climb, allPoints, units]);
+
+            // Chart Dimensions
+            const width = 800;
+            const height = 300;
+            const padding = 40;
+            const chartW = width - (padding*2);
+            const chartH = height - (padding*2);
+
+            // Chart Scales
+            const minEle = Math.min(...segments.map(s => Math.min(s.startEle, s.endEle)));
+            const maxEle = Math.max(...segments.map(s => Math.max(s.startEle, s.endEle)));
+            const eleRange = maxEle - minEle || 100; // prevent div by zero
+            
+            const getX = (dist) => padding + ((dist - climb.startDist) / climb.lengthKm) * chartW;
+            const getY = (ele) => (height - padding) - ((ele - minEle) / eleRange) * chartH;
+
+            // Build SVG Paths
+            const segmentPaths = segments.map((seg, i) => {
+                const x1 = getX(seg.startDist);
+                const x2 = getX(seg.endDist);
+                const y1 = getY(seg.startEle);
+                const y2 = getY(seg.endEle);
+                const yBottom = height - padding;
+
+                const d = `M ${x1} ${y1} L ${x2} ${y2} L ${x2} ${yBottom} L ${x1} ${yBottom} Z`;
+                return { d, color: getGradientColor(seg.gradient), ...seg };
+            });
+            
+            // Build Line for top
+            const linePath = segments.map((seg, i) => {
+                 const x1 = getX(seg.startDist);
+                 const x2 = getX(seg.endDist);
+                 const y1 = getY(seg.startEle);
+                 const y2 = getY(seg.endEle);
+                 return `${i===0 ? 'M' : 'L'} ${x1} ${y1} L ${x2} ${y2}`;
+            }).join(' ');
+
+            return (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
+                    <div className="bg-[#2c0c5c] border border-[#6c3f9c] rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col" onClick={e => e.stopPropagation()}>
+                        
+                        {/* Header */}
+                        <div className="flex justify-between items-center p-6 border-b border-[#6c3f9c] bg-[#4a217c]">
+                            <div>
+                                <h2 className="text-2xl font-bold font-oswald text-white uppercase tracking-wide flex items-center gap-3">
+                                    <span className="bg-[#00FFFF] text-black px-2 py-0.5 rounded text-lg">#{climb.id}</span>
+                                    {climb.name || 'Climb'}
+                                </h2>
+                                <div className="text-neutral-300 text-sm mt-1 flex gap-4">
+                                    <span>Length: <strong className="text-white">{climb.lengthKm.toFixed(2)} {unitLabels.dist}</strong></span>
+                                    <span>Avg Grade: <strong className="text-white">{climb.gradientAvg.toFixed(1)}%</strong></span>
+                                    <span>Gain: <strong className="text-white">{climb.gain.toFixed(0)} {unitLabels.alt}</strong></span>
+                                </div>
+                            </div>
+                            <button onClick={onClose} className="p-2 hover:bg-[#6c3f9c] rounded-full transition-colors text-white">
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6">
+                            <div className="bg-[#1a053a] rounded border border-[#6c3f9c] p-4 mb-6 relative">
+                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider">Segment Analysis (10 splits)</h3>
+                                
+                                <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
+                                    {/* Grid Lines Y */}
+                                    {[0, 0.25, 0.5, 0.75, 1].map(ratio => {
+                                        const y = (height - padding) - (ratio * chartH);
+                                        const val = minEle + (ratio * eleRange);
+                                        return (
+                                            <g key={ratio}>
+                                                <line x1={padding} y1={y} x2={width-padding} y2={y} stroke="#6c3f9c" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.5" />
+                                                <text x={padding-5} y={y} fill="#ccc" fontSize="10" textAnchor="end" dy="3" fontFamily="Roboto">{Math.round(val)}</text>
+                                            </g>
+                                        )
+                                    })}
+
+                                    {/* Segments */}
+                                    {segmentPaths.map((seg, i) => (
+                                        <g key={i}>
+                                            <path d={seg.d} fill={seg.color} opacity="0.6" stroke="none" />
+                                            {/* Gradient Text */}
+                                            <text 
+                                                x={(getX(seg.startDist) + getX(seg.endDist)) / 2} 
+                                                y={(height - padding) - 10} 
+                                                textAnchor="middle" 
+                                                fill="#fff" 
+                                                fontSize="10" 
+                                                fontWeight="bold"
+                                                className="drop-shadow-md"
+                                            >
+                                                {seg.gradient.toFixed(1)}%
+                                            </text>
+                                        </g>
+                                    ))}
+                                    
+                                    {/* Line Top */}
+                                    <path d={linePath} fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+
+                                    {/* X Axis */}
+                                    <line x1={padding} y1={height-padding} x2={width-padding} y2={height-padding} stroke="#6c3f9c" strokeWidth="1" />
+                                    <text x={padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="start">{climb.startDist.toFixed(1)}</text>
+                                    <text x={width-padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="end">{climb.endDist.toFixed(1)} {unitLabels.dist}</text>
+                                </svg>
+                            </div>
+
+                            {/* Detailed Table */}
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm text-left">
+                                    <thead className="bg-[#4a217c] text-neutral-300 font-oswald uppercase text-xs">
+                                        <tr>
+                                            <th className="px-4 py-2">Segment</th>
+                                            <th className="px-4 py-2">Start ({unitLabels.dist})</th>
+                                            <th className="px-4 py-2">End ({unitLabels.dist})</th>
+                                            <th className="px-4 py-2">Gradient</th>
+                                            <th className="px-4 py-2">Visual</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-white">
+                                        {segments.map((seg, i) => (
+                                            <tr key={i} className="border-b border-[#6c3f9c] last:border-0 hover:bg-[#6c3f9c]/30">
+                                                <td className="px-4 py-2 font-bold">{i+1}</td>
+                                                <td className="px-4 py-2 text-neutral-400">{seg.startDist.toFixed(2)}</td>
+                                                <td className="px-4 py-2 text-neutral-400">{seg.endDist.toFixed(2)}</td>
+                                                <td className="px-4 py-2 font-bold" style={{ color: getGradientColor(seg.gradient) }}>
+                                                    {seg.gradient.toFixed(1)}%
+                                                </td>
+                                                <td className="px-4 py-2">
+                                                    <div className="w-full h-2 bg-[#1a053a] rounded-full overflow-hidden">
+                                                        <div 
+                                                            className="h-full rounded-full" 
+                                                            style={{ 
+                                                                width: `${Math.min(100, (seg.gradient / 15) * 100)}%`, 
+                                                                backgroundColor: getGradientColor(seg.gradient) 
+                                                            }}
+                                                        ></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+
         const App = () => {
           const [dragActive, setDragActive] = useState(false);
           const [fileData, setFileData] = useState(null);
@@ -170,6 +389,8 @@
           const [showClimbName, setShowClimbName] = useState(true);
           // --- OUT AND BACK TOGGLE ---
           const [isOutAndBack, setIsOutAndBack] = useState(false);
+          // --- SELECTED CLIMB FOR MODAL ---
+          const [selectedClimb, setSelectedClimb] = useState(null);
 
           const fileInputRef = useRef(null);
 
@@ -1263,6 +1484,7 @@
                       <div className={`p-5 border-b border-[${BORDER_COLOR}] bg-[${BG_DARK}] flex justify-between items-end`}>
                         <div>
                           <h3 className="font-bold text-xl uppercase tracking-wide text-white font-oswald">Scored Climbs</h3>
+                          <p className="text-xs text-neutral-400 mt-1">Click any climb to view 10-segment analysis</p>
                         </div>
                         {/* --- TOGGLE BUTTON --- */}
                         <button
@@ -1286,6 +1508,7 @@
                                     <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Max %</th>
                                     <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Raw Score</th>
                                     <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Category</th> {/* NEW COLUMN */}
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}] w-10`}></th> {/* Arrow */}
                                 </tr>
                             </thead>
                           <tbody>
@@ -1293,13 +1516,17 @@
                               <tr><td colSpan={showClimbName ? "8" : "7"} className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
                             ) : (
                               displayData.climbs.map((climb, idx) => (
-                                <tr key={idx} className={`hover:bg-[${BORDER_COLOR}] transition-colors group print:text-black`}>
+                                <tr 
+                                  key={idx} 
+                                  onClick={() => setSelectedClimb(climb)}
+                                  className={`hover:bg-[#5e31a9] transition-colors group cursor-pointer print:text-black`}
+                                >
                                   <td className={`px-6 py-3 font-bold text-[${PRIMARY_ACCENT}] font-oswald print:text-black`}>
                                     {climb.id}
                                   </td>
                                    {/* --- CONDITIONAL DATA CELL --- */}
                                    {showClimbName && (
-                                      <td className="px-6 py-3">
+                                      <td className="px-6 py-3" onClick={e => e.stopPropagation()}>
                                           <input
                                             type="text"
                                             placeholder="NAME..."
@@ -1333,7 +1560,10 @@
                                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#2c0c5c] border border-[#6c3f9c] text-white font-bold font-oswald text-xs">
                                         {getClimbCategory(climb.rawScore)}
                                     </span>
-                                </td>
+                                  </td>
+                                  <td className="px-6 py-4 text-neutral-500 group-hover:text-white transition-colors">
+                                     <Search className="w-4 h-4" />
+                                  </td>
                                 </tr>
                               ))
                             )}
@@ -1366,6 +1596,15 @@
                         <Upload className="w-4 h-4" /> New Analysis
                       </button>
                     </div>
+
+                    {/* MODAL OVERLAY */}
+                    <ClimbDetailModal 
+                        climb={selectedClimb} 
+                        allPoints={displayData.points} 
+                        onClose={() => setSelectedClimb(null)} 
+                        units={units}
+                        unitLabels={unitLabels}
+                    />
 
                   </div>
                 )}
