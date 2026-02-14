@@ -90,6 +90,7 @@
         const MapIcon = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" x2="8" y1="2" y2="18"/><line x1="16" x2="16" y1="6" y2="22"/></svg>;
         const ChevronDown = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>;
         const Link = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>;
+        const MapPin = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>;
 
         /**
          * UTILITY FUNCTIONS
@@ -380,6 +381,247 @@
             );
         };
 
+        // --- NEW COMPONENT: Final Segment Modal (with Map) ---
+        const FinalSegmentModal = ({ points, totalDistance, onClose, units, unitLabels }) => {
+            const distanceToAnalyze = units === 'metric' ? 5 : 3.1;
+            const startCutoff = Math.max(0, totalDistance - distanceToAnalyze);
+            
+            // Filter points
+            const segmentPoints = useMemo(() => {
+                return points.filter(p => p.dist >= startCutoff);
+            }, [points, startCutoff]);
+            
+            // Calc stats
+            const stats = useMemo(() => {
+                 if (segmentPoints.length < 2) return { gain: 0, gradientAvg: 0, maxGradient: 0, startEle: 0, endEle: 0, length: 0 };
+                 const startEle = segmentPoints[0].ele;
+                 const endEle = segmentPoints[segmentPoints.length-1].ele;
+                 const gain = Math.max(0, endEle - startEle); // Net gain or actual climbing? Simplified to net for now, or sum
+                 
+                 let totalClimb = 0;
+                 let maxGrad = -999;
+                 
+                 for(let i=1; i<segmentPoints.length; i++) {
+                     const p1 = segmentPoints[i-1];
+                     const p2 = segmentPoints[i];
+                     const dH = p2.ele - p1.ele;
+                     const dD = (p2.dist - p1.dist);
+                     if (dH > 0) totalClimb += dH;
+                     
+                     // Grad
+                     const distMeters = units === 'metric' ? dD * 1000 : dD * 5280;
+                     if(distMeters > 5) { // avoid tiny divs
+                        const g = (dH / distMeters) * 100;
+                        if(g > maxGrad) maxGrad = g;
+                     }
+                 }
+                 
+                 const lengthKm = segmentPoints[segmentPoints.length-1].dist - segmentPoints[0].dist;
+                 const denom = units === 'metric' ? 1000 : 5280;
+                 const avgGrad = lengthKm > 0 ? ((endEle - startEle) / (lengthKm * denom)) * 100 : 0;
+                 
+                 return { gain: totalClimb, gradientAvg: avgGrad, maxGradient: maxGrad, startEle, endEle, length: lengthKm };
+            }, [segmentPoints, units]);
+
+            // --- MAP VIEW LOGIC ---
+            const MapView = ({ points }) => {
+               if(points.length < 2) return <div className="text-center text-neutral-500 py-10">Not enough data for map</div>;
+               
+               const lats = points.map(p => p.lat);
+               const lons = points.map(p => p.lon);
+               const minLat = Math.min(...lats);
+               const maxLat = Math.max(...lats);
+               const minLon = Math.min(...lons);
+               const maxLon = Math.max(...lons);
+               
+               if(minLat === 0 && maxLat === 0 && minLon === 0 && maxLon === 0) return <div className="text-center text-neutral-500 py-10">Map coordinates missing</div>;
+
+               // Aspect correction
+               const avgLat = (minLat + maxLat) / 2;
+               // Heuristic: If lat > 90 (impossible), assume data is in meters (game coordinates) and don't curve
+               // Or if min/max lat are basically 0.
+               const isMeters = Math.abs(avgLat) > 90 || (Math.abs(minLat) < 0.001 && Math.abs(maxLat) < 0.001); 
+               const correction = isMeters ? 1 : Math.cos(avgLat * Math.PI / 180);
+               
+               const width = 600;
+               const height = 400;
+               const padding = 40;
+               
+               const dx = (maxLon - minLon) * correction;
+               const dy = (maxLat - minLat);
+               
+               if (dx === 0 && dy === 0) return <div className="text-center text-neutral-500 py-10">Static point</div>;
+               
+               // Scale to fit
+               const scale = Math.min((width - 2*padding) / dx, (height - 2*padding) / dy) || 1;
+               
+               const getX = (lon) => padding + (lon - minLon) * correction * scale;
+               const getY = (lat) => (height - padding) - (lat - minLat) * scale; // Invert Y for standard coord systems (lat goes UP)
+               
+               const pathD = points.map((p, i) => `${i===0?'M':'L'} ${getX(p.lon)} ${getY(p.lat)}`).join(' ');
+               
+               // Finish Marker
+               const lastP = points[points.length-1];
+               const finishX = getX(lastP.lon);
+               const finishY = getY(lastP.lat);
+               
+               // Start Marker
+               const startP = points[0];
+               const startX = getX(startP.lon);
+               const startY = getY(startP.lat);
+
+               return (
+                   <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full bg-[#1a053a] border border-[#6c3f9c] rounded">
+                       {/* Grid */}
+                       <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                           <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6c3f9c" strokeWidth="0.5" opacity="0.2"/>
+                       </pattern>
+                       <rect width="100%" height="100%" fill="url(#grid)" />
+                       
+                       {/* Route Line */}
+                       <path d={pathD} fill="none" stroke="#00FFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-lg" />
+                       
+                       {/* Start Dot */}
+                       <circle cx={startX} cy={startY} r="4" fill="#4ade80" stroke="white" strokeWidth="2" />
+                       
+                       {/* Finish Flag */}
+                       <g transform={`translate(${finishX-12}, ${finishY-24})`}>
+                          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="#facc15" stroke="white" strokeWidth="1"/>
+                          <line x1="4" x2="4" y1="24" y2="3" stroke="white" strokeWidth="2" />
+                       </g>
+                       
+                       <text x={startX} y={startY+20} fill="#4ade80" fontSize="12" textAnchor="middle" fontWeight="bold">5KM TO GO</text>
+                       <text x={finishX} y={finishY+15} fill="#facc15" fontSize="12" textAnchor="middle" fontWeight="bold">FINISH</text>
+                   </svg>
+               );
+            }
+
+            // --- PROFILE VIEW (Updated with Gradients) ---
+            const ProfileView = () => {
+                const chartH = 200;
+                const chartW = 600;
+                const pPad = 20;
+
+                // 1. Calculate Segments for coloring
+                // We want high resolution for the final bit, let's say 100m segments
+                const segLen = units === 'metric' ? 0.1 : 0.062; // ~100m
+                const totalLen = stats.length; 
+                const startD = segmentPoints[0].dist;
+                
+                const numSegs = Math.ceil(totalLen / segLen);
+                const segments = [];
+                
+                const minEle = Math.min(...segmentPoints.map(p => p.ele));
+                const maxEle = Math.max(...segmentPoints.map(p => p.ele));
+                const eRange = Math.max(10, maxEle - minEle);
+                
+                // Helper for scaling
+                const getX = (d) => pPad + ((d - startD) / totalLen) * (chartW - 2*pPad);
+                const getY = (e) => (chartH - pPad) - ((e - minEle) / eRange) * (chartH - 2*pPad);
+
+                for(let i=0; i<numSegs; i++) {
+                    const sDist = startD + (i * segLen);
+                    let eDist = startD + ((i+1) * segLen);
+                    // Clamp end distance
+                    if(eDist > segmentPoints[segmentPoints.length-1].dist) eDist = segmentPoints[segmentPoints.length-1].dist;
+                    
+                    // Use global points for accurate interpolation
+                    const sEle = getElevationAt(sDist, points); 
+                    const eEle = getElevationAt(eDist, points);
+                    
+                    const dDist = eDist - sDist;
+                    if(dDist <= 0.0001) continue;
+
+                    const gain = eEle - sEle;
+                    const denom = units === 'metric' ? 1000 : 5280;
+                    const grad = (gain / (dDist * denom)) * 100;
+                    
+                    segments.push({
+                        d: `M ${getX(sDist)} ${getY(sEle)} L ${getX(eDist)} ${getY(eEle)} L ${getX(eDist)} ${chartH-pPad} L ${getX(sDist)} ${chartH-pPad} Z`,
+                        line: `M ${getX(sDist)} ${getY(sEle)} L ${getX(eDist)} ${getY(eEle)}`,
+                        color: getGradientColor(grad)
+                    });
+                }
+                
+                return (
+                    <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full h-full">
+                        {/* Grid/Axes */}
+                        <text x={pPad} y={chartH-5} fill="#aaa" fontSize="10">{startD.toFixed(1)}</text>
+                        <text x={chartW-pPad} y={chartH-5} fill="#aaa" fontSize="10" textAnchor="end">{segmentPoints[segmentPoints.length-1].dist.toFixed(1)}</text>
+                        <text x={pPad} y={pPad} fill="#aaa" fontSize="10">{Math.round(maxEle)}</text>
+                        <text x={pPad} y={chartH-pPad} fill="#aaa" fontSize="10">{Math.round(minEle)}</text>
+
+                        {/* Render Segments */}
+                        {segments.map((seg, i) => (
+                            <g key={i}>
+                                <path d={seg.d} fill={seg.color} stroke="none" opacity="0.6" />
+                                <path d={seg.line} fill="none" stroke={seg.color} strokeWidth="2" />
+                            </g>
+                        ))}
+                    </svg>
+                )
+            }
+
+            return (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
+                    <div className="bg-[#2c0c5c] border border-[#6c3f9c] rounded-lg shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-y-auto flex flex-col" onClick={e => e.stopPropagation()}>
+                        
+                        <div className="flex justify-between items-center p-6 border-b border-[#6c3f9c] bg-[#4a217c]">
+                            <div>
+                                <h2 className="text-2xl font-bold font-oswald text-white uppercase tracking-wide flex items-center gap-3">
+                                    <span className="bg-[#facc15] text-black px-2 py-0.5 rounded text-lg">FINAL {distanceToAnalyze} {unitLabels.dist}</span>
+                                    RUN-IN ANALYSIS
+                                </h2>
+                            </div>
+                            <button onClick={onClose} className="p-2 hover:bg-[#6c3f9c] rounded-full transition-colors text-white">
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Left Column: Map */}
+                            <div className="flex flex-col gap-4">
+                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm tracking-wider">Overhead Technical Path</h3>
+                                <div className="h-64 md:h-80 w-full bg-black/20 rounded">
+                                    <MapView points={segmentPoints} />
+                                </div>
+                            </div>
+
+                            {/* Right Column: Stats & Profile */}
+                            <div className="flex flex-col gap-6">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                        <p className="text-neutral-400 text-xs uppercase">Avg Gradient</p>
+                                        <p className={`text-2xl font-bold font-oswald ${stats.gradientAvg > 0 ? 'text-[#facc15]' : 'text-[#4ade80]'}`}>{stats.gradientAvg.toFixed(1)}%</p>
+                                    </div>
+                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                        <p className="text-neutral-400 text-xs uppercase">Max Gradient</p>
+                                        <p className="text-2xl font-bold font-oswald text-white">{stats.maxGradient.toFixed(1)}%</p>
+                                    </div>
+                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                        <p className="text-neutral-400 text-xs uppercase">Net Elevation</p>
+                                        <p className="text-2xl font-bold font-oswald text-white">{Math.round(stats.endEle - stats.startEle)} {unitLabels.alt}</p>
+                                    </div>
+                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                        <p className="text-neutral-400 text-xs uppercase">Total Climbing</p>
+                                        <p className="text-2xl font-bold font-oswald text-white">{Math.round(stats.gain)} {unitLabels.alt}</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                     <h3 className="text-[#00FFFF] font-oswald uppercase text-sm tracking-wider mb-2">Elevation Profile</h3>
+                                     <div className="h-40 w-full bg-[#1a053a] border border-[#6c3f9c] rounded p-2">
+                                         <ProfileView />
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            );
+        };
+
 
         const App = () => {
           const [dragActive, setDragActive] = useState(false);
@@ -399,8 +641,9 @@
           const [showClimbName, setShowClimbName] = useState(false);
           // --- OUT AND BACK TOGGLE ---
           const [isOutAndBack, setIsOutAndBack] = useState(false);
-          // --- SELECTED CLIMB FOR MODAL ---
+          // --- MODAL STATES ---
           const [selectedClimb, setSelectedClimb] = useState(null);
+          const [showFinalAnalysis, setShowFinalAnalysis] = useState(false);
 
           const fileInputRef = useRef(null);
 
@@ -827,11 +1070,14 @@
                              const distMeters = Math.sqrt(dx * dx + dz * dz);
                              totalDist += (distMeters / 1000); 
                          }
+                         // UPDATED: Store X and Z as Lat/Lon for visualization mapping
+                         // NOTE: Game coordinates (meters) -> Lat/Lon (degrees) is not direct, 
+                         // but for 2D visualization it's sufficient to just map them to X/Y.
                          return {
                              ele: p.y, 
                              dist: totalDist,
-                             lat: 0, 
-                             lon: 0
+                             lat: p.z, // Mapping Z to Lat (North/South)
+                             lon: p.x  // Mapping X to Lon (East/West)
                          };
                     });
                     return { points: pts, distance: totalDist };
@@ -1747,6 +1993,17 @@
                       </div>
                     </div>
 
+                    {/* NEW FINAL 5KM BUTTON */}
+                    <div className="flex justify-end mt-4 mb-4">
+                        <button 
+                            onClick={() => setShowFinalAnalysis(true)}
+                            className="flex items-center gap-2 px-6 py-3 bg-[#facc15] hover:bg-[#fbbf24] text-black font-bold uppercase tracking-widest rounded-sm shadow-lg hover:shadow-[#facc15]/40 transition-all font-oswald"
+                        >
+                            <MapIcon className="w-5 h-5" />
+                            View Final {units === 'metric' ? '5km' : '3.1mi'} Analysis
+                        </button>
+                    </div>
+
                     <div className={`bg-[${BG_LIGHT}] border border-[${BORDER_COLOR}] rounded-sm p-5 flex gap-4 text-sm text-neutral-300 items-start print:bg-white print:border-black print:text-black`}>
                       <Info className={`w-5 h-5 shrink-0 text-[${PRIMARY_ACCENT}] mt-0.5 print:text-black`} />
                       <div>
@@ -1772,7 +2029,7 @@
                       </button>
                     </div>
 
-                    {/* MODAL OVERLAY */}
+                    {/* MODAL OVERLAYS */}
                     <ClimbDetailModal 
                         climb={selectedClimb} 
                         allPoints={displayData.points} 
@@ -1780,6 +2037,16 @@
                         units={units}
                         unitLabels={unitLabels}
                     />
+
+                    {showFinalAnalysis && (
+                        <FinalSegmentModal 
+                            points={displayData.points}
+                            totalDistance={displayData.totalDistance}
+                            onClose={() => setShowFinalAnalysis(false)}
+                            units={units}
+                            unitLabels={unitLabels}
+                        />
+                    )}
 
                   </div>
                 )}
