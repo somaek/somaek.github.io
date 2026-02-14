@@ -89,6 +89,7 @@
         const Search = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>;
         const MapIcon = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" x2="8" y1="2" y2="18"/><line x1="16" x2="16" y1="6" y2="22"/></svg>;
         const ChevronDown = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>;
+        const Link = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>;
 
         /**
          * UTILITY FUNCTIONS
@@ -592,6 +593,69 @@
 
 
           // --- HANDLERS ---
+          
+          const mergeClimbs = (index) => {
+              setFileData(prev => {
+                if (!prev || !prev.climbs) return prev;
+                const newClimbs = [...prev.climbs];
+                // Check if valid merge target exists
+                if (index >= newClimbs.length - 1) return prev;
+
+                const c1 = newClimbs[index];
+                const c2 = newClimbs[index + 1];
+
+                // Create merged climb
+                const newStart = c1.startDist;
+                const newEnd = c2.endDist;
+                const newGain = c1.gain + c2.gain; // Approximation: sum of gains
+                const newChunks = [...c1.chunks, ...c2.chunks];
+                
+                const newLength = newEnd - newStart;
+                const newGradientAvg = (newGain / (newLength * 1000)) * 100;
+                
+                // Recalc max gradient
+                const newMaxGrad = Math.max(c1.maxGradient, c2.maxGradient);
+                
+                // Recalc Score
+                const newRawScore = Math.pow(newGradientAvg / 2, 2) * newLength;
+                
+                // Multiplier based on new finish distance
+                const distFromFinish = prev.totalDistance - newEnd;
+                 let multiplier = 0.2;
+                  if (distFromFinish <= 10) multiplier = 1.0;
+                  else if (distFromFinish <= 25) multiplier = 0.8;
+                  else if (distFromFinish <= 50) multiplier = 0.6;
+                  else if (distFromFinish <= 75) multiplier = 0.4;
+                  
+                const newFinalScore = newRawScore * multiplier;
+
+                const mergedClimb = {
+                    ...c1,
+                    endDist: newEnd,
+                    gain: newGain,
+                    chunks: newChunks,
+                    lengthKm: newLength,
+                    gradientAvg: newGradientAvg,
+                    maxGradient: newMaxGrad,
+                    rawScore: newRawScore,
+                    finalScore: newFinalScore,
+                    distFromFinish: distFromFinish,
+                    multiplier: multiplier,
+                    name: c1.name // Keep name of top climb
+                };
+
+                // Replace c1 and c2 with mergedClimb
+                newClimbs.splice(index, 2, mergedClimb);
+                
+                // Renumber IDs
+                const renumbered = newClimbs.map((c, i) => ({...c, id: i + 1}));
+
+                return {
+                    ...prev,
+                    climbs: renumbered
+                };
+              });
+            };
 
           // Helper to manage Input Box state changes (Miles <-> Km conversion)
           const handleDistanceInputChange = (e) => {
@@ -1603,13 +1667,13 @@
                                     <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Avg %</th>
                                     <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Max %</th>
                                     <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Raw Score</th>
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Category</th> {/* NEW COLUMN */}
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}] w-10`}></th> {/* Arrow */}
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Category</th> 
+                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}] text-right w-24`}>Actions</th> {/* NEW ACTIONS HEADER */}
                                 </tr>
                             </thead>
                           <tbody>
                             {displayData.climbs.length === 0 ? (
-                              <tr><td colSpan={showClimbName ? "8" : "7"} className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
+                              <tr><td colSpan={showClimbName ? "9" : "8"} className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
                             ) : (
                               displayData.climbs.map((climb, idx) => (
                                 <tr 
@@ -1657,8 +1721,23 @@
                                         {getClimbCategory(climb.rawScore)}
                                     </span>
                                   </td>
-                                  <td className="px-6 py-4 text-neutral-500 group-hover:text-white transition-colors">
-                                     <Search className="w-4 h-4" />
+                                  <td className="px-6 py-4 text-right flex justify-end gap-2" onClick={e => e.stopPropagation()}>
+                                     {/* Merge Button - Only show if not last item */}
+                                     {idx < displayData.climbs.length - 1 && (
+                                         <button 
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                mergeClimbs(idx);
+                                            }}
+                                            className="p-1.5 bg-[#4a217c] hover:bg-[#00FFFF] hover:text-black rounded transition-colors text-neutral-400"
+                                            title="Merge with next climb"
+                                         >
+                                             <Link className="w-4 h-4" />
+                                         </button>
+                                     )}
+                                     <button className="p-1.5 hover:text-white transition-colors text-neutral-500">
+                                         <Search className="w-4 h-4" />
+                                     </button>
                                   </td>
                                 </tr>
                               ))
