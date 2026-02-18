@@ -10,17 +10,26 @@ BASE_URL = "https://www.procyclingstats.com/"
 CALENDAR_URL = "https://www.procyclingstats.com/calendar/start-finish-schedule"
 OUTPUT_FILE = "race_schedule.csv"
 
-# Headers to mimic a real browser and avoid being blocked
+# Enhanced headers to bypass 403 Forbidden errors
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "https://www.google.com/",
+    "Connection": "keep-alive",
+    "Cache-Control": "max-age=0",
+    "Sec-Ch-Ua": '"Not A(Brand";v="99", "Google Chrome";v="121", "Chromium";v="121"',
+    "Sec-Ch-Ua-Mobile": "?0",
+    "Sec-Ch-Ua-Platform": '"Windows"',
+    "Upgrade-Insecure-Requests": "1"
 }
 
 def get_denver_time(time_str, date_str):
     """
     Converts a time string (HH:MM) and date string from Belgium time to Denver time.
     """
-    if not time_str or ":" not in time_str or time_str == "-":
+    if not time_str or ":" not in time_str or time_str == "-" or len(time_str) < 3:
         return ""
     
     try:
@@ -42,9 +51,9 @@ def get_denver_time(time_str, date_str):
     except Exception:
         return time_str
 
-def scrape_race_details(race_url):
+def scrape_race_details(session, race_url):
     """
-    Scrapes specific metadata from an individual race page.
+    Scrapes specific metadata from an individual race page using a shared session.
     """
     details = {
         "Classification": "",
@@ -54,7 +63,8 @@ def scrape_race_details(race_url):
     }
     
     try:
-        response = requests.get(race_url, headers=HEADERS, timeout=10)
+        # Using session to maintain cookies
+        response = session.get(race_url, headers=HEADERS, timeout=15)
         if response.status_code != 200:
             return details
         
@@ -64,7 +74,6 @@ def scrape_race_details(race_url):
         if info_list:
             items = info_list.find_all('li')
             for item in items:
-                # Use a separator to make splitting easier
                 text_content = item.get_text(separator="|").strip()
                 parts = [p.strip() for p in text_content.split('|')]
                 
@@ -87,20 +96,25 @@ def scrape_race_details(race_url):
 
 def main():
     print(f"Starting scrape of {CALENDAR_URL}...")
+    
+    # Use a session to persist cookies and headers across requests
+    session = requests.Session()
+    
     try:
-        response = requests.get(CALENDAR_URL, headers=HEADERS, timeout=10)
+        response = session.get(CALENDAR_URL, headers=HEADERS, timeout=15)
         response.raise_for_status()
     except Exception as e:
         print(f"Failed to fetch calendar page: {e}")
+        # Help user debug by showing response info
+        if 'response' in locals():
+            print(f"Status Code: {response.status_code}")
         return
 
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    # PCS often uses 'table.basic' or sometimes just identifies it by content
+    # Find the main schedule table
     table = soup.find('table', class_='basic')
-    
     if not table:
-        # Fallback: try finding any table with "Race" in the header
         tables = soup.find_all('table')
         for t in tables:
             if "Race" in t.get_text():
@@ -108,8 +122,7 @@ def main():
                 break
     
     if not table:
-        print("Could not find the race table. The page structure might have changed.")
-        # Debug: Print a snippet of the HTML to help diagnose if this happens again
+        print("Could not find the race table. Site structure may have changed.")
         return
 
     rows = table.find('tbody').find_all('tr') if table.find('tbody') else table.find_all('tr')
@@ -117,7 +130,6 @@ def main():
 
     for row in rows:
         cols = row.find_all('td')
-        # Expecting at least: Date, Local, Race, Start, Finish
         if len(cols) < 5:
             continue
             
@@ -128,11 +140,10 @@ def main():
         belgium_start = cols[3].text.strip()
         belgium_finish = cols[4].text.strip()
         
-        # Skip header rows that might be mixed in
-        if "Race" in race_name or not date:
+        # Skip labels or headers
+        if not date or "Date" in date or "Race" in race_name:
             continue
 
-        # Extract link to race page
         race_link_tag = race_cell.find('a')
         race_details = {
             "Classification": "", "Distance": "", 
@@ -141,14 +152,12 @@ def main():
         
         if race_link_tag and race_link_tag.has_attr('href'):
             race_href = race_link_tag['href']
-            # Handle relative vs absolute URLs
             full_race_url = race_href if race_href.startswith('http') else BASE_URL + race_href
             print(f"Fetching details for: {race_name}")
-            race_details = scrape_race_details(full_race_url)
-            # Be polite to the server
-            time.sleep(1)
+            race_details = scrape_race_details(session, full_race_url)
+            # Sleep to prevent rate limiting (critical for avoiding blocks)
+            time.sleep(1.5)
 
-        # Convert times to Denver
         denver_start = get_denver_time(belgium_start, date)
         denver_finish = get_denver_time(belgium_finish, date)
 
@@ -165,10 +174,9 @@ def main():
         })
 
     if not all_data:
-        print("No race data was extracted. Check table parsing logic.")
+        print("No race data found in the table.")
         return
 
-    # Write to CSV
     keys = all_data[0].keys()
     with open(OUTPUT_FILE, 'w', newline='', encoding='utf-8') as f:
         dict_writer = csv.DictWriter(f, fieldnames=keys)
