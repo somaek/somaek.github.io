@@ -500,7 +500,7 @@
             const ProfileView = () => {
                 const chartH = 200;
                 const chartW = 600;
-                const pPad = 20;
+                const pPad = 30;
 
                 // 1. Calculate Segments for coloring
                 // We want high resolution for the final bit, let's say 100m segments
@@ -513,7 +513,7 @@
                 
                 const minEle = Math.min(...segmentPoints.map(p => p.ele));
                 const maxEle = Math.max(...segmentPoints.map(p => p.ele));
-                const eRange = Math.max(10, maxEle - minEle);
+                const eRange = Math.max(150, maxEle - minEle);   
                 
                 // Helper for scaling
                 const getX = (d) => pPad + ((d - startD) / totalLen) * (chartW - 2*pPad);
@@ -546,10 +546,10 @@
                 return (
                     <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full h-full">
                         {/* Grid/Axes */}
-                        <text x={pPad} y={chartH-5} fill="#aaa" fontSize="10">{startD.toFixed(1)}</text>
-                        <text x={chartW-pPad} y={chartH-5} fill="#aaa" fontSize="10" textAnchor="end">{segmentPoints[segmentPoints.length-1].dist.toFixed(1)}</text>
-                        <text x={pPad} y={pPad} fill="#aaa" fontSize="10">{Math.round(maxEle)}</text>
-                        <text x={pPad} y={chartH-pPad} fill="#aaa" fontSize="10">{Math.round(minEle)}</text>
+                        <text x={pPad} y={chartH-5} fill="#aaa" fontSize="17">{startD.toFixed(0)}k</text>
+                        <text x={chartW-pPad} y={chartH-5} fill="#aaa" fontSize="17" textAnchor="end">{segmentPoints[segmentPoints.length-1].dist.toFixed(0)}k</text>
+                        <text x={pPad-30} y={pPad} fill="#aaa" fontSize="14">{Math.round(maxEle)}m</text>
+                        <text x={pPad-30} y={chartH-pPad} fill="#aaa" fontSize="14">{Math.round(minEle)}m</text>
 
                         {/* Render Segments */}
                         {segments.map((seg, i) => (
