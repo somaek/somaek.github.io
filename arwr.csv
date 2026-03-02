@@ -836,6 +836,18 @@ EventKey,Pen,Position,Name,Team,Country,Time,DeltaTime,Distance,DeltaDistance,Po
 103515,1,6,Thomas Helveg,Pure Power,DEN,"3,523.92",70.1,39999.992,0:00:00,0,Male,1380A6ADAED1F442,1026,Gold 1,1026,Gold 1,55-59,Gold 3,Week 6,Monday Mixer Crit,186.1,270,49,Gold,50089
 103515,1,,Ian Murray,ODZ,USA,209.90,0.0,1977.828,0:00:00,0,Male,1A3805769E78F690,1218,Gold 3,1218,Gold 3,50-54,Gold 3,Week 6,Monday Mixer Crit,0.0,270,49,Gold,50089
 103516,3,36,Lars Kjeldgaard,,DEN,"4,307.16",387.9,39999.992,0:00:00,0,Male,7075F90BD0D50588,100,Bronze 1,100,Bronze 1,55-59,Bronze 3,Week 6,Monday Mixer Crit,62.9,270,49,Bronze,25273
+103666,2,4,Firas Al,,GER,"3,624.21",26.2,39999.992,0:00:00,0,Male,13AB181191D6F6D5,984,Silver 3,984,Silver 3,40-44,Gold 3,Week 6,Monday Mixer Crit,185.4,270,49,Silver,48824
+103666,2,43,Neil Walker,Wadenterror,SCO,"3,909.34",311.3,39999.992,0:00:00,0,Male,3207C693E9137DB5,1110,Gold 2,1110,Gold 2,50-54,Gold 3,Week 6,Monday Mixer Crit,107.6,270,49,Gold,48824
+103666,2,48,andy macca,Wadenterror,GBR,"4,489.86",891.8,39999.992,0:00:00,0,Male,F3D8CFEFE0BBCC59,1040,Gold 1,1040,Gold 1,55-59,Gold 3,Week 6,Monday Mixer Crit,97.7,270,49,Gold,48824
+103666,2,,Lukas Fink,,FRA,264.32,0.0,1242.849,0:00:00,0,Male,A4D6430384FAEF18,100,Bronze 1,965,Silver 3,Senior,Gold 3,Week 6,Monday Mixer Crit,0.0,270,49,Silver,48824
+103667,1,1,Anders Østergaard,Race3R,DEN,"3,458.14",0.0,39999.992,0:00:00,0,Male,1AB6C5B0BB19EA62,1330,Platinum 1,1330,Platinum 1,35-39,Platinum 1,Week 6,Monday Mixer Crit,226.0,270,49,Platinum,57663
+103667,1,2,Tony Martin Lake,Wadenterror,GBR,"3,462.73",4.6,39999.992,0:00:00,0,Male,E63A1CC4E80ACFFC,1320,Platinum 1,1320,Platinum 1,50-54,Platinum 1,Week 6,Monday Mixer Crit,223.7,270,49,Platinum,57663
+103667,1,3,Timothy Taylor,Race3R,GBR,"3,467.76",9.6,39999.992,0:00:00,0,Male,261943477CC77BE,1351,Platinum 1,1351,Platinum 1,Senior,Platinum 1,Week 6,Monday Mixer Crit,221.3,270,49,Platinum,57663
+103667,1,5,Neil Atherton,Coalition,GBR,"3,505.96",47.8,39999.992,0:00:00,0,Male,AD10E8AF5DC93FA9,1270,Gold 3,1270,Gold 3,50-54,Platinum 1,Week 6,Monday Mixer Crit,216.6,270,49,Gold,57663
+103667,1,6,Mark Siega,Race3R,USA,"3,507.30",49.2,39999.992,0:00:00,0,Male,5DF992475739EF28,1272,Gold 3,1272,Gold 3,50-54,Platinum 1,Week 6,Monday Mixer Crit,214.2,270,49,Gold,57663
+103667,1,9,Rob Miller,Race3R,USA,"3,511.67",53.5,39999.992,0:00:00,0,Male,5419CFD111515433,1210,Gold 3,1210,Gold 3,60-64,Platinum 1,Week 6,Monday Mixer Crit,207.2,270,49,Gold,57663
+103667,1,11,GORDON JACKSON,TROuble,GBR,"3,515.02",56.9,39999.992,0:00:00,0,Male,8C1795F6BC1E7E24,1137,Gold 2,1137,Gold 2,55-59,Platinum 1,Week 6,Monday Mixer Crit,202.5,270,49,Gold,57663
+103668,4,43,Daniel Holdener,indieVelo Founders Club,SUI,"4,353.13",498.8,39999.992,0:00:00,0,Male,B8BBC9C64CAB2D89,679,Bronze 3,679,Bronze 3,50-54,Silver 2,Week 6,Monday Mixer Crit,71.9,270,49,Bronze,32607
 104374,0,1,Gregory Frison,M4shup Collective,FRA,"5,561.65",0.0,68940.367,0:00:00,0,Male,25238B3BC618DB07,1833,Diamond 3,1833,Diamond 3,35-39,Diamond 3,Week 05 | Omloop Nieuwsblad,Spring Classics 2026,377.5,594,40,Diamond,60320
 104374,0,2,Michael Carilli,Ride 4 Claire,USA,"5,561.68",0.0,68940.367,0:00:00,0,Male,BDEFB7D89F966E00,100,Bronze 1,1388,Platinum 1,35-39,Diamond 3,Week 05 | Omloop Nieuwsblad,Spring Classics 2026,370.0,594,40,Platinum,60320
 104374,0,3,J D O,M4shup Collective,USA,"5,561.79",0.1,68940.367,0:00:00,0,Male,242BF89E66D4067D,1560,Platinum 3,1560,Platinum 3,40-44,Diamond 3,Week 05 | Omloop Nieuwsblad,Spring Classics 2026,362.4,594,40,Platinum,60320
@@ -863,3 +875,10 @@ EventKey,Pen,Position,Name,Team,Country,Time,DeltaTime,Distance,DeltaDistance,Po
 104375,0,3,Ben Russell,M4shup Collective,gbr,"5,739.99",4703.0,68940.367,0:00:00,0,Male,1F07CD9C7D4685AC,1574,Platinum 3,1574,Platinum 3,35-39,Platinum 2,Week 05 | Omloop Nieuwsblad,Spring Classics 2026,361.4,594,37,Platinum,55130
 104375,0,,Aleksandr Sitchenko,,ukr,"2,814.06",0.0,28090.845,0:00:00,0,Male,60BB2D562F3436CC,100,Carbon 1,1357,Platinum 1,45-49,Platinum 2,Week 05 | Omloop Nieuwsblad,Spring Classics 2026,,594,37,Platinum,55130
 104376,0,1,Ludvig Karlberg,M4shup Collective,swe,"5,474.00",0.0,68940.367,0:00:00,0,Male,DE77F095D134721E,1659,Diamond 1,1659,Diamond 1,35-39,Diamond 1,Week 05 | Omloop Nieuwsblad,Spring Classics 2026,410.7,594,38,Diamond,62339
+104534,2,,Jouff Qunqun,Riders Givrés du Trainer,FRA,"2,398.18",0.0,21528.236,0:00:00,0,Male,4FE34B268708D41A,1112,Gold 2,1112,Gold 2,45-49,Gold 2,Week 7,Monday Mixer Crit,0.0,260,49,Gold,48812
+104535,3,48,Thierry LAFITTE,Riders Givrés du Trainer,FRA,"4,456.15",588.7,40000,0:00:00,0,Male,5ADB50B5AAAFFF1B,861,Silver 2,861,Silver 2,50-54,Gold 1,Week 7,Monday Mixer Crit,81.1,260,49,Silver,40678
+104536,4,3,Oskar Durana,,ESP,"4,016.77",38.9,40000,0:00:00,0,Male,62F5AFBE8CB82493,100,Bronze 1,578,Bronze 2,45-49,Silver 1,Week 7,Monday Mixer Crit,115.0,260,49,Bronze,30070
+104537,5,1,Daniel Moncayo,,ECU,"4,087.25",0.0,40000,0:00:00,0,Male,D950D66E77B4F258,100,Bronze 1,458,Bronze 1,50-54,Bronze 1,Week 7,Monday Mixer Crit,100.2,260,49,Bronze,25651
+104537,5,2,Morten Lennert,,DEN,"4,093.17",5.9,40000,0:00:00,0,Male,B91C99287B04A105,100,Bronze 1,292,Bronze 1,45-49,Bronze 1,Week 7,Monday Mixer Crit,99.1,260,49,Bronze,25651
+104562,2,1,Ben Goold,,GBR,"3,772.00",0.0,40000,0:00:00,0,Male,6276FB0D6BC7C060,100,Bronze 1,877,Silver 2,Senior,Silver 2,Week 7,Monday Mixer Crit,176.0,260,49,Silver,45069
+104564,5,,Michael Massau,,GER,"2,119.87",0.0,10995.548,0:00:00,0,Male,EA95407BDBDC07EA,100,Bronze 1,100,Bronze 1,50-54,Bronze 1,Week 7,Monday Mixer Crit,0.0,260,49,Bronze,18669
