@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPV Race Awards Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 950 */
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+        }
+        .accent-border {
+            position: relative;
+        }
+        .accent-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            border-radius: 0 0 12px 12px;
+        }
+        .border-gold::after { background: #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3); }
+        .border-emerald::after { background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+        .border-orange::after { background: #f97316; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
+        .border-blue::after { background: #3b82f6; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        .border-red::after { background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+        .border-pink::after { background: #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #334155;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; width: 18px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #3b82f6; }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25em 1.25em;
+            padding-right: 2.75rem !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <header class="hero-gradient border-b border-slate-800 py-10 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-2">
+                    TPV <span class="text-blue-500 underline decoration-4 underline-offset-8">AWARDS</span>
+                </h1>
+                <p class="text-slate-400 font-medium">Instructions: You must download the .csv file from the <a href="https://tpvirtualhub.com/" class="text-blue-500 underline decoration-1">TPV Hub</a> results page of the event. The emailed csv file will not work. </a></p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div id="penSelectorContainer" class="hidden flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700">
+                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Pen</span>
+                    <select id="penSelect" class="bg-slate-900 text-white text-sm font-bold py-1.5 pl-4 pr-10 rounded-lg border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all cursor-pointer">
+                    </select>
+                </div>
+
+                <div class="flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700">
+                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Bots</span>
+                    <label class="switch">
+                        <input type="checkbox" id="botToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="shrink-0">
+                    <label class="group flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all cursor-pointer shadow-lg shadow-blue-900/20">
+                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        <span>UPLOAD</span>
+                        <input type='file' class="hidden" id="csvFile" accept=".csv" />
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="dashboard" class="max-w-6xl mx-auto px-6 py-8 hidden space-y-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Overall Winner -->
+            <div id="overall-winner" class="glass-card accent-border border-gold rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-yellow-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-yellow-500 uppercase">Winner</span>
+                </div>
+                <h2 class="text-xl font-bold text-white leading-tight mb-1" id="ow-name">---</h2>
+                <p class="text-slate-400 text-sm" id="ow-time">Position: -- | Time: --:--:--</p>
+            </div>
+
+            <!-- Efficiency Expert -->
+            <div id="efficiency-expert" class="glass-card accent-border border-emerald rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-emerald-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-emerald-500 uppercase">Efficiency Expert</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2" id="ee-name">---</h2>
+                <p class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded inline-block" id="ee-stats">---</p>
+            </div>
+
+            <!-- Sprint Star -->
+            <div id="sprint-star" class="glass-card accent-border border-orange rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-orange-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-orange-500 uppercase">Sprint Star</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2" id="ss-name">---</h2>
+                <p class="text-xs text-orange-200" id="ss-beat">---</p>
+            </div>
+
+            <!-- Photo Finisher -->
+            <div id="photo-finisher" class="glass-card accent-border border-blue rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-blue-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-blue-500 uppercase">Photo Finish</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2" id="pf-winner">---</h2>
+                <p class="text-xs text-blue-200" id="pf-beat">---</p>
+            </div>
+
+            <!-- Detonator -->
+            <div id="detonator" class="glass-card accent-border border-red rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-red-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.99 7.99 0 0120 13a7.98 7.98 0 01-2.343 5.657z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-red-500 uppercase">The Detonator</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-1" id="dt-name">---</h2>
+                <p class="text-red-400 font-mono text-sm" id="dt-watts">-- Watts</p>
+            </div>
+
+            <!-- The Workhorse -->
+            <div id="workhorse" class="glass-card accent-border border-pink rounded-2xl p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-pink-500/10 rounded-lg">
+                        <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black tracking-widest text-pink-500 uppercase">The Workhorse</span>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-1" id="wh-name">---</h2>
+                <p class="text-pink-400 text-sm" id="wh-stats">-- kJ Expended</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500">
+                <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
+                    Top 5 Finishing Positions
+                </h3>
+                <div class="overflow-x-auto no-scrollbar">
+                    <table class="w-full text-left text-sm">
+                        <thead class="text-slate-500 uppercase text-[10px] font-black tracking-widest border-b border-slate-700">
+                            <tr>
+                                <th class="pb-3">Pos</th>
+                                <th class="pb-3">Rider</th>
+                                <th class="pb-3 text-right">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top-five-list" class="divide-y divide-slate-800"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-400">
+                <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
+                    Age Category Champions
+                </h3>
+                <div class="overflow-x-auto no-scrollbar">
+                    <table class="w-full text-left text-sm">
+                        <thead class="text-slate-500 uppercase text-[10px] font-black tracking-widest border-b border-slate-700">
+                            <tr>
+                                <th class="pb-3">Cat</th>
+                                <th class="pb-3">Winner</th>
+                                <th class="pb-3 text-right">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="age-group-list" class="divide-y divide-slate-800"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let rawRaceData = []; 
+        const botToggle = document.getElementById('botToggle');
+        const penSelect = document.getElementById('penSelect');
+        const penContainer = document.getElementById('penSelectorContainer');
+
+        document.getElementById('csvFile').addEventListener('change', handleFile);
+        
+        botToggle.addEventListener('change', () => {
+            if (rawRaceData.length > 0) processRaceData(rawRaceData);
+        });
+
+        penSelect.addEventListener('change', () => {
+            if (rawRaceData.length > 0) processRaceData(rawRaceData);
+        });
+
+        function formatTime(milliseconds) {
+            if (isNaN(milliseconds)) return "--:--:--";
+            const seconds = Math.floor(milliseconds / 1000);
+            const h = Math.floor(seconds / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            const s = seconds % 60;
+            return [h, m, s].map(v => v < 10 ? "0" + v : v).join(":");
+        }
+
+        function formatGap(ms) {
+            if (ms < 1000) return `${ms}ms`;
+            return `${(ms / 1000).toFixed(2)}s`;
+        }
+
+        function handleFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    rawRaceData = results.data;
+                    updatePenOptions(rawRaceData);
+                    processRaceData(rawRaceData);
+                }
+            });
+        }
+
+        function updatePenOptions(data) {
+            const pens = [...new Set(data.map(item => item.pen !== undefined && item.pen !== null ? String(item.pen) : null).filter(Boolean))].sort();
+            if (pens.length > 0) {
+                penSelect.innerHTML = pens.map(p => `<option value="${p}">Pen ${p}</option>`).join('');
+                if (pens.length > 1) penContainer.classList.remove('hidden');
+                else penContainer.classList.add('hidden');
+            } else {
+                penSelect.innerHTML = '';
+                penContainer.classList.add('hidden');
+            }
+        }
+
+        function processRaceData(data) {
+            const includeBots = botToggle.checked;
+            const selectedPen = penSelect.value;
+
+            // Filter riders and sort by Position first, then time as fallback
+            const riders = data.filter(row => {
+                const isBot = String(row.isBot).toLowerCase() === 'true';
+                const isDNF = String(row.isDNF).toLowerCase() === 'true';
+                if (isDNF) return false;
+                if (selectedPen) {
+                    const rowPen = row.pen !== undefined && row.pen !== null ? String(row.pen) : null;
+                    if (rowPen !== selectedPen) return false;
+                }
+                if (!includeBots && isBot) return false;
+                return true;
+            }).sort((a, b) => {
+                // Primary sort: Position (Ascending)
+                const posA = parseInt(a.position) || 9999;
+                const posB = parseInt(b.position) || 9999;
+                if (posA !== posB) return posA - posB;
+                // Secondary sort: Time (Ascending)
+                return (a.time || 0) - (b.time || 0);
+            });
+
+            if (riders.length === 0) {
+                document.getElementById('dashboard').classList.add('hidden');
+                return;
+            }
+            
+            document.getElementById('dashboard').classList.remove('hidden');
+
+            // 1. Overall Winner (Top position)
+            const winner = riders[0];
+            document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}${String(winner.isBot).toLowerCase() === 'true' ? ' [BOT]' : ''}`;
+            document.getElementById('ow-time').textContent = `Position: ${winner.position} | Time: ${formatTime(winner.time)}`;
+
+            // 2. Efficiency Expert
+            const powerRanked = [...riders].sort((a, b) => (a.avgPower || 0) - (b.avgPower || 0));
+            const efficiencyList = riders.map((rider, posIdx) => {
+                const powerIdx = powerRanked.findIndex(p => p.playerId === rider.playerId);
+                const posRank = posIdx + 1; // Based on finishing position
+                const powerRank = powerIdx + 1;
+                return { ...rider, effScore: posRank + powerRank, pRank: powerRank, tRank: posRank };
+            }).sort((a, b) => a.effScore - b.effScore);
+
+            const expert = efficiencyList[0];
+            document.getElementById('ee-name').textContent = `${expert.firstName} ${expert.lastName}`;
+            document.getElementById('ee-stats').textContent = `Placed ${expert.position || expert.tRank} using only ${Math.round(expert.avgPower)}W avg`;
+
+            // 3. Photo Finisher (Smallest time gap between consecutive finishers)
+            let absoluteMinGap = Infinity;
+            let pfWinner = null;
+            let pfTarget = null;
+            
+            for (let i = 0; i < riders.length - 1; i++) {
+                const gap = Math.abs(riders[i+1].time - riders[i].time);
+                if (gap < absoluteMinGap) {
+                    absoluteMinGap = gap;
+                    pfWinner = riders[i];
+                    pfTarget = riders[i+1];
+                }
+            }
+
+            if (pfWinner && absoluteMinGap <= 1000) {
+                document.getElementById('pf-winner').textContent = `${pfWinner.firstName} ${pfWinner.lastName}`;
+                document.getElementById('pf-beat').textContent = `Beat ${pfTarget.firstName} ${pfTarget.lastName.charAt(0)}. by ${formatGap(absoluteMinGap)} for Pos ${pfWinner.position}`;
+            } else {
+                document.getElementById('pf-winner').textContent = "Clear Finish";
+                document.getElementById('pf-beat').textContent = "No gaps under 1s found";
+            }
+
+            // 4. Sprint Star (Highest placed rider who beat someone by 10s or less)
+            let sprintStar = null;
+            let sprintTarget = null;
+            let finalGap = 0;
+            
+            for (let i = 0; i < riders.length - 1; i++) {
+                const gap = Math.abs(riders[i+1].time - riders[i].time);
+                if (gap <= 10000) { // 10 seconds
+                    sprintStar = riders[i];
+                    sprintTarget = riders[i+1];
+                    finalGap = gap;
+                    break;
+                }
+            }
+
+            if (sprintStar) {
+                document.getElementById('ss-name').textContent = `${sprintStar.firstName} ${sprintStar.lastName}`;
+                document.getElementById('ss-beat').textContent = `Beat ${sprintTarget.firstName} ${sprintTarget.lastName.charAt(0)}. by ${formatGap(finalGap)} for Pos ${sprintStar.position}`;
+            } else {
+                document.getElementById('ss-name').textContent = "Solo Finish";
+                document.getElementById('ss-beat').textContent = "No gaps under 10s found";
+            }
+
+            // 5. Detonator
+            const detonator = [...riders].sort((a, b) => (b.maxPower || 0) - (a.maxPower || 0))[0];
+            document.getElementById('dt-name').textContent = `${detonator.firstName} ${detonator.lastName}`;
+            document.getElementById('dt-watts').textContent = `${detonator.maxPower || 0}W peak output`;
+
+            // 6. Workhorse
+            const ridersWithKj = riders.map(h => {
+                const kj = ((h.avgPower || 0) * ((h.time || 0) / 1000)) / 1000;
+                return { ...h, kj };
+            }).sort((a, b) => b.kj - a.kj);
+            const workhorse = ridersWithKj[0];
+            document.getElementById('wh-name').textContent = `${workhorse.firstName} ${workhorse.lastName}`;
+            document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj || 0).toLocaleString()} kJ Expended`;
+
+            // 7. Top 5 (By Position)
+            const topFiveList = document.getElementById('top-five-list');
+            topFiveList.innerHTML = '';
+            riders.slice(0, 5).forEach((w, i) => {
+                const isBot = String(w.isBot).toLowerCase() === 'true';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-3 font-bold text-slate-500">#${w.position || (i + 1)}</td>
+                    <td class="py-3 text-white font-medium">
+                        ${w.firstName} ${w.lastName}
+                        ${isBot ? '<span class="ml-2 text-[8px] bg-slate-700 text-slate-400 px-1 rounded">BOT</span>' : ''}
+                    </td>
+                    <td class="py-3 text-right font-mono font-bold text-purple-400">${formatTime(w.time)}</td>
+                `;
+                topFiveList.appendChild(row);
+            });
+
+            // 8. Age Group Winners (By Position)
+            const ageGroupWinners = {};
+            riders.forEach(h => {
+                const group = h.ageBand || "Uncategorized";
+                const currentPos = parseInt(h.position) || 9999;
+                if (!ageGroupWinners[group]) {
+                    ageGroupWinners[group] = h;
+                } else {
+                    const existingPos = parseInt(ageGroupWinners[group].position) || 9999;
+                    if (currentPos < existingPos) {
+                        ageGroupWinners[group] = h;
+                    } else if (currentPos === existingPos && h.time < ageGroupWinners[group].time) {
+                        ageGroupWinners[group] = h;
+                    }
+                }
+            });
+            const ageGroupList = document.getElementById('age-group-list');
+            ageGroupList.innerHTML = '';
+            Object.keys(ageGroupWinners).sort().forEach(group => {
+                const w = ageGroupWinners[group];
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-3 font-bold text-blue-400">${group}</td>
+                    <td class="py-3 text-white font-medium">${w.firstName} ${w.lastName}</td>
+                    <td class="py-3 text-right font-mono text-slate-400">${formatTime(w.time)}</td>
+                `;
+                ageGroupList.appendChild(row);
+            });
+            
+            if (document.getElementById('dashboard').classList.contains('hidden')) {
+                document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
