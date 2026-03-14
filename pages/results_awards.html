@@ -168,6 +168,7 @@
                 maxPower: parseInt(r.maxPower) || 0,
                 rating: parseFloat(r.rating) || 0,
                 age: parseInt(r.ageBand) || 0,
+                gender: parseInt(r.gender) || 0,
                 fullName: `${r.firstName} ${r.lastName}`.trim() || 'Unknown Rider',
                 team: (r.teamName || '').trim(),
                 kj: (parseInt(r.avgPower) * (parseInt(r.time) / 1000)) / 1000,
@@ -221,7 +222,17 @@
             }));
             if (workhorses.length > 0) podiumsHTML += generatePodiumHTML("Workhorses", workhorses);
 
-            // 6. Age Groups
+            // 6. Women Podium
+            const women = [...parsedRiders]
+                .filter(r => r.gender === 1)
+                .sort((a, b) => a.position - b.position)
+                .slice(0, 3)
+                .map(r => ({
+                    name: r.fullName, value: r.team || `Rank #${r.position}`
+                }));
+            if (women.length > 0) podiumsHTML += generatePodiumHTML("Women's Podium", women);
+
+            // 7. Age Groups
             const groups = [
                 { name: "+40 Age Group", filter: r => r.age >= 40 && r.age < 50 },
                 { name: "+50 Age Group", filter: r => r.age >= 50 && r.age < 60 },
@@ -235,7 +246,7 @@
                 if (data.length > 0) podiumsHTML += generatePodiumHTML(g.name, data);
             });
 
-            // 7. Teams Podium
+            // 8. Teams Podium
             const teamsMap = {};
             parsedRiders.forEach(r => {
                 if (r.team && r.team.length > 0) {
