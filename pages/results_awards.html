@@ -12,6 +12,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #0f172a; /* Slate 950 */
             color: #f8fafc;
+            min-height: 100vh;
         }
         .glass-card {
             background: rgba(30, 41, 59, 0.7);
@@ -22,440 +23,251 @@
         .glass-card:hover {
             transform: translateY(-4px);
             border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
-        .hero-gradient {
-            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .accent-border {
-            position: relative;
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
         }
-        .accent-border::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            border-radius: 0 0 12px 12px;
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
         }
-        .border-gold::after { background: #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3); }
-        .border-emerald::after { background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
-        .border-orange::after { background: #f97316; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
-        .border-blue::after { background: #3b82f6; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
-        .border-red::after { background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
-        .border-pink::after { background: #ec4899; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); }
-
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 44px;
-            height: 24px;
-        }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #334155;
-            transition: .4s;
-            border-radius: 24px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px; width: 18px;
-            left: 3px; bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider { background-color: #3b82f6; }
-        input:checked + .slider:before { transform: translateX(20px); }
-
-        select {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.75rem center;
-            background-repeat: no-repeat;
-            background-size: 1.25em 1.25em;
-            padding-right: 2.75rem !important;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="antialiased p-6 md:p-12">
 
-    <header class="hero-gradient border-b border-slate-800 py-10 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="text-center md:text-left">
-                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-2">
-                    TPV <span class="text-blue-500 underline decoration-4 underline-offset-8">AWARDS</span>
-                </h1>
-                <p class="text-slate-400 font-medium">Instructions: You must download the .csv file from the <a href="https://tpvirtualhub.com/" class="text-blue-500 underline decoration-1">TPV Hub</a> results page of the event. The emailed csv file will not work. </a></p>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row items-center gap-4">
-                <div id="penSelectorContainer" class="hidden flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700">
-                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Pen</span>
-                    <select id="penSelect" class="bg-slate-900 text-white text-sm font-bold py-1.5 pl-4 pr-10 rounded-lg border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all cursor-pointer">
-                    </select>
-                </div>
-
-                <div class="flex items-center gap-3 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700">
-                    <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Bots</span>
-                    <label class="switch">
-                        <input type="checkbox" id="botToggle">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="shrink-0">
-                    <label class="group flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all cursor-pointer shadow-lg shadow-blue-900/20">
-                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                        <span>UPLOAD</span>
-                        <input type='file' class="hidden" id="csvFile" accept=".csv" />
-                    </label>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main id="dashboard" class="max-w-6xl mx-auto px-6 py-8 hidden space-y-8">
+    <!-- Header & Upload Section -->
+    <div class="max-w-7xl mx-auto mb-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400">
+            Race Results & Awards
+        </h1>
+        <p class="text-slate-400 mb-8 max-w-2xl mx-auto">Upload the race CSV export to generate podiums based on overall performance and specialized efficiency metrics.</p>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Overall Winner -->
-            <div id="overall-winner" class="glass-card accent-border border-gold rounded-2xl p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-2 bg-yellow-500/10 rounded-lg">
-                        <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black tracking-widest text-yellow-500 uppercase">Winner</span>
-                </div>
-                <h2 class="text-xl font-bold text-white leading-tight mb-1" id="ow-name">---</h2>
-                <p class="text-slate-400 text-sm" id="ow-time">Position: -- | Time: --:--:--</p>
-            </div>
-
-            <!-- Efficiency Expert -->
-            <div id="efficiency-expert" class="glass-card accent-border border-emerald rounded-2xl p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-2 bg-emerald-500/10 rounded-lg">
-                        <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black tracking-widest text-emerald-500 uppercase">Efficiency Expert</span>
-                </div>
-                <h2 class="text-xl font-bold text-white mb-2" id="ee-name">---</h2>
-                <p class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded inline-block" id="ee-stats">---</p>
-            </div>
-
-            <!-- Sprint Star -->
-            <div id="sprint-star" class="glass-card accent-border border-orange rounded-2xl p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-2 bg-orange-500/10 rounded-lg">
-                        <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black tracking-widest text-orange-500 uppercase">Sprint Star</span>
-                </div>
-                <h2 class="text-xl font-bold text-white mb-2" id="ss-name">---</h2>
-                <p class="text-xs text-orange-200" id="ss-beat">---</p>
-            </div>
-
-            <!-- Photo Finisher -->
-            <div id="photo-finisher" class="glass-card accent-border border-blue rounded-2xl p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-2 bg-blue-500/10 rounded-lg">
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black tracking-widest text-blue-500 uppercase">Photo Finish</span>
-                </div>
-                <h2 class="text-xl font-bold text-white mb-2" id="pf-winner">---</h2>
-                <p class="text-xs text-blue-200" id="pf-beat">---</p>
-            </div>
-
-            <!-- Detonator -->
-            <div id="detonator" class="glass-card accent-border border-red rounded-2xl p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-2 bg-red-500/10 rounded-lg">
-                        <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.99 7.99 0 0120 13a7.98 7.98 0 01-2.343 5.657z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black tracking-widest text-red-500 uppercase">The Detonator</span>
-                </div>
-                <h2 class="text-xl font-bold text-white mb-1" id="dt-name">---</h2>
-                <p class="text-red-400 font-mono text-sm" id="dt-watts">-- Watts</p>
-            </div>
-
-            <!-- The Workhorse -->
-            <div id="workhorse" class="glass-card accent-border border-pink rounded-2xl p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-2 bg-pink-500/10 rounded-lg">
-                        <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black tracking-widest text-pink-500 uppercase">The Workhorse</span>
-                </div>
-                <h2 class="text-xl font-bold text-white mb-1" id="wh-name">---</h2>
-                <p class="text-pink-400 text-sm" id="wh-stats">-- kJ Expended</p>
-            </div>
+        <div class="inline-block relative">
+            <input type="file" id="csvFileInput" accept=".csv" class="hidden">
+            <label for="csvFileInput" class="cursor-pointer inline-flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-full shadow-lg transition-colors duration-300">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                </svg>
+                Upload Results CSV
+            </label>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500">
-                <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
-                    <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
-                    Top 5 Finishing Positions
-                </h3>
-                <div class="overflow-x-auto no-scrollbar">
-                    <table class="w-full text-left text-sm">
-                        <thead class="text-slate-500 uppercase text-[10px] font-black tracking-widest border-b border-slate-700">
-                            <tr>
-                                <th class="pb-3">Pos</th>
-                                <th class="pb-3">Rider</th>
-                                <th class="pb-3 text-right">Time</th>
-                            </tr>
-                        </thead>
-                        <tbody id="top-five-list" class="divide-y divide-slate-800"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-400">
-                <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
-                    <div class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-                    Age Category Champions
-                </h3>
-                <div class="overflow-x-auto no-scrollbar">
-                    <table class="w-full text-left text-sm">
-                        <thead class="text-slate-500 uppercase text-[10px] font-black tracking-widest border-b border-slate-700">
-                            <tr>
-                                <th class="pb-3">Cat</th>
-                                <th class="pb-3">Winner</th>
-                                <th class="pb-3 text-right">Time</th>
-                            </tr>
-                        </thead>
-                        <tbody id="age-group-list" class="divide-y divide-slate-800"></tbody>
-                    </table>
-                </div>
-            </div>
+        <!-- Bot Toggle -->
+        <div class="mt-6 flex items-center justify-center space-x-3 hidden" id="toggleContainer">
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="includeBotsToggle" class="sr-only peer">
+                <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500"></div>
+                <span class="ml-3 text-sm font-medium text-slate-300">Include Bots</span>
+            </label>
         </div>
-    </main>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="hidden max-w-7xl mx-auto pb-20">
+        <div class="flex items-center space-x-3 mb-8">
+            <h2 class="text-3xl font-bold text-white">Race Awards Podiums</h2>
+            <div class="h-px bg-slate-700 flex-grow"></div>
+        </div>
+        <div id="general-podiums" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
 
     <script>
-        let rawRaceData = []; 
-        const botToggle = document.getElementById('botToggle');
-        const penSelect = document.getElementById('penSelect');
-        const penContainer = document.getElementById('penSelectorContainer');
+        let rawData = [];
 
-        document.getElementById('csvFile').addEventListener('change', handleFile);
-        
-        botToggle.addEventListener('change', () => {
-            if (rawRaceData.length > 0) processRaceData(rawRaceData);
-        });
-
-        penSelect.addEventListener('change', () => {
-            if (rawRaceData.length > 0) processRaceData(rawRaceData);
-        });
-
-        function formatTime(milliseconds) {
-            if (isNaN(milliseconds)) return "--:--:--";
-            const seconds = Math.floor(milliseconds / 1000);
-            const h = Math.floor(seconds / 3600);
-            const m = Math.floor((seconds % 3600) / 60);
-            const s = seconds % 60;
-            return [h, m, s].map(v => v < 10 ? "0" + v : v).join(":");
-        }
-
-        function formatGap(ms) {
-            if (ms < 1000) return `${ms}ms`;
-            return `${(ms / 1000).toFixed(2)}s`;
-        }
-
-        function handleFile(event) {
-            const file = event.target.files[0];
+        document.getElementById('csvFileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
             if (!file) return;
             Papa.parse(file, {
                 header: true,
-                dynamicTyping: true,
                 skipEmptyLines: true,
                 complete: function(results) {
-                    rawRaceData = results.data;
-                    updatePenOptions(rawRaceData);
-                    processRaceData(rawRaceData);
+                    rawData = results.data;
+                    document.getElementById('toggleContainer').classList.remove('hidden');
+                    renderDashboard();
                 }
             });
-        }
+        });
 
-        function updatePenOptions(data) {
-            const pens = [...new Set(data.map(item => item.pen !== undefined && item.pen !== null ? String(item.pen) : null).filter(Boolean))].sort();
-            if (pens.length > 0) {
-                penSelect.innerHTML = pens.map(p => `<option value="${p}">Pen ${p}</option>`).join('');
-                if (pens.length > 1) penContainer.classList.remove('hidden');
-                else penContainer.classList.add('hidden');
-            } else {
-                penSelect.innerHTML = '';
-                penContainer.classList.add('hidden');
-            }
-        }
+        document.getElementById('includeBotsToggle').addEventListener('change', function() {
+            if (rawData.length > 0) renderDashboard();
+        });
 
-        function processRaceData(data) {
-            const includeBots = botToggle.checked;
-            const selectedPen = penSelect.value;
+        function generatePodiumHTML(title, rankData) {
+            const first = rankData[0];
+            const second = rankData[1];
+            const third = rankData[2];
 
-            // Filter riders and sort by Position first, then time as fallback
-            const riders = data.filter(row => {
-                const isBot = String(row.isBot).toLowerCase() === 'true';
-                const isDNF = String(row.isDNF).toLowerCase() === 'true';
-                if (isDNF) return false;
-                if (selectedPen) {
-                    const rowPen = row.pen !== undefined && row.pen !== null ? String(row.pen) : null;
-                    if (rowPen !== selectedPen) return false;
+            const renderBlock = (person, rank) => {
+                if (!person) {
+                    return `<div class="flex flex-col items-center justify-end w-1/3 opacity-10 h-full">
+                                <div class="w-full h-${rank === 2 ? '24' : '16'} bg-slate-800 rounded-t-lg"></div>
+                            </div>`;
                 }
-                if (!includeBots && isBot) return false;
-                return true;
-            }).sort((a, b) => {
-                // Primary sort: Position (Ascending)
-                const posA = parseInt(a.position) || 9999;
-                const posB = parseInt(b.position) || 9999;
-                if (posA !== posB) return posA - posB;
-                // Secondary sort: Time (Ascending)
-                return (a.time || 0) - (b.time || 0);
-            });
 
-            if (riders.length === 0) {
-                document.getElementById('dashboard').classList.add('hidden');
-                return;
-            }
-            
-            document.getElementById('dashboard').classList.remove('hidden');
-
-            // 1. Overall Winner (Top position)
-            const winner = riders[0];
-            document.getElementById('ow-name').textContent = `${winner.firstName} ${winner.lastName}${String(winner.isBot).toLowerCase() === 'true' ? ' [BOT]' : ''}`;
-            document.getElementById('ow-time').textContent = `Position: ${winner.position} | Time: ${formatTime(winner.time)}`;
-
-            // 2. Efficiency Expert
-            const powerRanked = [...riders].sort((a, b) => (a.avgPower || 0) - (b.avgPower || 0));
-            const efficiencyList = riders.map((rider, posIdx) => {
-                const powerIdx = powerRanked.findIndex(p => p.playerId === rider.playerId);
-                const posRank = posIdx + 1; // Based on finishing position
-                const powerRank = powerIdx + 1;
-                return { ...rider, effScore: posRank + powerRank, pRank: powerRank, tRank: posRank };
-            }).sort((a, b) => a.effScore - b.effScore);
-
-            const expert = efficiencyList[0];
-            document.getElementById('ee-name').textContent = `${expert.firstName} ${expert.lastName}`;
-            document.getElementById('ee-stats').textContent = `Placed ${expert.position || expert.tRank} using only ${Math.round(expert.avgPower)}W avg`;
-
-            // 3. Photo Finisher (Smallest time gap between consecutive finishers)
-            let absoluteMinGap = Infinity;
-            let pfWinner = null;
-            let pfTarget = null;
-            
-            for (let i = 0; i < riders.length - 1; i++) {
-                const gap = Math.abs(riders[i+1].time - riders[i].time);
-                if (gap < absoluteMinGap) {
-                    absoluteMinGap = gap;
-                    pfWinner = riders[i];
-                    pfTarget = riders[i+1];
-                }
-            }
-
-            if (pfWinner && absoluteMinGap <= 1000) {
-                document.getElementById('pf-winner').textContent = `${pfWinner.firstName} ${pfWinner.lastName}`;
-                document.getElementById('pf-beat').textContent = `Beat ${pfTarget.firstName} ${pfTarget.lastName.charAt(0)}. by ${formatGap(absoluteMinGap)} for Pos ${pfWinner.position}`;
-            } else {
-                document.getElementById('pf-winner').textContent = "Clear Finish";
-                document.getElementById('pf-beat').textContent = "No gaps under 1s found";
-            }
-
-            // 4. Sprint Star (Highest placed rider who beat someone by 10s or less)
-            let sprintStar = null;
-            let sprintTarget = null;
-            let finalGap = 0;
-            
-            for (let i = 0; i < riders.length - 1; i++) {
-                const gap = Math.abs(riders[i+1].time - riders[i].time);
-                if (gap <= 10000) { // 10 seconds
-                    sprintStar = riders[i];
-                    sprintTarget = riders[i+1];
-                    finalGap = gap;
-                    break;
-                }
-            }
-
-            if (sprintStar) {
-                document.getElementById('ss-name').textContent = `${sprintStar.firstName} ${sprintStar.lastName}`;
-                document.getElementById('ss-beat').textContent = `Beat ${sprintTarget.firstName} ${sprintTarget.lastName.charAt(0)}. by ${formatGap(finalGap)} for Pos ${sprintStar.position}`;
-            } else {
-                document.getElementById('ss-name').textContent = "Solo Finish";
-                document.getElementById('ss-beat').textContent = "No gaps under 10s found";
-            }
-
-            // 5. Detonator
-            const detonator = [...riders].sort((a, b) => (b.maxPower || 0) - (a.maxPower || 0))[0];
-            document.getElementById('dt-name').textContent = `${detonator.firstName} ${detonator.lastName}`;
-            document.getElementById('dt-watts').textContent = `${detonator.maxPower || 0}W peak output`;
-
-            // 6. Workhorse
-            const ridersWithKj = riders.map(h => {
-                const kj = ((h.avgPower || 0) * ((h.time || 0) / 1000)) / 1000;
-                return { ...h, kj };
-            }).sort((a, b) => b.kj - a.kj);
-            const workhorse = ridersWithKj[0];
-            document.getElementById('wh-name').textContent = `${workhorse.firstName} ${workhorse.lastName}`;
-            document.getElementById('wh-stats').textContent = `${Math.round(workhorse.kj || 0).toLocaleString()} kJ Expended`;
-
-            // 7. Top 5 (By Position)
-            const topFiveList = document.getElementById('top-five-list');
-            topFiveList.innerHTML = '';
-            riders.slice(0, 5).forEach((w, i) => {
-                const isBot = String(w.isBot).toLowerCase() === 'true';
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="py-3 font-bold text-slate-500">#${w.position || (i + 1)}</td>
-                    <td class="py-3 text-white font-medium">
-                        ${w.firstName} ${w.lastName}
-                        ${isBot ? '<span class="ml-2 text-[8px] bg-slate-700 text-slate-400 px-1 rounded">BOT</span>' : ''}
-                    </td>
-                    <td class="py-3 text-right font-mono font-bold text-purple-400">${formatTime(w.time)}</td>
-                `;
-                topFiveList.appendChild(row);
-            });
-
-            // 8. Age Group Winners (By Position)
-            const ageGroupWinners = {};
-            riders.forEach(h => {
-                const group = h.ageBand || "Uncategorized";
-                const currentPos = parseInt(h.position) || 9999;
-                if (!ageGroupWinners[group]) {
-                    ageGroupWinners[group] = h;
+                let height, color, bg, border;
+                if (rank === 1) {
+                    height = 'h-32'; color = 'text-yellow-400'; bg = 'bg-yellow-500/20'; border = 'border-yellow-400';
+                } else if (rank === 2) {
+                    height = 'h-24'; color = 'text-slate-300'; bg = 'bg-slate-400/20'; border = 'border-slate-300';
                 } else {
-                    const existingPos = parseInt(ageGroupWinners[group].position) || 9999;
-                    if (currentPos < existingPos) {
-                        ageGroupWinners[group] = h;
-                    } else if (currentPos === existingPos && h.time < ageGroupWinners[group].time) {
-                        ageGroupWinners[group] = h;
+                    height = 'h-16'; color = 'text-amber-600'; bg = 'bg-amber-700/20'; border = 'border-amber-600';
+                }
+
+                return `
+                    <div class="flex flex-col items-center justify-end w-1/3 z-10 group h-full">
+                        <div class="mb-1 text-center w-full px-1 flex flex-col justify-end transition-transform duration-300 group-hover:-translate-y-1">
+                            <div class="font-bold text-[11px] sm:text-xs text-white leading-tight mb-0.5" style="word-wrap: break-word;">${person.name}</div>
+                            ${person.value ? `<div class="text-[9px] sm:text-[10px] text-slate-400 font-mono leading-none">${person.value}</div>` : ''}
+                        </div>
+                        <div class="w-full ${height} ${bg} border-t-4 ${border} rounded-t-lg flex items-center justify-center text-3xl font-black ${color} opacity-90 shadow-[0_-5px_15px_rgba(0,0,0,0.2)]">
+                            ${rank}
+                        </div>
+                    </div>
+                `;
+            };
+
+            return `
+                <div class="glass-card p-4 sm:p-5 rounded-2xl flex flex-col h-[20rem]">
+                    <h3 class="text-base sm:text-lg font-bold mb-0 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-emerald-300 uppercase tracking-wider">${title}</h3>
+                    <div class="flex-grow flex items-end justify-center space-x-1 sm:space-x-2">
+                        ${renderBlock(second, 2)}
+                        ${renderBlock(first, 1)}
+                        ${renderBlock(third, 3)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderDashboard() {
+            document.getElementById('dashboard').classList.remove('hidden');
+            const includeBots = document.getElementById('includeBotsToggle').checked;
+
+            const validRiders = rawData.filter(row => {
+                const time = parseInt(row.time);
+                if (!time || time <= 0) return false;
+                if (String(row.isDNF).toLowerCase() === 'true') return false;
+                if (!includeBots && String(row.isBot).toLowerCase() === 'true') return false;
+                return true;
+            });
+            
+            const parsedRiders = validRiders.map(r => ({
+                ...r,
+                timeSec: parseInt(r.time) / 1000,
+                timeMs: parseInt(r.time),
+                avgPower: parseInt(r.avgPower) || 0,
+                maxPower: parseInt(r.maxPower) || 0,
+                rating: parseFloat(r.rating) || 0,
+                age: parseInt(r.ageBand) || 0,
+                fullName: `${r.firstName} ${r.lastName}`.trim() || 'Unknown Rider',
+                team: (r.teamName || '').trim(),
+                kj: (parseInt(r.avgPower) * (parseInt(r.time) / 1000)) / 1000,
+                position: parseInt(r.position) || 999
+            }));
+
+            let podiumsHTML = '';
+
+            // 1. Overall
+            const topOverall = [...parsedRiders].sort((a, b) => a.position - b.position).slice(0, 3).map(r => ({
+                name: r.fullName, value: r.team
+            }));
+            if (topOverall.length > 0) podiumsHTML += generatePodiumHTML("Overall", topOverall);
+
+            // 2. Detonator Podium (Max Power)
+            const detonators = [...parsedRiders]
+                .sort((a, b) => b.maxPower - a.maxPower)
+                .slice(0, 3)
+                .map(r => ({
+                    name: r.fullName, value: `${r.maxPower}W Peak Power`
+                }));
+            if (detonators.length > 0) podiumsHTML += generatePodiumHTML("Detonator Podium", detonators);
+
+            // 3. Efficiency Leaders
+            const fieldSize = parsedRiders.length;
+            const topQuarterThreshold = Math.max(3, Math.ceil(fieldSize * 0.25));
+            const efficiency = [...parsedRiders]
+                .sort((a, b) => a.position - b.position)
+                .slice(0, topQuarterThreshold)
+                .sort((a, b) => a.avgPower - b.avgPower)
+                .slice(0, 3)
+                .map(r => ({
+                    name: r.fullName, value: `${r.avgPower}W / P${r.position}`
+                }));
+            if (efficiency.length > 0) podiumsHTML += generatePodiumHTML("Efficiency Leaders", efficiency);
+
+            // 4. Overachiever
+            const sortedByRating = [...parsedRiders].sort((a, b) => b.rating - a.rating);
+            const overachievers = parsedRiders.map(r => {
+                const expectedRank = sortedByRating.findIndex(s => s.playerId === r.playerId) + 1;
+                const gain = expectedRank - r.position;
+                return { ...r, gain };
+            }).sort((a, b) => b.gain - a.gain).slice(0, 3).map(r => ({
+                name: r.fullName, value: `+${r.gain} spots gain`
+            }));
+            if (overachievers.length > 0) podiumsHTML += generatePodiumHTML("Overachiever", overachievers);
+
+            // 5. Workhorses
+            const workhorses = [...parsedRiders].sort((a, b) => b.kj - a.kj).slice(0, 3).map(r => ({
+                name: r.fullName, value: `${Math.round(r.kj)} kJ`
+            }));
+            if (workhorses.length > 0) podiumsHTML += generatePodiumHTML("Workhorses", workhorses);
+
+            // 6. Age Groups
+            const groups = [
+                { name: "+40 Age Group", filter: r => r.age >= 40 && r.age < 50 },
+                { name: "+50 Age Group", filter: r => r.age >= 50 && r.age < 60 },
+                { name: "+60 Age Group", filter: r => r.age >= 60 }
+            ];
+
+            groups.forEach(g => {
+                const data = [...parsedRiders].filter(g.filter).sort((a, b) => a.position - b.position).slice(0, 3).map(r => ({
+                    name: r.fullName, value: r.team
+                }));
+                if (data.length > 0) podiumsHTML += generatePodiumHTML(g.name, data);
+            });
+
+            // 7. Teams Podium
+            const teamsMap = {};
+            parsedRiders.forEach(r => {
+                if (r.team && r.team.length > 0) {
+                    if (!teamsMap[r.team]) teamsMap[r.team] = [];
+                    teamsMap[r.team].push(r.position);
+                }
+            });
+
+            const teamScores = Object.entries(teamsMap).map(([teamName, positions]) => {
+                const sortedPos = positions.sort((a, b) => a - b);
+                let score = 0;
+                for (let i = 0; i < 3; i++) {
+                    if (sortedPos[i] !== undefined) {
+                        score += sortedPos[i];
+                    } else {
+                        score += 40;
                     }
                 }
+                return { name: teamName, score, count: positions.length };
             });
-            const ageGroupList = document.getElementById('age-group-list');
-            ageGroupList.innerHTML = '';
-            Object.keys(ageGroupWinners).sort().forEach(group => {
-                const w = ageGroupWinners[group];
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="py-3 font-bold text-blue-400">${group}</td>
-                    <td class="py-3 text-white font-medium">${w.firstName} ${w.lastName}</td>
-                    <td class="py-3 text-right font-mono text-slate-400">${formatTime(w.time)}</td>
-                `;
-                ageGroupList.appendChild(row);
-            });
+
+            const topTeams = teamScores
+                .sort((a, b) => a.score - b.score)
+                .slice(0, 3)
+                .map(t => ({
+                    name: t.name, value: `${t.score} pts (${t.count} riders)`
+                }));
             
-            if (document.getElementById('dashboard').classList.contains('hidden')) {
-                document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
-            }
+            if (topTeams.length > 0) podiumsHTML += generatePodiumHTML("Top Teams", topTeams);
+
+            document.getElementById('general-podiums').innerHTML = podiumsHTML;
+            document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
