@@ -190,7 +190,7 @@
                 .map(r => ({
                     name: r.fullName, value: `${r.maxPower}W Peak Power`
                 }));
-            if (detonators.length > 0) podiumsHTML += generatePodiumHTML("Detonator Podium", detonators);
+            if (detonators.length > 0) podiumsHTML += generatePodiumHTML("Detonators", detonators);
 
             // 3. Efficiency Leaders
             const fieldSize = parsedRiders.length;
@@ -203,7 +203,7 @@
                 .map(r => ({
                     name: r.fullName, value: `${r.avgPower}W / P${r.position}`
                 }));
-            if (efficiency.length > 0) podiumsHTML += generatePodiumHTML("Efficiency Leaders", efficiency);
+            if (efficiency.length > 0) podiumsHTML += generatePodiumHTML("Efficiency Experts", efficiency);
 
             // 4. Overachiever
             const sortedByRating = [...parsedRiders].sort((a, b) => b.rating - a.rating);
@@ -212,9 +212,9 @@
                 const gain = expectedRank - r.position;
                 return { ...r, gain };
             }).sort((a, b) => b.gain - a.gain).slice(0, 3).map(r => ({
-                name: r.fullName, value: `+${r.gain} spots gain`
+                name: r.fullName, value: `beat seed by ${r.gain}`
             }));
-            if (overachievers.length > 0) podiumsHTML += generatePodiumHTML("Overachiever", overachievers);
+            if (overachievers.length > 0) podiumsHTML += generatePodiumHTML("Overachievers", overachievers);
 
             // 5. Workhorses
             const workhorses = [...parsedRiders].sort((a, b) => b.kj - a.kj).slice(0, 3).map(r => ({
@@ -234,9 +234,9 @@
 
             // 7. Age Groups
             const groups = [
-                { name: "+40 Age Group", filter: r => r.age >= 40 && r.age < 50 },
-                { name: "+50 Age Group", filter: r => r.age >= 50 && r.age < 60 },
-                { name: "+60 Age Group", filter: r => r.age >= 60 }
+                { name: "40+ Age Group", filter: r => r.age >= 40 && r.age < 50 },
+                { name: "50+ Age Group", filter: r => r.age >= 50 && r.age < 60 },
+                { name: "60+ Age Group", filter: r => r.age >= 60 }
             ];
 
             groups.forEach(g => {
