@@ -164,14 +164,14 @@
           const [splitIndices, setSplitIndices] = useState([]); // Array of indexes representing chunk boundaries
           
           // Settings
-          const [riderWeight, setRiderWeight] = useState(87);
+          const [riderWeight, setRiderWeight] = useState(70);
           const [bikeWeight, setBikeWeight] = useState(9);
-          const [ftp, setFtp] = useState(313);
-          const [intensity, setIntensity] = useState(80);
+          const [ftp, setFtp] = useState(250);
+          const [intensity, setIntensity] = useState(100);
           
           const [splitMode, setSplitMode] = useState('time'); 
           const [targetMinutes, setTargetMinutes] = useState(60);
-          const [targetDivisions, setTargetDivisions] = useState(3);
+          const [targetDivisions, setTargetDivisions] = useState(2);
           
           const [isProcessing, setIsProcessing] = useState(false);
 
@@ -487,7 +487,7 @@
                               <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Elevation Gain</th>
                               <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Score</th>
                               <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Avg Speed</th>
-                              <th className="px-6 py-4 text-right text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Actions</th>
+                              <th className="px-6 py-4 text-right text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Download</th>
                             </tr>
                           </thead>
                           <tbody className="font-sans">
