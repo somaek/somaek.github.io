@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics-Aware GPX Chopper</title>
+    
+    <!-- Google Fonts for the condensed bold aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        oswald: ['Oswald', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        appBg: '#1e0a45',
+                        cardBg: '#2b1654',
+                        cardAlt: '#321c60',
+                        inputBg: '#140632',
+                        borderColor: '#402772',
+                        textMuted: '#a38cde',
+                        neonCyan: '#00f0ff',
+                        neonGreen: '#39ff14',
+                        neonYellow: '#ffde00',
+                        neonOrange: '#ff9900',
+                        neonPink: '#ff00a0',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for in-browser JSX compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-appBg text-white font-sans antialiased selection:bg-neonCyan selection:text-black">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo, useRef, useCallback } = React;
+
+        // --- ICONS ---
+        const MapPin = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
+        const UploadCloud = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line></svg>;
+        const Activity = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>;
+        const Divide = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="6" r="2"></circle><line x1="5" y1="12" x2="19" y2="12"></line><circle cx="12" cy="18" r="2"></circle></svg>;
+        const Flag = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>;
+        const Clock = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>;
+        const Bike = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="5.5" cy="17.5" r="3.5"></circle><circle cx="18.5" cy="17.5" r="3.5"></circle><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"></path></svg>;
+        const Download = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>;
+        const MoveHorizontal = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="18 8 22 12 18 16"></polyline><polyline points="6 8 2 12 6 16"></polyline><line x1="2" y1="12" x2="22" y2="12"></line></svg>;
+
+        // --- PHYSICS & MATH UTILS ---
+        function haversine(lat1, lon1, lat2, lon2) {
+          const R = 6371e3; 
+          const rad = Math.PI / 180;
+          const dLat = (lat2 - lat1) * rad;
+          const dLon = (lon2 - lon1) * rad;
+          const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(lat1 * rad) * Math.cos(lat2 * rad) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          return R * c;
+        }
+
+        function calculateSpeed(grade, targetPower, totalWeight) {
+          const g = 9.81; 
+          const crr = 0.004; 
+          const rho = 1.225; 
+          const cda = 0.32; 
+          const drivetrainEfficiency = 0.97;
+          let low = 0.5; let high = 22.0; 
+          for (let i = 0; i < 25; i++) {
+            let v = (low + high) / 2;
+            let fGravity = totalWeight * g * Math.sin(Math.atan(grade));
+            let fRolling = totalWeight * g * crr * Math.cos(Math.atan(grade));
+            let fDrag = 0.5 * rho * cda * v * v;
+            let totalForce = fGravity + fRolling + fDrag;
+            let reqPower = totalForce > 0 ? (totalForce * v) / drivetrainEfficiency : 0;
+            if (totalForce < 0) { low = v; } 
+            else if (reqPower > targetPower) { high = v; } 
+            else { low = v; }
+          }
+          return (low + high) / 2;
+        }
+
+        function formatTime(seconds) {
+          const h = Math.floor(seconds / 3600);
+          const m = Math.floor((seconds % 3600) / 60);
+          const s = Math.floor(seconds % 60);
+          if (h > 0) return `${h}h ${m}m`;
+          return `${m}m ${s}s`;
+        }
+
+        function detectClimbs(points) {
+          const climbs = [];
+          let isClimbing = false;
+          let startIndex = 0;
+          let maxIndex = 0;
+
+          for (let i = 1; i < points.length; i++) {
+            if (!isClimbing) {
+              // Start a climb if elevation goes up
+              if (points[i].ele > points[i-1].ele) {
+                isClimbing = true;
+                startIndex = i - 1;
+                maxIndex = i;
+              }
+            } else {
+              if (points[i].ele >= points[maxIndex].ele) {
+                maxIndex = i; // Update local peak
+              }
+              
+              const drop = points[maxIndex].ele - points[i].ele;
+              const distSincePeak = points[i].cumDist - points[maxIndex].cumDist;
+              const isLastPoint = i === points.length - 1;
+              
+              // Improved logic: End climb if we drop significantly, or if it flattens out for 400m.
+              // This strictly isolates steep sections and prevents flat sections from diluting the grade.
+              if (drop > 10 || distSincePeak > 400 || isLastPoint) {
+                const dist = points[maxIndex].cumDist - points[startIndex].cumDist;
+                const gain = points[maxIndex].ele - points[startIndex].ele;
+                const steepness = dist > 0 ? (gain / dist) * 100 : 0;
+                
+                // Validate chunk: At least 100m long, 10m gain, and a noticeable 1.5% gradient
+                if (dist >= 100 && gain >= 10 && steepness >= 1.5) {
+                  climbs.push({
+                    start: points[startIndex],
+                    end: points[maxIndex],
+                    distance: dist,
+                    gain: gain,
+                    steepness: steepness
+                  });
+                }
+                
+                // Reset state. Next upward tick starts a new isolated climb.
+                isClimbing = false; 
+              }
+            }
+          }
+          return climbs;
+        }
+
+        // --- MAIN COMPONENT ---
+        function GPXSegmenter() {
+          const [fileData, setFileData] = useState(null);
+          const [fileName, setFileName] = useState('');
+          
+          // State Pipeline
+          const [parsedPoints, setParsedPoints] = useState([]);
+          const [enrichedPoints, setEnrichedPoints] = useState([]);
+          const [splitIndices, setSplitIndices] = useState([]); // Array of indexes representing chunk boundaries
+          
+          // Settings
+          const [riderWeight, setRiderWeight] = useState(87);
+          const [bikeWeight, setBikeWeight] = useState(9);
+          const [ftp, setFtp] = useState(313);
+          const [intensity, setIntensity] = useState(80);
+          
+          const [splitMode, setSplitMode] = useState('time'); 
+          const [targetMinutes, setTargetMinutes] = useState(60);
+          const [targetDivisions, setTargetDivisions] = useState(3);
+          
+          const [isProcessing, setIsProcessing] = useState(false);
+
+          const handleFileUpload = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            setFileName(file.name);
+            setIsProcessing(true);
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              const xmlString = event.target.result;
+              const parser = new DOMParser();
+              const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+              const trkpts = xmlDoc.getElementsByTagName("trkpt");
+              const points = [];
+              for (let i = 0; i < trkpts.length; i++) {
+                const pt = trkpts[i];
+                const lat = parseFloat(pt.getAttribute("lat"));
+                const lon = parseFloat(pt.getAttribute("lon"));
+                const eleNode = pt.getElementsByTagName("ele")[0];
+                const ele = eleNode ? parseFloat(eleNode.textContent) : 0;
+                points.push({ lat, lon, ele });
+              }
+              setParsedPoints(points);
+              setIsProcessing(false);
+            };
+            reader.readAsText(file);
+          };
+
+          // Effect 1: Physics Engine - enrich parsed points with speed/time/distance
+          useEffect(() => {
+            if (parsedPoints.length === 0) return;
+            setIsProcessing(true);
+
+            setTimeout(() => {
+              const targetPower = ftp * (intensity / 100);
+              const totalWeight = parseFloat(riderWeight) + parseFloat(bikeWeight);
+              let totalDistance = 0;
+              let totalTime = 0;
+              
+              const enriched = parsedPoints.map((pt, i) => {
+                if (i === 0) return { ...pt, distFromPrev: 0, grade: 0, timeFromPrev: 0, cumTime: 0, cumDist: 0 };
+                const prevPt = parsedPoints[i - 1];
+                const dist = haversine(prevPt.lat, prevPt.lon, pt.lat, pt.lon);
+                const eleDiff = pt.ele - prevPt.ele;
+                const grade = dist > 0 ? eleDiff / dist : 0;
+                const boundedGrade = Math.max(Math.min(grade, 0.35), -0.35); 
+                const speed = calculateSpeed(boundedGrade, targetPower, totalWeight);
+                const time = dist > 0 ? dist / speed : 0;
+                
+                totalDistance += dist;
+                totalTime += time;
+                
+                return {
+                  ...pt, distFromPrev: dist, grade: boundedGrade,
+                  timeFromPrev: time, cumTime: totalTime, cumDist: totalDistance
+                };
+              });
+
+              setEnrichedPoints(enriched);
+              setIsProcessing(false);
+            }, 50);
+          }, [parsedPoints, riderWeight, bikeWeight, ftp, intensity]);
+
+          // Effect 2: Auto-calculate initial split indices based on user target rules
+          useEffect(() => {
+              if (enrichedPoints.length === 0) return;
+
+              const totalTime = enrichedPoints[enrichedPoints.length - 1].cumTime;
+              const totalTargetSeconds = splitMode === 'time' 
+                ? targetMinutes * 60 
+                : totalTime / targetDivisions;
+
+              const newSplits = [];
+              let nextSplitTime = totalTargetSeconds;
+
+              for (let i = 0; i < enrichedPoints.length - 1; i++) {
+                if (enrichedPoints[i].cumTime >= nextSplitTime) {
+                  newSplits.push(i);
+                  nextSplitTime += totalTargetSeconds;
+                  
+                  // Cap the auto-splits to the number of divisions requested
+                  if (splitMode === 'divisions' && newSplits.length >= targetDivisions - 1) break;
+                }
+              }
+              setSplitIndices(newSplits);
+          }, [enrichedPoints, splitMode, targetMinutes, targetDivisions]);
+
+          // Memo: Construct final segments based on enriched points and current split markers
+          const segments = useMemo(() => {
+              if (enrichedPoints.length === 0) return [];
+              
+              const generated = [];
+              let startIndex = 0;
+              const totalDist = enrichedPoints[enrichedPoints.length - 1].cumDist;
+              
+              // We have N internal splits, so we make N+1 segments
+              for (let i = 0; i <= splitIndices.length; i++) {
+                  const endIndex = i === splitIndices.length ? enrichedPoints.length - 1 : splitIndices[i];
+                  const segPoints = enrichedPoints.slice(startIndex, endIndex + 1);
+                  
+                  if (segPoints.length > 0) {
+                      const startPt = segPoints[0];
+                      const endPt = segPoints[segPoints.length - 1];
+                      
+                      let segElevationGain = 0;
+                      for(let j = 1; j < segPoints.length; j++) {
+                          if(segPoints[j].ele > segPoints[j-1].ele) {
+                              segElevationGain += (segPoints[j].ele - segPoints[j-1].ele);
+                          }
+                      }
+
+                      const segDistance = endPt.cumDist - startPt.cumDist;
+                      
+                      // Identify climbs within this specific segment
+                      const segmentClimbs = detectClimbs(segPoints);
+                      let profileScore = 0;
+
+                      // Score each climb and factor by distance to the END of THIS segment
+                      segmentClimbs.forEach(climb => {
+                          const distToSegmentEndKm = (endPt.cumDist - climb.end.cumDist) / 1000;
+                          
+                          let factor = 0.2;
+                          if (distToSegmentEndKm <= 10) factor = 1.0;
+                          else if (distToSegmentEndKm <= 25) factor = 0.8;
+                          else if (distToSegmentEndKm <= 50) factor = 0.6;
+                          else if (distToSegmentEndKm <= 75) factor = 0.4;
+
+                          const climbLengthKm = climb.distance / 1000;
+                          const baseScore = Math.pow(climb.steepness / 2, 2) * climbLengthKm;
+                          profileScore += (baseScore * factor);
+                      });
+
+                      generated.push({
+                          id: i + 1,
+                          points: segPoints,
+                          distance: segDistance,
+                          time: endPt.cumTime - startPt.cumTime,
+                          elevationGain: segElevationGain,
+                          profileScore: profileScore,
+                          startEle: startPt.ele,
+                          endEle: endPt.ele
+                      });
+                  }
+                  // Overlap the last point to the next segment so the lines connect seamlessly
+                  startIndex = endIndex; 
+              }
+              return generated;
+          }, [enrichedPoints, splitIndices]);
+
+
+          const downloadGPX = (segment, index) => {
+            let gpxContent = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+            gpxContent += `<gpx version="1.1" creator="GPX Segmenter" xmlns="http://www.topografix.com/GPX/1/1">\n`;
+            gpxContent += `  <trk>\n    <name>Segment ${index + 1}</name>\n    <trkseg>\n`;
+            segment.points.forEach(pt => {
+              gpxContent += `      <trkpt lat="${pt.lat.toFixed(6)}" lon="${pt.lon.toFixed(6)}">\n`;
+              gpxContent += `        <ele>${pt.ele.toFixed(1)}</ele>\n`;
+              gpxContent += `      </trkpt>\n`;
+            });
+            gpxContent += `    </trkseg>\n  </trk>\n</gpx>`;
+            const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `segment_${index + 1}.gpx`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          };
+
+          const segmentColors = ['#00f0ff', '#39ff14', '#ff9900', '#ffde00', '#ff00a0'];
+
+          return (
+            <div className="min-h-screen p-4 md:p-8 lg:p-12">
+              <div className="max-w-7xl mx-auto space-y-8">
+                
+                {/* Header Block matching the neon/bold look */}
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="text-neonCyan">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-12 h-12" strokeLinecap="square" strokeLinejoin="miter">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h1 className="text-4xl font-oswald font-black italic tracking-wide text-white uppercase leading-none">GPX Segment Maker</h1>
+                    <p className="text-textMuted text-sm font-oswald uppercase tracking-widest mt-1">Physics-Aware GPX Chopper</p>
+                  </div>
+                </div>
+
+                {/* Top Configuration Panels */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  
+                  {/* Upload Card */}
+                  <div className="bg-cardBg p-6 border border-borderColor flex flex-col justify-center items-center h-full relative group">
+                    <label className="flex flex-col items-center justify-center w-full h-full min-h-[140px] cursor-pointer bg-inputBg hover:bg-cardAlt transition border-2 border-dashed border-borderColor">
+                      <div className="flex flex-col items-center justify-center p-4 text-center">
+                        <UploadCloud className="w-8 h-8 text-textMuted mb-2 group-hover:text-neonCyan transition" />
+                        <p className="text-sm text-white font-oswald font-black uppercase tracking-widest">
+                          {fileName ? fileName : 'Upload GPX Track'}
+                        </p>
+                      </div>
+                      <input type="file" className="hidden" accept=".gpx" onChange={handleFileUpload} />
+                    </label>
+                  </div>
+
+                  {/* Rider Profile Card */}
+                  <div className="bg-cardBg p-6 border border-borderColor col-span-1">
+                    <h2 className="text-xs font-oswald font-black uppercase tracking-[0.2em] text-textMuted mb-4 flex items-center gap-2">
+                      <Activity className="text-neonPink w-4 h-4" /> Rider Profile
+                    </h2>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Weight (kg)</label>
+                        <input type="number" value={riderWeight} onChange={e => setRiderWeight(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Bike Wt (kg)</label>
+                        <input type="number" value={bikeWeight} onChange={e => setBikeWeight(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">FTP (Watts)</label>
+                        <input type="number" value={ftp} onChange={e => setFtp(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Intensity (%)</label>
+                        <input type="number" value={intensity} onChange={e => setIntensity(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Chopping Strategy Card */}
+                  <div className="bg-cardBg p-6 border border-borderColor col-span-1">
+                    <h2 className="text-xs font-oswald font-black uppercase tracking-[0.2em] text-textMuted mb-4 flex items-center gap-2">
+                      <Divide className="text-neonYellow w-4 h-4" /> Chopping Strategy
+                    </h2>
+                    
+                    <div className="flex bg-inputBg mb-4 border border-borderColor">
+                      <button 
+                        onClick={() => setSplitMode('time')}
+                        className={`flex-1 py-2 text-[11px] font-oswald font-black uppercase tracking-widest transition ${splitMode === 'time' ? 'bg-neonCyan text-black' : 'text-textMuted hover:text-white'}`}
+                      >
+                        Target Time
+                      </button>
+                      <button 
+                        onClick={() => setSplitMode('divisions')}
+                        className={`flex-1 py-2 text-[11px] font-oswald font-black uppercase tracking-widest transition ${splitMode === 'divisions' ? 'bg-neonCyan text-black' : 'text-textMuted hover:text-white'}`}
+                      >
+                        Divisions
+                      </button>
+                    </div>
+
+                    {splitMode === 'time' ? (
+                      <div>
+                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Time per Segment (mins)</label>
+                        <input type="number" value={targetMinutes} onChange={e => setTargetMinutes(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                      </div>
+                    ) : (
+                      <div>
+                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Number of Segments</label>
+                        <input type="number" value={targetDivisions} onChange={e => setTargetDivisions(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {segments.length > 0 && (
+                  <div className="space-y-6">
+                    {/* Elevation Profile Chart */}
+                    <div className="bg-cardBg p-6 lg:p-8 border border-borderColor relative overflow-hidden group">
+                      {/* Decorative Background Icon */}
+                      <svg viewBox="0 0 24 24" className="absolute top-4 right-4 w-32 h-32 text-appBg opacity-50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                      
+                      <div className="flex items-center justify-between mb-8 relative z-10">
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-6 bg-neonCyan"></div>
+                          <h2 className="text-xl font-oswald font-black uppercase tracking-wider text-white">Elevation Profile</h2>
+                        </div>
+                        {splitIndices.length > 0 && (
+                           <div className="bg-[#140632] border border-neonCyan/50 text-neonCyan text-[10px] font-oswald font-black uppercase px-3 py-1 rounded-full flex items-center gap-2 tracking-widest opacity-80 shadow-[0_0_10px_rgba(0,240,255,0.2)]">
+                              <MoveHorizontal className="w-3 h-3" /> Drag vertical lines to adjust segments
+                           </div>
+                        )}
+                      </div>
+                      <div className="relative z-10">
+                        <ElevationChart 
+                           enrichedPoints={enrichedPoints}
+                           segments={segments} 
+                           splitIndices={splitIndices}
+                           setSplitIndices={setSplitIndices}
+                           colors={segmentColors} 
+                        />
+                      </div>
+                    </div>
+
+                    {/* Scored Climbs (Segments) Table */}
+                    <div className="bg-cardBg border border-borderColor overflow-hidden">
+                      <div className="p-6 border-b border-borderColor flex justify-between items-end">
+                         <div>
+                            <h2 className="text-2xl font-oswald font-black uppercase tracking-wide text-white">Individual Segments</h2>
+                            <p className="text-xs text-textMuted mt-1">Updates instantly when boundaries are dragged</p>
+                         </div>
+                      </div>
+
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="bg-[#221245] border-b border-borderColor">
+                              <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">No.</th>
+                              <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Est. Time</th>
+                              <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Distance</th>
+                              <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Elevation Gain</th>
+                              <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Score</th>
+                              <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Avg Speed</th>
+                              <th className="px-6 py-4 text-right text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody className="font-sans">
+                            {segments.map((seg, idx) => {
+                              const distKm = seg.distance / 1000;
+                              const speedKph = seg.time > 0 ? (seg.distance / seg.time) * 3.6 : 0;
+                              const rowColor = idx % 2 === 0 ? 'bg-cardBg' : 'bg-cardAlt';
+                              const activeNeon = segmentColors[idx % segmentColors.length];
+
+                              return (
+                                <tr key={idx} className={`${rowColor} hover:bg-[#3d2a6a] transition border-b border-borderColor/50 last:border-0 group`}>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    <span className="font-oswald font-black text-xl" style={{ color: activeNeon }}>
+                                      {idx + 1}
+                                    </span>
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-white text-sm">
+                                    {formatTime(seg.time)}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-white text-sm">
+                                    {distKm.toFixed(2)} km
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                     <span className="inline-block px-2 py-0.5 bg-[#140632] border border-[#402772] text-[#ffde00] font-bold text-xs">
+                                        {seg.elevationGain.toFixed(0)} m
+                                     </span>
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                     <span className="inline-block px-2 py-0.5 bg-[#140632] border border-neonPink text-neonPink font-bold text-xs">
+                                        {Math.round(seg.profileScore)}
+                                     </span>
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-white text-sm">
+                                    {speedKph.toFixed(1)} km/h
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                                    <button 
+                                      onClick={() => downloadGPX(seg, idx)}
+                                      className="inline-flex items-center justify-center text-textMuted hover:text-neonCyan transition p-2"
+                                      title="Download GPX"
+                                    >
+                                      <Download className="w-5 h-5" />
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        }
+
+        // --- SVG Interactive Chart Component ---
+        function ElevationChart({ enrichedPoints, segments, splitIndices, setSplitIndices, colors }) {
+          if (!enrichedPoints || enrichedPoints.length === 0) return null;
+
+          const svgRef = useRef(null);
+          const [draggingIdx, setDraggingIdx] = useState(null);
+
+          const width = 1000;
+          const height = 300;
+          const padding = { top: 40, right: 30, bottom: 40, left: 60 };
+
+          const maxDist = enrichedPoints[enrichedPoints.length - 1].cumDist;
+          
+          let minEle = Infinity;
+          let maxEle = -Infinity;
+          enrichedPoints.forEach(pt => {
+            if (pt.ele < minEle) minEle = pt.ele;
+            if (pt.ele > maxEle) maxEle = pt.ele;
+          });
+
+          // Enforce a minimum 400m elevation profile range to prevent punchy look
+          let eleRange = maxEle - minEle;
+          if (eleRange < 400) {
+              const paddingNeeded = 400 - eleRange;
+              maxEle += paddingNeeded / 2;
+              minEle -= paddingNeeded / 2;
+              
+              // Shift the profile upwards if the minimum goes below 0 (usually sea level bounds)
+              if (minEle < 0) {
+                  maxEle += Math.abs(minEle);
+                  minEle = 0;
+              }
+          } else {
+              minEle = Math.max(0, minEle - (eleRange * 0.15));
+              maxEle = maxEle + (eleRange * 0.2);
+          }
+          eleRange = maxEle - minEle; // Update final range
+
+          const innerWidth = width - padding.left - padding.right;
+          const xMap = (dist) => padding.left + (dist / maxDist) * innerWidth;
+          const yMap = (ele) => height - padding.bottom - ((ele - minEle) / (maxEle - minEle)) * (height - padding.top - padding.bottom);
+
+          // Grid line calculations
+          const ySteps = 4;
+          const yGrid = Array.from({length: ySteps + 1}, (_, i) => minEle + (eleRange / ySteps) * i);
+          const xSteps = 4;
+          const xGrid = Array.from({length: xSteps + 1}, (_, i) => (maxDist / xSteps) * i);
+
+          // --- DRAG HANDLING ---
+          // Use a ref to store latest state to avoid re-binding window events continuously
+          const stateRef = useRef({ splitIndices, enrichedPoints, maxDist });
+          useEffect(() => {
+             stateRef.current = { splitIndices, enrichedPoints, maxDist };
+          }, [splitIndices, enrichedPoints, maxDist]);
+
+          useEffect(() => {
+              if (draggingIdx === null) return;
+
+              const handleMouseMove = (e) => {
+                  if (!svgRef.current) return;
+                  const rect = svgRef.current.getBoundingClientRect();
+                  
+                  // Calculate raw SVG X coordinate. SVG scales, so we need ratio
+                  const scaleX = width / rect.width;
+                  const mouseX = (e.clientX - rect.left) * scaleX;
+                  
+                  const { splitIndices: currentSplits, enrichedPoints: currentPoints, maxDist: currentMaxDist } = stateRef.current;
+                  
+                  // Convert mouseX back to distance
+                  let targetDist = ((mouseX - padding.left) / innerWidth) * currentMaxDist;
+                  targetDist = Math.max(0, Math.min(targetDist, currentMaxDist));
+
+                  // Find closest point index in enriched array
+                  let closestIdx = 0;
+                  let minDiff = Infinity;
+                  // (Could optimize with binary search, but linear is fine for <10k points in JS)
+                  for (let i = 0; i < currentPoints.length; i++) {
+                      const diff = Math.abs(currentPoints[i].cumDist - targetDist);
+                      if (diff < minDiff) {
+                          minDiff = diff;
+                          closestIdx = i;
+                      }
+                  }
+
+                  // Clamp to prevent crossing adjacent boundaries
+                  const minBound = draggingIdx > 0 ? currentSplits[draggingIdx - 1] + 1 : 1;
+                  const maxBound = draggingIdx < currentSplits.length - 1 ? currentSplits[draggingIdx + 1] - 1 : currentPoints.length - 2;
+                  closestIdx = Math.max(minBound, Math.min(closestIdx, maxBound));
+
+                  // Apply new split
+                  const newSplits = [...currentSplits];
+                  newSplits[draggingIdx] = closestIdx;
+                  setSplitIndices(newSplits);
+              };
+
+              const handleMouseUp = () => setDraggingIdx(null);
+
+              window.addEventListener('mousemove', handleMouseMove);
+              window.addEventListener('mouseup', handleMouseUp);
+              
+              // Set cursor globally so it doesn't flicker during fast drags
+              document.body.style.cursor = 'ew-resize';
+
+              return () => {
+                  window.removeEventListener('mousemove', handleMouseMove);
+                  window.removeEventListener('mouseup', handleMouseUp);
+                  document.body.style.cursor = '';
+              };
+          }, [draggingIdx, innerWidth, padding.left, setSplitIndices, width]);
+
+          // Base Continuous Route Path
+          let fullPathD = '';
+          if (enrichedPoints.length > 0) {
+             fullPathD = `M ${xMap(enrichedPoints[0].cumDist)} ${yMap(enrichedPoints[0].ele)} `;
+             enrichedPoints.forEach(pt => {
+                fullPathD += `L ${xMap(pt.cumDist)} ${yMap(pt.ele)} `;
+             });
+          }
+
+          return (
+            <div className="w-full overflow-x-auto select-none touch-none">
+              <svg 
+                  ref={svgRef} 
+                  width="100%" 
+                  viewBox={`0 0 ${width} ${height}`} 
+                  preserveAspectRatio="none" 
+                  className="h-72 min-w-[700px] font-sans"
+              >
+                
+                {/* Y-Axis Grid & Labels */}
+                {yGrid.map((ele, i) => (
+                   <g key={`y-${i}`}>
+                      <line x1={padding.left} y1={yMap(ele)} x2={width - padding.right} y2={yMap(ele)} stroke="#402772" strokeWidth="1" strokeDasharray="4,4" />
+                      <text x={padding.left - 10} y={yMap(ele) + 4} fontSize="10" fill="#a38cde" textAnchor="end">{Math.round(ele)}m</text>
+                   </g>
+                ))}
+
+                {/* X-Axis Grid & Labels */}
+                {xGrid.map((dist, i) => (
+                   <g key={`x-${i}`}>
+                      <line x1={xMap(dist)} y1={padding.top} x2={xMap(dist)} y2={height - padding.bottom} stroke="#402772" strokeWidth="1" strokeDasharray="4,4" />
+                      <text x={xMap(dist)} y={height - padding.bottom + 20} fontSize="10" fill="#a38cde" textAnchor="middle">{(dist / 1000).toFixed(0)}km</text>
+                   </g>
+                ))}
+
+                {/* Draw Base Line Path (Cyan) */}
+                <path d={fullPathD} fill="none" stroke="#00f0ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+
+                {/* Draw Highlighted Segment Layers */}
+                {segments.map((seg, idx) => {
+                  if (seg.points.length === 0) return null;
+                  
+                  const color = colors[idx % colors.length];
+                  let pathD = `M ${xMap(seg.points[0].cumDist)} ${yMap(seg.points[0].ele)} `;
+                  
+                  // Track highest point for label
+                  let maxPoint = seg.points[0];
+                  seg.points.forEach(pt => {
+                     pathD += `L ${xMap(pt.cumDist)} ${yMap(pt.ele)} `;
+                     if (pt.ele > maxPoint.ele) maxPoint = pt;
+                  });
+
+                  const lastPoint = seg.points[seg.points.length - 1];
+                  const firstPoint = seg.points[0];
+                  const fillPathD = pathD + `L ${xMap(lastPoint.cumDist)} ${height - padding.bottom} L ${xMap(firstPoint.cumDist)} ${height - padding.bottom} Z`;
+
+                  return (
+                    <g key={`seg-${idx}`}>
+                      <path d={fillPathD} fill={color} opacity="0.6" />
+                      <path d={pathD} fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                      
+                      {/* Segment Number Label Floating Above Peak */}
+                      <text 
+                         x={xMap(maxPoint.cumDist)} 
+                         y={yMap(maxPoint.ele) - 15} 
+                         fill={color} 
+                         fontSize="16" 
+                         fontWeight="900" 
+                         fontFamily="Oswald"
+                         textAnchor="middle"
+                      >
+                         {idx + 1}
+                      </text>
+                    </g>
+                  );
+                })}
+
+                {/* Interactive Drag Handles for Split Points */}
+                {splitIndices.map((ptIndex, i) => {
+                    const pt = enrichedPoints[ptIndex];
+                    if (!pt) return null;
+                    const cx = xMap(pt.cumDist);
+                    const isDragging = draggingIdx === i;
+
+                    return (
+                        <g 
+                            key={`handle-${i}`} 
+                            onMouseDown={() => setDraggingIdx(i)}
+                            className="cursor-ew-resize"
+                        >
+                            {/* Hit Area (wider invisible rect for easier grabbing) */}
+                            <rect 
+                                x={cx - 15} 
+                                y={padding.top} 
+                                width="30" 
+                                height={height - padding.top - padding.bottom} 
+                                fill="transparent" 
+                            />
+                            
+                            {/* Visual Divider Line */}
+                            <line 
+                                x1={cx} y1={padding.top} 
+                                x2={cx} y2={height - padding.bottom} 
+                                stroke={isDragging ? "#ffffff" : "#a38cde"} 
+                                strokeWidth="2" 
+                                strokeDasharray={isDragging ? "none" : "2,2"}
+                            />
+
+                            {/* Center Grabber Pill */}
+                            <rect 
+                                x={cx - 6} 
+                                y={(height / 2) - 15} 
+                                width="12" 
+                                height="30" 
+                                rx="3" 
+                                fill={isDragging ? "#00f0ff" : "#140632"} 
+                                stroke={isDragging ? "#ffffff" : "#00f0ff"} 
+                                strokeWidth="2"
+                                className="transition-all duration-100"
+                            />
+                            {/* Grip Lines */}
+                            <line x1={cx - 2} y1={(height / 2) - 5} x2={cx - 2} y2={(height / 2) + 5} stroke={isDragging ? "#000" : "#00f0ff"} strokeWidth="1" />
+                            <line x1={cx + 2} y1={(height / 2) - 5} x2={cx + 2} y2={(height / 2) + 5} stroke={isDragging ? "#000" : "#00f0ff"} strokeWidth="1" />
+                        </g>
+                    )
+                })}
+              </svg>
+            </div>
+          );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<GPXSegmenter />);
+    </script>
+</body>
+</html>
