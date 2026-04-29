@@ -165,14 +165,11 @@
           });
         };
 
-        // Linear interpolation to get elevation at any exact distance
         const getElevationAt = (targetDist, points) => {
             if (!points || points.length === 0) return 0;
             if (targetDist <= points[0].dist) return points[0].ele;
             if (targetDist >= points[points.length-1].dist) return points[points.length-1].ele;
 
-            // Since we need to do this often, a linear scan is okay given array sizes aren't massive (usually < 10k points)
-            // A binary search would be faster but for this use case logic simplicity is preferred
             for (let i = 0; i < points.length - 1; i++) {
                 if (targetDist >= points[i].dist && targetDist <= points[i+1].dist) {
                     const p1 = points[i];
@@ -190,23 +187,14 @@
         const ClimbDetailModal = ({ climb, allPoints, onClose, units, unitLabels }) => {
             if (!climb) return null;
 
-            // 1. Calculate Segments
+            // 1. Calculate Segments for the Table (strictly the climb itself)
             const segments = useMemo(() => {
-                // Dynamic Segmentation Logic:
-                // Goal: ~250m (0.25km) segments for longer climbs.
-                // Constraints: Min 10, Max 40.
-                
                 const targetLen = units === 'metric' ? 0.25 : 0.155; // 250m or ~0.15 miles
                 const optimalCount = Math.round(climb.lengthKm / targetLen);
                 const segmentCount = Math.max(10, Math.min(30, optimalCount));
 
                 const segmentLength = climb.lengthKm / segmentCount;
                 const result = [];
-                
-                // Determine unit multiplier for gradient calculation
-                // Gradient % = (Elevation Change / Distance Change) * 100
-                // If units=metric: Ele in M, Dist in KM. Denom factor = 1000.
-                // If units=imperial: Ele in Ft, Dist in Mi. Denom factor = 5280.
                 const denomFactor = units === 'metric' ? 1000 : 5280;
 
                 for(let i=0; i<segmentCount; i++) {
@@ -232,6 +220,52 @@
                 return result;
             }, [climb, allPoints, units]);
 
+            // 2. Calculate Display Segments for the Chart (enforcing min 1.5km X-axis)
+            const { displaySegments, displayStart, displayRange } = useMemo(() => {
+                const minXRange = units === 'metric' ? 1.5 : 0.932; // 1.5km or ~0.932mi
+                let dRange = Math.max(climb.lengthKm, minXRange);
+                let dStart = climb.startDist;
+                let dEnd = climb.startDist + dRange;
+                
+                const maxRouteDist = allPoints[allPoints.length-1]?.dist || dEnd;
+                
+                // Center the climb if the window is artificially expanded
+                if (climb.lengthKm < minXRange) {
+                    const extra = minXRange - climb.lengthKm;
+                    dStart = Math.max(0, climb.startDist - (extra / 2));
+                    dEnd = dStart + minXRange;
+                    // Clamp to route boundaries
+                    if (dEnd > maxRouteDist) {
+                        dEnd = maxRouteDist;
+                        dStart = Math.max(0, dEnd - minXRange);
+                    }
+                    dRange = dEnd - dStart;
+                }
+                
+                const targetLen = units === 'metric' ? 0.1 : 0.062; // High res for drawing
+                const segmentCount = Math.max(20, Math.min(60, Math.round(dRange / targetLen)));
+                const segmentLength = dRange / segmentCount;
+                const result = [];
+                const denomFactor = units === 'metric' ? 1000 : 5280;
+
+                for(let i=0; i<segmentCount; i++) {
+                    const startDist = dStart + (i * segmentLength);
+                    const endDist = Math.min(dEnd, startDist + segmentLength);
+                    if (endDist - startDist < 0.001) continue;
+                    
+                    const startEle = getElevationAt(startDist, allPoints);
+                    const endEle = getElevationAt(endDist, allPoints);
+                    const gain = endEle - startEle;
+                    const gradient = (gain / ((endDist - startDist) * denomFactor)) * 100;
+                    
+                    const midPoint = (startDist + endDist) / 2;
+                    const isClimb = midPoint >= climb.startDist && midPoint <= climb.endDist;
+
+                    result.push({ startDist, endDist, startEle, endEle, gradient, isClimb });
+                }
+                return { displaySegments: result, displayStart: dStart, displayRange: dRange };
+            }, [climb, allPoints, units]);
+
             // Chart Dimensions
             const width = 800;
             const height = 300;
@@ -239,16 +273,32 @@
             const chartW = width - (padding*2);
             const chartH = height - (padding*2);
 
-            // Chart Scales
-            const minEle = Math.min(...segments.map(s => Math.min(s.startEle, s.endEle)));
-            const maxEle = Math.max(...segments.map(s => Math.max(s.startEle, s.endEle)));
-            const eleRange = maxEle - minEle || 100; // prevent div by zero
+            // Chart Scales with 10% Y-axis rule constraint
+            const distMeters = units === 'metric' ? displayRange * 1000 : displayRange * 5280;
+            const minEleRangeLimit = distMeters * 0.10; // Y-axis must be at least 10% of X-axis
+
+            const minEleActual = Math.min(...displaySegments.map(s => Math.min(s.startEle, s.endEle)));
+            const maxEleActual = Math.max(...displaySegments.map(s => Math.max(s.startEle, s.endEle)));
+            const actualEleRange = (maxEleActual - minEleActual) || 10;
             
-            const getX = (dist) => padding + ((dist - climb.startDist) / climb.lengthKm) * chartW;
+            // Add slight padding to actual elevations
+            const paddedMinEle = minEleActual - (actualEleRange * 0.1);
+            const paddedMaxEle = maxEleActual + (actualEleRange * 0.1);
+            const paddedRange = paddedMaxEle - paddedMinEle;
+            
+            // Apply the 10% minimum rule
+            const finalEleRange = Math.max(paddedRange, minEleRangeLimit);
+            
+            const eleCenter = (paddedMinEle + paddedMaxEle) / 2;
+            const minEle = eleCenter - (finalEleRange / 2);
+            const maxEle = eleCenter + (finalEleRange / 2);
+            const eleRange = finalEleRange;
+            
+            const getX = (dist) => padding + ((dist - displayStart) / displayRange) * chartW;
             const getY = (ele) => (height - padding) - ((ele - minEle) / eleRange) * chartH;
 
-            // Build SVG Paths
-            const segmentPaths = segments.map((seg, i) => {
+            // Build SVG Paths from displaySegments
+            const segmentPaths = displaySegments.map((seg, i) => {
                 const x1 = getX(seg.startDist);
                 const x2 = getX(seg.endDist);
                 const y1 = getY(seg.startEle);
@@ -260,13 +310,17 @@
             });
             
             // Build Line for top
-            const linePath = segments.map((seg, i) => {
+            const linePath = displaySegments.map((seg, i) => {
                  const x1 = getX(seg.startDist);
                  const x2 = getX(seg.endDist);
                  const y1 = getY(seg.startEle);
                  const y2 = getY(seg.endEle);
                  return `${i===0 ? 'M' : 'L'} ${x1} ${y1} L ${x2} ${y2}`;
             }).join(' ');
+
+            // Calculate label spacing to prevent overlapping when many context segments exist
+            const climbDisplaySegments = displaySegments.filter(s => s.isClimb);
+            const labelSkip = Math.max(1, Math.ceil(climbDisplaySegments.length / 15));
 
             return (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
@@ -293,7 +347,12 @@
                         {/* Content */}
                         <div className="p-6">
                             <div className="bg-[#1a053a] rounded border border-[#6c3f9c] p-4 mb-6 relative">
-                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider">Segment Analysis ({segments.length} splits)</h3>
+                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider flex justify-between items-center">
+                                    Visual Profile
+                                    {displayRange > climb.lengthKm + 0.05 && (
+                                        <span className="text-neutral-400 text-xs font-roboto lowercase">showing full {(displayRange).toFixed(1)}{unitLabels.dist} context window</span>
+                                    )}
+                                </h3>
                                 
                                 <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
                                     {/* Grid Lines Y */}
@@ -309,36 +368,59 @@
                                     })}
 
                                     {/* Segments */}
-                                    {segmentPaths.map((seg, i) => (
-                                        <g key={i}>
-                                            <path d={seg.d} fill={seg.color} opacity="0.6" stroke="none" />
-                                            {/* Gradient Text */}
-                                            <text 
-                                                x={(getX(seg.startDist) + getX(seg.endDist)) / 2} 
-                                                y={(getY(seg.endEle)) - 10} 
-                                                textAnchor="middle" 
-                                                fill="#fff" 
-                                                fontSize="10" 
-                                                fontWeight="bold"
-                                                className="drop-shadow-md"
-                                            >
-                                                {seg.gradient.toFixed(0)}%
-                                            </text>
-                                        </g>
-                                    ))}
+                                    {segmentPaths.map((seg, i) => {
+                                        const isClimb = seg.isClimb;
+                                        const climbIdx = isClimb ? climbDisplaySegments.findIndex(s => s.startDist === seg.startDist) : -1;
+                                        const shouldLabel = isClimb && (climbIdx % labelSkip === 0);
+                                        
+                                        return (
+                                            <g key={i}>
+                                                <path d={seg.d} fill={isClimb ? seg.color : '#6c3f9c'} opacity={isClimb ? "0.6" : "0.15"} stroke="none" />
+                                                {/* Gradient Text */}
+                                                {shouldLabel && (
+                                                    <text 
+                                                        x={(getX(seg.startDist) + getX(seg.endDist)) / 2} 
+                                                        y={(getY(seg.endEle)) - 10} 
+                                                        textAnchor="middle" 
+                                                        fill="#fff" 
+                                                        fontSize="10" 
+                                                        fontWeight="bold"
+                                                        className="drop-shadow-md"
+                                                    >
+                                                        {seg.gradient.toFixed(0)}%
+                                                    </text>
+                                                )}
+                                            </g>
+                                        );
+                                    })}
                                     
                                     {/* Line Top */}
                                     <path d={linePath} fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 
+                                    {/* Context Markers (drawn if context is present) */}
+                                    {climb.startDist - displayStart > 0.05 && (
+                                        <g>
+                                            <line x1={getX(climb.startDist)} y1={padding} x2={getX(climb.startDist)} y2={height-padding} stroke="#00FFFF" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
+                                            <text x={getX(climb.startDist)} y={padding - 5} fill="#00FFFF" fontSize="9" textAnchor="middle" fontFamily="Oswald">START</text>
+                                        </g>
+                                    )}
+                                    {(displayStart + displayRange) - climb.endDist > 0.05 && (
+                                        <g>
+                                            <line x1={getX(climb.endDist)} y1={padding} x2={getX(climb.endDist)} y2={height-padding} stroke="#00FFFF" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
+                                            <text x={getX(climb.endDist)} y={padding - 5} fill="#00FFFF" fontSize="9" textAnchor="middle" fontFamily="Oswald">END</text>
+                                        </g>
+                                    )}
+
                                     {/* X Axis */}
                                     <line x1={padding} y1={height-padding} x2={width-padding} y2={height-padding} stroke="#6c3f9c" strokeWidth="1" />
-                                    <text x={padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="start">{climb.startDist.toFixed(1)}</text>
-                                    <text x={width-padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="end">{climb.endDist.toFixed(1)} {unitLabels.dist}</text>
+                                    <text x={padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="start">{displayStart.toFixed(1)}</text>
+                                    <text x={width-padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="end">{(displayStart + displayRange).toFixed(1)} {unitLabels.dist}</text>
                                 </svg>
                             </div>
 
-                            {/* Detailed Table */}
+                            {/* Detailed Table (strictly bound to the climb) */}
                             <div className="overflow-x-auto">
+                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider mt-2">Climb Segment Breakdown ({segments.length} splits)</h3>
                                 <table className="w-full text-sm text-left">
                                     <thead className="bg-[#4a217c] text-neutral-300 font-oswald uppercase text-xs">
                                         <tr>
