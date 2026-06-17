@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX Route Fixer for Virtual Cycling</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Leaflet CSS & JS for Mapping -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts for the new aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;1,800&family=Teko:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        .font-teko { font-family: 'Teko', sans-serif; }
+        #map { height: 100%; min-height: 400px; z-index: 10; background-color: #161129; }
+        .slider-label { display: flex; justify-content: space-between; margin-bottom: 0.25rem; }
+        
+        /* Dark Map Trick: Inverts map tiles and hue rotates to match a dark purple/blue theme */
+        .leaflet-layer,
+        .leaflet-control-zoom-in,
+        .leaflet-control-zoom-out,
+        .leaflet-control-attribution {
+            filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(110%);
+        }
+
+        /* Custom Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #64e6e0;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 0 10px rgba(100, 230, 224, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #3c2f6d;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-[#161129] text-white h-screen flex flex-col md:flex-row overflow-hidden">
+
+    <!-- Sidebar / Controls -->
+    <div class="w-full md:w-[450px] bg-[#241c44] border-r border-[#3d2f6d] flex flex-col h-full z-20 overflow-y-auto">
+        <div class="p-8 pb-4">
+            <h1 class="text-4xl font-extrabold italic flex items-center gap-3 text-white uppercase tracking-wider font-teko">
+                <i data-lucide="activity" class="text-[#64e6e0] w-8 h-8"></i> GPX Route Fixer
+            </h1>
+            <p class="text-[#b1a2e2] text-[10px] font-bold mt-1 uppercase tracking-[0.2em]">
+                Physics-Aware GPX Aligner
+            </p>
+        </div>
+
+        <div class="p-6 flex-grow flex flex-col gap-6">
+            <!-- File Upload -->
+            <div class="border border-[#3d2f6d] bg-[#241c44] p-5 rounded-sm">
+                <div class="flex items-center justify-center w-full">
+                    <label class="flex flex-col items-center justify-center w-full h-32 border border-[#3d2f6d] border-dashed rounded-sm cursor-pointer bg-[#191430] hover:bg-[#1e183a] transition">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <i data-lucide="upload-cloud" class="w-8 h-8 text-[#b1a2e2] mb-2"></i>
+                            <p class="text-sm text-[#b1a2e2] font-bold uppercase tracking-widest" id="file-name-display">Upload GPX File</p>
+                        </div>
+                        <input id="gpx-upload" type="file" class="hidden" accept=".gpx" />
+                    </label>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="bg-[#241c44] p-5 rounded-sm border border-[#3d2f6d]">
+                <h3 class="text-[11px] font-bold text-[#b1a2e2] uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                    <i data-lucide="sliders" class="w-4 h-4 text-[#64e6e0]"></i> Algorithm Settings
+                </h3>
+                
+                <div class="mb-6">
+                    <div class="slider-label">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Min Route Separation</span>
+                        <span class="text-xs font-bold text-[#64e6e0]" id="val-min-dist">200m</span>
+                    </div>
+                    <input type="range" id="min-dist" min="50" max="1000" step="50" value="200" class="w-full">
+                </div>
+
+                <div>
+                    <div class="slider-label">
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Snap Threshold</span>
+                        <span class="text-xs font-bold text-[#64e6e0]" id="val-snap-dist">5m</span>
+                    </div>
+                    <input type="range" id="snap-dist" min="1" max="50" step="1" value="5" class="w-full">
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div id="stats-panel" class="hidden bg-[#191430] border border-[#3d2f6d] p-5 rounded-sm">
+                <h3 class="text-[11px] font-bold text-[#b1a2e2] uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                    <i data-lucide="bar-chart-2" class="w-4 h-4 text-[#64e6e0]"></i> Processing Results
+                </h3>
+                <ul class="text-sm text-white space-y-3 font-bold uppercase tracking-wider">
+                    <li class="flex justify-between">Original points: <span id="stat-orig" class="text-[#64e6e0]">0</span></li>
+                    <li class="flex justify-between">New points: <span id="stat-fixed" class="text-[#64e6e0]">0</span></li>
+                    <li class="flex justify-between text-[#b1a2e2]">Re-aligned: <span id="stat-snapped" class="text-green-400">0</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-[#3d2f6d] bg-[#241c44]">
+            <button id="download-btn" disabled class="w-full flex items-center justify-center gap-2 bg-[#191430] text-[#5b4a9b] font-bold py-4 px-4 rounded-sm uppercase tracking-widest cursor-not-allowed transition duration-200 text-sm">
+                <i data-lucide="download" class="w-5 h-5"></i> Download Fixed GPX
+            </button>
+        </div>
+    </div>
+
+    <!-- Map Area -->
+    <div class="flex-grow relative h-full bg-[#161129]">
+        <div id="map"></div>
+        
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="hidden absolute inset-0 bg-[#161129]/90 z-[1000] flex flex-col items-center justify-center backdrop-blur-sm">
+            <i data-lucide="loader-2" class="w-12 h-12 text-[#64e6e0] animate-spin mb-4"></i>
+            <h2 class="text-2xl font-bold text-white uppercase tracking-wider font-teko">Processing Route...</h2>
+            <p class="text-[#b1a2e2] mt-2 uppercase tracking-widest text-xs font-bold">Aligning out-and-back segments</p>
+        </div>
+        
+        <!-- Map Legend -->
+        <div class="absolute bottom-6 right-6 z-[400] bg-[#241c44] p-4 rounded-sm border border-[#3d2f6d] text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-6 h-[4px] bg-[#ff2a6d] opacity-80 rounded"></div>
+                <span class="text-white">Original Track</span>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-6 h-[2px] bg-[#8d7ebc] rounded"></div>
+                <span class="text-white">New Route</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-[3px] bg-[#64e6e0] rounded"></div>
+                <span class="text-[#64e6e0]">Aligned Out-and-Back</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Map Initialization
+        const map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        let originalLayer = null;
+        let baseNewLayer = null;
+        let snappedLayersGroup = L.featureGroup();
+
+        // State
+        let rawXMLDoc = null;
+        let originalPoints = [];
+        let fixedPoints = [];
+        let finalXMLString = "";
+        let originalFileName = "route.gpx";
+
+        // Utility: Haversine distance in meters
+        function haversine(lat1, lon1, lat2, lon2) {
+            const R = 6371e3;
+            const p1 = lat1 * Math.PI/180;
+            const p2 = lat2 * Math.PI/180;
+            const dp = (lat2-lat1) * Math.PI/180;
+            const dl = (lon2-lon1) * Math.PI/180;
+            const a = Math.sin(dp/2) * Math.sin(dp/2) +
+                      Math.cos(p1) * Math.cos(p2) *
+                      Math.sin(dl/2) * Math.sin(dl/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // DOM Elements
+        const fileUpload = document.getElementById('gpx-upload');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const minDistSlider = document.getElementById('min-dist');
+        const snapDistSlider = document.getElementById('snap-dist');
+        const valMinDist = document.getElementById('val-min-dist');
+        const valSnapDist = document.getElementById('val-snap-dist');
+        const downloadBtn = document.getElementById('download-btn');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const statsPanel = document.getElementById('stats-panel');
+
+        // Event Listeners for UI
+        minDistSlider.addEventListener('input', (e) => {
+            valMinDist.textContent = e.target.value + 'm';
+        });
+        
+        snapDistSlider.addEventListener('input', (e) => {
+            valSnapDist.textContent = e.target.value + 'm';
+        });
+
+        // Reprocess when sliders change
+        minDistSlider.addEventListener('change', processGPXData);
+        snapDistSlider.addEventListener('change', processGPXData);
+
+        fileUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            originalFileName = file.name;
+            fileNameDisplay.textContent = file.name;
+            fileNameDisplay.classList.remove('text-[#b1a2e2]');
+            fileNameDisplay.classList.add('text-[#64e6e0]');
+            
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                parseGPX(event.target.result);
+            };
+            reader.readAsText(file);
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (!finalXMLString) return;
+            const blob = new Blob([finalXMLString], { type: 'application/gpx+xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = originalFileName.replace('.gpx', '_fixed.gpx');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        function showLoading(show) {
+            if (show) loadingOverlay.classList.remove('hidden');
+            else loadingOverlay.classList.add('hidden');
+        }
+
+        function parseGPX(xmlString) {
+            showLoading(true);
+            
+            setTimeout(() => {
+                const parser = new DOMParser();
+                rawXMLDoc = parser.parseFromString(xmlString, "text/xml");
+                
+                // Extract points
+                const trkpts = rawXMLDoc.querySelectorAll('trkpt');
+                originalPoints = [];
+                let cumDist = 0;
+                let prevPt = null;
+
+                trkpts.forEach(pt => {
+                    const lat = parseFloat(pt.getAttribute('lat'));
+                    const lon = parseFloat(pt.getAttribute('lon'));
+                    const eleNode = pt.querySelector('ele');
+                    const ele = eleNode ? parseFloat(eleNode.textContent) : null;
+                    const timeNode = pt.querySelector('time');
+                    const time = timeNode ? new Date(timeNode.textContent).getTime() : null;
+
+                    if (prevPt) {
+                        cumDist += haversine(prevPt.lat, prevPt.lon, lat, lon);
+                    }
+
+                    const p = { lat, lon, ele, time, dist: cumDist, node: pt };
+                    originalPoints.push(p);
+                    prevPt = p;
+                });
+
+                if (originalPoints.length === 0) {
+                    alert("No track points found in this GPX file. Please ensure it contains <trkpt> elements.");
+                    showLoading(false);
+                    return;
+                }
+
+                processGPXData();
+            }, 100);
+        }
+
+        function processGPXData() {
+            if (originalPoints.length === 0) return;
+            showLoading(true);
+
+            setTimeout(() => {
+                const minLoopDist = parseFloat(minDistSlider.value);
+                const snapDist = parseFloat(snapDistSlider.value);
+                const maxJumpDist = 200; // max allowable canonical distance jump to interpolate
+
+                let canonicalPoints = [];
+                fixedPoints = [];
+                let last_matched_k = null;
+                let snappedCount = 0;
+
+                // Optimization boundary
+                const snapDistDeg = (snapDist / 111000) * 1.5; 
+
+                for (let i = 0; i < originalPoints.length; i++) {
+                    let p = originalPoints[i];
+                    let best_match = null;
+                    let candidates = [];
+
+                    // 1. Find overlapping points from earlier in the canonical path
+                    for (let j = 0; j < canonicalPoints.length; j++) {
+                        let c = canonicalPoints[j];
+                        if (p.dist - c.routeDist > minLoopDist) {
+                            // Fast bounding box check
+                            if (Math.abs(p.lat - c.lat) > snapDistDeg || Math.abs(p.lon - c.lon) > snapDistDeg) continue;
+                            
+                            let sDist = haversine(p.lat, p.lon, c.lat, c.lon);
+                            if (sDist <= snapDist) {
+                                candidates.push({ c, sDist, index: j });
+                            }
+                        }
+                    }
+
+                    // 2. Select best match (preferring continuity)
+                    if (candidates.length > 0) {
+                        if (last_matched_k !== null) {
+                            let localCandidates = candidates.filter(cand =>
+                                Math.abs(cand.c.routeDist - canonicalPoints[last_matched_k].routeDist) < maxJumpDist
+                            );
+                            if (localCandidates.length > 0) {
+                                best_match = localCandidates.reduce((prev, curr) => prev.sDist < curr.sDist ? prev : curr);
+                            } else {
+                                best_match = candidates.reduce((prev, curr) => prev.sDist < curr.sDist ? prev : curr);
+                            }
+                        } else {
+                            best_match = candidates.reduce((prev, curr) => prev.sDist < curr.sDist ? prev : curr);
+                        }
+                    }
+
+                    let new_points_to_output = [];
+
+                    // 3. Output Generation Logic
+                    if (best_match) {
+                        snappedCount++;
+                        let k = best_match.index;
+                        
+                        if (last_matched_k === null) {
+                            new_points_to_output.push(canonicalPoints[k]);
+                        } else {
+                            if (k !== last_matched_k) {
+                                let dist_jump = Math.abs(canonicalPoints[k].routeDist - canonicalPoints[last_matched_k].routeDist);
+                                if (dist_jump < maxJumpDist) {
+                                    // Fill in the exact canonical sequence between the last match and current match
+                                    let step = k > last_matched_k ? 1 : -1;
+                                    for (let m = last_matched_k + step; m !== k + step; m += step) {
+                                        new_points_to_output.push(canonicalPoints[m]);
+                                    }
+                                } else {
+                                    // Discontinuity, just snap without filling
+                                    new_points_to_output.push(canonicalPoints[k]);
+                                }
+                            }
+                        }
+                        last_matched_k = k;
+                    } else {
+                        // New path discovered
+                        let cp = { lat: p.lat, lon: p.lon, ele: p.ele, index: canonicalPoints.length, routeDist: p.dist };
+                        canonicalPoints.push(cp);
+                        new_points_to_output.push(cp);
+                        last_matched_k = null;
+                    }
+
+                    // 4. Time Interpolation
+                    if (new_points_to_output.length > 0) {
+                        let t_end = p.time;
+                        let t_start = fixedPoints.length > 0 ? fixedPoints[fixedPoints.length - 1].time : t_end;
+
+                        if (t_start !== null && t_end !== null && new_points_to_output.length > 1) {
+                            let segment_dists = [0];
+                            let total_seg_dist = 0;
+                            let prev_out_p = fixedPoints.length > 0 ? fixedPoints[fixedPoints.length - 1] : new_points_to_output[0];
+
+                            for (let m = 0; m < new_points_to_output.length; m++) {
+                                let cur_p = new_points_to_output[m];
+                                let d = haversine(prev_out_p.lat, prev_out_p.lon, cur_p.lat, cur_p.lon);
+                                total_seg_dist += d;
+                                segment_dists.push(total_seg_dist);
+                                prev_out_p = cur_p;
+                            }
+
+                            for (let m = 0; m < new_points_to_output.length; m++) {
+                                let fraction = total_seg_dist > 0 ? segment_dists[m+1] / total_seg_dist : 1;
+                                let t = t_start + (t_end - t_start) * fraction;
+                                fixedPoints.push({ ...new_points_to_output[m], time: t, isSnapped: !!best_match });
+                            }
+                        } else {
+                            for (let m = 0; m < new_points_to_output.length; m++) {
+                                fixedPoints.push({ ...new_points_to_output[m], time: t_end, isSnapped: !!best_match });
+                            }
+                        }
+                    }
+                }
+
+                updateMapAndUI(snappedCount);
+                buildXML();
+            }, 50);
+        }
+
+        function updateMapAndUI(snappedCount) {
+            // Update Stats
+            statsPanel.classList.remove('hidden');
+            document.getElementById('stat-orig').textContent = originalPoints.length;
+            document.getElementById('stat-fixed').textContent = fixedPoints.length;
+            document.getElementById('stat-snapped').textContent = snappedCount;
+
+            // Enable Download
+            downloadBtn.classList.remove('bg-[#191430]', 'text-[#5b4a9b]', 'cursor-not-allowed');
+            downloadBtn.classList.add('bg-[#64e6e0]', 'text-[#161129]', 'hover:bg-[#4bc2bd]', 'shadow-[0_0_15px_rgba(100,230,224,0.3)]');
+            downloadBtn.disabled = false;
+
+            // Clear old layers
+            if (originalLayer) map.removeLayer(originalLayer);
+            if (baseNewLayer) map.removeLayer(baseNewLayer);
+            snappedLayersGroup.clearLayers();
+
+            const origCoords = originalPoints.map(p => [p.lat, p.lon]);
+            const newCoords = fixedPoints.map(p => [p.lat, p.lon]);
+
+            // Draw original path in brighter neon pink
+            originalLayer = L.polyline(origCoords, { color: '#ff2a6d', weight: 4, opacity: 0.75 }).addTo(map);
+
+            // Draw the complete fixed path as a base (subtle muted violet)
+            baseNewLayer = L.polyline(newCoords, { color: '#8d7ebc', weight: 2, opacity: 0.9 }).addTo(map);
+
+            // Build and draw only the snapped sections in neon teal
+            let snappedSegments = [];
+            let currentSegment = [];
+
+            fixedPoints.forEach(p => {
+                if (p.isSnapped) {
+                    currentSegment.push([p.lat, p.lon]);
+                } else {
+                    if (currentSegment.length > 1) {
+                        snappedSegments.push(currentSegment);
+                    }
+                    currentSegment = [];
+                }
+            });
+            if (currentSegment.length > 1) {
+                snappedSegments.push(currentSegment);
+            }
+
+            snappedSegments.forEach(seg => {
+                const poly = L.polyline(seg, { color: '#64e6e0', weight: 4, opacity: 1.0 });
+                snappedLayersGroup.addLayer(poly);
+            });
+            snappedLayersGroup.addTo(map);
+
+            map.fitBounds(originalLayer.getBounds(), { padding: [20, 20] });
+            
+            showLoading(false);
+        }
+
+        function buildXML() {
+            const ns = "http://www.topografix.com/GPX/1/1";
+            const doc = document.implementation.createDocument(ns, "gpx", null);
+            const gpx = doc.documentElement;
+            gpx.setAttribute("version", "1.1");
+            gpx.setAttribute("creator", "GPX Route Fixer (Virtual Cycling)");
+
+            const trk = doc.createElementNS(ns, "trk");
+            const name = doc.createElementNS(ns, "name");
+            name.textContent = "Fixed Route";
+            trk.appendChild(name);
+
+            const trkseg = doc.createElementNS(ns, "trkseg");
+
+            fixedPoints.forEach(p => {
+                const trkpt = doc.createElementNS(ns, "trkpt");
+                trkpt.setAttribute("lat", p.lat.toFixed(6));
+                trkpt.setAttribute("lon", p.lon.toFixed(6));
+
+                if (p.ele !== null) {
+                    const ele = doc.createElementNS(ns, "ele");
+                    ele.textContent = p.ele.toFixed(2);
+                    trkpt.appendChild(ele);
+                }
+
+                if (p.time !== null) {
+                    const time = doc.createElementNS(ns, "time");
+                    time.textContent = new Date(p.time).toISOString();
+                    trkpt.appendChild(time);
+                }
+
+                trkseg.appendChild(trkpt);
+            });
+
+            trk.appendChild(trkseg);
+            gpx.appendChild(trk);
+
+            const serializer = new XMLSerializer();
+            finalXMLString = '<?xml version="1.0" encoding="UTF-8"?>\n' + serializer.serializeToString(doc);
+        }
+    </script>
+</body>
+</html>
