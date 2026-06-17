@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPX Route Fixer for Virtual Cycling</title>
+    <title>GPX Route Out and Back Alignment Tool</title>
     
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -62,10 +62,10 @@
     <div class="w-full md:w-[450px] bg-[#241c44] border-r border-[#3d2f6d] flex flex-col h-full z-20 overflow-y-auto">
         <div class="p-8 pb-4">
             <h1 class="text-4xl font-extrabold italic flex items-center gap-3 text-white uppercase tracking-wider font-teko">
-                <i data-lucide="activity" class="text-[#64e6e0] w-8 h-8"></i> GPX Route Fixer
+                <i data-lucide="activity" class="text-[#64e6e0] w-8 h-8"></i> GPX Route Out and Back and Circuit Alignment Tool
             </h1>
             <p class="text-[#b1a2e2] text-[10px] font-bold mt-1 uppercase tracking-[0.2em]">
-                Physics-Aware GPX Aligner
+                Aligns points in overlapping sections of a gpx course
             </p>
         </div>
 
@@ -94,7 +94,7 @@
                         <span class="text-xs font-bold text-white uppercase tracking-wider">Min Route Separation</span>
                         <span class="text-xs font-bold text-[#64e6e0]" id="val-min-dist">200m</span>
                     </div>
-                    <input type="range" id="min-dist" min="50" max="1000" step="50" value="200" class="w-full">
+                    <input type="range" id="min-dist" min="50" max="5000" step="50" value="200" class="w-full">
                 </div>
 
                 <div>
@@ -102,7 +102,7 @@
                         <span class="text-xs font-bold text-white uppercase tracking-wider">Snap Threshold</span>
                         <span class="text-xs font-bold text-[#64e6e0]" id="val-snap-dist">5m</span>
                     </div>
-                    <input type="range" id="snap-dist" min="1" max="50" step="1" value="5" class="w-full">
+                    <input type="range" id="snap-dist" min="1" max="100" step="1" value="5" class="w-full">
                 </div>
             </div>
 
