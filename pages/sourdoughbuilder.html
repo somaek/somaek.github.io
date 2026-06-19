@@ -383,9 +383,10 @@
                 // Levain Build (20% inoculation)
                 // Seed = 20% of levain flour. Water = starterHydration * levain flour
                 // TotalStarterWeight = Seed + LevainFlour + LevainWater = 0.2*F + F + H*F = F*(1.2 + H)
-                const levainFlour = totalStarterWeight / (1.4 + starterHydration);
-                const levainWater = levainFlour * starterHydration;
-                const levainSeed = levainFlour * 0.4;
+                const levainSeed = totalStarterWeight * 0.2;
+                const levainFlour = totalStarterWeight / (1 + starterHydration) - levainSeed / (1 + starterhydration);
+                const levainWater = totalStarterWeight - levainSeed - levainFlour;
+                
 
                 levainBuild = [
                     { name: "Mother Starter", weight: levainSeed, note: "20% Inoculation" },
