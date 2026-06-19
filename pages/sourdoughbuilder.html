@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Bit Sourdough Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #2b2b2b;
+            color: #d3d3d3;
+            background-image: 
+                linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222), 
+                linear-gradient(45deg, #222 25%, transparent 25%, transparent 75%, #222 75%, #222);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        .pixel-box {
+            background-color: #000;
+            border: 4px solid #fff;
+            box-shadow: 
+                inset -4px -4px 0px 0px rgba(255,255,255,0.3),
+                8px 8px 0px 0px rgba(0,0,0,0.5);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pixel-input, .pixel-select {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #fff;
+            color: #000;
+            border: 4px solid #888;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 5px;
+            outline: none;
+        }
+
+        .pixel-input:focus, .pixel-select:focus {
+            border-color: #ffd700;
+        }
+
+        .pixel-button {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #e52521;
+            color: #fff;
+            border: 4px solid #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            box-shadow: inset -4px -4px 0px 0px rgba(0,0,0,0.3);
+            transition: all 0.1s;
+        }
+
+        .pixel-button:active {
+            box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.5);
+            transform: translate(4px, 4px);
+        }
+
+        .pixel-toggle {
+            appearance: none;
+            width: 40px;
+            height: 20px;
+            background: #888;
+            border: 4px solid #fff;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .pixel-toggle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-right: 4px solid #000;
+            transition: 0.2s;
+        }
+
+        .pixel-toggle:checked {
+            background: #4caf50;
+        }
+
+        .pixel-toggle:checked::after {
+            left: 20px;
+            border-right: none;
+            border-left: 4px solid #000;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px dashed #555;
+            padding: 8px 0;
+        }
+        
+        .header-text {
+            color: #ffd700;
+            text-shadow: 2px 2px #e52521;
+        }
+
+        .info-text {
+            font-size: 0.6rem;
+            color: #aaa;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .tab-btn {
+            background-color: #555;
+            border-bottom: none;
+            margin-right: 4px;
+        }
+        .tab-btn.active {
+            background-color: #000;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen flex justify-center text-xs md:text-sm">
+
+    <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Controls Column -->
+        <div>
+            <div class="text-center mb-8">
+                <h1 class="text-2xl md:text-3xl header-text mb-4">Level Up<br>Your Loaf</h1>
+                <p class="text-xs">8-Bit Recipe Generator</p>
+            </div>
+
+            <div class="pixel-box">
+                <h2 class="text-lg text-[#4caf50] mb-4">Settings</h2>
+                
+                <div class="mb-4">
+                    <label>Recipe Preset:</label>
+                    <select id="preset-select" class="pixel-select mt-2">
+                        <option value="custom">Custom Build</option>
+                        <option value="classic">Classic Sourdough (Rustic)</option>
+                        <option value="sandwich">Soft Sandwich Bread</option>
+                        <option value="brioche">Rich Brioche Style</option>
+                        <option value="pizza">Pizza Dough</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center justify-between mb-6 p-2 bg-[#333] border-2 border-[#555]">
+                    <span>Use Commercial Yeast?</span>
+                    <input type="checkbox" id="yeast-toggle" class="pixel-toggle">
+                </div>
+            </div>
+
+            <div class="pixel-box">
+                <h2 class="text-lg text-[#00bcd4] mb-4">Core Stats</h2>
+                
+                <div class="mb-4">
+                    <label>Total Flour (g):</label>
+                    <input type="number" id="total-flour" class="pixel-input" value="500" min="100" step="50">
+                    <span class="info-text">Total flour in final dough (including starter).</span>
+                </div>
+
+                <div class="mb-4">
+                    <label>Target Hydration (%):</label>
+                    <input type="number" id="target-hydration" class="pixel-input" value="70" min="50" max="100">
+                    <span class="info-text">Ratio of total water to total flour. Recommended: 65-75% for beginners.</span>
+                </div>
+
+                <div class="mb-4">
+                    <label>Salt (%):</label>
+                    <input type="number" id="salt-percent" class="pixel-input" value="2" min="0" max="4" step="0.1">
+                    <span class="info-text">Standard is 1.8% - 2.2%.</span>
+                </div>
+            </div>
+
+            <div class="pixel-box" id="starter-section">
+                <h2 class="text-lg text-[#ff9800] mb-4">Starter Setup</h2>
+                
+                <div class="mb-4">
+                    <label>Starter Amount (%):</label>
+                    <input type="number" id="starter-percent" class="pixel-input" value="20" min="5" max="50">
+                    <span class="info-text">Percent of total flour. Standard is 20%.</span>
+                </div>
+
+                <div class="mb-4">
+                    <label>Starter Hydration (%):</label>
+                    <input type="number" id="starter-hydration" class="pixel-input" value="100" min="50" max="200">
+                    <span class="info-text">Standard 1:1 feeding is 100%.</span>
+                </div>
+            </div>
+
+            <div class="pixel-box">
+                <h2 class="text-lg text-[#e91e63] mb-4">Enrichments (%)</h2>
+                <span class="info-text mb-4">Baker's % relative to total flour.</span>
+                
+                <div class="mb-4">
+                    <label>Sugar/Honey:</label>
+                    <input type="number" id="sugar-percent" class="pixel-input" value="0" min="0" max="30" step="0.5">
+                    <span class="info-text">Classic: 0%, Sandwich: 5-10%, Brioche: ~15%</span>
+                </div>
+
+                <div class="mb-4">
+                    <label>Oil/Butter:</label>
+                    <input type="number" id="fat-percent" class="pixel-input" value="0" min="0" max="50" step="0.5">
+                    <span class="info-text">Classic: 0%, Sandwich: 5-8%, Brioche: 20-50%</span>
+                </div>
+                
+                 <div class="mb-4">
+                    <label>Milk (replaces water):</label>
+                    <input type="number" id="milk-percent" class="pixel-input" value="0" min="0" max="100" step="5">
+                    <span class="info-text">Percent of *total liquid* that is milk.</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="sticky top-8">
+                <div id="export-container" class="pixel-box border-[#ffd700]">
+                    <h2 class="text-xl header-text mb-6 text-center">Final Recipe</h2>
+                    
+                    <div id="recipe-output" class="bg-[#111] p-4 border-2 border-[#333]">
+                        <!-- Results will be injected here -->
+                    </div>
+
+                    <div id="action-buttons" class="mt-6 flex flex-col md:flex-row justify-center gap-4">
+                        <button id="calc-btn" class="pixel-button">CALCULATE</button>
+                        <button id="download-btn" class="pixel-button !bg-[#4caf50]">SAVE IMG</button>
+                    </div>
+                </div>
+                
+                <div class="pixel-box mt-4 bg-[#1a1a1a]">
+                     <h3 class="text-[#00bcd4] mb-2">Pro Tips:</h3>
+                     <ul id="tips-list" class="list-disc pl-4 text-[0.6rem] space-y-2 text-[#aaa]">
+                         <li>Adjust total flour to scale recipe up or down.</li>
+                         <li>Enrichments (sugar, fat) slow down fermentation.</li>
+                     </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const PRESETS = {
+            custom: { targetHydration: 70, saltPercent: 2, starterPercent: 20, starterHydration: 100, sugarPercent: 0, fatPercent: 0, milkPercent: 0, yeast: false },
+            classic: { targetHydration: 75, saltPercent: 2, starterPercent: 20, starterHydration: 100, sugarPercent: 0, fatPercent: 0, milkPercent: 0, yeast: false },
+            sandwich: { targetHydration: 65, saltPercent: 2, starterPercent: 15, starterHydration: 100, sugarPercent: 6, fatPercent: 6, milkPercent: 100, yeast: false },
+            brioche: { targetHydration: 50, saltPercent: 2, starterPercent: 25, starterHydration: 100, sugarPercent: 15, fatPercent: 40, milkPercent: 100, yeast: false },
+            pizza: { targetHydration: 68, saltPercent: 2.2, starterPercent: 10, starterHydration: 100, sugarPercent: 0, fatPercent: 3, milkPercent: 0, yeast: true }
+        };
+
+        // DOM Elements
+        const els = {
+            presetSelect: document.getElementById('preset-select'),
+            yeastToggle: document.getElementById('yeast-toggle'),
+            starterSection: document.getElementById('starter-section'),
+            totalFlour: document.getElementById('total-flour'),
+            targetHydration: document.getElementById('target-hydration'),
+            saltPercent: document.getElementById('salt-percent'),
+            starterPercent: document.getElementById('starter-percent'),
+            starterHydration: document.getElementById('starter-hydration'),
+            sugarPercent: document.getElementById('sugar-percent'),
+            fatPercent: document.getElementById('fat-percent'),
+            milkPercent: document.getElementById('milk-percent'),
+            recipeOutput: document.getElementById('recipe-output'),
+            calcBtn: document.getElementById('calc-btn'),
+            downloadBtn: document.getElementById('download-btn'),
+            tipsList: document.getElementById('tips-list')
+        };
+
+        function loadPreset(presetName) {
+            const preset = PRESETS[presetName];
+            if (!preset) return;
+
+            els.targetHydration.value = preset.targetHydration;
+            els.saltPercent.value = preset.saltPercent;
+            els.starterPercent.value = preset.starterPercent;
+            els.starterHydration.value = preset.starterHydration;
+            els.sugarPercent.value = preset.sugarPercent;
+            els.fatPercent.value = preset.fatPercent;
+            els.milkPercent.value = preset.milkPercent;
+            els.yeastToggle.checked = preset.yeast;
+            
+            toggleYeastMode();
+            calculateRecipe();
+        }
+
+        function toggleYeastMode() {
+            const isYeast = els.yeastToggle.checked;
+            if (isYeast) {
+                els.starterSection.style.opacity = '0.5';
+                els.starterSection.style.pointerEvents = 'none';
+                els.presetSelect.value = 'custom'; // Switch to custom if toggling manually
+            } else {
+                els.starterSection.style.opacity = '1';
+                els.starterSection.style.pointerEvents = 'auto';
+            }
+            calculateRecipe();
+        }
+
+        // Add event listeners to all inputs to trigger calculation on change
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                 els.presetSelect.value = 'custom'; // Customizing changes preset
+                 calculateRecipe();
+            });
+        });
+
+        els.presetSelect.addEventListener('change', (e) => loadPreset(e.target.value));
+        els.yeastToggle.addEventListener('change', toggleYeastMode);
+        els.calcBtn.addEventListener('click', calculateRecipe);
+
+        function calculateRecipe() {
+            // Get values
+            const totalFlour = parseFloat(els.totalFlour.value) || 0;
+            const targetHydration = parseFloat(els.targetHydration.value) / 100 || 0;
+            const saltPercent = parseFloat(els.saltPercent.value) / 100 || 0;
+            const sugarPercent = parseFloat(els.sugarPercent.value) / 100 || 0;
+            const fatPercent = parseFloat(els.fatPercent.value) / 100 || 0;
+            const milkPercentOfLiquid = parseFloat(els.milkPercent.value) / 100 || 0;
+            const isYeast = els.yeastToggle.checked;
+
+            let finalRecipe = [];
+            let levainBuild = null;
+            let totalDoughWeight = 0;
+            let tips = [];
+
+            // Base calculations
+            const totalLiquid = totalFlour * targetHydration;
+            const saltWeight = totalFlour * saltPercent;
+            const sugarWeight = totalFlour * sugarPercent;
+            const fatWeight = totalFlour * fatPercent;
+
+            if (isYeast) {
+                // Commercial Yeast Logic
+                // Standard baker's percent for instant yeast is usually ~1% for active dry, 0.7% for instant.
+                // Using requested 2% (which is quite high for instant, usually used for fresh yeast, but following instructions)
+                const yeastWeight = totalFlour * 0.02; 
+                
+                const milkWeight = totalLiquid * milkPercentOfLiquid;
+                const waterWeight = totalLiquid - milkWeight;
+
+                finalRecipe.push({ name: "Main Flour", weight: totalFlour, note: "100%" });
+                if(waterWeight > 0) finalRecipe.push({ name: "Water", weight: waterWeight, note: `${(waterWeight/totalFlour*100).toFixed(1)}%` });
+                if(milkWeight > 0) finalRecipe.push({ name: "Milk", weight: milkWeight, note: `${(milkWeight/totalFlour*100).toFixed(1)}%` });
+                finalRecipe.push({ name: "Commercial Yeast", weight: yeastWeight, note: "2.0%", color: "#4caf50" });
+                
+                tips.push("Using 2% commercial yeast will lead to a very fast rise. Watch your dough closely!");
+
+            } else {
+                // Sourdough Logic
+                const starterPercent = parseFloat(els.starterPercent.value) / 100 || 0;
+                const starterHydration = parseFloat(els.starterHydration.value) / 100 || 0;
+
+                // 1. Calculate Total Starter Weight
+                const totalStarterWeight = totalFlour * starterPercent;
+
+                // 2. Break down Starter into Flour and Water
+                // Starter Hydration = StarterWater / StarterFlour
+                // TotalStarter = StarterFlour + StarterWater = StarterFlour + (StarterFlour * StarterHydration)
+                // TotalStarter = StarterFlour * (1 + StarterHydration)
+                const starterFlourWeight = totalStarterWeight / (1 + starterHydration);
+                const starterWaterWeight = totalStarterWeight - starterFlourWeight;
+
+                // 3. Calculate Main Dough additions needed
+                const mainFlourWeight = totalFlour - starterFlourWeight;
+                const totalLiquidNeeded = totalLiquid;
+                const mainLiquidWeight = totalLiquidNeeded - starterWaterWeight;
+
+                if (mainFlourWeight < 0 || mainLiquidWeight < 0) {
+                    els.recipeOutput.innerHTML = `<div class="text-[#e52521] text-center p-4">Error: Starter provides more flour or water than requested totals. Adjust percentages.</div>`;
+                    return;
+                }
+
+                // Levain Build (20% inoculation)
+                // Seed = 20% of levain flour. Water = starterHydration * levain flour
+                // TotalStarterWeight = Seed + LevainFlour + LevainWater = 0.2*F + F + H*F = F*(1.2 + H)
+                const levainFlour = totalStarterWeight / (1.2 + starterHydration);
+                const levainWater = levainFlour * starterHydration;
+                const levainSeed = levainFlour * 0.2;
+
+                levainBuild = [
+                    { name: "Mother Starter", weight: levainSeed, note: "20% Inoculation" },
+                    { name: "Feed Flour", weight: levainFlour, note: "For Levain" },
+                    { name: "Feed Water", weight: levainWater, note: "For Levain" }
+                ];
+
+                const milkWeight = mainLiquidWeight * milkPercentOfLiquid;
+                const waterWeight = mainLiquidWeight - milkWeight;
+
+                finalRecipe.push({ name: "Main Flour", weight: mainFlourWeight, note: "Add to bowl" });
+                if(waterWeight > 0) finalRecipe.push({ name: "Water", weight: waterWeight, note: "Add to bowl" });
+                if(milkWeight > 0) finalRecipe.push({ name: "Milk", weight: milkWeight, note: "Add to bowl" });
+                finalRecipe.push({ name: "Active Starter", weight: totalStarterWeight, note: `${(starterPercent*100).toFixed(0)}% Baker's`, color: "#ff9800" });
+                
+                // Add starter composition info to tips
+                tips.push(`Starter contributes ${starterFlourWeight.toFixed(0)}g flour and ${starterWaterWeight.toFixed(0)}g water.`);
+            }
+
+            // Common Additions
+            finalRecipe.push({ name: "Salt", weight: saltWeight, note: `${(saltPercent*100).toFixed(1)}% Baker's` });
+            if (sugarWeight > 0) finalRecipe.push({ name: "Sugar/Honey", weight: sugarWeight, note: `${(sugarPercent*100).toFixed(1)}% Baker's` });
+            if (fatWeight > 0) finalRecipe.push({ name: "Oil/Butter", weight: fatWeight, note: `${(fatPercent*100).toFixed(1)}% Baker's` });
+
+            // Render Output
+            renderOutput(finalRecipe, tips, levainBuild);
+        }
+
+        function renderOutput(recipe, extraTips, levainBuild) {
+            let html = '';
+            let totalWeight = 0;
+
+            recipe.forEach(item => {
+                const w = Math.round(item.weight);
+                totalWeight += w;
+                const colStyle = item.color ? `color: ${item.color};` : '';
+                html += `
+                    <div class="result-item">
+                        <span style="${colStyle}">${item.name}</span>
+                        <div class="text-right">
+                            <span class="text-white">${w}g</span>
+                            <span class="info-text mt-0">${item.note}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                <div class="result-item border-t-4 border-[#fff] mt-2 pt-2 border-dashed-none">
+                    <span class="text-[#00bcd4]">Total Dough Yield</span>
+                    <span class="text-white">${Math.round(totalWeight)}g</span>
+                </div>
+            `;
+
+            if (levainBuild) {
+                html += `
+                    <div class="mt-6 border-t-4 border-[#e91e63] pt-4">
+                        <h3 class="text-[#e91e63] mb-2 text-center text-[0.7rem]">Levain Build Prep</h3>
+                `;
+                levainBuild.forEach(item => {
+                    const w = Math.round(item.weight);
+                    html += `
+                        <div class="result-item text-xs border-[#333]">
+                            <span class="text-[#aaa]">${item.name}</span>
+                            <div class="text-right">
+                                <span class="text-white">${w}g</span>
+                                <span class="info-text mt-0">${item.note}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            els.recipeOutput.innerHTML = html;
+
+            // Update Tips
+            let tipsHtml = '';
+            if (parseFloat(els.targetHydration.value) > 78) tipsHtml += `<li>High hydration (${els.targetHydration.value}%)! Requires strong flour and good folding technique.</li>`;
+            if (parseFloat(els.fatPercent.value) > 10) tipsHtml += `<li>High fat content. Add butter/oil AFTER gluten has developed (late in mixing).</li>`;
+            if (parseFloat(els.sugarPercent.value) > 5) tipsHtml += `<li>Sugar slows yeast. Fermentation may take longer than standard lean doughs.</li>`;
+            
+            extraTips.forEach(tip => {
+                tipsHtml += `<li>${tip}</li>`;
+            });
+
+            if (tipsHtml === '') {
+                 tipsHtml = `<li>Adjust total flour to scale recipe up or down.</li><li>Enrichments (sugar, fat) slow down fermentation.</li>`;
+            }
+            els.tipsList.innerHTML = tipsHtml;
+        }
+
+        // Image Download Functionality
+        els.downloadBtn.addEventListener('click', () => {
+            const container = document.getElementById('export-container');
+            const btns = document.getElementById('action-buttons');
+            
+            // Hide buttons temporarily for clean screenshot
+            btns.style.display = 'none'; 
+
+            html2canvas(container, {
+                backgroundColor: '#222222', // Match the retro theme
+                scale: 2 // High resolution
+            }).then(canvas => {
+                btns.style.display = 'flex'; // Restore buttons
+                const link = document.createElement('a');
+                link.download = 'level-up-loaf-recipe.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                btns.style.display = 'flex';
+                console.error("Error generating image:", err);
+            });
+        });
+
+        // Initialize on load
+        calculateRecipe();
+
+    </script>
+</body>
+</html>
