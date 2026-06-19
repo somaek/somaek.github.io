@@ -219,6 +219,7 @@
 
         </div>
 
+        <!-- Output Column -->
         <div>
             <div class="sticky top-8">
                 <div id="export-container" class="pixel-box border-[#ffd700]">
@@ -364,9 +365,6 @@
                 const totalStarterWeight = totalFlour * starterPercent;
 
                 // 2. Break down Starter into Flour and Water
-                // Starter Hydration = StarterWater / StarterFlour
-                // TotalStarter = StarterFlour + StarterWater = StarterFlour + (StarterFlour * StarterHydration)
-                // TotalStarter = StarterFlour * (1 + StarterHydration)
                 const starterFlourWeight = totalStarterWeight / (1 + starterHydration);
                 const starterWaterWeight = totalStarterWeight - starterFlourWeight;
 
@@ -381,10 +379,9 @@
                 }
 
                 // Levain Build (20% inoculation)
-                // Seed = 20% of levain flour. Water = starterHydration * levain flour
-                // TotalStarterWeight = Seed + LevainFlour + LevainWater = 0.2*F + F + H*F = F*(1.2 + H)
                 const levainSeed = totalStarterWeight * 0.2;
-                const levainFlour = totalStarterWeight / (1 + starterHydration) - levainSeed / (1 + starterhydration);
+                // FIX: starterhydration -> starterHydration
+                const levainFlour = totalStarterWeight / (1 + starterHydration) - levainSeed / (1 + starterHydration);
                 const levainWater = totalStarterWeight - levainSeed - levainFlour;
                 
 
