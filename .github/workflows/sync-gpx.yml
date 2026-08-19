@@ -1,0 +1,47 @@
+name: Sync GPX from Google Drive
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs automatically once a day at midnight UTC
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install gdown
+        run: pip install gdown
+
+      - name: Download & Mirror GPX Files
+        run: |
+          mkdir -p temp_download gpx
+          
+          # Download folder recursively
+          gdown --folder "https://drive.google.com/drive/folders/1sCljOatUhO2-WRC-N9j3a1Y6Wp8xwyOU" -O temp_download --remaining-ok
+
+          # Identify source directory (gdown places downloads inside a subfolder named after the Drive folder)
+          SRC_DIR=$(find temp_download -maxdepth 1 -mindepth 1 -type d | head -n 1)
+          if [ -z "$SRC_DIR" ]; then SRC_DIR="temp_download"; fi
+
+          # Mirror folder tree and sync only .gpx files, pruning empty folders
+          rsync -avm --include='*/' --include='*.gpx' --include='*.GPX' --exclude='*' "$SRC_DIR/" gpx/
+
+          # Clean up temporary download directory
+          rm -rf temp_download
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "sync: update GPX files from Google Drive"
+          file_pattern: "gpx/**"
