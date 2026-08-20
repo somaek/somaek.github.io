@@ -55,35 +55,43 @@ jobs:
         run: |
           pip install gpxpy
           python -c '
-          import glob, json, gpxpy
+          import os, json, gpxpy
 
           data = []
-          for f_name in glob.glob("gpx/*.[gG][pP][xX]"):
-              try:
-                  with open(f_name, "r", encoding="utf-8") as f:
-                      gpx = gpxpy.parse(f)
+          # os.walk recursively searches all subfolders
+          for root, dirs, files in os.walk("gpx"):
+              for file in files:
+                  if file.lower().endswith(".gpx"):
+                      f_name = os.path.join(root, file)
                       
-                      # Extract metadata
-                      name = gpx.name or f_name.split("/")[-1]
-                      dist = (gpx.length_2d() / 1000) if gpx.length_2d() else 0
-                      up, _ = gpx.get_uphill_downhill()
-                      
-                      # Get starting coordinates
-                      lat, lon = None, None
-                      if gpx.tracks and gpx.tracks[0].segments and gpx.tracks[0].segments[0].points:
-                          pt = gpx.tracks[0].segments[0].points[0]
-                          lat, lon = round(pt.latitude, 4), round(pt.longitude, 4)
-                          
-                      data.append({
-                          "file": f_name.split("/")[-1],
-                          "name": name,
-                          "distance_km": round(dist, 2),
-                          "elevation_m": round(up if up else 0, 1),
-                          "lat": lat,
-                          "lon": lon
-                      })
-              except Exception as e:
-                  print(f"Skipped {f_name}: {e}")
+                      try:
+                          with open(f_name, "r", encoding="utf-8") as f:
+                              gpx = gpxpy.parse(f)
+                              
+                              # Extract metadata
+                              name = gpx.name or file
+                              dist = (gpx.length_2d() / 1000) if gpx.length_2d() else 0
+                              up, _ = gpx.get_uphill_downhill()
+                              
+                              # Get starting coordinates
+                              lat, lon = None, None
+                              if gpx.tracks and gpx.tracks[0].segments and gpx.tracks[0].segments[0].points:
+                                  pt = gpx.tracks[0].segments[0].points[0]
+                                  lat, lon = round(pt.latitude, 4), round(pt.longitude, 4)
+                              
+                              # Save the relative path so HTML download links work
+                              rel_path = os.path.relpath(f_name, "gpx")
+                              
+                              data.append({
+                                  "file": rel_path,
+                                  "name": name,
+                                  "distance_km": round(dist, 2),
+                                  "elevation_m": round(up if up else 0, 1),
+                                  "lat": lat,
+                                  "lon": lon
+                              })
+                      except Exception as e:
+                          print(f"Skipped {f_name}: {e}")
                   
           with open("gpx/index.json", "w", encoding="utf-8") as f:
               json.dump(data, f, indent=2)
