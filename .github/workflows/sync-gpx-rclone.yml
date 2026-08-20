@@ -104,7 +104,7 @@ jobs:
                       gain = end_p["ele"] - start_p["ele"]
                       grad = (gain / (dist * 1000)) * 100 if dist > 0 else 0
                       chunks.append({"start": start_p["dist"], "end": end_p["dist"], "gain": gain, "grad": grad})
-                      i = j - 1
+                      i = j # FIXED: Move the pointer forward to prevent infinite loops
                   else:
                       break
 
