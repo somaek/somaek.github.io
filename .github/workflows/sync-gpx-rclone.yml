@@ -42,7 +42,7 @@ jobs:
           mkdir -p gpx
           
           # Copy all .gpx files from the specific Google Drive folder id
-          rclone copy gdrive: gpx/ \
+          rclone sync gdrive: gpx/ \
             --drive-root-folder-id="1sCljOatUhO2-WRC-N9j3a1Y6Wp8xwyOU" \
             --include="*.gpx" \
             --include="*.GPX" \
