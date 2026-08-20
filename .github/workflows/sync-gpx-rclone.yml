@@ -68,8 +68,10 @@ jobs:
                           with open(f_name, "r", encoding="utf-8") as f:
                               gpx = gpxpy.parse(f)
                               
-                              # Extract metadata
-                              name = gpx.name or file
+                              # Use the file name (without .gpx) instead of internal metadata
+                              name = os.path.splitext(file)[0]
+                              
+                              # Extract distance and elevation
                               dist = (gpx.length_2d() / 1000) if gpx.length_2d() else 0
                               up, _ = gpx.get_uphill_downhill()
                               
