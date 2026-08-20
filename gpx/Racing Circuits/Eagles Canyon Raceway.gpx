@@ -1,0 +1,5512 @@
+<?xml version="1.0"?>
+<gpx version="1.0" creator="Marlin Track Mapper" xmlns="http://www.topografix.com/GPX/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+  <bounds minlat="33.3651983333" minlon="-97.4378438333" maxlat="33.3717230000" maxlon="-97.4268753333"/>               
+  <trk>
+    <name>Marlin Track Map</name>
+    <cmt>marklatdegs="33.3675665000" marklondegs="-97.4297295000" markcourse="306.4800000000" numpoints="917"</cmt>         
+    <trkseg>
+      <trkpt lat="33.3675665000" lon="-97.4297295000">
+        <ele>281.900000</ele>
+        <time>2018-03-17T13:39:34.40Z</time>
+        <course>306.48</course>
+        <name>point 1</name>
+      </trkpt>
+      <trkpt lat="33.3675936667" lon="-97.4297728333">
+        <ele>281.900000</ele>
+        <time>2018-03-17T13:39:34.60Z</time>
+        <course>306.62</course>
+        <name>point 2</name>
+      </trkpt>
+      <trkpt lat="33.3676205000" lon="-97.4298155000">
+        <ele>281.900000</ele>
+        <time>2018-03-17T13:39:34.80Z</time>
+        <course>306.83</course>
+        <name>point 3</name>
+      </trkpt>
+      <trkpt lat="33.3676471667" lon="-97.4298578333">
+        <ele>281.900000</ele>
+        <time>2018-03-17T13:39:35.00Z</time>
+        <course>306.84</course>
+        <name>point 4</name>
+      </trkpt>
+      <trkpt lat="33.3676736667" lon="-97.4298998333">
+        <ele>281.900000</ele>
+        <time>2018-03-17T13:39:35.20Z</time>
+        <course>306.83</course>
+        <name>point 5</name>
+      </trkpt>
+      <trkpt lat="33.3676996667" lon="-97.4299415000">
+        <ele>281.800000</ele>
+        <time>2018-03-17T13:39:35.40Z</time>
+        <course>306.84</course>
+        <name>point 6</name>
+      </trkpt>
+      <trkpt lat="33.3677255000" lon="-97.4299825000">
+        <ele>281.800000</ele>
+        <time>2018-03-17T13:39:35.60Z</time>
+        <course>306.92</course>
+        <name>point 7</name>
+      </trkpt>
+      <trkpt lat="33.3677510000" lon="-97.4300231667">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:39:35.80Z</time>
+        <course>306.82</course>
+        <name>point 8</name>
+      </trkpt>
+      <trkpt lat="33.3677763333" lon="-97.4300635000">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:39:36.00Z</time>
+        <course>306.84</course>
+        <name>point 9</name>
+      </trkpt>
+      <trkpt lat="33.3678015000" lon="-97.4301038333">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:39:36.20Z</time>
+        <course>306.78</course>
+        <name>point 10</name>
+      </trkpt>
+      <trkpt lat="33.3678265000" lon="-97.4301438333">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:36.40Z</time>
+        <course>306.69</course>
+        <name>point 11</name>
+      </trkpt>
+      <trkpt lat="33.3678513333" lon="-97.4301835000">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:36.60Z</time>
+        <course>306.79</course>
+        <name>point 12</name>
+      </trkpt>
+      <trkpt lat="33.3678760000" lon="-97.4302230000">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:36.80Z</time>
+        <course>306.66</course>
+        <name>point 13</name>
+      </trkpt>
+      <trkpt lat="33.3679003333" lon="-97.4302621667">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:37.00Z</time>
+        <course>306.60</course>
+        <name>point 14</name>
+      </trkpt>
+      <trkpt lat="33.3679243333" lon="-97.4303008333">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:37.20Z</time>
+        <course>306.58</course>
+        <name>point 15</name>
+      </trkpt>
+      <trkpt lat="33.3679480000" lon="-97.4303390000">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:37.40Z</time>
+        <course>306.57</course>
+        <name>point 16</name>
+      </trkpt>
+      <trkpt lat="33.3679713333" lon="-97.4303766667">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:37.60Z</time>
+        <course>306.47</course>
+        <name>point 17</name>
+      </trkpt>
+      <trkpt lat="33.3679941667" lon="-97.4304138333">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:37.80Z</time>
+        <course>306.41</course>
+        <name>point 18</name>
+      </trkpt>
+      <trkpt lat="33.3680166667" lon="-97.4304500000">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:39:38.00Z</time>
+        <course>306.54</course>
+        <name>point 19</name>
+      </trkpt>
+      <trkpt lat="33.3680386667" lon="-97.4304855000">
+        <ele>281.500000</ele>
+        <time>2018-03-17T13:39:38.20Z</time>
+        <course>306.67</course>
+        <name>point 20</name>
+      </trkpt>
+      <trkpt lat="33.3680605000" lon="-97.4305205000">
+        <ele>281.500000</ele>
+        <time>2018-03-17T13:39:38.40Z</time>
+        <course>306.66</course>
+        <name>point 21</name>
+      </trkpt>
+      <trkpt lat="33.3680820000" lon="-97.4305551667">
+        <ele>281.400000</ele>
+        <time>2018-03-17T13:39:38.60Z</time>
+        <course>306.72</course>
+        <name>point 22</name>
+      </trkpt>
+      <trkpt lat="33.3681035000" lon="-97.4305893333">
+        <ele>281.400000</ele>
+        <time>2018-03-17T13:39:38.80Z</time>
+        <course>306.71</course>
+        <name>point 23</name>
+      </trkpt>
+      <trkpt lat="33.3681246667" lon="-97.4306231667">
+        <ele>281.300000</ele>
+        <time>2018-03-17T13:39:39.00Z</time>
+        <course>306.79</course>
+        <name>point 24</name>
+      </trkpt>
+      <trkpt lat="33.3681456667" lon="-97.4306565000">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:39:39.20Z</time>
+        <course>307.03</course>
+        <name>point 25</name>
+      </trkpt>
+      <trkpt lat="33.3681668333" lon="-97.4306896667">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:39:39.40Z</time>
+        <course>307.25</course>
+        <name>point 26</name>
+      </trkpt>
+      <trkpt lat="33.3681876667" lon="-97.4307223333">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:39:39.60Z</time>
+        <course>307.39</course>
+        <name>point 27</name>
+      </trkpt>
+      <trkpt lat="33.3682085000" lon="-97.4307543333">
+        <ele>281.100000</ele>
+        <time>2018-03-17T13:39:39.80Z</time>
+        <course>307.63</course>
+        <name>point 28</name>
+      </trkpt>
+      <trkpt lat="33.3682290000" lon="-97.4307858333">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:39:40.00Z</time>
+        <course>308.05</course>
+        <name>point 29</name>
+      </trkpt>
+      <trkpt lat="33.3682496667" lon="-97.4308161667">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:39:40.20Z</time>
+        <course>308.92</course>
+        <name>point 30</name>
+      </trkpt>
+      <trkpt lat="33.3682705000" lon="-97.4308453333">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:39:40.40Z</time>
+        <course>310.58</course>
+        <name>point 31</name>
+      </trkpt>
+      <trkpt lat="33.3682918333" lon="-97.4308731667">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:39:40.60Z</time>
+        <course>312.44</course>
+        <name>point 32</name>
+      </trkpt>
+      <trkpt lat="33.3683136667" lon="-97.4308993333">
+        <ele>280.700000</ele>
+        <time>2018-03-17T13:39:40.80Z</time>
+        <course>314.60</course>
+        <name>point 33</name>
+      </trkpt>
+      <trkpt lat="33.3683361667" lon="-97.4309238333">
+        <ele>280.600000</ele>
+        <time>2018-03-17T13:39:41.00Z</time>
+        <course>317.56</course>
+        <name>point 34</name>
+      </trkpt>
+      <trkpt lat="33.3683595000" lon="-97.4309466667">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:39:41.20Z</time>
+        <course>320.56</course>
+        <name>point 35</name>
+      </trkpt>
+      <trkpt lat="33.3683836667" lon="-97.4309680000">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:39:41.40Z</time>
+        <course>323.51</course>
+        <name>point 36</name>
+      </trkpt>
+      <trkpt lat="33.3684086667" lon="-97.4309873333">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:39:41.60Z</time>
+        <course>326.86</course>
+        <name>point 37</name>
+      </trkpt>
+      <trkpt lat="33.3684343333" lon="-97.4310048333">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:39:41.80Z</time>
+        <course>330.29</course>
+        <name>point 38</name>
+      </trkpt>
+      <trkpt lat="33.3684608333" lon="-97.4310200000">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:39:42.00Z</time>
+        <course>334.36</course>
+        <name>point 39</name>
+      </trkpt>
+      <trkpt lat="33.3684881667" lon="-97.4310330000">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:39:42.20Z</time>
+        <course>338.24</course>
+        <name>point 40</name>
+      </trkpt>
+      <trkpt lat="33.3685161667" lon="-97.4310440000">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:39:42.40Z</time>
+        <course>341.96</course>
+        <name>point 41</name>
+      </trkpt>
+      <trkpt lat="33.3685448333" lon="-97.4310523333">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:39:42.60Z</time>
+        <course>346.23</course>
+        <name>point 42</name>
+      </trkpt>
+      <trkpt lat="33.3685741667" lon="-97.4310585000">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:39:42.80Z</time>
+        <course>350.05</course>
+        <name>point 43</name>
+      </trkpt>
+      <trkpt lat="33.3686041667" lon="-97.4310621667">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:39:43.00Z</time>
+        <course>354.00</course>
+        <name>point 44</name>
+      </trkpt>
+      <trkpt lat="33.3686346667" lon="-97.4310633333">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:39:43.20Z</time>
+        <course>357.99</course>
+        <name>point 45</name>
+      </trkpt>
+      <trkpt lat="33.3686656667" lon="-97.4310620000">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:39:43.40Z</time>
+        <course>2.12</course>
+        <name>point 46</name>
+      </trkpt>
+      <trkpt lat="33.3686970000" lon="-97.4310578333">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:39:43.60Z</time>
+        <course>6.10</course>
+        <name>point 47</name>
+      </trkpt>
+      <trkpt lat="33.3687283333" lon="-97.4310513333">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:39:43.80Z</time>
+        <course>9.75</course>
+        <name>point 48</name>
+      </trkpt>
+      <trkpt lat="33.3687598333" lon="-97.4310428333">
+        <ele>280.600000</ele>
+        <time>2018-03-17T13:39:44.00Z</time>
+        <course>12.85</course>
+        <name>point 49</name>
+      </trkpt>
+      <trkpt lat="33.3687911667" lon="-97.4310321667">
+        <ele>280.700000</ele>
+        <time>2018-03-17T13:39:44.20Z</time>
+        <course>15.88</course>
+        <name>point 50</name>
+      </trkpt>
+      <trkpt lat="33.3688225000" lon="-97.4310198333">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:39:44.40Z</time>
+        <course>18.28</course>
+        <name>point 51</name>
+      </trkpt>
+      <trkpt lat="33.3688541667" lon="-97.4310063333">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:39:44.60Z</time>
+        <course>19.67</course>
+        <name>point 52</name>
+      </trkpt>
+      <trkpt lat="33.3688860000" lon="-97.4309918333">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:39:44.80Z</time>
+        <course>20.89</course>
+        <name>point 53</name>
+      </trkpt>
+      <trkpt lat="33.3689180000" lon="-97.4309768333">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:39:45.00Z</time>
+        <course>21.67</course>
+        <name>point 54</name>
+      </trkpt>
+      <trkpt lat="33.3689503333" lon="-97.4309615000">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:39:45.20Z</time>
+        <course>21.75</course>
+        <name>point 55</name>
+      </trkpt>
+      <trkpt lat="33.3689831667" lon="-97.4309465000">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:39:45.40Z</time>
+        <course>21.01</course>
+        <name>point 56</name>
+      </trkpt>
+      <trkpt lat="33.3690166667" lon="-97.4309323333">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:39:45.60Z</time>
+        <course>19.70</course>
+        <name>point 57</name>
+      </trkpt>
+      <trkpt lat="33.3690508333" lon="-97.4309198333">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:39:45.80Z</time>
+        <course>17.22</course>
+        <name>point 58</name>
+      </trkpt>
+      <trkpt lat="33.3690860000" lon="-97.4309090000">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:39:46.00Z</time>
+        <course>14.64</course>
+        <name>point 59</name>
+      </trkpt>
+      <trkpt lat="33.3691218333" lon="-97.4309003333">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:39:46.20Z</time>
+        <course>11.69</course>
+        <name>point 60</name>
+      </trkpt>
+      <trkpt lat="33.3691586667" lon="-97.4308940000">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:39:46.40Z</time>
+        <course>8.47</course>
+        <name>point 61</name>
+      </trkpt>
+      <trkpt lat="33.3691958333" lon="-97.4308901667">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:39:46.60Z</time>
+        <course>5.08</course>
+        <name>point 62</name>
+      </trkpt>
+      <trkpt lat="33.3692336667" lon="-97.4308888333">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:39:46.80Z</time>
+        <course>1.92</course>
+        <name>point 63</name>
+      </trkpt>
+      <trkpt lat="33.3692718333" lon="-97.4308900000">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:39:47.00Z</time>
+        <course>358.73</course>
+        <name>point 64</name>
+      </trkpt>
+      <trkpt lat="33.3693103333" lon="-97.4308940000">
+        <ele>281.300000</ele>
+        <time>2018-03-17T13:39:47.20Z</time>
+        <course>355.25</course>
+        <name>point 65</name>
+      </trkpt>
+      <trkpt lat="33.3693486667" lon="-97.4309010000">
+        <ele>281.500000</ele>
+        <time>2018-03-17T13:39:47.40Z</time>
+        <course>351.61</course>
+        <name>point 66</name>
+      </trkpt>
+      <trkpt lat="33.3693870000" lon="-97.4309108333">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:39:47.60Z</time>
+        <course>348.23</course>
+        <name>point 67</name>
+      </trkpt>
+      <trkpt lat="33.3694251667" lon="-97.4309231667">
+        <ele>281.900000</ele>
+        <time>2018-03-17T13:39:47.80Z</time>
+        <course>345.05</course>
+        <name>point 68</name>
+      </trkpt>
+      <trkpt lat="33.3694630000" lon="-97.4309383333">
+        <ele>282.000000</ele>
+        <time>2018-03-17T13:39:48.00Z</time>
+        <course>341.63</course>
+        <name>point 69</name>
+      </trkpt>
+      <trkpt lat="33.3695001667" lon="-97.4309561667">
+        <ele>282.200000</ele>
+        <time>2018-03-17T13:39:48.20Z</time>
+        <course>338.42</course>
+        <name>point 70</name>
+      </trkpt>
+      <trkpt lat="33.3695370000" lon="-97.4309765000">
+        <ele>282.300000</ele>
+        <time>2018-03-17T13:39:48.40Z</time>
+        <course>335.47</course>
+        <name>point 71</name>
+      </trkpt>
+      <trkpt lat="33.3695731667" lon="-97.4309993333">
+        <ele>282.500000</ele>
+        <time>2018-03-17T13:39:48.60Z</time>
+        <course>332.34</course>
+        <name>point 72</name>
+      </trkpt>
+      <trkpt lat="33.3696088333" lon="-97.4310243333">
+        <ele>282.700000</ele>
+        <time>2018-03-17T13:39:48.80Z</time>
+        <course>329.60</course>
+        <name>point 73</name>
+      </trkpt>
+      <trkpt lat="33.3696436667" lon="-97.4310516667">
+        <ele>282.800000</ele>
+        <time>2018-03-17T13:39:49.00Z</time>
+        <course>326.85</course>
+        <name>point 74</name>
+      </trkpt>
+      <trkpt lat="33.3696778333" lon="-97.4310810000">
+        <ele>282.900000</ele>
+        <time>2018-03-17T13:39:49.20Z</time>
+        <course>324.35</course>
+        <name>point 75</name>
+      </trkpt>
+      <trkpt lat="33.3697111667" lon="-97.4311121667">
+        <ele>283.100000</ele>
+        <time>2018-03-17T13:39:49.40Z</time>
+        <course>321.93</course>
+        <name>point 76</name>
+      </trkpt>
+      <trkpt lat="33.3697435000" lon="-97.4311450000">
+        <ele>283.300000</ele>
+        <time>2018-03-17T13:39:49.60Z</time>
+        <course>319.63</course>
+        <name>point 77</name>
+      </trkpt>
+      <trkpt lat="33.3697746667" lon="-97.4311788333">
+        <ele>283.500000</ele>
+        <time>2018-03-17T13:39:49.80Z</time>
+        <course>317.85</course>
+        <name>point 78</name>
+      </trkpt>
+      <trkpt lat="33.3698048333" lon="-97.4312135000">
+        <ele>283.700000</ele>
+        <time>2018-03-17T13:39:50.00Z</time>
+        <course>316.20</course>
+        <name>point 79</name>
+      </trkpt>
+      <trkpt lat="33.3698343333" lon="-97.4312485000">
+        <ele>284.000000</ele>
+        <time>2018-03-17T13:39:50.20Z</time>
+        <course>315.13</course>
+        <name>point 80</name>
+      </trkpt>
+      <trkpt lat="33.3698635000" lon="-97.4312836667">
+        <ele>284.200000</ele>
+        <time>2018-03-17T13:39:50.40Z</time>
+        <course>314.76</course>
+        <name>point 81</name>
+      </trkpt>
+      <trkpt lat="33.3698921667" lon="-97.4313186667">
+        <ele>284.400000</ele>
+        <time>2018-03-17T13:39:50.60Z</time>
+        <course>314.31</course>
+        <name>point 82</name>
+      </trkpt>
+      <trkpt lat="33.3699203333" lon="-97.4313533333">
+        <ele>284.600000</ele>
+        <time>2018-03-17T13:39:50.80Z</time>
+        <course>314.13</course>
+        <name>point 83</name>
+      </trkpt>
+      <trkpt lat="33.3699483333" lon="-97.4313878333">
+        <ele>284.800000</ele>
+        <time>2018-03-17T13:39:51.00Z</time>
+        <course>314.00</course>
+        <name>point 84</name>
+      </trkpt>
+      <trkpt lat="33.3699760000" lon="-97.4314220000">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:39:51.20Z</time>
+        <course>313.98</course>
+        <name>point 85</name>
+      </trkpt>
+      <trkpt lat="33.3700033333" lon="-97.4314558333">
+        <ele>285.200000</ele>
+        <time>2018-03-17T13:39:51.40Z</time>
+        <course>314.07</course>
+        <name>point 86</name>
+      </trkpt>
+      <trkpt lat="33.3700305000" lon="-97.4314895000">
+        <ele>285.300000</ele>
+        <time>2018-03-17T13:39:51.60Z</time>
+        <course>313.88</course>
+        <name>point 87</name>
+      </trkpt>
+      <trkpt lat="33.3700573333" lon="-97.4315230000">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:39:51.80Z</time>
+        <course>313.89</course>
+        <name>point 88</name>
+      </trkpt>
+      <trkpt lat="33.3700841667" lon="-97.4315561667">
+        <ele>285.700000</ele>
+        <time>2018-03-17T13:39:52.00Z</time>
+        <course>313.88</course>
+        <name>point 89</name>
+      </trkpt>
+      <trkpt lat="33.3701110000" lon="-97.4315895000">
+        <ele>285.900000</ele>
+        <time>2018-03-17T13:39:52.20Z</time>
+        <course>313.79</course>
+        <name>point 90</name>
+      </trkpt>
+      <trkpt lat="33.3701378333" lon="-97.4316228333">
+        <ele>286.100000</ele>
+        <time>2018-03-17T13:39:52.40Z</time>
+        <course>313.93</course>
+        <name>point 91</name>
+      </trkpt>
+      <trkpt lat="33.3701645000" lon="-97.4316560000">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:39:52.60Z</time>
+        <course>313.91</course>
+        <name>point 92</name>
+      </trkpt>
+      <trkpt lat="33.3701915000" lon="-97.4316891667">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:39:52.80Z</time>
+        <course>313.96</course>
+        <name>point 93</name>
+      </trkpt>
+      <trkpt lat="33.3702183333" lon="-97.4317223333">
+        <ele>286.800000</ele>
+        <time>2018-03-17T13:39:53.00Z</time>
+        <course>314.02</course>
+        <name>point 94</name>
+      </trkpt>
+      <trkpt lat="33.3702453333" lon="-97.4317555000">
+        <ele>287.000000</ele>
+        <time>2018-03-17T13:39:53.20Z</time>
+        <course>314.11</course>
+        <name>point 95</name>
+      </trkpt>
+      <trkpt lat="33.3702721667" lon="-97.4317888333">
+        <ele>287.100000</ele>
+        <time>2018-03-17T13:39:53.40Z</time>
+        <course>314.04</course>
+        <name>point 96</name>
+      </trkpt>
+      <trkpt lat="33.3702991667" lon="-97.4318220000">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:39:53.60Z</time>
+        <course>314.19</course>
+        <name>point 97</name>
+      </trkpt>
+      <trkpt lat="33.3703261667" lon="-97.4318551667">
+        <ele>287.500000</ele>
+        <time>2018-03-17T13:39:53.80Z</time>
+        <course>314.15</course>
+        <name>point 98</name>
+      </trkpt>
+      <trkpt lat="33.3703531667" lon="-97.4318883333">
+        <ele>287.700000</ele>
+        <time>2018-03-17T13:39:54.00Z</time>
+        <course>314.19</course>
+        <name>point 99</name>
+      </trkpt>
+      <trkpt lat="33.3703801667" lon="-97.4319215000">
+        <ele>287.900000</ele>
+        <time>2018-03-17T13:39:54.20Z</time>
+        <course>314.25</course>
+        <name>point 100</name>
+      </trkpt>
+      <trkpt lat="33.3704073333" lon="-97.4319546667">
+        <ele>288.100000</ele>
+        <time>2018-03-17T13:39:54.40Z</time>
+        <course>314.29</course>
+        <name>point 101</name>
+      </trkpt>
+      <trkpt lat="33.3704345000" lon="-97.4319876667">
+        <ele>288.400000</ele>
+        <time>2018-03-17T13:39:54.60Z</time>
+        <course>314.37</course>
+        <name>point 102</name>
+      </trkpt>
+      <trkpt lat="33.3704616667" lon="-97.4320206667">
+        <ele>288.600000</ele>
+        <time>2018-03-17T13:39:54.80Z</time>
+        <course>314.48</course>
+        <name>point 103</name>
+      </trkpt>
+      <trkpt lat="33.3704888333" lon="-97.4320536667">
+        <ele>288.800000</ele>
+        <time>2018-03-17T13:39:55.00Z</time>
+        <course>314.48</course>
+        <name>point 104</name>
+      </trkpt>
+      <trkpt lat="33.3705158333" lon="-97.4320866667">
+        <ele>289.000000</ele>
+        <time>2018-03-17T13:39:55.20Z</time>
+        <course>314.51</course>
+        <name>point 105</name>
+      </trkpt>
+      <trkpt lat="33.3705428333" lon="-97.4321193333">
+        <ele>289.200000</ele>
+        <time>2018-03-17T13:39:55.40Z</time>
+        <course>314.67</course>
+        <name>point 106</name>
+      </trkpt>
+      <trkpt lat="33.3705696667" lon="-97.4321516667">
+        <ele>289.300000</ele>
+        <time>2018-03-17T13:39:55.60Z</time>
+        <course>314.79</course>
+        <name>point 107</name>
+      </trkpt>
+      <trkpt lat="33.3705965000" lon="-97.4321835000">
+        <ele>289.500000</ele>
+        <time>2018-03-17T13:39:55.80Z</time>
+        <course>314.97</course>
+        <name>point 108</name>
+      </trkpt>
+      <trkpt lat="33.3706231667" lon="-97.4322151667">
+        <ele>289.700000</ele>
+        <time>2018-03-17T13:39:56.00Z</time>
+        <course>315.19</course>
+        <name>point 109</name>
+      </trkpt>
+      <trkpt lat="33.3706496667" lon="-97.4322463333">
+        <ele>289.900000</ele>
+        <time>2018-03-17T13:39:56.20Z</time>
+        <course>315.31</course>
+        <name>point 110</name>
+      </trkpt>
+      <trkpt lat="33.3706760000" lon="-97.4322771667">
+        <ele>290.000000</ele>
+        <time>2018-03-17T13:39:56.40Z</time>
+        <course>315.49</course>
+        <name>point 111</name>
+      </trkpt>
+      <trkpt lat="33.3707021667" lon="-97.4323076667">
+        <ele>290.200000</ele>
+        <time>2018-03-17T13:39:56.60Z</time>
+        <course>315.58</course>
+        <name>point 112</name>
+      </trkpt>
+      <trkpt lat="33.3707280000" lon="-97.4323378333">
+        <ele>290.300000</ele>
+        <time>2018-03-17T13:39:56.80Z</time>
+        <course>315.57</course>
+        <name>point 113</name>
+      </trkpt>
+      <trkpt lat="33.3707536667" lon="-97.4323676667">
+        <ele>290.400000</ele>
+        <time>2018-03-17T13:39:57.00Z</time>
+        <course>315.66</course>
+        <name>point 114</name>
+      </trkpt>
+      <trkpt lat="33.3707790000" lon="-97.4323971667">
+        <ele>290.500000</ele>
+        <time>2018-03-17T13:39:57.20Z</time>
+        <course>315.61</course>
+        <name>point 115</name>
+      </trkpt>
+      <trkpt lat="33.3708040000" lon="-97.4324265000">
+        <ele>290.600000</ele>
+        <time>2018-03-17T13:39:57.40Z</time>
+        <course>315.57</course>
+        <name>point 116</name>
+      </trkpt>
+      <trkpt lat="33.3708286667" lon="-97.4324553333">
+        <ele>290.700000</ele>
+        <time>2018-03-17T13:39:57.60Z</time>
+        <course>315.59</course>
+        <name>point 117</name>
+      </trkpt>
+      <trkpt lat="33.3708530000" lon="-97.4324836667">
+        <ele>290.800000</ele>
+        <time>2018-03-17T13:39:57.80Z</time>
+        <course>315.68</course>
+        <name>point 118</name>
+      </trkpt>
+      <trkpt lat="33.3708770000" lon="-97.4325115000">
+        <ele>290.900000</ele>
+        <time>2018-03-17T13:39:58.00Z</time>
+        <course>315.65</course>
+        <name>point 119</name>
+      </trkpt>
+      <trkpt lat="33.3709005000" lon="-97.4325386667">
+        <ele>291.000000</ele>
+        <time>2018-03-17T13:39:58.20Z</time>
+        <course>315.78</course>
+        <name>point 120</name>
+      </trkpt>
+      <trkpt lat="33.3709236667" lon="-97.4325653333">
+        <ele>291.000000</ele>
+        <time>2018-03-17T13:39:58.40Z</time>
+        <course>315.96</course>
+        <name>point 121</name>
+      </trkpt>
+      <trkpt lat="33.3709466667" lon="-97.4325916667">
+        <ele>291.100000</ele>
+        <time>2018-03-17T13:39:58.60Z</time>
+        <course>316.13</course>
+        <name>point 122</name>
+      </trkpt>
+      <trkpt lat="33.3709693333" lon="-97.4326176667">
+        <ele>291.100000</ele>
+        <time>2018-03-17T13:39:58.80Z</time>
+        <course>316.11</course>
+        <name>point 123</name>
+      </trkpt>
+      <trkpt lat="33.3709918333" lon="-97.4326433333">
+        <ele>291.200000</ele>
+        <time>2018-03-17T13:39:59.00Z</time>
+        <course>316.11</course>
+        <name>point 124</name>
+      </trkpt>
+      <trkpt lat="33.3710140000" lon="-97.4326688333">
+        <ele>291.200000</ele>
+        <time>2018-03-17T13:39:59.20Z</time>
+        <course>316.13</course>
+        <name>point 125</name>
+      </trkpt>
+      <trkpt lat="33.3710356667" lon="-97.4326938333">
+        <ele>291.200000</ele>
+        <time>2018-03-17T13:39:59.40Z</time>
+        <course>315.94</course>
+        <name>point 126</name>
+      </trkpt>
+      <trkpt lat="33.3710566667" lon="-97.4327185000">
+        <ele>291.300000</ele>
+        <time>2018-03-17T13:39:59.60Z</time>
+        <course>315.72</course>
+        <name>point 127</name>
+      </trkpt>
+      <trkpt lat="33.3710775000" lon="-97.4327426667">
+        <ele>291.400000</ele>
+        <time>2018-03-17T13:39:59.80Z</time>
+        <course>315.60</course>
+        <name>point 128</name>
+      </trkpt>
+      <trkpt lat="33.3710978333" lon="-97.4327666667">
+        <ele>291.400000</ele>
+        <time>2018-03-17T13:40:00.00Z</time>
+        <course>315.42</course>
+        <name>point 129</name>
+      </trkpt>
+      <trkpt lat="33.3711178333" lon="-97.4327901667">
+        <ele>291.500000</ele>
+        <time>2018-03-17T13:40:00.20Z</time>
+        <course>315.32</course>
+        <name>point 130</name>
+      </trkpt>
+      <trkpt lat="33.3711371667" lon="-97.4328136667">
+        <ele>291.500000</ele>
+        <time>2018-03-17T13:40:00.40Z</time>
+        <course>314.78</course>
+        <name>point 131</name>
+      </trkpt>
+      <trkpt lat="33.3711556667" lon="-97.4328370000">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:00.60Z</time>
+        <course>313.82</course>
+        <name>point 132</name>
+      </trkpt>
+      <trkpt lat="33.3711735000" lon="-97.4328603333">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:00.80Z</time>
+        <course>312.39</course>
+        <name>point 133</name>
+      </trkpt>
+      <trkpt lat="33.3711901667" lon="-97.4328841667">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:01.00Z</time>
+        <course>310.34</course>
+        <name>point 134</name>
+      </trkpt>
+      <trkpt lat="33.3712058333" lon="-97.4329085000">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:01.20Z</time>
+        <course>307.85</course>
+        <name>point 135</name>
+      </trkpt>
+      <trkpt lat="33.3712203333" lon="-97.4329333333">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:01.40Z</time>
+        <course>305.17</course>
+        <name>point 136</name>
+      </trkpt>
+      <trkpt lat="33.3712333333" lon="-97.4329588333">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:01.60Z</time>
+        <course>301.79</course>
+        <name>point 137</name>
+      </trkpt>
+      <trkpt lat="33.3712448333" lon="-97.4329851667">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:01.80Z</time>
+        <course>298.11</course>
+        <name>point 138</name>
+      </trkpt>
+      <trkpt lat="33.3712546667" lon="-97.4330121667">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:02.00Z</time>
+        <course>294.11</course>
+        <name>point 139</name>
+      </trkpt>
+      <trkpt lat="33.3712630000" lon="-97.4330398333">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:02.20Z</time>
+        <course>290.10</course>
+        <name>point 140</name>
+      </trkpt>
+      <trkpt lat="33.3712698333" lon="-97.4330683333">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:02.40Z</time>
+        <course>286.67</course>
+        <name>point 141</name>
+      </trkpt>
+      <trkpt lat="33.3712756667" lon="-97.4330976667">
+        <ele>291.500000</ele>
+        <time>2018-03-17T13:40:02.60Z</time>
+        <course>283.49</course>
+        <name>point 142</name>
+      </trkpt>
+      <trkpt lat="33.3712800000" lon="-97.4331278333">
+        <ele>291.400000</ele>
+        <time>2018-03-17T13:40:02.80Z</time>
+        <course>280.20</course>
+        <name>point 143</name>
+      </trkpt>
+      <trkpt lat="33.3712828333" lon="-97.4331590000">
+        <ele>291.400000</ele>
+        <time>2018-03-17T13:40:03.00Z</time>
+        <course>276.78</course>
+        <name>point 144</name>
+      </trkpt>
+      <trkpt lat="33.3712840000" lon="-97.4331910000">
+        <ele>291.300000</ele>
+        <time>2018-03-17T13:40:03.20Z</time>
+        <course>273.14</course>
+        <name>point 145</name>
+      </trkpt>
+      <trkpt lat="33.3712836667" lon="-97.4332236667">
+        <ele>291.200000</ele>
+        <time>2018-03-17T13:40:03.40Z</time>
+        <course>269.69</course>
+        <name>point 146</name>
+      </trkpt>
+      <trkpt lat="33.3712816667" lon="-97.4332570000">
+        <ele>291.000000</ele>
+        <time>2018-03-17T13:40:03.60Z</time>
+        <course>266.34</course>
+        <name>point 147</name>
+      </trkpt>
+      <trkpt lat="33.3712780000" lon="-97.4332906667">
+        <ele>290.900000</ele>
+        <time>2018-03-17T13:40:03.80Z</time>
+        <course>263.31</course>
+        <name>point 148</name>
+      </trkpt>
+      <trkpt lat="33.3712728333" lon="-97.4333248333">
+        <ele>290.800000</ele>
+        <time>2018-03-17T13:40:04.00Z</time>
+        <course>260.11</course>
+        <name>point 149</name>
+      </trkpt>
+      <trkpt lat="33.3712658333" lon="-97.4333588333">
+        <ele>290.700000</ele>
+        <time>2018-03-17T13:40:04.20Z</time>
+        <course>256.59</course>
+        <name>point 150</name>
+      </trkpt>
+      <trkpt lat="33.3712568333" lon="-97.4333926667">
+        <ele>290.600000</ele>
+        <time>2018-03-17T13:40:04.40Z</time>
+        <course>252.89</course>
+        <name>point 151</name>
+      </trkpt>
+      <trkpt lat="33.3712456667" lon="-97.4334260000">
+        <ele>290.500000</ele>
+        <time>2018-03-17T13:40:04.60Z</time>
+        <course>248.98</course>
+        <name>point 152</name>
+      </trkpt>
+      <trkpt lat="33.3712326667" lon="-97.4334583333">
+        <ele>290.400000</ele>
+        <time>2018-03-17T13:40:04.80Z</time>
+        <course>245.01</course>
+        <name>point 153</name>
+      </trkpt>
+      <trkpt lat="33.3712176667" lon="-97.4334896667">
+        <ele>290.200000</ele>
+        <time>2018-03-17T13:40:05.00Z</time>
+        <course>240.82</course>
+        <name>point 154</name>
+      </trkpt>
+      <trkpt lat="33.3712008333" lon="-97.4335193333">
+        <ele>290.100000</ele>
+        <time>2018-03-17T13:40:05.20Z</time>
+        <course>236.51</course>
+        <name>point 155</name>
+      </trkpt>
+      <trkpt lat="33.3711823333" lon="-97.4335475000">
+        <ele>290.000000</ele>
+        <time>2018-03-17T13:40:05.40Z</time>
+        <course>232.33</course>
+        <name>point 156</name>
+      </trkpt>
+      <trkpt lat="33.3711621667" lon="-97.4335740000">
+        <ele>289.900000</ele>
+        <time>2018-03-17T13:40:05.60Z</time>
+        <course>228.27</course>
+        <name>point 157</name>
+      </trkpt>
+      <trkpt lat="33.3711405000" lon="-97.4335986667">
+        <ele>289.700000</ele>
+        <time>2018-03-17T13:40:05.80Z</time>
+        <course>224.37</course>
+        <name>point 158</name>
+      </trkpt>
+      <trkpt lat="33.3711176667" lon="-97.4336220000">
+        <ele>289.600000</ele>
+        <time>2018-03-17T13:40:06.00Z</time>
+        <course>220.85</course>
+        <name>point 159</name>
+      </trkpt>
+      <trkpt lat="33.3710935000" lon="-97.4336436667">
+        <ele>289.400000</ele>
+        <time>2018-03-17T13:40:06.20Z</time>
+        <course>217.77</course>
+        <name>point 160</name>
+      </trkpt>
+      <trkpt lat="33.3710683333" lon="-97.4336641667">
+        <ele>289.300000</ele>
+        <time>2018-03-17T13:40:06.40Z</time>
+        <course>214.73</course>
+        <name>point 161</name>
+      </trkpt>
+      <trkpt lat="33.3710420000" lon="-97.4336830000">
+        <ele>289.100000</ele>
+        <time>2018-03-17T13:40:06.60Z</time>
+        <course>211.68</course>
+        <name>point 162</name>
+      </trkpt>
+      <trkpt lat="33.3710145000" lon="-97.4337005000">
+        <ele>289.000000</ele>
+        <time>2018-03-17T13:40:06.80Z</time>
+        <course>208.67</course>
+        <name>point 163</name>
+      </trkpt>
+      <trkpt lat="33.3709861667" lon="-97.4337161667">
+        <ele>288.800000</ele>
+        <time>2018-03-17T13:40:07.00Z</time>
+        <course>205.62</course>
+        <name>point 164</name>
+      </trkpt>
+      <trkpt lat="33.3709571667" lon="-97.4337300000">
+        <ele>288.600000</ele>
+        <time>2018-03-17T13:40:07.20Z</time>
+        <course>202.53</course>
+        <name>point 165</name>
+      </trkpt>
+      <trkpt lat="33.3709276667" lon="-97.4337421667">
+        <ele>288.500000</ele>
+        <time>2018-03-17T13:40:07.40Z</time>
+        <course>199.51</course>
+        <name>point 166</name>
+      </trkpt>
+      <trkpt lat="33.3708973333" lon="-97.4337521667">
+        <ele>288.300000</ele>
+        <time>2018-03-17T13:40:07.60Z</time>
+        <course>196.11</course>
+        <name>point 167</name>
+      </trkpt>
+      <trkpt lat="33.3708665000" lon="-97.4337598333">
+        <ele>288.200000</ele>
+        <time>2018-03-17T13:40:07.80Z</time>
+        <course>192.46</course>
+        <name>point 168</name>
+      </trkpt>
+      <trkpt lat="33.3708348333" lon="-97.4337656667">
+        <ele>288.100000</ele>
+        <time>2018-03-17T13:40:08.00Z</time>
+        <course>189.35</course>
+        <name>point 169</name>
+      </trkpt>
+      <trkpt lat="33.3708028333" lon="-97.4337690000">
+        <ele>287.900000</ele>
+        <time>2018-03-17T13:40:08.20Z</time>
+        <course>185.77</course>
+        <name>point 170</name>
+      </trkpt>
+      <trkpt lat="33.3707705000" lon="-97.4337700000">
+        <ele>287.800000</ele>
+        <time>2018-03-17T13:40:08.40Z</time>
+        <course>182.15</course>
+        <name>point 171</name>
+      </trkpt>
+      <trkpt lat="33.3707378333" lon="-97.4337685000">
+        <ele>287.700000</ele>
+        <time>2018-03-17T13:40:08.60Z</time>
+        <course>178.68</course>
+        <name>point 172</name>
+      </trkpt>
+      <trkpt lat="33.3707051667" lon="-97.4337646667">
+        <ele>287.600000</ele>
+        <time>2018-03-17T13:40:08.80Z</time>
+        <course>175.05</course>
+        <name>point 173</name>
+      </trkpt>
+      <trkpt lat="33.3706726667" lon="-97.4337583333">
+        <ele>287.600000</ele>
+        <time>2018-03-17T13:40:09.00Z</time>
+        <course>171.50</course>
+        <name>point 174</name>
+      </trkpt>
+      <trkpt lat="33.3706405000" lon="-97.4337496667">
+        <ele>287.500000</ele>
+        <time>2018-03-17T13:40:09.20Z</time>
+        <course>167.84</course>
+        <name>point 175</name>
+      </trkpt>
+      <trkpt lat="33.3706086667" lon="-97.4337383333">
+        <ele>287.500000</ele>
+        <time>2018-03-17T13:40:09.40Z</time>
+        <course>164.01</course>
+        <name>point 176</name>
+      </trkpt>
+      <trkpt lat="33.3705773333" lon="-97.4337243333">
+        <ele>287.400000</ele>
+        <time>2018-03-17T13:40:09.60Z</time>
+        <course>160.33</course>
+        <name>point 177</name>
+      </trkpt>
+      <trkpt lat="33.3705463333" lon="-97.4337081667">
+        <ele>287.400000</ele>
+        <time>2018-03-17T13:40:09.80Z</time>
+        <course>156.88</course>
+        <name>point 178</name>
+      </trkpt>
+      <trkpt lat="33.3705155000" lon="-97.4336895000">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:40:10.00Z</time>
+        <course>153.49</course>
+        <name>point 179</name>
+      </trkpt>
+      <trkpt lat="33.3704855000" lon="-97.4336683333">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:40:10.20Z</time>
+        <course>150.02</course>
+        <name>point 180</name>
+      </trkpt>
+      <trkpt lat="33.3704561667" lon="-97.4336446667">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:40:10.40Z</time>
+        <course>146.50</course>
+        <name>point 181</name>
+      </trkpt>
+      <trkpt lat="33.3704280000" lon="-97.4336188333">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:10.60Z</time>
+        <course>142.98</course>
+        <name>point 182</name>
+      </trkpt>
+      <trkpt lat="33.3704008333" lon="-97.4335906667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:10.80Z</time>
+        <course>139.45</course>
+        <name>point 183</name>
+      </trkpt>
+      <trkpt lat="33.3703746667" lon="-97.4335603333">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:11.00Z</time>
+        <course>136.39</course>
+        <name>point 184</name>
+      </trkpt>
+      <trkpt lat="33.3703493333" lon="-97.4335281667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:11.20Z</time>
+        <course>133.58</course>
+        <name>point 185</name>
+      </trkpt>
+      <trkpt lat="33.3703246667" lon="-97.4334946667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:11.40Z</time>
+        <course>131.52</course>
+        <name>point 186</name>
+      </trkpt>
+      <trkpt lat="33.3703003333" lon="-97.4334600000">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:11.60Z</time>
+        <course>130.10</course>
+        <name>point 187</name>
+      </trkpt>
+      <trkpt lat="33.3702760000" lon="-97.4334243333">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:11.80Z</time>
+        <course>129.23</course>
+        <name>point 188</name>
+      </trkpt>
+      <trkpt lat="33.3702516667" lon="-97.4333883333">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:12.00Z</time>
+        <course>128.78</course>
+        <name>point 189</name>
+      </trkpt>
+      <trkpt lat="33.3702273333" lon="-97.4333518333">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:12.20Z</time>
+        <course>128.52</course>
+        <name>point 190</name>
+      </trkpt>
+      <trkpt lat="33.3702026667" lon="-97.4333150000">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:40:12.40Z</time>
+        <course>128.52</course>
+        <name>point 191</name>
+      </trkpt>
+      <trkpt lat="33.3701776667" lon="-97.4332780000">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:12.60Z</time>
+        <course>128.80</course>
+        <name>point 192</name>
+      </trkpt>
+      <trkpt lat="33.3701523333" lon="-97.4332413333">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:12.80Z</time>
+        <course>129.33</course>
+        <name>point 193</name>
+      </trkpt>
+      <trkpt lat="33.3701268333" lon="-97.4332051667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:13.00Z</time>
+        <course>130.14</course>
+        <name>point 194</name>
+      </trkpt>
+      <trkpt lat="33.3701006667" lon="-97.4331693333">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:13.20Z</time>
+        <course>130.95</course>
+        <name>point 195</name>
+      </trkpt>
+      <trkpt lat="33.3700740000" lon="-97.4331341667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:13.40Z</time>
+        <course>131.92</course>
+        <name>point 196</name>
+      </trkpt>
+      <trkpt lat="33.3700471667" lon="-97.4330996667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:13.60Z</time>
+        <course>132.69</course>
+        <name>point 197</name>
+      </trkpt>
+      <trkpt lat="33.3700200000" lon="-97.4330656667">
+        <ele>287.100000</ele>
+        <time>2018-03-17T13:40:13.80Z</time>
+        <course>133.57</course>
+        <name>point 198</name>
+      </trkpt>
+      <trkpt lat="33.3699925000" lon="-97.4330321667">
+        <ele>287.100000</ele>
+        <time>2018-03-17T13:40:14.00Z</time>
+        <course>134.33</course>
+        <name>point 199</name>
+      </trkpt>
+      <trkpt lat="33.3699648333" lon="-97.4329993333">
+        <ele>287.000000</ele>
+        <time>2018-03-17T13:40:14.20Z</time>
+        <course>134.89</course>
+        <name>point 200</name>
+      </trkpt>
+      <trkpt lat="33.3699370000" lon="-97.4329668333">
+        <ele>286.900000</ele>
+        <time>2018-03-17T13:40:14.40Z</time>
+        <course>135.50</course>
+        <name>point 201</name>
+      </trkpt>
+      <trkpt lat="33.3699091667" lon="-97.4329346667">
+        <ele>286.900000</ele>
+        <time>2018-03-17T13:40:14.60Z</time>
+        <course>135.96</course>
+        <name>point 202</name>
+      </trkpt>
+      <trkpt lat="33.3698808333" lon="-97.4329030000">
+        <ele>286.800000</ele>
+        <time>2018-03-17T13:40:14.80Z</time>
+        <course>136.86</course>
+        <name>point 203</name>
+      </trkpt>
+      <trkpt lat="33.3698520000" lon="-97.4328721667">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:40:15.00Z</time>
+        <course>137.99</course>
+        <name>point 204</name>
+      </trkpt>
+      <trkpt lat="33.3698225000" lon="-97.4328425000">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:40:15.20Z</time>
+        <course>139.57</course>
+        <name>point 205</name>
+      </trkpt>
+      <trkpt lat="33.3697923333" lon="-97.4328140000">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:40:15.40Z</time>
+        <course>141.65</course>
+        <name>point 206</name>
+      </trkpt>
+      <trkpt lat="33.3697610000" lon="-97.4327870000">
+        <ele>286.500000</ele>
+        <time>2018-03-17T13:40:15.60Z</time>
+        <course>143.94</course>
+        <name>point 207</name>
+      </trkpt>
+      <trkpt lat="33.3697285000" lon="-97.4327616667">
+        <ele>286.400000</ele>
+        <time>2018-03-17T13:40:15.80Z</time>
+        <course>146.50</course>
+        <name>point 208</name>
+      </trkpt>
+      <trkpt lat="33.3696950000" lon="-97.4327376667">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:40:16.00Z</time>
+        <course>148.73</course>
+        <name>point 209</name>
+      </trkpt>
+      <trkpt lat="33.3696605000" lon="-97.4327151667">
+        <ele>286.000000</ele>
+        <time>2018-03-17T13:40:16.20Z</time>
+        <course>150.96</course>
+        <name>point 210</name>
+      </trkpt>
+      <trkpt lat="33.3696250000" lon="-97.4326941667">
+        <ele>285.800000</ele>
+        <time>2018-03-17T13:40:16.40Z</time>
+        <course>153.33</course>
+        <name>point 211</name>
+      </trkpt>
+      <trkpt lat="33.3695886667" lon="-97.4326746667">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:40:16.60Z</time>
+        <course>155.64</course>
+        <name>point 212</name>
+      </trkpt>
+      <trkpt lat="33.3695511667" lon="-97.4326568333">
+        <ele>285.300000</ele>
+        <time>2018-03-17T13:40:16.80Z</time>
+        <course>158.06</course>
+        <name>point 213</name>
+      </trkpt>
+      <trkpt lat="33.3695126667" lon="-97.4326406667">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:40:17.00Z</time>
+        <course>160.46</course>
+        <name>point 214</name>
+      </trkpt>
+      <trkpt lat="33.3694731667" lon="-97.4326263333">
+        <ele>284.700000</ele>
+        <time>2018-03-17T13:40:17.20Z</time>
+        <course>162.82</course>
+        <name>point 215</name>
+      </trkpt>
+      <trkpt lat="33.3694330000" lon="-97.4326133333">
+        <ele>284.500000</ele>
+        <time>2018-03-17T13:40:17.40Z</time>
+        <course>164.81</course>
+        <name>point 216</name>
+      </trkpt>
+      <trkpt lat="33.3693920000" lon="-97.4326021667">
+        <ele>284.300000</ele>
+        <time>2018-03-17T13:40:17.60Z</time>
+        <course>166.86</course>
+        <name>point 217</name>
+      </trkpt>
+      <trkpt lat="33.3693505000" lon="-97.4325925000">
+        <ele>284.000000</ele>
+        <time>2018-03-17T13:40:17.80Z</time>
+        <course>168.82</course>
+        <name>point 218</name>
+      </trkpt>
+      <trkpt lat="33.3693085000" lon="-97.4325845000">
+        <ele>283.800000</ele>
+        <time>2018-03-17T13:40:18.00Z</time>
+        <course>170.71</course>
+        <name>point 219</name>
+      </trkpt>
+      <trkpt lat="33.3692665000" lon="-97.4325776667">
+        <ele>283.600000</ele>
+        <time>2018-03-17T13:40:18.20Z</time>
+        <course>172.23</course>
+        <name>point 220</name>
+      </trkpt>
+      <trkpt lat="33.3692243333" lon="-97.4325720000">
+        <ele>283.400000</ele>
+        <time>2018-03-17T13:40:18.40Z</time>
+        <course>173.41</course>
+        <name>point 221</name>
+      </trkpt>
+      <trkpt lat="33.3691820000" lon="-97.4325671667">
+        <ele>283.100000</ele>
+        <time>2018-03-17T13:40:18.60Z</time>
+        <course>174.55</course>
+        <name>point 222</name>
+      </trkpt>
+      <trkpt lat="33.3691395000" lon="-97.4325635000">
+        <ele>282.700000</ele>
+        <time>2018-03-17T13:40:18.80Z</time>
+        <course>175.76</course>
+        <name>point 223</name>
+      </trkpt>
+      <trkpt lat="33.3690973333" lon="-97.4325611667">
+        <ele>282.400000</ele>
+        <time>2018-03-17T13:40:19.00Z</time>
+        <course>177.21</course>
+        <name>point 224</name>
+      </trkpt>
+      <trkpt lat="33.3690550000" lon="-97.4325595000">
+        <ele>282.000000</ele>
+        <time>2018-03-17T13:40:19.20Z</time>
+        <course>178.17</course>
+        <name>point 225</name>
+      </trkpt>
+      <trkpt lat="33.3690130000" lon="-97.4325593333">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:40:19.40Z</time>
+        <course>179.54</course>
+        <name>point 226</name>
+      </trkpt>
+      <trkpt lat="33.3689713333" lon="-97.4325596667">
+        <ele>281.300000</ele>
+        <time>2018-03-17T13:40:19.60Z</time>
+        <course>180.49</course>
+        <name>point 227</name>
+      </trkpt>
+      <trkpt lat="33.3689298333" lon="-97.4325608333">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:40:19.80Z</time>
+        <course>181.40</course>
+        <name>point 228</name>
+      </trkpt>
+      <trkpt lat="33.3688888333" lon="-97.4325628333">
+        <ele>280.600000</ele>
+        <time>2018-03-17T13:40:20.00Z</time>
+        <course>182.29</course>
+        <name>point 229</name>
+      </trkpt>
+      <trkpt lat="33.3688485000" lon="-97.4325656667">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:40:20.20Z</time>
+        <course>183.47</course>
+        <name>point 230</name>
+      </trkpt>
+      <trkpt lat="33.3688086667" lon="-97.4325690000">
+        <ele>279.900000</ele>
+        <time>2018-03-17T13:40:20.40Z</time>
+        <course>184.03</course>
+        <name>point 231</name>
+      </trkpt>
+      <trkpt lat="33.3687695000" lon="-97.4325730000">
+        <ele>279.600000</ele>
+        <time>2018-03-17T13:40:20.60Z</time>
+        <course>185.05</course>
+        <name>point 232</name>
+      </trkpt>
+      <trkpt lat="33.3687313333" lon="-97.4325778333">
+        <ele>279.200000</ele>
+        <time>2018-03-17T13:40:20.80Z</time>
+        <course>186.13</course>
+        <name>point 233</name>
+      </trkpt>
+      <trkpt lat="33.3686935000" lon="-97.4325828333">
+        <ele>278.900000</ele>
+        <time>2018-03-17T13:40:21.00Z</time>
+        <course>186.72</course>
+        <name>point 234</name>
+      </trkpt>
+      <trkpt lat="33.3686563333" lon="-97.4325881667">
+        <ele>278.700000</ele>
+        <time>2018-03-17T13:40:21.20Z</time>
+        <course>187.48</course>
+        <name>point 235</name>
+      </trkpt>
+      <trkpt lat="33.3686196667" lon="-97.4325945000">
+        <ele>278.500000</ele>
+        <time>2018-03-17T13:40:21.40Z</time>
+        <course>188.60</course>
+        <name>point 236</name>
+      </trkpt>
+      <trkpt lat="33.3685836667" lon="-97.4326015000">
+        <ele>278.400000</ele>
+        <time>2018-03-17T13:40:21.60Z</time>
+        <course>189.83</course>
+        <name>point 237</name>
+      </trkpt>
+      <trkpt lat="33.3685483333" lon="-97.4326098333">
+        <ele>278.300000</ele>
+        <time>2018-03-17T13:40:21.80Z</time>
+        <course>191.80</course>
+        <name>point 238</name>
+      </trkpt>
+      <trkpt lat="33.3685140000" lon="-97.4326190000">
+        <ele>278.200000</ele>
+        <time>2018-03-17T13:40:22.00Z</time>
+        <course>193.04</course>
+        <name>point 239</name>
+      </trkpt>
+      <trkpt lat="33.3684801667" lon="-97.4326291667">
+        <ele>278.100000</ele>
+        <time>2018-03-17T13:40:22.20Z</time>
+        <course>194.65</course>
+        <name>point 240</name>
+      </trkpt>
+      <trkpt lat="33.3684475000" lon="-97.4326406667">
+        <ele>278.100000</ele>
+        <time>2018-03-17T13:40:22.40Z</time>
+        <course>196.77</course>
+        <name>point 241</name>
+      </trkpt>
+      <trkpt lat="33.3684160000" lon="-97.4326540000">
+        <ele>278.200000</ele>
+        <time>2018-03-17T13:40:22.60Z</time>
+        <course>199.59</course>
+        <name>point 242</name>
+      </trkpt>
+      <trkpt lat="33.3683858333" lon="-97.4326695000">
+        <ele>278.200000</ele>
+        <time>2018-03-17T13:40:22.80Z</time>
+        <course>203.44</course>
+        <name>point 243</name>
+      </trkpt>
+      <trkpt lat="33.3683571667" lon="-97.4326875000">
+        <ele>278.400000</ele>
+        <time>2018-03-17T13:40:23.00Z</time>
+        <course>207.69</course>
+        <name>point 244</name>
+      </trkpt>
+      <trkpt lat="33.3683301667" lon="-97.4327080000">
+        <ele>278.600000</ele>
+        <time>2018-03-17T13:40:23.20Z</time>
+        <course>212.26</course>
+        <name>point 245</name>
+      </trkpt>
+      <trkpt lat="33.3683045000" lon="-97.4327305000">
+        <ele>278.900000</ele>
+        <time>2018-03-17T13:40:23.40Z</time>
+        <course>216.37</course>
+        <name>point 246</name>
+      </trkpt>
+      <trkpt lat="33.3682801667" lon="-97.4327548333">
+        <ele>279.100000</ele>
+        <time>2018-03-17T13:40:23.60Z</time>
+        <course>220.04</course>
+        <name>point 247</name>
+      </trkpt>
+      <trkpt lat="33.3682573333" lon="-97.4327815000">
+        <ele>279.400000</ele>
+        <time>2018-03-17T13:40:23.80Z</time>
+        <course>223.98</course>
+        <name>point 248</name>
+      </trkpt>
+      <trkpt lat="33.3682360000" lon="-97.4328100000">
+        <ele>279.700000</ele>
+        <time>2018-03-17T13:40:24.00Z</time>
+        <course>228.13</course>
+        <name>point 249</name>
+      </trkpt>
+      <trkpt lat="33.3682161667" lon="-97.4328401667">
+        <ele>280.100000</ele>
+        <time>2018-03-17T13:40:24.20Z</time>
+        <course>232.01</course>
+        <name>point 250</name>
+      </trkpt>
+      <trkpt lat="33.3681980000" lon="-97.4328720000">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:40:24.40Z</time>
+        <course>235.76</course>
+        <name>point 251</name>
+      </trkpt>
+      <trkpt lat="33.3681816667" lon="-97.4329051667">
+        <ele>280.700000</ele>
+        <time>2018-03-17T13:40:24.60Z</time>
+        <course>239.45</course>
+        <name>point 252</name>
+      </trkpt>
+      <trkpt lat="33.3681670000" lon="-97.4329398333">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:40:24.80Z</time>
+        <course>243.25</course>
+        <name>point 253</name>
+      </trkpt>
+      <trkpt lat="33.3681546667" lon="-97.4329753333">
+        <ele>281.400000</ele>
+        <time>2018-03-17T13:40:25.00Z</time>
+        <course>247.27</course>
+        <name>point 254</name>
+      </trkpt>
+      <trkpt lat="33.3681445000" lon="-97.4330118333">
+        <ele>281.800000</ele>
+        <time>2018-03-17T13:40:25.20Z</time>
+        <course>251.42</course>
+        <name>point 255</name>
+      </trkpt>
+      <trkpt lat="33.3681363333" lon="-97.4330490000">
+        <ele>282.100000</ele>
+        <time>2018-03-17T13:40:25.40Z</time>
+        <course>255.38</course>
+        <name>point 256</name>
+      </trkpt>
+      <trkpt lat="33.3681305000" lon="-97.4330871667">
+        <ele>282.500000</ele>
+        <time>2018-03-17T13:40:25.60Z</time>
+        <course>259.29</course>
+        <name>point 257</name>
+      </trkpt>
+      <trkpt lat="33.3681265000" lon="-97.4331256667">
+        <ele>282.800000</ele>
+        <time>2018-03-17T13:40:25.80Z</time>
+        <course>262.98</course>
+        <name>point 258</name>
+      </trkpt>
+      <trkpt lat="33.3681246667" lon="-97.4331646667">
+        <ele>283.200000</ele>
+        <time>2018-03-17T13:40:26.00Z</time>
+        <course>266.51</course>
+        <name>point 259</name>
+      </trkpt>
+      <trkpt lat="33.3681248333" lon="-97.4332041667">
+        <ele>283.400000</ele>
+        <time>2018-03-17T13:40:26.20Z</time>
+        <course>270.21</course>
+        <name>point 260</name>
+      </trkpt>
+      <trkpt lat="33.3681271667" lon="-97.4332438333">
+        <ele>283.700000</ele>
+        <time>2018-03-17T13:40:26.40Z</time>
+        <course>273.84</course>
+        <name>point 261</name>
+      </trkpt>
+      <trkpt lat="33.3681315000" lon="-97.4332838333">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:26.60Z</time>
+        <course>277.24</course>
+        <name>point 262</name>
+      </trkpt>
+      <trkpt lat="33.3681378333" lon="-97.4333238333">
+        <ele>284.100000</ele>
+        <time>2018-03-17T13:40:26.80Z</time>
+        <course>280.74</course>
+        <name>point 263</name>
+      </trkpt>
+      <trkpt lat="33.3681465000" lon="-97.4333641667">
+        <ele>284.200000</ele>
+        <time>2018-03-17T13:40:27.00Z</time>
+        <course>284.13</course>
+        <name>point 264</name>
+      </trkpt>
+      <trkpt lat="33.3681571667" lon="-97.4334043333">
+        <ele>284.400000</ele>
+        <time>2018-03-17T13:40:27.20Z</time>
+        <course>287.44</course>
+        <name>point 265</name>
+      </trkpt>
+      <trkpt lat="33.3681701667" lon="-97.4334440000">
+        <ele>284.600000</ele>
+        <time>2018-03-17T13:40:27.40Z</time>
+        <course>291.10</course>
+        <name>point 266</name>
+      </trkpt>
+      <trkpt lat="33.3681853333" lon="-97.4334830000">
+        <ele>284.800000</ele>
+        <time>2018-03-17T13:40:27.60Z</time>
+        <course>294.47</course>
+        <name>point 267</name>
+      </trkpt>
+      <trkpt lat="33.3682023333" lon="-97.4335211667">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:40:27.80Z</time>
+        <course>297.74</course>
+        <name>point 268</name>
+      </trkpt>
+      <trkpt lat="33.3682213333" lon="-97.4335583333">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:40:28.00Z</time>
+        <course>301.18</course>
+        <name>point 269</name>
+      </trkpt>
+      <trkpt lat="33.3682421667" lon="-97.4335946667">
+        <ele>285.200000</ele>
+        <time>2018-03-17T13:40:28.20Z</time>
+        <course>304.27</course>
+        <name>point 270</name>
+      </trkpt>
+      <trkpt lat="33.3682648333" lon="-97.4336301667">
+        <ele>285.300000</ele>
+        <time>2018-03-17T13:40:28.40Z</time>
+        <course>307.05</course>
+        <name>point 271</name>
+      </trkpt>
+      <trkpt lat="33.3682891667" lon="-97.4336648333">
+        <ele>285.400000</ele>
+        <time>2018-03-17T13:40:28.60Z</time>
+        <course>309.76</course>
+        <name>point 272</name>
+      </trkpt>
+      <trkpt lat="33.3683146667" lon="-97.4336985000">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:40:28.80Z</time>
+        <course>312.13</course>
+        <name>point 273</name>
+      </trkpt>
+      <trkpt lat="33.3683413333" lon="-97.4337311667">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:40:29.00Z</time>
+        <course>314.29</course>
+        <name>point 274</name>
+      </trkpt>
+      <trkpt lat="33.3683690000" lon="-97.4337626667">
+        <ele>285.700000</ele>
+        <time>2018-03-17T13:40:29.20Z</time>
+        <course>316.22</course>
+        <name>point 275</name>
+      </trkpt>
+      <trkpt lat="33.3683970000" lon="-97.4337935000">
+        <ele>285.800000</ele>
+        <time>2018-03-17T13:40:29.40Z</time>
+        <course>317.62</course>
+        <name>point 276</name>
+      </trkpt>
+      <trkpt lat="33.3684256667" lon="-97.4338235000">
+        <ele>285.900000</ele>
+        <time>2018-03-17T13:40:29.60Z</time>
+        <course>318.84</course>
+        <name>point 277</name>
+      </trkpt>
+      <trkpt lat="33.3684548333" lon="-97.4338528333">
+        <ele>286.000000</ele>
+        <time>2018-03-17T13:40:29.80Z</time>
+        <course>320.06</course>
+        <name>point 278</name>
+      </trkpt>
+      <trkpt lat="33.3684845000" lon="-97.4338818333">
+        <ele>286.000000</ele>
+        <time>2018-03-17T13:40:30.00Z</time>
+        <course>320.75</course>
+        <name>point 279</name>
+      </trkpt>
+      <trkpt lat="33.3685145000" lon="-97.4339108333">
+        <ele>286.100000</ele>
+        <time>2018-03-17T13:40:30.20Z</time>
+        <course>321.17</course>
+        <name>point 280</name>
+      </trkpt>
+      <trkpt lat="33.3685448333" lon="-97.4339398333">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:40:30.40Z</time>
+        <course>321.48</course>
+        <name>point 281</name>
+      </trkpt>
+      <trkpt lat="33.3685753333" lon="-97.4339688333">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:40:30.60Z</time>
+        <course>321.77</course>
+        <name>point 282</name>
+      </trkpt>
+      <trkpt lat="33.3686061667" lon="-97.4339976667">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:40:30.80Z</time>
+        <course>321.89</course>
+        <name>point 283</name>
+      </trkpt>
+      <trkpt lat="33.3686370000" lon="-97.4340268333">
+        <ele>286.400000</ele>
+        <time>2018-03-17T13:40:31.00Z</time>
+        <course>321.98</course>
+        <name>point 284</name>
+      </trkpt>
+      <trkpt lat="33.3686680000" lon="-97.4340560000">
+        <ele>286.500000</ele>
+        <time>2018-03-17T13:40:31.20Z</time>
+        <course>321.92</course>
+        <name>point 285</name>
+      </trkpt>
+      <trkpt lat="33.3686995000" lon="-97.4340853333">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:40:31.40Z</time>
+        <course>322.04</course>
+        <name>point 286</name>
+      </trkpt>
+      <trkpt lat="33.3687308333" lon="-97.4341150000">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:40:31.60Z</time>
+        <course>322.02</course>
+        <name>point 287</name>
+      </trkpt>
+      <trkpt lat="33.3687626667" lon="-97.4341446667">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:40:31.80Z</time>
+        <course>322.09</course>
+        <name>point 288</name>
+      </trkpt>
+      <trkpt lat="33.3687943333" lon="-97.4341745000">
+        <ele>286.800000</ele>
+        <time>2018-03-17T13:40:32.00Z</time>
+        <course>322.15</course>
+        <name>point 289</name>
+      </trkpt>
+      <trkpt lat="33.3688263333" lon="-97.4342043333">
+        <ele>286.900000</ele>
+        <time>2018-03-17T13:40:32.20Z</time>
+        <course>322.09</course>
+        <name>point 290</name>
+      </trkpt>
+      <trkpt lat="33.3688585000" lon="-97.4342345000">
+        <ele>287.000000</ele>
+        <time>2018-03-17T13:40:32.40Z</time>
+        <course>322.09</course>
+        <name>point 291</name>
+      </trkpt>
+      <trkpt lat="33.3688906667" lon="-97.4342646667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:40:32.60Z</time>
+        <course>322.06</course>
+        <name>point 292</name>
+      </trkpt>
+      <trkpt lat="33.3689228333" lon="-97.4342950000">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:40:32.80Z</time>
+        <course>322.01</course>
+        <name>point 293</name>
+      </trkpt>
+      <trkpt lat="33.3689551667" lon="-97.4343251667">
+        <ele>287.400000</ele>
+        <time>2018-03-17T13:40:33.00Z</time>
+        <course>322.08</course>
+        <name>point 294</name>
+      </trkpt>
+      <trkpt lat="33.3689876667" lon="-97.4343556667">
+        <ele>287.500000</ele>
+        <time>2018-03-17T13:40:33.20Z</time>
+        <course>322.20</course>
+        <name>point 295</name>
+      </trkpt>
+      <trkpt lat="33.3690201667" lon="-97.4343860000">
+        <ele>287.600000</ele>
+        <time>2018-03-17T13:40:33.40Z</time>
+        <course>322.14</course>
+        <name>point 296</name>
+      </trkpt>
+      <trkpt lat="33.3690528333" lon="-97.4344165000">
+        <ele>287.700000</ele>
+        <time>2018-03-17T13:40:33.60Z</time>
+        <course>322.06</course>
+        <name>point 297</name>
+      </trkpt>
+      <trkpt lat="33.3690853333" lon="-97.4344473333">
+        <ele>287.800000</ele>
+        <time>2018-03-17T13:40:33.80Z</time>
+        <course>321.78</course>
+        <name>point 298</name>
+      </trkpt>
+      <trkpt lat="33.3691180000" lon="-97.4344785000">
+        <ele>287.900000</ele>
+        <time>2018-03-17T13:40:34.00Z</time>
+        <course>321.58</course>
+        <name>point 299</name>
+      </trkpt>
+      <trkpt lat="33.3691506667" lon="-97.4345096667">
+        <ele>288.000000</ele>
+        <time>2018-03-17T13:40:34.20Z</time>
+        <course>321.44</course>
+        <name>point 300</name>
+      </trkpt>
+      <trkpt lat="33.3691835000" lon="-97.4345413333">
+        <ele>288.200000</ele>
+        <time>2018-03-17T13:40:34.40Z</time>
+        <course>321.31</course>
+        <name>point 301</name>
+      </trkpt>
+      <trkpt lat="33.3692163333" lon="-97.4345730000">
+        <ele>288.300000</ele>
+        <time>2018-03-17T13:40:34.60Z</time>
+        <course>321.11</course>
+        <name>point 302</name>
+      </trkpt>
+      <trkpt lat="33.3692493333" lon="-97.4346051667">
+        <ele>288.400000</ele>
+        <time>2018-03-17T13:40:34.80Z</time>
+        <course>320.90</course>
+        <name>point 303</name>
+      </trkpt>
+      <trkpt lat="33.3692821667" lon="-97.4346375000">
+        <ele>288.500000</ele>
+        <time>2018-03-17T13:40:35.00Z</time>
+        <course>320.65</course>
+        <name>point 304</name>
+      </trkpt>
+      <trkpt lat="33.3693150000" lon="-97.4346701667">
+        <ele>288.600000</ele>
+        <time>2018-03-17T13:40:35.20Z</time>
+        <course>320.41</course>
+        <name>point 305</name>
+      </trkpt>
+      <trkpt lat="33.3693480000" lon="-97.4347030000">
+        <ele>288.800000</ele>
+        <time>2018-03-17T13:40:35.40Z</time>
+        <course>320.29</course>
+        <name>point 306</name>
+      </trkpt>
+      <trkpt lat="33.3693810000" lon="-97.4347360000">
+        <ele>288.900000</ele>
+        <time>2018-03-17T13:40:35.60Z</time>
+        <course>320.11</course>
+        <name>point 307</name>
+      </trkpt>
+      <trkpt lat="33.3694140000" lon="-97.4347693333">
+        <ele>289.000000</ele>
+        <time>2018-03-17T13:40:35.80Z</time>
+        <course>319.89</course>
+        <name>point 308</name>
+      </trkpt>
+      <trkpt lat="33.3694470000" lon="-97.4348028333">
+        <ele>289.200000</ele>
+        <time>2018-03-17T13:40:36.00Z</time>
+        <course>319.79</course>
+        <name>point 309</name>
+      </trkpt>
+      <trkpt lat="33.3694803333" lon="-97.4348366667">
+        <ele>289.300000</ele>
+        <time>2018-03-17T13:40:36.20Z</time>
+        <course>319.63</course>
+        <name>point 310</name>
+      </trkpt>
+      <trkpt lat="33.3695138333" lon="-97.4348708333">
+        <ele>289.500000</ele>
+        <time>2018-03-17T13:40:36.40Z</time>
+        <course>319.64</course>
+        <name>point 311</name>
+      </trkpt>
+      <trkpt lat="33.3695476667" lon="-97.4349051667">
+        <ele>289.600000</ele>
+        <time>2018-03-17T13:40:36.60Z</time>
+        <course>319.68</course>
+        <name>point 312</name>
+      </trkpt>
+      <trkpt lat="33.3695816667" lon="-97.4349398333">
+        <ele>289.700000</ele>
+        <time>2018-03-17T13:40:36.80Z</time>
+        <course>319.67</course>
+        <name>point 313</name>
+      </trkpt>
+      <trkpt lat="33.3696163333" lon="-97.4349750000">
+        <ele>289.800000</ele>
+        <time>2018-03-17T13:40:37.00Z</time>
+        <course>319.58</course>
+        <name>point 314</name>
+      </trkpt>
+      <trkpt lat="33.3696511667" lon="-97.4350106667">
+        <ele>289.900000</ele>
+        <time>2018-03-17T13:40:37.20Z</time>
+        <course>319.60</course>
+        <name>point 315</name>
+      </trkpt>
+      <trkpt lat="33.3696865000" lon="-97.4350466667">
+        <ele>290.000000</ele>
+        <time>2018-03-17T13:40:37.40Z</time>
+        <course>319.59</course>
+        <name>point 316</name>
+      </trkpt>
+      <trkpt lat="33.3697220000" lon="-97.4350830000">
+        <ele>290.200000</ele>
+        <time>2018-03-17T13:40:37.60Z</time>
+        <course>319.50</course>
+        <name>point 317</name>
+      </trkpt>
+      <trkpt lat="33.3697580000" lon="-97.4351195000">
+        <ele>290.300000</ele>
+        <time>2018-03-17T13:40:37.80Z</time>
+        <course>319.61</course>
+        <name>point 318</name>
+      </trkpt>
+      <trkpt lat="33.3697940000" lon="-97.4351563333">
+        <ele>290.300000</ele>
+        <time>2018-03-17T13:40:38.00Z</time>
+        <course>319.61</course>
+        <name>point 319</name>
+      </trkpt>
+      <trkpt lat="33.3698303333" lon="-97.4351933333">
+        <ele>290.400000</ele>
+        <time>2018-03-17T13:40:38.20Z</time>
+        <course>319.54</course>
+        <name>point 320</name>
+      </trkpt>
+      <trkpt lat="33.3698668333" lon="-97.4352303333">
+        <ele>290.500000</ele>
+        <time>2018-03-17T13:40:38.40Z</time>
+        <course>319.57</course>
+        <name>point 321</name>
+      </trkpt>
+      <trkpt lat="33.3699031667" lon="-97.4352675000">
+        <ele>290.600000</ele>
+        <time>2018-03-17T13:40:38.60Z</time>
+        <course>319.57</course>
+        <name>point 322</name>
+      </trkpt>
+      <trkpt lat="33.3699395000" lon="-97.4353043333">
+        <ele>290.700000</ele>
+        <time>2018-03-17T13:40:38.80Z</time>
+        <course>319.70</course>
+        <name>point 323</name>
+      </trkpt>
+      <trkpt lat="33.3699758333" lon="-97.4353411667">
+        <ele>290.700000</ele>
+        <time>2018-03-17T13:40:39.00Z</time>
+        <course>319.74</course>
+        <name>point 324</name>
+      </trkpt>
+      <trkpt lat="33.3700118333" lon="-97.4353776667">
+        <ele>290.800000</ele>
+        <time>2018-03-17T13:40:39.20Z</time>
+        <course>319.81</course>
+        <name>point 325</name>
+      </trkpt>
+      <trkpt lat="33.3700476667" lon="-97.4354140000">
+        <ele>290.800000</ele>
+        <time>2018-03-17T13:40:39.40Z</time>
+        <course>319.66</course>
+        <name>point 326</name>
+      </trkpt>
+      <trkpt lat="33.3700833333" lon="-97.4354501667">
+        <ele>290.900000</ele>
+        <time>2018-03-17T13:40:39.60Z</time>
+        <course>319.62</course>
+        <name>point 327</name>
+      </trkpt>
+      <trkpt lat="33.3701186667" lon="-97.4354861667">
+        <ele>291.000000</ele>
+        <time>2018-03-17T13:40:39.80Z</time>
+        <course>319.61</course>
+        <name>point 328</name>
+      </trkpt>
+      <trkpt lat="33.3701536667" lon="-97.4355218333">
+        <ele>291.100000</ele>
+        <time>2018-03-17T13:40:40.00Z</time>
+        <course>319.64</course>
+        <name>point 329</name>
+      </trkpt>
+      <trkpt lat="33.3701885000" lon="-97.4355575000">
+        <ele>291.100000</ele>
+        <time>2018-03-17T13:40:40.20Z</time>
+        <course>319.53</course>
+        <name>point 330</name>
+      </trkpt>
+      <trkpt lat="33.3702230000" lon="-97.4355926667">
+        <ele>291.100000</ele>
+        <time>2018-03-17T13:40:40.40Z</time>
+        <course>319.58</course>
+        <name>point 331</name>
+      </trkpt>
+      <trkpt lat="33.3702571667" lon="-97.4356278333">
+        <ele>291.200000</ele>
+        <time>2018-03-17T13:40:40.60Z</time>
+        <course>319.44</course>
+        <name>point 332</name>
+      </trkpt>
+      <trkpt lat="33.3702910000" lon="-97.4356626667">
+        <ele>291.200000</ele>
+        <time>2018-03-17T13:40:40.80Z</time>
+        <course>319.38</course>
+        <name>point 333</name>
+      </trkpt>
+      <trkpt lat="33.3703245000" lon="-97.4356971667">
+        <ele>291.300000</ele>
+        <time>2018-03-17T13:40:41.00Z</time>
+        <course>319.34</course>
+        <name>point 334</name>
+      </trkpt>
+      <trkpt lat="33.3703578333" lon="-97.4357315000">
+        <ele>291.400000</ele>
+        <time>2018-03-17T13:40:41.20Z</time>
+        <course>319.26</course>
+        <name>point 335</name>
+      </trkpt>
+      <trkpt lat="33.3703906667" lon="-97.4357655000">
+        <ele>291.400000</ele>
+        <time>2018-03-17T13:40:41.40Z</time>
+        <course>319.24</course>
+        <name>point 336</name>
+      </trkpt>
+      <trkpt lat="33.3704235000" lon="-97.4357991667">
+        <ele>291.500000</ele>
+        <time>2018-03-17T13:40:41.60Z</time>
+        <course>319.33</course>
+        <name>point 337</name>
+      </trkpt>
+      <trkpt lat="33.3704563333" lon="-97.4358328333">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:41.80Z</time>
+        <course>319.40</course>
+        <name>point 338</name>
+      </trkpt>
+      <trkpt lat="33.3704888333" lon="-97.4358663333">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:42.00Z</time>
+        <course>319.30</course>
+        <name>point 339</name>
+      </trkpt>
+      <trkpt lat="33.3705213333" lon="-97.4358996667">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:42.20Z</time>
+        <course>319.38</course>
+        <name>point 340</name>
+      </trkpt>
+      <trkpt lat="33.3705535000" lon="-97.4359328333">
+        <ele>291.800000</ele>
+        <time>2018-03-17T13:40:42.40Z</time>
+        <course>319.36</course>
+        <name>point 341</name>
+      </trkpt>
+      <trkpt lat="33.3705855000" lon="-97.4359658333">
+        <ele>291.900000</ele>
+        <time>2018-03-17T13:40:42.60Z</time>
+        <course>319.32</course>
+        <name>point 342</name>
+      </trkpt>
+      <trkpt lat="33.3706173333" lon="-97.4359986667">
+        <ele>291.900000</ele>
+        <time>2018-03-17T13:40:42.80Z</time>
+        <course>319.31</course>
+        <name>point 343</name>
+      </trkpt>
+      <trkpt lat="33.3706490000" lon="-97.4360313333">
+        <ele>291.900000</ele>
+        <time>2018-03-17T13:40:43.00Z</time>
+        <course>319.35</course>
+        <name>point 344</name>
+      </trkpt>
+      <trkpt lat="33.3706805000" lon="-97.4360636667">
+        <ele>291.900000</ele>
+        <time>2018-03-17T13:40:43.20Z</time>
+        <course>319.46</course>
+        <name>point 345</name>
+      </trkpt>
+      <trkpt lat="33.3707116667" lon="-97.4360956667">
+        <ele>292.000000</ele>
+        <time>2018-03-17T13:40:43.40Z</time>
+        <course>319.46</course>
+        <name>point 346</name>
+      </trkpt>
+      <trkpt lat="33.3707426667" lon="-97.4361276667">
+        <ele>292.000000</ele>
+        <time>2018-03-17T13:40:43.60Z</time>
+        <course>319.36</course>
+        <name>point 347</name>
+      </trkpt>
+      <trkpt lat="33.3707733333" lon="-97.4361593333">
+        <ele>291.900000</ele>
+        <time>2018-03-17T13:40:43.80Z</time>
+        <course>319.39</course>
+        <name>point 348</name>
+      </trkpt>
+      <trkpt lat="33.3708038333" lon="-97.4361908333">
+        <ele>291.900000</ele>
+        <time>2018-03-17T13:40:44.00Z</time>
+        <course>319.39</course>
+        <name>point 349</name>
+      </trkpt>
+      <trkpt lat="33.3708341667" lon="-97.4362220000">
+        <ele>291.800000</ele>
+        <time>2018-03-17T13:40:44.20Z</time>
+        <course>319.43</course>
+        <name>point 350</name>
+      </trkpt>
+      <trkpt lat="33.3708643333" lon="-97.4362530000">
+        <ele>291.800000</ele>
+        <time>2018-03-17T13:40:44.40Z</time>
+        <course>319.39</course>
+        <name>point 351</name>
+      </trkpt>
+      <trkpt lat="33.3708943333" lon="-97.4362836667">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:44.60Z</time>
+        <course>319.51</course>
+        <name>point 352</name>
+      </trkpt>
+      <trkpt lat="33.3709240000" lon="-97.4363138333">
+        <ele>291.700000</ele>
+        <time>2018-03-17T13:40:44.80Z</time>
+        <course>319.55</course>
+        <name>point 353</name>
+      </trkpt>
+      <trkpt lat="33.3709535000" lon="-97.4363440000">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:45.00Z</time>
+        <course>319.52</course>
+        <name>point 354</name>
+      </trkpt>
+      <trkpt lat="33.3709826667" lon="-97.4363738333">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:45.20Z</time>
+        <course>319.59</course>
+        <name>point 355</name>
+      </trkpt>
+      <trkpt lat="33.3710116667" lon="-97.4364033333">
+        <ele>291.600000</ele>
+        <time>2018-03-17T13:40:45.40Z</time>
+        <course>319.52</course>
+        <name>point 356</name>
+      </trkpt>
+      <trkpt lat="33.3710403333" lon="-97.4364326667">
+        <ele>291.500000</ele>
+        <time>2018-03-17T13:40:45.60Z</time>
+        <course>319.54</course>
+        <name>point 357</name>
+      </trkpt>
+      <trkpt lat="33.3710688333" lon="-97.4364615000">
+        <ele>291.400000</ele>
+        <time>2018-03-17T13:40:45.80Z</time>
+        <course>319.65</course>
+        <name>point 358</name>
+      </trkpt>
+      <trkpt lat="33.3710968333" lon="-97.4364901667">
+        <ele>291.300000</ele>
+        <time>2018-03-17T13:40:46.00Z</time>
+        <course>319.59</course>
+        <name>point 359</name>
+      </trkpt>
+      <trkpt lat="33.3711246667" lon="-97.4365185000">
+        <ele>291.300000</ele>
+        <time>2018-03-17T13:40:46.20Z</time>
+        <course>319.59</course>
+        <name>point 360</name>
+      </trkpt>
+      <trkpt lat="33.3711521667" lon="-97.4365466667">
+        <ele>291.200000</ele>
+        <time>2018-03-17T13:40:46.40Z</time>
+        <course>319.45</course>
+        <name>point 361</name>
+      </trkpt>
+      <trkpt lat="33.3711795000" lon="-97.4365745000">
+        <ele>291.100000</ele>
+        <time>2018-03-17T13:40:46.60Z</time>
+        <course>319.55</course>
+        <name>point 362</name>
+      </trkpt>
+      <trkpt lat="33.3712066667" lon="-97.4366020000">
+        <ele>291.000000</ele>
+        <time>2018-03-17T13:40:46.80Z</time>
+        <course>319.79</course>
+        <name>point 363</name>
+      </trkpt>
+      <trkpt lat="33.3712335000" lon="-97.4366293333">
+        <ele>290.800000</ele>
+        <time>2018-03-17T13:40:47.00Z</time>
+        <course>319.67</course>
+        <name>point 364</name>
+      </trkpt>
+      <trkpt lat="33.3712601667" lon="-97.4366565000">
+        <ele>290.700000</ele>
+        <time>2018-03-17T13:40:47.20Z</time>
+        <course>319.70</course>
+        <name>point 365</name>
+      </trkpt>
+      <trkpt lat="33.3712865000" lon="-97.4366835000">
+        <ele>290.600000</ele>
+        <time>2018-03-17T13:40:47.40Z</time>
+        <course>319.56</course>
+        <name>point 366</name>
+      </trkpt>
+      <trkpt lat="33.3713125000" lon="-97.4367101667">
+        <ele>290.500000</ele>
+        <time>2018-03-17T13:40:47.60Z</time>
+        <course>319.48</course>
+        <name>point 367</name>
+      </trkpt>
+      <trkpt lat="33.3713383333" lon="-97.4367366667">
+        <ele>290.400000</ele>
+        <time>2018-03-17T13:40:47.80Z</time>
+        <course>319.52</course>
+        <name>point 368</name>
+      </trkpt>
+      <trkpt lat="33.3713641667" lon="-97.4367628333">
+        <ele>290.300000</ele>
+        <time>2018-03-17T13:40:48.00Z</time>
+        <course>319.75</course>
+        <name>point 369</name>
+      </trkpt>
+      <trkpt lat="33.3713898333" lon="-97.4367888333">
+        <ele>290.200000</ele>
+        <time>2018-03-17T13:40:48.20Z</time>
+        <course>319.80</course>
+        <name>point 370</name>
+      </trkpt>
+      <trkpt lat="33.3714151667" lon="-97.4368145000">
+        <ele>290.100000</ele>
+        <time>2018-03-17T13:40:48.40Z</time>
+        <course>319.82</course>
+        <name>point 371</name>
+      </trkpt>
+      <trkpt lat="33.3714403333" lon="-97.4368398333">
+        <ele>290.000000</ele>
+        <time>2018-03-17T13:40:48.60Z</time>
+        <course>319.97</course>
+        <name>point 372</name>
+      </trkpt>
+      <trkpt lat="33.3714653333" lon="-97.4368645000">
+        <ele>289.900000</ele>
+        <time>2018-03-17T13:40:48.80Z</time>
+        <course>320.30</course>
+        <name>point 373</name>
+      </trkpt>
+      <trkpt lat="33.3714898333" lon="-97.4368885000">
+        <ele>289.800000</ele>
+        <time>2018-03-17T13:40:49.00Z</time>
+        <course>320.56</course>
+        <name>point 374</name>
+      </trkpt>
+      <trkpt lat="33.3715136667" lon="-97.4369120000">
+        <ele>289.700000</ele>
+        <time>2018-03-17T13:40:49.20Z</time>
+        <course>320.61</course>
+        <name>point 375</name>
+      </trkpt>
+      <trkpt lat="33.3715371667" lon="-97.4369351667">
+        <ele>289.600000</ele>
+        <time>2018-03-17T13:40:49.40Z</time>
+        <course>320.45</course>
+        <name>point 376</name>
+      </trkpt>
+      <trkpt lat="33.3715600000" lon="-97.4369578333">
+        <ele>289.500000</ele>
+        <time>2018-03-17T13:40:49.60Z</time>
+        <course>320.39</course>
+        <name>point 377</name>
+      </trkpt>
+      <trkpt lat="33.3715820000" lon="-97.4369801667">
+        <ele>289.400000</ele>
+        <time>2018-03-17T13:40:49.80Z</time>
+        <course>319.58</course>
+        <name>point 378</name>
+      </trkpt>
+      <trkpt lat="33.3716026667" lon="-97.4370030000">
+        <ele>289.400000</ele>
+        <time>2018-03-17T13:40:50.00Z</time>
+        <course>317.30</course>
+        <name>point 379</name>
+      </trkpt>
+      <trkpt lat="33.3716221667" lon="-97.4370268333">
+        <ele>289.400000</ele>
+        <time>2018-03-17T13:40:50.20Z</time>
+        <course>314.62</course>
+        <name>point 380</name>
+      </trkpt>
+      <trkpt lat="33.3716405000" lon="-97.4370513333">
+        <ele>289.300000</ele>
+        <time>2018-03-17T13:40:50.40Z</time>
+        <course>312.15</course>
+        <name>point 381</name>
+      </trkpt>
+      <trkpt lat="33.3716575000" lon="-97.4370768333">
+        <ele>289.200000</ele>
+        <time>2018-03-17T13:40:50.60Z</time>
+        <course>308.82</course>
+        <name>point 382</name>
+      </trkpt>
+      <trkpt lat="33.3716728333" lon="-97.4371033333">
+        <ele>289.000000</ele>
+        <time>2018-03-17T13:40:50.80Z</time>
+        <course>305.01</course>
+        <name>point 383</name>
+      </trkpt>
+      <trkpt lat="33.3716861667" lon="-97.4371310000">
+        <ele>288.900000</ele>
+        <time>2018-03-17T13:40:51.00Z</time>
+        <course>300.42</course>
+        <name>point 384</name>
+      </trkpt>
+      <trkpt lat="33.3716975000" lon="-97.4371598333">
+        <ele>288.700000</ele>
+        <time>2018-03-17T13:40:51.20Z</time>
+        <course>295.73</course>
+        <name>point 385</name>
+      </trkpt>
+      <trkpt lat="33.3717066667" lon="-97.4371898333">
+        <ele>288.500000</ele>
+        <time>2018-03-17T13:40:51.40Z</time>
+        <course>290.55</course>
+        <name>point 386</name>
+      </trkpt>
+      <trkpt lat="33.3717135000" lon="-97.4372210000">
+        <ele>288.300000</ele>
+        <time>2018-03-17T13:40:51.60Z</time>
+        <course>285.55</course>
+        <name>point 387</name>
+      </trkpt>
+      <trkpt lat="33.3717185000" lon="-97.4372535000">
+        <ele>288.100000</ele>
+        <time>2018-03-17T13:40:51.80Z</time>
+        <course>281.06</course>
+        <name>point 388</name>
+      </trkpt>
+      <trkpt lat="33.3717216667" lon="-97.4372866667">
+        <ele>287.800000</ele>
+        <time>2018-03-17T13:40:52.00Z</time>
+        <course>277.13</course>
+        <name>point 389</name>
+      </trkpt>
+      <trkpt lat="33.3717230000" lon="-97.4373205000">
+        <ele>287.600000</ele>
+        <time>2018-03-17T13:40:52.20Z</time>
+        <course>273.24</course>
+        <name>point 390</name>
+      </trkpt>
+      <trkpt lat="33.3717225000" lon="-97.4373551667">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:40:52.40Z</time>
+        <course>269.73</course>
+        <name>point 391</name>
+      </trkpt>
+      <trkpt lat="33.3717201667" lon="-97.4373901667">
+        <ele>287.100000</ele>
+        <time>2018-03-17T13:40:52.60Z</time>
+        <course>265.93</course>
+        <name>point 392</name>
+      </trkpt>
+      <trkpt lat="33.3717158333" lon="-97.4374255000">
+        <ele>286.900000</ele>
+        <time>2018-03-17T13:40:52.80Z</time>
+        <course>262.34</course>
+        <name>point 393</name>
+      </trkpt>
+      <trkpt lat="33.3717095000" lon="-97.4374608333">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:40:53.00Z</time>
+        <course>258.42</course>
+        <name>point 394</name>
+      </trkpt>
+      <trkpt lat="33.3717011667" lon="-97.4374958333">
+        <ele>286.500000</ele>
+        <time>2018-03-17T13:40:53.20Z</time>
+        <course>254.81</course>
+        <name>point 395</name>
+      </trkpt>
+      <trkpt lat="33.3716913333" lon="-97.4375303333">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:40:53.40Z</time>
+        <course>251.56</course>
+        <name>point 396</name>
+      </trkpt>
+      <trkpt lat="33.3716795000" lon="-97.4375641667">
+        <ele>286.100000</ele>
+        <time>2018-03-17T13:40:53.60Z</time>
+        <course>247.89</course>
+        <name>point 397</name>
+      </trkpt>
+      <trkpt lat="33.3716656667" lon="-97.4375968333">
+        <ele>285.900000</ele>
+        <time>2018-03-17T13:40:53.80Z</time>
+        <course>243.66</course>
+        <name>point 398</name>
+      </trkpt>
+      <trkpt lat="33.3716500000" lon="-97.4376280000">
+        <ele>285.800000</ele>
+        <time>2018-03-17T13:40:54.00Z</time>
+        <course>239.48</course>
+        <name>point 399</name>
+      </trkpt>
+      <trkpt lat="33.3716323333" lon="-97.4376576667">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:40:54.20Z</time>
+        <course>235.03</course>
+        <name>point 400</name>
+      </trkpt>
+      <trkpt lat="33.3716128333" lon="-97.4376853333">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:40:54.40Z</time>
+        <course>230.53</course>
+        <name>point 401</name>
+      </trkpt>
+      <trkpt lat="33.3715918333" lon="-97.4377111667">
+        <ele>285.300000</ele>
+        <time>2018-03-17T13:40:54.60Z</time>
+        <course>226.22</course>
+        <name>point 402</name>
+      </trkpt>
+      <trkpt lat="33.3715695000" lon="-97.4377346667">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:40:54.80Z</time>
+        <course>221.94</course>
+        <name>point 403</name>
+      </trkpt>
+      <trkpt lat="33.3715458333" lon="-97.4377560000">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:40:55.00Z</time>
+        <course>217.73</course>
+        <name>point 404</name>
+      </trkpt>
+      <trkpt lat="33.3715210000" lon="-97.4377750000">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:40:55.20Z</time>
+        <course>213.15</course>
+        <name>point 405</name>
+      </trkpt>
+      <trkpt lat="33.3714951667" lon="-97.4377911667">
+        <ele>284.800000</ele>
+        <time>2018-03-17T13:40:55.40Z</time>
+        <course>208.49</course>
+        <name>point 406</name>
+      </trkpt>
+      <trkpt lat="33.3714685000" lon="-97.4378050000">
+        <ele>284.700000</ele>
+        <time>2018-03-17T13:40:55.60Z</time>
+        <course>204.13</course>
+        <name>point 407</name>
+      </trkpt>
+      <trkpt lat="33.3714410000" lon="-97.4378163333">
+        <ele>284.600000</ele>
+        <time>2018-03-17T13:40:55.80Z</time>
+        <course>199.79</course>
+        <name>point 408</name>
+      </trkpt>
+      <trkpt lat="33.3714125000" lon="-97.4378256667">
+        <ele>284.500000</ele>
+        <time>2018-03-17T13:40:56.00Z</time>
+        <course>196.06</course>
+        <name>point 409</name>
+      </trkpt>
+      <trkpt lat="33.3713833333" lon="-97.4378333333">
+        <ele>284.500000</ele>
+        <time>2018-03-17T13:40:56.20Z</time>
+        <course>192.99</course>
+        <name>point 410</name>
+      </trkpt>
+      <trkpt lat="33.3713530000" lon="-97.4378391667">
+        <ele>284.400000</ele>
+        <time>2018-03-17T13:40:56.40Z</time>
+        <course>189.60</course>
+        <name>point 411</name>
+      </trkpt>
+      <trkpt lat="33.3713220000" lon="-97.4378426667">
+        <ele>284.300000</ele>
+        <time>2018-03-17T13:40:56.60Z</time>
+        <course>186.22</course>
+        <name>point 412</name>
+      </trkpt>
+      <trkpt lat="33.3712901667" lon="-97.4378438333">
+        <ele>284.200000</ele>
+        <time>2018-03-17T13:40:56.80Z</time>
+        <course>182.63</course>
+        <name>point 413</name>
+      </trkpt>
+      <trkpt lat="33.3712575000" lon="-97.4378433333">
+        <ele>284.100000</ele>
+        <time>2018-03-17T13:40:57.00Z</time>
+        <course>179.67</course>
+        <name>point 414</name>
+      </trkpt>
+      <trkpt lat="33.3712241667" lon="-97.4378410000">
+        <ele>284.100000</ele>
+        <time>2018-03-17T13:40:57.20Z</time>
+        <course>177.26</course>
+        <name>point 415</name>
+      </trkpt>
+      <trkpt lat="33.3711900000" lon="-97.4378371667">
+        <ele>284.100000</ele>
+        <time>2018-03-17T13:40:57.40Z</time>
+        <course>175.03</course>
+        <name>point 416</name>
+      </trkpt>
+      <trkpt lat="33.3711548333" lon="-97.4378316667">
+        <ele>284.000000</ele>
+        <time>2018-03-17T13:40:57.60Z</time>
+        <course>173.02</course>
+        <name>point 417</name>
+      </trkpt>
+      <trkpt lat="33.3711193333" lon="-97.4378245000">
+        <ele>284.000000</ele>
+        <time>2018-03-17T13:40:57.80Z</time>
+        <course>170.99</course>
+        <name>point 418</name>
+      </trkpt>
+      <trkpt lat="33.3710830000" lon="-97.4378158333">
+        <ele>284.000000</ele>
+        <time>2018-03-17T13:40:58.00Z</time>
+        <course>169.02</course>
+        <name>point 419</name>
+      </trkpt>
+      <trkpt lat="33.3710461667" lon="-97.4378055000">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:58.20Z</time>
+        <course>167.23</course>
+        <name>point 420</name>
+      </trkpt>
+      <trkpt lat="33.3710086667" lon="-97.4377936667">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:58.40Z</time>
+        <course>165.47</course>
+        <name>point 421</name>
+      </trkpt>
+      <trkpt lat="33.3709708333" lon="-97.4377800000">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:58.60Z</time>
+        <course>163.67</course>
+        <name>point 422</name>
+      </trkpt>
+      <trkpt lat="33.3709325000" lon="-97.4377648333">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:58.80Z</time>
+        <course>162.01</course>
+        <name>point 423</name>
+      </trkpt>
+      <trkpt lat="33.3708940000" lon="-97.4377480000">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:59.00Z</time>
+        <course>160.33</course>
+        <name>point 424</name>
+      </trkpt>
+      <trkpt lat="33.3708550000" lon="-97.4377296667">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:59.20Z</time>
+        <course>158.76</course>
+        <name>point 425</name>
+      </trkpt>
+      <trkpt lat="33.3708160000" lon="-97.4377096667">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:40:59.40Z</time>
+        <course>157.12</course>
+        <name>point 426</name>
+      </trkpt>
+      <trkpt lat="33.3707766667" lon="-97.4376880000">
+        <ele>283.800000</ele>
+        <time>2018-03-17T13:40:59.60Z</time>
+        <course>155.49</course>
+        <name>point 427</name>
+      </trkpt>
+      <trkpt lat="33.3707373333" lon="-97.4376648333">
+        <ele>283.800000</ele>
+        <time>2018-03-17T13:40:59.80Z</time>
+        <course>154.04</course>
+        <name>point 428</name>
+      </trkpt>
+      <trkpt lat="33.3706978333" lon="-97.4376400000">
+        <ele>283.900000</ele>
+        <time>2018-03-17T13:41:00.00Z</time>
+        <course>152.69</course>
+        <name>point 429</name>
+      </trkpt>
+      <trkpt lat="33.3706581667" lon="-97.4376138333">
+        <ele>284.000000</ele>
+        <time>2018-03-17T13:41:00.20Z</time>
+        <course>151.43</course>
+        <name>point 430</name>
+      </trkpt>
+      <trkpt lat="33.3706183333" lon="-97.4375865000">
+        <ele>284.100000</ele>
+        <time>2018-03-17T13:41:00.40Z</time>
+        <course>150.43</course>
+        <name>point 431</name>
+      </trkpt>
+      <trkpt lat="33.3705781667" lon="-97.4375581667">
+        <ele>284.100000</ele>
+        <time>2018-03-17T13:41:00.60Z</time>
+        <course>149.52</course>
+        <name>point 432</name>
+      </trkpt>
+      <trkpt lat="33.3705376667" lon="-97.4375290000">
+        <ele>284.200000</ele>
+        <time>2018-03-17T13:41:00.80Z</time>
+        <course>149.07</course>
+        <name>point 433</name>
+      </trkpt>
+      <trkpt lat="33.3704966667" lon="-97.4374995000">
+        <ele>284.200000</ele>
+        <time>2018-03-17T13:41:01.00Z</time>
+        <course>149.12</course>
+        <name>point 434</name>
+      </trkpt>
+      <trkpt lat="33.3704550000" lon="-97.4374696667">
+        <ele>284.300000</ele>
+        <time>2018-03-17T13:41:01.20Z</time>
+        <course>149.09</course>
+        <name>point 435</name>
+      </trkpt>
+      <trkpt lat="33.3704130000" lon="-97.4374393333">
+        <ele>284.500000</ele>
+        <time>2018-03-17T13:41:01.40Z</time>
+        <course>149.02</course>
+        <name>point 436</name>
+      </trkpt>
+      <trkpt lat="33.3703705000" lon="-97.4374083333">
+        <ele>284.500000</ele>
+        <time>2018-03-17T13:41:01.60Z</time>
+        <course>148.73</course>
+        <name>point 437</name>
+      </trkpt>
+      <trkpt lat="33.3703273333" lon="-97.4373771667">
+        <ele>284.600000</ele>
+        <time>2018-03-17T13:41:01.80Z</time>
+        <course>148.92</course>
+        <name>point 438</name>
+      </trkpt>
+      <trkpt lat="33.3702836667" lon="-97.4373456667">
+        <ele>284.800000</ele>
+        <time>2018-03-17T13:41:02.00Z</time>
+        <course>148.89</course>
+        <name>point 439</name>
+      </trkpt>
+      <trkpt lat="33.3702395000" lon="-97.4373140000">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:02.20Z</time>
+        <course>149.09</course>
+        <name>point 440</name>
+      </trkpt>
+      <trkpt lat="33.3701948333" lon="-97.4372820000">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:02.40Z</time>
+        <course>149.06</course>
+        <name>point 441</name>
+      </trkpt>
+      <trkpt lat="33.3701501667" lon="-97.4372503333">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:02.60Z</time>
+        <course>149.23</course>
+        <name>point 442</name>
+      </trkpt>
+      <trkpt lat="33.3701053333" lon="-97.4372190000">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:02.80Z</time>
+        <course>149.52</course>
+        <name>point 443</name>
+      </trkpt>
+      <trkpt lat="33.3700605000" lon="-97.4371883333">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:03.00Z</time>
+        <course>149.97</course>
+        <name>point 444</name>
+      </trkpt>
+      <trkpt lat="33.3700151667" lon="-97.4371575000">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:03.20Z</time>
+        <course>150.42</course>
+        <name>point 445</name>
+      </trkpt>
+      <trkpt lat="33.3699693333" lon="-97.4371268333">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:03.40Z</time>
+        <course>150.62</course>
+        <name>point 446</name>
+      </trkpt>
+      <trkpt lat="33.3699228333" lon="-97.4370956667">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:03.60Z</time>
+        <course>150.65</course>
+        <name>point 447</name>
+      </trkpt>
+      <trkpt lat="33.3698760000" lon="-97.4370643333">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:03.80Z</time>
+        <course>150.55</course>
+        <name>point 448</name>
+      </trkpt>
+      <trkpt lat="33.3698286667" lon="-97.4370328333">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:04.00Z</time>
+        <course>150.90</course>
+        <name>point 449</name>
+      </trkpt>
+      <trkpt lat="33.3697808333" lon="-97.4370011667">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:04.20Z</time>
+        <course>150.80</course>
+        <name>point 450</name>
+      </trkpt>
+      <trkpt lat="33.3697325000" lon="-97.4369691667">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:04.40Z</time>
+        <course>150.86</course>
+        <name>point 451</name>
+      </trkpt>
+      <trkpt lat="33.3696841667" lon="-97.4369368333">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:04.60Z</time>
+        <course>150.65</course>
+        <name>point 452</name>
+      </trkpt>
+      <trkpt lat="33.3696353333" lon="-97.4369040000">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:04.80Z</time>
+        <course>150.53</course>
+        <name>point 453</name>
+      </trkpt>
+      <trkpt lat="33.3695863333" lon="-97.4368711667">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:05.00Z</time>
+        <course>150.67</course>
+        <name>point 454</name>
+      </trkpt>
+      <trkpt lat="33.3695370000" lon="-97.4368380000">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:05.20Z</time>
+        <course>150.70</course>
+        <name>point 455</name>
+      </trkpt>
+      <trkpt lat="33.3694873333" lon="-97.4368046667">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:05.40Z</time>
+        <course>150.70</course>
+        <name>point 456</name>
+      </trkpt>
+      <trkpt lat="33.3694373333" lon="-97.4367711667">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:05.60Z</time>
+        <course>150.54</course>
+        <name>point 457</name>
+      </trkpt>
+      <trkpt lat="33.3693875000" lon="-97.4367375000">
+        <ele>284.900000</ele>
+        <time>2018-03-17T13:41:05.80Z</time>
+        <course>150.64</course>
+        <name>point 458</name>
+      </trkpt>
+      <trkpt lat="33.3693373333" lon="-97.4367038333">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:06.00Z</time>
+        <course>150.58</course>
+        <name>point 459</name>
+      </trkpt>
+      <trkpt lat="33.3692873333" lon="-97.4366703333">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:06.20Z</time>
+        <course>150.73</course>
+        <name>point 460</name>
+      </trkpt>
+      <trkpt lat="33.3692375000" lon="-97.4366370000">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:06.40Z</time>
+        <course>150.72</course>
+        <name>point 461</name>
+      </trkpt>
+      <trkpt lat="33.3691876667" lon="-97.4366035000">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:06.60Z</time>
+        <course>150.51</course>
+        <name>point 462</name>
+      </trkpt>
+      <trkpt lat="33.3691380000" lon="-97.4365701667">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:06.80Z</time>
+        <course>150.53</course>
+        <name>point 463</name>
+      </trkpt>
+      <trkpt lat="33.3690886667" lon="-97.4365366667">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:07.00Z</time>
+        <course>150.36</course>
+        <name>point 464</name>
+      </trkpt>
+      <trkpt lat="33.3690393333" lon="-97.4365033333">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:07.20Z</time>
+        <course>150.40</course>
+        <name>point 465</name>
+      </trkpt>
+      <trkpt lat="33.3689900000" lon="-97.4364703333">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:07.40Z</time>
+        <course>150.62</course>
+        <name>point 466</name>
+      </trkpt>
+      <trkpt lat="33.3689408333" lon="-97.4364375000">
+        <ele>285.000000</ele>
+        <time>2018-03-17T13:41:07.60Z</time>
+        <course>150.82</course>
+        <name>point 467</name>
+      </trkpt>
+      <trkpt lat="33.3688915000" lon="-97.4364050000">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:07.80Z</time>
+        <course>151.02</course>
+        <name>point 468</name>
+      </trkpt>
+      <trkpt lat="33.3688423333" lon="-97.4363726667">
+        <ele>285.200000</ele>
+        <time>2018-03-17T13:41:08.00Z</time>
+        <course>151.27</course>
+        <name>point 469</name>
+      </trkpt>
+      <trkpt lat="33.3687933333" lon="-97.4363406667">
+        <ele>285.300000</ele>
+        <time>2018-03-17T13:41:08.20Z</time>
+        <course>151.37</course>
+        <name>point 470</name>
+      </trkpt>
+      <trkpt lat="33.3687443333" lon="-97.4363088333">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:08.40Z</time>
+        <course>151.53</course>
+        <name>point 471</name>
+      </trkpt>
+      <trkpt lat="33.3686953333" lon="-97.4362771667">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:41:08.60Z</time>
+        <course>151.51</course>
+        <name>point 472</name>
+      </trkpt>
+      <trkpt lat="33.3686466667" lon="-97.4362456667">
+        <ele>285.800000</ele>
+        <time>2018-03-17T13:41:08.80Z</time>
+        <course>151.57</course>
+        <name>point 473</name>
+      </trkpt>
+      <trkpt lat="33.3685980000" lon="-97.4362141667">
+        <ele>285.900000</ele>
+        <time>2018-03-17T13:41:09.00Z</time>
+        <course>151.54</course>
+        <name>point 474</name>
+      </trkpt>
+      <trkpt lat="33.3685495000" lon="-97.4361826667">
+        <ele>286.100000</ele>
+        <time>2018-03-17T13:41:09.20Z</time>
+        <course>151.37</course>
+        <name>point 475</name>
+      </trkpt>
+      <trkpt lat="33.3685013333" lon="-97.4361511667">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:41:09.40Z</time>
+        <course>151.19</course>
+        <name>point 476</name>
+      </trkpt>
+      <trkpt lat="33.3684533333" lon="-97.4361196667">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:41:09.60Z</time>
+        <course>151.01</course>
+        <name>point 477</name>
+      </trkpt>
+      <trkpt lat="33.3684051667" lon="-97.4360881667">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:41:09.80Z</time>
+        <course>151.12</course>
+        <name>point 478</name>
+      </trkpt>
+      <trkpt lat="33.3683571667" lon="-97.4360571667">
+        <ele>286.400000</ele>
+        <time>2018-03-17T13:41:10.00Z</time>
+        <course>151.44</course>
+        <name>point 479</name>
+      </trkpt>
+      <trkpt lat="33.3683090000" lon="-97.4360261667">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:41:10.20Z</time>
+        <course>151.56</course>
+        <name>point 480</name>
+      </trkpt>
+      <trkpt lat="33.3682610000" lon="-97.4359953333">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:41:10.40Z</time>
+        <course>151.70</course>
+        <name>point 481</name>
+      </trkpt>
+      <trkpt lat="33.3682128333" lon="-97.4359646667">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:10.60Z</time>
+        <course>151.68</course>
+        <name>point 482</name>
+      </trkpt>
+      <trkpt lat="33.3681645000" lon="-97.4359340000">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:10.80Z</time>
+        <course>151.85</course>
+        <name>point 483</name>
+      </trkpt>
+      <trkpt lat="33.3681161667" lon="-97.4359033333">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:11.00Z</time>
+        <course>152.01</course>
+        <name>point 484</name>
+      </trkpt>
+      <trkpt lat="33.3680676667" lon="-97.4358728333">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:11.20Z</time>
+        <course>152.01</course>
+        <name>point 485</name>
+      </trkpt>
+      <trkpt lat="33.3680190000" lon="-97.4358420000">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:11.40Z</time>
+        <course>151.94</course>
+        <name>point 486</name>
+      </trkpt>
+      <trkpt lat="33.3679703333" lon="-97.4358113333">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:11.60Z</time>
+        <course>151.95</course>
+        <name>point 487</name>
+      </trkpt>
+      <trkpt lat="33.3679216667" lon="-97.4357803333">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:11.80Z</time>
+        <course>151.97</course>
+        <name>point 488</name>
+      </trkpt>
+      <trkpt lat="33.3678728333" lon="-97.4357493333">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:12.00Z</time>
+        <course>151.93</course>
+        <name>point 489</name>
+      </trkpt>
+      <trkpt lat="33.3678240000" lon="-97.4357183333">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:12.20Z</time>
+        <course>151.92</course>
+        <name>point 490</name>
+      </trkpt>
+      <trkpt lat="33.3677753333" lon="-97.4356870000">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:12.40Z</time>
+        <course>151.67</course>
+        <name>point 491</name>
+      </trkpt>
+      <trkpt lat="33.3677266667" lon="-97.4356555000">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:41:12.60Z</time>
+        <course>151.41</course>
+        <name>point 492</name>
+      </trkpt>
+      <trkpt lat="33.3676781667" lon="-97.4356236667">
+        <ele>286.500000</ele>
+        <time>2018-03-17T13:41:12.80Z</time>
+        <course>151.10</course>
+        <name>point 493</name>
+      </trkpt>
+      <trkpt lat="33.3676296667" lon="-97.4355920000">
+        <ele>286.400000</ele>
+        <time>2018-03-17T13:41:13.00Z</time>
+        <course>151.21</course>
+        <name>point 494</name>
+      </trkpt>
+      <trkpt lat="33.3675811667" lon="-97.4355601667">
+        <ele>286.400000</ele>
+        <time>2018-03-17T13:41:13.20Z</time>
+        <course>151.28</course>
+        <name>point 495</name>
+      </trkpt>
+      <trkpt lat="33.3675328333" lon="-97.4355286667">
+        <ele>286.400000</ele>
+        <time>2018-03-17T13:41:13.40Z</time>
+        <course>151.42</course>
+        <name>point 496</name>
+      </trkpt>
+      <trkpt lat="33.3674843333" lon="-97.4354970000">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:41:13.60Z</time>
+        <course>151.36</course>
+        <name>point 497</name>
+      </trkpt>
+      <trkpt lat="33.3674358333" lon="-97.4354656667">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:41:13.80Z</time>
+        <course>151.50</course>
+        <name>point 498</name>
+      </trkpt>
+      <trkpt lat="33.3673873333" lon="-97.4354341667">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:41:14.00Z</time>
+        <course>151.40</course>
+        <name>point 499</name>
+      </trkpt>
+      <trkpt lat="33.3673390000" lon="-97.4354026667">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:41:14.20Z</time>
+        <course>151.51</course>
+        <name>point 500</name>
+      </trkpt>
+      <trkpt lat="33.3672908333" lon="-97.4353713333">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:41:14.40Z</time>
+        <course>151.37</course>
+        <name>point 501</name>
+      </trkpt>
+      <trkpt lat="33.3672428333" lon="-97.4353400000">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:41:14.60Z</time>
+        <course>151.28</course>
+        <name>point 502</name>
+      </trkpt>
+      <trkpt lat="33.3671951667" lon="-97.4353085000">
+        <ele>286.100000</ele>
+        <time>2018-03-17T13:41:14.80Z</time>
+        <course>151.06</course>
+        <name>point 503</name>
+      </trkpt>
+      <trkpt lat="33.3671476667" lon="-97.4352770000">
+        <ele>286.000000</ele>
+        <time>2018-03-17T13:41:15.00Z</time>
+        <course>150.97</course>
+        <name>point 504</name>
+      </trkpt>
+      <trkpt lat="33.3671005000" lon="-97.4352456667">
+        <ele>286.000000</ele>
+        <time>2018-03-17T13:41:15.20Z</time>
+        <course>150.84</course>
+        <name>point 505</name>
+      </trkpt>
+      <trkpt lat="33.3670533333" lon="-97.4352145000">
+        <ele>285.900000</ele>
+        <time>2018-03-17T13:41:15.40Z</time>
+        <course>150.91</course>
+        <name>point 506</name>
+      </trkpt>
+      <trkpt lat="33.3670063333" lon="-97.4351835000">
+        <ele>285.800000</ele>
+        <time>2018-03-17T13:41:15.60Z</time>
+        <course>150.98</course>
+        <name>point 507</name>
+      </trkpt>
+      <trkpt lat="33.3669598333" lon="-97.4351530000">
+        <ele>285.700000</ele>
+        <time>2018-03-17T13:41:15.80Z</time>
+        <course>151.27</course>
+        <name>point 508</name>
+      </trkpt>
+      <trkpt lat="33.3669140000" lon="-97.4351233333">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:41:16.00Z</time>
+        <course>151.47</course>
+        <name>point 509</name>
+      </trkpt>
+      <trkpt lat="33.3668691667" lon="-97.4350940000">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:16.20Z</time>
+        <course>151.32</course>
+        <name>point 510</name>
+      </trkpt>
+      <trkpt lat="33.3668253333" lon="-97.4350655000">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:16.40Z</time>
+        <course>151.44</course>
+        <name>point 511</name>
+      </trkpt>
+      <trkpt lat="33.3667823333" lon="-97.4350376667">
+        <ele>285.400000</ele>
+        <time>2018-03-17T13:41:16.60Z</time>
+        <course>151.48</course>
+        <name>point 512</name>
+      </trkpt>
+      <trkpt lat="33.3667401667" lon="-97.4350105000">
+        <ele>285.400000</ele>
+        <time>2018-03-17T13:41:16.80Z</time>
+        <course>151.65</course>
+        <name>point 513</name>
+      </trkpt>
+      <trkpt lat="33.3666990000" lon="-97.4349840000">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:17.00Z</time>
+        <course>151.77</course>
+        <name>point 514</name>
+      </trkpt>
+      <trkpt lat="33.3666586667" lon="-97.4349580000">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:17.20Z</time>
+        <course>151.62</course>
+        <name>point 515</name>
+      </trkpt>
+      <trkpt lat="33.3666191667" lon="-97.4349325000">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:17.40Z</time>
+        <course>151.66</course>
+        <name>point 516</name>
+      </trkpt>
+      <trkpt lat="33.3665808333" lon="-97.4349078333">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:17.60Z</time>
+        <course>151.66</course>
+        <name>point 517</name>
+      </trkpt>
+      <trkpt lat="33.3665438333" lon="-97.4348841667">
+        <ele>285.500000</ele>
+        <time>2018-03-17T13:41:17.80Z</time>
+        <course>151.69</course>
+        <name>point 518</name>
+      </trkpt>
+      <trkpt lat="33.3665080000" lon="-97.4348613333">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:41:18.00Z</time>
+        <course>151.89</course>
+        <name>point 519</name>
+      </trkpt>
+      <trkpt lat="33.3664740000" lon="-97.4348391667">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:41:18.20Z</time>
+        <course>151.52</course>
+        <name>point 520</name>
+      </trkpt>
+      <trkpt lat="33.3664416667" lon="-97.4348180000">
+        <ele>285.700000</ele>
+        <time>2018-03-17T13:41:18.40Z</time>
+        <course>151.09</course>
+        <name>point 521</name>
+      </trkpt>
+      <trkpt lat="33.3664110000" lon="-97.4347976667">
+        <ele>285.700000</ele>
+        <time>2018-03-17T13:41:18.60Z</time>
+        <course>151.01</course>
+        <name>point 522</name>
+      </trkpt>
+      <trkpt lat="33.3663818333" lon="-97.4347783333">
+        <ele>285.700000</ele>
+        <time>2018-03-17T13:41:18.80Z</time>
+        <course>151.04</course>
+        <name>point 523</name>
+      </trkpt>
+      <trkpt lat="33.3663543333" lon="-97.4347600000">
+        <ele>285.800000</ele>
+        <time>2018-03-17T13:41:19.00Z</time>
+        <course>150.69</course>
+        <name>point 524</name>
+      </trkpt>
+      <trkpt lat="33.3663286667" lon="-97.4347420000">
+        <ele>285.800000</ele>
+        <time>2018-03-17T13:41:19.20Z</time>
+        <course>149.55</course>
+        <name>point 525</name>
+      </trkpt>
+      <trkpt lat="33.3663050000" lon="-97.4347238333">
+        <ele>285.900000</ele>
+        <time>2018-03-17T13:41:19.40Z</time>
+        <course>147.57</course>
+        <name>point 526</name>
+      </trkpt>
+      <trkpt lat="33.3662831667" lon="-97.4347056667">
+        <ele>286.000000</ele>
+        <time>2018-03-17T13:41:19.60Z</time>
+        <course>145.03</course>
+        <name>point 527</name>
+      </trkpt>
+      <trkpt lat="33.3662633333" lon="-97.4346868333">
+        <ele>286.100000</ele>
+        <time>2018-03-17T13:41:19.80Z</time>
+        <course>141.76</course>
+        <name>point 528</name>
+      </trkpt>
+      <trkpt lat="33.3662451667" lon="-97.4346668333">
+        <ele>286.200000</ele>
+        <time>2018-03-17T13:41:20.00Z</time>
+        <course>137.89</course>
+        <name>point 529</name>
+      </trkpt>
+      <trkpt lat="33.3662286667" lon="-97.4346456667">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:41:20.20Z</time>
+        <course>133.49</course>
+        <name>point 530</name>
+      </trkpt>
+      <trkpt lat="33.3662133333" lon="-97.4346228333">
+        <ele>286.400000</ele>
+        <time>2018-03-17T13:41:20.40Z</time>
+        <course>129.10</course>
+        <name>point 531</name>
+      </trkpt>
+      <trkpt lat="33.3661993333" lon="-97.4345985000">
+        <ele>286.500000</ele>
+        <time>2018-03-17T13:41:20.60Z</time>
+        <course>124.54</course>
+        <name>point 532</name>
+      </trkpt>
+      <trkpt lat="33.3661870000" lon="-97.4345723333">
+        <ele>286.600000</ele>
+        <time>2018-03-17T13:41:20.80Z</time>
+        <course>119.88</course>
+        <name>point 533</name>
+      </trkpt>
+      <trkpt lat="33.3661758333" lon="-97.4345445000">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:21.00Z</time>
+        <course>115.55</course>
+        <name>point 534</name>
+      </trkpt>
+      <trkpt lat="33.3661663333" lon="-97.4345150000">
+        <ele>286.900000</ele>
+        <time>2018-03-17T13:41:21.20Z</time>
+        <course>111.36</course>
+        <name>point 535</name>
+      </trkpt>
+      <trkpt lat="33.3661590000" lon="-97.4344841667">
+        <ele>287.000000</ele>
+        <time>2018-03-17T13:41:21.40Z</time>
+        <course>106.57</course>
+        <name>point 536</name>
+      </trkpt>
+      <trkpt lat="33.3661531667" lon="-97.4344516667">
+        <ele>287.100000</ele>
+        <time>2018-03-17T13:41:21.60Z</time>
+        <course>102.19</course>
+        <name>point 537</name>
+      </trkpt>
+      <trkpt lat="33.3661495000" lon="-97.4344183333">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:41:21.80Z</time>
+        <course>97.97</course>
+        <name>point 538</name>
+      </trkpt>
+      <trkpt lat="33.3661475000" lon="-97.4343841667">
+        <ele>287.300000</ele>
+        <time>2018-03-17T13:41:22.00Z</time>
+        <course>94.08</course>
+        <name>point 539</name>
+      </trkpt>
+      <trkpt lat="33.3661476667" lon="-97.4343495000">
+        <ele>287.400000</ele>
+        <time>2018-03-17T13:41:22.20Z</time>
+        <course>90.01</course>
+        <name>point 540</name>
+      </trkpt>
+      <trkpt lat="33.3661501667" lon="-97.4343155000">
+        <ele>287.600000</ele>
+        <time>2018-03-17T13:41:22.40Z</time>
+        <course>85.67</course>
+        <name>point 541</name>
+      </trkpt>
+      <trkpt lat="33.3661546667" lon="-97.4342813333">
+        <ele>287.700000</ele>
+        <time>2018-03-17T13:41:22.60Z</time>
+        <course>81.64</course>
+        <name>point 542</name>
+      </trkpt>
+      <trkpt lat="33.3661608333" lon="-97.4342478333">
+        <ele>287.800000</ele>
+        <time>2018-03-17T13:41:22.80Z</time>
+        <course>78.00</course>
+        <name>point 543</name>
+      </trkpt>
+      <trkpt lat="33.3661690000" lon="-97.4342145000">
+        <ele>288.000000</ele>
+        <time>2018-03-17T13:41:23.00Z</time>
+        <course>74.38</course>
+        <name>point 544</name>
+      </trkpt>
+      <trkpt lat="33.3661786667" lon="-97.4341816667">
+        <ele>288.200000</ele>
+        <time>2018-03-17T13:41:23.20Z</time>
+        <course>71.10</course>
+        <name>point 545</name>
+      </trkpt>
+      <trkpt lat="33.3661901667" lon="-97.4341495000">
+        <ele>288.300000</ele>
+        <time>2018-03-17T13:41:23.40Z</time>
+        <course>67.49</course>
+        <name>point 546</name>
+      </trkpt>
+      <trkpt lat="33.3662033333" lon="-97.4341181667">
+        <ele>288.400000</ele>
+        <time>2018-03-17T13:41:23.60Z</time>
+        <course>63.82</course>
+        <name>point 547</name>
+      </trkpt>
+      <trkpt lat="33.3662181667" lon="-97.4340878333">
+        <ele>288.500000</ele>
+        <time>2018-03-17T13:41:23.80Z</time>
+        <course>60.04</course>
+        <name>point 548</name>
+      </trkpt>
+      <trkpt lat="33.3662343333" lon="-97.4340585000">
+        <ele>288.600000</ele>
+        <time>2018-03-17T13:41:24.00Z</time>
+        <course>56.42</course>
+        <name>point 549</name>
+      </trkpt>
+      <trkpt lat="33.3662521667" lon="-97.4340303333">
+        <ele>288.500000</ele>
+        <time>2018-03-17T13:41:24.20Z</time>
+        <course>52.73</course>
+        <name>point 550</name>
+      </trkpt>
+      <trkpt lat="33.3662718333" lon="-97.4340026667">
+        <ele>288.400000</ele>
+        <time>2018-03-17T13:41:24.40Z</time>
+        <course>49.29</course>
+        <name>point 551</name>
+      </trkpt>
+      <trkpt lat="33.3662931667" lon="-97.4339756667">
+        <ele>288.200000</ele>
+        <time>2018-03-17T13:41:24.60Z</time>
+        <course>46.37</course>
+        <name>point 552</name>
+      </trkpt>
+      <trkpt lat="33.3663158333" lon="-97.4339488333">
+        <ele>288.100000</ele>
+        <time>2018-03-17T13:41:24.80Z</time>
+        <course>44.38</course>
+        <name>point 553</name>
+      </trkpt>
+      <trkpt lat="33.3663393333" lon="-97.4339215000">
+        <ele>287.900000</ele>
+        <time>2018-03-17T13:41:25.00Z</time>
+        <course>43.80</course>
+        <name>point 554</name>
+      </trkpt>
+      <trkpt lat="33.3663635000" lon="-97.4338940000">
+        <ele>287.600000</ele>
+        <time>2018-03-17T13:41:25.20Z</time>
+        <course>43.38</course>
+        <name>point 555</name>
+      </trkpt>
+      <trkpt lat="33.3663881667" lon="-97.4338663333">
+        <ele>287.400000</ele>
+        <time>2018-03-17T13:41:25.40Z</time>
+        <course>43.01</course>
+        <name>point 556</name>
+      </trkpt>
+      <trkpt lat="33.3664131667" lon="-97.4338381667">
+        <ele>287.200000</ele>
+        <time>2018-03-17T13:41:25.60Z</time>
+        <course>42.80</course>
+        <name>point 557</name>
+      </trkpt>
+      <trkpt lat="33.3664385000" lon="-97.4338101667">
+        <ele>287.100000</ele>
+        <time>2018-03-17T13:41:25.80Z</time>
+        <course>42.87</course>
+        <name>point 558</name>
+      </trkpt>
+      <trkpt lat="33.3664636667" lon="-97.4337815000">
+        <ele>286.900000</ele>
+        <time>2018-03-17T13:41:26.00Z</time>
+        <course>43.28</course>
+        <name>point 559</name>
+      </trkpt>
+      <trkpt lat="33.3664888333" lon="-97.4337525000">
+        <ele>286.700000</ele>
+        <time>2018-03-17T13:41:26.20Z</time>
+        <course>43.77</course>
+        <name>point 560</name>
+      </trkpt>
+      <trkpt lat="33.3665135000" lon="-97.4337228333">
+        <ele>286.500000</ele>
+        <time>2018-03-17T13:41:26.40Z</time>
+        <course>44.90</course>
+        <name>point 561</name>
+      </trkpt>
+      <trkpt lat="33.3665371667" lon="-97.4336916667">
+        <ele>286.300000</ele>
+        <time>2018-03-17T13:41:26.60Z</time>
+        <course>47.18</course>
+        <name>point 562</name>
+      </trkpt>
+      <trkpt lat="33.3665596667" lon="-97.4336590000">
+        <ele>286.100000</ele>
+        <time>2018-03-17T13:41:26.80Z</time>
+        <course>50.25</course>
+        <name>point 563</name>
+      </trkpt>
+      <trkpt lat="33.3665805000" lon="-97.4336246667">
+        <ele>285.900000</ele>
+        <time>2018-03-17T13:41:27.00Z</time>
+        <course>53.68</course>
+        <name>point 564</name>
+      </trkpt>
+      <trkpt lat="33.3665995000" lon="-97.4335888333">
+        <ele>285.600000</ele>
+        <time>2018-03-17T13:41:27.20Z</time>
+        <course>57.24</course>
+        <name>point 565</name>
+      </trkpt>
+      <trkpt lat="33.3666165000" lon="-97.4335516667">
+        <ele>285.300000</ele>
+        <time>2018-03-17T13:41:27.40Z</time>
+        <course>60.82</course>
+        <name>point 566</name>
+      </trkpt>
+      <trkpt lat="33.3666313333" lon="-97.4335135000">
+        <ele>285.100000</ele>
+        <time>2018-03-17T13:41:27.60Z</time>
+        <course>64.66</course>
+        <name>point 567</name>
+      </trkpt>
+      <trkpt lat="33.3666440000" lon="-97.4334741667">
+        <ele>284.800000</ele>
+        <time>2018-03-17T13:41:27.80Z</time>
+        <course>68.52</course>
+        <name>point 568</name>
+      </trkpt>
+      <trkpt lat="33.3666548333" lon="-97.4334335000">
+        <ele>284.500000</ele>
+        <time>2018-03-17T13:41:28.00Z</time>
+        <course>71.97</course>
+        <name>point 569</name>
+      </trkpt>
+      <trkpt lat="33.3666633333" lon="-97.4333915000">
+        <ele>284.200000</ele>
+        <time>2018-03-17T13:41:28.20Z</time>
+        <course>75.95</course>
+        <name>point 570</name>
+      </trkpt>
+      <trkpt lat="33.3666695000" lon="-97.4333486667">
+        <ele>284.000000</ele>
+        <time>2018-03-17T13:41:28.40Z</time>
+        <course>80.02</course>
+        <name>point 571</name>
+      </trkpt>
+      <trkpt lat="33.3666731667" lon="-97.4333050000">
+        <ele>283.700000</ele>
+        <time>2018-03-17T13:41:28.60Z</time>
+        <course>83.69</course>
+        <name>point 572</name>
+      </trkpt>
+      <trkpt lat="33.3666740000" lon="-97.4332608333">
+        <ele>283.400000</ele>
+        <time>2018-03-17T13:41:28.80Z</time>
+        <course>88.31</course>
+        <name>point 573</name>
+      </trkpt>
+      <trkpt lat="33.3666723333" lon="-97.4332160000">
+        <ele>283.100000</ele>
+        <time>2018-03-17T13:41:29.00Z</time>
+        <course>92.56</course>
+        <name>point 574</name>
+      </trkpt>
+      <trkpt lat="33.3666685000" lon="-97.4331708333">
+        <ele>282.900000</ele>
+        <time>2018-03-17T13:41:29.20Z</time>
+        <course>95.75</course>
+        <name>point 575</name>
+      </trkpt>
+      <trkpt lat="33.3666621667" lon="-97.4331251667">
+        <ele>282.700000</ele>
+        <time>2018-03-17T13:41:29.40Z</time>
+        <course>99.13</course>
+        <name>point 576</name>
+      </trkpt>
+      <trkpt lat="33.3666540000" lon="-97.4330791667">
+        <ele>282.500000</ele>
+        <time>2018-03-17T13:41:29.60Z</time>
+        <course>102.18</course>
+        <name>point 577</name>
+      </trkpt>
+      <trkpt lat="33.3666433333" lon="-97.4330331667">
+        <ele>282.200000</ele>
+        <time>2018-03-17T13:41:29.80Z</time>
+        <course>105.34</course>
+        <name>point 578</name>
+      </trkpt>
+      <trkpt lat="33.3666305000" lon="-97.4329871667">
+        <ele>282.100000</ele>
+        <time>2018-03-17T13:41:30.00Z</time>
+        <course>108.39</course>
+        <name>point 579</name>
+      </trkpt>
+      <trkpt lat="33.3666160000" lon="-97.4329413333">
+        <ele>282.000000</ele>
+        <time>2018-03-17T13:41:30.20Z</time>
+        <course>110.86</course>
+        <name>point 580</name>
+      </trkpt>
+      <trkpt lat="33.3665995000" lon="-97.4328958333">
+        <ele>281.800000</ele>
+        <time>2018-03-17T13:41:30.40Z</time>
+        <course>113.23</course>
+        <name>point 581</name>
+      </trkpt>
+      <trkpt lat="33.3665815000" lon="-97.4328501667">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:41:30.60Z</time>
+        <course>115.11</course>
+        <name>point 582</name>
+      </trkpt>
+      <trkpt lat="33.3665623333" lon="-97.4328045000">
+        <ele>281.600000</ele>
+        <time>2018-03-17T13:41:30.80Z</time>
+        <course>116.77</course>
+        <name>point 583</name>
+      </trkpt>
+      <trkpt lat="33.3665416667" lon="-97.4327596667">
+        <ele>281.500000</ele>
+        <time>2018-03-17T13:41:31.00Z</time>
+        <course>118.77</course>
+        <name>point 584</name>
+      </trkpt>
+      <trkpt lat="33.3665195000" lon="-97.4327155000">
+        <ele>281.400000</ele>
+        <time>2018-03-17T13:41:31.20Z</time>
+        <course>120.88</course>
+        <name>point 585</name>
+      </trkpt>
+      <trkpt lat="33.3664961667" lon="-97.4326723333">
+        <ele>281.400000</ele>
+        <time>2018-03-17T13:41:31.40Z</time>
+        <course>122.78</course>
+        <name>point 586</name>
+      </trkpt>
+      <trkpt lat="33.3664716667" lon="-97.4326300000">
+        <ele>281.300000</ele>
+        <time>2018-03-17T13:41:31.60Z</time>
+        <course>124.51</course>
+        <name>point 587</name>
+      </trkpt>
+      <trkpt lat="33.3664460000" lon="-97.4325888333">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:41:31.80Z</time>
+        <course>126.58</course>
+        <name>point 588</name>
+      </trkpt>
+      <trkpt lat="33.3664190000" lon="-97.4325491667">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:41:32.00Z</time>
+        <course>128.92</course>
+        <name>point 589</name>
+      </trkpt>
+      <trkpt lat="33.3663911667" lon="-97.4325110000">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:41:32.20Z</time>
+        <course>131.02</course>
+        <name>point 590</name>
+      </trkpt>
+      <trkpt lat="33.3663623333" lon="-97.4324743333">
+        <ele>281.100000</ele>
+        <time>2018-03-17T13:41:32.40Z</time>
+        <course>132.98</course>
+        <name>point 591</name>
+      </trkpt>
+      <trkpt lat="33.3663328333" lon="-97.4324393333">
+        <ele>281.100000</ele>
+        <time>2018-03-17T13:41:32.60Z</time>
+        <course>135.05</course>
+        <name>point 592</name>
+      </trkpt>
+      <trkpt lat="33.3663030000" lon="-97.4324063333">
+        <ele>281.100000</ele>
+        <time>2018-03-17T13:41:32.80Z</time>
+        <course>137.08</course>
+        <name>point 593</name>
+      </trkpt>
+      <trkpt lat="33.3662730000" lon="-97.4323753333">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:41:33.00Z</time>
+        <course>138.91</course>
+        <name>point 594</name>
+      </trkpt>
+      <trkpt lat="33.3662431667" lon="-97.4323461667">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:41:33.20Z</time>
+        <course>140.62</course>
+        <name>point 595</name>
+      </trkpt>
+      <trkpt lat="33.3662136667" lon="-97.4323186667">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:41:33.40Z</time>
+        <course>141.94</course>
+        <name>point 596</name>
+      </trkpt>
+      <trkpt lat="33.3661848333" lon="-97.4322921667">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:41:33.60Z</time>
+        <course>142.28</course>
+        <name>point 597</name>
+      </trkpt>
+      <trkpt lat="33.3661568333" lon="-97.4322666667">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:41:33.80Z</time>
+        <course>142.47</course>
+        <name>point 598</name>
+      </trkpt>
+      <trkpt lat="33.3661293333" lon="-97.4322413333">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:41:34.00Z</time>
+        <course>142.34</course>
+        <name>point 599</name>
+      </trkpt>
+      <trkpt lat="33.3661025000" lon="-97.4322165000">
+        <ele>280.700000</ele>
+        <time>2018-03-17T13:41:34.20Z</time>
+        <course>142.15</course>
+        <name>point 600</name>
+      </trkpt>
+      <trkpt lat="33.3660760000" lon="-97.4321916667">
+        <ele>280.700000</ele>
+        <time>2018-03-17T13:41:34.40Z</time>
+        <course>141.97</course>
+        <name>point 601</name>
+      </trkpt>
+      <trkpt lat="33.3660496667" lon="-97.4321670000">
+        <ele>280.600000</ele>
+        <time>2018-03-17T13:41:34.60Z</time>
+        <course>141.75</course>
+        <name>point 602</name>
+      </trkpt>
+      <trkpt lat="33.3660238333" lon="-97.4321425000">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:41:34.80Z</time>
+        <course>141.39</course>
+        <name>point 603</name>
+      </trkpt>
+      <trkpt lat="33.3659981667" lon="-97.4321176667">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:41:35.00Z</time>
+        <course>140.89</course>
+        <name>point 604</name>
+      </trkpt>
+      <trkpt lat="33.3659733333" lon="-97.4320928333">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:41:35.20Z</time>
+        <course>140.08</course>
+        <name>point 605</name>
+      </trkpt>
+      <trkpt lat="33.3659490000" lon="-97.4320673333">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:41:35.40Z</time>
+        <course>138.69</course>
+        <name>point 606</name>
+      </trkpt>
+      <trkpt lat="33.3659251667" lon="-97.4320418333">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:41:35.60Z</time>
+        <course>137.98</course>
+        <name>point 607</name>
+      </trkpt>
+      <trkpt lat="33.3659018333" lon="-97.4320160000">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:41:35.80Z</time>
+        <course>137.03</course>
+        <name>point 608</name>
+      </trkpt>
+      <trkpt lat="33.3658793333" lon="-97.4319898333">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:41:36.00Z</time>
+        <course>135.75</course>
+        <name>point 609</name>
+      </trkpt>
+      <trkpt lat="33.3658573333" lon="-97.4319633333">
+        <ele>280.100000</ele>
+        <time>2018-03-17T13:41:36.20Z</time>
+        <course>134.86</course>
+        <name>point 610</name>
+      </trkpt>
+      <trkpt lat="33.3658355000" lon="-97.4319370000">
+        <ele>280.100000</ele>
+        <time>2018-03-17T13:41:36.40Z</time>
+        <course>134.44</course>
+        <name>point 611</name>
+      </trkpt>
+      <trkpt lat="33.3658140000" lon="-97.4319105000">
+        <ele>280.000000</ele>
+        <time>2018-03-17T13:41:36.60Z</time>
+        <course>134.07</course>
+        <name>point 612</name>
+      </trkpt>
+      <trkpt lat="33.3657928333" lon="-97.4318840000">
+        <ele>279.900000</ele>
+        <time>2018-03-17T13:41:36.80Z</time>
+        <course>133.66</course>
+        <name>point 613</name>
+      </trkpt>
+      <trkpt lat="33.3657716667" lon="-97.4318573333">
+        <ele>279.900000</ele>
+        <time>2018-03-17T13:41:37.00Z</time>
+        <course>133.28</course>
+        <name>point 614</name>
+      </trkpt>
+      <trkpt lat="33.3657505000" lon="-97.4318305000">
+        <ele>279.700000</ele>
+        <time>2018-03-17T13:41:37.20Z</time>
+        <course>133.06</course>
+        <name>point 615</name>
+      </trkpt>
+      <trkpt lat="33.3657293333" lon="-97.4318035000">
+        <ele>279.600000</ele>
+        <time>2018-03-17T13:41:37.40Z</time>
+        <course>133.00</course>
+        <name>point 616</name>
+      </trkpt>
+      <trkpt lat="33.3657083333" lon="-97.4317766667">
+        <ele>279.500000</ele>
+        <time>2018-03-17T13:41:37.60Z</time>
+        <course>133.11</course>
+        <name>point 617</name>
+      </trkpt>
+      <trkpt lat="33.3656873333" lon="-97.4317495000">
+        <ele>279.400000</ele>
+        <time>2018-03-17T13:41:37.80Z</time>
+        <course>132.76</course>
+        <name>point 618</name>
+      </trkpt>
+      <trkpt lat="33.3656661667" lon="-97.4317225000">
+        <ele>279.200000</ele>
+        <time>2018-03-17T13:41:38.00Z</time>
+        <course>132.82</course>
+        <name>point 619</name>
+      </trkpt>
+      <trkpt lat="33.3656453333" lon="-97.4316955000">
+        <ele>279.100000</ele>
+        <time>2018-03-17T13:41:38.20Z</time>
+        <course>132.77</course>
+        <name>point 620</name>
+      </trkpt>
+      <trkpt lat="33.3656243333" lon="-97.4316685000">
+        <ele>279.000000</ele>
+        <time>2018-03-17T13:41:38.40Z</time>
+        <course>132.81</course>
+        <name>point 621</name>
+      </trkpt>
+      <trkpt lat="33.3656036667" lon="-97.4316418333">
+        <ele>278.800000</ele>
+        <time>2018-03-17T13:41:38.60Z</time>
+        <course>132.78</course>
+        <name>point 622</name>
+      </trkpt>
+      <trkpt lat="33.3655831667" lon="-97.4316155000">
+        <ele>278.700000</ele>
+        <time>2018-03-17T13:41:38.80Z</time>
+        <course>132.94</course>
+        <name>point 623</name>
+      </trkpt>
+      <trkpt lat="33.3655631667" lon="-97.4315898333">
+        <ele>278.500000</ele>
+        <time>2018-03-17T13:41:39.00Z</time>
+        <course>132.93</course>
+        <name>point 624</name>
+      </trkpt>
+      <trkpt lat="33.3655436667" lon="-97.4315643333">
+        <ele>278.400000</ele>
+        <time>2018-03-17T13:41:39.20Z</time>
+        <course>132.35</course>
+        <name>point 625</name>
+      </trkpt>
+      <trkpt lat="33.3655248333" lon="-97.4315393333">
+        <ele>278.200000</ele>
+        <time>2018-03-17T13:41:39.40Z</time>
+        <course>132.02</course>
+        <name>point 626</name>
+      </trkpt>
+      <trkpt lat="33.3655068333" lon="-97.4315150000">
+        <ele>278.100000</ele>
+        <time>2018-03-17T13:41:39.60Z</time>
+        <course>131.73</course>
+        <name>point 627</name>
+      </trkpt>
+      <trkpt lat="33.3654895000" lon="-97.4314911667">
+        <ele>278.000000</ele>
+        <time>2018-03-17T13:41:39.80Z</time>
+        <course>131.01</course>
+        <name>point 628</name>
+      </trkpt>
+      <trkpt lat="33.3654733333" lon="-97.4314670000">
+        <ele>277.900000</ele>
+        <time>2018-03-17T13:41:40.00Z</time>
+        <course>128.76</course>
+        <name>point 629</name>
+      </trkpt>
+      <trkpt lat="33.3654583333" lon="-97.4314423333">
+        <ele>277.700000</ele>
+        <time>2018-03-17T13:41:40.20Z</time>
+        <course>126.31</course>
+        <name>point 630</name>
+      </trkpt>
+      <trkpt lat="33.3654441667" lon="-97.4314176667">
+        <ele>277.500000</ele>
+        <time>2018-03-17T13:41:40.40Z</time>
+        <course>124.60</course>
+        <name>point 631</name>
+      </trkpt>
+      <trkpt lat="33.3654308333" lon="-97.4313928333">
+        <ele>277.400000</ele>
+        <time>2018-03-17T13:41:40.60Z</time>
+        <course>122.73</course>
+        <name>point 632</name>
+      </trkpt>
+      <trkpt lat="33.3654188333" lon="-97.4313673333">
+        <ele>277.200000</ele>
+        <time>2018-03-17T13:41:40.80Z</time>
+        <course>119.37</course>
+        <name>point 633</name>
+      </trkpt>
+      <trkpt lat="33.3654086667" lon="-97.4313411667">
+        <ele>276.900000</ele>
+        <time>2018-03-17T13:41:41.00Z</time>
+        <course>115.12</course>
+        <name>point 634</name>
+      </trkpt>
+      <trkpt lat="33.3654006667" lon="-97.4313141667">
+        <ele>276.700000</ele>
+        <time>2018-03-17T13:41:41.20Z</time>
+        <course>109.82</course>
+        <name>point 635</name>
+      </trkpt>
+      <trkpt lat="33.3653946667" lon="-97.4312861667">
+        <ele>276.400000</ele>
+        <time>2018-03-17T13:41:41.40Z</time>
+        <course>104.68</course>
+        <name>point 636</name>
+      </trkpt>
+      <trkpt lat="33.3653905000" lon="-97.4312571667">
+        <ele>276.100000</ele>
+        <time>2018-03-17T13:41:41.60Z</time>
+        <course>99.89</course>
+        <name>point 637</name>
+      </trkpt>
+      <trkpt lat="33.3653885000" lon="-97.4312268333">
+        <ele>275.800000</ele>
+        <time>2018-03-17T13:41:41.80Z</time>
+        <course>95.11</course>
+        <name>point 638</name>
+      </trkpt>
+      <trkpt lat="33.3653881667" lon="-97.4311955000">
+        <ele>275.400000</ele>
+        <time>2018-03-17T13:41:42.00Z</time>
+        <course>90.73</course>
+        <name>point 639</name>
+      </trkpt>
+      <trkpt lat="33.3653898333" lon="-97.4311635000">
+        <ele>274.900000</ele>
+        <time>2018-03-17T13:41:42.20Z</time>
+        <course>86.64</course>
+        <name>point 640</name>
+      </trkpt>
+      <trkpt lat="33.3653933333" lon="-97.4311308333">
+        <ele>274.500000</ele>
+        <time>2018-03-17T13:41:42.40Z</time>
+        <course>82.90</course>
+        <name>point 641</name>
+      </trkpt>
+      <trkpt lat="33.3653988333" lon="-97.4310976667">
+        <ele>274.100000</ele>
+        <time>2018-03-17T13:41:42.60Z</time>
+        <course>79.09</course>
+        <name>point 642</name>
+      </trkpt>
+      <trkpt lat="33.3654063333" lon="-97.4310638333">
+        <ele>273.700000</ele>
+        <time>2018-03-17T13:41:42.80Z</time>
+        <course>75.41</course>
+        <name>point 643</name>
+      </trkpt>
+      <trkpt lat="33.3654158333" lon="-97.4310298333">
+        <ele>273.200000</ele>
+        <time>2018-03-17T13:41:43.00Z</time>
+        <course>71.55</course>
+        <name>point 644</name>
+      </trkpt>
+      <trkpt lat="33.3654275000" lon="-97.4309961667">
+        <ele>272.900000</ele>
+        <time>2018-03-17T13:41:43.20Z</time>
+        <course>67.71</course>
+        <name>point 645</name>
+      </trkpt>
+      <trkpt lat="33.3654413333" lon="-97.4309625000">
+        <ele>272.500000</ele>
+        <time>2018-03-17T13:41:43.40Z</time>
+        <course>64.28</course>
+        <name>point 646</name>
+      </trkpt>
+      <trkpt lat="33.3654570000" lon="-97.4309291667">
+        <ele>272.100000</ele>
+        <time>2018-03-17T13:41:43.60Z</time>
+        <course>60.82</course>
+        <name>point 647</name>
+      </trkpt>
+      <trkpt lat="33.3654746667" lon="-97.4308968333">
+        <ele>271.800000</ele>
+        <time>2018-03-17T13:41:43.80Z</time>
+        <course>57.19</course>
+        <name>point 648</name>
+      </trkpt>
+      <trkpt lat="33.3654940000" lon="-97.4308655000">
+        <ele>271.500000</ele>
+        <time>2018-03-17T13:41:44.00Z</time>
+        <course>53.90</course>
+        <name>point 649</name>
+      </trkpt>
+      <trkpt lat="33.3655148333" lon="-97.4308356667">
+        <ele>271.200000</ele>
+        <time>2018-03-17T13:41:44.20Z</time>
+        <course>50.57</course>
+        <name>point 650</name>
+      </trkpt>
+      <trkpt lat="33.3655373333" lon="-97.4308068333">
+        <ele>270.900000</ele>
+        <time>2018-03-17T13:41:44.40Z</time>
+        <course>47.39</course>
+        <name>point 651</name>
+      </trkpt>
+      <trkpt lat="33.3655610000" lon="-97.4307796667">
+        <ele>270.600000</ele>
+        <time>2018-03-17T13:41:44.60Z</time>
+        <course>44.07</course>
+        <name>point 652</name>
+      </trkpt>
+      <trkpt lat="33.3655858333" lon="-97.4307540000">
+        <ele>270.400000</ele>
+        <time>2018-03-17T13:41:44.80Z</time>
+        <course>41.17</course>
+        <name>point 653</name>
+      </trkpt>
+      <trkpt lat="33.3656118333" lon="-97.4307298333">
+        <ele>270.100000</ele>
+        <time>2018-03-17T13:41:45.00Z</time>
+        <course>38.11</course>
+        <name>point 654</name>
+      </trkpt>
+      <trkpt lat="33.3656388333" lon="-97.4307070000">
+        <ele>269.900000</ele>
+        <time>2018-03-17T13:41:45.20Z</time>
+        <course>35.38</course>
+        <name>point 655</name>
+      </trkpt>
+      <trkpt lat="33.3656666667" lon="-97.4306858333">
+        <ele>269.700000</ele>
+        <time>2018-03-17T13:41:45.40Z</time>
+        <course>32.77</course>
+        <name>point 656</name>
+      </trkpt>
+      <trkpt lat="33.3656951667" lon="-97.4306658333">
+        <ele>269.500000</ele>
+        <time>2018-03-17T13:41:45.60Z</time>
+        <course>30.43</course>
+        <name>point 657</name>
+      </trkpt>
+      <trkpt lat="33.3657241667" lon="-97.4306471667">
+        <ele>269.400000</ele>
+        <time>2018-03-17T13:41:45.80Z</time>
+        <course>28.53</course>
+        <name>point 658</name>
+      </trkpt>
+      <trkpt lat="33.3657538333" lon="-97.4306296667">
+        <ele>269.300000</ele>
+        <time>2018-03-17T13:41:46.00Z</time>
+        <course>26.29</course>
+        <name>point 659</name>
+      </trkpt>
+      <trkpt lat="33.3657840000" lon="-97.4306145000">
+        <ele>269.200000</ele>
+        <time>2018-03-17T13:41:46.20Z</time>
+        <course>23.10</course>
+        <name>point 660</name>
+      </trkpt>
+      <trkpt lat="33.3658150000" lon="-97.4306013333">
+        <ele>269.200000</ele>
+        <time>2018-03-17T13:41:46.40Z</time>
+        <course>19.87</course>
+        <name>point 661</name>
+      </trkpt>
+      <trkpt lat="33.3658465000" lon="-97.4305905000">
+        <ele>269.100000</ele>
+        <time>2018-03-17T13:41:46.60Z</time>
+        <course>16.29</course>
+        <name>point 662</name>
+      </trkpt>
+      <trkpt lat="33.3658783333" lon="-97.4305818333">
+        <ele>269.200000</ele>
+        <time>2018-03-17T13:41:46.80Z</time>
+        <course>13.10</course>
+        <name>point 663</name>
+      </trkpt>
+      <trkpt lat="33.3659103333" lon="-97.4305756667">
+        <ele>269.300000</ele>
+        <time>2018-03-17T13:41:47.00Z</time>
+        <course>9.42</course>
+        <name>point 664</name>
+      </trkpt>
+      <trkpt lat="33.3659425000" lon="-97.4305720000">
+        <ele>269.400000</ele>
+        <time>2018-03-17T13:41:47.20Z</time>
+        <course>5.69</course>
+        <name>point 665</name>
+      </trkpt>
+      <trkpt lat="33.3659748333" lon="-97.4305708333">
+        <ele>269.500000</ele>
+        <time>2018-03-17T13:41:47.40Z</time>
+        <course>1.98</course>
+        <name>point 666</name>
+      </trkpt>
+      <trkpt lat="33.3660071667" lon="-97.4305721667">
+        <ele>269.500000</ele>
+        <time>2018-03-17T13:41:47.60Z</time>
+        <course>358.23</course>
+        <name>point 667</name>
+      </trkpt>
+      <trkpt lat="33.3660395000" lon="-97.4305761667">
+        <ele>269.500000</ele>
+        <time>2018-03-17T13:41:47.80Z</time>
+        <course>354.40</course>
+        <name>point 668</name>
+      </trkpt>
+      <trkpt lat="33.3660718333" lon="-97.4305826667">
+        <ele>269.600000</ele>
+        <time>2018-03-17T13:41:48.00Z</time>
+        <course>350.67</course>
+        <name>point 669</name>
+      </trkpt>
+      <trkpt lat="33.3661043333" lon="-97.4305916667">
+        <ele>269.600000</ele>
+        <time>2018-03-17T13:41:48.20Z</time>
+        <course>347.45</course>
+        <name>point 670</name>
+      </trkpt>
+      <trkpt lat="33.3661370000" lon="-97.4306028333">
+        <ele>269.600000</ele>
+        <time>2018-03-17T13:41:48.40Z</time>
+        <course>344.20</course>
+        <name>point 671</name>
+      </trkpt>
+      <trkpt lat="33.3661700000" lon="-97.4306163333">
+        <ele>269.600000</ele>
+        <time>2018-03-17T13:41:48.60Z</time>
+        <course>341.33</course>
+        <name>point 672</name>
+      </trkpt>
+      <trkpt lat="33.3662028333" lon="-97.4306323333">
+        <ele>269.700000</ele>
+        <time>2018-03-17T13:41:48.80Z</time>
+        <course>338.26</course>
+        <name>point 673</name>
+      </trkpt>
+      <trkpt lat="33.3662355000" lon="-97.4306506667">
+        <ele>269.800000</ele>
+        <time>2018-03-17T13:41:49.00Z</time>
+        <course>334.96</course>
+        <name>point 674</name>
+      </trkpt>
+      <trkpt lat="33.3662676667" lon="-97.4306718333">
+        <ele>269.900000</ele>
+        <time>2018-03-17T13:41:49.20Z</time>
+        <course>331.47</course>
+        <name>point 675</name>
+      </trkpt>
+      <trkpt lat="33.3662988333" lon="-97.4306953333">
+        <ele>270.000000</ele>
+        <time>2018-03-17T13:41:49.40Z</time>
+        <course>327.99</course>
+        <name>point 676</name>
+      </trkpt>
+      <trkpt lat="33.3663291667" lon="-97.4307211667">
+        <ele>270.100000</ele>
+        <time>2018-03-17T13:41:49.60Z</time>
+        <course>324.73</course>
+        <name>point 677</name>
+      </trkpt>
+      <trkpt lat="33.3663583333" lon="-97.4307493333">
+        <ele>270.200000</ele>
+        <time>2018-03-17T13:41:49.80Z</time>
+        <course>321.24</course>
+        <name>point 678</name>
+      </trkpt>
+      <trkpt lat="33.3663858333" lon="-97.4307795000">
+        <ele>270.200000</ele>
+        <time>2018-03-17T13:41:50.00Z</time>
+        <course>317.80</course>
+        <name>point 679</name>
+      </trkpt>
+      <trkpt lat="33.3664120000" lon="-97.4308113333">
+        <ele>270.300000</ele>
+        <time>2018-03-17T13:41:50.20Z</time>
+        <course>314.55</course>
+        <name>point 680</name>
+      </trkpt>
+      <trkpt lat="33.3664361667" lon="-97.4308448333">
+        <ele>270.400000</ele>
+        <time>2018-03-17T13:41:50.40Z</time>
+        <course>311.13</course>
+        <name>point 681</name>
+      </trkpt>
+      <trkpt lat="33.3664585000" lon="-97.4308796667">
+        <ele>270.400000</ele>
+        <time>2018-03-17T13:41:50.60Z</time>
+        <course>307.86</course>
+        <name>point 682</name>
+      </trkpt>
+      <trkpt lat="33.3664798333" lon="-97.4309153333">
+        <ele>270.500000</ele>
+        <time>2018-03-17T13:41:50.80Z</time>
+        <course>305.48</course>
+        <name>point 683</name>
+      </trkpt>
+      <trkpt lat="33.3664995000" lon="-97.4309520000">
+        <ele>270.500000</ele>
+        <time>2018-03-17T13:41:51.00Z</time>
+        <course>303.13</course>
+        <name>point 684</name>
+      </trkpt>
+      <trkpt lat="33.3665188333" lon="-97.4309885000">
+        <ele>270.500000</ele>
+        <time>2018-03-17T13:41:51.20Z</time>
+        <course>302.33</course>
+        <name>point 685</name>
+      </trkpt>
+      <trkpt lat="33.3665380000" lon="-97.4310250000">
+        <ele>270.600000</ele>
+        <time>2018-03-17T13:41:51.40Z</time>
+        <course>301.94</course>
+        <name>point 686</name>
+      </trkpt>
+      <trkpt lat="33.3665570000" lon="-97.4310613333">
+        <ele>270.700000</ele>
+        <time>2018-03-17T13:41:51.60Z</time>
+        <course>302.07</course>
+        <name>point 687</name>
+      </trkpt>
+      <trkpt lat="33.3665763333" lon="-97.4310970000">
+        <ele>270.700000</ele>
+        <time>2018-03-17T13:41:51.80Z</time>
+        <course>302.85</course>
+        <name>point 688</name>
+      </trkpt>
+      <trkpt lat="33.3665961667" lon="-97.4311318333">
+        <ele>270.800000</ele>
+        <time>2018-03-17T13:41:52.00Z</time>
+        <course>304.06</course>
+        <name>point 689</name>
+      </trkpt>
+      <trkpt lat="33.3666166667" lon="-97.4311658333">
+        <ele>270.900000</ele>
+        <time>2018-03-17T13:41:52.20Z</time>
+        <course>305.62</course>
+        <name>point 690</name>
+      </trkpt>
+      <trkpt lat="33.3666378333" lon="-97.4311986667">
+        <ele>270.900000</ele>
+        <time>2018-03-17T13:41:52.40Z</time>
+        <course>307.26</course>
+        <name>point 691</name>
+      </trkpt>
+      <trkpt lat="33.3666593333" lon="-97.4312305000">
+        <ele>271.100000</ele>
+        <time>2018-03-17T13:41:52.60Z</time>
+        <course>308.92</course>
+        <name>point 692</name>
+      </trkpt>
+      <trkpt lat="33.3666818333" lon="-97.4312611667">
+        <ele>271.100000</ele>
+        <time>2018-03-17T13:41:52.80Z</time>
+        <course>310.99</course>
+        <name>point 693</name>
+      </trkpt>
+      <trkpt lat="33.3667056667" lon="-97.4312900000">
+        <ele>271.200000</ele>
+        <time>2018-03-17T13:41:53.00Z</time>
+        <course>314.53</course>
+        <name>point 694</name>
+      </trkpt>
+      <trkpt lat="33.3667310000" lon="-97.4313165000">
+        <ele>271.200000</ele>
+        <time>2018-03-17T13:41:53.20Z</time>
+        <course>318.47</course>
+        <name>point 695</name>
+      </trkpt>
+      <trkpt lat="33.3667576667" lon="-97.4313410000">
+        <ele>271.200000</ele>
+        <time>2018-03-17T13:41:53.40Z</time>
+        <course>322.18</course>
+        <name>point 696</name>
+      </trkpt>
+      <trkpt lat="33.3667856667" lon="-97.4313636667">
+        <ele>271.200000</ele>
+        <time>2018-03-17T13:41:53.60Z</time>
+        <course>325.71</course>
+        <name>point 697</name>
+      </trkpt>
+      <trkpt lat="33.3668145000" lon="-97.4313841667">
+        <ele>271.300000</ele>
+        <time>2018-03-17T13:41:53.80Z</time>
+        <course>329.01</course>
+        <name>point 698</name>
+      </trkpt>
+      <trkpt lat="33.3668438333" lon="-97.4314033333">
+        <ele>271.300000</ele>
+        <time>2018-03-17T13:41:54.00Z</time>
+        <course>331.50</course>
+        <name>point 699</name>
+      </trkpt>
+      <trkpt lat="33.3668740000" lon="-97.4314208333">
+        <ele>271.400000</ele>
+        <time>2018-03-17T13:41:54.20Z</time>
+        <course>333.92</course>
+        <name>point 700</name>
+      </trkpt>
+      <trkpt lat="33.3669046667" lon="-97.4314368333">
+        <ele>271.400000</ele>
+        <time>2018-03-17T13:41:54.40Z</time>
+        <course>336.32</course>
+        <name>point 701</name>
+      </trkpt>
+      <trkpt lat="33.3669360000" lon="-97.4314513333">
+        <ele>271.500000</ele>
+        <time>2018-03-17T13:41:54.60Z</time>
+        <course>338.75</course>
+        <name>point 702</name>
+      </trkpt>
+      <trkpt lat="33.3669680000" lon="-97.4314638333">
+        <ele>271.600000</ele>
+        <time>2018-03-17T13:41:54.80Z</time>
+        <course>341.73</course>
+        <name>point 703</name>
+      </trkpt>
+      <trkpt lat="33.3670003333" lon="-97.4314743333">
+        <ele>271.700000</ele>
+        <time>2018-03-17T13:41:55.00Z</time>
+        <course>344.72</course>
+        <name>point 704</name>
+      </trkpt>
+      <trkpt lat="33.3670331667" lon="-97.4314828333">
+        <ele>271.700000</ele>
+        <time>2018-03-17T13:41:55.20Z</time>
+        <course>347.73</course>
+        <name>point 705</name>
+      </trkpt>
+      <trkpt lat="33.3670661667" lon="-97.4314890000">
+        <ele>271.800000</ele>
+        <time>2018-03-17T13:41:55.40Z</time>
+        <course>350.93</course>
+        <name>point 706</name>
+      </trkpt>
+      <trkpt lat="33.3670993333" lon="-97.4314931667">
+        <ele>271.900000</ele>
+        <time>2018-03-17T13:41:55.60Z</time>
+        <course>354.00</course>
+        <name>point 707</name>
+      </trkpt>
+      <trkpt lat="33.3671323333" lon="-97.4314946667">
+        <ele>271.900000</ele>
+        <time>2018-03-17T13:41:55.80Z</time>
+        <course>357.51</course>
+        <name>point 708</name>
+      </trkpt>
+      <trkpt lat="33.3671653333" lon="-97.4314936667">
+        <ele>272.000000</ele>
+        <time>2018-03-17T13:41:56.00Z</time>
+        <course>1.30</course>
+        <name>point 709</name>
+      </trkpt>
+      <trkpt lat="33.3671978333" lon="-97.4314900000">
+        <ele>272.100000</ele>
+        <time>2018-03-17T13:41:56.20Z</time>
+        <course>5.12</course>
+        <name>point 710</name>
+      </trkpt>
+      <trkpt lat="33.3672298333" lon="-97.4314836667">
+        <ele>272.200000</ele>
+        <time>2018-03-17T13:41:56.40Z</time>
+        <course>9.28</course>
+        <name>point 711</name>
+      </trkpt>
+      <trkpt lat="33.3672610000" lon="-97.4314741667">
+        <ele>272.300000</ele>
+        <time>2018-03-17T13:41:56.60Z</time>
+        <course>13.88</course>
+        <name>point 712</name>
+      </trkpt>
+      <trkpt lat="33.3672913333" lon="-97.4314620000">
+        <ele>272.500000</ele>
+        <time>2018-03-17T13:41:56.80Z</time>
+        <course>18.49</course>
+        <name>point 713</name>
+      </trkpt>
+      <trkpt lat="33.3673203333" lon="-97.4314468333">
+        <ele>272.600000</ele>
+        <time>2018-03-17T13:41:57.00Z</time>
+        <course>23.34</course>
+        <name>point 714</name>
+      </trkpt>
+      <trkpt lat="33.3673480000" lon="-97.4314286667">
+        <ele>272.800000</ele>
+        <time>2018-03-17T13:41:57.20Z</time>
+        <course>28.49</course>
+        <name>point 715</name>
+      </trkpt>
+      <trkpt lat="33.3673743333" lon="-97.4314075000">
+        <ele>273.100000</ele>
+        <time>2018-03-17T13:41:57.40Z</time>
+        <course>33.56</course>
+        <name>point 716</name>
+      </trkpt>
+      <trkpt lat="33.3673995000" lon="-97.4313838333">
+        <ele>273.300000</ele>
+        <time>2018-03-17T13:41:57.60Z</time>
+        <course>38.05</course>
+        <name>point 717</name>
+      </trkpt>
+      <trkpt lat="33.3674231667" lon="-97.4313573333">
+        <ele>273.600000</ele>
+        <time>2018-03-17T13:41:57.80Z</time>
+        <course>42.67</course>
+        <name>point 718</name>
+      </trkpt>
+      <trkpt lat="33.3674455000" lon="-97.4313285000">
+        <ele>273.900000</ele>
+        <time>2018-03-17T13:41:58.00Z</time>
+        <course>47.09</course>
+        <name>point 719</name>
+      </trkpt>
+      <trkpt lat="33.3674661667" lon="-97.4312973333">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:41:58.20Z</time>
+        <course>51.42</course>
+        <name>point 720</name>
+      </trkpt>
+      <trkpt lat="33.3674850000" lon="-97.4312643333">
+        <ele>274.600000</ele>
+        <time>2018-03-17T13:41:58.40Z</time>
+        <course>55.55</course>
+        <name>point 721</name>
+      </trkpt>
+      <trkpt lat="33.3675021667" lon="-97.4312295000">
+        <ele>274.900000</ele>
+        <time>2018-03-17T13:41:58.60Z</time>
+        <course>59.38</course>
+        <name>point 722</name>
+      </trkpt>
+      <trkpt lat="33.3675173333" lon="-97.4311931667">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:41:58.80Z</time>
+        <course>63.17</course>
+        <name>point 723</name>
+      </trkpt>
+      <trkpt lat="33.3675303333" lon="-97.4311550000">
+        <ele>275.600000</ele>
+        <time>2018-03-17T13:41:59.00Z</time>
+        <course>67.73</course>
+        <name>point 724</name>
+      </trkpt>
+      <trkpt lat="33.3675406667" lon="-97.4311158333">
+        <ele>275.900000</ele>
+        <time>2018-03-17T13:41:59.20Z</time>
+        <course>72.16</course>
+        <name>point 725</name>
+      </trkpt>
+      <trkpt lat="33.3675490000" lon="-97.4310758333">
+        <ele>276.400000</ele>
+        <time>2018-03-17T13:41:59.40Z</time>
+        <course>76.13</course>
+        <name>point 726</name>
+      </trkpt>
+      <trkpt lat="33.3675551667" lon="-97.4310350000">
+        <ele>276.800000</ele>
+        <time>2018-03-17T13:41:59.60Z</time>
+        <course>79.84</course>
+        <name>point 727</name>
+      </trkpt>
+      <trkpt lat="33.3675588333" lon="-97.4309941667">
+        <ele>277.100000</ele>
+        <time>2018-03-17T13:41:59.80Z</time>
+        <course>83.63</course>
+        <name>point 728</name>
+      </trkpt>
+      <trkpt lat="33.3675605000" lon="-97.4309533333">
+        <ele>277.400000</ele>
+        <time>2018-03-17T13:42:00.00Z</time>
+        <course>86.97</course>
+        <name>point 729</name>
+      </trkpt>
+      <trkpt lat="33.3675600000" lon="-97.4309128333">
+        <ele>277.800000</ele>
+        <time>2018-03-17T13:42:00.20Z</time>
+        <course>90.54</course>
+        <name>point 730</name>
+      </trkpt>
+      <trkpt lat="33.3675573333" lon="-97.4308728333">
+        <ele>278.100000</ele>
+        <time>2018-03-17T13:42:00.40Z</time>
+        <course>94.08</course>
+        <name>point 731</name>
+      </trkpt>
+      <trkpt lat="33.3675530000" lon="-97.4308331667">
+        <ele>278.400000</ele>
+        <time>2018-03-17T13:42:00.60Z</time>
+        <course>97.20</course>
+        <name>point 732</name>
+      </trkpt>
+      <trkpt lat="33.3675470000" lon="-97.4307938333">
+        <ele>278.700000</ele>
+        <time>2018-03-17T13:42:00.80Z</time>
+        <course>100.26</course>
+        <name>point 733</name>
+      </trkpt>
+      <trkpt lat="33.3675393333" lon="-97.4307546667">
+        <ele>279.000000</ele>
+        <time>2018-03-17T13:42:01.00Z</time>
+        <course>103.05</course>
+        <name>point 734</name>
+      </trkpt>
+      <trkpt lat="33.3675301667" lon="-97.4307155000">
+        <ele>279.200000</ele>
+        <time>2018-03-17T13:42:01.20Z</time>
+        <course>105.42</course>
+        <name>point 735</name>
+      </trkpt>
+      <trkpt lat="33.3675195000" lon="-97.4306765000">
+        <ele>279.400000</ele>
+        <time>2018-03-17T13:42:01.40Z</time>
+        <course>107.92</course>
+        <name>point 736</name>
+      </trkpt>
+      <trkpt lat="33.3675071667" lon="-97.4306378333">
+        <ele>279.700000</ele>
+        <time>2018-03-17T13:42:01.60Z</time>
+        <course>110.64</course>
+        <name>point 737</name>
+      </trkpt>
+      <trkpt lat="33.3674935000" lon="-97.4305991667">
+        <ele>279.800000</ele>
+        <time>2018-03-17T13:42:01.80Z</time>
+        <course>112.65</course>
+        <name>point 738</name>
+      </trkpt>
+      <trkpt lat="33.3674785000" lon="-97.4305606667">
+        <ele>280.000000</ele>
+        <time>2018-03-17T13:42:02.00Z</time>
+        <course>114.94</course>
+        <name>point 739</name>
+      </trkpt>
+      <trkpt lat="33.3674620000" lon="-97.4305225000">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:42:02.20Z</time>
+        <course>116.98</course>
+        <name>point 740</name>
+      </trkpt>
+      <trkpt lat="33.3674445000" lon="-97.4304843333">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:42:02.40Z</time>
+        <course>118.65</course>
+        <name>point 741</name>
+      </trkpt>
+      <trkpt lat="33.3674256667" lon="-97.4304465000">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:42:02.60Z</time>
+        <course>120.33</course>
+        <name>point 742</name>
+      </trkpt>
+      <trkpt lat="33.3674058333" lon="-97.4304086667">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:42:02.80Z</time>
+        <course>121.85</course>
+        <name>point 743</name>
+      </trkpt>
+      <trkpt lat="33.3673846667" lon="-97.4303710000">
+        <ele>280.600000</ele>
+        <time>2018-03-17T13:42:03.00Z</time>
+        <course>123.57</course>
+        <name>point 744</name>
+      </trkpt>
+      <trkpt lat="33.3673621667" lon="-97.4303336667">
+        <ele>280.600000</ele>
+        <time>2018-03-17T13:42:03.20Z</time>
+        <course>125.31</course>
+        <name>point 745</name>
+      </trkpt>
+      <trkpt lat="33.3673385000" lon="-97.4302966667">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:42:03.40Z</time>
+        <course>126.92</course>
+        <name>point 746</name>
+      </trkpt>
+      <trkpt lat="33.3673138333" lon="-97.4302603333">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:42:03.60Z</time>
+        <course>128.59</course>
+        <name>point 747</name>
+      </trkpt>
+      <trkpt lat="33.3672880000" lon="-97.4302245000">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:42:03.80Z</time>
+        <course>130.23</course>
+        <name>point 748</name>
+      </trkpt>
+      <trkpt lat="33.3672613333" lon="-97.4301891667">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:42:04.00Z</time>
+        <course>131.65</course>
+        <name>point 749</name>
+      </trkpt>
+      <trkpt lat="33.3672340000" lon="-97.4301540000">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:42:04.20Z</time>
+        <course>132.67</course>
+        <name>point 750</name>
+      </trkpt>
+      <trkpt lat="33.3672061667" lon="-97.4301188333">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:42:04.40Z</time>
+        <course>133.40</course>
+        <name>point 751</name>
+      </trkpt>
+      <trkpt lat="33.3671775000" lon="-97.4300835000">
+        <ele>280.100000</ele>
+        <time>2018-03-17T13:42:04.60Z</time>
+        <course>133.90</course>
+        <name>point 752</name>
+      </trkpt>
+      <trkpt lat="33.3671485000" lon="-97.4300481667">
+        <ele>280.100000</ele>
+        <time>2018-03-17T13:42:04.80Z</time>
+        <course>134.39</course>
+        <name>point 753</name>
+      </trkpt>
+      <trkpt lat="33.3671188333" lon="-97.4300123333">
+        <ele>280.000000</ele>
+        <time>2018-03-17T13:42:05.00Z</time>
+        <course>134.61</course>
+        <name>point 754</name>
+      </trkpt>
+      <trkpt lat="33.3670886667" lon="-97.4299765000">
+        <ele>279.900000</ele>
+        <time>2018-03-17T13:42:05.20Z</time>
+        <course>134.99</course>
+        <name>point 755</name>
+      </trkpt>
+      <trkpt lat="33.3670580000" lon="-97.4299406667">
+        <ele>279.900000</ele>
+        <time>2018-03-17T13:42:05.40Z</time>
+        <course>135.58</course>
+        <name>point 756</name>
+      </trkpt>
+      <trkpt lat="33.3670271667" lon="-97.4299045000">
+        <ele>279.800000</ele>
+        <time>2018-03-17T13:42:05.60Z</time>
+        <course>135.54</course>
+        <name>point 757</name>
+      </trkpt>
+      <trkpt lat="33.3669960000" lon="-97.4298676667">
+        <ele>279.700000</ele>
+        <time>2018-03-17T13:42:05.80Z</time>
+        <course>135.22</course>
+        <name>point 758</name>
+      </trkpt>
+      <trkpt lat="33.3669648333" lon="-97.4298308333">
+        <ele>279.600000</ele>
+        <time>2018-03-17T13:42:06.00Z</time>
+        <course>135.41</course>
+        <name>point 759</name>
+      </trkpt>
+      <trkpt lat="33.3669335000" lon="-97.4297936667">
+        <ele>279.500000</ele>
+        <time>2018-03-17T13:42:06.20Z</time>
+        <course>135.18</course>
+        <name>point 760</name>
+      </trkpt>
+      <trkpt lat="33.3669020000" lon="-97.4297560000">
+        <ele>279.400000</ele>
+        <time>2018-03-17T13:42:06.40Z</time>
+        <course>134.94</course>
+        <name>point 761</name>
+      </trkpt>
+      <trkpt lat="33.3668705000" lon="-97.4297181667">
+        <ele>279.300000</ele>
+        <time>2018-03-17T13:42:06.60Z</time>
+        <course>134.77</course>
+        <name>point 762</name>
+      </trkpt>
+      <trkpt lat="33.3668390000" lon="-97.4296798333">
+        <ele>279.200000</ele>
+        <time>2018-03-17T13:42:06.80Z</time>
+        <course>134.50</course>
+        <name>point 763</name>
+      </trkpt>
+      <trkpt lat="33.3668075000" lon="-97.4296415000">
+        <ele>279.100000</ele>
+        <time>2018-03-17T13:42:07.00Z</time>
+        <course>134.41</course>
+        <name>point 764</name>
+      </trkpt>
+      <trkpt lat="33.3667758333" lon="-97.4296026667">
+        <ele>279.000000</ele>
+        <time>2018-03-17T13:42:07.20Z</time>
+        <course>134.14</course>
+        <name>point 765</name>
+      </trkpt>
+      <trkpt lat="33.3667443333" lon="-97.4295635000">
+        <ele>278.900000</ele>
+        <time>2018-03-17T13:42:07.40Z</time>
+        <course>133.99</course>
+        <name>point 766</name>
+      </trkpt>
+      <trkpt lat="33.3667126667" lon="-97.4295241667">
+        <ele>278.800000</ele>
+        <time>2018-03-17T13:42:07.60Z</time>
+        <course>133.76</course>
+        <name>point 767</name>
+      </trkpt>
+      <trkpt lat="33.3666813333" lon="-97.4294843333">
+        <ele>278.700000</ele>
+        <time>2018-03-17T13:42:07.80Z</time>
+        <course>133.32</course>
+        <name>point 768</name>
+      </trkpt>
+      <trkpt lat="33.3666501667" lon="-97.4294443333">
+        <ele>278.600000</ele>
+        <time>2018-03-17T13:42:08.00Z</time>
+        <course>133.03</course>
+        <name>point 769</name>
+      </trkpt>
+      <trkpt lat="33.3666191667" lon="-97.4294043333">
+        <ele>278.500000</ele>
+        <time>2018-03-17T13:42:08.20Z</time>
+        <course>132.42</course>
+        <name>point 770</name>
+      </trkpt>
+      <trkpt lat="33.3665888333" lon="-97.4293640000">
+        <ele>278.400000</ele>
+        <time>2018-03-17T13:42:08.40Z</time>
+        <course>132.05</course>
+        <name>point 771</name>
+      </trkpt>
+      <trkpt lat="33.3665586667" lon="-97.4293236667">
+        <ele>278.200000</ele>
+        <time>2018-03-17T13:42:08.60Z</time>
+        <course>131.57</course>
+        <name>point 772</name>
+      </trkpt>
+      <trkpt lat="33.3665286667" lon="-97.4292833333">
+        <ele>278.100000</ele>
+        <time>2018-03-17T13:42:08.80Z</time>
+        <course>131.57</course>
+        <name>point 773</name>
+      </trkpt>
+      <trkpt lat="33.3664990000" lon="-97.4292431667">
+        <ele>278.000000</ele>
+        <time>2018-03-17T13:42:09.00Z</time>
+        <course>131.43</course>
+        <name>point 774</name>
+      </trkpt>
+      <trkpt lat="33.3664695000" lon="-97.4292028333">
+        <ele>277.900000</ele>
+        <time>2018-03-17T13:42:09.20Z</time>
+        <course>131.03</course>
+        <name>point 775</name>
+      </trkpt>
+      <trkpt lat="33.3664403333" lon="-97.4291625000">
+        <ele>277.800000</ele>
+        <time>2018-03-17T13:42:09.40Z</time>
+        <course>130.90</course>
+        <name>point 776</name>
+      </trkpt>
+      <trkpt lat="33.3664113333" lon="-97.4291225000">
+        <ele>277.700000</ele>
+        <time>2018-03-17T13:42:09.60Z</time>
+        <course>130.81</course>
+        <name>point 777</name>
+      </trkpt>
+      <trkpt lat="33.3663828333" lon="-97.4290825000">
+        <ele>277.500000</ele>
+        <time>2018-03-17T13:42:09.80Z</time>
+        <course>130.57</course>
+        <name>point 778</name>
+      </trkpt>
+      <trkpt lat="33.3663543333" lon="-97.4290425000">
+        <ele>277.400000</ele>
+        <time>2018-03-17T13:42:10.00Z</time>
+        <course>130.41</course>
+        <name>point 779</name>
+      </trkpt>
+      <trkpt lat="33.3663261667" lon="-97.4290028333">
+        <ele>277.300000</ele>
+        <time>2018-03-17T13:42:10.20Z</time>
+        <course>130.28</course>
+        <name>point 780</name>
+      </trkpt>
+      <trkpt lat="33.3662983333" lon="-97.4289631667">
+        <ele>277.100000</ele>
+        <time>2018-03-17T13:42:10.40Z</time>
+        <course>129.90</course>
+        <name>point 781</name>
+      </trkpt>
+      <trkpt lat="33.3662706667" lon="-97.4289240000">
+        <ele>276.900000</ele>
+        <time>2018-03-17T13:42:10.60Z</time>
+        <course>130.08</course>
+        <name>point 782</name>
+      </trkpt>
+      <trkpt lat="33.3662431667" lon="-97.4288848333">
+        <ele>276.800000</ele>
+        <time>2018-03-17T13:42:10.80Z</time>
+        <course>129.93</course>
+        <name>point 783</name>
+      </trkpt>
+      <trkpt lat="33.3662160000" lon="-97.4288458333">
+        <ele>276.600000</ele>
+        <time>2018-03-17T13:42:11.00Z</time>
+        <course>129.90</course>
+        <name>point 784</name>
+      </trkpt>
+      <trkpt lat="33.3661888333" lon="-97.4288071667">
+        <ele>276.500000</ele>
+        <time>2018-03-17T13:42:11.20Z</time>
+        <course>129.93</course>
+        <name>point 785</name>
+      </trkpt>
+      <trkpt lat="33.3661618333" lon="-97.4287690000">
+        <ele>276.300000</ele>
+        <time>2018-03-17T13:42:11.40Z</time>
+        <course>130.11</course>
+        <name>point 786</name>
+      </trkpt>
+      <trkpt lat="33.3661350000" lon="-97.4287310000">
+        <ele>276.300000</ele>
+        <time>2018-03-17T13:42:11.60Z</time>
+        <course>130.20</course>
+        <name>point 787</name>
+      </trkpt>
+      <trkpt lat="33.3661083333" lon="-97.4286930000">
+        <ele>276.200000</ele>
+        <time>2018-03-17T13:42:11.80Z</time>
+        <course>130.08</course>
+        <name>point 788</name>
+      </trkpt>
+      <trkpt lat="33.3660815000" lon="-97.4286555000">
+        <ele>276.000000</ele>
+        <time>2018-03-17T13:42:12.00Z</time>
+        <course>130.24</course>
+        <name>point 789</name>
+      </trkpt>
+      <trkpt lat="33.3660548333" lon="-97.4286181667">
+        <ele>276.000000</ele>
+        <time>2018-03-17T13:42:12.20Z</time>
+        <course>130.52</course>
+        <name>point 790</name>
+      </trkpt>
+      <trkpt lat="33.3660281667" lon="-97.4285808333">
+        <ele>275.900000</ele>
+        <time>2018-03-17T13:42:12.40Z</time>
+        <course>130.47</course>
+        <name>point 791</name>
+      </trkpt>
+      <trkpt lat="33.3660015000" lon="-97.4285438333">
+        <ele>275.800000</ele>
+        <time>2018-03-17T13:42:12.60Z</time>
+        <course>130.56</course>
+        <name>point 792</name>
+      </trkpt>
+      <trkpt lat="33.3659750000" lon="-97.4285070000">
+        <ele>275.700000</ele>
+        <time>2018-03-17T13:42:12.80Z</time>
+        <course>130.55</course>
+        <name>point 793</name>
+      </trkpt>
+      <trkpt lat="33.3659486667" lon="-97.4284701667">
+        <ele>275.600000</ele>
+        <time>2018-03-17T13:42:13.00Z</time>
+        <course>130.52</course>
+        <name>point 794</name>
+      </trkpt>
+      <trkpt lat="33.3659223333" lon="-97.4284335000">
+        <ele>275.600000</ele>
+        <time>2018-03-17T13:42:13.20Z</time>
+        <course>130.61</course>
+        <name>point 795</name>
+      </trkpt>
+      <trkpt lat="33.3658961667" lon="-97.4283971667">
+        <ele>275.500000</ele>
+        <time>2018-03-17T13:42:13.40Z</time>
+        <course>130.63</course>
+        <name>point 796</name>
+      </trkpt>
+      <trkpt lat="33.3658701667" lon="-97.4283610000">
+        <ele>275.500000</ele>
+        <time>2018-03-17T13:42:13.60Z</time>
+        <course>130.75</course>
+        <name>point 797</name>
+      </trkpt>
+      <trkpt lat="33.3658441667" lon="-97.4283253333">
+        <ele>275.400000</ele>
+        <time>2018-03-17T13:42:13.80Z</time>
+        <course>131.11</course>
+        <name>point 798</name>
+      </trkpt>
+      <trkpt lat="33.3658185000" lon="-97.4282900000">
+        <ele>275.300000</ele>
+        <time>2018-03-17T13:42:14.00Z</time>
+        <course>130.99</course>
+        <name>point 799</name>
+      </trkpt>
+      <trkpt lat="33.3657930000" lon="-97.4282550000">
+        <ele>275.300000</ele>
+        <time>2018-03-17T13:42:14.20Z</time>
+        <course>131.15</course>
+        <name>point 800</name>
+      </trkpt>
+      <trkpt lat="33.3657676667" lon="-97.4282203333">
+        <ele>275.300000</ele>
+        <time>2018-03-17T13:42:14.40Z</time>
+        <course>131.08</course>
+        <name>point 801</name>
+      </trkpt>
+      <trkpt lat="33.3657426667" lon="-97.4281860000">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:14.60Z</time>
+        <course>131.08</course>
+        <name>point 802</name>
+      </trkpt>
+      <trkpt lat="33.3657178333" lon="-97.4281521667">
+        <ele>275.100000</ele>
+        <time>2018-03-17T13:42:14.80Z</time>
+        <course>131.14</course>
+        <name>point 803</name>
+      </trkpt>
+      <trkpt lat="33.3656933333" lon="-97.4281186667">
+        <ele>275.100000</ele>
+        <time>2018-03-17T13:42:15.00Z</time>
+        <course>130.94</course>
+        <name>point 804</name>
+      </trkpt>
+      <trkpt lat="33.3656693333" lon="-97.4280855000">
+        <ele>275.000000</ele>
+        <time>2018-03-17T13:42:15.20Z</time>
+        <course>130.90</course>
+        <name>point 805</name>
+      </trkpt>
+      <trkpt lat="33.3656455000" lon="-97.4280526667">
+        <ele>274.900000</ele>
+        <time>2018-03-17T13:42:15.40Z</time>
+        <course>130.83</course>
+        <name>point 806</name>
+      </trkpt>
+      <trkpt lat="33.3656221667" lon="-97.4280203333">
+        <ele>274.900000</ele>
+        <time>2018-03-17T13:42:15.60Z</time>
+        <course>130.78</course>
+        <name>point 807</name>
+      </trkpt>
+      <trkpt lat="33.3655990000" lon="-97.4279883333">
+        <ele>274.800000</ele>
+        <time>2018-03-17T13:42:15.80Z</time>
+        <course>130.59</course>
+        <name>point 808</name>
+      </trkpt>
+      <trkpt lat="33.3655761667" lon="-97.4279565000">
+        <ele>274.700000</ele>
+        <time>2018-03-17T13:42:16.00Z</time>
+        <course>130.55</course>
+        <name>point 809</name>
+      </trkpt>
+      <trkpt lat="33.3655535000" lon="-97.4279251667">
+        <ele>274.700000</ele>
+        <time>2018-03-17T13:42:16.20Z</time>
+        <course>130.64</course>
+        <name>point 810</name>
+      </trkpt>
+      <trkpt lat="33.3655310000" lon="-97.4278941667">
+        <ele>274.600000</ele>
+        <time>2018-03-17T13:42:16.40Z</time>
+        <course>130.67</course>
+        <name>point 811</name>
+      </trkpt>
+      <trkpt lat="33.3655088333" lon="-97.4278638333">
+        <ele>274.500000</ele>
+        <time>2018-03-17T13:42:16.60Z</time>
+        <course>130.94</course>
+        <name>point 812</name>
+      </trkpt>
+      <trkpt lat="33.3654871667" lon="-97.4278338333">
+        <ele>274.500000</ele>
+        <time>2018-03-17T13:42:16.80Z</time>
+        <course>130.90</course>
+        <name>point 813</name>
+      </trkpt>
+      <trkpt lat="33.3654656667" lon="-97.4278043333">
+        <ele>274.500000</ele>
+        <time>2018-03-17T13:42:17.00Z</time>
+        <course>131.03</course>
+        <name>point 814</name>
+      </trkpt>
+      <trkpt lat="33.3654443333" lon="-97.4277751667">
+        <ele>274.400000</ele>
+        <time>2018-03-17T13:42:17.20Z</time>
+        <course>131.18</course>
+        <name>point 815</name>
+      </trkpt>
+      <trkpt lat="33.3654231667" lon="-97.4277463333">
+        <ele>274.400000</ele>
+        <time>2018-03-17T13:42:17.40Z</time>
+        <course>131.10</course>
+        <name>point 816</name>
+      </trkpt>
+      <trkpt lat="33.3654023333" lon="-97.4277180000">
+        <ele>274.400000</ele>
+        <time>2018-03-17T13:42:17.60Z</time>
+        <course>131.37</course>
+        <name>point 817</name>
+      </trkpt>
+      <trkpt lat="33.3653816667" lon="-97.4276898333">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:17.80Z</time>
+        <course>131.18</course>
+        <name>point 818</name>
+      </trkpt>
+      <trkpt lat="33.3653613333" lon="-97.4276618333">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:18.00Z</time>
+        <course>130.80</course>
+        <name>point 819</name>
+      </trkpt>
+      <trkpt lat="33.3653411667" lon="-97.4276341667">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:18.20Z</time>
+        <course>130.98</course>
+        <name>point 820</name>
+      </trkpt>
+      <trkpt lat="33.3653213333" lon="-97.4276068333">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:42:18.40Z</time>
+        <course>130.99</course>
+        <name>point 821</name>
+      </trkpt>
+      <trkpt lat="33.3653020000" lon="-97.4275798333">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:42:18.60Z</time>
+        <course>130.54</course>
+        <name>point 822</name>
+      </trkpt>
+      <trkpt lat="33.3652835000" lon="-97.4275531667">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:42:18.80Z</time>
+        <course>129.87</course>
+        <name>point 823</name>
+      </trkpt>
+      <trkpt lat="33.3652660000" lon="-97.4275270000">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:42:19.00Z</time>
+        <course>128.67</course>
+        <name>point 824</name>
+      </trkpt>
+      <trkpt lat="33.3652498333" lon="-97.4275000000">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:42:19.20Z</time>
+        <course>125.71</course>
+        <name>point 825</name>
+      </trkpt>
+      <trkpt lat="33.3652355000" lon="-97.4274725000">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:42:19.40Z</time>
+        <course>122.32</course>
+        <name>point 826</name>
+      </trkpt>
+      <trkpt lat="33.3652230000" lon="-97.4274443333">
+        <ele>274.200000</ele>
+        <time>2018-03-17T13:42:19.60Z</time>
+        <course>118.33</course>
+        <name>point 827</name>
+      </trkpt>
+      <trkpt lat="33.3652130000" lon="-97.4274155000">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:19.80Z</time>
+        <course>113.07</course>
+        <name>point 828</name>
+      </trkpt>
+      <trkpt lat="33.3652056667" lon="-97.4273858333">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:20.00Z</time>
+        <course>107.15</course>
+        <name>point 829</name>
+      </trkpt>
+      <trkpt lat="33.3652008333" lon="-97.4273560000">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:20.20Z</time>
+        <course>101.33</course>
+        <name>point 830</name>
+      </trkpt>
+      <trkpt lat="33.3651985000" lon="-97.4273256667">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:20.40Z</time>
+        <course>95.91</course>
+        <name>point 831</name>
+      </trkpt>
+      <trkpt lat="33.3651983333" lon="-97.4272953333">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:20.60Z</time>
+        <course>90.92</course>
+        <name>point 832</name>
+      </trkpt>
+      <trkpt lat="33.3652003333" lon="-97.4272648333">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:20.80Z</time>
+        <course>86.12</course>
+        <name>point 833</name>
+      </trkpt>
+      <trkpt lat="33.3652046667" lon="-97.4272340000">
+        <ele>274.300000</ele>
+        <time>2018-03-17T13:42:21.00Z</time>
+        <course>81.22</course>
+        <name>point 834</name>
+      </trkpt>
+      <trkpt lat="33.3652111667" lon="-97.4272033333">
+        <ele>274.400000</ele>
+        <time>2018-03-17T13:42:21.20Z</time>
+        <course>76.58</course>
+        <name>point 835</name>
+      </trkpt>
+      <trkpt lat="33.3652200000" lon="-97.4271721667">
+        <ele>274.500000</ele>
+        <time>2018-03-17T13:42:21.40Z</time>
+        <course>72.16</course>
+        <name>point 836</name>
+      </trkpt>
+      <trkpt lat="33.3652310000" lon="-97.4271413333">
+        <ele>274.500000</ele>
+        <time>2018-03-17T13:42:21.60Z</time>
+        <course>67.65</course>
+        <name>point 837</name>
+      </trkpt>
+      <trkpt lat="33.3652443333" lon="-97.4271110000">
+        <ele>274.600000</ele>
+        <time>2018-03-17T13:42:21.80Z</time>
+        <course>62.88</course>
+        <name>point 838</name>
+      </trkpt>
+      <trkpt lat="33.3652598333" lon="-97.4270811667">
+        <ele>274.700000</ele>
+        <time>2018-03-17T13:42:22.00Z</time>
+        <course>58.42</course>
+        <name>point 839</name>
+      </trkpt>
+      <trkpt lat="33.3652773333" lon="-97.4270523333">
+        <ele>274.700000</ele>
+        <time>2018-03-17T13:42:22.20Z</time>
+        <course>54.46</course>
+        <name>point 840</name>
+      </trkpt>
+      <trkpt lat="33.3652966667" lon="-97.4270245000">
+        <ele>274.800000</ele>
+        <time>2018-03-17T13:42:22.40Z</time>
+        <course>50.64</course>
+        <name>point 841</name>
+      </trkpt>
+      <trkpt lat="33.3653180000" lon="-97.4269981667">
+        <ele>274.800000</ele>
+        <time>2018-03-17T13:42:22.60Z</time>
+        <course>46.13</course>
+        <name>point 842</name>
+      </trkpt>
+      <trkpt lat="33.3653408333" lon="-97.4269740000">
+        <ele>274.900000</ele>
+        <time>2018-03-17T13:42:22.80Z</time>
+        <course>41.77</course>
+        <name>point 843</name>
+      </trkpt>
+      <trkpt lat="33.3653650000" lon="-97.4269521667">
+        <ele>275.000000</ele>
+        <time>2018-03-17T13:42:23.00Z</time>
+        <course>37.23</course>
+        <name>point 844</name>
+      </trkpt>
+      <trkpt lat="33.3653903333" lon="-97.4269330000">
+        <ele>275.000000</ele>
+        <time>2018-03-17T13:42:23.20Z</time>
+        <course>32.49</course>
+        <name>point 845</name>
+      </trkpt>
+      <trkpt lat="33.3654166667" lon="-97.4269163333">
+        <ele>275.000000</ele>
+        <time>2018-03-17T13:42:23.40Z</time>
+        <course>27.90</course>
+        <name>point 846</name>
+      </trkpt>
+      <trkpt lat="33.3654436667" lon="-97.4269026667">
+        <ele>275.100000</ele>
+        <time>2018-03-17T13:42:23.60Z</time>
+        <course>23.04</course>
+        <name>point 847</name>
+      </trkpt>
+      <trkpt lat="33.3654713333" lon="-97.4268920000">
+        <ele>275.100000</ele>
+        <time>2018-03-17T13:42:23.80Z</time>
+        <course>18.22</course>
+        <name>point 848</name>
+      </trkpt>
+      <trkpt lat="33.3654993333" lon="-97.4268838333">
+        <ele>275.100000</ele>
+        <time>2018-03-17T13:42:24.00Z</time>
+        <course>13.73</course>
+        <name>point 849</name>
+      </trkpt>
+      <trkpt lat="33.3655280000" lon="-97.4268781667">
+        <ele>275.100000</ele>
+        <time>2018-03-17T13:42:24.20Z</time>
+        <course>9.39</course>
+        <name>point 850</name>
+      </trkpt>
+      <trkpt lat="33.3655571667" lon="-97.4268753333">
+        <ele>275.100000</ele>
+        <time>2018-03-17T13:42:24.40Z</time>
+        <course>4.91</course>
+        <name>point 851</name>
+      </trkpt>
+      <trkpt lat="33.3655866667" lon="-97.4268753333">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:24.60Z</time>
+        <course>0.23</course>
+        <name>point 852</name>
+      </trkpt>
+      <trkpt lat="33.3656163333" lon="-97.4268780000">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:24.80Z</time>
+        <course>355.80</course>
+        <name>point 853</name>
+      </trkpt>
+      <trkpt lat="33.3656463333" lon="-97.4268838333">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:25.00Z</time>
+        <course>351.00</course>
+        <name>point 854</name>
+      </trkpt>
+      <trkpt lat="33.3656766667" lon="-97.4268926667">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:25.20Z</time>
+        <course>346.69</course>
+        <name>point 855</name>
+      </trkpt>
+      <trkpt lat="33.3657071667" lon="-97.4269041667">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:25.40Z</time>
+        <course>342.64</course>
+        <name>point 856</name>
+      </trkpt>
+      <trkpt lat="33.3657378333" lon="-97.4269188333">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:25.60Z</time>
+        <course>338.58</course>
+        <name>point 857</name>
+      </trkpt>
+      <trkpt lat="33.3657685000" lon="-97.4269366667">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:25.80Z</time>
+        <course>334.26</course>
+        <name>point 858</name>
+      </trkpt>
+      <trkpt lat="33.3657991667" lon="-97.4269578333">
+        <ele>275.200000</ele>
+        <time>2018-03-17T13:42:26.00Z</time>
+        <course>330.48</course>
+        <name>point 859</name>
+      </trkpt>
+      <trkpt lat="33.3658301667" lon="-97.4269815000">
+        <ele>275.300000</ele>
+        <time>2018-03-17T13:42:26.20Z</time>
+        <course>327.58</course>
+        <name>point 860</name>
+      </trkpt>
+      <trkpt lat="33.3658611667" lon="-97.4270075000">
+        <ele>275.400000</ele>
+        <time>2018-03-17T13:42:26.40Z</time>
+        <course>325.13</course>
+        <name>point 861</name>
+      </trkpt>
+      <trkpt lat="33.3658921667" lon="-97.4270360000">
+        <ele>275.500000</ele>
+        <time>2018-03-17T13:42:26.60Z</time>
+        <course>322.62</course>
+        <name>point 862</name>
+      </trkpt>
+      <trkpt lat="33.3659231667" lon="-97.4270668333">
+        <ele>275.500000</ele>
+        <time>2018-03-17T13:42:26.80Z</time>
+        <course>320.42</course>
+        <name>point 863</name>
+      </trkpt>
+      <trkpt lat="33.3659541667" lon="-97.4270995000">
+        <ele>275.700000</ele>
+        <time>2018-03-17T13:42:27.00Z</time>
+        <course>318.69</course>
+        <name>point 864</name>
+      </trkpt>
+      <trkpt lat="33.3659850000" lon="-97.4271340000">
+        <ele>275.700000</ele>
+        <time>2018-03-17T13:42:27.20Z</time>
+        <course>316.98</course>
+        <name>point 865</name>
+      </trkpt>
+      <trkpt lat="33.3660156667" lon="-97.4271703333">
+        <ele>275.800000</ele>
+        <time>2018-03-17T13:42:27.40Z</time>
+        <course>315.22</course>
+        <name>point 866</name>
+      </trkpt>
+      <trkpt lat="33.3660460000" lon="-97.4272085000">
+        <ele>276.000000</ele>
+        <time>2018-03-17T13:42:27.60Z</time>
+        <course>313.70</course>
+        <name>point 867</name>
+      </trkpt>
+      <trkpt lat="33.3660763333" lon="-97.4272483333">
+        <ele>276.200000</ele>
+        <time>2018-03-17T13:42:27.80Z</time>
+        <course>312.26</course>
+        <name>point 868</name>
+      </trkpt>
+      <trkpt lat="33.3661065000" lon="-97.4272898333">
+        <ele>276.400000</ele>
+        <time>2018-03-17T13:42:28.00Z</time>
+        <course>310.98</course>
+        <name>point 869</name>
+      </trkpt>
+      <trkpt lat="33.3661365000" lon="-97.4273328333">
+        <ele>276.600000</ele>
+        <time>2018-03-17T13:42:28.20Z</time>
+        <course>309.81</course>
+        <name>point 870</name>
+      </trkpt>
+      <trkpt lat="33.3661661667" lon="-97.4273771667">
+        <ele>276.700000</ele>
+        <time>2018-03-17T13:42:28.40Z</time>
+        <course>308.76</course>
+        <name>point 871</name>
+      </trkpt>
+      <trkpt lat="33.3661956667" lon="-97.4274226667">
+        <ele>276.900000</ele>
+        <time>2018-03-17T13:42:28.60Z</time>
+        <course>307.87</course>
+        <name>point 872</name>
+      </trkpt>
+      <trkpt lat="33.3662250000" lon="-97.4274693333">
+        <ele>277.000000</ele>
+        <time>2018-03-17T13:42:28.80Z</time>
+        <course>306.90</course>
+        <name>point 873</name>
+      </trkpt>
+      <trkpt lat="33.3662541667" lon="-97.4275170000">
+        <ele>277.100000</ele>
+        <time>2018-03-17T13:42:29.00Z</time>
+        <course>306.36</course>
+        <name>point 874</name>
+      </trkpt>
+      <trkpt lat="33.3662830000" lon="-97.4275648333">
+        <ele>277.300000</ele>
+        <time>2018-03-17T13:42:29.20Z</time>
+        <course>305.82</course>
+        <name>point 875</name>
+      </trkpt>
+      <trkpt lat="33.3663106667" lon="-97.4276110000">
+        <ele>277.400000</ele>
+        <time>2018-03-17T13:42:29.40Z</time>
+        <course>305.63</course>
+        <name>point 876</name>
+      </trkpt>
+      <trkpt lat="33.3663375000" lon="-97.4276561667">
+        <ele>277.500000</ele>
+        <time>2018-03-17T13:42:29.60Z</time>
+        <course>305.48</course>
+        <name>point 877</name>
+      </trkpt>
+      <trkpt lat="33.3663641667" lon="-97.4277015000">
+        <ele>277.700000</ele>
+        <time>2018-03-17T13:42:29.80Z</time>
+        <course>305.21</course>
+        <name>point 878</name>
+      </trkpt>
+      <trkpt lat="33.3663905000" lon="-97.4277466667">
+        <ele>277.800000</ele>
+        <time>2018-03-17T13:42:30.00Z</time>
+        <course>304.87</course>
+        <name>point 879</name>
+      </trkpt>
+      <trkpt lat="33.3664165000" lon="-97.4277920000">
+        <ele>277.900000</ele>
+        <time>2018-03-17T13:42:30.20Z</time>
+        <course>304.62</course>
+        <name>point 880</name>
+      </trkpt>
+      <trkpt lat="33.3664421667" lon="-97.4278371667">
+        <ele>278.000000</ele>
+        <time>2018-03-17T13:42:30.40Z</time>
+        <course>304.24</course>
+        <name>point 881</name>
+      </trkpt>
+      <trkpt lat="33.3664675000" lon="-97.4278826667">
+        <ele>278.200000</ele>
+        <time>2018-03-17T13:42:30.60Z</time>
+        <course>303.88</course>
+        <name>point 882</name>
+      </trkpt>
+      <trkpt lat="33.3664930000" lon="-97.4279286667">
+        <ele>278.300000</ele>
+        <time>2018-03-17T13:42:30.80Z</time>
+        <course>303.52</course>
+        <name>point 883</name>
+      </trkpt>
+      <trkpt lat="33.3665188333" lon="-97.4279756667">
+        <ele>278.400000</ele>
+        <time>2018-03-17T13:42:31.00Z</time>
+        <course>303.25</course>
+        <name>point 884</name>
+      </trkpt>
+      <trkpt lat="33.3665448333" lon="-97.4280236667">
+        <ele>278.600000</ele>
+        <time>2018-03-17T13:42:31.20Z</time>
+        <course>303.09</course>
+        <name>point 885</name>
+      </trkpt>
+      <trkpt lat="33.3665713333" lon="-97.4280723333">
+        <ele>278.700000</ele>
+        <time>2018-03-17T13:42:31.40Z</time>
+        <course>302.98</course>
+        <name>point 886</name>
+      </trkpt>
+      <trkpt lat="33.3665981667" lon="-97.4281221667">
+        <ele>278.700000</ele>
+        <time>2018-03-17T13:42:31.60Z</time>
+        <course>302.87</course>
+        <name>point 887</name>
+      </trkpt>
+      <trkpt lat="33.3666255000" lon="-97.4281728333">
+        <ele>278.800000</ele>
+        <time>2018-03-17T13:42:31.80Z</time>
+        <course>302.87</course>
+        <name>point 888</name>
+      </trkpt>
+      <trkpt lat="33.3666531667" lon="-97.4282240000">
+        <ele>279.000000</ele>
+        <time>2018-03-17T13:42:32.00Z</time>
+        <course>302.95</course>
+        <name>point 889</name>
+      </trkpt>
+      <trkpt lat="33.3666815000" lon="-97.4282760000">
+        <ele>279.100000</ele>
+        <time>2018-03-17T13:42:32.20Z</time>
+        <course>303.02</course>
+        <name>point 890</name>
+      </trkpt>
+      <trkpt lat="33.3667101667" lon="-97.4283283333">
+        <ele>279.200000</ele>
+        <time>2018-03-17T13:42:32.40Z</time>
+        <course>303.32</course>
+        <name>point 891</name>
+      </trkpt>
+      <trkpt lat="33.3667393333" lon="-97.4283810000">
+        <ele>279.300000</ele>
+        <time>2018-03-17T13:42:32.60Z</time>
+        <course>303.47</course>
+        <name>point 892</name>
+      </trkpt>
+      <trkpt lat="33.3667690000" lon="-97.4284338333">
+        <ele>279.500000</ele>
+        <time>2018-03-17T13:42:32.80Z</time>
+        <course>303.79</course>
+        <name>point 893</name>
+      </trkpt>
+      <trkpt lat="33.3667990000" lon="-97.4284868333">
+        <ele>279.700000</ele>
+        <time>2018-03-17T13:42:33.00Z</time>
+        <course>304.09</course>
+        <name>point 894</name>
+      </trkpt>
+      <trkpt lat="33.3668293333" lon="-97.4285401667">
+        <ele>279.800000</ele>
+        <time>2018-03-17T13:42:33.20Z</time>
+        <course>304.35</course>
+        <name>point 895</name>
+      </trkpt>
+      <trkpt lat="33.3668601667" lon="-97.4285933333">
+        <ele>280.000000</ele>
+        <time>2018-03-17T13:42:33.40Z</time>
+        <course>304.64</course>
+        <name>point 896</name>
+      </trkpt>
+      <trkpt lat="33.3668913333" lon="-97.4286466667">
+        <ele>280.100000</ele>
+        <time>2018-03-17T13:42:33.60Z</time>
+        <course>304.90</course>
+        <name>point 897</name>
+      </trkpt>
+      <trkpt lat="33.3669228333" lon="-97.4287001667">
+        <ele>280.200000</ele>
+        <time>2018-03-17T13:42:33.80Z</time>
+        <course>305.16</course>
+        <name>point 898</name>
+      </trkpt>
+      <trkpt lat="33.3669546667" lon="-97.4287538333">
+        <ele>280.300000</ele>
+        <time>2018-03-17T13:42:34.00Z</time>
+        <course>305.38</course>
+        <name>point 899</name>
+      </trkpt>
+      <trkpt lat="33.3669868333" lon="-97.4288075000">
+        <ele>280.400000</ele>
+        <time>2018-03-17T13:42:34.20Z</time>
+        <course>305.58</course>
+        <name>point 900</name>
+      </trkpt>
+      <trkpt lat="33.3670193333" lon="-97.4288613333">
+        <ele>280.500000</ele>
+        <time>2018-03-17T13:42:34.40Z</time>
+        <course>305.74</course>
+        <name>point 901</name>
+      </trkpt>
+      <trkpt lat="33.3670521667" lon="-97.4289151667">
+        <ele>280.600000</ele>
+        <time>2018-03-17T13:42:34.60Z</time>
+        <course>305.97</course>
+        <name>point 902</name>
+      </trkpt>
+      <trkpt lat="33.3670851667" lon="-97.4289690000">
+        <ele>280.800000</ele>
+        <time>2018-03-17T13:42:34.80Z</time>
+        <course>306.22</course>
+        <name>point 903</name>
+      </trkpt>
+      <trkpt lat="33.3671185000" lon="-97.4290226667">
+        <ele>280.900000</ele>
+        <time>2018-03-17T13:42:35.00Z</time>
+        <course>306.47</course>
+        <name>point 904</name>
+      </trkpt>
+      <trkpt lat="33.3671518333" lon="-97.4290763333">
+        <ele>281.000000</ele>
+        <time>2018-03-17T13:42:35.20Z</time>
+        <course>306.63</course>
+        <name>point 905</name>
+      </trkpt>
+      <trkpt lat="33.3671853333" lon="-97.4291295000">
+        <ele>281.100000</ele>
+        <time>2018-03-17T13:42:35.40Z</time>
+        <course>306.87</course>
+        <name>point 906</name>
+      </trkpt>
+      <trkpt lat="33.3672188333" lon="-97.4291823333">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:42:35.60Z</time>
+        <course>307.02</course>
+        <name>point 907</name>
+      </trkpt>
+      <trkpt lat="33.3672521667" lon="-97.4292348333">
+        <ele>281.200000</ele>
+        <time>2018-03-17T13:42:35.80Z</time>
+        <course>307.13</course>
+        <name>point 908</name>
+      </trkpt>
+      <trkpt lat="33.3672851667" lon="-97.4292871667">
+        <ele>281.300000</ele>
+        <time>2018-03-17T13:42:36.00Z</time>
+        <course>307.04</course>
+        <name>point 909</name>
+      </trkpt>
+      <trkpt lat="33.3673180000" lon="-97.4293393333">
+        <ele>281.400000</ele>
+        <time>2018-03-17T13:42:36.20Z</time>
+        <course>306.98</course>
+        <name>point 910</name>
+      </trkpt>
+      <trkpt lat="33.3673505000" lon="-97.4293913333">
+        <ele>281.500000</ele>
+        <time>2018-03-17T13:42:36.40Z</time>
+        <course>306.84</course>
+        <name>point 911</name>
+      </trkpt>
+      <trkpt lat="33.3673828333" lon="-97.4294430000">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:42:36.60Z</time>
+        <course>306.81</course>
+        <name>point 912</name>
+      </trkpt>
+      <trkpt lat="33.3674148333" lon="-97.4294943333">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:42:36.80Z</time>
+        <course>306.64</course>
+        <name>point 913</name>
+      </trkpt>
+      <trkpt lat="33.3674466667" lon="-97.4295453333">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:42:37.00Z</time>
+        <course>306.59</course>
+        <name>point 914</name>
+      </trkpt>
+      <trkpt lat="33.3674783333" lon="-97.4295960000">
+        <ele>281.800000</ele>
+        <time>2018-03-17T13:42:37.20Z</time>
+        <course>306.63</course>
+        <name>point 915</name>
+      </trkpt>
+      <trkpt lat="33.3675096667" lon="-97.4296466667">
+        <ele>281.800000</ele>
+        <time>2018-03-17T13:42:37.40Z</time>
+        <course>306.51</course>
+        <name>point 916</name>
+      </trkpt>
+      <trkpt lat="33.3675410000" lon="-97.4296970000">
+        <ele>281.700000</ele>
+        <time>2018-03-17T13:42:37.60Z</time>
+        <course>306.62</course>
+        <name>point 917</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

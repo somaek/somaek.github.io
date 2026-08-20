@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="BikeTerra" xmlns="http://www.topografix.com/GPX/1/1" xmlns:biketerra="https://biketerra.com/xmlns/gpx/1">
+    <metadata>
+        <name>Crybaby Hill Criterium</name>
+        <extensions>
+            <biketerra:version>2.0.0</biketerra:version>
+            <biketerra:isLoop>true</biketerra:isLoop>
+            <biketerra:defaultSurface>asphalt</biketerra:defaultSurface>
+        </extensions>
+    </metadata>
+    <trk>
+        <name>Crybaby Hill Criterium</name>
+        <trkseg>
+            <trkpt lat="36.14209" lon="-95.9996"><ele>194.46</ele></trkpt>
+            <trkpt lat="36.1425333" lon="-96.00029"><ele>194.2</ele></trkpt>
+            <trkpt lat="36.14342" lon="-96.00167"><ele>195.37</ele></trkpt>
+            <trkpt lat="36.1435544" lon="-96.0016009"><ele>196.27</ele></trkpt>
+            <trkpt lat="36.14376" lon="-96.00162"><ele>198.37</ele></trkpt>
+            <trkpt lat="36.14393" lon="-96.00161"><ele>200.66</ele></trkpt>
+            <trkpt lat="36.14433" lon="-96.00148"><ele>205.93</ele></trkpt>
+            <trkpt lat="36.14427" lon="-96.00123"><ele>207.47</ele></trkpt>
+            <trkpt lat="36.1440567" lon="-96.0002533"><ele>211.67</ele></trkpt>
+            <trkpt lat="36.1438433" lon="-95.9992767"><ele>206.68</ele></trkpt>
+            <trkpt lat="36.14363" lon="-95.9983"><ele>204.36</ele></trkpt>
+            <trkpt lat="36.1435" lon="-95.99832"><ele>204.32</ele></trkpt>
+            <trkpt lat="36.14276" lon="-95.9983233"><ele>205.09</ele></trkpt>
+            <trkpt lat="36.14202" lon="-95.9983267"><ele>202.15</ele></trkpt>
+            <trkpt lat="36.1413452" lon="-95.9983903"><ele>195.63</ele></trkpt>
+            <trkpt lat="36.14209" lon="-95.9996"><ele>194.46</ele></trkpt>
+        </trkseg>
+    </trk>
+</gpx>

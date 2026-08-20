@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1"
+  creator="GPXmagic"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:rgt="http://www.rgtcycling.com/XML/GpxExtensions/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1
+  http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Smoothed with GPXmagic</name>
+    <author>
+      <link href="https://www.stepwiserefinement.co.uk">
+        <text>GPXmagic v3</text>
+        <type>text/html</type>
+      </link>
+    </author>
+  </metadata>
+<trk>  <name>Fort&#32;Stockton&#32;Mini&#32;Climb&#32;2min</name>
+<trkseg>
+<trkpt lat="32.7585995299247" lon="-117.19570656140002"><ele>7.87</ele></trkpt>
+<trkpt lat="32.7586869501699" lon="-117.19563614227499"><ele>8.62</ele></trkpt>
+<trkpt lat="32.7587745622606" lon="-117.195566898242"><ele>9.72833695648687</ele></trkpt>
+<trkpt lat="32.7588537500866" lon="-117.19550964312099"><ele>10.829406978269898</ele></trkpt>
+<trkpt lat="32.7589828887124" lon="-117.195419963017"><ele>12.722261508503877</ele></trkpt>
+<trkpt lat="32.7591199990501" lon="-117.19540242345201"><ele>14.557586589320216</ele></trkpt>
+<trkpt lat="32.7593095540842" lon="-117.195430140254"><ele>17.081688514913264</ele></trkpt>
+<trkpt lat="32.7594360208711" lon="-117.195421221552"><ele>18.537331652054394</ele></trkpt>
+<trkpt lat="32.7595541387306" lon="-117.19537926389901"><ele>19.76</ele></trkpt>
+<trkpt lat="32.7596645933376" lon="-117.19530839098597"><ele>20.84</ele></trkpt>
+<trkpt lat="32.7597447854233" lon="-117.19523578965301"><ele>21.75</ele></trkpt>
+<trkpt lat="32.7598044111813" lon="-117.195147099349"><ele>22.66</ele></trkpt>
+<trkpt lat="32.7598384799213" lon="-117.19504951531101"><ele>23.44</ele></trkpt>
+<trkpt lat="32.7598572252012" lon="-117.19491185290897"><ele>24.38</ele></trkpt>
+<trkpt lat="32.759849958061004" lon="-117.19473039843498"><ele>25.79</ele></trkpt>
+<trkpt lat="32.7597768740085" lon="-117.194362599293"><ele>28.83</ele></trkpt>
+<trkpt lat="32.7597368892281" lon="-117.194242814927"><ele>29.99</ele></trkpt>
+<trkpt lat="32.759671813204" lon="-117.19409444933198"><ele>31.5</ele></trkpt>
+<trkpt lat="32.759615877257" lon="-117.19400887254399"><ele>32.41</ele></trkpt>
+<trkpt lat="32.7595545322617" lon="-117.19395089645101"><ele>33.21</ele></trkpt>
+<trkpt lat="32.7594768858594" lon="-117.193910045132"><ele>33.97</ele></trkpt>
+<trkpt lat="32.759394296242306" lon="-117.19389337319899"><ele>34.68</ele></trkpt>
+<trkpt lat="32.7591696355052" lon="-117.19392930831198"><ele>36.67</ele></trkpt>
+<trkpt lat="32.75900820451" lon="-117.19399665152"><ele>38.44</ele></trkpt>
+<trkpt lat="32.7588949416056" lon="-117.194068980236"><ele>40.02</ele></trkpt>
+<trkpt lat="32.75882859592111" lon="-117.194101591308"><ele>40.91</ele></trkpt>
+<trkpt lat="32.75874309670849" lon="-117.19411798219099"><ele>41.93</ele></trkpt>
+<trkpt lat="32.7586398043236" lon="-117.19410935672698"><ele>43.04</ele></trkpt>
+<trkpt lat="32.7585307261404" lon="-117.19406074194399"><ele>44.25</ele></trkpt>
+<trkpt lat="32.7584269606613" lon="-117.19396464790698"><ele>45.4</ele></trkpt>
+<trkpt lat="32.7583275447968" lon="-117.193864362624"><ele>46.35</ele></trkpt>
+<trkpt lat="32.7582390149047" lon="-117.193815076727"><ele>46.98</ele></trkpt>
+<trkpt lat="32.7581701018822" lon="-117.193805133226"><ele>47.52</ele></trkpt>
+<trkpt lat="32.7578251140258" lon="-117.193898384497"><ele>50.17</ele></trkpt>
+</trkseg>
+</trk></gpx>
