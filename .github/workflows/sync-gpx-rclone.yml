@@ -189,8 +189,12 @@ jobs:
                               
                               rel_path = os.path.relpath(f_name, "gpx")
                               
+                              # Extract the folder name from the relative path and normalize slashes for the web
+                              folder_path = os.path.dirname(rel_path).replace("\\\\", "/")
+                              
                               data.append({
-                                  "file": rel_path,
+                                  "file": rel_path.replace("\\\\", "/"),
+                                  "folder": folder_path,
                                   "name": name,
                                   "distance_km": round(dist, 2),
                                   "elevation_m": round(up if up else 0, 1),
