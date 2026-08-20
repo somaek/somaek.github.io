@@ -440,14 +440,14 @@
             );
         };
 
-        const RouteProfileModal = ({ profileData, onClose }) => {
+        const RouteProfileModal = ({ profileData, onClose, onDownload }) => {
             const [selectedClimb, setSelectedClimb] = useState(null);
             
             return (
                 <div className="fixed inset-0 z-50 bg-[#2c0c5c] overflow-y-auto print:bg-white text-white font-roboto">
                     <div className="max-w-6xl mx-auto space-y-6 p-4 md:p-8 pt-6">
                         {/* Header Bar */}
-                        <div className="flex justify-between items-start border-b border-[#6c3f9c] pb-4 sticky top-0 bg-[#2c0c5c] z-20 pt-2 print:hidden">
+                        <div className="flex justify-between items-center border-b border-[#6c3f9c] pb-4 sticky top-0 bg-[#2c0c5c] z-20 pt-2 print:hidden">
                             <div className="flex items-center gap-4">
                                 <button onClick={onClose} className="p-2 bg-[#4a217c] hover:bg-[#00FFFF] text-white hover:text-black rounded-sm border border-[#6c3f9c] transition-colors shadow-md group">
                                     <ArrowLeft className="w-5 h-5" />
@@ -461,6 +461,16 @@
                                     </h1>
                                     <p className="text-neutral-300 text-xs tracking-widest uppercase font-oswald mt-1 text-[#ff4500]">GPX PROFILE ANALYSIS</p>
                                 </div>
+                            </div>
+                            <div>
+                                <button 
+                                    onClick={onDownload}
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#4a217c] hover:bg-[#00FFFF] text-white hover:text-black font-oswald tracking-widest uppercase text-sm border border-[#6c3f9c] hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer"
+                                    title="Download GPX"
+                                >
+                                    <Download className="w-4 h-4" />
+                                    <span className="hidden md:inline">Download GPX</span>
+                                </button>
                             </div>
                         </div>
 
@@ -668,7 +678,7 @@
                 <div className="min-h-screen text-white selection:bg-[#00FFFF] selection:text-black p-4 md:p-8">
                     
                     {/* Render Profile Overlay on top if active */}
-                    {activeProfile && <RouteProfileModal profileData={activeProfile} onClose={() => setActiveProfile(null)} />}
+                    {activeProfile && <RouteProfileModal profileData={activeProfile} onClose={() => setActiveProfile(null)} onDownload={(e) => handleDownload(e, activeProfile.file, activeProfile.name)} />}
 
                     <div className="max-w-7xl mx-auto space-y-8">
                         <header className="flex items-center space-x-4 border-b border-[#6c3f9c] pb-6">
