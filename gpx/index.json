@@ -1,6 +1,7 @@
 [
   {
     "file": "Tour De Kyushu 2025/Tour De Kyushu - Stage 2 Kumamoto - 35k 355m.gpx",
+    "folder": "Tour De Kyushu 2025",
     "name": "Tour De Kyushu - Stage 2 Kumamoto - 35k 355m",
     "distance_km": 12.22,
     "elevation_m": 438.9,
@@ -9,6 +10,7 @@
   },
   {
     "file": "Tour De Kyushu 2025/Tour de Kyushu - stage 3 Miyazaki - 12k 72m.gpx",
+    "folder": "Tour De Kyushu 2025",
     "name": "Tour de Kyushu - stage 3 Miyazaki - 12k 72m",
     "distance_km": 11.74,
     "elevation_m": 112.9,
@@ -17,6 +19,7 @@
   },
   {
     "file": "Tour De Kyushu 2025/Sasebo Criterium - Tour de Kyushu.gpx",
+    "folder": "Tour De Kyushu 2025",
     "name": "Sasebo Criterium - Tour de Kyushu",
     "distance_km": 1.59,
     "elevation_m": 14.5,
@@ -25,6 +28,7 @@
   },
   {
     "file": "Tour De Kyushu 2025/Tour de Kyushu - stage 1 Fukuoka - 17k 256m.gpx",
+    "folder": "Tour De Kyushu 2025",
     "name": "Tour de Kyushu - stage 1 Fukuoka - 17k 256m",
     "distance_km": 16.67,
     "elevation_m": 253.4,
@@ -33,6 +37,7 @@
   },
   {
     "file": "Criterium Courses/k1 Circuit.gpx",
+    "folder": "Criterium Courses",
     "name": "k1 Circuit",
     "distance_km": 1.31,
     "elevation_m": 18.6,
@@ -41,6 +46,7 @@
   },
   {
     "file": "Criterium Courses/Copenhagen Sprint Circuit.gpx",
+    "folder": "Criterium Courses",
     "name": "Copenhagen Sprint Circuit",
     "distance_km": 10.14,
     "elevation_m": 23.1,
@@ -49,6 +55,7 @@
   },
   {
     "file": "Criterium Courses/VIA Criterium in London.gpx",
+    "folder": "Criterium Courses",
     "name": "VIA Criterium in London",
     "distance_km": 0.76,
     "elevation_m": 7.1,
@@ -57,6 +64,7 @@
   },
   {
     "file": "Criterium Courses/Presidio Crit.gpx",
+    "folder": "Criterium Courses",
     "name": "Presidio Crit",
     "distance_km": 1.28,
     "elevation_m": 43.8,
@@ -65,6 +73,7 @@
   },
   {
     "file": "Criterium Courses/Indianapolis Motor Speedway - 4km 0m.gpx",
+    "folder": "Criterium Courses",
     "name": "Indianapolis Motor Speedway - 4km 0m",
     "distance_km": 4.08,
     "elevation_m": 0,
@@ -73,6 +82,7 @@
   },
   {
     "file": "Criterium Courses/Littleton Criterium.gpx",
+    "folder": "Criterium Courses",
     "name": "Littleton Criterium",
     "distance_km": 1.17,
     "elevation_m": 3.4,
@@ -81,6 +91,7 @@
   },
   {
     "file": "Criterium Courses/Il Giro di San Francisco.gpx",
+    "folder": "Criterium Courses",
     "name": "Il Giro di San Francisco",
     "distance_km": 1.2,
     "elevation_m": 9.3,
@@ -89,6 +100,7 @@
   },
   {
     "file": "Criterium Courses/Sasebo Criterium - Tour de Kyushu - 1.6k 15m.gpx",
+    "folder": "Criterium Courses",
     "name": "Sasebo Criterium - Tour de Kyushu - 1.6k 15m",
     "distance_km": 1.59,
     "elevation_m": 14.5,
@@ -97,6 +109,7 @@
   },
   {
     "file": "Criterium Courses/Crybaby Hill Criterium.gpx",
+    "folder": "Criterium Courses",
     "name": "Crybaby Hill Criterium",
     "distance_km": 1.03,
     "elevation_m": 14.5,
@@ -105,6 +118,7 @@
   },
   {
     "file": "Criterium Courses/Zwift Downtown Dolphin.gpx",
+    "folder": "Criterium Courses",
     "name": "Zwift Downtown Dolphin",
     "distance_km": 1.95,
     "elevation_m": 13.4,
@@ -113,6 +127,7 @@
   },
   {
     "file": "Criterium Courses/Suzuka Circuit - 6k 84m.gpx",
+    "folder": "Criterium Courses",
     "name": "Suzuka Circuit - 6k 84m",
     "distance_km": 5.79,
     "elevation_m": 51.2,
@@ -121,6 +136,7 @@
   },
   {
     "file": "Criterium Courses/Athens Twilight Criterium Course - 1k 6m.gpx",
+    "folder": "Criterium Courses",
     "name": "Athens Twilight Criterium Course - 1k 6m",
     "distance_km": 0.91,
     "elevation_m": 6.0,
@@ -129,6 +145,7 @@
   },
   {
     "file": "Criterium Courses/GP d\u2019Ongola .gpx",
+    "folder": "Criterium Courses",
     "name": "GP d\u2019Ongola ",
     "distance_km": 6.92,
     "elevation_m": 131.7,
@@ -137,6 +154,7 @@
   },
   {
     "file": "Criterium Courses/Cabrillo Point Loma.gpx",
+    "folder": "Criterium Courses",
     "name": "Cabrillo Point Loma",
     "distance_km": 9.94,
     "elevation_m": 98.2,
@@ -145,6 +163,7 @@
   },
   {
     "file": "Criterium Courses/Boulder Crit.gpx",
+    "folder": "Criterium Courses",
     "name": "Boulder Crit",
     "distance_km": 2.79,
     "elevation_m": 29.7,
@@ -153,6 +172,7 @@
   },
   {
     "file": "Criterium Courses/Syracuse Lakefront.gpx",
+    "folder": "Criterium Courses",
     "name": "Syracuse Lakefront",
     "distance_km": 17.29,
     "elevation_m": 122.2,
@@ -161,6 +181,7 @@
   },
   {
     "file": "Criterium Courses/Saitama Criterium Course.gpx",
+    "folder": "Criterium Courses",
     "name": "Saitama Criterium Course",
     "distance_km": 3.54,
     "elevation_m": 34.7,
@@ -169,6 +190,7 @@
   },
   {
     "file": "Criterium Courses/Eureka Crit.gpx",
+    "folder": "Criterium Courses",
     "name": "Eureka Crit",
     "distance_km": 5.52,
     "elevation_m": 66.9,
@@ -177,6 +199,7 @@
   },
   {
     "file": "Criterium Courses/Charleston Criterium.gpx",
+    "folder": "Criterium Courses",
     "name": "Charleston Criterium",
     "distance_km": 1.65,
     "elevation_m": 3.0,
@@ -185,6 +208,7 @@
   },
   {
     "file": "Criterium Courses/Central Park Circuit - 10k 95m.gpx",
+    "folder": "Criterium Courses",
     "name": "Central Park Circuit - 10k 95m",
     "distance_km": 9.79,
     "elevation_m": 93.9,
@@ -193,6 +217,7 @@
   },
   {
     "file": "Criterium Courses/Puerto Vallarta.gpx",
+    "folder": "Criterium Courses",
     "name": "Puerto Vallarta",
     "distance_km": 8.72,
     "elevation_m": 115.8,
@@ -201,6 +226,7 @@
   },
   {
     "file": "Criterium Courses/Lidl Deutschland Tour - Stage 4 Finishing Circuit - 7k 50m.gpx",
+    "folder": "Criterium Courses",
     "name": "Lidl Deutschland Tour - Stage 4 Finishing Circuit - 7k 50m",
     "distance_km": 6.81,
     "elevation_m": 37.4,
@@ -209,6 +235,7 @@
   },
   {
     "file": "Criterium Courses/Buena Vista Crit.gpx",
+    "folder": "Criterium Courses",
     "name": "Buena Vista Crit",
     "distance_km": 1.7,
     "elevation_m": 59.8,
@@ -217,6 +244,7 @@
   },
   {
     "file": "Criterium Courses/Louisville Criterium - 1k 13m.gpx",
+    "folder": "Criterium Courses",
     "name": "Louisville Criterium - 1k 13m",
     "distance_km": 1.2,
     "elevation_m": 13.2,
@@ -225,6 +253,7 @@
   },
   {
     "file": "Criterium Courses/Circuit de Monaco - 3k 45m.gpx",
+    "folder": "Criterium Courses",
     "name": "Circuit de Monaco - 3k 45m",
     "distance_km": 3.29,
     "elevation_m": 44.4,
@@ -233,6 +262,7 @@
   },
   {
     "file": "Criterium Courses/Louisville Criterium.gpx",
+    "folder": "Criterium Courses",
     "name": "Louisville Criterium",
     "distance_km": 1.2,
     "elevation_m": 13.7,
@@ -241,6 +271,7 @@
   },
   {
     "file": "Criterium Courses/Laguna Seca - 3.6k 81m.gpx",
+    "folder": "Criterium Courses",
     "name": "Laguna Seca - 3.6k 81m",
     "distance_km": 3.61,
     "elevation_m": 63.8,
@@ -249,6 +280,7 @@
   },
   {
     "file": "Criterium Courses/City Crit with Kicker.gpx",
+    "folder": "Criterium Courses",
     "name": "City Crit with Kicker",
     "distance_km": 4.46,
     "elevation_m": 21.6,
@@ -257,6 +289,7 @@
   },
   {
     "file": "Criterium Courses/City Park Criterium Course.gpx",
+    "folder": "Criterium Courses",
     "name": "City Park Criterium Course",
     "distance_km": 4.11,
     "elevation_m": 22.3,
@@ -265,6 +298,7 @@
   },
   {
     "file": "Criterium Courses/South Table Crit.gpx",
+    "folder": "Criterium Courses",
     "name": "South Table Crit",
     "distance_km": 2.3,
     "elevation_m": 14.0,
@@ -273,6 +307,7 @@
   },
   {
     "file": "Criterium Courses/Canary Kart.gpx",
+    "folder": "Criterium Courses",
     "name": "Canary Kart",
     "distance_km": 0.47,
     "elevation_m": 49.1,
@@ -281,6 +316,7 @@
   },
   {
     "file": "Criterium Courses/Singapore Criterium.gpx",
+    "folder": "Criterium Courses",
     "name": "Singapore Criterium",
     "distance_km": 2.38,
     "elevation_m": 19.7,
@@ -289,6 +325,7 @@
   },
   {
     "file": "Criterium Courses/Catalina Crit.gpx",
+    "folder": "Criterium Courses",
     "name": "Catalina Crit",
     "distance_km": 5.38,
     "elevation_m": 166.7,
@@ -297,6 +334,7 @@
   },
   {
     "file": "Criterium Courses/Fox Raceway Gravel.gpx",
+    "folder": "Criterium Courses",
     "name": "Fox Raceway Gravel",
     "distance_km": 1.43,
     "elevation_m": 17.5,
@@ -305,6 +343,7 @@
   },
   {
     "file": "American Gravel/FoCo Fondo Finish.gpx",
+    "folder": "American Gravel",
     "name": "FoCo Fondo Finish",
     "distance_km": 37.5,
     "elevation_m": 193.9,
@@ -313,6 +352,7 @@
   },
   {
     "file": "American Gravel/FoCo Fondo Dare You 30 mile Gravel route - 48k 285m.gpx",
+    "folder": "American Gravel",
     "name": "FoCo Fondo Dare You 30 mile Gravel route - 48k 285m",
     "distance_km": 48.52,
     "elevation_m": 233.8,
@@ -321,6 +361,7 @@
   },
   {
     "file": "American Gravel/SBT Red Course TPV.gpx",
+    "folder": "American Gravel",
     "name": "SBT Red Course TPV",
     "distance_km": 70.91,
     "elevation_m": 889.2,
@@ -329,6 +370,7 @@
   },
   {
     "file": "American Gravel/Cove Mountain Loop.gpx",
+    "folder": "American Gravel",
     "name": "Cove Mountain Loop",
     "distance_km": 46.2,
     "elevation_m": 806.2,
@@ -337,6 +379,7 @@
   },
   {
     "file": "American Gravel/Grassroots Gravel - The Half 2 of 4.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Gravel - The Half 2 of 4",
     "distance_km": 24.39,
     "elevation_m": 349.2,
@@ -345,6 +388,7 @@
   },
   {
     "file": "American Gravel/Grassroots Gravel - The Half LU.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Gravel - The Half LU",
     "distance_km": 119.19,
     "elevation_m": 1007.0,
@@ -353,6 +397,7 @@
   },
   {
     "file": "American Gravel/FoCo Fondo Double Dog Dare You 60 mile route LU.gpx",
+    "folder": "American Gravel",
     "name": "FoCo Fondo Double Dog Dare You 60 mile route LU",
     "distance_km": 99.06,
     "elevation_m": 948.9,
@@ -361,6 +406,7 @@
   },
   {
     "file": "American Gravel/Double Dog Updated.gpx",
+    "folder": "American Gravel",
     "name": "Double Dog Updated",
     "distance_km": 99.36,
     "elevation_m": 897.0,
@@ -369,6 +415,7 @@
   },
   {
     "file": "American Gravel/Grassroots Half 1 of 3.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Half 1 of 3",
     "distance_km": 35.96,
     "elevation_m": 471.4,
@@ -377,6 +424,7 @@
   },
   {
     "file": "American Gravel/Grassroots Half 2 of 3.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Half 2 of 3",
     "distance_km": 36.07,
     "elevation_m": 506.1,
@@ -385,6 +433,7 @@
   },
   {
     "file": "American Gravel/SBT GRVL Red Course - 85k 1148m.gpx",
+    "folder": "American Gravel",
     "name": "SBT GRVL Red Course - 85k 1148m",
     "distance_km": 85.02,
     "elevation_m": 1146.1,
@@ -393,6 +442,7 @@
   },
   {
     "file": "American Gravel/Foco Fondo Middle Section LU.gpx",
+    "folder": "American Gravel",
     "name": "Foco Fondo Middle Section LU",
     "distance_km": 33.15,
     "elevation_m": 396.8,
@@ -401,6 +451,7 @@
   },
   {
     "file": "American Gravel/BWR Utah.gpx",
+    "folder": "American Gravel",
     "name": "BWR Utah",
     "distance_km": 78.32,
     "elevation_m": 456.2,
@@ -409,6 +460,7 @@
   },
   {
     "file": "American Gravel/Core4 USAC Gravel Event.gpx",
+    "folder": "American Gravel",
     "name": "Core4 USAC Gravel Event",
     "distance_km": 74.39,
     "elevation_m": 560.6,
@@ -417,6 +469,7 @@
   },
   {
     "file": "American Gravel/FoCo Fondo Start.gpx",
+    "folder": "American Gravel",
     "name": "FoCo Fondo Start",
     "distance_km": 34.59,
     "elevation_m": 308.1,
@@ -425,6 +478,7 @@
   },
   {
     "file": "American Gravel/Grassroots Gravel - The Half.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Gravel - The Half",
     "distance_km": 119.19,
     "elevation_m": 1007.0,
@@ -433,6 +487,7 @@
   },
   {
     "file": "American Gravel/Grassroots Half 3 of 3.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Half 3 of 3",
     "distance_km": 46.89,
     "elevation_m": 80.9,
@@ -441,6 +496,7 @@
   },
   {
     "file": "American Gravel/2026 Boulder Roubaix.gpx",
+    "folder": "American Gravel",
     "name": "2026 Boulder Roubaix",
     "distance_km": 48.29,
     "elevation_m": 375.6,
@@ -449,6 +505,7 @@
   },
   {
     "file": "American Gravel/Big Sky Gravel 50.gpx",
+    "folder": "American Gravel",
     "name": "Big Sky Gravel 50",
     "distance_km": 79.17,
     "elevation_m": 783.9,
@@ -457,6 +514,7 @@
   },
   {
     "file": "American Gravel/FoCo Fondo Classic 2 hour.gpx",
+    "folder": "American Gravel",
     "name": "FoCo Fondo Classic 2 hour",
     "distance_km": 69.32,
     "elevation_m": 685.1,
@@ -465,6 +523,7 @@
   },
   {
     "file": "American Gravel/Grassroots Gravel - The Half 3 of 4.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Gravel - The Half 3 of 4",
     "distance_km": 30.49,
     "elevation_m": 279.3,
@@ -473,6 +532,7 @@
   },
   {
     "file": "American Gravel/Foco Fondo Double Dog Gravel Race.gpx",
+    "folder": "American Gravel",
     "name": "Foco Fondo Double Dog Gravel Race",
     "distance_km": 100.41,
     "elevation_m": 827.0,
@@ -481,6 +541,7 @@
   },
   {
     "file": "American Gravel/Grassroots Gravel - The Half 4 of 4.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Gravel - The Half 4 of 4",
     "distance_km": 36.53,
     "elevation_m": 52.2,
@@ -489,6 +550,7 @@
   },
   {
     "file": "American Gravel/Grassroots Half.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Half",
     "distance_km": 118.91,
     "elevation_m": 1058.0,
@@ -497,6 +559,7 @@
   },
   {
     "file": "American Gravel/KLGC 2026 55mile Comet Route.gpx",
+    "folder": "American Gravel",
     "name": "KLGC 2026 55mile Comet Route",
     "distance_km": 88.32,
     "elevation_m": 1160.4,
@@ -505,6 +568,7 @@
   },
   {
     "file": "American Gravel/Mad Gravel Hemi 5-0 Race.gpx",
+    "folder": "American Gravel",
     "name": "Mad Gravel Hemi 5-0 Race",
     "distance_km": 75.14,
     "elevation_m": 905.8,
@@ -513,6 +577,7 @@
   },
   {
     "file": "American Gravel/Unbound Gravel - Just Little Egypt - 38k 493m.gpx",
+    "folder": "American Gravel",
     "name": "Unbound Gravel - Just Little Egypt - 38k 493m",
     "distance_km": 37.78,
     "elevation_m": 413.3,
@@ -521,6 +586,7 @@
   },
   {
     "file": "American Gravel/Grassroots Gravel - The Half 1 of 4.gpx",
+    "folder": "American Gravel",
     "name": "Grassroots Gravel - The Half 1 of 4",
     "distance_km": 27.78,
     "elevation_m": 331.7,
@@ -529,6 +595,7 @@
   },
   {
     "file": "Lidl Deutschland Tour 2025/Lidl Deutschland Tour - Stage 2.gpx",
+    "folder": "Lidl Deutschland Tour 2025",
     "name": "Lidl Deutschland Tour - Stage 2",
     "distance_km": 37.67,
     "elevation_m": 535.0,
@@ -537,6 +604,7 @@
   },
   {
     "file": "Lidl Deutschland Tour 2025/Lidl Deutschland Tour - Stage 4.gpx",
+    "folder": "Lidl Deutschland Tour 2025",
     "name": "Lidl Deutschland Tour - Stage 4",
     "distance_km": 40.78,
     "elevation_m": 199.2,
@@ -545,6 +613,7 @@
   },
   {
     "file": "Lidl Deutschland Tour 2025/Lidl Deutschland Tour - Stage 3.gpx",
+    "folder": "Lidl Deutschland Tour 2025",
     "name": "Lidl Deutschland Tour - Stage 3",
     "distance_km": 38.53,
     "elevation_m": 472.8,
@@ -553,6 +622,7 @@
   },
   {
     "file": "Lidl Deutschland Tour 2025/Lidl Deutschland Tour - Stage 1.gpx",
+    "folder": "Lidl Deutschland Tour 2025",
     "name": "Lidl Deutschland Tour - Stage 1",
     "distance_km": 40.3,
     "elevation_m": 370.3,
@@ -561,6 +631,7 @@
   },
   {
     "file": "Vuelta 2026/stage-17-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-17-route",
     "distance_km": 38.0,
     "elevation_m": 105.4,
@@ -569,6 +640,7 @@
   },
   {
     "file": "Vuelta 2026/stage-18-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-18-route",
     "distance_km": 32.05,
     "elevation_m": 161.2,
@@ -577,6 +649,7 @@
   },
   {
     "file": "Vuelta 2026/stage-10-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-10-route",
     "distance_km": 28.59,
     "elevation_m": 550.7,
@@ -585,6 +658,7 @@
   },
   {
     "file": "Vuelta 2026/stage-07-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-07-route",
     "distance_km": 19.96,
     "elevation_m": 828.8,
@@ -593,6 +667,7 @@
   },
   {
     "file": "Vuelta 2026/stage-12-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-12-route",
     "distance_km": 18.38,
     "elevation_m": 1012.8,
@@ -601,6 +676,7 @@
   },
   {
     "file": "Vuelta 2026/stage-09-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-09-route",
     "distance_km": 37.62,
     "elevation_m": 1327.1,
@@ -609,6 +685,7 @@
   },
   {
     "file": "Vuelta 2026/stage-13-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-13-route",
     "distance_km": 38.91,
     "elevation_m": 190.6,
@@ -617,6 +694,7 @@
   },
   {
     "file": "Vuelta 2026/stage-20-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-20-route",
     "distance_km": 36.73,
     "elevation_m": 1676.9,
@@ -625,6 +703,7 @@
   },
   {
     "file": "Vuelta 2026/stage-19-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-19-route",
     "distance_km": 20.83,
     "elevation_m": 1260.6,
@@ -633,6 +712,7 @@
   },
   {
     "file": "Vuelta 2026/stage-15-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-15-route",
     "distance_km": 61.8,
     "elevation_m": 1019.7,
@@ -641,6 +721,7 @@
   },
   {
     "file": "Vuelta 2026/stage-04-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-04-route",
     "distance_km": 31.07,
     "elevation_m": 617.6,
@@ -649,6 +730,7 @@
   },
   {
     "file": "Vuelta 2026/stage-16-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-16-route",
     "distance_km": 40.51,
     "elevation_m": 200.4,
@@ -657,6 +739,7 @@
   },
   {
     "file": "Vuelta 2026/stage-14-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-14-route",
     "distance_km": 38.16,
     "elevation_m": 1608.9,
@@ -665,6 +748,7 @@
   },
   {
     "file": "Vuelta 2026/stage-01-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-01-route",
     "distance_km": 9.81,
     "elevation_m": 168.6,
@@ -673,6 +757,7 @@
   },
   {
     "file": "Vuelta 2026/stage-11-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-11-route",
     "distance_km": 34.89,
     "elevation_m": 333.3,
@@ -681,6 +766,7 @@
   },
   {
     "file": "Vuelta 2026/stage-06-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-06-route",
     "distance_km": 32.56,
     "elevation_m": 753.5,
@@ -689,6 +775,7 @@
   },
   {
     "file": "Vuelta 2026/stage-08-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-08-route",
     "distance_km": 63.95,
     "elevation_m": 541.1,
@@ -697,6 +784,7 @@
   },
   {
     "file": "Vuelta 2026/stage-21-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-21-route",
     "distance_km": 7.85,
     "elevation_m": 155.7,
@@ -705,6 +793,7 @@
   },
   {
     "file": "Vuelta 2026/stage-02-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-02-route",
     "distance_km": 64.78,
     "elevation_m": 829.9,
@@ -713,6 +802,7 @@
   },
   {
     "file": "Vuelta 2026/stage-05-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-05-route",
     "distance_km": 30.37,
     "elevation_m": 406.9,
@@ -721,6 +811,7 @@
   },
   {
     "file": "Vuelta 2026/stage-03-route.gpx",
+    "folder": "Vuelta 2026",
     "name": "stage-03-route",
     "distance_km": 21.66,
     "elevation_m": 782.0,
@@ -729,6 +820,7 @@
   },
   {
     "file": "Climbs/Cyprus_Climb.gpx",
+    "folder": "Climbs",
     "name": "Cyprus_Climb",
     "distance_km": 54.95,
     "elevation_m": 1357.9,
@@ -737,6 +829,7 @@
   },
   {
     "file": "Climbs/Lake Berryessa to Napa CA.gpx",
+    "folder": "Climbs",
     "name": "Lake Berryessa to Napa CA",
     "distance_km": 49.41,
     "elevation_m": 793.9,
@@ -745,6 +838,7 @@
   },
   {
     "file": "Climbs/Mount Whitney CA.gpx",
+    "folder": "Climbs",
     "name": "Mount Whitney CA",
     "distance_km": 18.99,
     "elevation_m": 1401.0,
@@ -753,6 +847,7 @@
   },
   {
     "file": "Climbs/Mount Lemmon Tuscon AZ.gpx",
+    "folder": "Climbs",
     "name": "Mount Lemmon Tuscon AZ",
     "distance_km": 52.15,
     "elevation_m": 2211.7,
@@ -761,6 +856,7 @@
   },
   {
     "file": "Climbs/Roscoe to East.gpx",
+    "folder": "Climbs",
     "name": "Roscoe to East",
     "distance_km": 23.55,
     "elevation_m": 453.3,
@@ -769,6 +865,7 @@
   },
   {
     "file": "Climbs/Climbing in Malibu CA.gpx",
+    "folder": "Climbs",
     "name": "Climbing in Malibu CA",
     "distance_km": 55.42,
     "elevation_m": 1113.2,
@@ -777,6 +874,7 @@
   },
   {
     "file": "Climbs/Col de Portes FR.gpx",
+    "folder": "Climbs",
     "name": "Col de Portes FR",
     "distance_km": 46.88,
     "elevation_m": 1014.6,
@@ -785,6 +883,7 @@
   },
   {
     "file": "Climbs/Cowles Mountain (Short).gpx",
+    "folder": "Climbs",
     "name": "Cowles Mountain (Short)",
     "distance_km": 2.79,
     "elevation_m": 282.5,
@@ -793,6 +892,7 @@
   },
   {
     "file": "Climbs/Kirigoe_Pass.gpx",
+    "folder": "Climbs",
     "name": "Kirigoe_Pass",
     "distance_km": 28.76,
     "elevation_m": 916.4,
@@ -801,6 +901,7 @@
   },
   {
     "file": "Climbs/Palomar Mountain.gpx",
+    "folder": "Climbs",
     "name": "Palomar Mountain",
     "distance_km": 11.25,
     "elevation_m": 804.5,
@@ -809,6 +910,7 @@
   },
   {
     "file": "Climbs/Sa Bassa Mallorca.gpx",
+    "folder": "Climbs",
     "name": "Sa Bassa Mallorca",
     "distance_km": 10.66,
     "elevation_m": 586.8,
@@ -817,6 +919,7 @@
   },
   {
     "file": "Climbs/Lolo Pass (Mount Hood, OR).gpx",
+    "folder": "Climbs",
     "name": "Lolo Pass (Mount Hood, OR)",
     "distance_km": 58.21,
     "elevation_m": 1486.2,
@@ -825,6 +928,7 @@
   },
   {
     "file": "Climbs/Mount Baldy via Glendora Ridge.gpx",
+    "folder": "Climbs",
     "name": "Mount Baldy via Glendora Ridge",
     "distance_km": 42.12,
     "elevation_m": 1970.9,
@@ -833,6 +937,7 @@
   },
   {
     "file": "Climbs/Refugio Beach to Santa Ynez Gravel.gpx",
+    "folder": "Climbs",
     "name": "Refugio Beach to Santa Ynez Gravel",
     "distance_km": 24.45,
     "elevation_m": 774.9,
@@ -841,6 +946,7 @@
   },
   {
     "file": "Climbs/Babada\u011f - 18k 1643m.gpx",
+    "folder": "Climbs",
     "name": "Babada\u011f - 18k 1643m",
     "distance_km": 17.88,
     "elevation_m": 1642.9,
@@ -849,6 +955,7 @@
   },
   {
     "file": "Climbs/Mauna Kea - 68k 4197m.gpx",
+    "folder": "Climbs",
     "name": "Mauna Kea - 68k 4197m",
     "distance_km": 68.22,
     "elevation_m": 4196.6,
@@ -857,6 +964,7 @@
   },
   {
     "file": "Climbs/Eureka CA Fickle Hill Climb.gpx",
+    "folder": "Climbs",
     "name": "Eureka CA Fickle Hill Climb",
     "distance_km": 44.52,
     "elevation_m": 1204.0,
@@ -865,6 +973,7 @@
   },
   {
     "file": "Climbs/Idaho Springs to Blue Sky.gpx",
+    "folder": "Climbs",
     "name": "Idaho Springs to Blue Sky",
     "distance_km": 44.29,
     "elevation_m": 2045.6,
@@ -873,6 +982,7 @@
   },
   {
     "file": "Climbs/Lac du Bourget.gpx",
+    "folder": "Climbs",
     "name": "Lac du Bourget",
     "distance_km": 50.16,
     "elevation_m": 697.9,
@@ -881,6 +991,7 @@
   },
   {
     "file": "Climbs/Corno Alle Scale IT.gpx",
+    "folder": "Climbs",
     "name": "Corno Alle Scale IT",
     "distance_km": 29.51,
     "elevation_m": 1257.7,
@@ -889,6 +1000,7 @@
   },
   {
     "file": "Climbs/La Cumbre Peak CA.gpx",
+    "folder": "Climbs",
     "name": "La Cumbre Peak CA",
     "distance_km": 46.24,
     "elevation_m": 1447.3,
@@ -897,6 +1009,7 @@
   },
   {
     "file": "Climbs/Lookout Loop - 25k 556m.gpx",
+    "folder": "Climbs",
     "name": "Lookout Loop - 25k 556m",
     "distance_km": 24.95,
     "elevation_m": 555.0,
@@ -905,6 +1018,7 @@
   },
   {
     "file": "Climbs/Mount Lemon.gpx",
+    "folder": "Climbs",
     "name": "Mount Lemon",
     "distance_km": 45.43,
     "elevation_m": 2128.4,
@@ -913,6 +1027,7 @@
   },
   {
     "file": "Climbs/Cowles Mountain Service Road.gpx",
+    "folder": "Climbs",
     "name": "Cowles Mountain Service Road",
     "distance_km": 2.35,
     "elevation_m": 266.8,
@@ -921,6 +1036,7 @@
   },
   {
     "file": "Climbs/Pila Climb IT.gpx",
+    "folder": "Climbs",
     "name": "Pila Climb IT",
     "distance_km": 19.03,
     "elevation_m": 1187.2,
@@ -929,6 +1045,7 @@
   },
   {
     "file": "Climbs/Berryessa Mountain.gpx",
+    "folder": "Climbs",
     "name": "Berryessa Mountain",
     "distance_km": 25.14,
     "elevation_m": 802.9,
@@ -937,6 +1054,7 @@
   },
   {
     "file": "Climbs/Cozzo Tunno IT.gpx",
+    "folder": "Climbs",
     "name": "Cozzo Tunno IT",
     "distance_km": 43.21,
     "elevation_m": 1067.6,
@@ -945,6 +1063,7 @@
   },
   {
     "file": "Climbs/Vratnik Pass Bulgaria.gpx",
+    "folder": "Climbs",
     "name": "Vratnik Pass Bulgaria",
     "distance_km": 40.79,
     "elevation_m": 832.6,
@@ -953,6 +1072,7 @@
   },
   {
     "file": "Climbs/Machu Picchu.gpx",
+    "folder": "Climbs",
     "name": "Machu Picchu",
     "distance_km": 9.39,
     "elevation_m": 455.4,
@@ -961,6 +1081,7 @@
   },
   {
     "file": "Climbs/Canyonlands White Rim.gpx",
+    "folder": "Climbs",
     "name": "Canyonlands White Rim",
     "distance_km": 107.82,
     "elevation_m": 1164.8,
@@ -969,6 +1090,7 @@
   },
   {
     "file": "Climbs/Otay Mountain CA Gravel.gpx",
+    "folder": "Climbs",
     "name": "Otay Mountain CA Gravel",
     "distance_km": 27.38,
     "elevation_m": 1157.8,
@@ -977,6 +1099,7 @@
   },
   {
     "file": "Climbs/Piancavalla IT.gpx",
+    "folder": "Climbs",
     "name": "Piancavalla IT",
     "distance_km": 16.07,
     "elevation_m": 1132.1,
@@ -985,6 +1108,7 @@
   },
   {
     "file": "Climbs/Grakallen Norway.gpx",
+    "folder": "Climbs",
     "name": "Grakallen Norway",
     "distance_km": 10.17,
     "elevation_m": 544.0,
@@ -993,6 +1117,7 @@
   },
   {
     "file": "Climbs/Cerro Almaden Spain.gpx",
+    "folder": "Climbs",
     "name": "Cerro Almaden Spain",
     "distance_km": 22.58,
     "elevation_m": 1375.1,
@@ -1001,6 +1126,7 @@
   },
   {
     "file": "Climbs/Santuario Climb.gpx",
+    "folder": "Climbs",
     "name": "Santuario Climb",
     "distance_km": 23.49,
     "elevation_m": 638.7,
@@ -1009,6 +1135,7 @@
   },
   {
     "file": "Climbs/Blockhaus Climb IT.gpx",
+    "folder": "Climbs",
     "name": "Blockhaus Climb IT",
     "distance_km": 16.1,
     "elevation_m": 1182.9,
@@ -1017,6 +1144,7 @@
   },
   {
     "file": "Climbs/Sierra Jabalcuz Spain.gpx",
+    "folder": "Climbs",
     "name": "Sierra Jabalcuz Spain",
     "distance_km": 14.64,
     "elevation_m": 943.5,
@@ -1025,6 +1153,7 @@
   },
   {
     "file": "TDFF26/Stage 8.gpx",
+    "folder": "TDFF26",
     "name": "Stage 8",
     "distance_km": 53.17,
     "elevation_m": 263.4,
@@ -1033,6 +1162,7 @@
   },
   {
     "file": "TDFF26/Stage 1.gpx",
+    "folder": "TDFF26",
     "name": "Stage 1",
     "distance_km": 47.48,
     "elevation_m": 593.0,
@@ -1041,6 +1171,7 @@
   },
   {
     "file": "TDFF26/Stage 5.gpx",
+    "folder": "TDFF26",
     "name": "Stage 5",
     "distance_km": 31.47,
     "elevation_m": 435.1,
@@ -1049,6 +1180,7 @@
   },
   {
     "file": "TDFF26/Stage 4.gpx",
+    "folder": "TDFF26",
     "name": "Stage 4",
     "distance_km": 21.28,
     "elevation_m": 262.3,
@@ -1057,6 +1189,7 @@
   },
   {
     "file": "TDFF26/Stage 6.gpx",
+    "folder": "TDFF26",
     "name": "Stage 6",
     "distance_km": 34.43,
     "elevation_m": 333.8,
@@ -1065,6 +1198,7 @@
   },
   {
     "file": "TDFF26/Stage 3.gpx",
+    "folder": "TDFF26",
     "name": "Stage 3",
     "distance_km": 35.39,
     "elevation_m": 257.7,
@@ -1073,6 +1207,7 @@
   },
   {
     "file": "TDFF26/Stage 7.gpx",
+    "folder": "TDFF26",
     "name": "Stage 7",
     "distance_km": 22.73,
     "elevation_m": 1589.0,
@@ -1081,6 +1216,7 @@
   },
   {
     "file": "TDFF26/Stage 9.gpx",
+    "folder": "TDFF26",
     "name": "Stage 9",
     "distance_km": 41.98,
     "elevation_m": 700.8,
@@ -1089,6 +1225,7 @@
   },
   {
     "file": "TDFF26/Stage 2.gpx",
+    "folder": "TDFF26",
     "name": "Stage 2",
     "distance_km": 55.62,
     "elevation_m": 572.4,
@@ -1097,6 +1234,7 @@
   },
   {
     "file": "Ryan Local Routes/Cooke City to Red Lodge.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Cooke City to Red Lodge",
     "distance_km": 102.83,
     "elevation_m": 1645.8,
@@ -1105,6 +1243,7 @@
   },
   {
     "file": "Ryan Local Routes/Chicheon Coastal Loop.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Chicheon Coastal Loop",
     "distance_km": 12.6,
     "elevation_m": 227.7,
@@ -1113,6 +1252,7 @@
   },
   {
     "file": "Ryan Local Routes/Blunn and North Table.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Blunn and North Table",
     "distance_km": 26.17,
     "elevation_m": 444.9,
@@ -1121,6 +1261,7 @@
   },
   {
     "file": "Ryan Local Routes/geoje two.gpx",
+    "folder": "Ryan Local Routes",
     "name": "geoje two",
     "distance_km": 27.07,
     "elevation_m": 456.3,
@@ -1129,6 +1270,7 @@
   },
   {
     "file": "Ryan Local Routes/Arsenal Clockwise.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Arsenal Clockwise",
     "distance_km": 32.24,
     "elevation_m": 148.2,
@@ -1137,6 +1279,7 @@
   },
   {
     "file": "Ryan Local Routes/Gold Hill Gravel Loop - 34k 979m.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Gold Hill Gravel Loop - 34k 979m",
     "distance_km": 33.74,
     "elevation_m": 979.2,
@@ -1145,6 +1288,7 @@
   },
   {
     "file": "Ryan Local Routes/Colorado Monument.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Colorado Monument",
     "distance_km": 52.65,
     "elevation_m": 836.9,
@@ -1153,6 +1297,7 @@
   },
   {
     "file": "Ryan Local Routes/Rattlesnake Butte.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Rattlesnake Butte",
     "distance_km": 28.89,
     "elevation_m": 340.4,
@@ -1161,6 +1306,7 @@
   },
   {
     "file": "Ryan Local Routes/Empire_to_Winter_Park.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Empire_to_Winter_Park",
     "distance_km": 43.87,
     "elevation_m": 831.6,
@@ -1169,6 +1315,7 @@
   },
   {
     "file": "Ryan Local Routes/Black Canyon North.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Black Canyon North",
     "distance_km": 97.66,
     "elevation_m": 1167.5,
@@ -1177,6 +1324,7 @@
   },
   {
     "file": "Ryan Local Routes/Lookout Gennesee etc.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Lookout Gennesee etc",
     "distance_km": 80.58,
     "elevation_m": 2240.8,
@@ -1185,6 +1333,7 @@
   },
   {
     "file": "Ryan Local Routes/New Image A Ride.gpx",
+    "folder": "Ryan Local Routes",
     "name": "New Image A Ride",
     "distance_km": 43.4,
     "elevation_m": 323.9,
@@ -1193,6 +1342,7 @@
   },
   {
     "file": "Ryan Local Routes/Poudre Canyon.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Poudre Canyon",
     "distance_km": 102.16,
     "elevation_m": 1671.3,
@@ -1201,6 +1351,7 @@
   },
   {
     "file": "Ryan Local Routes/Lookout Out and Back.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Lookout Out and Back",
     "distance_km": 7.49,
     "elevation_m": 407.3,
@@ -1209,6 +1360,7 @@
   },
   {
     "file": "Ryan Local Routes/Cachuma to IV.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Cachuma to IV",
     "distance_km": 28.36,
     "elevation_m": 452.8,
@@ -1217,6 +1369,7 @@
   },
   {
     "file": "Ryan Local Routes/Turquoise Lake Plus.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Turquoise Lake Plus",
     "distance_km": 50.0,
     "elevation_m": 1061.8,
@@ -1225,6 +1378,7 @@
   },
   {
     "file": "Ryan Local Routes/Standley Loop.gpx",
+    "folder": "Ryan Local Routes",
     "name": "Standley Loop",
     "distance_km": 12.68,
     "elevation_m": 100.9,
@@ -1233,6 +1387,7 @@
   },
   {
     "file": "Ryan Local Routes/GOG Criterium Circuit.gpx",
+    "folder": "Ryan Local Routes",
     "name": "GOG Criterium Circuit",
     "distance_km": 3.82,
     "elevation_m": 72.6,
@@ -1241,6 +1396,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 3.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 3",
     "distance_km": 64.37,
     "elevation_m": 734.9,
@@ -1249,6 +1405,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 1.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 1",
     "distance_km": 72.07,
     "elevation_m": 541.8,
@@ -1257,6 +1414,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 3 Short.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 3 Short",
     "distance_km": 33.98,
     "elevation_m": 459.8,
@@ -1265,6 +1423,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 5.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 5",
     "distance_km": 77.1,
     "elevation_m": 382.7,
@@ -1273,6 +1432,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 4.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 4",
     "distance_km": 71.11,
     "elevation_m": 731.8,
@@ -1281,6 +1441,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 2 short.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 2 short",
     "distance_km": 37.37,
     "elevation_m": 270.0,
@@ -1289,6 +1450,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 2.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 2",
     "distance_km": 75.07,
     "elevation_m": 445.8,
@@ -1297,6 +1459,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 4 short.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 4 short",
     "distance_km": 35.89,
     "elevation_m": 429.5,
@@ -1305,6 +1468,7 @@
   },
   {
     "file": "Tour of Denmark 2026/Denmark Stage 1 Short.gpx",
+    "folder": "Tour of Denmark 2026",
     "name": "Denmark Stage 1 Short",
     "distance_km": 37.61,
     "elevation_m": 248.8,
@@ -1313,6 +1477,7 @@
   },
   {
     "file": "TDF 26/S14.gpx",
+    "folder": "TDF 26",
     "name": "S14",
     "distance_km": 23.63,
     "elevation_m": 921.1,
@@ -1321,6 +1486,7 @@
   },
   {
     "file": "TDF 26/S06_Tourmalet_not_Gavarnie.gpx",
+    "folder": "TDF 26",
     "name": "S06_Tourmalet_not_Gavarnie",
     "distance_km": 45.97,
     "elevation_m": 1281.7,
@@ -1329,6 +1495,7 @@
   },
   {
     "file": "TDF 26/S04.gpx",
+    "folder": "TDF 26",
     "name": "S04",
     "distance_km": 44.72,
     "elevation_m": 716.4,
@@ -1337,6 +1504,7 @@
   },
   {
     "file": "TDF 26/S07.gpx",
+    "folder": "TDF 26",
     "name": "S07",
     "distance_km": 42.12,
     "elevation_m": 215.1,
@@ -1345,6 +1513,7 @@
   },
   {
     "file": "TDF 26/S16.gpx",
+    "folder": "TDF 26",
     "name": "S16",
     "distance_km": 32.7,
     "elevation_m": 739.5,
@@ -1353,6 +1522,7 @@
   },
   {
     "file": "TDF 26/S19.gpx",
+    "folder": "TDF 26",
     "name": "S19",
     "distance_km": 14.73,
     "elevation_m": 1117.0,
@@ -1361,6 +1531,7 @@
   },
   {
     "file": "TDF 26/S18.gpx",
+    "folder": "TDF 26",
     "name": "S18",
     "distance_km": 25.47,
     "elevation_m": 929.7,
@@ -1369,6 +1540,7 @@
   },
   {
     "file": "TDF 26/S15.gpx",
+    "folder": "TDF 26",
     "name": "S15",
     "distance_km": 16.32,
     "elevation_m": 1055.0,
@@ -1377,6 +1549,7 @@
   },
   {
     "file": "TDF 26/S09.gpx",
+    "folder": "TDF 26",
     "name": "S09",
     "distance_km": 52.46,
     "elevation_m": 583.0,
@@ -1385,6 +1558,7 @@
   },
   {
     "file": "TDF 26/S10.gpx",
+    "folder": "TDF 26",
     "name": "S10",
     "distance_km": 35.39,
     "elevation_m": 967.9,
@@ -1393,6 +1567,7 @@
   },
   {
     "file": "TDF 26/S12.gpx",
+    "folder": "TDF 26",
     "name": "S12",
     "distance_km": 38.02,
     "elevation_m": 327.7,
@@ -1401,6 +1576,7 @@
   },
   {
     "file": "TDF 26/S20.gpx",
+    "folder": "TDF 26",
     "name": "S20",
     "distance_km": 30.22,
     "elevation_m": 1300.5,
@@ -1409,6 +1585,7 @@
   },
   {
     "file": "TDF 26/S01_final.gpx",
+    "folder": "TDF 26",
     "name": "S01_final",
     "distance_km": 19.54,
     "elevation_m": 186.5,
@@ -1417,6 +1594,7 @@
   },
   {
     "file": "TDF 26/S13.gpx",
+    "folder": "TDF 26",
     "name": "S13",
     "distance_km": 41.76,
     "elevation_m": 688.5,
@@ -1425,6 +1603,7 @@
   },
   {
     "file": "TDF 26/S08.gpx",
+    "folder": "TDF 26",
     "name": "S08",
     "distance_km": 39.55,
     "elevation_m": 95.6,
@@ -1433,6 +1612,7 @@
   },
   {
     "file": "TDF 26/S02_final_loop_to_do_3times_like_IRL.gpx",
+    "folder": "TDF 26",
     "name": "S02_final_loop_to_do_3times_like_IRL",
     "distance_km": 12.24,
     "elevation_m": 277.6,
@@ -1441,6 +1621,7 @@
   },
   {
     "file": "TDF 26/S21 (do 2 loops).gpx",
+    "folder": "TDF 26",
     "name": "S21 (do 2 loops)",
     "distance_km": 16.39,
     "elevation_m": 130.8,
@@ -1449,6 +1630,7 @@
   },
   {
     "file": "TDF 26/S17.gpx",
+    "folder": "TDF 26",
     "name": "S17",
     "distance_km": 36.4,
     "elevation_m": 209.9,
@@ -1457,6 +1639,7 @@
   },
   {
     "file": "TDF 26/S05.gpx",
+    "folder": "TDF 26",
     "name": "S05",
     "distance_km": 35.78,
     "elevation_m": 398.4,
@@ -1465,6 +1648,7 @@
   },
   {
     "file": "TDF 26/S03.gpx",
+    "folder": "TDF 26",
     "name": "S03",
     "distance_km": 44.61,
     "elevation_m": 1126.3,
@@ -1473,6 +1657,7 @@
   },
   {
     "file": "TDF 26/S11.gpx",
+    "folder": "TDF 26",
     "name": "S11",
     "distance_km": 37.85,
     "elevation_m": 256.7,
@@ -1481,6 +1666,7 @@
   },
   {
     "file": "Fun Routes/Dunloe and Killarney 2 of 2.gpx",
+    "folder": "Fun Routes",
     "name": "Dunloe and Killarney 2 of 2",
     "distance_km": 29.81,
     "elevation_m": 446.6,
@@ -1489,6 +1675,7 @@
   },
   {
     "file": "Fun Routes/Monte Clerigo Portugal.gpx",
+    "folder": "Fun Routes",
     "name": "Monte Clerigo Portugal",
     "distance_km": 64.42,
     "elevation_m": 1032.5,
@@ -1497,6 +1684,7 @@
   },
   {
     "file": "Fun Routes/lake_Crescent.gpx",
+    "folder": "Fun Routes",
     "name": "lake_Crescent",
     "distance_km": 37.43,
     "elevation_m": 468.2,
@@ -1505,6 +1693,7 @@
   },
   {
     "file": "Fun Routes/Cornwall Furnace Ride Lancaster PA.gpx",
+    "folder": "Fun Routes",
     "name": "Cornwall Furnace Ride Lancaster PA",
     "distance_km": 67.79,
     "elevation_m": 727.4,
@@ -1513,6 +1702,7 @@
   },
   {
     "file": "Fun Routes/Oban Loop.gpx",
+    "folder": "Fun Routes",
     "name": "Oban Loop",
     "distance_km": 40.22,
     "elevation_m": 492.8,
@@ -1521,6 +1711,7 @@
   },
   {
     "file": "Fun Routes/Kountoura Climbs.gpx",
+    "folder": "Fun Routes",
     "name": "Kountoura Climbs",
     "distance_km": 32.42,
     "elevation_m": 687.9,
@@ -1529,6 +1720,7 @@
   },
   {
     "file": "Fun Routes/St Helena- Berryessa-Pope-Howell Mtn.gpx",
+    "folder": "Fun Routes",
     "name": "St Helena- Berryessa-Pope-Howell Mtn",
     "distance_km": 84.91,
     "elevation_m": 1086.0,
@@ -1537,6 +1729,7 @@
   },
   {
     "file": "Fun Routes/UP Big Bay Ride.gpx",
+    "folder": "Fun Routes",
     "name": "UP Big Bay Ride",
     "distance_km": 62.12,
     "elevation_m": 431.6,
@@ -1545,6 +1738,7 @@
   },
   {
     "file": "Fun Routes/Barcelona Hills.gpx",
+    "folder": "Fun Routes",
     "name": "Barcelona Hills",
     "distance_km": 50.43,
     "elevation_m": 899.8,
@@ -1553,6 +1747,7 @@
   },
   {
     "file": "Fun Routes/Pawnee Butte Crit.gpx",
+    "folder": "Fun Routes",
     "name": "Pawnee Butte Crit",
     "distance_km": 6.11,
     "elevation_m": 65.4,
@@ -1561,6 +1756,7 @@
   },
   {
     "file": "Fun Routes/Arapahoe Bay to Gravel Mountain.gpx",
+    "folder": "Fun Routes",
     "name": "Arapahoe Bay to Gravel Mountain",
     "distance_km": 40.59,
     "elevation_m": 981.2,
@@ -1569,6 +1765,7 @@
   },
   {
     "file": "Fun Routes/Loch Tummel.gpx",
+    "folder": "Fun Routes",
     "name": "Loch Tummel",
     "distance_km": 48.46,
     "elevation_m": 577.8,
@@ -1577,6 +1774,7 @@
   },
   {
     "file": "Fun Routes/Gyeongchun Bicycle Path.gpx",
+    "folder": "Fun Routes",
     "name": "Gyeongchun Bicycle Path",
     "distance_km": 79.44,
     "elevation_m": 1033.4,
@@ -1585,6 +1783,7 @@
   },
   {
     "file": "Fun Routes/Healdsburg Loop.gpx",
+    "folder": "Fun Routes",
     "name": "Healdsburg Loop",
     "distance_km": 79.79,
     "elevation_m": 420.9,
@@ -1593,6 +1792,7 @@
   },
   {
     "file": "Fun Routes/Laguna Hills.gpx",
+    "folder": "Fun Routes",
     "name": "Laguna Hills",
     "distance_km": 27.28,
     "elevation_m": 294.8,
@@ -1601,6 +1801,7 @@
   },
   {
     "file": "Fun Routes/Rail Trail Colorado South of Kremmling.gpx",
+    "folder": "Fun Routes",
     "name": "Rail Trail Colorado South of Kremmling",
     "distance_km": 70.03,
     "elevation_m": 12.9,
@@ -1609,6 +1810,7 @@
   },
   {
     "file": "Fun Routes/Foco Double.gpx",
+    "folder": "Fun Routes",
     "name": "Foco Double",
     "distance_km": 99.12,
     "elevation_m": 850.8,
@@ -1617,6 +1819,7 @@
   },
   {
     "file": "Fun Routes/Carmel to Pismo 4 of 6.gpx",
+    "folder": "Fun Routes",
     "name": "Carmel to Pismo 4 of 6",
     "distance_km": 37.86,
     "elevation_m": 255.8,
@@ -1625,6 +1828,7 @@
   },
   {
     "file": "Fun Routes/S11_elevated.gpx",
+    "folder": "Fun Routes",
     "name": "S11_elevated",
     "distance_km": 37.85,
     "elevation_m": 287.8,
@@ -1633,6 +1837,7 @@
   },
   {
     "file": "Fun Routes/Beinn a'Chrulaiste.gpx",
+    "folder": "Fun Routes",
     "name": "Beinn a'Chrulaiste",
     "distance_km": 55.42,
     "elevation_m": 666.8,
@@ -1641,6 +1846,7 @@
   },
   {
     "file": "Fun Routes/Granby.gpx",
+    "folder": "Fun Routes",
     "name": "Granby",
     "distance_km": 20.28,
     "elevation_m": 133.4,
@@ -1649,6 +1855,7 @@
   },
   {
     "file": "Fun Routes/Jeju Figure 8.gpx",
+    "folder": "Fun Routes",
     "name": "Jeju Figure 8",
     "distance_km": 10.84,
     "elevation_m": 101.6,
@@ -1657,6 +1864,7 @@
   },
   {
     "file": "Fun Routes/Shirasagi Lake.gpx",
+    "folder": "Fun Routes",
     "name": "Shirasagi Lake",
     "distance_km": 30.9,
     "elevation_m": 705.8,
@@ -1665,6 +1873,7 @@
   },
   {
     "file": "Fun Routes/Maratona.gpx",
+    "folder": "Fun Routes",
     "name": "Maratona",
     "distance_km": 135.42,
     "elevation_m": 4034.8,
@@ -1673,6 +1882,7 @@
   },
   {
     "file": "Fun Routes/Weaverville to Shasta.gpx",
+    "folder": "Fun Routes",
     "name": "Weaverville to Shasta",
     "distance_km": 55.03,
     "elevation_m": 1042.8,
@@ -1681,6 +1891,7 @@
   },
   {
     "file": "Fun Routes/Anza borrego crit.gpx",
+    "folder": "Fun Routes",
     "name": "Anza borrego crit",
     "distance_km": 12.32,
     "elevation_m": 264.6,
@@ -1689,6 +1900,7 @@
   },
   {
     "file": "Fun Routes/Aruba Coast.gpx",
+    "folder": "Fun Routes",
     "name": "Aruba Coast",
     "distance_km": 43.7,
     "elevation_m": 69.2,
@@ -1697,6 +1909,7 @@
   },
   {
     "file": "Fun Routes/Dunloe and Killarney.gpx",
+    "folder": "Fun Routes",
     "name": "Dunloe and Killarney",
     "distance_km": 55.02,
     "elevation_m": 649.8,
@@ -1705,6 +1918,7 @@
   },
   {
     "file": "Fun Routes/See Canyon Road San Luis Obispo.gpx",
+    "folder": "Fun Routes",
     "name": "See Canyon Road San Luis Obispo",
     "distance_km": 31.4,
     "elevation_m": 530.7,
@@ -1713,6 +1927,7 @@
   },
   {
     "file": "Fun Routes/[MdD]_Maratona_Course.gpx",
+    "folder": "Fun Routes",
     "name": "[MdD]_Maratona_Course",
     "distance_km": 137.5,
     "elevation_m": 3941.1,
@@ -1721,6 +1936,7 @@
   },
   {
     "file": "Fun Routes/Nederland to Estes.gpx",
+    "folder": "Fun Routes",
     "name": "Nederland to Estes",
     "distance_km": 67.73,
     "elevation_m": 1184.4,
@@ -1729,6 +1945,7 @@
   },
   {
     "file": "Fun Routes/Rancho Aguajito.gpx",
+    "folder": "Fun Routes",
     "name": "Rancho Aguajito",
     "distance_km": 75.6,
     "elevation_m": 724.0,
@@ -1737,6 +1954,7 @@
   },
   {
     "file": "Fun Routes/pikespeak.gpx",
+    "folder": "Fun Routes",
     "name": "pikespeak",
     "distance_km": 36.82,
     "elevation_m": 2446.9,
@@ -1745,6 +1963,7 @@
   },
   {
     "file": "Fun Routes/Nederland to Estes middle hills.gpx",
+    "folder": "Fun Routes",
     "name": "Nederland to Estes middle hills",
     "distance_km": 30.03,
     "elevation_m": 487.1,
@@ -1753,6 +1972,7 @@
   },
   {
     "file": "Fun Routes/LEtape Ireland 2025 150K 2 of 2.gpx",
+    "folder": "Fun Routes",
     "name": "LEtape Ireland 2025 150K 2 of 2",
     "distance_km": 75.86,
     "elevation_m": 964.6,
@@ -1761,6 +1981,7 @@
   },
   {
     "file": "Fun Routes/Shelter Cove Gravel.gpx",
+    "folder": "Fun Routes",
     "name": "Shelter Cove Gravel",
     "distance_km": 81.93,
     "elevation_m": 2151.0,
@@ -1769,6 +1990,7 @@
   },
   {
     "file": "Fun Routes/White Cliffs of Ashleam.gpx",
+    "folder": "Fun Routes",
     "name": "White Cliffs of Ashleam",
     "distance_km": 30.61,
     "elevation_m": 413.6,
@@ -1777,6 +1999,7 @@
   },
   {
     "file": "Fun Routes/Out_and_Back_Test.gpx",
+    "folder": "Fun Routes",
     "name": "Out_and_Back_Test",
     "distance_km": 12.14,
     "elevation_m": 67.6,
@@ -1785,6 +2008,7 @@
   },
   {
     "file": "Fun Routes/Zion Canyon.gpx",
+    "folder": "Fun Routes",
     "name": "Zion Canyon",
     "distance_km": 9.79,
     "elevation_m": 133.2,
@@ -1793,6 +2017,7 @@
   },
   {
     "file": "Fun Routes/Seum Tai to Luang Prabang Laos.gpx",
+    "folder": "Fun Routes",
     "name": "Seum Tai to Luang Prabang Laos",
     "distance_km": 79.86,
     "elevation_m": 719.5,
@@ -1801,6 +2026,7 @@
   },
   {
     "file": "Fun Routes/Soquel San Jose in Santa Cruz CA.gpx",
+    "folder": "Fun Routes",
     "name": "Soquel San Jose in Santa Cruz CA",
     "distance_km": 62.31,
     "elevation_m": 1011.1,
@@ -1809,6 +2035,7 @@
   },
   {
     "file": "Fun Routes/Island Hopping in Kure Japan.gpx",
+    "folder": "Fun Routes",
     "name": "Island Hopping in Kure Japan",
     "distance_km": 35.86,
     "elevation_m": 317.8,
@@ -1817,6 +2044,7 @@
   },
   {
     "file": "Fun Routes/Arches.gpx",
+    "folder": "Fun Routes",
     "name": "Arches",
     "distance_km": 36.55,
     "elevation_m": 730.9,
@@ -1825,6 +2053,7 @@
   },
   {
     "file": "Fun Routes/Lake Tahoe Loop.gpx",
+    "folder": "Fun Routes",
     "name": "Lake Tahoe Loop",
     "distance_km": 114.16,
     "elevation_m": 1242.9,
@@ -1833,6 +2062,7 @@
   },
   {
     "file": "Fun Routes/Test Of Criterium.gpx",
+    "folder": "Fun Routes",
     "name": "Test Of Criterium",
     "distance_km": 45.82,
     "elevation_m": 154.8,
@@ -1841,6 +2071,7 @@
   },
   {
     "file": "Fun Routes/Lake Kussharo Hokkaido.gpx",
+    "folder": "Fun Routes",
     "name": "Lake Kussharo Hokkaido",
     "distance_km": 71.98,
     "elevation_m": 705.9,
@@ -1849,6 +2080,7 @@
   },
   {
     "file": "Fun Routes/Eel River Loop.gpx",
+    "folder": "Fun Routes",
     "name": "Eel River Loop",
     "distance_km": 36.56,
     "elevation_m": 601.2,
@@ -1857,6 +2089,7 @@
   },
   {
     "file": "Fun Routes/Dunloe and Killarney 1 of 2.gpx",
+    "folder": "Fun Routes",
     "name": "Dunloe and Killarney 1 of 2",
     "distance_km": 25.24,
     "elevation_m": 433.7,
@@ -1865,6 +2098,7 @@
   },
   {
     "file": "Fun Routes/Nashville Climb.gpx",
+    "folder": "Fun Routes",
     "name": "Nashville Climb",
     "distance_km": 46.53,
     "elevation_m": 711.9,
@@ -1873,6 +2107,7 @@
   },
   {
     "file": "Fun Routes/Westwater canyone (water).gpx",
+    "folder": "Fun Routes",
     "name": "Westwater canyone (water)",
     "distance_km": 68.57,
     "elevation_m": 0.2,
@@ -1881,6 +2116,7 @@
   },
   {
     "file": "Fun Routes/Ramona to Julian.gpx",
+    "folder": "Fun Routes",
     "name": "Ramona to Julian",
     "distance_km": 34.04,
     "elevation_m": 964.1,
@@ -1889,6 +2125,7 @@
   },
   {
     "file": "Fun Routes/Honolulu Out and Back.gpx",
+    "folder": "Fun Routes",
     "name": "Honolulu Out and Back",
     "distance_km": 50.02,
     "elevation_m": 149.8,
@@ -1897,6 +2134,7 @@
   },
   {
     "file": "Fun Routes/Volcano OaB.gpx",
+    "folder": "Fun Routes",
     "name": "Volcano OaB",
     "distance_km": 11.03,
     "elevation_m": 189.2,
@@ -1905,6 +2143,7 @@
   },
   {
     "file": "Fun Routes/Higashigama Interior Hilly Route.gpx",
+    "folder": "Fun Routes",
     "name": "Higashigama Interior Hilly Route",
     "distance_km": 38.13,
     "elevation_m": 733.8,
@@ -1913,6 +2152,7 @@
   },
   {
     "file": "Fun Routes/LEtape Ireland 2025 150K 1 of 2.gpx",
+    "folder": "Fun Routes",
     "name": "LEtape Ireland 2025 150K 1 of 2",
     "distance_km": 73.55,
     "elevation_m": 901.7,
@@ -1921,6 +2161,7 @@
   },
   {
     "file": "Fun Routes/Crater Lake Oregon.gpx",
+    "folder": "Fun Routes",
     "name": "Crater Lake Oregon",
     "distance_km": 51.24,
     "elevation_m": 1152.8,
@@ -1929,6 +2170,7 @@
   },
   {
     "file": "Fun Routes/Wild Westie 70.gpx",
+    "folder": "Fun Routes",
     "name": "Wild Westie 70",
     "distance_km": 70.4,
     "elevation_m": 979.4,
@@ -1937,6 +2179,7 @@
   },
   {
     "file": "Fun Routes/Samcheok to Gunnam Korea.gpx",
+    "folder": "Fun Routes",
     "name": "Samcheok to Gunnam Korea",
     "distance_km": 74.15,
     "elevation_m": 742.4,
@@ -1945,6 +2188,7 @@
   },
   {
     "file": "Fun Routes/Kyoto Arashiyama loop.gpx",
+    "folder": "Fun Routes",
     "name": "Kyoto Arashiyama loop",
     "distance_km": 36.05,
     "elevation_m": 605.9,
@@ -1953,6 +2197,7 @@
   },
   {
     "file": "Fun Routes/Tepui.gpx",
+    "folder": "Fun Routes",
     "name": "Tepui",
     "distance_km": 70.68,
     "elevation_m": 2768.9,
@@ -1961,6 +2206,7 @@
   },
   {
     "file": "Fun Routes/stage-21-route.gpx",
+    "folder": "Fun Routes",
     "name": "stage-21-route",
     "distance_km": 79.5,
     "elevation_m": 484.4,
@@ -1969,6 +2215,7 @@
   },
   {
     "file": "Fun Routes/Betangenna.gpx",
+    "folder": "Fun Routes",
     "name": "Betangenna",
     "distance_km": 22.41,
     "elevation_m": 227.4,
@@ -1977,6 +2224,7 @@
   },
   {
     "file": "Fun Routes/Federal Heights Hill.gpx",
+    "folder": "Fun Routes",
     "name": "Federal Heights Hill",
     "distance_km": 2.88,
     "elevation_m": 51.3,
@@ -1985,6 +2233,7 @@
   },
   {
     "file": "Fun Routes/Flagstaff.gpx",
+    "folder": "Fun Routes",
     "name": "Flagstaff",
     "distance_km": 11.72,
     "elevation_m": 171.7,
@@ -1993,6 +2242,7 @@
   },
   {
     "file": "Fun Routes/Southern Iran.gpx",
+    "folder": "Fun Routes",
     "name": "Southern Iran",
     "distance_km": 59.6,
     "elevation_m": 757.1,
@@ -2001,6 +2251,7 @@
   },
   {
     "file": "Fun Routes/Torrey 2.gpx",
+    "folder": "Fun Routes",
     "name": "Torrey 2",
     "distance_km": 4.29,
     "elevation_m": 114.0,
@@ -2009,6 +2260,7 @@
   },
   {
     "file": "Fun Routes/Shikashima climb loop.gpx",
+    "folder": "Fun Routes",
     "name": "Shikashima climb loop",
     "distance_km": 10.53,
     "elevation_m": 207.9,
@@ -2017,6 +2269,7 @@
   },
   {
     "file": "Fun Routes/Yosemite Valley.gpx",
+    "folder": "Fun Routes",
     "name": "Yosemite Valley",
     "distance_km": 24.53,
     "elevation_m": 135.3,
@@ -2025,6 +2278,7 @@
   },
   {
     "file": "Fun Routes/Half-Caf__Zigzag_To_Hygiene_to_Open_Sky_to_Res.gpx",
+    "folder": "Fun Routes",
     "name": "Half-Caf__Zigzag_To_Hygiene_to_Open_Sky_to_Res",
     "distance_km": 65.74,
     "elevation_m": 388.1,
@@ -2033,6 +2287,7 @@
   },
   {
     "file": "Fun Routes/Egg Carton Mountains.gpx",
+    "folder": "Fun Routes",
     "name": "Egg Carton Mountains",
     "distance_km": 44.3,
     "elevation_m": 168.1,
@@ -2041,6 +2296,7 @@
   },
   {
     "file": "Fun Routes/Butler Wash Loop.gpx",
+    "folder": "Fun Routes",
     "name": "Butler Wash Loop",
     "distance_km": 29.59,
     "elevation_m": 543.4,
@@ -2049,6 +2305,7 @@
   },
   {
     "file": "Fun Routes/Tour of Slovenia 2026/Stage 1.gpx",
+    "folder": "Fun Routes/Tour of Slovenia 2026",
     "name": "Stage 1",
     "distance_km": 36.28,
     "elevation_m": 350.4,
@@ -2057,6 +2314,7 @@
   },
   {
     "file": "Fun Routes/Tour of Slovenia 2026/Eel River Loop.gpx",
+    "folder": "Fun Routes/Tour of Slovenia 2026",
     "name": "Eel River Loop",
     "distance_km": 36.56,
     "elevation_m": 601.2,
@@ -2065,6 +2323,7 @@
   },
   {
     "file": "Untested/2025 Grassroots Gravel - The Lil Chile - 63k 592m.gpx",
+    "folder": "Untested",
     "name": "2025 Grassroots Gravel - The Lil Chile - 63k 592m",
     "distance_km": 63.03,
     "elevation_m": 521.4,
@@ -2073,6 +2332,7 @@
   },
   {
     "file": "Untested/Denver City Criterium - 5k 25m.gpx",
+    "folder": "Untested",
     "name": "Denver City Criterium - 5k 25m",
     "distance_km": 4.82,
     "elevation_m": 25.3,
@@ -2081,6 +2341,7 @@
   },
   {
     "file": "Untested/TPV Mad Gravel 2025 Gravel Circuit - 11k 186m.gpx",
+    "folder": "Untested",
     "name": "TPV Mad Gravel 2025 Gravel Circuit - 11k 186m",
     "distance_km": 10.58,
     "elevation_m": 185.6,
@@ -2089,6 +2350,7 @@
   },
   {
     "file": "Untested/Alula Tour Skyviews Course - 74k 730m.gpx",
+    "folder": "Untested",
     "name": "Alula Tour Skyviews Course - 74k 730m",
     "distance_km": 74.1,
     "elevation_m": 728.1,
@@ -2097,6 +2359,7 @@
   },
   {
     "file": "Untested/Surf Coast Classic - 72k 781m.gpx",
+    "folder": "Untested",
     "name": "Surf Coast Classic - 72k 781m",
     "distance_km": 72.39,
     "elevation_m": 781.0,
@@ -2105,6 +2368,7 @@
   },
   {
     "file": "Untested/Tadej Monmartre Circuit.gpx",
+    "folder": "Untested",
     "name": "Tadej Monmartre Circuit",
     "distance_km": 16.32,
     "elevation_m": 154.9,
@@ -2113,6 +2377,7 @@
   },
   {
     "file": "Untested/Zwift Downtown Dolphin - 2k 14m.gpx",
+    "folder": "Untested",
     "name": "Zwift Downtown Dolphin - 2k 14m",
     "distance_km": 1.92,
     "elevation_m": 14.2,
@@ -2121,6 +2386,7 @@
   },
   {
     "file": "Untested/Trofeo Laigueglia 2025 Classics Course - 64k 875m.gpx",
+    "folder": "Untested",
     "name": "Trofeo Laigueglia 2025 Classics Course - 64k 875m",
     "distance_km": 63.77,
     "elevation_m": 872.2,
@@ -2129,6 +2395,7 @@
   },
   {
     "file": "Untested/USAC National Championship Criterium Charleston_processed.gpx",
+    "folder": "Untested",
     "name": "USAC National Championship Criterium Charleston_processed",
     "distance_km": 1.66,
     "elevation_m": 4.7,
@@ -2137,6 +2404,7 @@
   },
   {
     "file": "Untested/Tour of Holland - Stage 5 Gravel.gpx",
+    "folder": "Untested",
     "name": "Tour of Holland - Stage 5 Gravel",
     "distance_km": 15.38,
     "elevation_m": 147.4,
@@ -2145,6 +2413,7 @@
   },
   {
     "file": "Untested/Col du Vam - 37k 88m.gpx",
+    "folder": "Untested",
     "name": "Col du Vam - 37k 88m",
     "distance_km": 37.07,
     "elevation_m": 84.4,
@@ -2153,6 +2422,7 @@
   },
   {
     "file": "Untested/Remco's Kigali Circuit.gpx",
+    "folder": "Untested",
     "name": "Remco's Kigali Circuit",
     "distance_km": 15.11,
     "elevation_m": 255.1,
@@ -2161,6 +2431,7 @@
   },
   {
     "file": "Untested/Vuelta Ciclista Andalucia - 44k 747m .gpx",
+    "folder": "Untested",
     "name": "Vuelta Ciclista Andalucia - 44k 747m ",
     "distance_km": 43.78,
     "elevation_m": 745.3,
@@ -2169,6 +2440,7 @@
   },
   {
     "file": "Untested/Cadel Evans Road Race Finishing Circuit - 21k 323m.gpx",
+    "folder": "Untested",
     "name": "Cadel Evans Road Race Finishing Circuit - 21k 323m",
     "distance_km": 20.68,
     "elevation_m": 321.5,
@@ -2177,6 +2449,7 @@
   },
   {
     "file": "Untested/Zwift Glasgow Crit Circuit - 3k 33m.gpx",
+    "folder": "Untested",
     "name": "Zwift Glasgow Crit Circuit - 3k 33m",
     "distance_km": 3.0,
     "elevation_m": 31.5,
@@ -2185,6 +2458,7 @@
   },
   {
     "file": "Untested/Tadej Monmartre Circuit - 16k 155m.gpx",
+    "folder": "Untested",
     "name": "Tadej Monmartre Circuit - 16k 155m",
     "distance_km": 16.32,
     "elevation_m": 154.9,
@@ -2193,6 +2467,7 @@
   },
   {
     "file": "Untested/Bay to Breakers and Back - 31k 380m.gpx",
+    "folder": "Untested",
     "name": "Bay to Breakers and Back - 31k 380m",
     "distance_km": 31.41,
     "elevation_m": 379.2,
@@ -2201,6 +2476,7 @@
   },
   {
     "file": "Untested/Col du VAM - 13km 66m.gpx",
+    "folder": "Untested",
     "name": "Col du VAM - 13km 66m",
     "distance_km": 12.67,
     "elevation_m": 66.2,
@@ -2209,6 +2485,7 @@
   },
   {
     "file": "Untested/Busan 7 Bridges - 34k 269m .gpx",
+    "folder": "Untested",
     "name": "Busan 7 Bridges - 34k 269m ",
     "distance_km": 34.53,
     "elevation_m": 267.2,
@@ -2217,6 +2494,7 @@
   },
   {
     "file": "GT Stages/Giro 16-26.gpx",
+    "folder": "GT Stages",
     "name": "Giro 16-26",
     "distance_km": 113.4,
     "elevation_m": 2925.0,
@@ -2225,6 +2503,7 @@
   },
   {
     "file": "GT Stages/Giro 09-26.gpx",
+    "folder": "GT Stages",
     "name": "Giro 09-26",
     "distance_km": 183.95,
     "elevation_m": 2335.9,
@@ -2233,6 +2512,7 @@
   },
   {
     "file": "GT Stages/Giro 07-26.gpx",
+    "folder": "GT Stages",
     "name": "Giro 07-26",
     "distance_km": 245.37,
     "elevation_m": 4430.1,
@@ -2241,6 +2521,7 @@
   },
   {
     "file": "GT Stages/Tour Of Estonia Stage 2.gpx",
+    "folder": "GT Stages",
     "name": "Tour Of Estonia Stage 2",
     "distance_km": 203.51,
     "elevation_m": 797.7,
@@ -2249,6 +2530,7 @@
   },
   {
     "file": "GT Stages/Giro 02-26.gpx",
+    "folder": "GT Stages",
     "name": "Giro 02-26",
     "distance_km": 221.36,
     "elevation_m": 2325.3,
@@ -2257,6 +2539,7 @@
   },
   {
     "file": "GT Stages/Giro 13-26.gpx",
+    "folder": "GT Stages",
     "name": "Giro 13-26",
     "distance_km": 189.41,
     "elevation_m": 1305.9,
@@ -2265,6 +2548,7 @@
   },
   {
     "file": "GT Stages/Giro 01-26.gpx",
+    "folder": "GT Stages",
     "name": "Giro 01-26",
     "distance_km": 156.0,
     "elevation_m": 849.5,
@@ -2273,6 +2557,7 @@
   },
   {
     "file": "GT Stages/Giro 04-26.gpx",
+    "folder": "GT Stages",
     "name": "Giro 04-26",
     "distance_km": 143.08,
     "elevation_m": 1596.1,
@@ -2281,6 +2566,7 @@
   },
   {
     "file": "Baloise Tour 2026/Stage 5.gpx",
+    "folder": "Baloise Tour 2026",
     "name": "Stage 5",
     "distance_km": 43.12,
     "elevation_m": 483.3,
@@ -2289,6 +2575,7 @@
   },
   {
     "file": "Baloise Tour 2026/Stage 4.gpx",
+    "folder": "Baloise Tour 2026",
     "name": "Stage 4",
     "distance_km": 43.25,
     "elevation_m": 341.0,
@@ -2297,6 +2584,7 @@
   },
   {
     "file": "Baloise Tour 2026/Stage 1 Circuit.gpx",
+    "folder": "Baloise Tour 2026",
     "name": "Stage 1 Circuit",
     "distance_km": 48.02,
     "elevation_m": 338.5,
@@ -2305,6 +2593,7 @@
   },
   {
     "file": "Baloise Tour 2026/Stage 3.gpx",
+    "folder": "Baloise Tour 2026",
     "name": "Stage 3",
     "distance_km": 44.14,
     "elevation_m": 590.3,
@@ -2313,6 +2602,7 @@
   },
   {
     "file": "Baloise Tour 2026/Stage 2.gpx",
+    "folder": "Baloise Tour 2026",
     "name": "Stage 2",
     "distance_km": 19.14,
     "elevation_m": 67.6,
@@ -2321,6 +2611,7 @@
   },
   {
     "file": "Tour De Suisse 2026/Stage 2 Locarno.gpx",
+    "folder": "Tour De Suisse 2026",
     "name": "Stage 2 Locarno",
     "distance_km": 67.38,
     "elevation_m": 682.6,
@@ -2329,6 +2620,7 @@
   },
   {
     "file": "Tour De Suisse 2026/Stage 1 Sondrio.gpx",
+    "folder": "Tour De Suisse 2026",
     "name": "Stage 1 Sondrio",
     "distance_km": 33.33,
     "elevation_m": 484.1,
@@ -2337,6 +2629,7 @@
   },
   {
     "file": "Tour De Suisse 2026/Stage 4 Oftringen.gpx",
+    "folder": "Tour De Suisse 2026",
     "name": "Stage 4 Oftringen",
     "distance_km": 23.64,
     "elevation_m": 202.6,
@@ -2345,6 +2638,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyeongnam - S1 - Geoje.gpx",
+    "folder": "Tour de Gyeongnam 2026",
     "name": "Tour de Gyeongnam - S1 - Geoje",
     "distance_km": 35.44,
     "elevation_m": 536.1,
@@ -2353,6 +2647,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyeongnam - S3 - Sacheon.gpx",
+    "folder": "Tour de Gyeongnam 2026",
     "name": "Tour de Gyeongnam - S3 - Sacheon",
     "distance_km": 37.6,
     "elevation_m": 298.9,
@@ -2361,6 +2656,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyeongnam - S2 - Tongyeong.gpx",
+    "folder": "Tour de Gyeongnam 2026",
     "name": "Tour de Gyeongnam - S2 - Tongyeong",
     "distance_km": 38.18,
     "elevation_m": 486.4,
@@ -2369,6 +2665,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyeongnam - S4 - Namhae.gpx",
+    "folder": "Tour de Gyeongnam 2026",
     "name": "Tour de Gyeongnam - S4 - Namhae",
     "distance_km": 30.79,
     "elevation_m": 503.4,
@@ -2377,6 +2674,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyeongnam - S5 - Changwon.gpx",
+    "folder": "Tour de Gyeongnam 2026",
     "name": "Tour de Gyeongnam - S5 - Changwon",
     "distance_km": 5.03,
     "elevation_m": 13.3,
@@ -2385,6 +2683,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old/Tour de Gyoengnam S1.gpx",
+    "folder": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old",
     "name": "Tour de Gyoengnam S1",
     "distance_km": 31.62,
     "elevation_m": 629.4,
@@ -2393,6 +2692,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old/Tour de Gyoengnam S2.gpx",
+    "folder": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old",
     "name": "Tour de Gyoengnam S2",
     "distance_km": 33.83,
     "elevation_m": 441.9,
@@ -2401,6 +2701,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old/Tour de Gyoengnam S3.gpx",
+    "folder": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old",
     "name": "Tour de Gyoengnam S3",
     "distance_km": 41.49,
     "elevation_m": 350.4,
@@ -2409,6 +2710,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old/Tour de Gyeongnam - S5 - Changwon.gpx",
+    "folder": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old",
     "name": "Tour de Gyeongnam - S5 - Changwon",
     "distance_km": 5.03,
     "elevation_m": 9.5,
@@ -2417,6 +2719,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old/Tour de Gyoengnam S4.gpx",
+    "folder": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old",
     "name": "Tour de Gyoengnam S4",
     "distance_km": 34.78,
     "elevation_m": 559.6,
@@ -2425,6 +2728,7 @@
   },
   {
     "file": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old/Tour de Gyoengnam S5.gpx",
+    "folder": "Tour de Gyeongnam 2026/Tour de Gyoeongnam Old",
     "name": "Tour de Gyoengnam S5",
     "distance_km": 2.97,
     "elevation_m": 27.7,
@@ -2433,6 +2737,7 @@
   },
   {
     "file": "Island JSON Files/World Route - Michaelgate Lincoln .gpx",
+    "folder": "Island JSON Files",
     "name": "World Route - Michaelgate Lincoln ",
     "distance_km": 12.86,
     "elevation_m": 96.7,
@@ -2441,6 +2746,7 @@
   },
   {
     "file": "Classics Courses/Tour of Hungary Stage 2.gpx",
+    "folder": "Classics Courses",
     "name": "Tour of Hungary Stage 2",
     "distance_km": 78.81,
     "elevation_m": 442.8,
@@ -2449,6 +2755,7 @@
   },
   {
     "file": "Classics Courses/Nokere Koerse Classics Course - 73k 551m.gpx",
+    "folder": "Classics Courses",
     "name": "Nokere Koerse Classics Course - 73k 551m",
     "distance_km": 72.99,
     "elevation_m": 550.1,
@@ -2457,6 +2764,7 @@
   },
   {
     "file": "Classics Courses/Sacheon.gpx",
+    "folder": "Classics Courses",
     "name": "Sacheon",
     "distance_km": 77.13,
     "elevation_m": 759.4,
@@ -2465,6 +2773,7 @@
   },
   {
     "file": "Classics Courses/Paris Camembert.gpx",
+    "folder": "Classics Courses",
     "name": "Paris Camembert",
     "distance_km": 73.15,
     "elevation_m": 658.0,
@@ -2473,6 +2782,7 @@
   },
   {
     "file": "Classics Courses/Ringerike GP.gpx",
+    "folder": "Classics Courses",
     "name": "Ringerike GP",
     "distance_km": 171.89,
     "elevation_m": 2218.0,
@@ -2481,6 +2791,7 @@
   },
   {
     "file": "Classics Courses/Munsterland Giro.gpx",
+    "folder": "Classics Courses",
     "name": "Munsterland Giro",
     "distance_km": 74.69,
     "elevation_m": 481.2,
@@ -2489,6 +2800,7 @@
   },
   {
     "file": "Classics Courses/Heistse Pijl.gpx",
+    "folder": "Classics Courses",
     "name": "Heistse Pijl",
     "distance_km": 80.25,
     "elevation_m": 168.4,
@@ -2497,6 +2809,7 @@
   },
   {
     "file": "Classics Courses/Eschborn-Frankfurt.gpx",
+    "folder": "Classics Courses",
     "name": "Eschborn-Frankfurt",
     "distance_km": 73.5,
     "elevation_m": 615.7,
@@ -2505,6 +2818,7 @@
   },
   {
     "file": "Classics Courses/Giro Emilia.gpx",
+    "folder": "Classics Courses",
     "name": "Giro Emilia",
     "distance_km": 65.0,
     "elevation_m": 866.0,
@@ -2513,6 +2827,7 @@
   },
   {
     "file": "Classics Courses/Stage 9 Giro finish - 68k 1300m.gpx",
+    "folder": "Classics Courses",
     "name": "Stage 9 Giro finish - 68k 1300m",
     "distance_km": 68.41,
     "elevation_m": 1337.0,
@@ -2521,6 +2836,7 @@
   },
   {
     "file": "Classics Courses/Bretagne Classic - Ouest-France 68k 1167m.gpx",
+    "folder": "Classics Courses",
     "name": "Bretagne Classic - Ouest-France 68k 1167m",
     "distance_km": 67.9,
     "elevation_m": 1161.7,
@@ -2529,6 +2845,7 @@
   },
   {
     "file": "Classics Courses/Grand Prix de Wallonie.gpx",
+    "folder": "Classics Courses",
     "name": "Grand Prix de Wallonie",
     "distance_km": 72.43,
     "elevation_m": 618.8,
@@ -2537,6 +2854,7 @@
   },
   {
     "file": "Classics Courses/Flandrien Classic.gpx",
+    "folder": "Classics Courses",
     "name": "Flandrien Classic",
     "distance_km": 70.39,
     "elevation_m": 579.0,
@@ -2545,6 +2863,7 @@
   },
   {
     "file": "Classics Courses/W TDU Stage 3 2025 Corkscrew.gpx",
+    "folder": "Classics Courses",
     "name": "W TDU Stage 3 2025 Corkscrew",
     "distance_km": 72.06,
     "elevation_m": 970.5,
@@ -2553,6 +2872,7 @@
   },
   {
     "file": "Classics Courses/Vuelta Stage 2 2026.gpx",
+    "folder": "Classics Courses",
     "name": "Vuelta Stage 2 2026",
     "distance_km": 66.01,
     "elevation_m": 841.1,
@@ -2561,6 +2881,7 @@
   },
   {
     "file": "Classics Courses/TPV E3 Saxo Classic - 70k 764m.gpx",
+    "folder": "Classics Courses",
     "name": "TPV E3 Saxo Classic - 70k 764m",
     "distance_km": 69.72,
     "elevation_m": 713.1,
@@ -2569,6 +2890,7 @@
   },
   {
     "file": "Classics Courses/Tour du Finist\u00e8re Pays de Quimper - 63k 1139m.gpx",
+    "folder": "Classics Courses",
     "name": "Tour du Finist\u00e8re Pays de Quimper - 63k 1139m",
     "distance_km": 62.89,
     "elevation_m": 1136.8,
@@ -2577,6 +2899,7 @@
   },
   {
     "file": "Classics Courses/Ruta de la Cer\u00e1mica - Gran Premio Castell\u00f3n 75k 1028m.gpx",
+    "folder": "Classics Courses",
     "name": "Ruta de la Cer\u00e1mica - Gran Premio Castell\u00f3n 75k 1028m",
     "distance_km": 75.2,
     "elevation_m": 1027.2,
@@ -2585,6 +2908,7 @@
   },
   {
     "file": "Classics Courses/Grand prix des Hauts de France - 77k 548m.gpx",
+    "folder": "Classics Courses",
     "name": "Grand prix des Hauts de France - 77k 548m",
     "distance_km": 77.49,
     "elevation_m": 546.3,
@@ -2593,6 +2917,7 @@
   },
   {
     "file": "Classics Courses/Fyen Rundt.gpx",
+    "folder": "Classics Courses",
     "name": "Fyen Rundt",
     "distance_km": 78.72,
     "elevation_m": 684.6,
@@ -2601,6 +2926,7 @@
   },
   {
     "file": "Classics Courses/Binche Chimay Binche - 78k 685m.gpx",
+    "folder": "Classics Courses",
     "name": "Binche Chimay Binche - 78k 685m",
     "distance_km": 78.26,
     "elevation_m": 687.1,
@@ -2609,6 +2935,7 @@
   },
   {
     "file": "Classics Courses/Flanders Fields Updated LID.gpx",
+    "folder": "Classics Courses",
     "name": "Flanders Fields Updated LID",
     "distance_km": 72.72,
     "elevation_m": 620.6,
@@ -2617,6 +2944,7 @@
   },
   {
     "file": "Classics Courses/Sea Otter Pacifico Fondo.gpx",
+    "folder": "Classics Courses",
     "name": "Sea Otter Pacifico Fondo",
     "distance_km": 42.67,
     "elevation_m": 368.0,
@@ -2625,6 +2953,7 @@
   },
   {
     "file": "Classics Courses/Rund Um Koln - 78k 645m.gpx",
+    "folder": "Classics Courses",
     "name": "Rund Um Koln - 78k 645m",
     "distance_km": 78.17,
     "elevation_m": 646.0,
@@ -2633,6 +2962,7 @@
   },
   {
     "file": "Classics Courses/Quebec WT Race.gpx",
+    "folder": "Classics Courses",
     "name": "Quebec WT Race",
     "distance_km": 11.84,
     "elevation_m": 122.9,
@@ -2641,6 +2971,7 @@
   },
   {
     "file": "Classics Courses/2026 Classic Var.gpx",
+    "folder": "Classics Courses",
     "name": "2026 Classic Var",
     "distance_km": 78.12,
     "elevation_m": 672.7,
@@ -2649,6 +2980,7 @@
   },
   {
     "file": "Classics Courses/The Traka Spain.gpx",
+    "folder": "Classics Courses",
     "name": "The Traka Spain",
     "distance_km": 73.56,
     "elevation_m": 911.8,
@@ -2657,6 +2989,7 @@
   },
   {
     "file": "Classics Courses/Great Ocean Road Race.gpx",
+    "folder": "Classics Courses",
     "name": "Great Ocean Road Race",
     "distance_km": 70.48,
     "elevation_m": 824.4,
@@ -2665,6 +2998,7 @@
   },
   {
     "file": "Classics Courses/GP De Denain 100k 759m.gpx",
+    "folder": "Classics Courses",
     "name": "GP De Denain 100k 759m",
     "distance_km": 100.16,
     "elevation_m": 757.3,
@@ -2673,6 +3007,7 @@
   },
   {
     "file": "Classics Courses/Stage 1 Volta a Catalunya 2025.gpx",
+    "folder": "Classics Courses",
     "name": "Stage 1 Volta a Catalunya 2025",
     "distance_km": 58.82,
     "elevation_m": 957.8,
@@ -2681,6 +3016,7 @@
   },
   {
     "file": "Classics Courses/Binche Chimay Binche 2025.gpx",
+    "folder": "Classics Courses",
     "name": "Binche Chimay Binche 2025",
     "distance_km": 75.56,
     "elevation_m": 585.0,
@@ -2689,6 +3025,7 @@
   },
   {
     "file": "Classics Courses/Clasica de Almeria.gpx",
+    "folder": "Classics Courses",
     "name": "Clasica de Almeria",
     "distance_km": 81.56,
     "elevation_m": 356.6,
@@ -2697,6 +3034,7 @@
   },
   {
     "file": "Classics Courses/BKC 2025.gpx",
+    "folder": "Classics Courses",
     "name": "BKC 2025",
     "distance_km": 79.31,
     "elevation_m": 498.7,
@@ -2705,6 +3043,7 @@
   },
   {
     "file": "Classics Courses/Milano San Remo 74k.gpx",
+    "folder": "Classics Courses",
     "name": "Milano San Remo 74k",
     "distance_km": 74.35,
     "elevation_m": 827.8,
@@ -2713,6 +3052,7 @@
   },
   {
     "file": "Classics Courses/Tro Bro L\u00e9on.gpx",
+    "folder": "Classics Courses",
     "name": "Tro Bro L\u00e9on",
     "distance_km": 73.82,
     "elevation_m": 691.6,
@@ -2721,6 +3061,7 @@
   },
   {
     "file": "Classics Courses/Giro 2025 S18 Finish.gpx",
+    "folder": "Classics Courses",
     "name": "Giro 2025 S18 Finish",
     "distance_km": 65.44,
     "elevation_m": 803.6,
@@ -2729,6 +3070,7 @@
   },
   {
     "file": "Classics Courses/Tour de Okinawa 71k 1128m.gpx",
+    "folder": "Classics Courses",
     "name": "Tour de Okinawa 71k 1128m",
     "distance_km": 71.11,
     "elevation_m": 1127.2,
@@ -2737,6 +3079,7 @@
   },
   {
     "file": "Classics Courses/TPV Liege and La Redoute.gpx",
+    "folder": "Classics Courses",
     "name": "TPV Liege and La Redoute",
     "distance_km": 66.22,
     "elevation_m": 831.5,
@@ -2745,6 +3088,7 @@
   },
   {
     "file": "Classics Courses/Roubaix.gpx",
+    "folder": "Classics Courses",
     "name": "Roubaix",
     "distance_km": 79.21,
     "elevation_m": 284.6,
@@ -2753,6 +3097,7 @@
   },
   {
     "file": "Classics Courses/Tarragona to Barcelona.gpx",
+    "folder": "Classics Courses",
     "name": "Tarragona to Barcelona",
     "distance_km": 80.9,
     "elevation_m": 521.6,
@@ -2761,6 +3106,7 @@
   },
   {
     "file": "Classics Courses/Il Lombardia 2025.gpx",
+    "folder": "Classics Courses",
     "name": "Il Lombardia 2025",
     "distance_km": 64.77,
     "elevation_m": 895.9,
@@ -2769,6 +3115,7 @@
   },
   {
     "file": "Classics Courses/Week 6 Rwanda Kigali UCI Finishing Circuit.gpx",
+    "folder": "Classics Courses",
     "name": "Week 6 Rwanda Kigali UCI Finishing Circuit",
     "distance_km": 15.19,
     "elevation_m": 289.4,
@@ -2777,6 +3124,7 @@
   },
   {
     "file": "Classics Courses/Week 3 Lombardia.gpx",
+    "folder": "Classics Courses",
     "name": "Week 3 Lombardia",
     "distance_km": 61.51,
     "elevation_m": 878.7,
@@ -2785,6 +3133,7 @@
   },
   {
     "file": "Classics Courses/Week 10 Gent-Wevelgem.gpx",
+    "folder": "Classics Courses",
     "name": "Week 10 Gent-Wevelgem",
     "distance_km": 72.82,
     "elevation_m": 655.1,
@@ -2793,6 +3142,7 @@
   },
   {
     "file": "Classics Courses/Week 12 MSR.gpx",
+    "folder": "Classics Courses",
     "name": "Week 12 MSR",
     "distance_km": 85.2,
     "elevation_m": 865.8,
@@ -2801,6 +3151,7 @@
   },
   {
     "file": "Classics Courses/Tour Kahamanmaras Stage 4.gpx",
+    "folder": "Classics Courses",
     "name": "Tour Kahamanmaras Stage 4",
     "distance_km": 70.6,
     "elevation_m": 644.1,
@@ -2809,6 +3160,7 @@
   },
   {
     "file": "Classics Courses/Boucle de l'Artois 72k 685m.gpx",
+    "folder": "Classics Courses",
     "name": "Boucle de l'Artois 72k 685m",
     "distance_km": 72.33,
     "elevation_m": 683.1,
@@ -2817,6 +3169,7 @@
   },
   {
     "file": "Classics Courses/Ringerike_GP_(modified).gpx",
+    "folder": "Classics Courses",
     "name": "Ringerike_GP_(modified)",
     "distance_km": 62.6,
     "elevation_m": 910.0,
@@ -2825,6 +3178,7 @@
   },
   {
     "file": "Classics Courses/Trofeo Binissalem-Andratx 61k 1192m.gpx",
+    "folder": "Classics Courses",
     "name": "Trofeo Binissalem-Andratx 61k 1192m",
     "distance_km": 61.32,
     "elevation_m": 1191.4,
@@ -2833,6 +3187,7 @@
   },
   {
     "file": "Classics Courses/Custom_Workout.gpx",
+    "folder": "Classics Courses",
     "name": "Custom_Workout",
     "distance_km": 42.35,
     "elevation_m": 550.5,
@@ -2841,6 +3196,7 @@
   },
   {
     "file": "Classics Courses/Mallorcan Coastal Classic.gpx",
+    "folder": "Classics Courses",
     "name": "Mallorcan Coastal Classic",
     "distance_km": 72.88,
     "elevation_m": 863.1,
@@ -2849,6 +3205,7 @@
   },
   {
     "file": "Classics Courses/Copenhagen Sprint.gpx",
+    "folder": "Classics Courses",
     "name": "Copenhagen Sprint",
     "distance_km": 82.96,
     "elevation_m": 404.7,
@@ -2857,6 +3214,7 @@
   },
   {
     "file": "Classics Courses/Brussels Cycling Classic - 73k 756m.gpx",
+    "folder": "Classics Courses",
     "name": "Brussels Cycling Classic - 73k 756m",
     "distance_km": 73.2,
     "elevation_m": 754.6,
@@ -2865,6 +3223,7 @@
   },
   {
     "file": "Classics Courses/Strade Bianche.gpx",
+    "folder": "Classics Courses",
     "name": "Strade Bianche",
     "distance_km": 64.93,
     "elevation_m": 1002.7,
@@ -2873,6 +3232,7 @@
   },
   {
     "file": "Classics Courses/GP De Denain.gpx",
+    "folder": "Classics Courses",
     "name": "GP De Denain",
     "distance_km": 78.75,
     "elevation_m": 493.6,
@@ -2881,6 +3241,7 @@
   },
   {
     "file": "Classics Courses/Vuelta Colombia S1.gpx",
+    "folder": "Classics Courses",
     "name": "Vuelta Colombia S1",
     "distance_km": 70.08,
     "elevation_m": 646.0,
@@ -2889,6 +3250,7 @@
   },
   {
     "file": "Classics Courses/Front Range Classic.gpx",
+    "folder": "Classics Courses",
     "name": "Front Range Classic",
     "distance_km": 64.32,
     "elevation_m": 1006.5,
@@ -2897,6 +3259,7 @@
   },
   {
     "file": "Classics Courses/Cholet Agglo Tour.gpx",
+    "folder": "Classics Courses",
     "name": "Cholet Agglo Tour",
     "distance_km": 77.14,
     "elevation_m": 695.0,
@@ -2905,6 +3268,7 @@
   },
   {
     "file": "Classics Courses/TPV_Dwars_Door_Vlaanderen - 74k 738m.gpx",
+    "folder": "Classics Courses",
     "name": "TPV_Dwars_Door_Vlaanderen - 74k 738m",
     "distance_km": 73.81,
     "elevation_m": 695.2,
@@ -2913,6 +3277,7 @@
   },
   {
     "file": "Classics Courses/Giro Himledalen.gpx",
+    "folder": "Classics Courses",
     "name": "Giro Himledalen",
     "distance_km": 76.59,
     "elevation_m": 870.7,
@@ -2921,6 +3286,7 @@
   },
   {
     "file": "Classics Courses/Faun-Ard\u00e8che Classic - 66k 1118m.gpx",
+    "folder": "Classics Courses",
     "name": "Faun-Ard\u00e8che Classic - 66k 1118m",
     "distance_km": 66.14,
     "elevation_m": 1117.8,
@@ -2929,6 +3295,7 @@
   },
   {
     "file": "Classics Courses/Circuit Franco-Belge.gpx",
+    "folder": "Classics Courses",
     "name": "Circuit Franco-Belge",
     "distance_km": 67.91,
     "elevation_m": 669.7,
@@ -2937,6 +3304,7 @@
   },
   {
     "file": "Classics Courses/Cl\u00e1sica Ja\u00e9n 34k 532m.gpx",
+    "folder": "Classics Courses",
     "name": "Cl\u00e1sica Ja\u00e9n 34k 532m",
     "distance_km": 34.37,
     "elevation_m": 531.5,
@@ -2945,6 +3313,7 @@
   },
   {
     "file": "Classics Courses/Tour of Helles Stage 1.gpx",
+    "folder": "Classics Courses",
     "name": "Tour of Helles Stage 1",
     "distance_km": 76.49,
     "elevation_m": 682.6,
@@ -2953,6 +3322,7 @@
   },
   {
     "file": "Classics Courses/Fleche Wallone 2025 Classics Route - 64k 953m.gpx",
+    "folder": "Classics Courses",
     "name": "Fleche Wallone 2025 Classics Route - 64k 953m",
     "distance_km": 64.3,
     "elevation_m": 951.0,
@@ -2961,6 +3331,7 @@
   },
   {
     "file": "Classics Courses/Tro Bro L\u00e9on 2025.gpx",
+    "folder": "Classics Courses",
     "name": "Tro Bro L\u00e9on 2025",
     "distance_km": 74.34,
     "elevation_m": 714.9,
@@ -2969,6 +3340,7 @@
   },
   {
     "file": "Classics Courses/The Road Race Tokyo Tama Classics Course 74k 845m.gpx",
+    "folder": "Classics Courses",
     "name": "The Road Race Tokyo Tama Classics Course 74k 845m",
     "distance_km": 74.44,
     "elevation_m": 843.3,
@@ -2977,6 +3349,7 @@
   },
   {
     "file": "Classics Courses/Tro Bro Leon.gpx",
+    "folder": "Classics Courses",
     "name": "Tro Bro Leon",
     "distance_km": 80.11,
     "elevation_m": 652.9,
@@ -2985,6 +3358,7 @@
   },
   {
     "file": "Classics Courses/RVV Updated.gpx",
+    "folder": "Classics Courses",
     "name": "RVV Updated",
     "distance_km": 69.45,
     "elevation_m": 608.1,
@@ -2993,6 +3367,7 @@
   },
   {
     "file": "Classics Courses/Roubaix 2.gpx",
+    "folder": "Classics Courses",
     "name": "Roubaix 2",
     "distance_km": 79.16,
     "elevation_m": 249.5,
@@ -3001,6 +3376,7 @@
   },
   {
     "file": "Classics Courses/Flanders 2026.gpx",
+    "folder": "Classics Courses",
     "name": "Flanders 2026",
     "distance_km": 287.53,
     "elevation_m": 2322.9,
@@ -3009,6 +3385,7 @@
   },
   {
     "file": "Classics Courses/Paris - Tours TPv - 70k 625m.gpx",
+    "folder": "Classics Courses",
     "name": "Paris - Tours TPv - 70k 625m",
     "distance_km": 70.06,
     "elevation_m": 622.4,
@@ -3017,6 +3394,7 @@
   },
   {
     "file": "Classics Courses/Gran Premio New York City - 70k 1127m_elevated.gpx",
+    "folder": "Classics Courses",
     "name": "Gran Premio New York City - 70k 1127m_elevated",
     "distance_km": 70.42,
     "elevation_m": 1153.3,
@@ -3025,6 +3403,7 @@
   },
   {
     "file": "Classics Courses/Week 4 Tour of Flanders - 70k 599m.gpx",
+    "folder": "Classics Courses",
     "name": "Week 4 Tour of Flanders - 70k 599m",
     "distance_km": 69.77,
     "elevation_m": 650.3,
@@ -3033,6 +3412,7 @@
   },
   {
     "file": "Classics Courses/Kuurne Brussel Kuurne.gpx",
+    "folder": "Classics Courses",
     "name": "Kuurne Brussel Kuurne",
     "distance_km": 74.11,
     "elevation_m": 674.5,
@@ -3041,6 +3421,7 @@
   },
   {
     "file": "Classics Courses/TPV Omloop.gpx",
+    "folder": "Classics Courses",
     "name": "TPV Omloop",
     "distance_km": 69.01,
     "elevation_m": 585.8,
@@ -3049,6 +3430,7 @@
   },
   {
     "file": "Classics Courses/New Zealand Lakes.gpx",
+    "folder": "Classics Courses",
     "name": "New Zealand Lakes",
     "distance_km": 77.11,
     "elevation_m": 666.6,
@@ -3057,6 +3439,7 @@
   },
   {
     "file": "Classics Courses/Faun Drome Classic - 75k 1362m.gpx",
+    "folder": "Classics Courses",
     "name": "Faun Drome Classic - 75k 1362m",
     "distance_km": 74.88,
     "elevation_m": 1356.0,
@@ -3065,6 +3448,7 @@
   },
   {
     "file": "Classics Courses/GP La Marseillaise 66k 1287m.gpx",
+    "folder": "Classics Courses",
     "name": "GP La Marseillaise 66k 1287m",
     "distance_km": 65.82,
     "elevation_m": 1286.0,
@@ -3073,6 +3457,7 @@
   },
   {
     "file": "Classics Courses/Basque Country 2025 Stage 2.gpx",
+    "folder": "Classics Courses",
     "name": "Basque Country 2025 Stage 2",
     "distance_km": 78.21,
     "elevation_m": 467.4,
@@ -3081,6 +3466,7 @@
   },
   {
     "file": "Classics Courses/Grand Premio New York.gpx",
+    "folder": "Classics Courses",
     "name": "Grand Premio New York",
     "distance_km": 68.42,
     "elevation_m": 1066.5,
@@ -3089,6 +3475,7 @@
   },
   {
     "file": "Classics Courses/GP Rhodes.gpx",
+    "folder": "Classics Courses",
     "name": "GP Rhodes",
     "distance_km": 69.8,
     "elevation_m": 736.1,
@@ -3097,6 +3484,7 @@
   },
   {
     "file": "Classics Courses/Hills Near Denia.gpx",
+    "folder": "Classics Courses",
     "name": "Hills Near Denia",
     "distance_km": 70.58,
     "elevation_m": 968.6,
@@ -3105,6 +3493,7 @@
   },
   {
     "file": "Classics Courses/Trofeo Palma 78k 493m.gpx",
+    "folder": "Classics Courses",
     "name": "Trofeo Palma 78k 493m",
     "distance_km": 78.29,
     "elevation_m": 489.0,
@@ -3113,6 +3502,7 @@
   },
   {
     "file": "Classics Courses/Marly Gravel World Series.gpx",
+    "folder": "Classics Courses",
     "name": "Marly Gravel World Series",
     "distance_km": 60.85,
     "elevation_m": 608.5,
@@ -3121,6 +3511,7 @@
   },
   {
     "file": "Classics Courses/Mirabelle Classic.gpx",
+    "folder": "Classics Courses",
     "name": "Mirabelle Classic",
     "distance_km": 75.7,
     "elevation_m": 769.4,
@@ -3129,6 +3520,7 @@
   },
   {
     "file": "Classics Courses/Champs Elysees Circuit.gpx",
+    "folder": "Classics Courses",
     "name": "Champs Elysees Circuit",
     "distance_km": 6.65,
     "elevation_m": 37.1,
@@ -3137,6 +3529,7 @@
   },
   {
     "file": "Classics Courses/Tour de Vend\u00e9e 77k 828m.gpx",
+    "folder": "Classics Courses",
     "name": "Tour de Vend\u00e9e 77k 828m",
     "distance_km": 77.27,
     "elevation_m": 825.0,
@@ -3145,6 +3538,7 @@
   },
   {
     "file": "Classics Courses/2026 USA Cycling Pro Road National Championships.gpx",
+    "folder": "Classics Courses",
     "name": "2026 USA Cycling Pro Road National Championships",
     "distance_km": 20.97,
     "elevation_m": 289.5,
@@ -3153,6 +3547,7 @@
   },
   {
     "file": "Classics Courses/Figueira Champions Classic - 68k 745m.gpx",
+    "folder": "Classics Courses",
     "name": "Figueira Champions Classic - 68k 745m",
     "distance_km": 67.19,
     "elevation_m": 742.9,
@@ -3161,6 +3556,7 @@
   },
   {
     "file": "Classics Courses/Visegrad 4 Kerekparverseny.gpx",
+    "folder": "Classics Courses",
     "name": "Visegrad 4 Kerekparverseny",
     "distance_km": 71.7,
     "elevation_m": 911.8,
@@ -3169,6 +3565,7 @@
   },
   {
     "file": "Classics Courses/Tour of Britain S3 Ampthill - 77k 584m.gpx",
+    "folder": "Classics Courses",
     "name": "Tour of Britain S3 Ampthill - 77k 584m",
     "distance_km": 77.54,
     "elevation_m": 581.5,
@@ -3177,6 +3574,7 @@
   },
   {
     "file": "Classics Courses/The Gralloch Sportive Stag.gpx",
+    "folder": "Classics Courses",
     "name": "The Gralloch Sportive Stag",
     "distance_km": 70.56,
     "elevation_m": 1057.4,
@@ -3185,6 +3583,7 @@
   },
   {
     "file": "Classics Courses/TPV Vuelta a Murcia Stage 2.gpx",
+    "folder": "Classics Courses",
     "name": "TPV Vuelta a Murcia Stage 2",
     "distance_km": 81.02,
     "elevation_m": 765.0,
@@ -3193,6 +3592,7 @@
   },
   {
     "file": "Classics Courses/Amstel Gold for TPV - 75k 751m.gpx",
+    "folder": "Classics Courses",
     "name": "Amstel Gold for TPV - 75k 751m",
     "distance_km": 74.44,
     "elevation_m": 774.8,
@@ -3201,6 +3601,7 @@
   },
   {
     "file": "Classics Courses/Coppa Bernocchi.gpx",
+    "folder": "Classics Courses",
     "name": "Coppa Bernocchi",
     "distance_km": 78.4,
     "elevation_m": 652.4,
@@ -3209,6 +3610,7 @@
   },
   {
     "file": "Classics Courses/Gran Premio New York City - 70k 1127m.gpx",
+    "folder": "Classics Courses",
     "name": "Gran Premio New York City - 70k 1127m",
     "distance_km": 70.42,
     "elevation_m": 1122.4,
@@ -3217,6 +3619,7 @@
   },
   {
     "file": "Jamaica International Cycling Classic/Jamaica International Cycling Classic Stage 2.gpx",
+    "folder": "Jamaica International Cycling Classic",
     "name": "Jamaica International Cycling Classic Stage 2",
     "distance_km": 31.88,
     "elevation_m": 318.0,
@@ -3225,6 +3628,7 @@
   },
   {
     "file": "Jamaica International Cycling Classic/Jamaica International Cycling Classic Stage 3.gpx",
+    "folder": "Jamaica International Cycling Classic",
     "name": "Jamaica International Cycling Classic Stage 3",
     "distance_km": 38.46,
     "elevation_m": 377.1,
@@ -3233,6 +3637,7 @@
   },
   {
     "file": "Jamaica International Cycling Classic/Jamaica International Cycling Classic Stage 1.gpx",
+    "folder": "Jamaica International Cycling Classic",
     "name": "Jamaica International Cycling Classic Stage 1",
     "distance_km": 24.93,
     "elevation_m": 84.1,
@@ -3241,6 +3646,7 @@
   },
   {
     "file": "Tour of Japan/TOJ5 Fuji International Speedway - Mount Fuji.gpx",
+    "folder": "Tour of Japan",
     "name": "TOJ5 Fuji International Speedway - Mount Fuji",
     "distance_km": 27.33,
     "elevation_m": 1554.5,
@@ -3249,6 +3655,7 @@
   },
   {
     "file": "Tour of Japan/TOJ3 Mino - Kamino.gpx",
+    "folder": "Tour of Japan",
     "name": "TOJ3 Mino - Kamino",
     "distance_km": 20.73,
     "elevation_m": 147.9,
@@ -3257,6 +3664,7 @@
   },
   {
     "file": "Tour of Japan/TOJ4 Iida.gpx",
+    "folder": "Tour of Japan",
     "name": "TOJ4 Iida",
     "distance_km": 11.89,
     "elevation_m": 273.7,
@@ -3265,6 +3673,7 @@
   },
   {
     "file": "Tour of Japan/TOJ2 Inabe.gpx",
+    "folder": "Tour of Japan",
     "name": "TOJ2 Inabe",
     "distance_km": 14.81,
     "elevation_m": 208.6,
@@ -3273,6 +3682,7 @@
   },
   {
     "file": "Tour of Japan/TOJ1 Kyotanabe - Seika.gpx",
+    "folder": "Tour of Japan",
     "name": "TOJ1 Kyotanabe - Seika",
     "distance_km": 16.82,
     "elevation_m": 332.4,
@@ -3281,6 +3691,7 @@
   },
   {
     "file": "Tour of Japan/TOJ6 Sagamihara.gpx",
+    "folder": "Tour of Japan",
     "name": "TOJ6 Sagamihara",
     "distance_km": 13.84,
     "elevation_m": 181.0,
@@ -3289,6 +3700,7 @@
   },
   {
     "file": "Tour of Japan/TOJ7 Tokyo.gpx",
+    "folder": "Tour of Japan",
     "name": "TOJ7 Tokyo",
     "distance_km": 6.68,
     "elevation_m": 7.3,
@@ -3297,6 +3709,7 @@
   },
   {
     "file": "National Champ/UK Nationals in Wales 2026.gpx",
+    "folder": "National Champ",
     "name": "UK Nationals in Wales 2026",
     "distance_km": 35.58,
     "elevation_m": 434.7,
@@ -3305,6 +3718,7 @@
   },
   {
     "file": "National Champ/Ireland 2026.gpx",
+    "folder": "National Champ",
     "name": "Ireland 2026",
     "distance_km": 54.3,
     "elevation_m": 528.0,
@@ -3313,6 +3727,7 @@
   },
   {
     "file": "National Champ/Peru 2026.gpx",
+    "folder": "National Champ",
     "name": "Peru 2026",
     "distance_km": 7.97,
     "elevation_m": 123.0,
@@ -3321,6 +3736,7 @@
   },
   {
     "file": "National Champ/Switzerland 2026.gpx",
+    "folder": "National Champ",
     "name": "Switzerland 2026",
     "distance_km": 16.95,
     "elevation_m": 287.2,
@@ -3329,6 +3745,7 @@
   },
   {
     "file": "National Champ/Laos 2026.gpx",
+    "folder": "National Champ",
     "name": "Laos 2026",
     "distance_km": 56.62,
     "elevation_m": 385.5,
@@ -3337,6 +3754,7 @@
   },
   {
     "file": "National Champ/Trinidad & Tobago 2026.gpx",
+    "folder": "National Champ",
     "name": "Trinidad & Tobago 2026",
     "distance_km": 28.6,
     "elevation_m": 336.5,
@@ -3345,6 +3763,7 @@
   },
   {
     "file": "National Champ/Japan 2026.gpx",
+    "folder": "National Champ",
     "name": "Japan 2026",
     "distance_km": 11.92,
     "elevation_m": 247.5,
@@ -3353,6 +3772,7 @@
   },
   {
     "file": "National Champ/Belarus 2026.gpx",
+    "folder": "National Champ",
     "name": "Belarus 2026",
     "distance_km": 14.06,
     "elevation_m": 202.8,
@@ -3361,6 +3781,7 @@
   },
   {
     "file": "National Champ/Romania 2026.gpx",
+    "folder": "National Champ",
     "name": "Romania 2026",
     "distance_km": 67.22,
     "elevation_m": 801.0,
@@ -3369,6 +3790,7 @@
   },
   {
     "file": "National Champ/Azerbaijan 2026.gpx",
+    "folder": "National Champ",
     "name": "Azerbaijan 2026",
     "distance_km": 37.95,
     "elevation_m": 1503.3,
@@ -3377,6 +3799,7 @@
   },
   {
     "file": "National Champ/Jamaica 2026.gpx",
+    "folder": "National Champ",
     "name": "Jamaica 2026",
     "distance_km": 51.69,
     "elevation_m": 565.2,
@@ -3385,6 +3808,7 @@
   },
   {
     "file": "National Champ/Slovakia NC.gpx",
+    "folder": "National Champ",
     "name": "Slovakia NC",
     "distance_km": 26.1,
     "elevation_m": 477.9,
@@ -3393,6 +3817,7 @@
   },
   {
     "file": "National Champ/Morocco 2026.gpx",
+    "folder": "National Champ",
     "name": "Morocco 2026",
     "distance_km": 24.12,
     "elevation_m": 278.8,
@@ -3401,6 +3826,7 @@
   },
   {
     "file": "National Champ/Hong Kong National Champ 26.gpx",
+    "folder": "National Champ",
     "name": "Hong Kong National Champ 26",
     "distance_km": 3.51,
     "elevation_m": 13.2,
@@ -3409,6 +3835,7 @@
   },
   {
     "file": "National Champ/Uzbekistan 2026.gpx",
+    "folder": "National Champ",
     "name": "Uzbekistan 2026",
     "distance_km": 59.58,
     "elevation_m": 1248.5,
@@ -3417,6 +3844,7 @@
   },
   {
     "file": "National Champ/Singapore 2026.gpx",
+    "folder": "National Champ",
     "name": "Singapore 2026",
     "distance_km": 44.5,
     "elevation_m": 470.6,
@@ -3425,6 +3853,7 @@
   },
   {
     "file": "National Champ/Bermuda 2026.gpx",
+    "folder": "National Champ",
     "name": "Bermuda 2026",
     "distance_km": 8.16,
     "elevation_m": 83.4,
@@ -3433,6 +3862,7 @@
   },
   {
     "file": "National Champ/Mongolia 2026.gpx",
+    "folder": "National Champ",
     "name": "Mongolia 2026",
     "distance_km": 50.96,
     "elevation_m": 642.1,
@@ -3441,6 +3871,7 @@
   },
   {
     "file": "National Champ/Belize 2026.gpx",
+    "folder": "National Champ",
     "name": "Belize 2026",
     "distance_km": 75.03,
     "elevation_m": 891.9,
@@ -3449,6 +3880,7 @@
   },
   {
     "file": "National Champ/North Macedonia 2026.gpx",
+    "folder": "National Champ",
     "name": "North Macedonia 2026",
     "distance_km": 16.68,
     "elevation_m": 215.2,
@@ -3457,6 +3889,7 @@
   },
   {
     "file": "Racing Circuits/Scheldeprijs 2025.gpx",
+    "folder": "Racing Circuits",
     "name": "Scheldeprijs 2025",
     "distance_km": 16.89,
     "elevation_m": 47.4,
@@ -3465,6 +3898,7 @@
   },
   {
     "file": "Racing Circuits/Gooikse Pijl Circuit 21k 229m.gpx",
+    "folder": "Racing Circuits",
     "name": "Gooikse Pijl Circuit 21k 229m",
     "distance_km": 21.66,
     "elevation_m": 228.7,
@@ -3473,6 +3907,7 @@
   },
   {
     "file": "Racing Circuits/Ober\u00f6sterreich Rundfahrt.gpx",
+    "folder": "Racing Circuits",
     "name": "Ober\u00f6sterreich Rundfahrt",
     "distance_km": 17.86,
     "elevation_m": 114.5,
@@ -3481,6 +3916,7 @@
   },
   {
     "file": "Racing Circuits/2026 Monmartre Climb Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "2026 Monmartre Climb Circuit",
     "distance_km": 15.82,
     "elevation_m": 142.2,
@@ -3489,6 +3925,7 @@
   },
   {
     "file": "Racing Circuits/Summit Point Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Summit Point Circuit",
     "distance_km": 3.2,
     "elevation_m": 16.7,
@@ -3497,6 +3934,7 @@
   },
   {
     "file": "Racing Circuits/Trofeo Alfredo Binda - Comune di Cittiglio.gpx",
+    "folder": "Racing Circuits",
     "name": "Trofeo Alfredo Binda - Comune di Cittiglio",
     "distance_km": 17.5,
     "elevation_m": 279.9,
@@ -3505,6 +3943,7 @@
   },
   {
     "file": "Racing Circuits/Criterium du Dauphine 2025 Stage 2 finishing circuit 42k 432m.gpx",
+    "folder": "Racing Circuits",
     "name": "Criterium du Dauphine 2025 Stage 2 finishing circuit 42k 432m",
     "distance_km": 42.48,
     "elevation_m": 412.7,
@@ -3513,6 +3952,7 @@
   },
   {
     "file": "Racing Circuits/Lake Dillon Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Lake Dillon Loop",
     "distance_km": 28.6,
     "elevation_m": 378.6,
@@ -3521,6 +3961,7 @@
   },
   {
     "file": "Racing Circuits/Etoile de Bess\u00e8ges - Stage 1 Cote de la Tour.gpx",
+    "folder": "Racing Circuits",
     "name": "Etoile de Bess\u00e8ges - Stage 1 Cote de la Tour",
     "distance_km": 39.04,
     "elevation_m": 147.6,
@@ -3529,6 +3970,7 @@
   },
   {
     "file": "Racing Circuits/Arsenal_Ride_CW.gpx",
+    "folder": "Racing Circuits",
     "name": "Arsenal_Ride_CW",
     "distance_km": 32.39,
     "elevation_m": 143.3,
@@ -3537,6 +3979,7 @@
   },
   {
     "file": "Racing Circuits/Nokere Koerse Finish.gpx",
+    "folder": "Racing Circuits",
     "name": "Nokere Koerse Finish",
     "distance_km": 31.33,
     "elevation_m": 168.9,
@@ -3545,6 +3988,7 @@
   },
   {
     "file": "Racing Circuits/Paterberg 18k Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Paterberg 18k Circuit",
     "distance_km": 17.89,
     "elevation_m": 226.5,
@@ -3553,6 +3997,7 @@
   },
   {
     "file": "Racing Circuits/Tucson Road Race.gpx",
+    "folder": "Racing Circuits",
     "name": "Tucson Road Race",
     "distance_km": 33.13,
     "elevation_m": 281.5,
@@ -3561,6 +4006,7 @@
   },
   {
     "file": "Racing Circuits/Tour de Kumano - Inami.gpx",
+    "folder": "Racing Circuits",
     "name": "Tour de Kumano - Inami",
     "distance_km": 18.81,
     "elevation_m": 246.5,
@@ -3569,6 +4015,7 @@
   },
   {
     "file": "Racing Circuits/Angel Island San Francisco CA.gpx",
+    "folder": "Racing Circuits",
     "name": "Angel Island San Francisco CA",
     "distance_km": 7.78,
     "elevation_m": 114.2,
@@ -3577,6 +4024,7 @@
   },
   {
     "file": "Racing Circuits/Ronde van Limburg TPV Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Ronde van Limburg TPV Circuit",
     "distance_km": 38.05,
     "elevation_m": 326.5,
@@ -3585,6 +4033,7 @@
   },
   {
     "file": "Racing Circuits/2025 Ireland Nats.gpx",
+    "folder": "Racing Circuits",
     "name": "2025 Ireland Nats",
     "distance_km": 25.24,
     "elevation_m": 228.2,
@@ -3593,6 +4042,7 @@
   },
   {
     "file": "Racing Circuits/Nice Kevin Vauquelin Training Ride.gpx",
+    "folder": "Racing Circuits",
     "name": "Nice Kevin Vauquelin Training Ride",
     "distance_km": 59.51,
     "elevation_m": 1094.4,
@@ -3601,6 +4051,7 @@
   },
   {
     "file": "Racing Circuits/Monmartre Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Monmartre Circuit",
     "distance_km": 16.39,
     "elevation_m": 130.8,
@@ -3609,6 +4060,7 @@
   },
   {
     "file": "Racing Circuits/Midwest_Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Midwest_Circuit",
     "distance_km": 12.19,
     "elevation_m": 63.7,
@@ -3617,6 +4069,7 @@
   },
   {
     "file": "Racing Circuits/Trofeo Oro.gpx",
+    "folder": "Racing Circuits",
     "name": "Trofeo Oro",
     "distance_km": 20.53,
     "elevation_m": 239.5,
@@ -3625,6 +4078,7 @@
   },
   {
     "file": "Racing Circuits/Mauritius Classic.gpx",
+    "folder": "Racing Circuits",
     "name": "Mauritius Classic",
     "distance_km": 12.11,
     "elevation_m": 168.8,
@@ -3633,6 +4087,7 @@
   },
   {
     "file": "Racing Circuits/Renewi Tour 2025 Stage 4 Final Lap - 41k 316m.gpx",
+    "folder": "Racing Circuits",
     "name": "Renewi Tour 2025 Stage 4 Final Lap - 41k 316m",
     "distance_km": 41.25,
     "elevation_m": 327.4,
@@ -3641,6 +4096,7 @@
   },
   {
     "file": "Racing Circuits/PORE\u010c Classic.gpx",
+    "folder": "Racing Circuits",
     "name": "PORE\u010c Classic",
     "distance_km": 19.05,
     "elevation_m": 216.3,
@@ -3649,6 +4105,7 @@
   },
   {
     "file": "Racing Circuits/Enchanted Hills.gpx",
+    "folder": "Racing Circuits",
     "name": "Enchanted Hills",
     "distance_km": 33.85,
     "elevation_m": 550.9,
@@ -3657,6 +4114,7 @@
   },
   {
     "file": "Racing Circuits/Palos Verdes CA Donut Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Palos Verdes CA Donut Loop",
     "distance_km": 33.69,
     "elevation_m": 514.3,
@@ -3665,6 +4123,7 @@
   },
   {
     "file": "Racing Circuits/Monmartre Circuit - 16k 163m.gpx",
+    "folder": "Racing Circuits",
     "name": "Monmartre Circuit - 16k 163m",
     "distance_km": 16.4,
     "elevation_m": 144.3,
@@ -3673,6 +4132,7 @@
   },
   {
     "file": "Racing Circuits/Hilly Geoje.gpx",
+    "folder": "Racing Circuits",
     "name": "Hilly Geoje",
     "distance_km": 22.25,
     "elevation_m": 538.4,
@@ -3681,6 +4141,7 @@
   },
   {
     "file": "Racing Circuits/Grand Prix Cerami Circuit 24k 224m.gpx",
+    "folder": "Racing Circuits",
     "name": "Grand Prix Cerami Circuit 24k 224m",
     "distance_km": 23.68,
     "elevation_m": 223.7,
@@ -3689,6 +4150,7 @@
   },
   {
     "file": "Racing Circuits/Tour des 100 Communes Circuit 23k 367m.gpx",
+    "folder": "Racing Circuits",
     "name": "Tour des 100 Communes Circuit 23k 367m",
     "distance_km": 23.42,
     "elevation_m": 366.9,
@@ -3697,6 +4159,7 @@
   },
   {
     "file": "Racing Circuits/Cl\u00e1sica Ja\u00e9n.gpx",
+    "folder": "Racing Circuits",
     "name": "Cl\u00e1sica Ja\u00e9n",
     "distance_km": 34.43,
     "elevation_m": 530.0,
@@ -3705,6 +4168,7 @@
   },
   {
     "file": "Racing Circuits/Trofeo Oro in Euro.gpx",
+    "folder": "Racing Circuits",
     "name": "Trofeo Oro in Euro",
     "distance_km": 20.56,
     "elevation_m": 252.9,
@@ -3713,6 +4177,7 @@
   },
   {
     "file": "Racing Circuits/Criterium du dauphine 2025 Stage 1 Final Circuit - 29k 430m.gpx",
+    "folder": "Racing Circuits",
     "name": "Criterium du dauphine 2025 Stage 1 Final Circuit - 29k 430m",
     "distance_km": 29.0,
     "elevation_m": 409.4,
@@ -3721,6 +4186,7 @@
   },
   {
     "file": "Racing Circuits/The Road Race Tokyo Tama Circuit 16k 277m.gpx",
+    "folder": "Racing Circuits",
     "name": "The Road Race Tokyo Tama Circuit 16k 277m",
     "distance_km": 16.13,
     "elevation_m": 276.7,
@@ -3729,6 +4195,7 @@
   },
   {
     "file": "Racing Circuits/Lake Crescent.gpx",
+    "folder": "Racing Circuits",
     "name": "Lake Crescent",
     "distance_km": 37.81,
     "elevation_m": 648.6,
@@ -3737,6 +4204,7 @@
   },
   {
     "file": "Racing Circuits/Paterberg circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Paterberg circuit",
     "distance_km": 3.2,
     "elevation_m": 61.8,
@@ -3745,6 +4213,7 @@
   },
   {
     "file": "Racing Circuits/Genesee Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Genesee Loop",
     "distance_km": 11.16,
     "elevation_m": 309.9,
@@ -3753,6 +4222,7 @@
   },
   {
     "file": "Racing Circuits/GP Oetingen Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "GP Oetingen Circuit",
     "distance_km": 19.69,
     "elevation_m": 216.7,
@@ -3761,6 +4231,7 @@
   },
   {
     "file": "Racing Circuits/Grand Prix de la ville de P\u00e9renchies.gpx",
+    "folder": "Racing Circuits",
     "name": "Grand Prix de la ville de P\u00e9renchies",
     "distance_km": 15.05,
     "elevation_m": 47.9,
@@ -3769,6 +4240,7 @@
   },
   {
     "file": "Racing Circuits/Keienstrook Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Keienstrook Loop",
     "distance_km": 1.44,
     "elevation_m": 26.5,
@@ -3777,6 +4249,7 @@
   },
   {
     "file": "Racing Circuits/Cartaxo 30m.gpx",
+    "folder": "Racing Circuits",
     "name": "Cartaxo 30m",
     "distance_km": 17.56,
     "elevation_m": 128.6,
@@ -3785,6 +4258,7 @@
   },
   {
     "file": "Racing Circuits/Etoile de Besseges Stage 1 2026.gpx",
+    "folder": "Racing Circuits",
     "name": "Etoile de Besseges Stage 1 2026",
     "distance_km": 38.64,
     "elevation_m": 102.5,
@@ -3793,6 +4267,7 @@
   },
   {
     "file": "Racing Circuits/Muscat Classic Circuit - 34k 678m.gpx",
+    "folder": "Racing Circuits",
     "name": "Muscat Classic Circuit - 34k 678m",
     "distance_km": 34.06,
     "elevation_m": 677.7,
@@ -3801,6 +4276,7 @@
   },
   {
     "file": "Racing Circuits/Etoile de Besseges - Cote de la Tour Early Loop - 53k 250m .gpx",
+    "folder": "Racing Circuits",
     "name": "Etoile de Besseges - Cote de la Tour Early Loop - 53k 250m ",
     "distance_km": 53.2,
     "elevation_m": 249.4,
@@ -3809,6 +4285,7 @@
   },
   {
     "file": "Racing Circuits/Wallonie Stage 5.gpx",
+    "folder": "Racing Circuits",
     "name": "Wallonie Stage 5",
     "distance_km": 30.29,
     "elevation_m": 452.8,
@@ -3817,6 +4294,7 @@
   },
   {
     "file": "Racing Circuits/Circuit Franco-Belge 22k 302m.gpx",
+    "folder": "Racing Circuits",
     "name": "Circuit Franco-Belge 22k 302m",
     "distance_km": 22.55,
     "elevation_m": 301.5,
@@ -3825,6 +4303,7 @@
   },
   {
     "file": "Racing Circuits/Bear Creek Lake Park Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Bear Creek Lake Park Circuit",
     "distance_km": 12.13,
     "elevation_m": 172.2,
@@ -3833,6 +4312,7 @@
   },
   {
     "file": "Racing Circuits/Le Tour de Bretagne Cycliste Stage 2 2025.gpx",
+    "folder": "Racing Circuits",
     "name": "Le Tour de Bretagne Cycliste Stage 2 2025",
     "distance_km": 7.69,
     "elevation_m": 81.0,
@@ -3841,6 +4321,7 @@
   },
   {
     "file": "Racing Circuits/Philly Cycling Classic.gpx",
+    "folder": "Racing Circuits",
     "name": "Philly Cycling Classic",
     "distance_km": 24.73,
     "elevation_m": 189.2,
@@ -3849,6 +4330,7 @@
   },
   {
     "file": "Racing Circuits/Nocturne des Remparts.gpx",
+    "folder": "Racing Circuits",
     "name": "Nocturne des Remparts",
     "distance_km": 1.24,
     "elevation_m": 20.0,
@@ -3857,6 +4339,7 @@
   },
   {
     "file": "Racing Circuits/Blunn Reservoir Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Blunn Reservoir Loop",
     "distance_km": 8.55,
     "elevation_m": 111.1,
@@ -3865,6 +4348,7 @@
   },
   {
     "file": "Racing Circuits/Heistse Pijl Finishing Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Heistse Pijl Finishing Circuit",
     "distance_km": 19.55,
     "elevation_m": 54.9,
@@ -3873,6 +4357,7 @@
   },
   {
     "file": "Racing Circuits/Samyn Classic Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Samyn Classic Loop",
     "distance_km": 27.02,
     "elevation_m": 244.1,
@@ -3881,6 +4366,7 @@
   },
   {
     "file": "Racing Circuits/Marchtrenk.gpx",
+    "folder": "Racing Circuits",
     "name": "Marchtrenk",
     "distance_km": 26.12,
     "elevation_m": 234.6,
@@ -3889,6 +4375,7 @@
   },
   {
     "file": "Racing Circuits/Le Tour de Bretagne Cycliste Stage 3 2025.gpx",
+    "folder": "Racing Circuits",
     "name": "Le Tour de Bretagne Cycliste Stage 3 2025",
     "distance_km": 9.31,
     "elevation_m": 67.8,
@@ -3897,6 +4384,7 @@
   },
   {
     "file": "Racing Circuits/2026 TDU W Stage 1 Willunga Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "2026 TDU W Stage 1 Willunga Circuit",
     "distance_km": 41.77,
     "elevation_m": 358.0,
@@ -3905,6 +4393,7 @@
   },
   {
     "file": "Racing Circuits/Muur Classic Geraardsbergen.gpx",
+    "folder": "Racing Circuits",
     "name": "Muur Classic Geraardsbergen",
     "distance_km": 30.41,
     "elevation_m": 343.3,
@@ -3913,6 +4402,7 @@
   },
   {
     "file": "Racing Circuits/Julian Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Julian Loop",
     "distance_km": 16.14,
     "elevation_m": 289.7,
@@ -3921,6 +4411,7 @@
   },
   {
     "file": "Racing Circuits/2025 Japan Cup Road Race Circuit - 10k 269m.gpx",
+    "folder": "Racing Circuits",
     "name": "2025 Japan Cup Road Race Circuit - 10k 269m",
     "distance_km": 10.02,
     "elevation_m": 239.5,
@@ -3929,6 +4420,7 @@
   },
   {
     "file": "Racing Circuits/Lake Miramar San Diego CA.gpx",
+    "folder": "Racing Circuits",
     "name": "Lake Miramar San Diego CA",
     "distance_km": 7.88,
     "elevation_m": 27.8,
@@ -3937,6 +4429,7 @@
   },
   {
     "file": "Racing Circuits/SUPERIOR MORGUL Circuit Race.gpx",
+    "folder": "Racing Circuits",
     "name": "SUPERIOR MORGUL Circuit Race",
     "distance_km": 5.3,
     "elevation_m": 79.2,
@@ -3945,6 +4438,7 @@
   },
   {
     "file": "Racing Circuits/BW Classic Circuit (cobbles).gpx",
+    "folder": "Racing Circuits",
     "name": "BW Classic Circuit (cobbles)",
     "distance_km": 15.19,
     "elevation_m": 134.4,
@@ -3953,6 +4447,7 @@
   },
   {
     "file": "Racing Circuits/South Elbert Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "South Elbert Loop",
     "distance_km": 38.81,
     "elevation_m": 551.0,
@@ -3961,6 +4456,7 @@
   },
   {
     "file": "Racing Circuits/Dwars door het Hageland Circuit 24k 194m.gpx",
+    "folder": "Racing Circuits",
     "name": "Dwars door het Hageland Circuit 24k 194m",
     "distance_km": 24.55,
     "elevation_m": 194.0,
@@ -3969,6 +4465,7 @@
   },
   {
     "file": "Racing Circuits/Deschutes OR Classic.gpx",
+    "folder": "Racing Circuits",
     "name": "Deschutes OR Classic",
     "distance_km": 35.45,
     "elevation_m": 364.6,
@@ -3977,6 +4474,7 @@
   },
   {
     "file": "Racing Circuits/OvhH finishing circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "OvhH finishing circuit",
     "distance_km": 23.53,
     "elevation_m": 183.8,
@@ -3985,6 +4483,7 @@
   },
   {
     "file": "Racing Circuits/2026 TDU W Stage 2 Finishing Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "2026 TDU W Stage 2 Finishing Circuit",
     "distance_km": 12.26,
     "elevation_m": 206.0,
@@ -3993,6 +4492,7 @@
   },
   {
     "file": "Racing Circuits/TA Stage 5 2026.gpx",
+    "folder": "Racing Circuits",
     "name": "TA Stage 5 2026",
     "distance_km": 21.52,
     "elevation_m": 590.4,
@@ -4001,6 +4501,7 @@
   },
   {
     "file": "Racing Circuits/Brabantse Pijl 2025 Finishing Circuit - 20k 270m.gpx",
+    "folder": "Racing Circuits",
     "name": "Brabantse Pijl 2025 Finishing Circuit - 20k 270m",
     "distance_km": 19.72,
     "elevation_m": 269.0,
@@ -4009,6 +4510,7 @@
   },
   {
     "file": "Racing Circuits/2025 PN Stage 1 Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "2025 PN Stage 1 Circuit",
     "distance_km": 16.48,
     "elevation_m": 175.7,
@@ -4017,6 +4519,7 @@
   },
   {
     "file": "Racing Circuits/Crater Rim Drive.gpx",
+    "folder": "Racing Circuits",
     "name": "Crater Rim Drive",
     "distance_km": 16.9,
     "elevation_m": 213.3,
@@ -4025,6 +4528,7 @@
   },
   {
     "file": "Racing Circuits/Koppenberg Gravel Lap.gpx",
+    "folder": "Racing Circuits",
     "name": "Koppenberg Gravel Lap",
     "distance_km": 8.28,
     "elevation_m": 96.2,
@@ -4033,6 +4537,7 @@
   },
   {
     "file": "Racing Circuits/Valenciennes  \u203a  Famars.gpx",
+    "folder": "Racing Circuits",
     "name": "Valenciennes  \u203a  Famars",
     "distance_km": 24.99,
     "elevation_m": 204.1,
@@ -4041,6 +4546,7 @@
   },
   {
     "file": "Racing Circuits/The Muro di Ca\u2019 del Poggio Circuit Race.gpx",
+    "folder": "Racing Circuits",
     "name": "The Muro di Ca\u2019 del Poggio Circuit Race",
     "distance_km": 19.15,
     "elevation_m": 226.3,
@@ -4049,6 +4555,7 @@
   },
   {
     "file": "Racing Circuits/Etoile de Bess\u00e8ges - Stage 1 Cote de la Tour LU.gpx",
+    "folder": "Racing Circuits",
     "name": "Etoile de Bess\u00e8ges - Stage 1 Cote de la Tour LU",
     "distance_km": 39.04,
     "elevation_m": 128.6,
@@ -4057,6 +4564,7 @@
   },
   {
     "file": "Racing Circuits/Druivenkoers - Overijse 17k 186m.gpx",
+    "folder": "Racing Circuits",
     "name": "Druivenkoers - Overijse 17k 186m",
     "distance_km": 17.22,
     "elevation_m": 186.3,
@@ -4065,6 +4573,7 @@
   },
   {
     "file": "Racing Circuits/Eagles Canyon Raceway.gpx",
+    "folder": "Racing Circuits",
     "name": "Eagles Canyon Raceway",
     "distance_km": 3.88,
     "elevation_m": 50.8,
@@ -4073,6 +4582,7 @@
   },
   {
     "file": "Racing Circuits/Las Positas Loop.gpx",
+    "folder": "Racing Circuits",
     "name": "Las Positas Loop",
     "distance_km": 16.54,
     "elevation_m": 329.5,
@@ -4081,6 +4591,7 @@
   },
   {
     "file": "Racing Circuits/Besseges Stage 2 2026.gpx",
+    "folder": "Racing Circuits",
     "name": "Besseges Stage 2 2026",
     "distance_km": 28.88,
     "elevation_m": 212.3,
@@ -4089,6 +4600,7 @@
   },
   {
     "file": "Racing Circuits/La Route des G\u00e9ants Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "La Route des G\u00e9ants Circuit",
     "distance_km": 32.44,
     "elevation_m": 377.8,
@@ -4097,6 +4609,7 @@
   },
   {
     "file": "Racing Circuits/Grand Prix Du Morbihan - 13k 228m.gpx",
+    "folder": "Racing Circuits",
     "name": "Grand Prix Du Morbihan - 13k 228m",
     "distance_km": 13.64,
     "elevation_m": 225.7,
@@ -4105,6 +4618,7 @@
   },
   {
     "file": "Racing Circuits/Superior Time-Trial.gpx",
+    "folder": "Racing Circuits",
     "name": "Superior Time-Trial",
     "distance_km": 12.95,
     "elevation_m": 132.4,
@@ -4113,6 +4627,7 @@
   },
   {
     "file": "Racing Circuits/Wallonie Stage 4 2026.gpx",
+    "folder": "Racing Circuits",
     "name": "Wallonie Stage 4 2026",
     "distance_km": 14.05,
     "elevation_m": 205.9,
@@ -4121,6 +4636,7 @@
   },
   {
     "file": "Racing Circuits/VIR Full.gpx",
+    "folder": "Racing Circuits",
     "name": "VIR Full",
     "distance_km": 5.23,
     "elevation_m": 61.7,
@@ -4129,6 +4645,7 @@
   },
   {
     "file": "Racing Circuits/Renewi Tour Stage 5 Circuit - 14k 145m.gpx",
+    "folder": "Racing Circuits",
     "name": "Renewi Tour Stage 5 Circuit - 14k 145m",
     "distance_km": 14.22,
     "elevation_m": 132.3,
@@ -4137,6 +4654,7 @@
   },
   {
     "file": "Racing Circuits/Fl\u00e8che du Sud Stage 5 Circuit.gpx",
+    "folder": "Racing Circuits",
     "name": "Fl\u00e8che du Sud Stage 5 Circuit",
     "distance_km": 20.89,
     "elevation_m": 242.9,
@@ -4145,6 +4663,7 @@
   },
   {
     "file": "Racing Circuits/Grand Prix Du Morbihan - 13k 228m_elevated.gpx",
+    "folder": "Racing Circuits",
     "name": "Grand Prix Du Morbihan - 13k 228m_elevated",
     "distance_km": 13.64,
     "elevation_m": 225.4,
@@ -4153,6 +4672,7 @@
   },
   {
     "file": "American Gravel Cup Series/UNBOUND - 71k 550m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "UNBOUND - 71k 550m",
     "distance_km": 81.36,
     "elevation_m": 616.1,
@@ -4161,6 +4681,7 @@
   },
   {
     "file": "American Gravel Cup Series/Rad Dirt Fest - 68k 1310m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "Rad Dirt Fest - 68k 1310m",
     "distance_km": 68.16,
     "elevation_m": 1303.4,
@@ -4169,6 +4690,7 @@
   },
   {
     "file": "American Gravel Cup Series/TPV Seat Otter Classic - 52k 1652m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "TPV Seat Otter Classic - 52k 1652m",
     "distance_km": 52.3,
     "elevation_m": 1634.1,
@@ -4177,6 +4699,7 @@
   },
   {
     "file": "American Gravel Cup Series/Barry-Roubaix - 75k 1000m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "Barry-Roubaix - 75k 1000m",
     "distance_km": 75.41,
     "elevation_m": 994.4,
@@ -4185,6 +4708,7 @@
   },
   {
     "file": "American Gravel Cup Series/SBT GRVL - 70k 836m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "SBT GRVL - 70k 836m",
     "distance_km": 70.35,
     "elevation_m": 834.4,
@@ -4193,6 +4717,7 @@
   },
   {
     "file": "American Gravel Cup Series/Mid South - 70k 832m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "Mid South - 70k 832m",
     "distance_km": 69.76,
     "elevation_m": 601.3,
@@ -4201,6 +4726,7 @@
   },
   {
     "file": "American Gravel Cup Series/Big Sugar 71k 1221m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "Big Sugar 71k 1221m",
     "distance_km": 70.99,
     "elevation_m": 1208.3,
@@ -4209,6 +4735,7 @@
   },
   {
     "file": "American Gravel Cup Series/Crusher in the Tushar - 43k 1600m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "Crusher in the Tushar - 43k 1600m",
     "distance_km": 43.44,
     "elevation_m": 1601.6,
@@ -4217,6 +4744,7 @@
   },
   {
     "file": "American Gravel Cup Series/Foco Fondo - 68k 1200m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "Foco Fondo - 68k 1200m",
     "distance_km": 68.32,
     "elevation_m": 1280.3,
@@ -4225,6 +4753,7 @@
   },
   {
     "file": "American Gravel Cup Series/Gravel Worlds - 74k 813m.gpx",
+    "folder": "American Gravel Cup Series",
     "name": "Gravel Worlds - 74k 813m",
     "distance_km": 73.84,
     "elevation_m": 808.4,
@@ -4233,6 +4762,7 @@
   },
   {
     "file": "Interval Circuits/Berthoud 8 min climb.gpx",
+    "folder": "Interval Circuits",
     "name": "Berthoud 8 min climb",
     "distance_km": 3.38,
     "elevation_m": 162.6,
@@ -4241,6 +4771,7 @@
   },
   {
     "file": "Interval Circuits/Mini Loop - 22m 12%.gpx",
+    "folder": "Interval Circuits",
     "name": "Mini Loop - 22m 12%",
     "distance_km": 0.56,
     "elevation_m": 21.2,
@@ -4249,6 +4780,7 @@
   },
   {
     "file": "Interval Circuits/Col du VAM - 1.3k 31m 10%.gpx",
+    "folder": "Interval Circuits",
     "name": "Col du VAM - 1.3k 31m 10%",
     "distance_km": 1.19,
     "elevation_m": 26.4,
@@ -4257,6 +4789,7 @@
   },
   {
     "file": "Interval Circuits/Superior Koppenberg Loop.gpx",
+    "folder": "Interval Circuits",
     "name": "Superior Koppenberg Loop",
     "distance_km": 1.53,
     "elevation_m": 23.5,
@@ -4265,6 +4798,7 @@
   },
   {
     "file": "Interval Circuits/Easy Hill Climb Short Loop - 6.8k 150m 3%.gpx",
+    "folder": "Interval Circuits",
     "name": "Easy Hill Climb Short Loop - 6.8k 150m 3%",
     "distance_km": 6.79,
     "elevation_m": 149.6,
@@ -4273,6 +4807,7 @@
   },
   {
     "file": "Interval Circuits/Devil_s_Tower_Hill_Repeats.gpx",
+    "folder": "Interval Circuits",
     "name": "Devil_s_Tower_Hill_Repeats",
     "distance_km": 4.64,
     "elevation_m": 131.4,
@@ -4281,6 +4816,7 @@
   },
   {
     "file": "Interval Circuits/Fort Stockton Mini Climb 2min.gpx",
+    "folder": "Interval Circuits",
     "name": "Fort Stockton Mini Climb 2min",
     "distance_km": 0.48,
     "elevation_m": 42.3,
@@ -4289,6 +4825,7 @@
   },
   {
     "file": "Interval Circuits/Paterberg Circuit.gpx",
+    "folder": "Interval Circuits",
     "name": "Paterberg Circuit",
     "distance_km": 2.65,
     "elevation_m": 60.2,
@@ -4297,6 +4834,7 @@
   },
   {
     "file": "Interval Circuits/Lagoona Seeker Training - 3.2k 81m 6%.gpx",
+    "folder": "Interval Circuits",
     "name": "Lagoona Seeker Training - 3.2k 81m 6%",
     "distance_km": 3.19,
     "elevation_m": 80.5,
@@ -4305,6 +4843,7 @@
   },
   {
     "file": "Interval Circuits/Pikes Peak 20 Min Climb.gpx",
+    "folder": "Interval Circuits",
     "name": "Pikes Peak 20 Min Climb",
     "distance_km": 6.25,
     "elevation_m": 442.3,
@@ -4313,6 +4852,7 @@
   },
   {
     "file": "Interval Circuits/Lookout Fast Loop - 10k 434m.gpx",
+    "folder": "Interval Circuits",
     "name": "Lookout Fast Loop - 10k 434m",
     "distance_km": 10.31,
     "elevation_m": 417.4,
@@ -4321,6 +4861,7 @@
   },
   {
     "file": "Interval Circuits/3 Minute Lookout - 2k 74m 6%.gpx",
+    "folder": "Interval Circuits",
     "name": "3 Minute Lookout - 2k 74m 6%",
     "distance_km": 2.05,
     "elevation_m": 73.3,
@@ -4329,6 +4870,7 @@
   },
   {
     "file": "Interval Circuits/Kapelleberg Interval Loop.gpx",
+    "folder": "Interval Circuits",
     "name": "Kapelleberg Interval Loop",
     "distance_km": 2.49,
     "elevation_m": 50.0,
@@ -4337,6 +4879,7 @@
   },
   {
     "file": "Interval Circuits/Malibu 10 minute Climb.gpx",
+    "folder": "Interval Circuits",
     "name": "Malibu 10 minute Climb",
     "distance_km": 4.39,
     "elevation_m": 252.9,
@@ -4345,6 +4888,7 @@
   },
   {
     "file": "Interval Circuits/Cote de la Tour Interval Route - 1k 40m 11%.gpx",
+    "folder": "Interval Circuits",
     "name": "Cote de la Tour Interval Route - 1k 40m 11%",
     "distance_km": 0.95,
     "elevation_m": 38.3,
@@ -4353,6 +4897,7 @@
   },
   {
     "file": "Interval Circuits/Mur de Huy loop.gpx",
+    "folder": "Interval Circuits",
     "name": "Mur de Huy loop",
     "distance_km": 4.15,
     "elevation_m": 150.8,
@@ -4361,6 +4906,7 @@
   },
   {
     "file": "Interval Circuits/Dak Van Drenthe - 1.3k 49m 8%.gpx",
+    "folder": "Interval Circuits",
     "name": "Dak Van Drenthe - 1.3k 49m 8%",
     "distance_km": 1.32,
     "elevation_m": 48.3,
@@ -4369,6 +4915,7 @@
   },
   {
     "file": "Interval Circuits/Pikes Peak 20 Min Climb Reverse.gpx",
+    "folder": "Interval Circuits",
     "name": "Pikes Peak 20 Min Climb Reverse",
     "distance_km": 6.25,
     "elevation_m": 0,
@@ -4377,6 +4924,7 @@
   },
   {
     "file": "Interval Circuits/Morrison 5 minute repeat.gpx",
+    "folder": "Interval Circuits",
     "name": "Morrison 5 minute repeat",
     "distance_km": 2.25,
     "elevation_m": 80.5,
@@ -4385,6 +4933,7 @@
   },
   {
     "file": "Interval Circuits/Poggio Interval - 4k 127m 3-4%.gpx",
+    "folder": "Interval Circuits",
     "name": "Poggio Interval - 4k 127m 3-4%",
     "distance_km": 5.21,
     "elevation_m": 141.3,
@@ -4393,6 +4942,7 @@
   },
   {
     "file": "Interval Circuits/Paterberg Loop - 1k 50m.gpx",
+    "folder": "Interval Circuits",
     "name": "Paterberg Loop - 1k 50m",
     "distance_km": 0.93,
     "elevation_m": 49.1,
@@ -4401,6 +4951,7 @@
   },
   {
     "file": "Interval Circuits/Morrison 5 minute repeat reverse.gpx",
+    "folder": "Interval Circuits",
     "name": "Morrison 5 minute repeat reverse",
     "distance_km": 2.25,
     "elevation_m": 0,
@@ -4409,6 +4960,7 @@
   },
   {
     "file": "Interval Circuits/5 minute climb repeats - 2.6k 120m 7%.gpx",
+    "folder": "Interval Circuits",
     "name": "5 minute climb repeats - 2.6k 120m 7%",
     "distance_km": 2.64,
     "elevation_m": 120.2,
@@ -4417,6 +4969,7 @@
   },
   {
     "file": "Season 2/Leadville 100 - Turquoise Lake Section.gpx",
+    "folder": "Season 2",
     "name": "Leadville 100 - Turquoise Lake Section",
     "distance_km": 30.41,
     "elevation_m": 767.2,
@@ -4425,6 +4978,7 @@
   },
   {
     "file": "Season 2/Trofeo Palma Short Course.gpx",
+    "folder": "Season 2",
     "name": "Trofeo Palma Short Course",
     "distance_km": 35.51,
     "elevation_m": 178.4,
@@ -4433,6 +4987,7 @@
   },
   {
     "file": "Season 2/Tour of Germany Stage 2.gpx",
+    "folder": "Season 2",
     "name": "Tour of Germany Stage 2",
     "distance_km": 38.01,
     "elevation_m": 185.3,
@@ -4441,6 +4996,7 @@
   },
   {
     "file": "Season 2/Besseges_ITT.gpx",
+    "folder": "Season 2",
     "name": "Besseges_ITT",
     "distance_km": 9.35,
     "elevation_m": 181.8,
@@ -4449,6 +5005,7 @@
   },
   {
     "file": "Season 2/Tour of Germany Stage 1.gpx",
+    "folder": "Season 2",
     "name": "Tour of Germany Stage 1",
     "distance_km": 35.24,
     "elevation_m": 401.7,
@@ -4457,6 +5014,7 @@
   },
   {
     "file": "Season 2/Tour of Germany Stage 3.gpx",
+    "folder": "Season 2",
     "name": "Tour of Germany Stage 3",
     "distance_km": 35.39,
     "elevation_m": 560.1,
@@ -4465,6 +5023,7 @@
   },
   {
     "file": "2013 Tour of Utah/2013 Tour of Utah S1.gpx",
+    "folder": "2013 Tour of Utah",
     "name": "2013 Tour of Utah S1",
     "distance_km": 178.87,
     "elevation_m": 1744.5,
@@ -4473,6 +5032,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Rolling Nebraska.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Rolling Nebraska",
     "distance_km": 50.62,
     "elevation_m": 361.4,
@@ -4481,6 +5041,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Vuelta Burgos S3.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Vuelta Burgos S3",
     "distance_km": 35.72,
     "elevation_m": 369.6,
@@ -4489,6 +5050,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour of Poland S2.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour of Poland S2",
     "distance_km": 39.38,
     "elevation_m": 119.7,
@@ -4497,6 +5059,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Santa Rosalia Baja.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Santa Rosalia Baja",
     "distance_km": 33.19,
     "elevation_m": 312.4,
@@ -4505,6 +5068,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Valentine Bosberg.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Valentine Bosberg",
     "distance_km": 37.52,
     "elevation_m": 348.4,
@@ -4513,6 +5077,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour of Poland S3.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour of Poland S3",
     "distance_km": 37.19,
     "elevation_m": 270.9,
@@ -4521,6 +5086,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Flanders 2026 last hour.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Flanders 2026 last hour",
     "distance_km": 36.38,
     "elevation_m": 360.3,
@@ -4529,6 +5095,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Stage 3 Taiwan .gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Stage 3 Taiwan ",
     "distance_km": 144.96,
     "elevation_m": 1249.4,
@@ -4537,6 +5104,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/GP De Denain 2nd Half.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "GP De Denain 2nd Half",
     "distance_km": 40.66,
     "elevation_m": 192.8,
@@ -4545,6 +5113,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Rollers.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Rollers",
     "distance_km": 47.06,
     "elevation_m": 412.2,
@@ -4553,6 +5122,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/2025 PN Stage 2.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "2025 PN Stage 2",
     "distance_km": 40.21,
     "elevation_m": 305.8,
@@ -4561,6 +5131,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Vuelta Burgos S2.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Vuelta Burgos S2",
     "distance_km": 37.88,
     "elevation_m": 324.8,
@@ -4569,6 +5140,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour of Poland S4.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour of Poland S4",
     "distance_km": 34.22,
     "elevation_m": 396.6,
@@ -4577,6 +5149,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Omloop_First_Half.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Omloop_First_Half",
     "distance_km": 38.5,
     "elevation_m": 303.1,
@@ -4585,6 +5158,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Alula Skyviews Short Course.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Alula Skyviews Short Course",
     "distance_km": 27.88,
     "elevation_m": 569.3,
@@ -4593,6 +5167,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Through Loreto Baja.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Through Loreto Baja",
     "distance_km": 34.3,
     "elevation_m": 194.6,
@@ -4601,6 +5176,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour de Hongrie stage 2 finish.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour de Hongrie stage 2 finish",
     "distance_km": 40.36,
     "elevation_m": 204.7,
@@ -4609,6 +5185,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Grand Prix de Wallonie 1 hour.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Grand Prix de Wallonie 1 hour",
     "distance_km": 36.43,
     "elevation_m": 303.0,
@@ -4617,6 +5194,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Lake Tahoe Loop 2 of 3.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Lake Tahoe Loop 2 of 3",
     "distance_km": 35.27,
     "elevation_m": 332.1,
@@ -4625,6 +5203,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour of Poland S5.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour of Poland S5",
     "distance_km": 35.92,
     "elevation_m": 281.4,
@@ -4633,6 +5212,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Allkin_Flanders_2nd_Half.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Allkin_Flanders_2nd_Half",
     "distance_km": 36.04,
     "elevation_m": 364.1,
@@ -4641,6 +5221,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Vuelta Burgos S1.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Vuelta Burgos S1",
     "distance_km": 35.88,
     "elevation_m": 393.0,
@@ -4649,6 +5230,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour Of Estonia Stage 2 Finish.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour Of Estonia Stage 2 Finish",
     "distance_km": 41.06,
     "elevation_m": 263.0,
@@ -4657,6 +5239,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Allkin_Flanders_1st_Half.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Allkin_Flanders_1st_Half",
     "distance_km": 36.09,
     "elevation_m": 303.8,
@@ -4665,6 +5248,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Vuelta Burgos S4.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Vuelta Burgos S4",
     "distance_km": 37.37,
     "elevation_m": 358.0,
@@ -4673,6 +5257,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Giro 04-26 Finish.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Giro 04-26 Finish",
     "distance_km": 40.56,
     "elevation_m": 249.7,
@@ -4681,6 +5266,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Giro 2026 Stage 9 1 hour version.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Giro 2026 Stage 9 1 hour version",
     "distance_km": 29.63,
     "elevation_m": 634.4,
@@ -4689,6 +5275,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Le Tour de Bretagne Stage 2.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Le Tour de Bretagne Stage 2",
     "distance_km": 38.25,
     "elevation_m": 309.9,
@@ -4697,6 +5284,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/PN6.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "PN6",
     "distance_km": 33.18,
     "elevation_m": 410.4,
@@ -4705,6 +5293,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Stage 3 Taiwan  Finish.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Stage 3 Taiwan  Finish",
     "distance_km": 40.17,
     "elevation_m": 170.1,
@@ -4713,6 +5302,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Giro 01-26 Finish.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Giro 01-26 Finish",
     "distance_km": 36.35,
     "elevation_m": 335.6,
@@ -4721,6 +5311,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tirreno Stage 2.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tirreno Stage 2",
     "distance_km": 37.3,
     "elevation_m": 472.4,
@@ -4729,6 +5320,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Gap of Dunloe (OAB).gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Gap of Dunloe (OAB)",
     "distance_km": 33.63,
     "elevation_m": 545.2,
@@ -4737,6 +5329,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Poland.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Poland",
     "distance_km": 37.02,
     "elevation_m": 395.3,
@@ -4745,6 +5338,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour of Poland S6.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour of Poland S6",
     "distance_km": 31.52,
     "elevation_m": 503.4,
@@ -4753,6 +5347,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Middle of Grassroots Gravel - The Half .gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Middle of Grassroots Gravel - The Half ",
     "distance_km": 34.41,
     "elevation_m": 472.4,
@@ -4761,6 +5356,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Indian Head Oregeon Out and Back.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Indian Head Oregeon Out and Back",
     "distance_km": 17.93,
     "elevation_m": 181.7,
@@ -4769,6 +5365,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Omloop_2nd_Half.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Omloop_2nd_Half",
     "distance_km": 35.71,
     "elevation_m": 372.7,
@@ -4777,6 +5374,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Stage 3 Taiwan  Hills.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Stage 3 Taiwan  Hills",
     "distance_km": 38.87,
     "elevation_m": 290.2,
@@ -4785,6 +5383,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Vietnam Stage 1.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Vietnam Stage 1",
     "distance_km": 39.39,
     "elevation_m": 254.3,
@@ -4793,6 +5392,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Surf Coast 1 Hour.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Surf Coast 1 Hour",
     "distance_km": 44.3,
     "elevation_m": 435.2,
@@ -4801,6 +5401,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour of Albania Stage 5 Finish.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour of Albania Stage 5 Finish",
     "distance_km": 40.78,
     "elevation_m": 139.5,
@@ -4809,6 +5410,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Heda Port to Nishiurakisho.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Heda Port to Nishiurakisho",
     "distance_km": 23.05,
     "elevation_m": 814.2,
@@ -4817,6 +5419,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Bieno Race.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Bieno Race",
     "distance_km": 34.55,
     "elevation_m": 460.2,
@@ -4825,6 +5428,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Vuelta 26 Stage 3 Start.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Vuelta 26 Stage 3 Start",
     "distance_km": 37.4,
     "elevation_m": 228.9,
@@ -4833,6 +5437,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Northern Scotland 4 of 4.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Northern Scotland 4 of 4",
     "distance_km": 35.78,
     "elevation_m": 325.5,
@@ -4841,6 +5446,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Great Ocean Road Race 1hr.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Great Ocean Road Race 1hr",
     "distance_km": 35.18,
     "elevation_m": 377.9,
@@ -4849,6 +5455,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour de Okinawa.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour de Okinawa",
     "distance_km": 31.52,
     "elevation_m": 415.1,
@@ -4857,6 +5464,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tano - Toyo.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tano - Toyo",
     "distance_km": 42.62,
     "elevation_m": 951.6,
@@ -4865,6 +5473,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Cro Race Stage 1.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Cro Race Stage 1",
     "distance_km": 40.31,
     "elevation_m": 346.5,
@@ -4873,6 +5482,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Tour of Poland S1.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Tour of Poland S1",
     "distance_km": 39.83,
     "elevation_m": 255.7,
@@ -4881,6 +5491,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Stage 2 Dauphine 2026.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "Stage 2 Dauphine 2026",
     "distance_km": 39.45,
     "elevation_m": 376.3,
@@ -4889,6 +5500,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/PN Stage 6 2026.gpx",
+    "folder": "1 Hour Point to Point Races",
     "name": "PN Stage 6 2026",
     "distance_km": 33.04,
     "elevation_m": 406.2,
@@ -4897,6 +5509,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S6.gpx",
+    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
     "name": "Volta a Portugal 26 S6",
     "distance_km": 33.36,
     "elevation_m": 499.4,
@@ -4905,6 +5518,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S2.gpx",
+    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
     "name": "Volta a Portugal 26 S2",
     "distance_km": 35.99,
     "elevation_m": 334.6,
@@ -4913,6 +5527,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S1.gpx",
+    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
     "name": "Volta a Portugal 26 S1",
     "distance_km": 32.8,
     "elevation_m": 475.5,
@@ -4921,6 +5536,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S4.gpx",
+    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
     "name": "Volta a Portugal 26 S4",
     "distance_km": 31.43,
     "elevation_m": 573.2,
@@ -4929,6 +5545,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S3.gpx",
+    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
     "name": "Volta a Portugal 26 S3",
     "distance_km": 37.14,
     "elevation_m": 365.1,
@@ -4937,6 +5554,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S5 iTT.gpx",
+    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
     "name": "Volta a Portugal 26 S5 iTT",
     "distance_km": 17.06,
     "elevation_m": 202.3,
@@ -4945,6 +5563,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Arctic Tour Norway S4.gpx",
+    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
     "name": "Arctic Tour Norway S4",
     "distance_km": 32.46,
     "elevation_m": 451.6,
@@ -4953,6 +5572,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Artic Tour Norway S1.gpx",
+    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
     "name": "Artic Tour Norway S1",
     "distance_km": 35.59,
     "elevation_m": 254.7,
@@ -4961,6 +5581,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Arctic Tour Norway S3.gpx",
+    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
     "name": "Arctic Tour Norway S3",
     "distance_km": 25.91,
     "elevation_m": 574.1,
@@ -4969,6 +5590,7 @@
   },
   {
     "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Artic Tour Norway S2.gpx",
+    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
     "name": "Artic Tour Norway S2",
     "distance_km": 38.29,
     "elevation_m": 140.7,
@@ -4977,6 +5599,7 @@
   },
   {
     "file": "2026 Tour Down Under/TDU Stage 1 - Tanunda - 31k 353m.gpx",
+    "folder": "2026 Tour Down Under",
     "name": "TDU Stage 1 - Tanunda - 31k 353m",
     "distance_km": 31.38,
     "elevation_m": 353.0,
@@ -4985,6 +5608,7 @@
   },
   {
     "file": "2026 Tour Down Under/TDU Stage 5 Circuit - Stirling - 21k 398m.gpx",
+    "folder": "2026 Tour Down Under",
     "name": "TDU Stage 5 Circuit - Stirling - 21k 398m",
     "distance_km": 21.18,
     "elevation_m": 436.2,
@@ -4993,6 +5617,7 @@
   },
   {
     "file": "2026 Tour Down Under/TDU Stage 4 - Willunga - 36k 490m.gpx",
+    "folder": "2026 Tour Down Under",
     "name": "TDU Stage 4 - Willunga - 36k 490m",
     "distance_km": 35.85,
     "elevation_m": 533.2,
@@ -5001,6 +5626,7 @@
   },
   {
     "file": "2026 Tour Down Under/TDU Stage 3 - Nairne - 38k 531m.gpx",
+    "folder": "2026 Tour Down Under",
     "name": "TDU Stage 3 - Nairne - 38k 531m",
     "distance_km": 37.56,
     "elevation_m": 528.2,
@@ -5009,6 +5635,7 @@
   },
   {
     "file": "2026 Tour Down Under/2026 TDU Prologue - 3.5k 27m.gpx",
+    "folder": "2026 Tour Down Under",
     "name": "2026 TDU Prologue - 3.5k 27m",
     "distance_km": 3.57,
     "elevation_m": 27.0,
@@ -5017,6 +5644,7 @@
   },
   {
     "file": "2026 Tour Down Under/TDU Stage 2 - Uraidla - 25k 689m.gpx",
+    "folder": "2026 Tour Down Under",
     "name": "TDU Stage 2 - Uraidla - 25k 689m",
     "distance_km": 25.14,
     "elevation_m": 688.3,
