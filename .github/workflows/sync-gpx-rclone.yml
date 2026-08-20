@@ -1,0 +1,42 @@
+name: Sync GPX from Google Driveon:schedule:- cron: '0 0 * * *' # Runs automatically once a day at midnight UTCworkflow_dispatch: # Allows manual trigger from the GitHub Actions tabpermissions:contents: writejobs:sync:runs-on: ubuntu-lateststeps:- name: Checkout repositoryuses: actions/checkout@v5  - name: Setup rclone
+    uses: animoconsulting/setup-rclone@v1
+    with:
+      rclone_version: 'current'
+
+  - name: Sync from Google Drive
+    env:
+      # The ID of your shared Google Drive folder
+      GDRIVE_FOLDER_ID: 1sCljOatUhO2-WRC-N9j3a1Y6Wp8xwyOU
+      # Your Google Service Account JSON key, stored as a GitHub Secret
+      SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+    run: |
+      # 1. Create a temporary rclone config file
+      cat <<EOF > rclone.conf
+      [gdrive]
+      type = drive
+      scope = drive.readonly
+      service_account_credentials = ${SERVICE_ACCOUNT_JSON}
+      root_folder_id = ${GDRIVE_FOLDER_ID}
+      EOF
+      
+      # 2. Ensure target directory exists
+      mkdir -p gpx
+      
+      # 3. Sync only .gpx files using rclone
+      # --config specifies our temp config
+      # --update skips files that haven't changed
+      # --include filters for .gpx and .GPX files
+      rclone sync gdrive: gpx/ \
+        --config rclone.conf \
+        --update \
+        --include='*.{gpx,GPX}' \
+        --verbose
+      
+      # 4. Clean up config (best practice, though Actions environments are ephemeral)
+      rm rclone.conf
+
+  - name: Commit and push changes
+    uses: stefanzweifel/git-auto-commit-action@v7
+    with:
+      commit_message: "sync: update GPX files from Google Drive"
+      file_pattern: "gpx/**"
