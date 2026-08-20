@@ -55,33 +55,138 @@ jobs:
         run: |
           pip install gpxpy
           python -c '
-          import os, json, gpxpy
+          import os, json, gpxpy, math
+
+          def haversine(lat1, lon1, lat2, lon2):
+              R = 6371.0
+              dlat = math.radians(lat2 - lat1)
+              dlon = math.radians(lon2 - lon1)
+              a = math.sin(dlat / 2)**2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2)**2
+              c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+              return R * c
+
+          def calculate_profile(gpx):
+              points = []
+              total_dist = 0.0
+              last_pt = None
+              
+              for track in gpx.tracks:
+                  for segment in track.segments:
+                      for pt in segment.points:
+                          if last_pt:
+                              dist = haversine(last_pt.latitude, last_pt.longitude, pt.latitude, pt.longitude)
+                              total_dist += dist
+                          points.append({"dist": total_dist, "ele": pt.elevation or 0})
+                          last_pt = pt
+
+              if not points or total_dist == 0: 
+                  return 0, "Flat, flat finish"
+
+              # 1. Smooth Elevation (window=3)
+              smoothed = []
+              for i in range(len(points)):
+                  start = max(0, i - 3)
+                  end = min(len(points), i + 4)
+                  avg_ele = sum(p["ele"] for p in points[start:end]) / (end - start)
+                  smoothed.append({"dist": points[i]["dist"], "ele": avg_ele})
+              
+              # 2. Chunking (0.1km)
+              chunks = []
+              i = 0
+              while i < len(smoothed):
+                  start_p = smoothed[i]
+                  j = i + 1
+                  while j < len(smoothed) and smoothed[j]["dist"] - start_p["dist"] < 0.1:
+                      j += 1
+                  if j < len(smoothed):
+                      end_p = smoothed[j]
+                      dist = end_p["dist"] - start_p["dist"]
+                      gain = end_p["ele"] - start_p["ele"]
+                      grad = (gain / (dist * 1000)) * 100 if dist > 0 else 0
+                      chunks.append({"start": start_p["dist"], "end": end_p["dist"], "gain": gain, "grad": grad})
+                      i = j - 1
+                  else:
+                      break
+
+              # 3. Identify Uphill Runs (>1.5% gradient)
+              runs = []
+              cur = None
+              for c in chunks:
+                  if c["grad"] > 1.5:
+                      if not cur:
+                          cur = {"start": c["start"], "end": c["end"], "gain": c["gain"], "chunks": [c]}
+                      else:
+                          cur["end"] = c["end"]
+                          cur["gain"] += c["gain"]
+                          cur["chunks"].append(c)
+                  else:
+                      if cur:
+                          runs.append(cur)
+                          cur = None
+              if cur: runs.append(cur)
+              runs = [r for r in runs if r["gain"] >= 8]
+
+              # 4. Merge Runs (gap <= 0.35km)
+              climbs = []
+              cur = None
+              for r in runs:
+                  if not cur:
+                      cur = dict(r)
+                  else:
+                      if r["start"] - cur["end"] <= 0.35:
+                          cur["end"] = r["end"]
+                          cur["gain"] += r["gain"]
+                          cur["chunks"].extend(r["chunks"])
+                      else:
+                          climbs.append(cur)
+                          cur = dict(r)
+              if cur: climbs.append(cur)
+
+              # 5. Score
+              total_score = 0
+              has_uphill_finish = False
+              for c in climbs:
+                  if c["gain"] > 20:
+                      length_km = c["end"] - c["start"]
+                      grad_avg = (c["gain"] / (length_km * 1000)) * 100 if length_km > 0 else 0
+                      max_grad = max((chk["grad"] for chk in c["chunks"]), default=0)
+                      
+                      if not (grad_avg < 2 and max_grad < 3):
+                          raw_score = (grad_avg / 2)**2 * length_km
+                          dff = total_dist - c["end"]
+                          
+                          mult = 0.2
+                          if dff <= 10: mult = 1.0
+                          elif dff <= 25: mult = 0.8
+                          elif dff <= 50: mult = 0.6
+                          elif dff <= 75: mult = 0.4
+                          
+                          total_score += raw_score * mult
+                          if dff <= 1.0:
+                              has_uphill_finish = True
+
+              # 6. Stage Type
+              ratio = total_score / 80 if total_dist >= 40 else total_score / (2 * total_dist)
+              terrain = "Climbing" if ratio >= 0.56 else "Hilly" if ratio >= 0.25 else "Flat"
+              finish = "uphill finish" if has_uphill_finish else "flat finish"
+              
+              return round(total_score, 1), f"{terrain}, {finish}"
 
           data = []
-          # os.walk recursively searches all subfolders
           for root, dirs, files in os.walk("gpx"):
               for file in files:
                   if file.lower().endswith(".gpx"):
                       f_name = os.path.join(root, file)
-                      
                       try:
                           with open(f_name, "r", encoding="utf-8") as f:
                               gpx = gpxpy.parse(f)
-                              
-                              # Use the file name (without .gpx) instead of internal metadata
                               name = os.path.splitext(file)[0]
                               
-                              # Extract distance and elevation
+                              # Extract distance, elevation, and calculate custom metrics
                               dist = (gpx.length_2d() / 1000) if gpx.length_2d() else 0
                               up, _ = gpx.get_uphill_downhill()
+                              profile_score, stage_type = calculate_profile(gpx)
                               
-                              # Get starting coordinates
-                              lat, lon = None, None
-                              if gpx.tracks and gpx.tracks[0].segments and gpx.tracks[0].segments[0].points:
-                                  pt = gpx.tracks[0].segments[0].points[0]
-                                  lat, lon = round(pt.latitude, 4), round(pt.longitude, 4)
-                              
-                              # Save the relative path so HTML download links work
                               rel_path = os.path.relpath(f_name, "gpx")
                               
                               data.append({
@@ -89,8 +194,8 @@ jobs:
                                   "name": name,
                                   "distance_km": round(dist, 2),
                                   "elevation_m": round(up if up else 0, 1),
-                                  "lat": lat,
-                                  "lon": lon
+                                  "profile_score": profile_score,
+                                  "stage_type": stage_type
                               })
                       except Exception as e:
                           print(f"Skipped {f_name}: {e}")
