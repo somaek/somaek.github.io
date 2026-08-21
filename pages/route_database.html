@@ -1,53 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Route Database</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.development.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
         
         .font-oswald { font-family: 'Oswald', sans-serif; }
         .font-roboto { font-family: 'Roboto', sans-serif; }
-        body { font-family: 'Roboto', sans-serif; background-color: #2c0c5c; }
+        
+        :root {
+            --bg-body: #f3f4f6; /* gray-100 */
+            --text-body: #111827; /* gray-900 */
+            --scroll-track: #e5e7eb;
+            --scroll-thumb: #9ca3af;
+            --scroll-thumb-hover: #2563eb; /* blue-600 */
+            --select-arrow: url("data:image/svg+xml;utf8,<svg fill='%23111827' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        }
+        
+        .dark {
+            --bg-body: #2c0c5c;
+            --text-body: #ffffff;
+            --scroll-track: #2c0c5c;
+            --scroll-thumb: #6c3f9c;
+            --scroll-thumb-hover: #00FFFF;
+            --select-arrow: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        }
+
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background-color: var(--bg-body); 
+            color: var(--text-body);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
         h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; }
         
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #2c0c5c; }
-        ::-webkit-scrollbar-thumb { background: #6c3f9c; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
+        ::-webkit-scrollbar-track { background: var(--scroll-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
 
         /* Custom Select Arrow Styling */
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-image: var(--select-arrow);
             background-repeat: no-repeat;
             background-position-x: 98%;
             background-position-y: 50%;
         }
         select option {
-            background-color: #1a053a;
-            color: white;
+            background-color: var(--bg-body);
+            color: var(--text-body);
         }
 
         /* Print styles for route profile */
         @media print {
             .print\:hidden { display: none !important; }
-            body { background-color: white !important; }
+            body { background-color: white !important; color: black !important; }
             .print\:text-black { color: black !important; }
             .print\:bg-white { background-color: white !important; }
             .print\:border-black { border-color: black !important; }
-            .bg-\[\#2c0c5c\], .bg-\[\#4a217c\] { background-color: #f0f0f0 !important; }
+            .bg-\[\#2c0c5c\], .bg-\[\#4a217c\], .dark\:bg-\[\#2c0c5c\], .dark\:bg-\[\#4a217c\] { background-color: #f0f0f0 !important; }
             table, th, td { color: black !important; }
-            .print\:text-green-400, .print\:text-lime-400, .print\:text-yellow-400, .print\:text-amber-400, .print\:text-orange-400, .print\:text-red-400, .print\:text-red-500, .print\:text-red-600, .print\:text-red-700, .print\:text-red-800 { color: black !important; }
-            .print\:bg-green-900\/30, .print\:bg-lime-900\/30, .print\:bg-yellow-900\/30, .print\:bg-amber-900\/30, .print\:bg-orange-900\/30, .print\:bg-red-900\/30, .print\:bg-red-900\/40, .print\:bg-red-900\/50, .print\:bg-red-900\/60, .print\:bg-red-900\/70 { background-color: #f0f0f0 !important; }
         }
     </style>
 </head>
@@ -58,7 +87,6 @@
     <script type="text/babel">
         const { useState, useEffect, useMemo, useRef } = React;
 
-        // Icons
         const Activity = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12H18l-5 9L9 3l-5 9H2"/></svg>;
         const Download = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>;
         const ArrowUpDown = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>;
@@ -71,12 +99,13 @@
         const MapIcon = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" x2="8" y1="2" y2="18"/><line x1="16" x2="16" y1="6" y2="22"/></svg>;
         const Flag = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>;
         const FileText = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>;
-        const Eye = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>;
         const ArrowLeft = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>;
         const Loader = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`animate-spin ${props.className}`}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>;
+        const Sun = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>;
+        const Moon = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>;
 
         const haversineDistance = (lat1, lon1, lat2, lon2) => {
-            const R = 6371; // Radius in km
+            const R = 6371;
             const dLat = (lat2 - lat1) * (Math.PI / 180);
             const dLon = (lon2 - lon1) * (Math.PI / 180);
             const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
@@ -123,17 +152,18 @@
         };
 
         const getScoreClass = (score) => {
-            if (score >= 46) return 'text-red-300 print:text-red-800 bg-red-900/70';
-            if (score >= 41) return 'text-red-300 print:text-red-700 bg-red-900/60';
-            if (score >= 36) return 'text-red-300 print:text-red-600 bg-red-900/50';
-            if (score >= 31) return 'text-red-300 print:text-red-500 bg-red-900/40';
-            if (score >= 26) return 'text-red-300 print:text-red-400 bg-red-900/30';
-            if (score >= 21) return 'text-orange-300 print:text-orange-400 bg-orange-900/30';
-            if (score >= 16) return 'text-amber-300 print:text-amber-400 bg-amber-900/30';
-            if (score >= 11) return 'text-yellow-300 print:text-yellow-400 bg-yellow-900/30';
-            if (score >= 6) return 'text-lime-300 print:text-lime-400 bg-lime-900/30';
-            return 'text-green-400 print:text-green-300 bg-green-900/30';
+            if (score >= 46) return 'text-red-700 dark:text-red-300 print:text-red-800 bg-red-100 dark:bg-red-900/70 border border-red-200 dark:border-transparent';
+            if (score >= 41) return 'text-red-600 dark:text-red-300 print:text-red-700 bg-red-100 dark:bg-red-900/60 border border-red-200 dark:border-transparent';
+            if (score >= 36) return 'text-red-600 dark:text-red-300 print:text-red-600 bg-red-100 dark:bg-red-900/50 border border-red-200 dark:border-transparent';
+            if (score >= 31) return 'text-red-500 dark:text-red-300 print:text-red-500 bg-red-100 dark:bg-red-900/40 border border-red-200 dark:border-transparent';
+            if (score >= 26) return 'text-red-500 dark:text-red-300 print:text-red-400 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-transparent';
+            if (score >= 21) return 'text-orange-600 dark:text-orange-300 print:text-orange-400 bg-orange-100 dark:bg-orange-900/30 border border-orange-200 dark:border-transparent';
+            if (score >= 16) return 'text-amber-600 dark:text-amber-300 print:text-amber-400 bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-transparent';
+            if (score >= 11) return 'text-yellow-600 dark:text-yellow-300 print:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-200 dark:border-transparent';
+            if (score >= 6) return 'text-lime-600 dark:text-lime-300 print:text-lime-400 bg-lime-100 dark:bg-lime-900/30 border border-lime-200 dark:border-transparent';
+            return 'text-green-600 dark:text-green-400 print:text-green-300 bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-transparent';
         };
+        
         const getClimbCategory = (score) => {
             if (score < 10) return null;
             if (score > 150) return 'HC';
@@ -167,7 +197,6 @@
             const points = smoothElevation(pointsWithDist, 3);
             const totalDistance = totalDist;
 
-            // Route analysis logic
             const CHUNK_SIZE = 0.1;
             const MIN_UPHILL_GRADIENT = 1.5;
             const MAX_MERGE_GAP_KM = 0.35;
@@ -255,25 +284,24 @@
         };
 
         const StatCard = ({ title, value, icon, highlight }) => {
-            const PRIMARY_ACCENT = '#00FFFF';
-            const SECONDARY_ACCENT = '#ff4500';
-            const baseIconClass = highlight ? `text-[${SECONDARY_ACCENT}]` : 'text-neutral-300';
+            const baseIconClass = highlight ? `text-blue-600 dark:text-[#ff4500]` : 'text-gray-500 dark:text-neutral-300';
             const clonedIcon = React.cloneElement(icon, { className: `w-5 h-5 ${baseIconClass} print:text-black` });
+            
             return (
-                <div className={`p-4 rounded-sm border flex flex-col justify-between relative overflow-hidden group ${highlight ? `bg-[#2c0c5c] border-[${SECONDARY_ACCENT}]/50` : `bg-[#4a217c] border-[#6c3f9c]`} print:bg-white print:border-black print:text-black`}>
-                    {highlight && <div className={`absolute top-0 right-0 w-16 h-16 bg-[${SECONDARY_ACCENT}]/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden`}></div>}
+                <div className={`p-4 rounded-sm border flex flex-col justify-between relative overflow-hidden group ${highlight ? `bg-blue-50 border-blue-200 dark:bg-[#2c0c5c] dark:border-[#ff4500]/50` : `bg-white border-gray-300 dark:bg-[#4a217c] dark:border-[#6c3f9c]`} print:bg-white print:border-black print:text-black transition-colors`}>
+                    {highlight && <div className={`absolute top-0 right-0 w-16 h-16 bg-blue-500/10 dark:bg-[#ff4500]/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden`}></div>}
                     <div className="flex justify-between items-start mb-2 relative z-10">
-                        <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? `text-[${SECONDARY_ACCENT}] print:text-black` : 'text-neutral-400 print:text-black/70'}`}>{title}</span>
+                        <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? `text-blue-700 dark:text-[#ff4500] print:text-black` : 'text-gray-500 dark:text-neutral-400 print:text-black/70'}`}>{title}</span>
                         {clonedIcon}
                     </div>
-                    <div className={`text-2xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-white print:text-black' : 'text-neutral-100 print:text-black'}`}>
+                    <div className={`text-2xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-blue-900 dark:text-white print:text-black' : 'text-gray-900 dark:text-neutral-100 print:text-black'}`}>
                         {value}
                     </div>
                 </div>
             );
         };
 
-        const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle }) => {
+        const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle, isDarkMode }) => {
             const displayPoints = useMemo(() => {
                 if (points.length < 500) return points;
                 const factor = Math.floor(points.length / 500);
@@ -326,46 +354,50 @@
             const xLabels = [];
             for (let i = 1; i <= 4; i++) xLabels.push({ dist: distInterval * i, x: getX(distInterval * i) });
 
+            const gridColor = isDarkMode ? "#6c3f9c" : "#cbd5e1";
+            const mainLineColor = isDarkMode ? "#00FFFF" : "#2563eb";
+            const textColor = isDarkMode ? "#ccc" : "#64748b";
+
             return (
                 <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full preserve-3d">
                     <defs>
                         <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                            <stop offset="0%" stopColor="#00FFFF" stopOpacity="0.3" />
-                            <stop offset="100%" stopColor="#00FFFF" stopOpacity="0.0" />
+                            <stop offset="0%" stopColor={mainLineColor} stopOpacity={isDarkMode ? "0.3" : "0.15"} />
+                            <stop offset="100%" stopColor={mainLineColor} stopOpacity="0.0" />
                         </linearGradient>
                     </defs>
-                    <line x1={hPadding} y1={height - vPadding} x2={width - hPadding} y2={height - vPadding} stroke="#6c3f9c" strokeWidth="1" />
-                    <line x1={hPadding} y1={vPadding} x2={hPadding} y2={height - vPadding} stroke="#6c3f9c" strokeWidth="1" />
+                    <line x1={hPadding} y1={height - vPadding} x2={width - hPadding} y2={height - vPadding} stroke={gridColor} strokeWidth="1" />
+                    <line x1={hPadding} y1={vPadding} x2={hPadding} y2={height - vPadding} stroke={gridColor} strokeWidth="1" />
 
                     {gridLines.map((line, i) => (
-                        <line key={i} x1={hPadding} y1={line.y} x2={width - hPadding} y2={line.y} stroke="#6c3f9c" strokeWidth="0.5" strokeDasharray="4 4" />
+                        <line key={i} x1={hPadding} y1={line.y} x2={width - hPadding} y2={line.y} stroke={gridColor} strokeWidth="0.5" strokeDasharray="4 4" />
                     ))}
                     {xLabels.map((label, i) => (
-                        <line key={`x-${i}`} x1={label.x} y1={vPadding} x2={label.x} y2={height - vPadding} stroke="#6c3f9c" strokeWidth="0.5" strokeDasharray="4 4" />
+                        <line key={`x-${i}`} x1={label.x} y1={vPadding} x2={label.x} y2={height - vPadding} stroke={gridColor} strokeWidth="0.5" strokeDasharray="4 4" />
                     ))}
 
                     <path d={fillD} fill="url(#gradient)" opacity="0.6" />
-                    {climbData.map((c) => <path key={`fill-${c.key}`} d={c.fillD} fill={c.color} opacity="0.4" stroke="none" />)}
+                    {climbData.map((c) => <path key={`fill-${c.key}`} d={c.fillD} fill={c.color} opacity={isDarkMode ? "0.4" : "0.2"} stroke="none" />)}
                     
-                    <path d={pathD} stroke="#00FFFF" strokeWidth="2.0" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d={pathD} stroke={mainLineColor} strokeWidth="2.0" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     
                     {climbData.map((c) => <path key={`line-${c.key}`} d={c.lineD} stroke={c.color} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />)}
                     {climbData.map((c) => (
-                        <text key={`num-${c.id}`} x={c.numberCoords.x} y={c.numberCoords.y} dx="-5" fill={c.color} fontSize="12" fontWeight="bold" textAnchor="middle" fontFamily="Oswald" className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                        <text key={`num-${c.id}`} x={c.numberCoords.x} y={c.numberCoords.y} dx="-5" fill={c.color} fontSize="12" fontWeight="bold" textAnchor="middle" fontFamily="Oswald" className="drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                             {c.id}
                         </text>
                     ))}
 
-                    <text x={hPadding} y={height} fill="#ccc" fontSize="10" dy="-5" fontFamily="Roboto">0km</text>
-                    <text x={width - hPadding} y={height} fill="#ccc" fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto">{totalDistance.toFixed(0)}km</text>
+                    <text x={hPadding} y={height} fill={textColor} fontSize="10" dy="-5" fontFamily="Roboto">0km</text>
+                    <text x={width - hPadding} y={height} fill={textColor} fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto">{totalDistance.toFixed(0)}km</text>
                     {xLabels.map((label, i) => (
-                        <text key={`l-x-${i}`} x={label.x} y={height} fill="#ccc" fontSize="10" textAnchor="middle" dy="-5" fontFamily="Roboto">{label.dist.toFixed(0)}km</text>
+                        <text key={`l-x-${i}`} x={label.x} y={height} fill={textColor} fontSize="10" textAnchor="middle" dy="-5" fontFamily="Roboto">{label.dist.toFixed(0)}km</text>
                     ))}
 
-                    <text x={hPadding} y={vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto">{Math.round(effectiveMaxEle)}m</text>
-                    <text x={hPadding} y={height - vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto">{Math.round(minEle)}m</text>
+                    <text x={hPadding} y={vPadding} fill={textColor} fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto">{Math.round(effectiveMaxEle)}m</text>
+                    <text x={hPadding} y={height - vPadding} fill={textColor} fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto">{Math.round(minEle)}m</text>
                     {gridLines.map((line, i) => (
-                        <text key={`l-y-${i}`} x={hPadding} y={line.y} fill="#ccc" fontSize="10" textAnchor="end" dy="3" dx="-5" fontFamily="Roboto">{Math.round(line.ele)}m</text>
+                        <text key={`l-y-${i}`} x={hPadding} y={line.y} fill={textColor} fontSize="10" textAnchor="end" dy="3" dx="-5" fontFamily="Roboto">{Math.round(line.ele)}m</text>
                     ))}
                 </svg>
             );
@@ -391,25 +423,25 @@
             }, [climb, allPoints]);
 
             return (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
-                    <div className="bg-[#2c0c5c] border border-[#6c3f9c] rounded-lg shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto flex flex-col" onClick={e => e.stopPropagation()}>
-                        <div className="flex justify-between items-center p-5 border-b border-[#6c3f9c] bg-[#4a217c] sticky top-0 z-10">
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-gray-900/40 dark:bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
+                    <div className="bg-gray-50 dark:bg-[#2c0c5c] border border-gray-300 dark:border-[#6c3f9c] rounded-lg shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto flex flex-col transition-colors" onClick={e => e.stopPropagation()}>
+                        <div className="flex justify-between items-center p-5 border-b border-gray-300 dark:border-[#6c3f9c] bg-white dark:bg-[#4a217c] sticky top-0 z-10 transition-colors">
                             <div>
-                                <h2 className="text-xl font-bold font-oswald text-white uppercase tracking-wide flex items-center gap-3">
-                                    <span className="bg-[#00FFFF] text-black px-2 py-0.5 rounded text-lg">#{climb.id}</span>
+                                <h2 className="text-xl font-bold font-oswald text-gray-900 dark:text-white uppercase tracking-wide flex items-center gap-3">
+                                    <span className="bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black px-2 py-0.5 rounded text-lg">#{climb.id}</span>
                                     Segment Breakdown
                                 </h2>
-                                <div className="text-neutral-300 text-sm mt-1 flex gap-4">
-                                    <span>Length: <strong className="text-white">{climb.lengthKm.toFixed(2)} km</strong></span>
-                                    <span>Avg Grade: <strong className="text-white">{climb.gradientAvg.toFixed(1)}%</strong></span>
-                                    <span>Gain: <strong className="text-white">{climb.gain.toFixed(0)} m</strong></span>
+                                <div className="text-gray-600 dark:text-neutral-300 text-sm mt-1 flex gap-4">
+                                    <span>Length: <strong className="text-gray-900 dark:text-white">{climb.lengthKm.toFixed(2)} km</strong></span>
+                                    <span>Avg Grade: <strong className="text-gray-900 dark:text-white">{climb.gradientAvg.toFixed(1)}%</strong></span>
+                                    <span>Gain: <strong className="text-gray-900 dark:text-white">{climb.gain.toFixed(0)} m</strong></span>
                                 </div>
                             </div>
-                            <button onClick={onClose} className="p-2 hover:bg-[#6c3f9c] rounded-full transition-colors text-white"><X className="w-6 h-6" /></button>
+                            <button onClick={onClose} className="p-2 hover:bg-gray-200 dark:hover:bg-[#6c3f9c] rounded-full transition-colors text-gray-700 dark:text-white"><X className="w-6 h-6" /></button>
                         </div>
                         <div className="p-6 overflow-x-auto">
                             <table className="w-full text-sm text-left">
-                                <thead className="bg-[#4a217c] text-neutral-300 font-oswald uppercase text-xs">
+                                <thead className="bg-gray-200 dark:bg-[#4a217c] text-gray-700 dark:text-neutral-300 font-oswald uppercase text-xs transition-colors">
                                     <tr>
                                         <th className="px-4 py-2">Segment</th>
                                         <th className="px-4 py-2">Start (km)</th>
@@ -418,15 +450,15 @@
                                         <th className="px-4 py-2">Visual</th>
                                     </tr>
                                 </thead>
-                                <tbody className="text-white">
+                                <tbody className="text-gray-900 dark:text-white">
                                     {segments.map((seg, i) => (
-                                        <tr key={i} className="border-b border-[#6c3f9c] last:border-0 hover:bg-[#6c3f9c]/30">
+                                        <tr key={i} className="border-b border-gray-200 dark:border-[#6c3f9c] last:border-0 hover:bg-gray-200/50 dark:hover:bg-[#6c3f9c]/30">
                                             <td className="px-4 py-2 font-bold">{i+1}</td>
-                                            <td className="px-4 py-2 text-neutral-400">{seg.startDist.toFixed(2)}</td>
-                                            <td className="px-4 py-2 text-neutral-400">{seg.endDist.toFixed(2)}</td>
+                                            <td className="px-4 py-2 text-gray-500 dark:text-neutral-400">{seg.startDist.toFixed(2)}</td>
+                                            <td className="px-4 py-2 text-gray-500 dark:text-neutral-400">{seg.endDist.toFixed(2)}</td>
                                             <td className="px-4 py-2 font-bold" style={{ color: getGradientColor(seg.gradient) }}>{seg.gradient.toFixed(1)}%</td>
                                             <td className="px-4 py-2">
-                                                <div className="w-full h-2 bg-[#1a053a] rounded-full overflow-hidden">
+                                                <div className="w-full h-2 bg-gray-200 dark:bg-[#1a053a] rounded-full overflow-hidden">
                                                     <div className="h-full rounded-full" style={{ width: `${Math.min(100, (seg.gradient / 15) * 100)}%`, backgroundColor: getGradientColor(seg.gradient) }}></div>
                                                 </div>
                                             </td>
@@ -440,32 +472,32 @@
             );
         };
 
-        const RouteProfileModal = ({ profileData, onClose, onDownload }) => {
+        const RouteProfileModal = ({ profileData, onClose, onDownload, isDarkMode }) => {
             const [selectedClimb, setSelectedClimb] = useState(null);
             
             return (
-                <div className="fixed inset-0 z-50 bg-[#2c0c5c] overflow-y-auto print:bg-white text-white font-roboto">
+                <div className="fixed inset-0 z-50 bg-gray-100 dark:bg-[#2c0c5c] overflow-y-auto print:bg-white text-gray-900 dark:text-white font-roboto transition-colors">
                     <div className="max-w-6xl mx-auto space-y-6 p-4 md:p-8 pt-6">
                         {/* Header Bar */}
-                        <div className="flex justify-between items-center border-b border-[#6c3f9c] pb-4 sticky top-0 bg-[#2c0c5c] z-20 pt-2 print:hidden">
+                        <div className="flex justify-between items-center border-b border-gray-300 dark:border-[#6c3f9c] pb-4 sticky top-0 bg-gray-100 dark:bg-[#2c0c5c] z-20 pt-2 print:hidden transition-colors">
                             <div className="flex items-center gap-4">
-                                <button onClick={onClose} className="p-2 bg-[#4a217c] hover:bg-[#00FFFF] text-white hover:text-black rounded-sm border border-[#6c3f9c] transition-colors shadow-md group">
+                                <button onClick={onClose} className="p-2 bg-white dark:bg-[#4a217c] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-700 dark:text-white hover:text-white dark:hover:text-black rounded-sm border border-gray-300 dark:border-[#6c3f9c] transition-colors shadow-md group">
                                     <ArrowLeft className="w-5 h-5" />
                                 </button>
                                 <div>
-                                    <h1 className="text-2xl md:text-3xl font-bold tracking-wide uppercase text-white font-oswald flex flex-col md:flex-row md:items-center gap-2">
+                                    <h1 className="text-2xl md:text-3xl font-bold tracking-wide uppercase text-gray-900 dark:text-white font-oswald flex flex-col md:flex-row md:items-center gap-2">
                                         {profileData.name}
                                         {profileData.folder && (
-                                            <span className="text-sm bg-[#4a217c] text-neutral-300 px-2 py-0.5 rounded border border-[#6c3f9c] flex items-center w-fit gap-1"><FolderIcon className="w-3 h-3"/> {profileData.folder}</span>
+                                            <span className="text-sm bg-gray-200 dark:bg-[#4a217c] text-gray-600 dark:text-neutral-300 px-2 py-0.5 rounded border border-gray-300 dark:border-[#6c3f9c] flex items-center w-fit gap-1"><FolderIcon className="w-3 h-3"/> {profileData.folder}</span>
                                         )}
                                     </h1>
-                                    <p className="text-neutral-300 text-xs tracking-widest uppercase font-oswald mt-1 text-[#ff4500]">GPX PROFILE ANALYSIS</p>
+                                    <p className="text-gray-500 dark:text-neutral-300 text-xs tracking-widest uppercase font-oswald mt-1 text-blue-600 dark:text-[#ff4500]">GPX PROFILE ANALYSIS</p>
                                 </div>
                             </div>
                             <div>
                                 <button 
                                     onClick={onDownload}
-                                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#4a217c] hover:bg-[#00FFFF] text-white hover:text-black font-oswald tracking-widest uppercase text-sm border border-[#6c3f9c] hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer"
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#4a217c] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-700 dark:text-white hover:text-white dark:hover:text-black font-oswald tracking-widest uppercase text-sm border border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600 dark:hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer"
                                     title="Download GPX"
                                 >
                                     <Download className="w-4 h-4" />
@@ -483,47 +515,47 @@
                         </div>
 
                         {/* Elevation Chart */}
-                        <div className="bg-[#4a217c] rounded-sm p-4 md:p-6 border border-[#6c3f9c] shadow-xl overflow-hidden print:bg-white print:border-black relative">
-                            <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none"><Mountain className="w-32 h-32 text-[#00FFFF]" /></div>
-                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-white mb-4 relative z-10 print:text-black">
-                                <span className="w-2 h-6 bg-[#00FFFF] inline-block"></span> Elevation Profile
+                        <div className="bg-white dark:bg-[#4a217c] rounded-sm p-4 md:p-6 border border-gray-300 dark:border-[#6c3f9c] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
+                            <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none"><Mountain className="w-32 h-32 text-blue-600 dark:text-[#00FFFF]" /></div>
+                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-gray-900 dark:text-white mb-4 relative z-10 print:text-black">
+                                <span className="w-2 h-6 bg-blue-600 dark:bg-[#00FFFF] inline-block"></span> Elevation Profile
                             </h3>
                             <div className="h-64 w-full relative z-10">
-                                <ElevationChart points={profileData.points} climbs={profileData.climbs} totalDistance={profileData.totalDistance} minEle={profileData.minEle} maxEle={profileData.maxEle} />
+                                <ElevationChart points={profileData.points} climbs={profileData.climbs} totalDistance={profileData.totalDistance} minEle={profileData.minEle} maxEle={profileData.maxEle} isDarkMode={isDarkMode} />
                             </div>
                         </div>
 
                         {/* Climbs Table */}
-                        <div className="bg-[#4a217c] rounded-sm overflow-hidden border border-[#6c3f9c] shadow-lg">
-                            <div className="p-4 border-b border-[#6c3f9c] bg-[#2c0c5c]">
-                                <h3 className="font-bold text-lg uppercase tracking-wide text-white font-oswald">Scored Climbs Analysis</h3>
-                                <p className="text-xs text-neutral-400 mt-1">Click a climb for segmented gradient breakdown.</p>
+                        <div className="bg-white dark:bg-[#4a217c] rounded-sm overflow-hidden border border-gray-300 dark:border-[#6c3f9c] shadow-lg transition-colors">
+                            <div className="p-4 border-b border-gray-300 dark:border-[#6c3f9c] bg-gray-50 dark:bg-[#2c0c5c] transition-colors">
+                                <h3 className="font-bold text-lg uppercase tracking-wide text-gray-900 dark:text-white font-oswald">Scored Climbs Analysis</h3>
+                                <p className="text-xs text-gray-500 dark:text-neutral-400 mt-1">Click a climb for segmented gradient breakdown.</p>
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-left">
-                                    <thead className="text-neutral-400 bg-[#2c0c5c] uppercase text-xs font-bold tracking-wider font-oswald">
+                                    <thead className="text-gray-500 dark:text-neutral-400 bg-gray-100 dark:bg-[#2c0c5c] uppercase text-xs font-bold tracking-wider font-oswald transition-colors">
                                         <tr>
-                                            <th className="px-6 py-4 w-12 border-b border-[#6c3f9c]">No.</th>
-                                            <th className="px-6 py-4 border-b border-[#6c3f9c]">To Finish</th>
-                                            <th className="px-6 py-4 border-b border-[#6c3f9c]">Length</th>
-                                            <th className="px-6 py-4 border-b border-[#6c3f9c]">Avg %</th>
-                                            <th className="px-6 py-4 border-b border-[#6c3f9c]">Max %</th>
-                                            <th className="px-6 py-4 border-b border-[#6c3f9c]">Score</th>
-                                            <th className="px-6 py-4 border-b border-[#6c3f9c]">Cat</th>
+                                            <th className="px-6 py-4 w-12 border-b border-gray-200 dark:border-[#6c3f9c]">No.</th>
+                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">To Finish</th>
+                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Length</th>
+                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Avg %</th>
+                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Max %</th>
+                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Score</th>
+                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Cat</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="text-gray-900 dark:text-white">
                                         {profileData.climbs.length === 0 ? (
-                                            <tr><td colSpan="7" className="p-8 text-center text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
+                                            <tr><td colSpan="7" className="p-8 text-center text-gray-500 dark:text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
                                         ) : (
                                             profileData.climbs.map((climb, idx) => (
-                                                <tr key={idx} onClick={() => setSelectedClimb(climb)} className="hover:bg-[#5e31a9] transition-colors group cursor-pointer print:text-black border-b border-[#6c3f9c]/50 last:border-0">
-                                                    <td className="px-6 py-3 font-bold text-[#00FFFF] font-oswald">{climb.id}</td>
-                                                    <td className="px-6 py-3 text-white font-bold">{climb.distFromFinish.toFixed(1)} km</td>
-                                                    <td className="px-6 py-3 text-white font-medium">{climb.lengthKm.toFixed(2)} km</td>
-                                                    <td className="px-6 py-3 text-neutral-200 font-medium">{climb.gradientAvg.toFixed(1)}%</td>
+                                                <tr key={idx} onClick={() => setSelectedClimb(climb)} className="hover:bg-gray-50 dark:hover:bg-[#5e31a9] transition-colors group cursor-pointer print:text-black border-b border-gray-200 dark:border-[#6c3f9c]/50 last:border-0">
+                                                    <td className="px-6 py-3 font-bold text-blue-600 dark:text-[#00FFFF] font-oswald">{climb.id}</td>
+                                                    <td className="px-6 py-3 font-bold">{climb.distFromFinish.toFixed(1)} km</td>
+                                                    <td className="px-6 py-3 font-medium">{climb.lengthKm.toFixed(2)} km</td>
+                                                    <td className="px-6 py-3 text-gray-600 dark:text-neutral-200 font-medium">{climb.gradientAvg.toFixed(1)}%</td>
                                                     <td className="px-6 py-3">
-                                                        <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${climb.maxGradient > 12 ? 'bg-red-900/40 text-red-300' : climb.maxGradient > 8 ? 'bg-orange-900/40 text-orange-300' : 'bg-lime-900/40 text-lime-300'}`}>
+                                                        <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${climb.maxGradient > 12 ? 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-300' : climb.maxGradient > 8 ? 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-300' : 'bg-lime-100 dark:bg-lime-900/40 text-lime-600 dark:text-lime-300'}`}>
                                                             {climb.maxGradient.toFixed(1)}%
                                                         </span>
                                                     </td>
@@ -533,7 +565,7 @@
                                                         </span>
                                                     </td>
                                                     <td className="px-6 py-3">
-                                                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#2c0c5c] border border-[#6c3f9c] text-white font-bold font-oswald text-xs">
+                                                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-[#2c0c5c] border border-gray-300 dark:border-[#6c3f9c] text-gray-900 dark:text-white font-bold font-oswald text-xs">
                                                             {getClimbCategory(climb.rawScore) || '-'}
                                                         </span>
                                                     </td>
@@ -545,13 +577,11 @@
                             </div>
                         </div>
 
-                        {/* Modals Sub-tree */}
                         <ClimbDetailModal climb={selectedClimb} allPoints={profileData.points} onClose={() => setSelectedClimb(null)} />
                     </div>
                 </div>
             );
         };
-
 
         const App = () => {
             const [routes, setRoutes] = useState([]);
@@ -566,9 +596,19 @@
             const [uniqueFolders, setUniqueFolders] = useState([]);
             const [selectedTypes, setSelectedTypes] = useState([]);
 
-            // Profile Overlay States
             const [activeProfile, setActiveProfile] = useState(null);
             const [processingId, setProcessingId] = useState(null);
+            
+            // Theme State setup
+            const [isDarkMode, setIsDarkMode] = useState(true);
+
+            useEffect(() => {
+                if (isDarkMode) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }, [isDarkMode]);
 
             useEffect(() => {
                 fetch('https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/gpx/index.json')
@@ -618,7 +658,6 @@
                     setActiveProfile({ ...route, ...analyzedData });
                 } catch (err) {
                     console.error("Profile Analysis Failed:", err);
-                    // Minimal fallback for missing file / error
                     setActiveProfile(null);
                 } finally {
                     setProcessingId(null);
@@ -666,91 +705,97 @@
             }, [filteredRoutes, sortConfig]);
 
             const SortHeader = ({ label, sortKey, className = "" }) => (
-                <th className={`px-6 py-4 cursor-pointer hover:text-[#00FFFF] transition-colors select-none ${className}`} onClick={() => requestSort(sortKey)}>
+                <th className={`px-6 py-4 cursor-pointer hover:text-blue-600 dark:hover:text-[#00FFFF] transition-colors select-none ${className}`} onClick={() => requestSort(sortKey)}>
                     <div className="flex items-center gap-2">
                         {label}
-                        <ArrowUpDown className={`w-4 h-4 ${sortConfig.key === sortKey ? 'text-[#00FFFF]' : 'text-neutral-500'}`} />
+                        <ArrowUpDown className={`w-4 h-4 ${sortConfig.key === sortKey ? 'text-blue-600 dark:text-[#00FFFF]' : 'text-gray-400 dark:text-neutral-500'}`} />
                     </div>
                 </th>
             );
 
             return (
-                <div className="min-h-screen text-white selection:bg-[#00FFFF] selection:text-black p-4 md:p-8">
+                <div className="min-h-screen text-gray-900 dark:text-white selection:bg-blue-200 dark:selection:bg-[#00FFFF] selection:text-black p-4 md:p-8 transition-colors">
                     
-                    {/* Render Profile Overlay on top if active */}
-                    {activeProfile && <RouteProfileModal profileData={activeProfile} onClose={() => setActiveProfile(null)} onDownload={(e) => handleDownload(e, activeProfile.file, activeProfile.name)} />}
+                    {activeProfile && <RouteProfileModal profileData={activeProfile} onClose={() => setActiveProfile(null)} onDownload={(e) => handleDownload(e, activeProfile.file, activeProfile.name)} isDarkMode={isDarkMode} />}
 
                     <div className="max-w-7xl mx-auto space-y-8">
-                        <header className="flex items-center space-x-4 border-b border-[#6c3f9c] pb-6">
-                            <Activity className="w-8 h-8 text-[#00FFFF]" />
-                            <div>
-                                <h1 className="text-3xl font-bold tracking-wide uppercase text-white font-oswald">Route Database</h1>
-                                <p className="text-neutral-300 text-sm tracking-widest uppercase font-oswald mt-1 text-[#ff4500]">VIRTUAL CYCLING GPX INDEX</p>
+                        <header className="flex items-center space-x-4 border-b border-gray-300 dark:border-[#6c3f9c] pb-6">
+                            <Activity className="w-8 h-8 text-blue-600 dark:text-[#00FFFF]" />
+                            <div className="flex-1">
+                                <h1 className="text-3xl font-bold tracking-wide uppercase text-gray-900 dark:text-white font-oswald">Route Database</h1>
+                                <p className="text-gray-500 dark:text-neutral-300 text-sm tracking-widest uppercase font-oswald mt-1 text-blue-600 dark:text-[#ff4500]">VIRTUAL CYCLING GPX INDEX</p>
                             </div>
+                            
+                            {/* Theme Toggle Button */}
+                            <button
+                                onClick={() => setIsDarkMode(!isDarkMode)}
+                                className="p-2.5 rounded-full bg-white dark:bg-[#4a217c] text-gray-700 dark:text-[#00FFFF] border border-gray-300 dark:border-[#6c3f9c] hover:bg-gray-100 dark:hover:bg-[#6c3f9c] transition-colors shadow-sm"
+                                title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                            >
+                                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                            </button>
                         </header>
 
-                        {/* Filters */}
-                        <div className="bg-[#4a217c] p-6 rounded-sm border border-[#6c3f9c] shadow-lg space-y-6">
+                        <div className="bg-white dark:bg-[#4a217c] p-6 rounded-sm border border-gray-300 dark:border-[#6c3f9c] shadow-lg space-y-6 transition-colors">
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                                <div className="lg:col-span-2 flex gap-4 items-center bg-[#2c0c5c] p-2 rounded border border-[#6c3f9c] focus-within:border-[#00FFFF] transition-colors">
-                                    <Search className="text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
-                                    <input type="text" placeholder="Search routes by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-transparent text-white p-2 outline-none font-oswald tracking-wide text-lg placeholder-neutral-500" />
+                                <div className="lg:col-span-2 flex gap-4 items-center bg-gray-50 dark:bg-[#2c0c5c] p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus-within:border-blue-600 dark:focus-within:border-[#00FFFF] transition-colors">
+                                    <Search className="text-blue-600 dark:text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
+                                    <input type="text" placeholder="Search routes by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-transparent text-gray-900 dark:text-white p-2 outline-none font-oswald tracking-wide text-lg placeholder-gray-400 dark:placeholder-neutral-500" />
                                 </div>
-                                <div className="flex gap-4 items-center bg-[#2c0c5c] p-2 rounded border border-[#6c3f9c] focus-within:border-[#00FFFF] transition-colors">
-                                    <FolderIcon className="text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
-                                    <select value={selectedFolder} onChange={(e) => setSelectedFolder(e.target.value)} className="w-full bg-transparent text-white p-2 outline-none font-oswald tracking-wide text-lg cursor-pointer">
+                                <div className="flex gap-4 items-center bg-gray-50 dark:bg-[#2c0c5c] p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus-within:border-blue-600 dark:focus-within:border-[#00FFFF] transition-colors">
+                                    <FolderIcon className="text-blue-600 dark:text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
+                                    <select value={selectedFolder} onChange={(e) => setSelectedFolder(e.target.value)} className="w-full bg-transparent text-gray-900 dark:text-white p-2 outline-none font-oswald tracking-wide text-lg cursor-pointer">
                                         <option value="">All Collections</option>
                                         {uniqueFolders.map((folder, i) => <option key={i} value={folder}>{folder}</option>)}
                                     </select>
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="bg-[#2c0c5c] p-4 rounded border border-[#6c3f9c]">
-                                   <label className="text-xs font-bold text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Distance (km)</label>
+                                <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
+                                   <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Distance (km)</label>
                                    <div className="flex items-center gap-3">
-                                       <input type="number" placeholder="Min" value={filters.distMin} onChange={(e) => handleFilterChange(e, 'distMin')} className="w-full bg-[#1a053a] text-white p-2 rounded border border-[#6c3f9c] focus:outline-none focus:border-[#00FFFF] font-roboto" />
-                                       <span className="text-neutral-500 font-bold uppercase text-xs">To</span>
-                                       <input type="number" placeholder="Max" value={filters.distMax} onChange={(e) => handleFilterChange(e, 'distMax')} className="w-full bg-[#1a053a] text-white p-2 rounded border border-[#6c3f9c] focus:outline-none focus:border-[#00FFFF] font-roboto" />
+                                       <input type="number" placeholder="Min" value={filters.distMin} onChange={(e) => handleFilterChange(e, 'distMin')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
+                                       <span className="text-gray-500 dark:text-neutral-500 font-bold uppercase text-xs">To</span>
+                                       <input type="number" placeholder="Max" value={filters.distMax} onChange={(e) => handleFilterChange(e, 'distMax')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
                                    </div>
                                 </div>
-                                <div className="bg-[#2c0c5c] p-4 rounded border border-[#6c3f9c]">
-                                   <label className="text-xs font-bold text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Elevation (m)</label>
+                                <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
+                                   <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Elevation (m)</label>
                                    <div className="flex items-center gap-3">
-                                       <input type="number" placeholder="Min" value={filters.eleMin} onChange={(e) => handleFilterChange(e, 'eleMin')} className="w-full bg-[#1a053a] text-white p-2 rounded border border-[#6c3f9c] focus:outline-none focus:border-[#00FFFF] font-roboto" />
-                                       <span className="text-neutral-500 font-bold uppercase text-xs">To</span>
-                                       <input type="number" placeholder="Max" value={filters.eleMax} onChange={(e) => handleFilterChange(e, 'eleMax')} className="w-full bg-[#1a053a] text-white p-2 rounded border border-[#6c3f9c] focus:outline-none focus:border-[#00FFFF] font-roboto" />
+                                       <input type="number" placeholder="Min" value={filters.eleMin} onChange={(e) => handleFilterChange(e, 'eleMin')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
+                                       <span className="text-gray-500 dark:text-neutral-500 font-bold uppercase text-xs">To</span>
+                                       <input type="number" placeholder="Max" value={filters.eleMax} onChange={(e) => handleFilterChange(e, 'eleMax')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
                                    </div>
                                 </div>
-                                <div className="bg-[#2c0c5c] p-4 rounded border border-[#6c3f9c]">
-                                   <label className="text-xs font-bold text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Profile Score</label>
+                                <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
+                                   <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Profile Score</label>
                                    <div className="flex items-center gap-3">
-                                       <input type="number" placeholder="Min" value={filters.scoreMin} onChange={(e) => handleFilterChange(e, 'scoreMin')} className="w-full bg-[#1a053a] text-white p-2 rounded border border-[#6c3f9c] focus:outline-none focus:border-[#00FFFF] font-roboto" />
-                                       <span className="text-neutral-500 font-bold uppercase text-xs">To</span>
-                                       <input type="number" placeholder="Max" value={filters.scoreMax} onChange={(e) => handleFilterChange(e, 'scoreMax')} className="w-full bg-[#1a053a] text-white p-2 rounded border border-[#6c3f9c] focus:outline-none focus:border-[#00FFFF] font-roboto" />
+                                       <input type="number" placeholder="Min" value={filters.scoreMin} onChange={(e) => handleFilterChange(e, 'scoreMin')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
+                                       <span className="text-gray-500 dark:text-neutral-500 font-bold uppercase text-xs">To</span>
+                                       <input type="number" placeholder="Max" value={filters.scoreMax} onChange={(e) => handleFilterChange(e, 'scoreMax')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
                                    </div>
                                 </div>
                             </div>
-                            <div className="bg-[#2c0c5c] p-4 rounded border border-[#6c3f9c]">
-                                <label className="text-xs font-bold text-[#ff4500] uppercase font-oswald tracking-widest block mb-3 flex items-center gap-2"><Filter className="w-4 h-4" /> Stage Types (Multi-Select)</label>
+                            <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
+                                <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest block mb-3 flex items-center gap-2"><Filter className="w-4 h-4" /> Stage Types (Multi-Select)</label>
                                 <div className="flex flex-wrap gap-2">
                                    {uniqueStageTypes.map((type, i) => (
-                                       <button key={i} onClick={() => toggleType(type)} className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedTypes.includes(type) ? 'bg-[#00FFFF] text-black border-[#00FFFF] shadow-[#00FFFF]/20' : 'bg-[#1a053a] text-neutral-300 border-[#6c3f9c] hover:border-[#00FFFF]/50'}`}>
+                                       <button key={i} onClick={() => toggleType(type)} className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedTypes.includes(type) ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}>
                                            {type}
                                        </button>
                                    ))}
-                                   {uniqueStageTypes.length === 0 && <span className="text-neutral-500 text-sm italic">Loading types...</span>}
+                                   {uniqueStageTypes.length === 0 && <span className="text-gray-500 dark:text-neutral-500 text-sm italic">Loading types...</span>}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Table */}
-                        <div className="bg-[#4a217c] rounded-sm overflow-hidden border border-[#6c3f9c] shadow-lg">
-                            <div className="p-4 bg-[#2c0c5c] border-b border-[#6c3f9c] flex justify-between items-center">
-                                <h2 className="text-lg font-bold font-oswald uppercase tracking-wider text-white">Results <span className="text-[#00FFFF] ml-2">({sortedRoutes.length})</span></h2>
+                        <div className="bg-white dark:bg-[#4a217c] rounded-sm overflow-hidden border border-gray-300 dark:border-[#6c3f9c] shadow-lg transition-colors">
+                            <div className="p-4 bg-gray-100 dark:bg-[#2c0c5c] border-b border-gray-300 dark:border-[#6c3f9c] flex justify-between items-center transition-colors">
+                                <h2 className="text-lg font-bold font-oswald uppercase tracking-wider text-gray-900 dark:text-white">Results <span className="text-blue-600 dark:text-[#00FFFF] ml-2">({sortedRoutes.length})</span></h2>
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-left">
-                                    <thead className="text-neutral-400 bg-[#1a053a] uppercase text-xs font-bold tracking-wider font-oswald">
+                                    <thead className="text-gray-600 dark:text-neutral-400 bg-gray-50 dark:bg-[#1a053a] uppercase text-xs font-bold tracking-wider font-oswald transition-colors">
                                         <tr>
                                             <SortHeader label="Route Name" sortKey="name" />
                                             <SortHeader label="Dist" sortKey="distance_km" className="w-24" />
@@ -760,43 +805,40 @@
                                             <th className="px-6 py-4 text-right">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="text-gray-900 dark:text-white">
                                         {loading ? (
-                                            <tr><td colSpan="6" className="p-8 text-center text-[#00FFFF] font-bold tracking-widest uppercase animate-pulse font-oswald">Loading Routes...</td></tr>
+                                            <tr><td colSpan="6" className="p-8 text-center text-blue-600 dark:text-[#00FFFF] font-bold tracking-widest uppercase animate-pulse font-oswald">Loading Routes...</td></tr>
                                         ) : sortedRoutes.length === 0 ? (
-                                            <tr><td colSpan="6" className="p-8 text-center text-neutral-400 italic font-light">No routes match your filters.</td></tr>
+                                            <tr><td colSpan="6" className="p-8 text-center text-gray-500 dark:text-neutral-400 italic font-light">No routes match your filters.</td></tr>
                                         ) : (
                                             sortedRoutes.map((route, idx) => (
-                                                <tr key={idx} className="hover:bg-[#5e31a9] border-b border-[#6c3f9c] transition-colors group">
+                                                <tr key={idx} className="hover:bg-gray-100 dark:hover:bg-[#5e31a9] border-b border-gray-200 dark:border-[#6c3f9c] transition-colors group">
                                                     <td className="px-6 py-4">
-                                                        <div className="font-bold text-white text-base">{route.name}</div>
-                                                        {route.folder && <div className="text-sm text-neutral-400 font-normal mt-1 flex items-center gap-1"><FolderIcon className="w-3 h-3" /> {route.folder}</div>}
+                                                        <div className="font-bold text-gray-900 dark:text-white text-base">{route.name}</div>
+                                                        {route.folder && <div className="text-sm text-gray-500 dark:text-neutral-400 font-normal mt-1 flex items-center gap-1"><FolderIcon className="w-3 h-3" /> {route.folder}</div>}
                                                     </td>
-                                                    <td className="px-6 py-4 text-[#00FFFF] font-bold font-oswald text-lg">{route.distance_km}</td>
-                                                    <td className="px-6 py-4 text-neutral-200 font-medium">{route.elevation_m}</td>
+                                                    <td className="px-6 py-4 text-blue-600 dark:text-[#00FFFF] font-bold font-oswald text-lg">{route.distance_km}</td>
+                                                    <td className="px-6 py-4 text-gray-700 dark:text-neutral-200 font-medium">{route.elevation_m}</td>
                                                     <td className="px-6 py-4 font-oswald text-lg font-bold">
-                                                        <span className={`px-2 py-1 rounded ${route.profile_score >= 40 ? 'bg-red-900/40 text-red-400' : route.profile_score >= 20 ? 'bg-orange-900/40 text-orange-400' : 'bg-lime-900/40 text-lime-400'}`}>
+                                                        <span className={`px-2 py-1 rounded ${route.profile_score >= 40 ? 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400' : route.profile_score >= 20 ? 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400' : 'bg-lime-100 dark:bg-lime-900/40 text-lime-600 dark:text-lime-400'}`}>
                                                             {Math.round(route.profile_score || 0)}
                                                         </span>
                                                     </td>
-                                                    <td className="px-6 py-4 text-neutral-300 capitalize">{route.stage_type || 'N/A'}</td>
+                                                    <td className="px-6 py-4 text-gray-600 dark:text-neutral-300 capitalize">{route.stage_type || 'N/A'}</td>
                                                     <td className="px-6 py-4 text-right">
                                                         <div className="flex justify-end gap-2">
-                                                            {/* New Profile View Button */}
                                                             <button 
                                                                 onClick={(e) => handleViewProfile(e, route)}
                                                                 disabled={processingId === route.file}
-                                                                className={`inline-flex items-center gap-2 p-2 px-3 bg-[#3b0687] hover:bg-[#00FFFF] text-neutral-200 hover:text-black font-oswald tracking-widest uppercase text-xs border border-[#5e31a9] hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer ${processingId === route.file ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                                                className={`inline-flex items-center gap-2 p-2 px-3 bg-white dark:bg-[#3b0687] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-700 dark:text-neutral-200 hover:text-white dark:hover:text-black font-oswald tracking-widest uppercase text-xs border border-gray-300 dark:border-[#5e31a9] hover:border-blue-600 dark:hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer ${processingId === route.file ? 'opacity-50 cursor-not-allowed' : ''}`}
                                                                 title="View Interactive Profile"
                                                             >
                                                                 {processingId === route.file ? <Loader className="w-4 h-4" /> : <MapIcon className="w-4 h-4" />}
                                                                 Profile
                                                             </button>
-
-                                                            {/* Standard Download Button */}
                                                             <button 
                                                                 onClick={(e) => handleDownload(e, route.file, route.name)}
-                                                                className="inline-flex p-2 bg-[#2c0c5c] hover:bg-[#00FFFF] text-neutral-300 hover:text-black border border-[#6c3f9c] hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer"
+                                                                className="inline-flex p-2 bg-gray-50 dark:bg-[#2c0c5c] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-600 dark:text-neutral-300 hover:text-white dark:hover:text-black border border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600 dark:hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer"
                                                                 title="Download GPX"
                                                             >
                                                                 <Download className="w-4 h-4" />
