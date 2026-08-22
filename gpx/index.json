@@ -486,6 +486,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "American Gravel/2025_Grassroots_Gravel_-_The_Lil_Chile_-_63k_592m.gpx",
+    "folder": "American Gravel",
+    "name": "2025_Grassroots_Gravel_-_The_Lil_Chile_-_63k_592m",
+    "distance_km": 63.06,
+    "elevation_m": 461.9,
+    "profile_score": 10.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "American Gravel/Grassroots Half 3 of 3.gpx",
     "folder": "American Gravel",
     "name": "Grassroots Half 3 of 3",
@@ -2322,24 +2331,6 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Untested/2025 Grassroots Gravel - The Lil Chile - 63k 592m.gpx",
-    "folder": "Untested",
-    "name": "2025 Grassroots Gravel - The Lil Chile - 63k 592m",
-    "distance_km": 63.03,
-    "elevation_m": 521.4,
-    "profile_score": 9.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Untested/Denver City Criterium - 5k 25m.gpx",
-    "folder": "Untested",
-    "name": "Denver City Criterium - 5k 25m",
-    "distance_km": 4.82,
-    "elevation_m": 25.3,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
     "file": "Untested/TPV Mad Gravel 2025 Gravel Circuit - 11k 186m.gpx",
     "folder": "Untested",
     "name": "TPV Mad Gravel 2025 Gravel Circuit - 11k 186m",
@@ -2349,30 +2340,12 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Untested/Alula Tour Skyviews Course - 74k 730m.gpx",
-    "folder": "Untested",
-    "name": "Alula Tour Skyviews Course - 74k 730m",
-    "distance_km": 74.1,
-    "elevation_m": 728.1,
-    "profile_score": 71.2,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
     "file": "Untested/Surf Coast Classic - 72k 781m.gpx",
     "folder": "Untested",
     "name": "Surf Coast Classic - 72k 781m",
     "distance_km": 72.39,
     "elevation_m": 781.0,
     "profile_score": 37.2,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Untested/Tadej Monmartre Circuit.gpx",
-    "folder": "Untested",
-    "name": "Tadej Monmartre Circuit",
-    "distance_km": 16.32,
-    "elevation_m": 154.9,
-    "profile_score": 9.9,
     "stage_type": "Hilly, flat finish"
   },
   {
@@ -2412,24 +2385,6 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Untested/Col du Vam - 37k 88m.gpx",
-    "folder": "Untested",
-    "name": "Col du Vam - 37k 88m",
-    "distance_km": 37.07,
-    "elevation_m": 84.4,
-    "profile_score": 4.7,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "Untested/Remco's Kigali Circuit.gpx",
-    "folder": "Untested",
-    "name": "Remco's Kigali Circuit",
-    "distance_km": 15.11,
-    "elevation_m": 255.1,
-    "profile_score": 23.9,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
     "file": "Untested/Vuelta Ciclista Andalucia - 44k 747m .gpx",
     "folder": "Untested",
     "name": "Vuelta Ciclista Andalucia - 44k 747m ",
@@ -2439,57 +2394,12 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
-    "file": "Untested/Cadel Evans Road Race Finishing Circuit - 21k 323m.gpx",
-    "folder": "Untested",
-    "name": "Cadel Evans Road Race Finishing Circuit - 21k 323m",
-    "distance_km": 20.68,
-    "elevation_m": 321.5,
-    "profile_score": 34.3,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
     "file": "Untested/Zwift Glasgow Crit Circuit - 3k 33m.gpx",
     "folder": "Untested",
     "name": "Zwift Glasgow Crit Circuit - 3k 33m",
     "distance_km": 3.0,
     "elevation_m": 31.5,
     "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Untested/Tadej Monmartre Circuit - 16k 155m.gpx",
-    "folder": "Untested",
-    "name": "Tadej Monmartre Circuit - 16k 155m",
-    "distance_km": 16.32,
-    "elevation_m": 154.9,
-    "profile_score": 9.9,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Untested/Bay to Breakers and Back - 31k 380m.gpx",
-    "folder": "Untested",
-    "name": "Bay to Breakers and Back - 31k 380m",
-    "distance_km": 31.41,
-    "elevation_m": 379.2,
-    "profile_score": 32.6,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Untested/Col du VAM - 13km 66m.gpx",
-    "folder": "Untested",
-    "name": "Col du VAM - 13km 66m",
-    "distance_km": 12.67,
-    "elevation_m": 66.2,
-    "profile_score": 7.7,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Untested/Busan 7 Bridges - 34k 269m .gpx",
-    "folder": "Untested",
-    "name": "Busan 7 Bridges - 34k 269m ",
-    "distance_km": 34.53,
-    "elevation_m": 267.2,
-    "profile_score": 7.0,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -2745,6 +2655,24 @@
     "stage_type": "Hilly, uphill finish"
   },
   {
+    "file": "Renewi Tour 2026/Renewi Stage 2 Long.gpx",
+    "folder": "Renewi Tour 2026",
+    "name": "Renewi Stage 2 Long",
+    "distance_km": 69.68,
+    "elevation_m": 797.2,
+    "profile_score": 46.7,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Renewi Tour 2026/Renewi Stage 2 Short.gpx",
+    "folder": "Renewi Tour 2026",
+    "name": "Renewi Stage 2 Short",
+    "distance_km": 35.25,
+    "elevation_m": 400.5,
+    "profile_score": 29.4,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Classics Courses/Tour of Hungary Stage 2.gpx",
     "folder": "Classics Courses",
     "name": "Tour of Hungary Stage 2",
@@ -2797,6 +2725,15 @@
     "elevation_m": 481.2,
     "profile_score": 15.3,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Classics Courses/Alula Tour Skyviews Course - 74k 730m.gpx",
+    "folder": "Classics Courses",
+    "name": "Alula Tour Skyviews Course - 74k 730m",
+    "distance_km": 74.1,
+    "elevation_m": 694.8,
+    "profile_score": 65.8,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Classics Courses/Heistse Pijl.gpx",
@@ -4446,6 +4383,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Racing Circuits/Cadel Evans Road Race Finishing Circuit - 21k 323m.gpx",
+    "folder": "Racing Circuits",
+    "name": "Cadel Evans Road Race Finishing Circuit - 21k 323m",
+    "distance_km": 20.64,
+    "elevation_m": 272.8,
+    "profile_score": 30.7,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Racing Circuits/South Elbert Loop.gpx",
     "folder": "Racing Circuits",
     "name": "South Elbert Loop",
@@ -4525,6 +4471,15 @@
     "elevation_m": 213.3,
     "profile_score": 8.5,
     "stage_type": "Hilly, uphill finish"
+  },
+  {
+    "file": "Racing Circuits/Bay to Breakers and Back - 31k 380m.gpx",
+    "folder": "Racing Circuits",
+    "name": "Bay to Breakers and Back - 31k 380m",
+    "distance_km": 31.41,
+    "elevation_m": 366.0,
+    "profile_score": 31.2,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "Racing Circuits/Koppenberg Gravel Lap.gpx",
