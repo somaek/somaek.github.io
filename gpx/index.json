@@ -3177,6 +3177,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Classics Courses/Vuelta Stage 8.gpx",
+    "folder": "Classics Courses",
+    "name": "Vuelta Stage 8",
+    "distance_km": 74.41,
+    "elevation_m": 456.3,
+    "profile_score": 11.3,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
     "file": "Classics Courses/Vuelta Colombia S1.gpx",
     "folder": "Classics Courses",
     "name": "Vuelta Colombia S1",
@@ -5119,6 +5128,15 @@
     "elevation_m": 569.3,
     "profile_score": 70.2,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "1 Hour Point to Point Races/Vuelta Stage 10 2026.gpx",
+    "folder": "1 Hour Point to Point Races",
+    "name": "Vuelta Stage 10 2026",
+    "distance_km": 38.69,
+    "elevation_m": 322.0,
+    "profile_score": 7.2,
+    "stage_type": "Flat, uphill finish"
   },
   {
     "file": "1 Hour Point to Point Races/Through Loreto Baja.gpx",
