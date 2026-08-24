@@ -4212,6 +4212,15 @@
     "stage_type": "Flat, uphill finish"
   },
   {
+    "file": "Racing Circuits/Lidl Tour Finishing Circuit 2026.gpx",
+    "folder": "Racing Circuits",
+    "name": "Lidl Tour Finishing Circuit 2026",
+    "distance_km": 21.16,
+    "elevation_m": 242.8,
+    "profile_score": 16.9,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Racing Circuits/Muscat Classic Circuit - 34k 678m.gpx",
     "folder": "Racing Circuits",
     "name": "Muscat Classic Circuit - 34k 678m",
@@ -5245,6 +5254,15 @@
     "elevation_m": 634.4,
     "profile_score": 35.7,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "1 Hour Point to Point Races/Lidl Tour Final Stage 1 hour 2026.gpx",
+    "folder": "1 Hour Point to Point Races",
+    "name": "Lidl Tour Final Stage 1 hour 2026",
+    "distance_km": 34.91,
+    "elevation_m": 394.6,
+    "profile_score": 25.7,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "1 Hour Point to Point Races/Le Tour de Bretagne Stage 2.gpx",
