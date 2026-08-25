@@ -207,6 +207,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Criterium Courses/Riverview Hilltop Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Riverview Hilltop Crit",
+    "distance_km": 3.41,
+    "elevation_m": 50.5,
+    "profile_score": 2.0,
+    "stage_type": "Hilly, uphill finish"
+  },
+  {
     "file": "Criterium Courses/Central Park Circuit - 10k 95m.gpx",
     "folder": "Criterium Courses",
     "name": "Central Park Circuit - 10k 95m",
@@ -268,6 +277,15 @@
     "elevation_m": 13.7,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Perry South Pittsburgh Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Perry South Pittsburgh Crit",
+    "distance_km": 5.97,
+    "elevation_m": 109.5,
+    "profile_score": 12.3,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Criterium Courses/Laguna Seca - 3.6k 81m.gpx",
@@ -3123,6 +3141,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Classics Courses/Vuelta 2026 Stage 15.gpx",
+    "folder": "Classics Courses",
+    "name": "Vuelta 2026 Stage 15",
+    "distance_km": 66.57,
+    "elevation_m": 966.9,
+    "profile_score": 45.8,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Classics Courses/Custom_Workout.gpx",
     "folder": "Classics Courses",
     "name": "Custom_Workout",
@@ -3207,9 +3234,9 @@
     "file": "Classics Courses/Cholet Agglo Tour.gpx",
     "folder": "Classics Courses",
     "name": "Cholet Agglo Tour",
-    "distance_km": 77.14,
-    "elevation_m": 695.0,
-    "profile_score": 12.9,
+    "distance_km": 75.03,
+    "elevation_m": 604.7,
+    "profile_score": 10.8,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -3312,6 +3339,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Classics Courses/M\u00fcnsterland Giro.gpx",
+    "folder": "Classics Courses",
+    "name": "M\u00fcnsterland Giro",
+    "distance_km": 193.76,
+    "elevation_m": 703.0,
+    "profile_score": 4.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Classics Courses/Roubaix 2.gpx",
     "folder": "Classics Courses",
     "name": "Roubaix 2",
@@ -3364,6 +3400,15 @@
     "elevation_m": 674.5,
     "profile_score": 29.5,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Classics Courses/Vuelta 2026 Stage 21.gpx",
+    "folder": "Classics Courses",
+    "name": "Vuelta 2026 Stage 21",
+    "distance_km": 76.14,
+    "elevation_m": 970.3,
+    "profile_score": 80.3,
+    "stage_type": "Climbing, uphill finish"
   },
   {
     "file": "Classics Courses/TPV Omloop.gpx",
@@ -5259,9 +5304,9 @@
     "file": "1 Hour Point to Point Races/Lidl Tour Final Stage 1 hour 2026.gpx",
     "folder": "1 Hour Point to Point Races",
     "name": "Lidl Tour Final Stage 1 hour 2026",
-    "distance_km": 34.91,
-    "elevation_m": 394.6,
-    "profile_score": 25.7,
+    "distance_km": 34.87,
+    "elevation_m": 359.5,
+    "profile_score": 20.5,
     "stage_type": "Hilly, flat finish"
   },
   {
@@ -5443,6 +5488,15 @@
     "elevation_m": 377.9,
     "profile_score": 35.0,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "1 Hour Point to Point Races/Vuelta 2026 Stage 16.gpx",
+    "folder": "1 Hour Point to Point Races",
+    "name": "Vuelta 2026 Stage 16",
+    "distance_km": 38.13,
+    "elevation_m": 219.8,
+    "profile_score": 5.4,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "1 Hour Point to Point Races/Tour de Okinawa.gpx",
