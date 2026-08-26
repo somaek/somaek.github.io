@@ -135,6 +135,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Criterium Courses/Snake Alley Criterium Iowa.gpx",
+    "folder": "Criterium Courses",
+    "name": "Snake Alley Criterium Iowa",
+    "distance_km": 3.08,
+    "elevation_m": 40.3,
+    "profile_score": 4.8,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Criterium Courses/Athens Twilight Criterium Course - 1k 6m.gpx",
     "folder": "Criterium Courses",
     "name": "Athens Twilight Criterium Course - 1k 6m",
@@ -3213,6 +3222,15 @@
     "stage_type": "Flat, uphill finish"
   },
   {
+    "file": "Classics Courses/Trofeo Tessile & Moda (cob).gpx",
+    "folder": "Classics Courses",
+    "name": "Trofeo Tessile & Moda (cob)",
+    "distance_km": 37.03,
+    "elevation_m": 374.3,
+    "profile_score": 17.8,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Classics Courses/Vuelta Colombia S1.gpx",
     "folder": "Classics Courses",
     "name": "Vuelta Colombia S1",
@@ -3273,6 +3291,15 @@
     "distance_km": 67.91,
     "elevation_m": 669.7,
     "profile_score": 40.6,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Classics Courses/Paris Chauny.gpx",
+    "folder": "Classics Courses",
+    "name": "Paris Chauny",
+    "distance_km": 76.75,
+    "elevation_m": 662.2,
+    "profile_score": 24.9,
     "stage_type": "Hilly, flat finish"
   },
   {
@@ -3342,9 +3369,9 @@
     "file": "Classics Courses/M\u00fcnsterland Giro.gpx",
     "folder": "Classics Courses",
     "name": "M\u00fcnsterland Giro",
-    "distance_km": 193.76,
-    "elevation_m": 703.0,
-    "profile_score": 4.6,
+    "distance_km": 75.51,
+    "elevation_m": 536.1,
+    "profile_score": 17.0,
     "stage_type": "Flat, flat finish"
   },
   {
