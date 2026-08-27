@@ -171,6 +171,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Criterium Courses/Temecula Loops.gpx",
+    "folder": "Criterium Courses",
+    "name": "Temecula Loops",
+    "distance_km": 13.36,
+    "elevation_m": 166.7,
+    "profile_score": 10.5,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Criterium Courses/Boulder Crit.gpx",
     "folder": "Criterium Courses",
     "name": "Boulder Crit",
@@ -342,6 +351,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Criterium Courses/Sunset Clifs Criterium.gpx",
+    "folder": "Criterium Courses",
+    "name": "Sunset Clifs Criterium",
+    "distance_km": 5.89,
+    "elevation_m": 97.1,
+    "profile_score": 8.9,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Criterium Courses/Singapore Criterium.gpx",
     "folder": "Criterium Courses",
     "name": "Singapore Criterium",
@@ -349,6 +367,15 @@
     "elevation_m": 19.7,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Mount Tabor Park Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Mount Tabor Park Crit",
+    "distance_km": 4.16,
+    "elevation_m": 89.7,
+    "profile_score": 7.7,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Criterium Courses/Catalina Crit.gpx",
@@ -5145,6 +5172,15 @@
     "distance_km": 144.96,
     "elevation_m": 1249.4,
     "profile_score": 22.0,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "1 Hour Point to Point Races/Druivenkoers 2026.gpx",
+    "folder": "1 Hour Point to Point Races",
+    "name": "Druivenkoers 2026",
+    "distance_km": 38.52,
+    "elevation_m": 321.8,
+    "profile_score": 25.2,
     "stage_type": "Hilly, flat finish"
   },
   {
