@@ -11,7 +11,9 @@
     <trk>
         <name>Münsterland Giro</name>
         <trkseg>
-            <trkpt lat="51.804116" lon="8.201832"><ele>141.37</ele></trkpt>
+            <trkpt lat="51.8042468" lon="8.2045126"><ele>141.37</ele></trkpt>
+            <trkpt lat="51.8041496" lon="8.2027767"><ele>141.51</ele></trkpt>
+            <trkpt lat="51.8041795" lon="8.2022505"><ele>141.54</ele></trkpt>
             <trkpt lat="51.804296" lon="8.201324"><ele>141.62</ele></trkpt>
             <trkpt lat="51.804375" lon="8.200981"><ele>141.78</ele></trkpt>
             <trkpt lat="51.804397" lon="8.200717"><ele>141.91</ele></trkpt>
@@ -1193,7 +1195,7 @@
             <trkpt lat="51.803908" lon="8.202155"><ele>141.75</ele></trkpt>
             <trkpt lat="51.804016" lon="8.202036"><ele>141.68</ele></trkpt>
             <trkpt lat="51.804092" lon="8.201907"><ele>141.65</ele></trkpt>
-            <trkpt lat="51.804116" lon="8.201832"><ele>141.37</ele></trkpt>
+            <trkpt lat="51.8041552" lon="8.2017662"><ele>141.37</ele></trkpt>
             <trkpt lat="51.804296" lon="8.201324"><ele>141.62</ele></trkpt>
             <trkpt lat="51.804375" lon="8.200981"><ele>141.78</ele></trkpt>
             <trkpt lat="51.804397" lon="8.200717"><ele>141.91</ele></trkpt>
@@ -1522,7 +1524,7 @@
             <trkpt lat="51.803908" lon="8.202155"><ele>141.75</ele></trkpt>
             <trkpt lat="51.804016" lon="8.202036"><ele>141.68</ele></trkpt>
             <trkpt lat="51.804092" lon="8.201907"><ele>141.65</ele></trkpt>
-            <trkpt lat="51.804116" lon="8.201832"><ele>141.37</ele></trkpt>
+            <trkpt lat="51.8041552" lon="8.2017716"><ele>141.37</ele></trkpt>
             <trkpt lat="51.804296" lon="8.201324"><ele>141.62</ele></trkpt>
             <trkpt lat="51.804375" lon="8.200981"><ele>141.78</ele></trkpt>
             <trkpt lat="51.804397" lon="8.200717"><ele>141.91</ele></trkpt>
@@ -1628,12 +1630,12 @@
             <trkpt lat="51.77678" lon="8.148627"><ele>130.48</ele></trkpt>
             <trkpt lat="51.77597" lon="8.148913"><ele>131.12</ele></trkpt>
             <trkpt lat="51.775044" lon="8.149239"><ele>132.54</ele></trkpt>
-            <trkpt lat="51.773769" lon="8.14967"><ele>135.44</ele></trkpt>
-            <trkpt lat="51.773456" lon="8.149797"><ele>136.22</ele></trkpt>
-            <trkpt lat="51.773307" lon="8.149901"><ele>136.59</ele></trkpt>
-            <trkpt lat="51.772617" lon="8.150578"><ele>138.21</ele></trkpt>
-            <trkpt lat="51.772334" lon="8.150857"><ele>138.48</ele></trkpt>
-            <trkpt lat="51.771911" lon="8.151277"><ele>138.88</ele></trkpt>
+            <trkpt lat="51.77377" lon="8.1498306"><ele>135.44</ele></trkpt>
+            <trkpt lat="51.7734837" lon="8.1499584"><ele>136.22</ele></trkpt>
+            <trkpt lat="51.7733443" lon="8.1500924"><ele>136.59</ele></trkpt>
+            <trkpt lat="51.7727438" lon="8.150814"><ele>138.21</ele></trkpt>
+            <trkpt lat="51.7724424" lon="8.1511915"><ele>138.48</ele></trkpt>
+            <trkpt lat="51.7716322" lon="8.1526938"><ele>138.88</ele></trkpt>
         </trkseg>
     </trk>
 </gpx>
