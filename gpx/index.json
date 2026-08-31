@@ -108,6 +108,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Criterium Courses/Fort Bragg Circuit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Fort Bragg Circuit",
+    "distance_km": 8.19,
+    "elevation_m": 67.2,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Criterium Courses/Crybaby Hill Criterium.gpx",
     "folder": "Criterium Courses",
     "name": "Crybaby Hill Criterium",
@@ -1008,6 +1017,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Climbs/Lissclerrig - Molls Gap.gpx",
+    "folder": "Climbs",
+    "name": "Lissclerrig - Molls Gap",
+    "distance_km": 6.42,
+    "elevation_m": 189.7,
+    "profile_score": 13.3,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Climbs/Babada\u011f - 18k 1643m.gpx",
     "folder": "Climbs",
     "name": "Babada\u011f - 18k 1643m",
@@ -1026,6 +1044,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Climbs/Mandeville Canyon CA.gpx",
+    "folder": "Climbs",
+    "name": "Mandeville Canyon CA",
+    "distance_km": 7.98,
+    "elevation_m": 290.5,
+    "profile_score": 25.1,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Climbs/Eureka CA Fickle Hill Climb.gpx",
     "folder": "Climbs",
     "name": "Eureka CA Fickle Hill Climb",
@@ -1033,6 +1060,15 @@
     "elevation_m": 1204.0,
     "profile_score": 124.1,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Climbs/Coastal Trail to Hawk Hill Summit .gpx",
+    "folder": "Climbs",
+    "name": "Coastal Trail to Hawk Hill Summit ",
+    "distance_km": 2.85,
+    "elevation_m": 182.6,
+    "profile_score": 28.2,
+    "stage_type": "Climbing, uphill finish"
   },
   {
     "file": "Climbs/Idaho Springs to Blue Sky.gpx",
@@ -1185,6 +1221,15 @@
     "distance_km": 22.58,
     "elevation_m": 1375.1,
     "profile_score": 234.2,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Climbs/Schueren Malibu.gpx",
+    "folder": "Climbs",
+    "name": "Schueren Malibu",
+    "distance_km": 2.9,
+    "elevation_m": 164.1,
+    "profile_score": 22.9,
     "stage_type": "Climbing, uphill finish"
   },
   {
@@ -5472,6 +5517,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "1 Hour Point to Point Races/Fort Bragg CA.gpx",
+    "folder": "1 Hour Point to Point Races",
+    "name": "Fort Bragg CA",
+    "distance_km": 35.29,
+    "elevation_m": 315.5,
+    "profile_score": 9.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "1 Hour Point to Point Races/Omloop_2nd_Half.gpx",
     "folder": "1 Hour Point to Point Races",
     "name": "Omloop_2nd_Half",
@@ -5526,6 +5580,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "1 Hour Point to Point Races/Windsor to Cloverdale CA.gpx",
+    "folder": "1 Hour Point to Point Races",
+    "name": "Windsor to Cloverdale CA",
+    "distance_km": 34.15,
+    "elevation_m": 234.3,
+    "profile_score": 7.2,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "1 Hour Point to Point Races/Bieno Race.gpx",
     "folder": "1 Hour Point to Point Races",
     "name": "Bieno Race",
@@ -5533,6 +5596,15 @@
     "elevation_m": 460.2,
     "profile_score": 19.5,
     "stage_type": "Hilly, uphill finish"
+  },
+  {
+    "file": "1 Hour Point to Point Races/Eureka to Trinidad CA.gpx",
+    "folder": "1 Hour Point to Point Races",
+    "name": "Eureka to Trinidad CA",
+    "distance_km": 38.5,
+    "elevation_m": 200.7,
+    "profile_score": 8.6,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "1 Hour Point to Point Races/Vuelta 26 Stage 3 Start.gpx",
