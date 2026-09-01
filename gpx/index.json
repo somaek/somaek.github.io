@@ -909,6 +909,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Climbs/Prefectural Route 25 Climb.gpx",
+    "folder": "Climbs",
+    "name": "Prefectural Route 25 Climb",
+    "distance_km": 1.6,
+    "elevation_m": 105.5,
+    "profile_score": 15.1,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Climbs/Mount Whitney CA.gpx",
     "folder": "Climbs",
     "name": "Mount Whitney CA",
@@ -924,6 +933,15 @@
     "distance_km": 52.15,
     "elevation_m": 2211.7,
     "profile_score": 242.9,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Climbs/Katsuoji Hill Climb.gpx",
+    "folder": "Climbs",
+    "name": "Katsuoji Hill Climb",
+    "distance_km": 4.38,
+    "elevation_m": 245.6,
+    "profile_score": 32.4,
     "stage_type": "Climbing, uphill finish"
   },
   {
@@ -969,6 +987,15 @@
     "distance_km": 28.76,
     "elevation_m": 916.4,
     "profile_score": 92.6,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Climbs/Pibanryeong.gpx",
+    "folder": "Climbs",
+    "name": "Pibanryeong",
+    "distance_km": 3.93,
+    "elevation_m": 227.2,
+    "profile_score": 32.4,
     "stage_type": "Climbing, uphill finish"
   },
   {
@@ -3054,7 +3081,7 @@
     "file": "Classics Courses/Binche Chimay Binche 2025.gpx",
     "folder": "Classics Courses",
     "name": "Binche Chimay Binche 2025",
-    "distance_km": 75.56,
+    "distance_km": 75.55,
     "elevation_m": 585.0,
     "profile_score": 17.8,
     "stage_type": "Flat, flat finish"
