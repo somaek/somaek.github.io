@@ -306,6 +306,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Criterium Courses/Galway Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Galway Crit",
+    "distance_km": 4.27,
+    "elevation_m": 37.7,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Criterium Courses/Perry South Pittsburgh Crit.gpx",
     "folder": "Criterium Courses",
     "name": "Perry South Pittsburgh Crit",
@@ -322,6 +331,15 @@
     "elevation_m": 63.8,
     "profile_score": 6.7,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Chebeague Island Maine.gpx",
+    "folder": "Criterium Courses",
+    "name": "Chebeague Island Maine",
+    "distance_km": 8.7,
+    "elevation_m": 56.9,
+    "profile_score": 2.9,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Criterium Courses/City Crit with Kicker.gpx",
@@ -945,6 +963,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Climbs/Mt Falcon Colorado gravel.gpx",
+    "folder": "Climbs",
+    "name": "Mt Falcon Colorado gravel",
+    "distance_km": 6.23,
+    "elevation_m": 531.5,
+    "profile_score": 110.5,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Climbs/Roscoe to East.gpx",
     "folder": "Climbs",
     "name": "Roscoe to East",
@@ -1195,6 +1222,15 @@
     "elevation_m": 832.6,
     "profile_score": 57.9,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Climbs/RMNP Entrance to Rainbow Curve.gpx",
+    "folder": "Climbs",
+    "name": "RMNP Entrance to Rainbow Curve",
+    "distance_km": 17.27,
+    "elevation_m": 804.1,
+    "profile_score": 93.3,
+    "stage_type": "Climbing, uphill finish"
   },
   {
     "file": "Climbs/Machu Picchu.gpx",
@@ -3744,6 +3780,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Classics Courses/Gp Ongola 2026.gpx",
+    "folder": "Classics Courses",
+    "name": "Gp Ongola 2026",
+    "distance_km": 71.02,
+    "elevation_m": 599.7,
+    "profile_score": 1.5,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Jamaica International Cycling Classic/Jamaica International Cycling Classic Stage 2.gpx",
     "folder": "Jamaica International Cycling Classic",
     "name": "Jamaica International Cycling Classic Stage 2",
@@ -4039,6 +4084,24 @@
     "elevation_m": 114.5,
     "profile_score": 2.4,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Racing Circuits/GP Stad Halle.gpx",
+    "folder": "Racing Circuits",
+    "name": "GP Stad Halle",
+    "distance_km": 30.45,
+    "elevation_m": 343.9,
+    "profile_score": 19.5,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Racing Circuits/Philly Classic Circuit Sheehan.gpx",
+    "folder": "Racing Circuits",
+    "name": "Philly Classic Circuit Sheehan",
+    "distance_km": 23.53,
+    "elevation_m": 187.3,
+    "profile_score": 13.3,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "Racing Circuits/2026 Monmartre Climb Circuit.gpx",
