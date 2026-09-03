@@ -2538,15 +2538,6 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Untested/Tour of Holland - Stage 5 Gravel.gpx",
-    "folder": "Untested",
-    "name": "Tour of Holland - Stage 5 Gravel",
-    "distance_km": 15.38,
-    "elevation_m": 147.4,
-    "profile_score": 3.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
     "file": "Untested/Vuelta Ciclista Andalucia - 44k 747m .gpx",
     "folder": "Untested",
     "name": "Vuelta Ciclista Andalucia - 44k 747m ",
@@ -4641,6 +4632,15 @@
     "distance_km": 15.19,
     "elevation_m": 134.4,
     "profile_score": 5.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Racing Circuits/Tour of Holland - Stage 5 Gravel_processed.gpx",
+    "folder": "Racing Circuits",
+    "name": "Tour of Holland - Stage 5 Gravel_processed",
+    "distance_km": 15.36,
+    "elevation_m": 141.9,
+    "profile_score": 4.5,
     "stage_type": "Flat, flat finish"
   },
   {
