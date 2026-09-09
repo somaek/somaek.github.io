@@ -639,21 +639,210 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "USA Iconic Routes/Red Rock Scenic Byway.gpx",
+    "file": "USA Iconic Routes/Trail Ridge Road Rocky Mountain National Park Colorado.gpx",
     "folder": "USA Iconic Routes",
-    "name": "Red Rock Scenic Byway",
-    "distance_km": 23.34,
-    "elevation_m": 222.7,
-    "profile_score": 7.7,
+    "name": "Trail Ridge Road Rocky Mountain National Park Colorado",
+    "distance_km": 67.34,
+    "elevation_m": 1377.2,
+    "profile_score": 92.1,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Skyline Drive Shenandoah National Park Virginia.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Skyline Drive Shenandoah National Park Virginia",
+    "distance_km": 168.33,
+    "elevation_m": 2749.5,
+    "profile_score": 93.0,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Mount Washington New Hampshire.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Mount Washington New Hampshire",
+    "distance_km": 12.48,
+    "elevation_m": 1427.6,
+    "profile_score": 419.8,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "USA Iconic Routes/Historic Columbia River Highway Oregon.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Historic Columbia River Highway Oregon",
+    "distance_km": 75.6,
+    "elevation_m": 297.7,
+    "profile_score": 6.6,
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "USA Iconic Routes/Cooke City to Red Lodge.gpx",
+    "file": "USA Iconic Routes/Cherohala Skyway North Carolina.gpx",
     "folder": "USA Iconic Routes",
-    "name": "Cooke City to Red Lodge",
-    "distance_km": 103.06,
-    "elevation_m": 1591.2,
-    "profile_score": 70.8,
+    "name": "Cherohala Skyway North Carolina",
+    "distance_km": 70.56,
+    "elevation_m": 1778.4,
+    "profile_score": 143.4,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Red Rock Scenic Byway.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Red Rock Scenic Byway",
+    "distance_km": 23.11,
+    "elevation_m": 347.7,
+    "profile_score": 15.4,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Artist's Drive - Death Valley.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Artist's Drive - Death Valley",
+    "distance_km": 14.11,
+    "elevation_m": 461.4,
+    "profile_score": 83.9,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/California Highway 1 Carmel to San Simeon.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "California Highway 1 Carmel to San Simeon",
+    "distance_km": 150.2,
+    "elevation_m": 2022.1,
+    "profile_score": 59.4,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Kancamagus Highway Conway to Lincoln New Hampshire.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Kancamagus Highway Conway to Lincoln New Hampshire",
+    "distance_km": 55.55,
+    "elevation_m": 739.0,
+    "profile_score": 49.2,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Park Loop Road Acadia National Park Maine.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Park Loop Road Acadia National Park Maine",
+    "distance_km": 29.73,
+    "elevation_m": 435.9,
+    "profile_score": 22.1,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Overseas Highway Key Largo to Key West.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Overseas Highway Key Largo to Key West",
+    "distance_km": 164.24,
+    "elevation_m": 176.1,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Goint-to-the-Sun Road Glacier Park Montana.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Goint-to-the-Sun Road Glacier Park Montana",
+    "distance_km": 81.02,
+    "elevation_m": 1239.8,
+    "profile_score": 75.8,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Zion-Mount Carmel Highway Utah.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Zion-Mount Carmel Highway Utah",
+    "distance_km": 40.78,
+    "elevation_m": 738.5,
+    "profile_score": 33.9,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Blue Ridge Highway - Linn Cove.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Blue Ridge Highway - Linn Cove",
+    "distance_km": 87.06,
+    "elevation_m": 1631.1,
+    "profile_score": 95.3,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Beartooth Pass - Red Lodge to Cooke City.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Beartooth Pass - Red Lodge to Cooke City",
+    "distance_km": 103.02,
+    "elevation_m": 2201.4,
+    "profile_score": 110.3,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Rim Rock Drive Colorado National Monument.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Rim Rock Drive Colorado National Monument",
+    "distance_km": 35.97,
+    "elevation_m": 692.6,
+    "profile_score": 42.9,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Peter Norbeck Scenic Byway and Mount Rushmore.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Peter Norbeck Scenic Byway and Mount Rushmore",
+    "distance_km": 65.26,
+    "elevation_m": 1370.9,
+    "profile_score": 98.5,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "USA Iconic Routes/Journey Through Time Scenic Byway Utah.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Journey Through Time Scenic Byway Utah",
+    "distance_km": 89.99,
+    "elevation_m": 1787.9,
+    "profile_score": 88.6,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "USA Iconic Routes/Independence Pass Colorado.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "Independence Pass Colorado",
+    "distance_km": 27.1,
+    "elevation_m": 542.3,
+    "profile_score": 34.2,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "USA Iconic Routes/North Shore HI-83 Oahu Hawaii.gpx",
+    "folder": "USA Iconic Routes",
+    "name": "North Shore HI-83 Oahu Hawaii",
+    "distance_km": 50.99,
+    "elevation_m": 114.0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Iconic Routes Japan/Shikoku Karst Route.gpx",
+    "folder": "Iconic Routes Japan",
+    "name": "Shikoku Karst Route",
+    "distance_km": 14.95,
+    "elevation_m": 451.1,
+    "profile_score": 58.2,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Iconic Routes Japan/Roller Coaster Road Hokkaido.gpx",
+    "folder": "Iconic Routes Japan",
+    "name": "Roller Coaster Road Hokkaido",
+    "distance_km": 2.56,
+    "elevation_m": 75.5,
+    "profile_score": 8.8,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Iconic Routes Japan/Venus Line in Nakano Japan.gpx",
+    "folder": "Iconic Routes Japan",
+    "name": "Venus Line in Nakano Japan",
+    "distance_km": 70.73,
+    "elevation_m": 2036.3,
+    "profile_score": 170.0,
     "stage_type": "Climbing, flat finish"
   },
   {
@@ -3452,6 +3641,15 @@
     "name": "Louisville Criterium - 1k 13m",
     "distance_km": 1.2,
     "elevation_m": 13.2,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Juneau Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Juneau Crit",
+    "distance_km": 2.49,
+    "elevation_m": 23.5,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
   },
