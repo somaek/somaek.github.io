@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="BikeTerra" xmlns="http://www.topografix.com/GPX/1/1" xmlns:biketerra="https://biketerra.com/xmlns/gpx/1">
+    <metadata>
+        <name>USAC National Championship Criterium Charleston_processed</name>
+        <extensions>
+            <biketerra:version>2.0.0</biketerra:version>
+            <biketerra:isLoop>true</biketerra:isLoop>
+            <biketerra:defaultSurface>asphalt</biketerra:defaultSurface>
+        </extensions>
+    </metadata>
+    <trk>
+        <name>USAC National Championship Criterium Charleston_processed</name>
+        <trkseg>
+            <trkpt lat="38.3495235" lon="-81.6381304"><ele>183.6</ele></trkpt>
+            <trkpt lat="38.3503944" lon="-81.6391729"><ele>183.41</ele></trkpt>
+            <trkpt lat="38.3504753" lon="-81.6392239"><ele>183.36</ele></trkpt>
+            <trkpt lat="38.3505498" lon="-81.6392004"><ele>183.29</ele></trkpt>
+            <trkpt lat="38.3511691" lon="-81.6384023"><ele>181.87</ele></trkpt>
+            <trkpt lat="38.3519386" lon="-81.6373035"><ele>181.27</ele></trkpt>
+            <trkpt lat="38.3522902" lon="-81.6367567"><ele>180.99</ele></trkpt>
+            <trkpt lat="38.3531841" lon="-81.6354482"><ele>180.52</ele></trkpt>
+            <trkpt lat="38.3532244" lon="-81.6353343"><ele>180.54</ele></trkpt>
+            <trkpt lat="38.3532158" lon="-81.6352831"><ele>180.56</ele></trkpt>
+            <trkpt lat="38.3531827" lon="-81.6352284"><ele>180.6</ele></trkpt>
+            <trkpt lat="38.3524975" lon="-81.6346425"><ele>181.45</ele></trkpt>
+            <trkpt lat="38.3518361" lon="-81.6341347"><ele>182.01</ele></trkpt>
+            <trkpt lat="38.3517723" lon="-81.634098"><ele>182.04</ele></trkpt>
+            <trkpt lat="38.3517166" lon="-81.6340932"><ele>182.05</ele></trkpt>
+            <trkpt lat="38.3516738" lon="-81.6341174"><ele>182.05</ele></trkpt>
+            <trkpt lat="38.3516314" lon="-81.6341738"><ele>182.05</ele></trkpt>
+            <trkpt lat="38.3513545" lon="-81.6347286"><ele>181.75</ele></trkpt>
+            <trkpt lat="38.351251" lon="-81.6348969"><ele>181.63</ele></trkpt>
+            <trkpt lat="38.3509951" lon="-81.6352388"><ele>181.52</ele></trkpt>
+            <trkpt lat="38.3506549" lon="-81.6356974"><ele>181.73</ele></trkpt>
+            <trkpt lat="38.3505905" lon="-81.6357533"><ele>181.78</ele></trkpt>
+            <trkpt lat="38.3505358" lon="-81.6357594"><ele>181.81</ele></trkpt>
+            <trkpt lat="38.3504512" lon="-81.6357003"><ele>181.86</ele></trkpt>
+            <trkpt lat="38.3500976" lon="-81.6352969"><ele>182.1</ele></trkpt>
+            <trkpt lat="38.3493852" lon="-81.6344251"><ele>182.84</ele></trkpt>
+            <trkpt lat="38.3493108" lon="-81.6343724"><ele>182.87</ele></trkpt>
+            <trkpt lat="38.3492334" lon="-81.6343938"><ele>182.89</ele></trkpt>
+            <trkpt lat="38.3491104" lon="-81.6345501"><ele>182.85</ele></trkpt>
+            <trkpt lat="38.3486698" lon="-81.6351686"><ele>182.42</ele></trkpt>
+            <trkpt lat="38.34848" lon="-81.63543"><ele>182.44</ele></trkpt>
+            <trkpt lat="38.3483304" lon="-81.6356357"><ele>182.63</ele></trkpt>
+            <trkpt lat="38.3479926" lon="-81.6361466"><ele>183.32</ele></trkpt>
+            <trkpt lat="38.347955" lon="-81.6362198"><ele>183.4</ele></trkpt>
+            <trkpt lat="38.3479436" lon="-81.6362874"><ele>183.45</ele></trkpt>
+            <trkpt lat="38.3479606" lon="-81.6363513"><ele>183.48</ele></trkpt>
+            <trkpt lat="38.3480081" lon="-81.6364162"><ele>183.52</ele></trkpt>
+            <trkpt lat="38.3485888" lon="-81.6370005"><ele>183.39</ele></trkpt>
+            <trkpt lat="38.3488396" lon="-81.637279"><ele>183.26</ele></trkpt>
+            <trkpt lat="38.3491167" lon="-81.6376365"><ele>183.27</ele></trkpt>
+            <trkpt lat="38.3495235" lon="-81.6381304"><ele>183.6</ele></trkpt>
+        </trkseg>
+    </trk>
+</gpx>

@@ -846,6 +846,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Miscellaneous/Crater Rim Drive.gpx",
+    "folder": "Miscellaneous",
+    "name": "Crater Rim Drive",
+    "distance_km": 16.9,
+    "elevation_m": 213.3,
+    "profile_score": 8.5,
+    "stage_type": "Hilly, uphill finish"
+  },
+  {
     "file": "Miscellaneous/Kyoto Arashiyama loop.gpx",
     "folder": "Miscellaneous",
     "name": "Kyoto Arashiyama loop",
@@ -909,15 +918,6 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Miscellaneous/Wild Westie 70.gpx",
-    "folder": "Miscellaneous",
-    "name": "Wild Westie 70",
-    "distance_km": 70.4,
-    "elevation_m": 979.4,
-    "profile_score": 43.0,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
     "file": "Miscellaneous/Honolulu Out and Back.gpx",
     "folder": "Miscellaneous",
     "name": "Honolulu Out and Back",
@@ -927,6 +927,33 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Miscellaneous/Bay to Breakers and Back - 31k 380m.gpx",
+    "folder": "Miscellaneous",
+    "name": "Bay to Breakers and Back - 31k 380m",
+    "distance_km": 31.41,
+    "elevation_m": 366.0,
+    "profile_score": 31.2,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Tano - Toyo.gpx",
+    "folder": "Miscellaneous",
+    "name": "Tano - Toyo",
+    "distance_km": 42.62,
+    "elevation_m": 951.6,
+    "profile_score": 29.5,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Genesee Loop.gpx",
+    "folder": "Miscellaneous",
+    "name": "Genesee Loop",
+    "distance_km": 11.16,
+    "elevation_m": 309.9,
+    "profile_score": 41.5,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Miscellaneous/Southern Iran.gpx",
     "folder": "Miscellaneous",
     "name": "Southern Iran",
@@ -934,6 +961,24 @@
     "elevation_m": 757.1,
     "profile_score": 32.1,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Cartaxo 30m.gpx",
+    "folder": "Miscellaneous",
+    "name": "Cartaxo 30m",
+    "distance_km": 17.56,
+    "elevation_m": 128.6,
+    "profile_score": 2.2,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Heda Port to Nishiurakisho.gpx",
+    "folder": "Miscellaneous",
+    "name": "Heda Port to Nishiurakisho",
+    "distance_km": 23.05,
+    "elevation_m": 814.2,
+    "profile_score": 53.4,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Miscellaneous/Shirasagi Lake.gpx",
@@ -963,6 +1008,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Miscellaneous/Hilly Geoje.gpx",
+    "folder": "Miscellaneous",
+    "name": "Hilly Geoje",
+    "distance_km": 22.25,
+    "elevation_m": 538.4,
+    "profile_score": 78.0,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Miscellaneous/Maratona.gpx",
     "folder": "Miscellaneous",
     "name": "Maratona",
@@ -988,6 +1042,15 @@
     "elevation_m": 705.9,
     "profile_score": 25.4,
     "stage_type": "Hilly, uphill finish"
+  },
+  {
+    "file": "Miscellaneous/Eureka to Trinidad CA.gpx",
+    "folder": "Miscellaneous",
+    "name": "Eureka to Trinidad CA",
+    "distance_km": 38.5,
+    "elevation_m": 200.7,
+    "profile_score": 8.6,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Miscellaneous/Westwater canyone (water).gpx",
@@ -1035,6 +1098,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Miscellaneous/Lake Dillon Loop.gpx",
+    "folder": "Miscellaneous",
+    "name": "Lake Dillon Loop",
+    "distance_km": 28.6,
+    "elevation_m": 378.6,
+    "profile_score": 22.2,
+    "stage_type": "Hilly, uphill finish"
+  },
+  {
     "file": "Miscellaneous/Carmel to Pismo 4 of 6.gpx",
     "folder": "Miscellaneous",
     "name": "Carmel to Pismo 4 of 6",
@@ -1080,6 +1152,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Miscellaneous/Deschutes OR Classic.gpx",
+    "folder": "Miscellaneous",
+    "name": "Deschutes OR Classic",
+    "distance_km": 35.45,
+    "elevation_m": 364.6,
+    "profile_score": 20.9,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Miscellaneous/Weaverville to Shasta.gpx",
     "folder": "Miscellaneous",
     "name": "Weaverville to Shasta",
@@ -1087,15 +1168,6 @@
     "elevation_m": 1042.8,
     "profile_score": 68.5,
     "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Miscellaneous/Foco Double.gpx",
-    "folder": "Miscellaneous",
-    "name": "Foco Double",
-    "distance_km": 99.12,
-    "elevation_m": 850.8,
-    "profile_score": 13.3,
-    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Miscellaneous/Rancho Aguajito.gpx",
@@ -1107,13 +1179,22 @@
     "stage_type": "Hilly, flat finish"
   },
   {
-    "file": "Miscellaneous/Shelter Cove Gravel.gpx",
+    "file": "Miscellaneous/Zwift Glasgow Crit Circuit - 3k 33m.gpx",
     "folder": "Miscellaneous",
-    "name": "Shelter Cove Gravel",
-    "distance_km": 81.93,
-    "elevation_m": 2151.0,
-    "profile_score": 241.1,
-    "stage_type": "Climbing, flat finish"
+    "name": "Zwift Glasgow Crit Circuit - 3k 33m",
+    "distance_km": 3.0,
+    "elevation_m": 31.5,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Poland.gpx",
+    "folder": "Miscellaneous",
+    "name": "Poland",
+    "distance_km": 37.02,
+    "elevation_m": 395.3,
+    "profile_score": 20.4,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "Miscellaneous/Arapahoe Bay to Gravel Mountain.gpx",
@@ -1143,6 +1224,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Miscellaneous/Superior Time-Trial.gpx",
+    "folder": "Miscellaneous",
+    "name": "Superior Time-Trial",
+    "distance_km": 12.95,
+    "elevation_m": 132.4,
+    "profile_score": 6.0,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
     "file": "Miscellaneous/UP Big Bay Ride.gpx",
     "folder": "Miscellaneous",
     "name": "UP Big Bay Ride",
@@ -1170,12 +1260,30 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Miscellaneous/Santa Rosalia Baja.gpx",
+    "folder": "Miscellaneous",
+    "name": "Santa Rosalia Baja",
+    "distance_km": 33.19,
+    "elevation_m": 312.4,
+    "profile_score": 10.6,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
     "file": "Miscellaneous/Cornwall Furnace Ride Lancaster PA.gpx",
     "folder": "Miscellaneous",
     "name": "Cornwall Furnace Ride Lancaster PA",
     "distance_km": 67.79,
     "elevation_m": 727.4,
     "profile_score": 19.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Rolling Nebraska.gpx",
+    "folder": "Miscellaneous",
+    "name": "Rolling Nebraska",
+    "distance_km": 50.62,
+    "elevation_m": 361.4,
+    "profile_score": 4.0,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -1186,6 +1294,15 @@
     "elevation_m": 487.1,
     "profile_score": 47.7,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Miscellaneous/Nice Kevin Vauquelin Training Ride.gpx",
+    "folder": "Miscellaneous",
+    "name": "Nice Kevin Vauquelin Training Ride",
+    "distance_km": 59.51,
+    "elevation_m": 1094.4,
+    "profile_score": 76.0,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Miscellaneous/S11_elevated.gpx",
@@ -1242,12 +1359,66 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Miscellaneous/Las Positas Loop.gpx",
+    "folder": "Miscellaneous",
+    "name": "Las Positas Loop",
+    "distance_km": 16.54,
+    "elevation_m": 329.5,
+    "profile_score": 48.0,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Valentine Bosberg.gpx",
+    "folder": "Miscellaneous",
+    "name": "Valentine Bosberg",
+    "distance_km": 37.52,
+    "elevation_m": 348.4,
+    "profile_score": 18.8,
+    "stage_type": "Hilly, uphill finish"
+  },
+  {
     "file": "Miscellaneous/Island Hopping in Kure Japan.gpx",
     "folder": "Miscellaneous",
     "name": "Island Hopping in Kure Japan",
     "distance_km": 35.86,
     "elevation_m": 317.8,
     "profile_score": 15.8,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Indian Head Oregeon Out and Back.gpx",
+    "folder": "Miscellaneous",
+    "name": "Indian Head Oregeon Out and Back",
+    "distance_km": 17.93,
+    "elevation_m": 181.7,
+    "profile_score": 13.4,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Through Loreto Baja.gpx",
+    "folder": "Miscellaneous",
+    "name": "Through Loreto Baja",
+    "distance_km": 34.3,
+    "elevation_m": 194.6,
+    "profile_score": 10.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Gap of Dunloe (OAB).gpx",
+    "folder": "Miscellaneous",
+    "name": "Gap of Dunloe (OAB)",
+    "distance_km": 33.63,
+    "elevation_m": 545.2,
+    "profile_score": 44.2,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Miscellaneous/Rollers.gpx",
+    "folder": "Miscellaneous",
+    "name": "Rollers",
+    "distance_km": 47.06,
+    "elevation_m": 412.2,
+    "profile_score": 7.2,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -1258,6 +1429,15 @@
     "elevation_m": 492.8,
     "profile_score": 10.0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Besseges Stage 2 2026.gpx",
+    "folder": "Miscellaneous",
+    "name": "Besseges Stage 2 2026",
+    "distance_km": 28.88,
+    "elevation_m": 212.3,
+    "profile_score": 9.1,
+    "stage_type": "Flat, uphill finish"
   },
   {
     "file": "Miscellaneous/Samcheok to Gunnam Korea.gpx",
@@ -1287,6 +1467,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Miscellaneous/Middle of Grassroots Gravel - The Half .gpx",
+    "folder": "Miscellaneous",
+    "name": "Middle of Grassroots Gravel - The Half ",
+    "distance_km": 34.41,
+    "elevation_m": 472.4,
+    "profile_score": 21.8,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Miscellaneous/Arches.gpx",
     "folder": "Miscellaneous",
     "name": "Arches",
@@ -1296,15 +1485,6 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Miscellaneous/Pawnee Butte Crit.gpx",
-    "folder": "Miscellaneous",
-    "name": "Pawnee Butte Crit",
-    "distance_km": 6.11,
-    "elevation_m": 65.4,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
     "file": "Miscellaneous/Kountoura Climbs.gpx",
     "folder": "Miscellaneous",
     "name": "Kountoura Climbs",
@@ -1312,6 +1492,15 @@
     "elevation_m": 687.9,
     "profile_score": 70.9,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Fort Bragg CA.gpx",
+    "folder": "Miscellaneous",
+    "name": "Fort Bragg CA",
+    "distance_km": 35.29,
+    "elevation_m": 315.5,
+    "profile_score": 9.6,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Miscellaneous/Egg Carton Mountains.gpx",
@@ -1359,12 +1548,12 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Miscellaneous/Rail Trail Colorado South of Kremmling.gpx",
+    "file": "Miscellaneous/Windsor to Cloverdale CA.gpx",
     "folder": "Miscellaneous",
-    "name": "Rail Trail Colorado South of Kremmling",
-    "distance_km": 70.03,
-    "elevation_m": 12.9,
-    "profile_score": 0,
+    "name": "Windsor to Cloverdale CA",
+    "distance_km": 34.15,
+    "elevation_m": 234.3,
+    "profile_score": 7.2,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -1374,6 +1563,15 @@
     "distance_km": 11.03,
     "elevation_m": 189.2,
     "profile_score": 5.8,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Lake Crescent.gpx",
+    "folder": "Miscellaneous",
+    "name": "Lake Crescent",
+    "distance_km": 37.81,
+    "elevation_m": 648.6,
+    "profile_score": 21.2,
     "stage_type": "Hilly, flat finish"
   },
   {
@@ -1404,6 +1602,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Miscellaneous/Zwift Downtown Dolphin - 2k 14m.gpx",
+    "folder": "Miscellaneous",
+    "name": "Zwift Downtown Dolphin - 2k 14m",
+    "distance_km": 1.92,
+    "elevation_m": 14.2,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Miscellaneous/Healdsburg Loop.gpx",
     "folder": "Miscellaneous",
     "name": "Healdsburg Loop",
@@ -1420,6 +1627,33 @@
     "elevation_m": 51.3,
     "profile_score": 4.7,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Miscellaneous/Lake Miramar San Diego CA.gpx",
+    "folder": "Miscellaneous",
+    "name": "Lake Miramar San Diego CA",
+    "distance_km": 7.88,
+    "elevation_m": 27.8,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Northern Scotland 4 of 4.gpx",
+    "folder": "Miscellaneous",
+    "name": "Northern Scotland 4 of 4",
+    "distance_km": 35.78,
+    "elevation_m": 325.5,
+    "profile_score": 7.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Enchanted Hills.gpx",
+    "folder": "Miscellaneous",
+    "name": "Enchanted Hills",
+    "distance_km": 33.85,
+    "elevation_m": 550.9,
+    "profile_score": 31.3,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "Miscellaneous/Shikashima climb loop.gpx",
@@ -1485,323 +1719,17 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Miscellaneous/Tour of Slovenia 2026/Eel River Loop.gpx",
-    "folder": "Miscellaneous/Tour of Slovenia 2026",
-    "name": "Eel River Loop",
-    "distance_km": 36.56,
-    "elevation_m": 601.2,
-    "profile_score": 61.0,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Miscellaneous/Tour of Slovenia 2026/Stage 1.gpx",
-    "folder": "Miscellaneous/Tour of Slovenia 2026",
-    "name": "Stage 1",
-    "distance_km": 36.28,
-    "elevation_m": 350.4,
-    "profile_score": 7.4,
+    "file": "Miscellaneous/Lake Tahoe Loop 2 of 3.gpx",
+    "folder": "Miscellaneous",
+    "name": "Lake Tahoe Loop 2 of 3",
+    "distance_km": 35.27,
+    "elevation_m": 332.1,
+    "profile_score": 12.1,
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Racing Circuits/Paterberg circuit.gpx",
-    "folder": "Racing Circuits",
-    "name": "Paterberg circuit",
-    "distance_km": 3.2,
-    "elevation_m": 61.8,
-    "profile_score": 8.0,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/Crater Rim Drive.gpx",
-    "folder": "Racing Circuits",
-    "name": "Crater Rim Drive",
-    "distance_km": 16.9,
-    "elevation_m": 213.3,
-    "profile_score": 8.5,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/2025 Ireland Nats.gpx",
-    "folder": "Racing Circuits",
-    "name": "2025 Ireland Nats",
-    "distance_km": 25.24,
-    "elevation_m": 228.2,
-    "profile_score": 11.2,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Bay to Breakers and Back - 31k 380m.gpx",
-    "folder": "Racing Circuits",
-    "name": "Bay to Breakers and Back - 31k 380m",
-    "distance_km": 31.41,
-    "elevation_m": 366.0,
-    "profile_score": 31.2,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Genesee Loop.gpx",
-    "folder": "Racing Circuits",
-    "name": "Genesee Loop",
-    "distance_km": 11.16,
-    "elevation_m": 309.9,
-    "profile_score": 41.5,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/Eagles Canyon Raceway.gpx",
-    "folder": "Racing Circuits",
-    "name": "Eagles Canyon Raceway",
-    "distance_km": 3.88,
-    "elevation_m": 50.8,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Cartaxo 30m.gpx",
-    "folder": "Racing Circuits",
-    "name": "Cartaxo 30m",
-    "distance_km": 17.56,
-    "elevation_m": 128.6,
-    "profile_score": 2.2,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Paterberg 18k Circuit.gpx",
-    "folder": "Racing Circuits",
-    "name": "Paterberg 18k Circuit",
-    "distance_km": 17.89,
-    "elevation_m": 226.5,
-    "profile_score": 23.5,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Hilly Geoje.gpx",
-    "folder": "Racing Circuits",
-    "name": "Hilly Geoje",
-    "distance_km": 22.25,
-    "elevation_m": 538.4,
-    "profile_score": 78.0,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Racing Circuits/South Elbert Loop.gpx",
-    "folder": "Racing Circuits",
-    "name": "South Elbert Loop",
-    "distance_km": 38.81,
-    "elevation_m": 551.0,
-    "profile_score": 26.8,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/Bear Creek Lake Park Circuit.gpx",
-    "folder": "Racing Circuits",
-    "name": "Bear Creek Lake Park Circuit",
-    "distance_km": 12.13,
-    "elevation_m": 172.2,
-    "profile_score": 14.6,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Midwest_Circuit.gpx",
-    "folder": "Racing Circuits",
-    "name": "Midwest_Circuit",
-    "distance_km": 12.19,
-    "elevation_m": 63.7,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Lake Dillon Loop.gpx",
-    "folder": "Racing Circuits",
-    "name": "Lake Dillon Loop",
-    "distance_km": 28.6,
-    "elevation_m": 378.6,
-    "profile_score": 22.2,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/SUPERIOR MORGUL Circuit Race.gpx",
-    "folder": "Racing Circuits",
-    "name": "SUPERIOR MORGUL Circuit Race",
-    "distance_km": 5.3,
-    "elevation_m": 79.2,
-    "profile_score": 7.6,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Deschutes OR Classic.gpx",
-    "folder": "Racing Circuits",
-    "name": "Deschutes OR Classic",
-    "distance_km": 35.45,
-    "elevation_m": 364.6,
-    "profile_score": 20.9,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Superior Time-Trial.gpx",
-    "folder": "Racing Circuits",
-    "name": "Superior Time-Trial",
-    "distance_km": 12.95,
-    "elevation_m": 132.4,
-    "profile_score": 6.0,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/Blunn Reservoir Loop.gpx",
-    "folder": "Racing Circuits",
-    "name": "Blunn Reservoir Loop",
-    "distance_km": 8.55,
-    "elevation_m": 111.1,
-    "profile_score": 7.5,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Angel Island San Francisco CA.gpx",
-    "folder": "Racing Circuits",
-    "name": "Angel Island San Francisco CA",
-    "distance_km": 7.78,
-    "elevation_m": 114.2,
-    "profile_score": 3.3,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Nice Kevin Vauquelin Training Ride.gpx",
-    "folder": "Racing Circuits",
-    "name": "Nice Kevin Vauquelin Training Ride",
-    "distance_km": 59.51,
-    "elevation_m": 1094.4,
-    "profile_score": 76.0,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Summit Point Circuit.gpx",
-    "folder": "Racing Circuits",
-    "name": "Summit Point Circuit",
-    "distance_km": 3.2,
-    "elevation_m": 16.7,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Palos Verdes CA Donut Loop.gpx",
-    "folder": "Racing Circuits",
-    "name": "Palos Verdes CA Donut Loop",
-    "distance_km": 33.69,
-    "elevation_m": 514.3,
-    "profile_score": 31.3,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Las Positas Loop.gpx",
-    "folder": "Racing Circuits",
-    "name": "Las Positas Loop",
-    "distance_km": 16.54,
-    "elevation_m": 329.5,
-    "profile_score": 48.0,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Besseges Stage 2 2026.gpx",
-    "folder": "Racing Circuits",
-    "name": "Besseges Stage 2 2026",
-    "distance_km": 28.88,
-    "elevation_m": 212.3,
-    "profile_score": 9.1,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/Lake Crescent.gpx",
-    "folder": "Racing Circuits",
-    "name": "Lake Crescent",
-    "distance_km": 37.81,
-    "elevation_m": 648.6,
-    "profile_score": 21.2,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Julian Loop.gpx",
-    "folder": "Racing Circuits",
-    "name": "Julian Loop",
-    "distance_km": 16.14,
-    "elevation_m": 289.7,
-    "profile_score": 29.0,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Racing Circuits/Lake Miramar San Diego CA.gpx",
-    "folder": "Racing Circuits",
-    "name": "Lake Miramar San Diego CA",
-    "distance_km": 7.88,
-    "elevation_m": 27.8,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Enchanted Hills.gpx",
-    "folder": "Racing Circuits",
-    "name": "Enchanted Hills",
-    "distance_km": 33.85,
-    "elevation_m": 550.9,
-    "profile_score": 31.3,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Racing Circuits/Arsenal_Ride_CW.gpx",
-    "folder": "Racing Circuits",
-    "name": "Arsenal_Ride_CW",
-    "distance_km": 32.39,
-    "elevation_m": 143.3,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Baloise Tour 2026/Stage 5.gpx",
-    "folder": "Baloise Tour 2026",
-    "name": "Stage 5",
-    "distance_km": 43.12,
-    "elevation_m": 483.3,
-    "profile_score": 21.3,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Baloise Tour 2026/Stage 3.gpx",
-    "folder": "Baloise Tour 2026",
-    "name": "Stage 3",
-    "distance_km": 44.14,
-    "elevation_m": 590.3,
-    "profile_score": 40.8,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "Baloise Tour 2026/Stage 1 Circuit.gpx",
-    "folder": "Baloise Tour 2026",
-    "name": "Stage 1 Circuit",
-    "distance_km": 48.02,
-    "elevation_m": 338.5,
-    "profile_score": 9.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Baloise Tour 2026/Stage 4.gpx",
-    "folder": "Baloise Tour 2026",
-    "name": "Stage 4",
-    "distance_km": 43.25,
-    "elevation_m": 341.0,
-    "profile_score": 14.8,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Baloise Tour 2026/Stage 2.gpx",
-    "folder": "Baloise Tour 2026",
-    "name": "Stage 2",
-    "distance_km": 19.14,
-    "elevation_m": 67.6,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Ryan Local Routes/Lookout Out and Back.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Lookout Out and Back.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Lookout Out and Back",
     "distance_km": 7.49,
     "elevation_m": 407.3,
@@ -1809,8 +1737,8 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
-    "file": "Ryan Local Routes/Chicheon Coastal Loop.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Chicheon Coastal Loop.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Chicheon Coastal Loop",
     "distance_km": 12.6,
     "elevation_m": 227.7,
@@ -1818,8 +1746,8 @@
     "stage_type": "Hilly, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Blunn and North Table.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Blunn and North Table.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Blunn and North Table",
     "distance_km": 26.17,
     "elevation_m": 444.9,
@@ -1827,8 +1755,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Rattlesnake Butte.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Rattlesnake Butte.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Rattlesnake Butte",
     "distance_km": 28.89,
     "elevation_m": 340.4,
@@ -1836,8 +1764,8 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Arsenal Clockwise.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Arsenal Clockwise.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Arsenal Clockwise",
     "distance_km": 32.24,
     "elevation_m": 148.2,
@@ -1845,8 +1773,8 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Black Canyon North.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Black Canyon North.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Black Canyon North",
     "distance_km": 97.66,
     "elevation_m": 1167.5,
@@ -1854,8 +1782,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Standley Loop.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Standley Loop.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Standley Loop",
     "distance_km": 12.68,
     "elevation_m": 100.9,
@@ -1863,8 +1791,8 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Poudre Canyon.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Poudre Canyon.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Poudre Canyon",
     "distance_km": 102.16,
     "elevation_m": 1671.3,
@@ -1872,8 +1800,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Lookout Gennesee etc.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Lookout Gennesee etc.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Lookout Gennesee etc",
     "distance_km": 80.58,
     "elevation_m": 2240.8,
@@ -1881,8 +1809,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Cachuma to IV.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Cachuma to IV.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Cachuma to IV",
     "distance_km": 28.36,
     "elevation_m": 452.8,
@@ -1890,8 +1818,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Empire_to_Winter_Park.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Empire_to_Winter_Park.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Empire_to_Winter_Park",
     "distance_km": 43.87,
     "elevation_m": 831.6,
@@ -1899,8 +1827,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Gold Hill Gravel Loop - 34k 979m.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Gold Hill Gravel Loop - 34k 979m.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Gold Hill Gravel Loop - 34k 979m",
     "distance_km": 33.74,
     "elevation_m": 979.2,
@@ -1908,8 +1836,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Colorado Monument.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Colorado Monument.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Colorado Monument",
     "distance_km": 52.65,
     "elevation_m": 836.9,
@@ -1917,8 +1845,8 @@
     "stage_type": "Hilly, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Cooke City to Red Lodge.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Cooke City to Red Lodge.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Cooke City to Red Lodge",
     "distance_km": 102.83,
     "elevation_m": 1645.8,
@@ -1926,8 +1854,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/geoje two.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/geoje two.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "geoje two",
     "distance_km": 27.07,
     "elevation_m": 456.3,
@@ -1935,8 +1863,8 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/New Image A Ride.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/New Image A Ride.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "New Image A Ride",
     "distance_km": 43.4,
     "elevation_m": 323.9,
@@ -1944,8 +1872,8 @@
     "stage_type": "Flat, flat finish"
   },
   {
-    "file": "Ryan Local Routes/GOG Criterium Circuit.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/GOG Criterium Circuit.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "GOG Criterium Circuit",
     "distance_km": 3.82,
     "elevation_m": 72.6,
@@ -1953,13 +1881,391 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Ryan Local Routes/Turquoise Lake Plus.gpx",
-    "folder": "Ryan Local Routes",
+    "file": "Miscellaneous/Ryan Local Routes/Turquoise Lake Plus.gpx",
+    "folder": "Miscellaneous/Ryan Local Routes",
     "name": "Turquoise Lake Plus",
     "distance_km": 50.0,
     "elevation_m": 1061.8,
     "profile_score": 86.5,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Season 2/Tour of Germany Stage 3.gpx",
+    "folder": "Miscellaneous/Season 2",
+    "name": "Tour of Germany Stage 3",
+    "distance_km": 35.39,
+    "elevation_m": 560.1,
+    "profile_score": 54.9,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Miscellaneous/Season 2/Leadville 100 - Turquoise Lake Section.gpx",
+    "folder": "Miscellaneous/Season 2",
+    "name": "Leadville 100 - Turquoise Lake Section",
+    "distance_km": 30.41,
+    "elevation_m": 767.2,
+    "profile_score": 80.0,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Miscellaneous/Season 2/Besseges_ITT.gpx",
+    "folder": "Miscellaneous/Season 2",
+    "name": "Besseges_ITT",
+    "distance_km": 9.35,
+    "elevation_m": 181.8,
+    "profile_score": 15.9,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Miscellaneous/Season 2/Tour of Germany Stage 1.gpx",
+    "folder": "Miscellaneous/Season 2",
+    "name": "Tour of Germany Stage 1",
+    "distance_km": 35.24,
+    "elevation_m": 401.7,
+    "profile_score": 16.2,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Season 2/Trofeo Palma Short Course.gpx",
+    "folder": "Miscellaneous/Season 2",
+    "name": "Trofeo Palma Short Course",
+    "distance_km": 35.51,
+    "elevation_m": 178.4,
+    "profile_score": 4.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Miscellaneous/Season 2/Tour of Germany Stage 2.gpx",
+    "folder": "Miscellaneous/Season 2",
+    "name": "Tour of Germany Stage 2",
+    "distance_km": 38.01,
+    "elevation_m": 185.3,
+    "profile_score": 1.8,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Gravel - The Half 1 of 4.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Gravel - The Half 1 of 4",
+    "distance_km": 27.78,
+    "elevation_m": 331.7,
+    "profile_score": 5.1,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Foco Fondo Double Dog Gravel Race.gpx",
+    "folder": "Gravel Roads",
+    "name": "Foco Fondo Double Dog Gravel Race",
+    "distance_km": 100.41,
+    "elevation_m": 827.0,
+    "profile_score": 12.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/FoCo Fondo Finish.gpx",
+    "folder": "Gravel Roads",
+    "name": "FoCo Fondo Finish",
+    "distance_km": 37.5,
+    "elevation_m": 193.9,
+    "profile_score": 2.0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Wild Westie 70.gpx",
+    "folder": "Gravel Roads",
+    "name": "Wild Westie 70",
+    "distance_km": 70.4,
+    "elevation_m": 979.4,
+    "profile_score": 43.0,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Cove Mountain Loop.gpx",
+    "folder": "Gravel Roads",
+    "name": "Cove Mountain Loop",
+    "distance_km": 46.2,
+    "elevation_m": 806.2,
+    "profile_score": 46.8,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Unbound Gravel - Just Little Egypt - 38k 493m.gpx",
+    "folder": "Gravel Roads",
+    "name": "Unbound Gravel - Just Little Egypt - 38k 493m",
+    "distance_km": 37.78,
+    "elevation_m": 413.3,
+    "profile_score": 20.4,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/FoCo Fondo Classic 2 hour.gpx",
+    "folder": "Gravel Roads",
+    "name": "FoCo Fondo Classic 2 hour",
+    "distance_km": 69.32,
+    "elevation_m": 685.1,
+    "profile_score": 16.3,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/SBT GRVL Red Course - 85k 1148m.gpx",
+    "folder": "Gravel Roads",
+    "name": "SBT GRVL Red Course - 85k 1148m",
+    "distance_km": 85.02,
+    "elevation_m": 1146.1,
+    "profile_score": 44.5,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/FoCo Fondo Start.gpx",
+    "folder": "Gravel Roads",
+    "name": "FoCo Fondo Start",
+    "distance_km": 34.59,
+    "elevation_m": 308.1,
+    "profile_score": 7.9,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
+    "file": "Gravel Roads/Foco Fondo Middle Section LU.gpx",
+    "folder": "Gravel Roads",
+    "name": "Foco Fondo Middle Section LU",
+    "distance_km": 33.15,
+    "elevation_m": 396.8,
+    "profile_score": 15.1,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/KLGC 2026 55mile Comet Route.gpx",
+    "folder": "Gravel Roads",
+    "name": "KLGC 2026 55mile Comet Route",
+    "distance_km": 88.32,
+    "elevation_m": 1160.4,
+    "profile_score": 50.2,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Gravel - The Half.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Gravel - The Half",
+    "distance_km": 119.19,
+    "elevation_m": 1007.0,
+    "profile_score": 8.0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Core4 USAC Gravel Event.gpx",
+    "folder": "Gravel Roads",
+    "name": "Core4 USAC Gravel Event",
+    "distance_km": 74.39,
+    "elevation_m": 560.6,
+    "profile_score": 7.1,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Double Dog Updated.gpx",
+    "folder": "Gravel Roads",
+    "name": "Double Dog Updated",
+    "distance_km": 99.36,
+    "elevation_m": 897.0,
+    "profile_score": 13.8,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Gravel - The Half LU.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Gravel - The Half LU",
+    "distance_km": 119.19,
+    "elevation_m": 1007.0,
+    "profile_score": 8.0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Foco Double.gpx",
+    "folder": "Gravel Roads",
+    "name": "Foco Double",
+    "distance_km": 99.12,
+    "elevation_m": 850.8,
+    "profile_score": 13.3,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/2025_Grassroots_Gravel_-_The_Lil_Chile_-_63k_592m.gpx",
+    "folder": "Gravel Roads",
+    "name": "2025_Grassroots_Gravel_-_The_Lil_Chile_-_63k_592m",
+    "distance_km": 63.06,
+    "elevation_m": 461.9,
+    "profile_score": 10.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Shelter Cove Gravel.gpx",
+    "folder": "Gravel Roads",
+    "name": "Shelter Cove Gravel",
+    "distance_km": 81.93,
+    "elevation_m": 2151.0,
+    "profile_score": 241.1,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Gravel Roads/FoCo Fondo Double Dog Dare You 60 mile route LU.gpx",
+    "folder": "Gravel Roads",
+    "name": "FoCo Fondo Double Dog Dare You 60 mile route LU",
+    "distance_km": 99.06,
+    "elevation_m": 948.9,
+    "profile_score": 14.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/FoCo Fondo Dare You 30 mile Gravel route - 48k 285m.gpx",
+    "folder": "Gravel Roads",
+    "name": "FoCo Fondo Dare You 30 mile Gravel route - 48k 285m",
+    "distance_km": 48.52,
+    "elevation_m": 233.8,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Half 3 of 3.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Half 3 of 3",
+    "distance_km": 46.89,
+    "elevation_m": 80.9,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Gravel - The Half 2 of 4.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Gravel - The Half 2 of 4",
+    "distance_km": 24.39,
+    "elevation_m": 349.2,
+    "profile_score": 8.3,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Gravel - The Half 3 of 4.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Gravel - The Half 3 of 4",
+    "distance_km": 30.49,
+    "elevation_m": 279.3,
+    "profile_score": 9.0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/SBT Red Course TPV.gpx",
+    "folder": "Gravel Roads",
+    "name": "SBT Red Course TPV",
+    "distance_km": 70.91,
+    "elevation_m": 889.2,
+    "profile_score": 34.6,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/2026 Boulder Roubaix.gpx",
+    "folder": "Gravel Roads",
+    "name": "2026 Boulder Roubaix",
+    "distance_km": 48.29,
+    "elevation_m": 375.6,
+    "profile_score": 2.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Half 1 of 3.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Half 1 of 3",
+    "distance_km": 35.96,
+    "elevation_m": 471.4,
+    "profile_score": 10.7,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
+    "file": "Gravel Roads/Pawnee Butte Crit.gpx",
+    "folder": "Gravel Roads",
+    "name": "Pawnee Butte Crit",
+    "distance_km": 6.11,
+    "elevation_m": 65.4,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Half.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Half",
+    "distance_km": 118.91,
+    "elevation_m": 1058.0,
+    "profile_score": 10.1,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Big Sky Gravel 50.gpx",
+    "folder": "Gravel Roads",
+    "name": "Big Sky Gravel 50",
+    "distance_km": 79.17,
+    "elevation_m": 783.9,
+    "profile_score": 21.2,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Rail Trail Colorado South of Kremmling.gpx",
+    "folder": "Gravel Roads",
+    "name": "Rail Trail Colorado South of Kremmling",
+    "distance_km": 70.03,
+    "elevation_m": 12.9,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Mad Gravel Hemi 5-0 Race.gpx",
+    "folder": "Gravel Roads",
+    "name": "Mad Gravel Hemi 5-0 Race",
+    "distance_km": 75.14,
+    "elevation_m": 905.8,
+    "profile_score": 21.6,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Gravel - The Half 4 of 4.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Gravel - The Half 4 of 4",
+    "distance_km": 36.53,
+    "elevation_m": 52.2,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/BWR Utah.gpx",
+    "folder": "Gravel Roads",
+    "name": "BWR Utah",
+    "distance_km": 78.32,
+    "elevation_m": 456.2,
+    "profile_score": 9.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Grassroots Half 2 of 3.gpx",
+    "folder": "Gravel Roads",
+    "name": "Grassroots Half 2 of 3",
+    "distance_km": 36.07,
+    "elevation_m": 506.1,
+    "profile_score": 17.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/TPV Mad Gravel 2025 Gravel Circuit.gpx",
+    "folder": "Gravel Roads",
+    "name": "TPV Mad Gravel 2025 Gravel Circuit",
+    "distance_km": 10.53,
+    "elevation_m": 161.0,
+    "profile_score": 11.1,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Arsenal_Ride_CW.gpx",
+    "folder": "Gravel Roads",
+    "name": "Arsenal_Ride_CW",
+    "distance_km": 32.39,
+    "elevation_m": 143.3,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Criterium Courses/Saitama Criterium Course.gpx",
@@ -1976,6 +2282,15 @@
     "name": "Syracuse Lakefront",
     "distance_km": 17.29,
     "elevation_m": 122.2,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Eagles Canyon Raceway.gpx",
+    "folder": "Criterium Courses",
+    "name": "Eagles Canyon Raceway",
+    "distance_km": 3.88,
+    "elevation_m": 50.8,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
   },
@@ -2070,6 +2385,33 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Criterium Courses/South Elbert Loop.gpx",
+    "folder": "Criterium Courses",
+    "name": "South Elbert Loop",
+    "distance_km": 38.81,
+    "elevation_m": 551.0,
+    "profile_score": 26.8,
+    "stage_type": "Hilly, uphill finish"
+  },
+  {
+    "file": "Criterium Courses/Bear Creek Lake Park Circuit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Bear Creek Lake Park Circuit",
+    "distance_km": 12.13,
+    "elevation_m": 172.2,
+    "profile_score": 14.6,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Midwest_Circuit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Midwest_Circuit",
+    "distance_km": 12.19,
+    "elevation_m": 63.7,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Criterium Courses/Circuit de Monaco - 3k 45m.gpx",
     "folder": "Criterium Courses",
     "name": "Circuit de Monaco - 3k 45m",
@@ -2086,6 +2428,15 @@
     "elevation_m": 29.7,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/SUPERIOR MORGUL Circuit Race.gpx",
+    "folder": "Criterium Courses",
+    "name": "SUPERIOR MORGUL Circuit Race",
+    "distance_km": 5.3,
+    "elevation_m": 79.2,
+    "profile_score": 7.6,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Criterium Courses/Catalina Crit.gpx",
@@ -2160,11 +2511,38 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Criterium Courses/Blunn Reservoir Loop.gpx",
+    "folder": "Criterium Courses",
+    "name": "Blunn Reservoir Loop",
+    "distance_km": 8.55,
+    "elevation_m": 111.1,
+    "profile_score": 7.5,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Criterium Courses/Copenhagen Sprint Circuit.gpx",
     "folder": "Criterium Courses",
     "name": "Copenhagen Sprint Circuit",
     "distance_km": 10.14,
     "elevation_m": 23.1,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Angel Island San Francisco CA.gpx",
+    "folder": "Criterium Courses",
+    "name": "Angel Island San Francisco CA",
+    "distance_km": 7.78,
+    "elevation_m": 114.2,
+    "profile_score": 3.3,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Summit Point Circuit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Summit Point Circuit",
+    "distance_km": 3.2,
+    "elevation_m": 16.7,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
   },
@@ -2176,6 +2554,15 @@
     "elevation_m": 115.8,
     "profile_score": 10.3,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Palos Verdes CA Donut Loop.gpx",
+    "folder": "Criterium Courses",
+    "name": "Palos Verdes CA Donut Loop",
+    "distance_km": 33.69,
+    "elevation_m": 514.3,
+    "profile_score": 31.3,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "Criterium Courses/Littleton Criterium.gpx",
@@ -2277,6 +2664,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Criterium Courses/Julian Loop.gpx",
+    "folder": "Criterium Courses",
+    "name": "Julian Loop",
+    "distance_km": 16.14,
+    "elevation_m": 289.7,
+    "profile_score": 29.0,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Criterium Courses/Chebeague Island Maine.gpx",
     "folder": "Criterium Courses",
     "name": "Chebeague Island Maine",
@@ -2358,660 +2754,12 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Tour De Suisse 2026/Stage 1 Sondrio.gpx",
-    "folder": "Tour De Suisse 2026",
-    "name": "Stage 1 Sondrio",
-    "distance_km": 33.33,
-    "elevation_m": 484.1,
-    "profile_score": 59.5,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Tour De Suisse 2026/Stage 4 Oftringen.gpx",
-    "folder": "Tour De Suisse 2026",
-    "name": "Stage 4 Oftringen",
-    "distance_km": 23.64,
-    "elevation_m": 202.6,
-    "profile_score": 3.5,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Tour De Suisse 2026/Stage 2 Locarno.gpx",
-    "folder": "Tour De Suisse 2026",
-    "name": "Stage 2 Locarno",
-    "distance_km": 67.38,
-    "elevation_m": 682.6,
-    "profile_score": 58.5,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/PN6.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "PN6",
-    "distance_km": 33.18,
-    "elevation_m": 410.4,
-    "profile_score": 41.1,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vuelta 26 Stage 3 Start.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vuelta 26 Stage 3 Start",
-    "distance_km": 37.4,
-    "elevation_m": 228.9,
-    "profile_score": 8.9,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vuelta Burgos S1.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vuelta Burgos S1",
-    "distance_km": 35.88,
-    "elevation_m": 393.0,
-    "profile_score": 14.8,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tirreno Stage 2.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tirreno Stage 2",
-    "distance_km": 37.3,
-    "elevation_m": 472.4,
-    "profile_score": 41.3,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour of Albania Stage 5 Finish.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour of Albania Stage 5 Finish",
-    "distance_km": 40.78,
-    "elevation_m": 139.5,
-    "profile_score": 3.8,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Grand Prix de Wallonie 1 hour.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Grand Prix de Wallonie 1 hour",
-    "distance_km": 36.43,
-    "elevation_m": 303.0,
-    "profile_score": 16.2,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Flanders 2026 last hour.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Flanders 2026 last hour",
-    "distance_km": 36.38,
-    "elevation_m": 360.3,
-    "profile_score": 22.6,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour of Poland S6.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour of Poland S6",
-    "distance_km": 31.52,
-    "elevation_m": 503.4,
-    "profile_score": 72.5,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Stage 3 Taiwan  Hills.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Stage 3 Taiwan  Hills",
-    "distance_km": 38.87,
-    "elevation_m": 290.2,
-    "profile_score": 14.3,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tano - Toyo.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tano - Toyo",
-    "distance_km": 42.62,
-    "elevation_m": 951.6,
-    "profile_score": 29.5,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Omloop_2nd_Half.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Omloop_2nd_Half",
-    "distance_km": 35.71,
-    "elevation_m": 372.7,
-    "profile_score": 24.3,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Heda Port to Nishiurakisho.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Heda Port to Nishiurakisho",
-    "distance_km": 23.05,
-    "elevation_m": 814.2,
-    "profile_score": 53.4,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour of Poland S3.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour of Poland S3",
-    "distance_km": 37.19,
-    "elevation_m": 270.9,
-    "profile_score": 5.4,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Druivenkoers 2026.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Druivenkoers 2026",
-    "distance_km": 38.52,
-    "elevation_m": 321.8,
-    "profile_score": 25.2,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vuelta Burgos S3.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vuelta Burgos S3",
-    "distance_km": 35.72,
-    "elevation_m": 369.6,
-    "profile_score": 20.6,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour of Poland S2.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour of Poland S2",
-    "distance_km": 39.38,
-    "elevation_m": 119.7,
+    "file": "Criterium Courses/USAC National Championship Criterium Charleston.gpx",
+    "folder": "Criterium Courses",
+    "name": "USAC National Championship Criterium Charleston",
+    "distance_km": 1.66,
+    "elevation_m": 4.1,
     "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Giro 2026 Stage 9 1 hour version.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Giro 2026 Stage 9 1 hour version",
-    "distance_km": 29.63,
-    "elevation_m": 634.4,
-    "profile_score": 35.7,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Eureka to Trinidad CA.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Eureka to Trinidad CA",
-    "distance_km": 38.5,
-    "elevation_m": 200.7,
-    "profile_score": 8.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Allkin_Flanders_1st_Half.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Allkin_Flanders_1st_Half",
-    "distance_km": 36.09,
-    "elevation_m": 303.8,
-    "profile_score": 30.2,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Bieno Race.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Bieno Race",
-    "distance_km": 34.55,
-    "elevation_m": 460.2,
-    "profile_score": 19.5,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Giro 01-26 Finish.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Giro 01-26 Finish",
-    "distance_km": 36.35,
-    "elevation_m": 335.6,
-    "profile_score": 4.9,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour of Poland S5.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour of Poland S5",
-    "distance_km": 35.92,
-    "elevation_m": 281.4,
-    "profile_score": 19.9,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Surf Coast 1 Hour.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Surf Coast 1 Hour",
-    "distance_km": 44.3,
-    "elevation_m": 435.2,
-    "profile_score": 14.8,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Poland.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Poland",
-    "distance_km": 37.02,
-    "elevation_m": 395.3,
-    "profile_score": 20.4,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Great Ocean Road Race 1hr.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Great Ocean Road Race 1hr",
-    "distance_km": 35.18,
-    "elevation_m": 377.9,
-    "profile_score": 35.0,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Stage 2 Dauphine 2026.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Stage 2 Dauphine 2026",
-    "distance_km": 39.45,
-    "elevation_m": 376.3,
-    "profile_score": 21.2,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Le Tour de Bretagne Stage 2.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Le Tour de Bretagne Stage 2",
-    "distance_km": 38.25,
-    "elevation_m": 309.9,
-    "profile_score": 5.6,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/PN Stage 6 2026.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "PN Stage 6 2026",
-    "distance_km": 33.04,
-    "elevation_m": 406.2,
-    "profile_score": 38.7,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Santa Rosalia Baja.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Santa Rosalia Baja",
-    "distance_km": 33.19,
-    "elevation_m": 312.4,
-    "profile_score": 10.6,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/GP De Denain 2nd Half.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "GP De Denain 2nd Half",
-    "distance_km": 40.66,
-    "elevation_m": 192.8,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Rolling Nebraska.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Rolling Nebraska",
-    "distance_km": 50.62,
-    "elevation_m": 361.4,
-    "profile_score": 4.0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Alula Skyviews Short Course.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Alula Skyviews Short Course",
-    "distance_km": 27.88,
-    "elevation_m": 569.3,
-    "profile_score": 70.2,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vietnam Stage 1.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vietnam Stage 1",
-    "distance_km": 39.39,
-    "elevation_m": 254.3,
-    "profile_score": 9.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Valentine Bosberg.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Valentine Bosberg",
-    "distance_km": 37.52,
-    "elevation_m": 348.4,
-    "profile_score": 18.8,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Indian Head Oregeon Out and Back.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Indian Head Oregeon Out and Back",
-    "distance_km": 17.93,
-    "elevation_m": 181.7,
-    "profile_score": 13.4,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Stage 3 Taiwan  Finish.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Stage 3 Taiwan  Finish",
-    "distance_km": 40.17,
-    "elevation_m": 170.1,
-    "profile_score": 5.0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Giro 04-26 Finish.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Giro 04-26 Finish",
-    "distance_km": 40.56,
-    "elevation_m": 249.7,
-    "profile_score": 4.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour de Okinawa.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour de Okinawa",
-    "distance_km": 31.52,
-    "elevation_m": 415.1,
-    "profile_score": 40.8,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Through Loreto Baja.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Through Loreto Baja",
-    "distance_km": 34.3,
-    "elevation_m": 194.6,
-    "profile_score": 10.7,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Gap of Dunloe (OAB).gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Gap of Dunloe (OAB)",
-    "distance_km": 33.63,
-    "elevation_m": 545.2,
-    "profile_score": 44.2,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Rollers.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Rollers",
-    "distance_km": 47.06,
-    "elevation_m": 412.2,
-    "profile_score": 7.2,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Middle of Grassroots Gravel - The Half .gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Middle of Grassroots Gravel - The Half ",
-    "distance_km": 34.41,
-    "elevation_m": 472.4,
-    "profile_score": 21.8,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Allkin_Flanders_2nd_Half.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Allkin_Flanders_2nd_Half",
-    "distance_km": 36.04,
-    "elevation_m": 364.1,
-    "profile_score": 25.9,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vuelta Burgos S4.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vuelta Burgos S4",
-    "distance_km": 37.37,
-    "elevation_m": 358.0,
-    "profile_score": 13.9,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour de Hongrie stage 2 finish.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour de Hongrie stage 2 finish",
-    "distance_km": 40.36,
-    "elevation_m": 204.7,
-    "profile_score": 7.9,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Fort Bragg CA.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Fort Bragg CA",
-    "distance_km": 35.29,
-    "elevation_m": 315.5,
-    "profile_score": 9.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vuelta 2026 Stage 16.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vuelta 2026 Stage 16",
-    "distance_km": 38.13,
-    "elevation_m": 219.8,
-    "profile_score": 5.4,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour of Poland S4.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour of Poland S4",
-    "distance_km": 34.22,
-    "elevation_m": 396.6,
-    "profile_score": 32.2,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Cro Race Stage 1.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Cro Race Stage 1",
-    "distance_km": 40.31,
-    "elevation_m": 346.5,
-    "profile_score": 15.0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Omloop_First_Half.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Omloop_First_Half",
-    "distance_km": 38.5,
-    "elevation_m": 303.1,
-    "profile_score": 6.1,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Windsor to Cloverdale CA.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Windsor to Cloverdale CA",
-    "distance_km": 34.15,
-    "elevation_m": 234.3,
-    "profile_score": 7.2,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vuelta Stage 10 2026.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vuelta Stage 10 2026",
-    "distance_km": 38.69,
-    "elevation_m": 322.0,
-    "profile_score": 7.2,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/2025 PN Stage 2.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "2025 PN Stage 2",
-    "distance_km": 40.21,
-    "elevation_m": 305.8,
-    "profile_score": 15.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Northern Scotland 4 of 4.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Northern Scotland 4 of 4",
-    "distance_km": 35.78,
-    "elevation_m": 325.5,
-    "profile_score": 7.9,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Vuelta Burgos S2.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Vuelta Burgos S2",
-    "distance_km": 37.88,
-    "elevation_m": 324.8,
-    "profile_score": 11.5,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour of Poland S1.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour of Poland S1",
-    "distance_km": 39.83,
-    "elevation_m": 255.7,
-    "profile_score": 8.9,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Stage 3 Taiwan .gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Stage 3 Taiwan ",
-    "distance_km": 144.96,
-    "elevation_m": 1249.4,
-    "profile_score": 22.0,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Lidl Tour Final Stage 1 hour 2026.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Lidl Tour Final Stage 1 hour 2026",
-    "distance_km": 34.87,
-    "elevation_m": 359.5,
-    "profile_score": 20.5,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Tour Of Estonia Stage 2 Finish.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Tour Of Estonia Stage 2 Finish",
-    "distance_km": 41.06,
-    "elevation_m": 263.0,
-    "profile_score": 7.8,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Lake Tahoe Loop 2 of 3.gpx",
-    "folder": "1 Hour Point to Point Races",
-    "name": "Lake Tahoe Loop 2 of 3",
-    "distance_km": 35.27,
-    "elevation_m": 332.1,
-    "profile_score": 12.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S4.gpx",
-    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
-    "name": "Volta a Portugal 26 S4",
-    "distance_km": 31.43,
-    "elevation_m": 573.2,
-    "profile_score": 31.5,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S2.gpx",
-    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
-    "name": "Volta a Portugal 26 S2",
-    "distance_km": 35.99,
-    "elevation_m": 334.6,
-    "profile_score": 15.7,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S1.gpx",
-    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
-    "name": "Volta a Portugal 26 S1",
-    "distance_km": 32.8,
-    "elevation_m": 475.5,
-    "profile_score": 34.3,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S5 iTT.gpx",
-    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
-    "name": "Volta a Portugal 26 S5 iTT",
-    "distance_km": 17.06,
-    "elevation_m": 202.3,
-    "profile_score": 11.9,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S6.gpx",
-    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
-    "name": "Volta a Portugal 26 S6",
-    "distance_km": 33.36,
-    "elevation_m": 499.4,
-    "profile_score": 28.8,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Volta a Portugal 2026/Volta a Portugal 26 S3.gpx",
-    "folder": "1 Hour Point to Point Races/Volta a Portugal 2026",
-    "name": "Volta a Portugal 26 S3",
-    "distance_km": 37.14,
-    "elevation_m": 365.1,
-    "profile_score": 12.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Arctic Tour Norway S3.gpx",
-    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
-    "name": "Arctic Tour Norway S3",
-    "distance_km": 25.91,
-    "elevation_m": 574.1,
-    "profile_score": 116.3,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Arctic Tour Norway S4.gpx",
-    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
-    "name": "Arctic Tour Norway S4",
-    "distance_km": 32.46,
-    "elevation_m": 451.6,
-    "profile_score": 60.7,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Artic Tour Norway S1.gpx",
-    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
-    "name": "Artic Tour Norway S1",
-    "distance_km": 35.59,
-    "elevation_m": 254.7,
-    "profile_score": 4.2,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "1 Hour Point to Point Races/Artic Tour Norway 26/Artic Tour Norway S2.gpx",
-    "folder": "1 Hour Point to Point Races/Artic Tour Norway 26",
-    "name": "Artic Tour Norway S2",
-    "distance_km": 38.29,
-    "elevation_m": 140.7,
-    "profile_score": 2.4,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -3022,141 +2770,6 @@
     "elevation_m": 96.7,
     "profile_score": 12.4,
     "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 1.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 1",
-    "distance_km": 72.07,
-    "elevation_m": 541.8,
-    "profile_score": 21.6,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 4.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 4",
-    "distance_km": 71.11,
-    "elevation_m": 731.8,
-    "profile_score": 24.5,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 5.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 5",
-    "distance_km": 77.1,
-    "elevation_m": 382.7,
-    "profile_score": 0.5,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 3 Short.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 3 Short",
-    "distance_km": 33.98,
-    "elevation_m": 459.8,
-    "profile_score": 36.9,
-    "stage_type": "Hilly, uphill finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 2 short.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 2 short",
-    "distance_km": 37.37,
-    "elevation_m": 270.0,
-    "profile_score": 7.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 4 short.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 4 short",
-    "distance_km": 35.89,
-    "elevation_m": 429.5,
-    "profile_score": 21.8,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 3.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 3",
-    "distance_km": 64.37,
-    "elevation_m": 734.9,
-    "profile_score": 50.3,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 2.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 2",
-    "distance_km": 75.07,
-    "elevation_m": 445.8,
-    "profile_score": 8.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Tour of Denmark 2026/Denmark Stage 1 Short.gpx",
-    "folder": "Tour of Denmark 2026",
-    "name": "Denmark Stage 1 Short",
-    "distance_km": 37.61,
-    "elevation_m": 248.8,
-    "profile_score": 15.8,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Season 2/Tour of Germany Stage 3.gpx",
-    "folder": "Season 2",
-    "name": "Tour of Germany Stage 3",
-    "distance_km": 35.39,
-    "elevation_m": 560.1,
-    "profile_score": 54.9,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Season 2/Leadville 100 - Turquoise Lake Section.gpx",
-    "folder": "Season 2",
-    "name": "Leadville 100 - Turquoise Lake Section",
-    "distance_km": 30.41,
-    "elevation_m": 767.2,
-    "profile_score": 80.0,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Season 2/Besseges_ITT.gpx",
-    "folder": "Season 2",
-    "name": "Besseges_ITT",
-    "distance_km": 9.35,
-    "elevation_m": 181.8,
-    "profile_score": 15.9,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Season 2/Tour of Germany Stage 1.gpx",
-    "folder": "Season 2",
-    "name": "Tour of Germany Stage 1",
-    "distance_km": 35.24,
-    "elevation_m": 401.7,
-    "profile_score": 16.2,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Season 2/Trofeo Palma Short Course.gpx",
-    "folder": "Season 2",
-    "name": "Trofeo Palma Short Course",
-    "distance_km": 35.51,
-    "elevation_m": 178.4,
-    "profile_score": 4.7,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Season 2/Tour of Germany Stage 2.gpx",
-    "folder": "Season 2",
-    "name": "Tour of Germany Stage 2",
-    "distance_km": 38.01,
-    "elevation_m": 185.3,
-    "profile_score": 1.8,
-    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Pro Bike Races/TDU Stage 3 - Nairne - 38k 531m.gpx",
@@ -3177,6 +2790,24 @@
     "stage_type": "Flat, uphill finish"
   },
   {
+    "file": "Pro Bike Races/PN6.gpx",
+    "folder": "Pro Bike Races",
+    "name": "PN6",
+    "distance_km": 33.18,
+    "elevation_m": 410.4,
+    "profile_score": 41.1,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Vuelta 26 Stage 3 Start.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta 26 Stage 3 Start",
+    "distance_km": 37.4,
+    "elevation_m": 228.9,
+    "profile_score": 8.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Tour du Finist\u00e8re Pays de Quimper - 63k 1139m.gpx",
     "folder": "Pro Bike Races",
     "name": "Tour du Finist\u00e8re Pays de Quimper - 63k 1139m",
@@ -3186,12 +2817,30 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Vuelta Burgos S1.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Burgos S1",
+    "distance_km": 35.88,
+    "elevation_m": 393.0,
+    "profile_score": 14.8,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Marchtrenk.gpx",
     "folder": "Pro Bike Races",
     "name": "Marchtrenk",
     "distance_km": 26.12,
     "elevation_m": 234.6,
     "profile_score": 18.0,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tirreno Stage 2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tirreno Stage 2",
+    "distance_km": 37.3,
+    "elevation_m": 472.4,
+    "profile_score": 41.3,
     "stage_type": "Hilly, flat finish"
   },
   {
@@ -3229,6 +2878,15 @@
     "elevation_m": 276.7,
     "profile_score": 27.1,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Albania Stage 5 Finish.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Albania Stage 5 Finish",
+    "distance_km": 40.78,
+    "elevation_m": 139.5,
+    "profile_score": 3.8,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Pro Bike Races/Tucson Road Race.gpx",
@@ -3285,6 +2943,24 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Pro Bike Races/Grand Prix de Wallonie 1 hour.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Grand Prix de Wallonie 1 hour",
+    "distance_km": 36.43,
+    "elevation_m": 303.0,
+    "profile_score": 16.2,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Flanders 2026 last hour.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Flanders 2026 last hour",
+    "distance_km": 36.38,
+    "elevation_m": 360.3,
+    "profile_score": 22.6,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Pro Bike Races/La Route des G\u00e9ants Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "La Route des G\u00e9ants Circuit",
@@ -3292,6 +2968,15 @@
     "elevation_m": 377.8,
     "profile_score": 17.2,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Arctic Tour Norway S3.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Arctic Tour Norway S3",
+    "distance_km": 25.91,
+    "elevation_m": 574.1,
+    "profile_score": 116.3,
+    "stage_type": "Climbing, uphill finish"
   },
   {
     "file": "Pro Bike Races/Renewi Tour 2025 Stage 4 Final Lap - 41k 316m.gpx",
@@ -3303,6 +2988,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Pro Bike Races/Tour of Poland S6.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poland S6",
+    "distance_km": 31.52,
+    "elevation_m": 503.4,
+    "profile_score": 72.5,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/Flanders 2026.gpx",
     "folder": "Pro Bike Races",
     "name": "Flanders 2026",
@@ -3310,6 +3004,15 @@
     "elevation_m": 2322.9,
     "profile_score": 65.7,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Stage 3 Taiwan  Hills.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Stage 3 Taiwan  Hills",
+    "distance_km": 38.87,
+    "elevation_m": 290.2,
+    "profile_score": 14.3,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Pro Bike Races/TDU Stage 1 - Tanunda - 31k 353m.gpx",
@@ -3328,6 +3031,15 @@
     "elevation_m": 168.9,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Volta a Portugal 26 S4.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Volta a Portugal 26 S4",
+    "distance_km": 31.43,
+    "elevation_m": 573.2,
+    "profile_score": 31.5,
+    "stage_type": "Hilly, uphill finish"
   },
   {
     "file": "Pro Bike Races/Basque Country 2025 Stage 2.gpx",
@@ -3393,6 +3105,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Omloop_2nd_Half.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Omloop_2nd_Half",
+    "distance_km": 35.71,
+    "elevation_m": 372.7,
+    "profile_score": 24.3,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Faun-Ard\u00e8che Classic - 66k 1118m.gpx",
     "folder": "Pro Bike Races",
     "name": "Faun-Ard\u00e8che Classic - 66k 1118m",
@@ -3438,6 +3159,24 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Tour of Poland S3.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poland S3",
+    "distance_km": 37.19,
+    "elevation_m": 270.9,
+    "profile_score": 5.4,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Druivenkoers 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Druivenkoers 2026",
+    "distance_km": 38.52,
+    "elevation_m": 321.8,
+    "profile_score": 25.2,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Grand Premio New York.gpx",
     "folder": "Pro Bike Races",
     "name": "Grand Premio New York",
@@ -3456,12 +3195,48 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Vuelta Burgos S3.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Burgos S3",
+    "distance_km": 35.72,
+    "elevation_m": 369.6,
+    "profile_score": 20.6,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Poland S2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poland S2",
+    "distance_km": 39.38,
+    "elevation_m": 119.7,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/TA Stage 5 2026.gpx",
     "folder": "Pro Bike Races",
     "name": "TA Stage 5 2026",
     "distance_km": 21.52,
     "elevation_m": 590.4,
     "profile_score": 84.3,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour De Suisse 2026 Stage 1 Sondrio.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour De Suisse 2026 Stage 1 Sondrio",
+    "distance_km": 33.33,
+    "elevation_m": 484.1,
+    "profile_score": 59.5,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Trofeo Laigueglia 2025 Classics Course.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Trofeo Laigueglia 2025 Classics Course",
+    "distance_km": 63.35,
+    "elevation_m": 856.0,
+    "profile_score": 64.6,
     "stage_type": "Climbing, flat finish"
   },
   {
@@ -3472,6 +3247,15 @@
     "elevation_m": 533.2,
     "profile_score": 46.9,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/Volta a Portugal 26 S2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Volta a Portugal 26 S2",
+    "distance_km": 35.99,
+    "elevation_m": 334.6,
+    "profile_score": 15.7,
+    "stage_type": "Flat, uphill finish"
   },
   {
     "file": "Pro Bike Races/Grand Prix de Wallonie.gpx",
@@ -3501,6 +3285,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Tour De Suisse 2026 Stage 4 Oftringen.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour De Suisse 2026 Stage 4 Oftringen",
+    "distance_km": 23.64,
+    "elevation_m": 202.6,
+    "profile_score": 3.5,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/GP La Marseillaise 66k 1287m.gpx",
     "folder": "Pro Bike Races",
     "name": "GP La Marseillaise 66k 1287m",
@@ -3528,6 +3321,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Pro Bike Races/Giro 2026 Stage 9 1 hour version.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Giro 2026 Stage 9 1 hour version",
+    "distance_km": 29.63,
+    "elevation_m": 634.4,
+    "profile_score": 35.7,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/Giro Himledalen.gpx",
     "folder": "Pro Bike Races",
     "name": "Giro Himledalen",
@@ -3537,6 +3339,15 @@
     "stage_type": "Hilly, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Allkin_Flanders_1st_Half.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Allkin_Flanders_1st_Half",
+    "distance_km": 36.09,
+    "elevation_m": 303.8,
+    "profile_score": 30.2,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Pro Bike Races/GP Oetingen Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "GP Oetingen Circuit",
@@ -3544,6 +3355,15 @@
     "elevation_m": 216.7,
     "profile_score": 9.9,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Bieno Race.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Bieno Race",
+    "distance_km": 34.55,
+    "elevation_m": 460.2,
+    "profile_score": 19.5,
+    "stage_type": "Hilly, uphill finish"
   },
   {
     "file": "Pro Bike Races/Grand Prix Cerami Circuit 24k 224m.gpx",
@@ -3636,6 +3456,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Pro Bike Races/Giro 01-26 Finish.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Giro 01-26 Finish",
+    "distance_km": 36.35,
+    "elevation_m": 335.6,
+    "profile_score": 4.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Etoile de Besseges Stage 1 2026.gpx",
     "folder": "Pro Bike Races",
     "name": "Etoile de Besseges Stage 1 2026",
@@ -3661,6 +3490,15 @@
     "elevation_m": 536.1,
     "profile_score": 45.2,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Poland S5.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poland S5",
+    "distance_km": 35.92,
+    "elevation_m": 281.4,
+    "profile_score": 19.9,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "Pro Bike Races/Circuit Franco-Belge 22k 302m.gpx",
@@ -3714,6 +3552,15 @@
     "distance_km": 15.36,
     "elevation_m": 141.9,
     "profile_score": 4.5,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Surf Coast 1 Hour.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Surf Coast 1 Hour",
+    "distance_km": 44.3,
+    "elevation_m": 435.2,
+    "profile_score": 14.8,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -3778,6 +3625,15 @@
     "elevation_m": 186.3,
     "profile_score": 19.8,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Volta a Portugal 26 S1.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Volta a Portugal 26 S1",
+    "distance_km": 32.8,
+    "elevation_m": 475.5,
+    "profile_score": 34.3,
+    "stage_type": "Hilly, flat finish"
   },
   {
     "file": "Pro Bike Races/Tour de Vend\u00e9e 77k 828m.gpx",
@@ -3888,6 +3744,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Great Ocean Road Race 1hr.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Great Ocean Road Race 1hr",
+    "distance_km": 35.18,
+    "elevation_m": 377.9,
+    "profile_score": 35.0,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Pro Bike Races/2013 Tour of Utah S1.gpx",
     "folder": "Pro Bike Races",
     "name": "2013 Tour of Utah S1",
@@ -3924,6 +3789,33 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Pro Bike Races/Arctic Tour Norway S1.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Arctic Tour Norway S1",
+    "distance_km": 35.59,
+    "elevation_m": 254.7,
+    "profile_score": 4.2,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Volta a Portugal 26 S5 iTT.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Volta a Portugal 26 S5 iTT",
+    "distance_km": 17.06,
+    "elevation_m": 202.3,
+    "profile_score": 11.9,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Stage 2 Dauphine 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Stage 2 Dauphine 2026",
+    "distance_km": 39.45,
+    "elevation_m": 376.3,
+    "profile_score": 21.2,
+    "stage_type": "Hilly, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/Muur Classic Geraardsbergen.gpx",
     "folder": "Pro Bike Races",
     "name": "Muur Classic Geraardsbergen",
@@ -3931,6 +3823,15 @@
     "elevation_m": 343.3,
     "profile_score": 25.2,
     "stage_type": "Hilly, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour De Suisse 2026 Stage 2 Locarno.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour De Suisse 2026 Stage 2 Locarno",
+    "distance_km": 67.38,
+    "elevation_m": 682.6,
+    "profile_score": 58.5,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/Tour De Kyushu - Stage 2 Kumamoto - 35k 355m.gpx",
@@ -3960,6 +3861,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Le Tour de Bretagne Stage 2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Le Tour de Bretagne Stage 2",
+    "distance_km": 38.25,
+    "elevation_m": 309.9,
+    "profile_score": 5.6,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/Marly Gravel World Series.gpx",
     "folder": "Pro Bike Races",
     "name": "Marly Gravel World Series",
@@ -3976,6 +3886,15 @@
     "elevation_m": 863.1,
     "profile_score": 62.0,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/PN Stage 6 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "PN Stage 6 2026",
+    "distance_km": 33.04,
+    "elevation_m": 406.2,
+    "profile_score": 38.7,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/Renewi Stage 2 Long.gpx",
@@ -4012,6 +3931,15 @@
     "elevation_m": 20.0,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Vuelta Ciclista Andalucia.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Ciclista Andalucia",
+    "distance_km": 43.48,
+    "elevation_m": 730.5,
+    "profile_score": 53.4,
+    "stage_type": "Climbing, uphill finish"
   },
   {
     "file": "Pro Bike Races/Week 3 Lombardia.gpx",
@@ -4059,6 +3987,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/GP De Denain 2nd Half.gpx",
+    "folder": "Pro Bike Races",
+    "name": "GP De Denain 2nd Half",
+    "distance_km": 40.66,
+    "elevation_m": 192.8,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Ronde van Limburg TPV Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "Ronde van Limburg TPV Circuit",
@@ -4084,6 +4021,15 @@
     "elevation_m": 412.7,
     "profile_score": 17.4,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Alula Skyviews Short Course.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Alula Skyviews Short Course",
+    "distance_km": 27.88,
+    "elevation_m": 569.3,
+    "profile_score": 70.2,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/Jamaica International Cycling Classic Stage 3.gpx",
@@ -4164,6 +4110,15 @@
     "distance_km": 77.13,
     "elevation_m": 759.4,
     "profile_score": 24.5,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Volta a Portugal 26 S6.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Volta a Portugal 26 S6",
+    "distance_km": 33.36,
+    "elevation_m": 499.4,
+    "profile_score": 28.8,
     "stage_type": "Hilly, flat finish"
   },
   {
@@ -4248,6 +4203,15 @@
     "stage_type": "Flat, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Arctic Tour Norway S4.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Arctic Tour Norway S4",
+    "distance_km": 32.46,
+    "elevation_m": 451.6,
+    "profile_score": 60.7,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/TDU Stage 5 Circuit - Stirling - 21k 398m.gpx",
     "folder": "Pro Bike Races",
     "name": "TDU Stage 5 Circuit - Stirling - 21k 398m",
@@ -4266,12 +4230,30 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Vietnam Stage 1.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vietnam Stage 1",
+    "distance_km": 39.39,
+    "elevation_m": 254.3,
+    "profile_score": 9.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Renewi Tour Stage 5 Circuit - 14k 145m.gpx",
     "folder": "Pro Bike Races",
     "name": "Renewi Tour Stage 5 Circuit - 14k 145m",
     "distance_km": 14.22,
     "elevation_m": 132.3,
     "profile_score": 2.0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Stage 3 Taiwan  Finish.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Stage 3 Taiwan  Finish",
+    "distance_km": 40.17,
+    "elevation_m": 170.1,
+    "profile_score": 5.0,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -4302,6 +4284,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Pro Bike Races/Giro 04-26 Finish.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Giro 04-26 Finish",
+    "distance_km": 40.56,
+    "elevation_m": 249.7,
+    "profile_score": 4.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/PORE\u010c Classic.gpx",
     "folder": "Pro Bike Races",
     "name": "PORE\u010c Classic",
@@ -4309,6 +4300,15 @@
     "elevation_m": 216.3,
     "profile_score": 12.8,
     "stage_type": "Hilly, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Okinawa.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Okinawa",
+    "distance_km": 31.52,
+    "elevation_m": 415.1,
+    "profile_score": 40.8,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/2025 Japan Cup Road Race Circuit - 10k 269m.gpx",
@@ -4419,6 +4419,42 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Surf Coast Classic.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Surf Coast Classic",
+    "distance_km": 72.51,
+    "elevation_m": 640.1,
+    "profile_score": 15.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Allkin_Flanders_2nd_Half.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Allkin_Flanders_2nd_Half",
+    "distance_km": 36.04,
+    "elevation_m": 364.1,
+    "profile_score": 25.9,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Vuelta Burgos S4.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Burgos S4",
+    "distance_km": 37.37,
+    "elevation_m": 358.0,
+    "profile_score": 13.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Hongrie stage 2 finish.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Hongrie stage 2 finish",
+    "distance_km": 40.36,
+    "elevation_m": 204.7,
+    "profile_score": 7.9,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/TDU Stage 2 - Uraidla - 25k 689m.gpx",
     "folder": "Pro Bike Races",
     "name": "TDU Stage 2 - Uraidla - 25k 689m",
@@ -4428,6 +4464,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Pro Bike Races/Vuelta 2026 Stage 16.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta 2026 Stage 16",
+    "distance_km": 38.13,
+    "elevation_m": 219.8,
+    "profile_score": 5.4,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/New Zealand Lakes.gpx",
     "folder": "Pro Bike Races",
     "name": "New Zealand Lakes",
@@ -4435,6 +4480,15 @@
     "elevation_m": 666.6,
     "profile_score": 4.0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Poland S4.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poland S4",
+    "distance_km": 34.22,
+    "elevation_m": 396.6,
+    "profile_score": 32.2,
+    "stage_type": "Hilly, uphill finish"
   },
   {
     "file": "Pro Bike Races/Trofeo Alfredo Binda - Comune di Cittiglio.gpx",
@@ -4482,6 +4536,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Cro Race Stage 1.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Cro Race Stage 1",
+    "distance_km": 40.31,
+    "elevation_m": 346.5,
+    "profile_score": 15.0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Monmartre Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "Monmartre Circuit",
@@ -4489,6 +4552,15 @@
     "elevation_m": 130.8,
     "profile_score": 8.8,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Omloop_First_Half.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Omloop_First_Half",
+    "distance_km": 38.5,
+    "elevation_m": 303.1,
+    "profile_score": 6.1,
+    "stage_type": "Flat, uphill finish"
   },
   {
     "file": "Pro Bike Races/Gooikse Pijl Circuit 21k 229m.gpx",
@@ -4572,6 +4644,15 @@
     "stage_type": "Hilly, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Vuelta Stage 10 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Stage 10 2026",
+    "distance_km": 38.69,
+    "elevation_m": 322.0,
+    "profile_score": 7.2,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/Le Tour de Bretagne Cycliste Stage 2 2025.gpx",
     "folder": "Pro Bike Races",
     "name": "Le Tour de Bretagne Cycliste Stage 2 2025",
@@ -4615,6 +4696,15 @@
     "elevation_m": 669.7,
     "profile_score": 40.6,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/2025 PN Stage 2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "2025 PN Stage 2",
+    "distance_km": 40.21,
+    "elevation_m": 305.8,
+    "profile_score": 15.1,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Pro Bike Races/Vuelta 2026 Stage 21.gpx",
@@ -4689,6 +4779,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Volta a Portugal 26 S3.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Volta a Portugal 26 S3",
+    "distance_km": 37.14,
+    "elevation_m": 365.1,
+    "profile_score": 12.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Philly Cycling Classic.gpx",
     "folder": "Pro Bike Races",
     "name": "Philly Cycling Classic",
@@ -4725,6 +4824,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Arctic Tour Norway S2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Arctic Tour Norway S2",
+    "distance_km": 38.29,
+    "elevation_m": 140.7,
+    "profile_score": 2.4,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/GP Rhodes.gpx",
     "folder": "Pro Bike Races",
     "name": "GP Rhodes",
@@ -4732,6 +4840,15 @@
     "elevation_m": 736.1,
     "profile_score": 41.6,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Vuelta Burgos S2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Burgos S2",
+    "distance_km": 37.88,
+    "elevation_m": 324.8,
+    "profile_score": 11.5,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Pro Bike Races/Grand Prix Du Morbihan - 13k 228m_elevated.gpx",
@@ -4752,6 +4869,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Pro Bike Races/Tour of Poland S1.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poland S1",
+    "distance_km": 39.83,
+    "elevation_m": 255.7,
+    "profile_score": 8.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Pro Bike Races/BW Classic Circuit (cobbles).gpx",
     "folder": "Pro Bike Races",
     "name": "BW Classic Circuit (cobbles)",
@@ -4761,6 +4887,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Pro Bike Races/Stage 3 Taiwan .gpx",
+    "folder": "Pro Bike Races",
+    "name": "Stage 3 Taiwan ",
+    "distance_km": 144.96,
+    "elevation_m": 1249.4,
+    "profile_score": 22.0,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Flanders Fields Updated LID.gpx",
     "folder": "Pro Bike Races",
     "name": "Flanders Fields Updated LID",
@@ -4768,6 +4903,24 @@
     "elevation_m": 620.6,
     "profile_score": 21.7,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Lidl Tour Final Stage 1 hour 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Lidl Tour Final Stage 1 hour 2026",
+    "distance_km": 34.87,
+    "elevation_m": 359.5,
+    "profile_score": 20.5,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour Of Estonia Stage 2 Finish.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour Of Estonia Stage 2 Finish",
+    "distance_km": 41.06,
+    "elevation_m": 263.0,
+    "profile_score": 7.8,
+    "stage_type": "Flat, uphill finish"
   },
   {
     "file": "Pro Bike Races/2026 Monmartre Climb Circuit.gpx",
@@ -5058,6 +5211,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Interval Circuits/Paterberg circuit.gpx",
+    "folder": "Interval Circuits",
+    "name": "Paterberg circuit",
+    "distance_km": 3.2,
+    "elevation_m": 61.8,
+    "profile_score": 8.0,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Interval Circuits/Morrison 5 minute repeat reverse.gpx",
     "folder": "Interval Circuits",
     "name": "Morrison 5 minute repeat reverse",
@@ -5083,6 +5245,15 @@
     "elevation_m": 80.5,
     "profile_score": 10.3,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Interval Circuits/Paterberg 18k Circuit.gpx",
+    "folder": "Interval Circuits",
+    "name": "Paterberg 18k Circuit",
+    "distance_km": 17.89,
+    "elevation_m": 226.5,
+    "profile_score": 23.5,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Interval Circuits/Devil_s_Tower_Hill_Repeats.gpx",
@@ -5265,420 +5436,6 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
-    "file": "American Gravel/Grassroots Gravel - The Half 1 of 4.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Gravel - The Half 1 of 4",
-    "distance_km": 27.78,
-    "elevation_m": 331.7,
-    "profile_score": 5.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Foco Fondo Double Dog Gravel Race.gpx",
-    "folder": "American Gravel",
-    "name": "Foco Fondo Double Dog Gravel Race",
-    "distance_km": 100.41,
-    "elevation_m": 827.0,
-    "profile_score": 12.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/FoCo Fondo Finish.gpx",
-    "folder": "American Gravel",
-    "name": "FoCo Fondo Finish",
-    "distance_km": 37.5,
-    "elevation_m": 193.9,
-    "profile_score": 2.0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Cove Mountain Loop.gpx",
-    "folder": "American Gravel",
-    "name": "Cove Mountain Loop",
-    "distance_km": 46.2,
-    "elevation_m": 806.2,
-    "profile_score": 46.8,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "American Gravel/Unbound Gravel - Just Little Egypt - 38k 493m.gpx",
-    "folder": "American Gravel",
-    "name": "Unbound Gravel - Just Little Egypt - 38k 493m",
-    "distance_km": 37.78,
-    "elevation_m": 413.3,
-    "profile_score": 20.4,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "American Gravel/FoCo Fondo Classic 2 hour.gpx",
-    "folder": "American Gravel",
-    "name": "FoCo Fondo Classic 2 hour",
-    "distance_km": 69.32,
-    "elevation_m": 685.1,
-    "profile_score": 16.3,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/SBT GRVL Red Course - 85k 1148m.gpx",
-    "folder": "American Gravel",
-    "name": "SBT GRVL Red Course - 85k 1148m",
-    "distance_km": 85.02,
-    "elevation_m": 1146.1,
-    "profile_score": 44.5,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "American Gravel/FoCo Fondo Start.gpx",
-    "folder": "American Gravel",
-    "name": "FoCo Fondo Start",
-    "distance_km": 34.59,
-    "elevation_m": 308.1,
-    "profile_score": 7.9,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "American Gravel/Foco Fondo Middle Section LU.gpx",
-    "folder": "American Gravel",
-    "name": "Foco Fondo Middle Section LU",
-    "distance_km": 33.15,
-    "elevation_m": 396.8,
-    "profile_score": 15.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/KLGC 2026 55mile Comet Route.gpx",
-    "folder": "American Gravel",
-    "name": "KLGC 2026 55mile Comet Route",
-    "distance_km": 88.32,
-    "elevation_m": 1160.4,
-    "profile_score": 50.2,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Gravel - The Half.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Gravel - The Half",
-    "distance_km": 119.19,
-    "elevation_m": 1007.0,
-    "profile_score": 8.0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Core4 USAC Gravel Event.gpx",
-    "folder": "American Gravel",
-    "name": "Core4 USAC Gravel Event",
-    "distance_km": 74.39,
-    "elevation_m": 560.6,
-    "profile_score": 7.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Double Dog Updated.gpx",
-    "folder": "American Gravel",
-    "name": "Double Dog Updated",
-    "distance_km": 99.36,
-    "elevation_m": 897.0,
-    "profile_score": 13.8,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Gravel - The Half LU.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Gravel - The Half LU",
-    "distance_km": 119.19,
-    "elevation_m": 1007.0,
-    "profile_score": 8.0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/2025_Grassroots_Gravel_-_The_Lil_Chile_-_63k_592m.gpx",
-    "folder": "American Gravel",
-    "name": "2025_Grassroots_Gravel_-_The_Lil_Chile_-_63k_592m",
-    "distance_km": 63.06,
-    "elevation_m": 461.9,
-    "profile_score": 10.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/FoCo Fondo Double Dog Dare You 60 mile route LU.gpx",
-    "folder": "American Gravel",
-    "name": "FoCo Fondo Double Dog Dare You 60 mile route LU",
-    "distance_km": 99.06,
-    "elevation_m": 948.9,
-    "profile_score": 14.7,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/FoCo Fondo Dare You 30 mile Gravel route - 48k 285m.gpx",
-    "folder": "American Gravel",
-    "name": "FoCo Fondo Dare You 30 mile Gravel route - 48k 285m",
-    "distance_km": 48.52,
-    "elevation_m": 233.8,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Half 3 of 3.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Half 3 of 3",
-    "distance_km": 46.89,
-    "elevation_m": 80.9,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Gravel - The Half 2 of 4.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Gravel - The Half 2 of 4",
-    "distance_km": 24.39,
-    "elevation_m": 349.2,
-    "profile_score": 8.3,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Gravel - The Half 3 of 4.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Gravel - The Half 3 of 4",
-    "distance_km": 30.49,
-    "elevation_m": 279.3,
-    "profile_score": 9.0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/SBT Red Course TPV.gpx",
-    "folder": "American Gravel",
-    "name": "SBT Red Course TPV",
-    "distance_km": 70.91,
-    "elevation_m": 889.2,
-    "profile_score": 34.6,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "American Gravel/2026 Boulder Roubaix.gpx",
-    "folder": "American Gravel",
-    "name": "2026 Boulder Roubaix",
-    "distance_km": 48.29,
-    "elevation_m": 375.6,
-    "profile_score": 2.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Half 1 of 3.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Half 1 of 3",
-    "distance_km": 35.96,
-    "elevation_m": 471.4,
-    "profile_score": 10.7,
-    "stage_type": "Flat, uphill finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Half.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Half",
-    "distance_km": 118.91,
-    "elevation_m": 1058.0,
-    "profile_score": 10.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Big Sky Gravel 50.gpx",
-    "folder": "American Gravel",
-    "name": "Big Sky Gravel 50",
-    "distance_km": 79.17,
-    "elevation_m": 783.9,
-    "profile_score": 21.2,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "American Gravel/Mad Gravel Hemi 5-0 Race.gpx",
-    "folder": "American Gravel",
-    "name": "Mad Gravel Hemi 5-0 Race",
-    "distance_km": 75.14,
-    "elevation_m": 905.8,
-    "profile_score": 21.6,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Gravel - The Half 4 of 4.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Gravel - The Half 4 of 4",
-    "distance_km": 36.53,
-    "elevation_m": 52.2,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/BWR Utah.gpx",
-    "folder": "American Gravel",
-    "name": "BWR Utah",
-    "distance_km": 78.32,
-    "elevation_m": 456.2,
-    "profile_score": 9.9,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel/Grassroots Half 2 of 3.gpx",
-    "folder": "American Gravel",
-    "name": "Grassroots Half 2 of 3",
-    "distance_km": 36.07,
-    "elevation_m": 506.1,
-    "profile_score": 17.9,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel Cup Series/Big Sugar 71k 1221m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "Big Sugar 71k 1221m",
-    "distance_km": 70.99,
-    "elevation_m": 1208.3,
-    "profile_score": 48.2,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "American Gravel Cup Series/SBT GRVL - 70k 836m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "SBT GRVL - 70k 836m",
-    "distance_km": 70.35,
-    "elevation_m": 834.4,
-    "profile_score": 35.8,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "American Gravel Cup Series/Rad Dirt Fest - 68k 1310m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "Rad Dirt Fest - 68k 1310m",
-    "distance_km": 68.16,
-    "elevation_m": 1303.4,
-    "profile_score": 62.9,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "American Gravel Cup Series/Barry-Roubaix - 75k 1000m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "Barry-Roubaix - 75k 1000m",
-    "distance_km": 75.41,
-    "elevation_m": 994.4,
-    "profile_score": 17.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel Cup Series/Crusher in the Tushar - 43k 1600m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "Crusher in the Tushar - 43k 1600m",
-    "distance_km": 43.44,
-    "elevation_m": 1601.6,
-    "profile_score": 166.8,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "American Gravel Cup Series/Gravel Worlds - 74k 813m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "Gravel Worlds - 74k 813m",
-    "distance_km": 73.84,
-    "elevation_m": 808.4,
-    "profile_score": 10.5,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel Cup Series/Foco Fondo - 68k 1200m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "Foco Fondo - 68k 1200m",
-    "distance_km": 68.32,
-    "elevation_m": 1280.3,
-    "profile_score": 71.6,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "American Gravel Cup Series/Mid South - 70k 832m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "Mid South - 70k 832m",
-    "distance_km": 69.76,
-    "elevation_m": 601.3,
-    "profile_score": 6.1,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "American Gravel Cup Series/TPV Seat Otter Classic - 52k 1652m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "TPV Seat Otter Classic - 52k 1652m",
-    "distance_km": 52.3,
-    "elevation_m": 1634.1,
-    "profile_score": 115.5,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "American Gravel Cup Series/UNBOUND - 71k 550m.gpx",
-    "folder": "American Gravel Cup Series",
-    "name": "UNBOUND - 71k 550m",
-    "distance_km": 81.36,
-    "elevation_m": 616.1,
-    "profile_score": 8.6,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Untested/Surf Coast Classic - 72k 781m.gpx",
-    "folder": "Untested",
-    "name": "Surf Coast Classic - 72k 781m",
-    "distance_km": 72.39,
-    "elevation_m": 781.0,
-    "profile_score": 37.2,
-    "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Untested/Trofeo Laigueglia 2025 Classics Course - 64k 875m.gpx",
-    "folder": "Untested",
-    "name": "Trofeo Laigueglia 2025 Classics Course - 64k 875m",
-    "distance_km": 63.77,
-    "elevation_m": 872.2,
-    "profile_score": 66.0,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Untested/Zwift Glasgow Crit Circuit - 3k 33m.gpx",
-    "folder": "Untested",
-    "name": "Zwift Glasgow Crit Circuit - 3k 33m",
-    "distance_km": 3.0,
-    "elevation_m": 31.5,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Untested/Vuelta Ciclista Andalucia - 44k 747m .gpx",
-    "folder": "Untested",
-    "name": "Vuelta Ciclista Andalucia - 44k 747m ",
-    "distance_km": 43.78,
-    "elevation_m": 745.3,
-    "profile_score": 54.9,
-    "stage_type": "Climbing, uphill finish"
-  },
-  {
-    "file": "Untested/TPV Mad Gravel 2025 Gravel Circuit - 11k 186m.gpx",
-    "folder": "Untested",
-    "name": "TPV Mad Gravel 2025 Gravel Circuit - 11k 186m",
-    "distance_km": 10.58,
-    "elevation_m": 185.6,
-    "profile_score": 11.9,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
-    "file": "Untested/USAC National Championship Criterium Charleston_processed.gpx",
-    "folder": "Untested",
-    "name": "USAC National Championship Criterium Charleston_processed",
-    "distance_km": 1.66,
-    "elevation_m": 4.7,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
-    "file": "Untested/Zwift Downtown Dolphin - 2k 14m.gpx",
-    "folder": "Untested",
-    "name": "Zwift Downtown Dolphin - 2k 14m",
-    "distance_km": 1.92,
-    "elevation_m": 14.2,
-    "profile_score": 0,
-    "stage_type": "Flat, flat finish"
-  },
-  {
     "file": "National Champ Courses/Jamaica 2026.gpx",
     "folder": "National Champ Courses",
     "name": "Jamaica 2026",
@@ -5704,6 +5461,15 @@
     "elevation_m": 891.9,
     "profile_score": 32.5,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "National Champ Courses/2025 Ireland Nats.gpx",
+    "folder": "National Champ Courses",
+    "name": "2025 Ireland Nats",
+    "distance_km": 25.24,
+    "elevation_m": 228.2,
+    "profile_score": 11.2,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "National Champ Courses/North Macedonia 2026.gpx",
