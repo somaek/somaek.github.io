@@ -414,6 +414,60 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Iconic World Routes/Iran/Chalus Road Iran.gpx",
+    "folder": "Iconic World Routes/Iran",
+    "name": "Chalus Road Iran",
+    "distance_km": 132.35,
+    "elevation_m": 1062.8,
+    "profile_score": 16.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/Iran/Asalem to Khalkhal Climb Iran.gpx",
+    "folder": "Iconic World Routes/Iran",
+    "name": "Asalem to Khalkhal Climb Iran",
+    "distance_km": 69.64,
+    "elevation_m": 2424.8,
+    "profile_score": 229.5,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/Iran/Heyran Pass Iran.gpx",
+    "folder": "Iconic World Routes/Iran",
+    "name": "Heyran Pass Iran",
+    "distance_km": 53.89,
+    "elevation_m": 1604.6,
+    "profile_score": 158.5,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/Iran/Sirch Pass Iran.gpx",
+    "folder": "Iconic World Routes/Iran",
+    "name": "Sirch Pass Iran",
+    "distance_km": 82.83,
+    "elevation_m": 918.9,
+    "profile_score": 47.1,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/Iran/Sepidrood River Canyon Iran.gpx",
+    "folder": "Iconic World Routes/Iran",
+    "name": "Sepidrood River Canyon Iran",
+    "distance_km": 76.39,
+    "elevation_m": 485.1,
+    "profile_score": 13.9,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/Iran/Hormoz Island Loop.gpx",
+    "folder": "Iconic World Routes/Iran",
+    "name": "Hormoz Island Loop",
+    "distance_km": 23.53,
+    "elevation_m": 205.7,
+    "profile_score": 13.9,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Iconic World Routes/South Africa/Tradouw Pass Western Cape South Africa.gpx",
     "folder": "Iconic World Routes/South Africa",
     "name": "Tradouw Pass Western Cape South Africa",
@@ -682,6 +736,24 @@
     "elevation_m": 114.0,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/New Zealand/Crown Range Road New Zealand.gpx",
+    "folder": "Iconic World Routes/New Zealand",
+    "name": "Crown Range Road New Zealand",
+    "distance_km": 58.87,
+    "elevation_m": 882.3,
+    "profile_score": 47.8,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/New Zealand/Milford Road New Zealand.gpx",
+    "folder": "Iconic World Routes/New Zealand",
+    "name": "Milford Road New Zealand",
+    "distance_km": 116.92,
+    "elevation_m": 1358.9,
+    "profile_score": 73.4,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Iconic World Routes/Korea/Namhae Coastal Route.gpx",
@@ -990,6 +1062,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Iconic World Routes/Norway/Gamle Strynefjellsvegen Norway.gpx",
+    "folder": "Iconic World Routes/Norway",
+    "name": "Gamle Strynefjellsvegen Norway",
+    "distance_km": 38.4,
+    "elevation_m": 245.8,
+    "profile_score": 10.2,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Iconic World Routes/Norway/Sognefjellet Pass Norway.gpx",
     "folder": "Iconic World Routes/Norway",
     "name": "Sognefjellet Pass Norway",
@@ -1015,6 +1096,15 @@
     "elevation_m": 761.4,
     "profile_score": 4.5,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/Norway/Gaularfjellet Norway.gpx",
+    "folder": "Iconic World Routes/Norway",
+    "name": "Gaularfjellet Norway",
+    "distance_km": 91.33,
+    "elevation_m": 1413.5,
+    "profile_score": 83.7,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Iconic World Routes/Norway/Aurlandsfjellet Climb Norway.gpx",
@@ -3870,6 +3960,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Lombardia 2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Lombardia 2",
+    "distance_km": 64.65,
+    "elevation_m": 870.1,
+    "profile_score": 52.3,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/2026 TDU W Stage 1 Willunga Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "2026 TDU W Stage 1 Willunga Circuit",
@@ -3963,9 +4062,9 @@
     "file": "Pro Bike Races/Giro Emilia.gpx",
     "folder": "Pro Bike Races",
     "name": "Giro Emilia",
-    "distance_km": 65.0,
-    "elevation_m": 866.0,
-    "profile_score": 118.7,
+    "distance_km": 64.09,
+    "elevation_m": 869.3,
+    "profile_score": 122.6,
     "stage_type": "Climbing, uphill finish"
   },
   {
@@ -4165,6 +4264,15 @@
     "elevation_m": 318.0,
     "profile_score": 23.3,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/World Champs 2026 Quebec.gpx",
+    "folder": "Pro Bike Races",
+    "name": "World Champs 2026 Quebec",
+    "distance_km": 77.85,
+    "elevation_m": 827.3,
+    "profile_score": 80.3,
+    "stage_type": "Climbing, uphill finish"
   },
   {
     "file": "Pro Bike Races/Week 4 Tour of Flanders - 70k 599m.gpx",
