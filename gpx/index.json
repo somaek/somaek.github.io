@@ -2757,9 +2757,27 @@
     "file": "Criterium Courses/Eureka Crit.gpx",
     "folder": "Criterium Courses",
     "name": "Eureka Crit",
-    "distance_km": 5.52,
-    "elevation_m": 66.9,
-    "profile_score": 3.7,
+    "distance_km": 5.5,
+    "elevation_m": 65.5,
+    "profile_score": 3.3,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Nevada City Classic.gpx",
+    "folder": "Criterium Courses",
+    "name": "Nevada City Classic",
+    "distance_km": 1.77,
+    "elevation_m": 38.9,
+    "profile_score": 3.6,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Criterium Courses/Havana Casablanca Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Havana Casablanca Crit",
+    "distance_km": 5.12,
+    "elevation_m": 59.6,
+    "profile_score": 2.6,
     "stage_type": "Hilly, flat finish"
   },
   {
@@ -2844,6 +2862,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Criterium Courses/Otley Town Centre Grand Prix.gpx",
+    "folder": "Criterium Courses",
+    "name": "Otley Town Centre Grand Prix",
+    "distance_km": 2.3,
+    "elevation_m": 29.0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Criterium Courses/Littleton Criterium.gpx",
     "folder": "Criterium Courses",
     "name": "Littleton Criterium",
@@ -2866,8 +2893,8 @@
     "folder": "Criterium Courses",
     "name": "Snake Alley Criterium Iowa",
     "distance_km": 3.08,
-    "elevation_m": 40.3,
-    "profile_score": 4.8,
+    "elevation_m": 47.6,
+    "profile_score": 6.0,
     "stage_type": "Climbing, flat finish"
   },
   {
@@ -2905,6 +2932,15 @@
     "elevation_m": 14.5,
     "profile_score": 0,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Barcelona Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Barcelona Crit",
+    "distance_km": 2.73,
+    "elevation_m": 68.4,
+    "profile_score": 6.4,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Criterium Courses/Louisville Criterium - 1k 13m.gpx",
@@ -4269,9 +4305,9 @@
     "file": "Pro Bike Races/World Champs 2026 Quebec.gpx",
     "folder": "Pro Bike Races",
     "name": "World Champs 2026 Quebec",
-    "distance_km": 77.85,
-    "elevation_m": 827.3,
-    "profile_score": 80.3,
+    "distance_km": 77.31,
+    "elevation_m": 624.2,
+    "profile_score": 56.8,
     "stage_type": "Climbing, uphill finish"
   },
   {
