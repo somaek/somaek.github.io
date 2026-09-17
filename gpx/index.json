@@ -2394,6 +2394,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Gravel Roads/Big Sky Gravel 50 Classic Length.gpx",
+    "folder": "Gravel Roads",
+    "name": "Big Sky Gravel 50 Classic Length",
+    "distance_km": 69.64,
+    "elevation_m": 860.1,
+    "profile_score": 31.1,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Gravel Roads/FoCo Fondo Dare You 30 mile Gravel route - 48k 285m.gpx",
     "folder": "Gravel Roads",
     "name": "FoCo Fondo Dare You 30 mile Gravel route - 48k 285m",
@@ -2419,6 +2428,15 @@
     "elevation_m": 349.2,
     "profile_score": 8.3,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Mammoth TUFF Long.gpx",
+    "folder": "Gravel Roads",
+    "name": "Mammoth TUFF Long",
+    "distance_km": 78.26,
+    "elevation_m": 717.9,
+    "profile_score": 46.2,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Gravel Roads/Grassroots Gravel - The Half 3 of 4.gpx",
@@ -2478,9 +2496,9 @@
     "file": "Gravel Roads/Big Sky Gravel 50.gpx",
     "folder": "Gravel Roads",
     "name": "Big Sky Gravel 50",
-    "distance_km": 79.17,
-    "elevation_m": 783.9,
-    "profile_score": 21.2,
+    "distance_km": 78.89,
+    "elevation_m": 858.7,
+    "profile_score": 31.7,
     "stage_type": "Hilly, flat finish"
   },
   {
