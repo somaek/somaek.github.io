@@ -747,6 +747,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Iconic World Routes/New Zealand/Haast Pass NZ.gpx",
+    "folder": "Iconic World Routes/New Zealand",
+    "name": "Haast Pass NZ",
+    "distance_km": 145.37,
+    "elevation_m": 1208.3,
+    "profile_score": 19.7,
+    "stage_type": "Flat, flat finish"
+  },
+  {
     "file": "Iconic World Routes/New Zealand/Milford Road New Zealand.gpx",
     "folder": "Iconic World Routes/New Zealand",
     "name": "Milford Road New Zealand",
@@ -754,6 +763,15 @@
     "elevation_m": 1358.9,
     "profile_score": 73.4,
     "stage_type": "Climbing, flat finish"
+  },
+  {
+    "file": "Iconic World Routes/New Zealand/Arthur's Pass from Springfiled NZ.gpx",
+    "folder": "Iconic World Routes/New Zealand",
+    "name": "Arthur's Pass from Springfiled NZ",
+    "distance_km": 83.47,
+    "elevation_m": 1359.1,
+    "profile_score": 69.0,
+    "stage_type": "Climbing, uphill finish"
   },
   {
     "file": "Iconic World Routes/Korea/Namhae Coastal Route.gpx",
@@ -2340,6 +2358,15 @@
     "stage_type": "Flat, flat finish"
   },
   {
+    "file": "Gravel Roads/WYO 131 Gravel.gpx",
+    "folder": "Gravel Roads",
+    "name": "WYO 131 Gravel",
+    "distance_km": 74.89,
+    "elevation_m": 864.6,
+    "profile_score": 36.2,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Gravel Roads/Double Dog Updated.gpx",
     "folder": "Gravel Roads",
     "name": "Double Dog Updated",
@@ -2347,6 +2374,24 @@
     "elevation_m": 897.0,
     "profile_score": 13.8,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/WYO 131 Gravel 1 Hour rolling.gpx",
+    "folder": "Gravel Roads",
+    "name": "WYO 131 Gravel 1 Hour rolling",
+    "distance_km": 32.89,
+    "elevation_m": 505.1,
+    "profile_score": 27.1,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Gravel Roads/WYO 131 Gravel Hard 2.gpx",
+    "folder": "Gravel Roads",
+    "name": "WYO 131 Gravel Hard 2",
+    "distance_km": 66.5,
+    "elevation_m": 871.7,
+    "profile_score": 62.3,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Gravel Roads/Grassroots Gravel - The Half LU.gpx",
@@ -2373,6 +2418,15 @@
     "distance_km": 63.06,
     "elevation_m": 461.9,
     "profile_score": 10.6,
+    "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Heck of the North Gravel MN.gpx",
+    "folder": "Gravel Roads",
+    "name": "Heck of the North Gravel MN",
+    "distance_km": 79.68,
+    "elevation_m": 422.2,
+    "profile_score": 1.1,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -2464,6 +2518,15 @@
     "elevation_m": 375.6,
     "profile_score": 2.6,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/WYO 131 Gravel Hard.gpx",
+    "folder": "Gravel Roads",
+    "name": "WYO 131 Gravel Hard",
+    "distance_km": 69.12,
+    "elevation_m": 1011.8,
+    "profile_score": 53.1,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Gravel Roads/Grassroots Half 1 of 3.gpx",
