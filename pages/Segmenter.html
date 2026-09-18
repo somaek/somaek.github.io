@@ -59,6 +59,8 @@
         const Bike = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="5.5" cy="17.5" r="3.5"></circle><circle cx="18.5" cy="17.5" r="3.5"></circle><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"></path></svg>;
         const Download = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>;
         const MoveHorizontal = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="18 8 22 12 18 16"></polyline><polyline points="6 8 2 12 6 16"></polyline><line x1="2" y1="12" x2="22" y2="12"></line></svg>;
+        const RefreshCw = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>;
+
 
         // --- PHYSICS & MATH UTILS ---
         function haversine(lat1, lon1, lat2, lon2) {
@@ -147,10 +149,15 @@
           const [fileData, setFileData] = useState(null);
           const [fileName, setFileName] = useState('');
           
+          const [basePoints, setBasePoints] = useState([]);
           const [parsedPoints, setParsedPoints] = useState([]);
           const [enrichedPoints, setEnrichedPoints] = useState([]);
           const [splitIndices, setSplitIndices] = useState([]); 
           
+          // Route Modifiers
+          const [isOutAndBack, setIsOutAndBack] = useState(false);
+          const [laps, setLaps] = useState(1);
+
           const [riderWeight, setRiderWeight] = useState(70);
           const [bikeWeight, setBikeWeight] = useState(9);
           const [ftp, setFtp] = useState(250);
@@ -170,25 +177,171 @@
 
             const reader = new FileReader();
             reader.onload = (event) => {
-              const xmlString = event.target.result;
-              const parser = new DOMParser();
-              const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-              const trkpts = xmlDoc.getElementsByTagName("trkpt");
-              const points = [];
-              for (let i = 0; i < trkpts.length; i++) {
-                const pt = trkpts[i];
-                const lat = parseFloat(pt.getAttribute("lat"));
-                const lon = parseFloat(pt.getAttribute("lon"));
-                const eleNode = pt.getElementsByTagName("ele")[0];
-                const ele = eleNode ? parseFloat(eleNode.textContent) : 0;
-                points.push({ lat, lon, ele });
+              const content = event.target.result;
+              let points = [];
+
+              if (file.name.toLowerCase().endsWith('.json')) {
+                  try {
+                      const data = JSON.parse(content);
+                      let rawPts = [];
+                      
+                      // Handle structures like Base Camp.json
+                      if (data.leadin && data.leadin.coordinates) {
+                          rawPts.push(...data.leadin.coordinates);
+                      }
+                      
+                      if (data.lap && data.lap.coordinates) {
+                          if (rawPts.length > 0) {
+                              const lastPt = rawPts[rawPts.length - 1];
+                              const firstPt = data.lap.coordinates[0];
+                              // Prevent point duplication when merging lead-in and lap
+                              if (lastPt.x === firstPt.x && lastPt.z === firstPt.z) {
+                                  rawPts.push(...data.lap.coordinates.slice(1));
+                              } else {
+                                  rawPts.push(...data.lap.coordinates);
+                              }
+                          } else {
+                              rawPts.push(...data.lap.coordinates);
+                          }
+                      } 
+                      
+                      // Fallback for flat JSON arrays
+                      if (rawPts.length === 0) {
+                          if (data.coordinates) rawPts = data.coordinates;
+                          else if (Array.isArray(data)) rawPts = data;
+                      }
+
+                      // Convert XYZ to standard lat/lon degree scales so Haversine still calculates accurate meter distances.
+                      // 1 degree of latitude = ~111,139 meters. 
+                      points = rawPts.map(pt => ({
+                          lat: pt.z / 111139,
+                          lon: pt.x / 111139,
+                          ele: pt.y
+                      }));
+
+                  } catch (err) {
+                      console.error("Error parsing JSON:", err);
+                      alert("Invalid JSON format.");
+                  }
+              } else {
+                  // Standard GPX Parsing
+                  const parser = new DOMParser();
+                  const xmlDoc = parser.parseFromString(content, "text/xml");
+                  const trkpts = xmlDoc.getElementsByTagName("trkpt");
+                  
+                  for (let i = 0; i < trkpts.length; i++) {
+                    const pt = trkpts[i];
+                    const lat = parseFloat(pt.getAttribute("lat"));
+                    const lon = parseFloat(pt.getAttribute("lon"));
+                    const eleNode = pt.getElementsByTagName("ele")[0];
+                    const ele = eleNode ? parseFloat(eleNode.textContent) : 0;
+                    points.push({ lat, lon, ele });
+                  }
               }
-              setParsedPoints(points);
+
+              setBasePoints(points);
               setIsProcessing(false);
             };
             reader.readAsText(file);
           };
 
+          // Effect to handle Out-and-Back and Laps modifiers
+          useEffect(() => {
+              if (!basePoints || basePoints.length === 0) {
+                  setParsedPoints([]);
+                  return;
+              }
+              
+              let currentPt = [...basePoints];
+              
+              // 1. Apply Out and Back with Lightbulb Turnaround
+              if (isOutAndBack) {
+                  let loopPts = [];
+                  if (basePoints.length >= 2) {
+                      const DEG_TO_M = 111139;
+                      const pPrev = basePoints[basePoints.length - 2];
+                      const pLast = basePoints[basePoints.length - 1];
+
+                      // Determine heading of the final segment
+                      const dx = (pLast.lon - pPrev.lon) * DEG_TO_M;
+                      const dy = (pLast.lat - pPrev.lat) * DEG_TO_M;
+                      const heading = Math.atan2(dy, dx);
+
+                      // Forward and Right vectors
+                      const Fx = Math.cos(heading);
+                      const Fy = Math.sin(heading);
+                      const Rx = Math.cos(heading - Math.PI / 2);
+                      const Ry = Math.sin(heading - Math.PI / 2);
+
+                      // End of the 20m forward runway
+                      const oX = pLast.lon * DEG_TO_M + 20 * Fx;
+                      const oY = pLast.lat * DEG_TO_M + 20 * Fy;
+
+                      // Helper to inject local (x: right, y: forward) offsets as GPX lat/lon
+                      const addLocalPoint = (x, y) => {
+                          const gx = oX + x * Rx + y * Fx;
+                          const gy = oY + x * Ry + y * Fy;
+                          loopPts.push({
+                              lat: gy / DEG_TO_M,
+                              lon: gx / DEG_TO_M,
+                              ele: pLast.ele // Keep elevation totally flat for turnaround loop stability
+                          });
+                      };
+
+                      // 1. End of Outbound Runway
+                      addLocalPoint(0, 0);
+
+                      const r = 15;
+                      const sqrt3 = Math.sqrt(3);
+
+                      // 2. Entry Right Curve (sweeps 60 degrees to ease into the bulb)
+                      const stepsEntry = 6;
+                      for (let i = 1; i <= stepsEntry; i++) {
+                          const t = Math.PI - (Math.PI / 3) * (i / stepsEntry);
+                          addLocalPoint(r + r * Math.cos(t), r * Math.sin(t));
+                      }
+
+                      // 3. Main Left Curve (sweeps 300 degrees to form the loop body)
+                      const stepsMain = 24;
+                      for (let i = 1; i <= stepsMain; i++) {
+                          const t = -Math.PI / 3 + (5 * Math.PI / 3) * (i / stepsMain);
+                          addLocalPoint(r * Math.cos(t), r * sqrt3 + r * Math.sin(t));
+                      }
+
+                      // 4. Exit Right Curve (sweeps 60 degrees to lock back onto the runway axis)
+                      const stepsExit = 6;
+                      for (let i = 1; i <= stepsExit; i++) {
+                          const t = Math.PI / 3 - (Math.PI / 3) * (i / stepsExit);
+                          addLocalPoint(-r + r * Math.cos(t), r * Math.sin(t));
+                      }
+                      
+                      // Loop finishes exactly back at local (0,0) heading backward
+                  }
+                  
+                  // By retaining the final point in the reversed array, the 20m return runway is automatically bridged.
+                  const reversed = [...basePoints].reverse(); 
+                  currentPt = [...currentPt, ...loopPts, ...reversed];
+              }
+              
+              // 2. Apply Laps
+              let finalPts = [...currentPt];
+              for (let i = 1; i < laps; i++) {
+                  let lapPts = currentPt;
+                  const lastPt = finalPts[finalPts.length - 1];
+                  const firstPt = currentPt[0];
+                  
+                  // If the loop connects perfectly, drop the duplicate start point on subsequent laps
+                  if (lastPt.lat === firstPt.lat && lastPt.lon === firstPt.lon) {
+                      lapPts = currentPt.slice(1);
+                  }
+                  
+                  finalPts = [...finalPts, ...lapPts];
+              }
+              
+              setParsedPoints(finalPts);
+          }, [basePoints, isOutAndBack, laps]);
+
+          // Effect to calculate physics
           useEffect(() => {
             if (parsedPoints.length === 0) return;
             setIsProcessing(true);
@@ -223,6 +376,7 @@
             }, 50);
           }, [parsedPoints, riderWeight, bikeWeight, ftp, intensity]);
 
+          // Effect to generate split indices
           useEffect(() => {
               if (enrichedPoints.length === 0) return;
 
@@ -244,6 +398,7 @@
               setSplitIndices(newSplits);
           }, [enrichedPoints, splitMode, targetMinutes, targetDivisions]);
 
+          // Memo to generate segments based on boundaries
           const segments = useMemo(() => {
               if (enrichedPoints.length === 0) return [];
               
@@ -300,7 +455,7 @@
 
           const downloadGPX = (segment, index) => {
             const totalSegments = segments.length;
-            const cleanBaseName = fileName.replace(/\.gpx$/i, '');
+            const cleanBaseName = fileName.replace(/\.(gpx|json)$/i, '');
             const finalFileName = `${cleanBaseName} ${index + 1} of ${totalSegments}.gpx`;
 
             let gpxContent = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -341,16 +496,44 @@
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-cardBg p-6 border border-borderColor flex flex-col justify-center items-center h-full relative group">
-                    <label className="flex flex-col items-center justify-center w-full h-full min-h-[140px] cursor-pointer bg-inputBg hover:bg-cardAlt transition border-2 border-dashed border-borderColor">
+                  
+                  {/* UPLOAD & ROUTE MODIFIERS CARD */}
+                  <div className="bg-cardBg p-6 border border-borderColor flex flex-col h-full relative group">
+                    <label className="flex flex-col items-center justify-center w-full min-h-[120px] cursor-pointer bg-inputBg hover:bg-cardAlt transition border-2 border-dashed border-borderColor mb-4 flex-grow">
                       <div className="flex flex-col items-center justify-center p-4 text-center">
                         <UploadCloud className="w-8 h-8 text-textMuted mb-2 group-hover:text-neonCyan transition" />
                         <p className="text-sm text-white font-oswald font-black uppercase tracking-widest">
-                          {fileName ? fileName : 'Upload GPX Track'}
+                          {fileName ? fileName : 'Upload GPX or JSON'}
                         </p>
                       </div>
-                      <input type="file" className="hidden" accept=".gpx" onChange={handleFileUpload} />
+                      <input type="file" className="hidden" accept=".gpx,.json" onChange={handleFileUpload} />
                     </label>
+
+                    <div className="flex gap-4 border-t border-borderColor/50 pt-4 mt-auto">
+                        <div className="flex-1">
+                            <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest flex items-center gap-1 mb-1">
+                                <RefreshCw className="w-3 h-3" /> Laps
+                            </label>
+                            <input 
+                                type="number" 
+                                min="1" 
+                                value={laps} 
+                                onChange={e => setLaps(Math.max(1, parseInt(e.target.value) || 1))} 
+                                className="w-full bg-inputBg border border-borderColor text-white font-bold px-3 py-1.5 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" 
+                            />
+                        </div>
+                        <div className="flex-1 flex flex-col justify-end pb-1.5">
+                            <label className="flex items-center gap-2 cursor-pointer group">
+                                <input 
+                                    type="checkbox" 
+                                    checked={isOutAndBack} 
+                                    onChange={e => setIsOutAndBack(e.target.checked)} 
+                                    className="accent-neonCyan w-4 h-4 cursor-pointer" 
+                                />
+                                <span className="text-[10px] font-oswald font-black text-textMuted group-hover:text-neonCyan transition uppercase tracking-widest leading-none mt-0.5">Out & Back</span>
+                            </label>
+                        </div>
+                    </div>
                   </div>
 
                   <div className="bg-cardBg p-6 border border-borderColor col-span-1">
@@ -545,141 +728,130 @@
                   minEle = 0;
               }
           } else {
-              minEle = Math.max(0, minEle - (eleRange * 0.15));
-              maxEle = maxEle + (eleRange * 0.2);
+              minEle = Math.max(0, minEle - (eleRange * 0.1));
+              maxEle = maxEle + (eleRange * 0.1);
           }
-          eleRange = maxEle - minEle;
 
-          const innerWidth = width - padding.left - padding.right;
-          const xMap = (dist) => padding.left + (dist / maxDist) * innerWidth;
-          const yMap = (ele) => height - padding.bottom - ((ele - minEle) / (maxEle - minEle)) * (height - padding.top - padding.bottom);
+          const getX = (dist) => padding.left + (dist / maxDist) * (width - padding.left - padding.right);
+          const getY = (ele) => height - padding.bottom - ((ele - minEle) / (maxEle - minEle)) * (height - padding.top - padding.bottom);
 
-          const ySteps = 4;
-          const yGrid = Array.from({length: ySteps + 1}, (_, i) => minEle + (eleRange / ySteps) * i);
-          const xSteps = 4;
-          const xGrid = Array.from({length: xSteps + 1}, (_, i) => (maxDist / xSteps) * i);
+          const getPointsPath = (points) => {
+              if(points.length === 0) return "";
+              const startX = getX(points[0].cumDist);
+              const startY = getY(points[0].ele);
+              let path = `M ${startX} ${height - padding.bottom} L ${startX} ${startY} `;
+              points.forEach(pt => {
+                  path += `L ${getX(pt.cumDist)} ${getY(pt.ele)} `;
+              });
+              const endX = getX(points[points.length-1].cumDist);
+              path += `L ${endX} ${height - padding.bottom} Z`;
+              return path;
+          };
 
-          const stateRef = useRef({ splitIndices, enrichedPoints, maxDist });
-          useEffect(() => {
-             stateRef.current = { splitIndices, enrichedPoints, maxDist };
-          }, [splitIndices, enrichedPoints, maxDist]);
+          const handleMouseDown = (e, index) => {
+             e.preventDefault();
+             setDraggingIdx(index);
+          };
 
-          useEffect(() => {
+          const handleMouseMove = useCallback((e) => {
               if (draggingIdx === null) return;
-
-              const handleMouseMove = (e) => {
-                  if (!svgRef.current) return;
-                  const rect = svgRef.current.getBoundingClientRect();
-                  const scaleX = width / rect.width;
-                  const mouseX = (e.clientX - rect.left) * scaleX;
-                  const { splitIndices: currentSplits, enrichedPoints: currentPoints, maxDist: currentMaxDist } = stateRef.current;
-                  let targetDist = ((mouseX - padding.left) / innerWidth) * currentMaxDist;
-                  targetDist = Math.max(0, Math.min(targetDist, currentMaxDist));
-
-                  let closestIdx = 0;
-                  let minDiff = Infinity;
-                  for (let i = 0; i < currentPoints.length; i++) {
-                      const diff = Math.abs(currentPoints[i].cumDist - targetDist);
-                      if (diff < minDiff) {
-                          minDiff = diff;
-                          closestIdx = i;
-                      }
+              const svgRect = svgRef.current.getBoundingClientRect();
+              const mouseX = e.clientX - svgRect.left;
+              
+              const scaleX = width / svgRect.width;
+              const svgX = mouseX * scaleX;
+              
+              let dist = ((svgX - padding.left) / (width - padding.left - padding.right)) * maxDist;
+              dist = Math.max(0, Math.min(dist, maxDist));
+              
+              let closestIdx = 0;
+              let minDiff = Infinity;
+              for(let i=0; i<enrichedPoints.length; i++){
+                  const diff = Math.abs(enrichedPoints[i].cumDist - dist);
+                  if(diff < minDiff) {
+                      minDiff = diff;
+                      closestIdx = i;
                   }
+              }
 
-                  const minBound = draggingIdx > 0 ? currentSplits[draggingIdx - 1] + 1 : 1;
-                  const maxBound = draggingIdx < currentSplits.length - 1 ? currentSplits[draggingIdx + 1] - 1 : currentPoints.length - 2;
-                  closestIdx = Math.max(minBound, Math.min(closestIdx, maxBound));
+              // Constrain indices
+              let minAllowed = draggingIdx > 0 ? splitIndices[draggingIdx - 1] + 10 : 10;
+              let maxAllowed = draggingIdx < splitIndices.length - 1 ? splitIndices[draggingIdx + 1] - 10 : enrichedPoints.length - 10;
+              
+              closestIdx = Math.max(minAllowed, Math.min(closestIdx, maxAllowed));
 
-                  const newSplits = [...currentSplits];
-                  newSplits[draggingIdx] = closestIdx;
-                  setSplitIndices(newSplits);
-              };
+              const newSplits = [...splitIndices];
+              newSplits[draggingIdx] = closestIdx;
+              setSplitIndices(newSplits);
+          }, [draggingIdx, enrichedPoints, splitIndices, setSplitIndices, maxDist, width, padding.left, padding.right]);
 
-              const handleMouseUp = () => setDraggingIdx(null);
-
-              window.addEventListener('mousemove', handleMouseMove);
-              window.addEventListener('mouseup', handleMouseUp);
-              document.body.style.cursor = 'ew-resize';
-
-              return () => {
-                  window.removeEventListener('mousemove', handleMouseMove);
-                  window.removeEventListener('mouseup', handleMouseUp);
-                  document.body.style.cursor = '';
-              };
-          }, [draggingIdx, innerWidth, padding.left, setSplitIndices, width]);
-
-          let fullPathD = '';
-          if (enrichedPoints.length > 0) {
-             fullPathD = `M ${xMap(enrichedPoints[0].cumDist)} ${yMap(enrichedPoints[0].ele)} `;
-             enrichedPoints.forEach(pt => {
-                fullPathD += `L ${xMap(pt.cumDist)} ${yMap(pt.ele)} `;
-             });
-          }
+          const handleMouseUp = () => setDraggingIdx(null);
+          
+          useEffect(() => {
+              if(draggingIdx !== null) {
+                  window.addEventListener('mousemove', handleMouseMove);
+                  window.addEventListener('mouseup', handleMouseUp);
+                  return () => {
+                      window.removeEventListener('mousemove', handleMouseMove);
+                      window.removeEventListener('mouseup', handleMouseUp);
+                  };
+              }
+          }, [draggingIdx, handleMouseMove]);
 
           return (
-            <div className="w-full overflow-x-auto select-none touch-none">
-              <svg 
-                  ref={svgRef} 
-                  width="100%" 
-                  viewBox={`0 0 ${width} ${height}`} 
-                  preserveAspectRatio="none" 
-                  className="h-72 min-w-[700px] font-sans"
-              >
-                {yGrid.map((ele, i) => (
-                   <g key={`y-${i}`}>
-                      <line x1={padding.left} y1={yMap(ele)} x2={width - padding.right} y2={yMap(ele)} stroke="#402772" strokeWidth="1" strokeDasharray="4,4" />
-                      <text x={padding.left - 10} y={yMap(ele) + 4} fontSize="10" fill="#a38cde" textAnchor="end">{Math.round(ele)}m</text>
-                   </g>
-                ))}
+            <svg 
+               ref={svgRef} 
+               viewBox={`0 0 ${width} ${height}`} 
+               className="w-full h-full font-sans cursor-crosshair"
+               style={{ userSelect: 'none' }}
+            >
+              {/* Background Grid */}
+              <line x1={padding.left} y1={padding.top} x2={width-padding.right} y2={padding.top} stroke="#402772" strokeWidth="1" strokeDasharray="4 4" />
+              <line x1={padding.left} y1={height/2} x2={width-padding.right} y2={height/2} stroke="#402772" strokeWidth="1" strokeDasharray="4 4" />
+              <line x1={padding.left} y1={height-padding.bottom} x2={width-padding.right} y2={height-padding.bottom} stroke="#402772" strokeWidth="1" />
 
-                {xGrid.map((dist, i) => (
-                   <g key={`x-${i}`}>
-                      <line x1={xMap(dist)} y1={padding.top} x2={xMap(dist)} y2={height - padding.bottom} stroke="#402772" strokeWidth="1" strokeDasharray="4,4" />
-                      <text x={xMap(dist)} y={height - padding.bottom + 20} fontSize="10" fill="#a38cde" textAnchor="middle">{(dist / 1000).toFixed(0)}km</text>
-                   </g>
-                ))}
+              {/* Labels */}
+              <text x={padding.left - 10} y={padding.top} fill="#a38cde" fontSize="12" textAnchor="end" alignmentBaseline="middle">{Math.round(maxEle)}m</text>
+              <text x={padding.left - 10} y={height - padding.bottom} fill="#a38cde" fontSize="12" textAnchor="end" alignmentBaseline="middle">{Math.round(minEle)}m</text>
+              
+              <text x={padding.left} y={height - 15} fill="#a38cde" fontSize="12" textAnchor="middle">0 km</text>
+              <text x={width - padding.right} y={height - 15} fill="#a38cde" fontSize="12" textAnchor="middle">{(maxDist/1000).toFixed(1)} km</text>
 
-                <path d={fullPathD} fill="none" stroke="#00f0ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              {/* Polygons */}
+              {segments.map((seg, idx) => (
+                <path 
+                  key={`seg-${idx}`}
+                  d={getPointsPath(seg.points)}
+                  fill={colors[idx % colors.length]}
+                  fillOpacity="0.15"
+                  stroke={colors[idx % colors.length]}
+                  strokeWidth="2"
+                  className="transition-all duration-300"
+                />
+              ))}
 
-                {segments.map((seg, idx) => {
-                  if (seg.points.length === 0) return null;
-                  const color = colors[idx % colors.length];
-                  let pathD = `M ${xMap(seg.points[0].cumDist)} ${yMap(seg.points[0].ele)} `;
-                  let maxPoint = seg.points[0];
-                  seg.points.forEach(pt => {
-                     pathD += `L ${xMap(pt.cumDist)} ${yMap(pt.ele)} `;
-                     if (pt.ele > maxPoint.ele) maxPoint = pt;
-                  });
-                  const lastPoint = seg.points[seg.points.length - 1];
-                  const firstPoint = seg.points[0];
-                  const fillPathD = pathD + `L ${xMap(lastPoint.cumDist)} ${height - padding.bottom} L ${xMap(firstPoint.cumDist)} ${height - padding.bottom} Z`;
-
+              {/* Split Lines & Drag Handles */}
+              {splitIndices.map((idx, i) => {
+                  const pt = enrichedPoints[idx];
+                  if (!pt) return null;
+                  const x = getX(pt.cumDist);
                   return (
-                    <g key={`seg-${idx}`}>
-                      <path d={fillPathD} fill={color} opacity="0.6" />
-                      <path d={pathD} fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                      <text x={xMap(maxPoint.cumDist)} y={yMap(maxPoint.ele) - 15} fill={color} fontSize="16" fontWeight="900" fontFamily="Oswald" textAnchor="middle">{idx + 1}</text>
-                    </g>
+                      <g 
+                          key={`split-${i}`} 
+                          className="cursor-ew-resize"
+                          onMouseDown={(e) => handleMouseDown(e, i)}
+                      >
+                          {/* Invisible wider line for easier grabbing */}
+                          <line x1={x} y1={padding.top} x2={x} y2={height-padding.bottom} stroke="transparent" strokeWidth="16" />
+                          <line x1={x} y1={padding.top} x2={x} y2={height-padding.bottom} stroke="#fff" strokeWidth="2" strokeDasharray="4 2" />
+                          
+                          {/* Drag Handle Top */}
+                          <rect x={x-10} y={padding.top - 10} width="20" height="20" fill="#140632" stroke="#00f0ff" strokeWidth="2" rx="4" />
+                          <circle cx={x} cy={padding.top} r="2" fill="#00f0ff" />
+                      </g>
                   );
-                })}
-
-                {splitIndices.map((ptIndex, i) => {
-                    const pt = enrichedPoints[ptIndex];
-                    if (!pt) return null;
-                    const cx = xMap(pt.cumDist);
-                    const isDragging = draggingIdx === i;
-                    return (
-                        <g key={`handle-${i}`} onMouseDown={() => setDraggingIdx(i)} className="cursor-ew-resize">
-                            <rect x={cx - 15} y={padding.top} width="30" height={height - padding.top - padding.bottom} fill="transparent" />
-                            <line x1={cx} y1={padding.top} x2={cx} y2={height - padding.bottom} stroke={isDragging ? "#ffffff" : "#a38cde"} strokeWidth="2" strokeDasharray={isDragging ? "none" : "2,2"} />
-                            <rect x={cx - 6} y={(height / 2) - 15} width="12" height="30" rx="3" fill={isDragging ? "#00f0ff" : "#140632"} stroke={isDragging ? "#ffffff" : "#00f0ff"} strokeWidth="2" className="transition-all duration-100" />
-                            <line x1={cx - 2} y1={(height / 2) - 5} x2={cx - 2} y2={(height / 2) + 5} stroke={isDragging ? "#000" : "#00f0ff"} strokeWidth="1" />
-                            <line x1={cx + 2} y1={(height / 2) - 5} x2={cx + 2} y2={(height / 2) + 5} stroke={isDragging ? "#000" : "#00f0ff"} strokeWidth="1" />
-                        </g>
-                    )
-                })}
-              </svg>
-            </div>
+              })}
+            </svg>
           );
         }
 
