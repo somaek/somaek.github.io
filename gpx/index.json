@@ -378,6 +378,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Climbs/Papagou Antennas Climb Greece.gpx",
+    "folder": "Climbs",
+    "name": "Papagou Antennas Climb Greece",
+    "distance_km": 6.55,
+    "elevation_m": 446.8,
+    "profile_score": 75.1,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Climbs/Sierra Jabalcuz Spain.gpx",
     "folder": "Climbs",
     "name": "Sierra Jabalcuz Spain",
@@ -2487,9 +2496,9 @@
     "file": "Gravel Roads/Mammoth TUFF Long.gpx",
     "folder": "Gravel Roads",
     "name": "Mammoth TUFF Long",
-    "distance_km": 78.26,
-    "elevation_m": 717.9,
-    "profile_score": 46.2,
+    "distance_km": 78.2,
+    "elevation_m": 731.1,
+    "profile_score": 45.3,
     "stage_type": "Climbing, flat finish"
   },
   {
@@ -2518,6 +2527,15 @@
     "elevation_m": 375.6,
     "profile_score": 2.6,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Gravel Roads/Rad Dirt Fest Long Loop.gpx",
+    "folder": "Gravel Roads",
+    "name": "Rad Dirt Fest Long Loop",
+    "distance_km": 79.77,
+    "elevation_m": 1143.9,
+    "profile_score": 56.3,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Gravel Roads/WYO 131 Gravel Hard.gpx",
@@ -2847,7 +2865,7 @@
     "file": "Criterium Courses/Nevada City Classic.gpx",
     "folder": "Criterium Courses",
     "name": "Nevada City Classic",
-    "distance_km": 1.77,
+    "distance_km": 1.75,
     "elevation_m": 38.9,
     "profile_score": 3.6,
     "stage_type": "Climbing, uphill finish"
@@ -2910,9 +2928,9 @@
     "file": "Criterium Courses/Angel Island San Francisco CA.gpx",
     "folder": "Criterium Courses",
     "name": "Angel Island San Francisco CA",
-    "distance_km": 7.78,
-    "elevation_m": 114.2,
-    "profile_score": 3.3,
+    "distance_km": 7.75,
+    "elevation_m": 110.5,
+    "profile_score": 2.9,
     "stage_type": "Flat, flat finish"
   },
   {
@@ -3636,6 +3654,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Pro Bike Races/Tour de Luxembourg 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Luxembourg 2026 Circuit",
+    "distance_km": 13.7,
+    "elevation_m": 317.1,
+    "profile_score": 40.6,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Pro Bike Races/TDU Stage 4 - Willunga - 36k 490m.gpx",
     "folder": "Pro Bike Races",
     "name": "TDU Stage 4 - Willunga - 36k 490m",
@@ -3940,6 +3967,15 @@
     "elevation_m": 244.1,
     "profile_score": 2.3,
     "stage_type": "Flat, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Slovaquie S3 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Slovaquie S3 2026",
+    "distance_km": 75.36,
+    "elevation_m": 1126.2,
+    "profile_score": 79.0,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/Tour of Holland - Stage 5 Gravel_processed.gpx",
@@ -4354,6 +4390,15 @@
     "elevation_m": 878.7,
     "profile_score": 58.6,
     "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/Kampioenschap van Vlaanderen Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Kampioenschap van Vlaanderen Circuit",
+    "distance_km": 14.98,
+    "elevation_m": 56.1,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish"
   },
   {
     "file": "Pro Bike Races/Quebec WT Race.gpx",
@@ -4921,6 +4966,15 @@
     "elevation_m": 343.9,
     "profile_score": 19.5,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Luxembourg 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Luxembourg 2026",
+    "distance_km": 73.52,
+    "elevation_m": 1152.9,
+    "profile_score": 92.3,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/Coppa Bernocchi.gpx",
