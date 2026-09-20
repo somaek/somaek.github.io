@@ -1280,7 +1280,7 @@
           };
 
           const analyzeRoute = (points, totalDistance) => {
-            const CHUNK_SIZE = 0.2; 
+            const CHUNK_SIZE = 0.1; 
             const MIN_UPHILL_GRADIENT = 1.5; 
             const MAX_MERGE_GAP_KM = 0.35; 
 
@@ -1362,7 +1362,17 @@
             let allClimbs = climbs.filter(c => c.gain > 20).map((c) => { 
               const lengthKm = c.endDist - c.startDist;
               const gradientAvg = lengthKm > 0 ? (c.gain / (lengthKm * 1000)) * 100 : 0;
-              const maxGradient = Math.max(...c.chunks.map(chunk => chunk.gradient));
+              let maxGradient = 0;
+                const WINDOW_SIZE = 2; // Combines adjacent 100m chunks for a 200m max gradient window
+                for (let i = 0; i <= c.chunks.length - WINDOW_SIZE; i++) {
+                    const windowGain = c.chunks.slice(i, i + WINDOW_SIZE).reduce((sum, chk) => sum + chk.gain, 0);
+                    const windowDist = c.chunks[i + WINDOW_SIZE - 1].endDist - c.chunks[i].startDist;
+                    const windowGrad = (windowGain / (windowDist * 1000)) * 100;
+                    if (windowGrad > maxGradient) maxGradient = windowGrad;
+                }
+                if (maxGradient === 0 && c.chunks.length > 0) {
+                    maxGradient = Math.max(...c.chunks.map(chunk => chunk.gradient));
+                }
               const rawScore = Math.pow(gradientAvg / 2, 2) * lengthKm;
 
               const distFromFinish = totalDistance - c.endDist;
