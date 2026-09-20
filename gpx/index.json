@@ -3654,15 +3654,6 @@
     "stage_type": "Climbing, flat finish"
   },
   {
-    "file": "Pro Bike Races/Tour de Luxembourg 2026 Circuit.gpx",
-    "folder": "Pro Bike Races",
-    "name": "Tour de Luxembourg 2026 Circuit",
-    "distance_km": 13.7,
-    "elevation_m": 317.1,
-    "profile_score": 40.6,
-    "stage_type": "Climbing, flat finish"
-  },
-  {
     "file": "Pro Bike Races/TDU Stage 4 - Willunga - 36k 490m.gpx",
     "folder": "Pro Bike Races",
     "name": "TDU Stage 4 - Willunga - 36k 490m",
@@ -4959,6 +4950,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Pro Bike Races/Tour de Luxembourg S3 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Luxembourg S3 2026",
+    "distance_km": 73.52,
+    "elevation_m": 1152.9,
+    "profile_score": 92.3,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Pro Bike Races/GP Stad Halle.gpx",
     "folder": "Pro Bike Races",
     "name": "GP Stad Halle",
@@ -4966,15 +4966,6 @@
     "elevation_m": 343.9,
     "profile_score": 19.5,
     "stage_type": "Hilly, flat finish"
-  },
-  {
-    "file": "Pro Bike Races/Tour de Luxembourg 2026.gpx",
-    "folder": "Pro Bike Races",
-    "name": "Tour de Luxembourg 2026",
-    "distance_km": 73.52,
-    "elevation_m": 1152.9,
-    "profile_score": 92.3,
-    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/Coppa Bernocchi.gpx",
@@ -5137,6 +5128,15 @@
     "elevation_m": 239.5,
     "profile_score": 21.7,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Luxembourg S3 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Luxembourg S3 2026 Circuit",
+    "distance_km": 13.7,
+    "elevation_m": 317.1,
+    "profile_score": 40.6,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Pro Bike Races/Tour de Gyeongnam - S2 - Tongyeong.gpx",
