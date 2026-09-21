@@ -182,6 +182,10 @@ jobs:
                               gpx = gpxpy.parse(f)
                               name = os.path.splitext(file)[0]
                               
+                              # Capture the file modification time and convert to ISO format
+                              mtime = os.path.getmtime(f_name)
+                              upload_date = datetime.datetime.fromtimestamp(mtime).isoformat()
+                              
                               # Extract distance, elevation, and calculate custom metrics
                               dist = (gpx.length_2d() / 1000) if gpx.length_2d() else 0
                               up, _ = gpx.get_uphill_downhill()
@@ -199,7 +203,8 @@ jobs:
                                   "distance_km": round(dist, 2),
                                   "elevation_m": round(up if up else 0, 1),
                                   "profile_score": profile_score,
-                                  "stage_type": stage_type
+                                  "stage_type": stage_type,
+                                  "upload_date": upload_date
                               })
                       except Exception as e:
                           print(f"Skipped {f_name}: {e}")
