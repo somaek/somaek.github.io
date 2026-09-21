@@ -1,32 +1,154 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="BikeTerra" xmlns="http://www.topografix.com/GPX/1/1" xmlns:biketerra="https://biketerra.com/xmlns/gpx/1">
-    <metadata>
-        <name>Crybaby Hill Criterium</name>
-        <extensions>
-            <biketerra:version>2.0.0</biketerra:version>
-            <biketerra:isLoop>true</biketerra:isLoop>
-            <biketerra:defaultSurface>asphalt</biketerra:defaultSurface>
-        </extensions>
-    </metadata>
-    <trk>
-        <name>Crybaby Hill Criterium</name>
-        <trkseg>
-            <trkpt lat="36.14209" lon="-95.9996"><ele>194.46</ele></trkpt>
-            <trkpt lat="36.1425333" lon="-96.00029"><ele>194.2</ele></trkpt>
-            <trkpt lat="36.14342" lon="-96.00167"><ele>195.37</ele></trkpt>
-            <trkpt lat="36.1435544" lon="-96.0016009"><ele>196.27</ele></trkpt>
-            <trkpt lat="36.14376" lon="-96.00162"><ele>198.37</ele></trkpt>
-            <trkpt lat="36.14393" lon="-96.00161"><ele>200.66</ele></trkpt>
-            <trkpt lat="36.14433" lon="-96.00148"><ele>205.93</ele></trkpt>
-            <trkpt lat="36.14427" lon="-96.00123"><ele>207.47</ele></trkpt>
-            <trkpt lat="36.1440567" lon="-96.0002533"><ele>211.67</ele></trkpt>
-            <trkpt lat="36.1438433" lon="-95.9992767"><ele>206.68</ele></trkpt>
-            <trkpt lat="36.14363" lon="-95.9983"><ele>204.36</ele></trkpt>
-            <trkpt lat="36.1435" lon="-95.99832"><ele>204.32</ele></trkpt>
-            <trkpt lat="36.14276" lon="-95.9983233"><ele>205.09</ele></trkpt>
-            <trkpt lat="36.14202" lon="-95.9983267"><ele>202.15</ele></trkpt>
-            <trkpt lat="36.1413452" lon="-95.9983903"><ele>195.63</ele></trkpt>
-            <trkpt lat="36.14209" lon="-95.9996"><ele>194.46</ele></trkpt>
-        </trkseg>
-    </trk>
+<?xml version="1.0" encoding="utf-8"?>
+<gpx xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" creator="Geo::Gpx" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" xmlns="http://www.topografix.com/GPX/1/1">
+<metadata>
+<name>Crybaby Hill Criterium</name>
+<author>
+<link href="https://www.strava.com/athletes/462432">
+</link>
+<name>Ryan Yates</name>
+</author>
+<time>2026-09-21T17:19:21Z</time>
+<keywords>processGPX</keywords>
+<copyright>2020 https://www.openstreetmap.org/copyright</copyright>
+<link href="https://www.strava.com/routes/3464445694191761366">
+</link>
+<bounds maxlat="36.14430128951" maxlon="-95.9982945503041" minlat="36.1413023948605" minlon="-96.0016386217243" />
+</metadata>
+<trk>
+<link href="https://www.strava.com/routes/3464445694191761366">
+</link>
+<name>Crybaby Hill Criterium</name>
+<trkseg>
+<trkpt lat="36.1420900893767" lon="-95.9996000057814">
+<ele>194.929474651081</ele>
+</trkpt>
+<trkpt lat="36.1426564857041" lon="-96.0004816583552">
+<ele>194.489190669931</ele>
+</trkpt>
+<trkpt lat="36.1430507308478" lon="-96.001095260142">
+<ele>194.642476965464</ele>
+</trkpt>
+<trkpt lat="36.1433442074289" lon="-96.001550714953">
+<ele>194.96184811627</ele>
+</trkpt>
+<trkpt lat="36.1434043809207" lon="-96.0016160727925">
+<ele>195.022577263008</ele>
+</trkpt>
+<trkpt lat="36.143472089024" lon="-96.0016386217243">
+<ele>195.089277961623</ele>
+</trkpt>
+<trkpt lat="36.1436782189423" lon="-96.0016199820125">
+<ele>195.501156794749</ele>
+</trkpt>
+<trkpt lat="36.1437690028679" lon="-96.0016186055192">
+<ele>195.885500833449</ele>
+</trkpt>
+<trkpt lat="36.1438561458121" lon="-96.0016138258573">
+<ele>196.46138270339</ele>
+</trkpt>
+<trkpt lat="36.1439293975322" lon="-96.0016053922532">
+<ele>197.146590965817</ele>
+</trkpt>
+<trkpt lat="36.1440167771173" lon="-96.0015816930988">
+<ele>198.22694469446</ele>
+</trkpt>
+<trkpt lat="36.1442611888468" lon="-96.0014901285098">
+<ele>202.020582328306</ele>
+</trkpt>
+<trkpt lat="36.1442875545842" lon="-96.001457099868">
+<ele>202.53991421517</ele>
+</trkpt>
+<trkpt lat="36.14430128951" lon="-96.0014018326211">
+<ele>203.138985298484</ele>
+</trkpt>
+<trkpt lat="36.1442647899916" lon="-96.0012050483524">
+<ele>204.781637623332</ele>
+</trkpt>
+<trkpt lat="36.1441083137416" lon="-96.0004897473611">
+<ele>209.347805024894</ele>
+</trkpt>
+<trkpt lat="36.1440773203744" lon="-96.0003478500667">
+<ele>210.004333100196</ele>
+</trkpt>
+<trkpt lat="36.1440566974367" lon="-96.0002534330652">
+<ele>210.22189289206</ele>
+</trkpt>
+<trkpt lat="36.1440353316396" lon="-96.0001556170594">
+<ele>210.219291930553</ele>
+</trkpt>
+<trkpt lat="36.1440033413286" lon="-96.0000091610783">
+<ele>209.868978238826</ele>
+</trkpt>
+<trkpt lat="36.1438860078559" lon="-95.9994719930806">
+<ele>207.746024719346</ele>
+</trkpt>
+<trkpt lat="36.143832378129" lon="-95.9992264727204">
+<ele>206.937529525113</ele>
+</trkpt>
+<trkpt lat="36.1436956071408" lon="-95.9986003431735">
+<ele>205.689276780855</ele>
+</trkpt>
+<trkpt lat="36.1436452427151" lon="-95.9983965242669">
+<ele>205.113743476875</ele>
+</trkpt>
+<trkpt lat="36.1435834498804" lon="-95.9983267212879">
+<ele>204.776425657836</ele>
+</trkpt>
+<trkpt lat="36.1434527727727" lon="-95.9983196268319">
+<ele>204.397996462422</ele>
+</trkpt>
+<trkpt lat="36.1433229945979" lon="-95.9983207973483">
+<ele>204.29587988439</ele>
+</trkpt>
+<trkpt lat="36.142918739179" lon="-95.9983226183526">
+<ele>204.494137659776</ele>
+</trkpt>
+<trkpt lat="36.1427600895374" lon="-95.9983233329951">
+<ele>204.416577137093</ele>
+</trkpt>
+<trkpt lat="36.1425544444945" lon="-95.9983242593294">
+<ele>203.946856883321</ele>
+</trkpt>
+<trkpt lat="36.1421844430382" lon="-95.99832592601">
+<ele>202.692590569023</ele>
+</trkpt>
+<trkpt lat="36.142061110623" lon="-95.9983264815571">
+<ele>202.086756889115</ele>
+</trkpt>
+<trkpt lat="36.1419344437635" lon="-95.9983270521168">
+<ele>201.189146057509</ele>
+</trkpt>
+<trkpt lat="36.1417213021992" lon="-95.9983278686546">
+<ele>199.190460245434</ele>
+</trkpt>
+<trkpt lat="36.1414391063562" lon="-95.9982965207057">
+<ele>196.422096461547</ele>
+</trkpt>
+<trkpt lat="36.1413764335852" lon="-95.9982945503041">
+<ele>195.93371051007</ele>
+</trkpt>
+<trkpt lat="36.1413347053084" lon="-95.998309396415">
+<ele>195.702872813555</ele>
+</trkpt>
+<trkpt lat="36.1413023948605" lon="-95.99837146561">
+<ele>195.492419818383</ele>
+</trkpt>
+<trkpt lat="36.1413288198928" lon="-95.998448952638">
+<ele>195.232919591444</ele>
+</trkpt>
+<trkpt lat="36.1413993236213" lon="-95.9985245983778">
+<ele>194.948683289349</ele>
+</trkpt>
+<trkpt lat="36.141458866401" lon="-95.998609643457">
+<ele>194.852939485083</ele>
+</trkpt>
+<trkpt lat="36.1417899963909" lon="-95.9991292214123">
+<ele>195.068137931752</ele>
+</trkpt>
+<trkpt lat="36.142065016665" lon="-95.9995607643122">
+<ele>194.949075549083</ele>
+</trkpt>
+</trkseg>
+<type>running</type>
+</trk>
 </gpx>
