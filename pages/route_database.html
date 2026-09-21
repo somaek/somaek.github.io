@@ -818,6 +818,9 @@
                                                         <div className="font-bold text-gray-900 dark:text-white text-base">{route.name}</div>
                                                         {route.folder && <div className="text-sm text-gray-500 dark:text-neutral-400 font-normal mt-1 flex items-center gap-1"><FolderIcon className="w-3 h-3" /> {route.folder}</div>}
                                                     </td>
+                                                    <td className="px-6 py-4 text-gray-500 dark:text-neutral-400 font-medium whitespace-nowrap">
+                                                        {route.upload_date ? new Date(route.upload_date).toLocaleDateString() : 'N/A'}
+                                                    </td>
                                                     <td className="px-6 py-4 text-blue-600 dark:text-[#00FFFF] font-bold font-oswald text-lg">{route.distance_km}</td>
                                                     <td className="px-6 py-4 text-gray-700 dark:text-neutral-200 font-medium">{route.elevation_m}</td>
                                                     <td className="px-6 py-4 font-oswald text-lg font-bold">
