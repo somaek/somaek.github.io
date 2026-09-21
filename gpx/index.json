@@ -2691,6 +2691,15 @@
     "stage_type": "Climbing, flat finish"
   },
   {
+    "file": "Criterium Courses/Tour De Luxemborg S5 2026 Circuit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Tour De Luxemborg S5 2026 Circuit",
+    "distance_km": 11.73,
+    "elevation_m": 202.9,
+    "profile_score": 23.5,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Criterium Courses/Lidl Deutschland Tour - Stage 4 Finishing Circuit - 7k 50m.gpx",
     "folder": "Criterium Courses",
     "name": "Lidl Deutschland Tour - Stage 4 Finishing Circuit - 7k 50m",
@@ -2878,6 +2887,15 @@
     "elevation_m": 59.6,
     "profile_score": 2.6,
     "stage_type": "Hilly, flat finish"
+  },
+  {
+    "file": "Criterium Courses/Lugano Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Lugano Crit",
+    "distance_km": 3.63,
+    "elevation_m": 35.4,
+    "profile_score": 4.7,
+    "stage_type": "Climbing, flat finish"
   },
   {
     "file": "Criterium Courses/Cabrillo Point Loma.gpx",
@@ -3519,6 +3537,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Tour de Luxembourg S2 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Luxembourg S2 2026 Circuit",
+    "distance_km": 12.92,
+    "elevation_m": 181.0,
+    "profile_score": 10.9,
+    "stage_type": "Hilly, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Omloop_2nd_Half.gpx",
     "folder": "Pro Bike Races",
     "name": "Omloop_2nd_Half",
@@ -4107,9 +4134,9 @@
     "file": "Pro Bike Races/Lombardia 2.gpx",
     "folder": "Pro Bike Races",
     "name": "Lombardia 2",
-    "distance_km": 64.65,
-    "elevation_m": 870.1,
-    "profile_score": 52.3,
+    "distance_km": 64.69,
+    "elevation_m": 884.2,
+    "profile_score": 52.1,
     "stage_type": "Climbing, uphill finish"
   },
   {
@@ -4155,6 +4182,15 @@
     "distance_km": 64.93,
     "elevation_m": 1002.7,
     "profile_score": 83.7,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Luxembourg S1 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Luxembourg S1 2026",
+    "distance_km": 65.51,
+    "elevation_m": 688.1,
+    "profile_score": 59.6,
     "stage_type": "Climbing, uphill finish"
   },
   {
@@ -4563,6 +4599,15 @@
     "stage_type": "Hilly, flat finish"
   },
   {
+    "file": "Pro Bike Races/Tour de Luxembourg S2 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Luxembourg S2 2026",
+    "distance_km": 65.62,
+    "elevation_m": 935.3,
+    "profile_score": 55.2,
+    "stage_type": "Climbing, uphill finish"
+  },
+  {
     "file": "Pro Bike Races/Volta a Portugal 26 S6.gpx",
     "folder": "Pro Bike Races",
     "name": "Volta a Portugal 26 S6",
@@ -4842,6 +4887,15 @@
     "stage_type": "Climbing, uphill finish"
   },
   {
+    "file": "Pro Bike Races/Tour De Luxemborg S5 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour De Luxemborg S5 2026",
+    "distance_km": 70.0,
+    "elevation_m": 1057.8,
+    "profile_score": 82.2,
+    "stage_type": "Climbing, flat finish"
+  },
+  {
     "file": "Pro Bike Races/Giro 2025 S18 Finish.gpx",
     "folder": "Pro Bike Races",
     "name": "Giro 2025 S18 Finish",
@@ -5019,6 +5073,15 @@
     "distance_km": 38.5,
     "elevation_m": 303.1,
     "profile_score": 6.1,
+    "stage_type": "Flat, uphill finish"
+  },
+  {
+    "file": "Pro Bike Races/WC Montreal iTT.gpx",
+    "folder": "Pro Bike Races",
+    "name": "WC Montreal iTT",
+    "distance_km": 38.76,
+    "elevation_m": 197.3,
+    "profile_score": 2.5,
     "stage_type": "Flat, uphill finish"
   },
   {
