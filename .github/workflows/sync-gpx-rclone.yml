@@ -55,7 +55,7 @@ jobs:
         run: |
           pip install gpxpy
           python -c '
-          import os, json, gpxpy, math
+          import os, json, gpxpy, math, datetime
 
           def haversine(lat1, lon1, lat2, lon2):
               R = 6371.0
