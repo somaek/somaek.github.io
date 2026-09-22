@@ -20,6 +20,16 @@
     "upload_date": "2026-03-17T18:24:38.766000"
   },
   {
+    "file": "Climbs/Babada\u011f.gpx",
+    "folder": "Climbs",
+    "name": "Babada\u011f",
+    "distance_km": 17.97,
+    "elevation_m": 1624.6,
+    "profile_score": 420.6,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-21T23:36:45"
+  },
+  {
     "file": "Climbs/Cozzo Tunno IT.gpx",
     "folder": "Climbs",
     "name": "Cozzo Tunno IT",
@@ -38,6 +48,16 @@
     "profile_score": 39.2,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-06-03T20:09:58.406000"
+  },
+  {
+    "file": "Climbs/Pikes Peak.gpx",
+    "folder": "Climbs",
+    "name": "Pikes Peak",
+    "distance_km": 30.86,
+    "elevation_m": 2081.4,
+    "profile_score": 380.3,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-22T00:06:09"
   },
   {
     "file": "Climbs/Schueren Malibu.gpx",
@@ -348,16 +368,6 @@
     "profile_score": 75.2,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2026-07-24T16:23:18.282000"
-  },
-  {
-    "file": "Climbs/Babada\u011f - 18k 1643m.gpx",
-    "folder": "Climbs",
-    "name": "Babada\u011f - 18k 1643m",
-    "distance_km": 17.88,
-    "elevation_m": 1642.9,
-    "profile_score": 432.1,
-    "stage_type": "Climbing, uphill finish",
-    "upload_date": "2025-10-08T14:46:49.268000"
   },
   {
     "file": "Climbs/Col de Portes FR.gpx",
@@ -1668,16 +1678,6 @@
     "profile_score": 41.0,
     "stage_type": "Hilly, uphill finish",
     "upload_date": "2026-05-27T19:27:07.927000"
-  },
-  {
-    "file": "Miscellaneous/pikespeak.gpx",
-    "folder": "Miscellaneous",
-    "name": "pikespeak",
-    "distance_km": 36.82,
-    "elevation_m": 2446.9,
-    "profile_score": 390.7,
-    "stage_type": "Climbing, uphill finish",
-    "upload_date": "2026-03-03T22:33:36.126000"
   },
   {
     "file": "Miscellaneous/Deschutes OR Classic.gpx",
