@@ -254,73 +254,92 @@
               
               let currentPt = [...basePoints];
               
-              // 1. Apply Out and Back with Lightbulb Turnaround
-              if (isOutAndBack) {
-                  let loopPts = [];
-                  if (basePoints.length >= 2) {
-                      const DEG_TO_M = 111139;
-                      const pPrev = basePoints[basePoints.length - 2];
-                      const pLast = basePoints[basePoints.length - 1];
+              // Helper function to generate a lightbulb loop at the end of a segment
+              const generateLightbulbLoop = (pPrev, pLast) => {
+                  const loopPts = [];
+                  const DEG_TO_M = 111139;
 
-                      // Determine heading of the final segment
-                      const dx = (pLast.lon - pPrev.lon) * DEG_TO_M;
-                      const dy = (pLast.lat - pPrev.lat) * DEG_TO_M;
-                      const heading = Math.atan2(dy, dx);
+                  // Determine heading of the segment leading into the loop
+                  const dx = (pLast.lon - pPrev.lon) * DEG_TO_M;
+                  const dy = (pLast.lat - pPrev.lat) * DEG_TO_M;
+                  const heading = Math.atan2(dy, dx);
 
-                      // Forward and Right vectors
-                      const Fx = Math.cos(heading);
-                      const Fy = Math.sin(heading);
-                      const Rx = Math.cos(heading - Math.PI / 2);
-                      const Ry = Math.sin(heading - Math.PI / 2);
+                  // Forward and Right vectors
+                  const Fx = Math.cos(heading);
+                  const Fy = Math.sin(heading);
+                  const Rx = Math.cos(heading - Math.PI / 2);
+                  const Ry = Math.sin(heading - Math.PI / 2);
 
-                      // End of the 20m forward runway
-                      const oX = pLast.lon * DEG_TO_M + 20 * Fx;
-                      const oY = pLast.lat * DEG_TO_M + 20 * Fy;
+                  // End of the 20m forward runway (origin for the loop geometry)
+                  const oX = pLast.lon * DEG_TO_M + 20 * Fx;
+                  const oY = pLast.lat * DEG_TO_M + 20 * Fy;
 
-                      // Helper to inject local (x: right, y: forward) offsets as GPX lat/lon
-                      const addLocalPoint = (x, y) => {
-                          const gx = oX + x * Rx + y * Fx;
-                          const gy = oY + x * Ry + y * Fy;
-                          loopPts.push({
-                              lat: gy / DEG_TO_M,
-                              lon: gx / DEG_TO_M,
-                              ele: pLast.ele // Keep elevation totally flat for turnaround loop stability
-                          });
-                      };
+                  // Helper to inject local (x: right, y: forward) offsets as GPX lat/lon
+                  const addLocalPoint = (x, y) => {
+                      const gx = oX + x * Rx + y * Fx;
+                      const gy = oY + x * Ry + y * Fy;
+                      loopPts.push({
+                          lat: gy / DEG_TO_M,
+                          lon: gx / DEG_TO_M,
+                          ele: pLast.ele // Keep elevation flat for turnaround loop stability
+                      });
+                  };
 
-                      // 1. End of Outbound Runway
-                      addLocalPoint(0, 0);
+                  // 1. End of Outbound Runway
+                  addLocalPoint(0, 0);
 
-                      const r = 15;
-                      const sqrt3 = Math.sqrt(3);
+                  const r = 15;
+                  const sqrt3 = Math.sqrt(3);
 
-                      // 2. Entry Right Curve (sweeps 60 degrees to ease into the bulb)
-                      const stepsEntry = 6;
-                      for (let i = 1; i <= stepsEntry; i++) {
-                          const t = Math.PI - (Math.PI / 3) * (i / stepsEntry);
-                          addLocalPoint(r + r * Math.cos(t), r * Math.sin(t));
-                      }
+                  // 2. Entry Right Curve (sweeps 60 degrees to ease into the bulb)
+                  const stepsEntry = 6;
+                  for (let i = 1; i <= stepsEntry; i++) {
+                      const t = Math.PI - (Math.PI / 3) * (i / stepsEntry);
+                      addLocalPoint(r + r * Math.cos(t), r * Math.sin(t));
+                  }
 
-                      // 3. Main Left Curve (sweeps 300 degrees to form the loop body)
-                      const stepsMain = 24;
-                      for (let i = 1; i <= stepsMain; i++) {
-                          const t = -Math.PI / 3 + (5 * Math.PI / 3) * (i / stepsMain);
-                          addLocalPoint(r * Math.cos(t), r * sqrt3 + r * Math.sin(t));
-                      }
+                  // 3. Main Left Curve (sweeps 300 degrees to form the loop body)
+                  const stepsMain = 24;
+                  for (let i = 1; i <= stepsMain; i++) {
+                      const t = -Math.PI / 3 + (5 * Math.PI / 3) * (i / stepsMain);
+                      addLocalPoint(r * Math.cos(t), r * sqrt3 + r * Math.sin(t));
+                  }
 
-                      // 4. Exit Right Curve (sweeps 60 degrees to lock back onto the runway axis)
-                      const stepsExit = 6;
-                      for (let i = 1; i <= stepsExit; i++) {
-                          const t = Math.PI / 3 - (Math.PI / 3) * (i / stepsExit);
-                          addLocalPoint(-r + r * Math.cos(t), r * Math.sin(t));
-                      }
-                      
-                      // Loop finishes exactly back at local (0,0) heading backward
+                  // 4. Exit Right Curve (sweeps 60 degrees to lock back onto the runway axis)
+                  const stepsExit = 6;
+                  for (let i = 1; i <= stepsExit; i++) {
+                      const t = Math.PI / 3 - (Math.PI / 3) * (i / stepsExit);
+                      addLocalPoint(-r + r * Math.cos(t), r * Math.sin(t));
                   }
                   
-                  // By retaining the final point in the reversed array, the 20m return runway is automatically bridged.
+                  // Loop finishes exactly back at local (0,0) heading backward
+                  return loopPts;
+              };
+
+              // 1. Apply Out and Back with Double Lightbulb Turnarounds
+              if (isOutAndBack) {
+                  let loop1Pts = [];
+                  let loop2Pts = [];
+                  
+                  if (basePoints.length >= 2) {
+                      // Outbound turnaround loop (at the end of the route, preparing to head back)
+                      loop1Pts = generateLightbulbLoop(
+                          basePoints[basePoints.length - 2], 
+                          basePoints[basePoints.length - 1]
+                      );
+                      
+                      // Inbound turnaround loop (at the start of the route, completing the full circuit)
+                      // Because the reversed track is approaching basePoints[0] from basePoints[1],
+                      // basePoints[1] is the "prev" point and basePoints[0] is the "last" point.
+                      loop2Pts = generateLightbulbLoop(
+                          basePoints[1], 
+                          basePoints[0]
+                      );
+                  }
+                  
+                  // By retaining the final point in the reversed arrays, the 20m return runways are automatically bridged.
                   const reversed = [...basePoints].reverse(); 
-                  currentPt = [...currentPt, ...loopPts, ...reversed];
+                  currentPt = [...currentPt, ...loop1Pts, ...reversed, ...loop2Pts];
               }
               
               // 2. Apply Laps
@@ -594,6 +613,7 @@
                   </div>
                 </div>
 
+                {}
                 {segments.length > 0 && (
                   <div className="space-y-6">
                     <div className="bg-cardBg p-6 lg:p-8 border border-borderColor relative overflow-hidden group">
