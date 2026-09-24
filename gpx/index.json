@@ -1290,6 +1290,16 @@
     "upload_date": "2026-06-26T16:12:02"
   },
   {
+    "file": "Miscellaneous/Istrian Hilltop Route Croatia Loop.gpx",
+    "folder": "Miscellaneous",
+    "name": "Istrian Hilltop Route Croatia Loop",
+    "distance_km": 34.13,
+    "elevation_m": 536.5,
+    "profile_score": 72.8,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-23T21:08:22.406000"
+  },
+  {
     "file": "Miscellaneous/Yosemite Valley.gpx",
     "folder": "Miscellaneous",
     "name": "Yosemite Valley",
@@ -2010,6 +2020,16 @@
     "upload_date": "2025-10-28T16:06:44.335000"
   },
   {
+    "file": "Interval Circuits/Fort Stockton Mini Climb 2min Loop.gpx",
+    "folder": "Interval Circuits",
+    "name": "Fort Stockton Mini Climb 2min Loop",
+    "distance_km": 1.22,
+    "elevation_m": 42.3,
+    "profile_score": 7.7,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-23T21:10:53.118000"
+  },
+  {
     "file": "Interval Circuits/Cote de la Tour Interval Route - 1k 40m 11%.gpx",
     "folder": "Interval Circuits",
     "name": "Cote de la Tour Interval Route - 1k 40m 11%",
@@ -2680,6 +2700,16 @@
     "upload_date": "2026-06-11T14:41:58.572000"
   },
   {
+    "file": "Pro Bike Races/Asian Games Road Race 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Asian Games Road Race 2026 Circuit",
+    "distance_km": 22.32,
+    "elevation_m": 442.8,
+    "profile_score": 34.3,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-23T18:14:27.296000"
+  },
+  {
     "file": "Pro Bike Races/Jamaica International Cycling Classic Stage 1.gpx",
     "folder": "Pro Bike Races",
     "name": "Jamaica International Cycling Classic Stage 1",
@@ -2718,6 +2748,16 @@
     "profile_score": 78.7,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2025-11-14T23:28:39.459000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race S2 2026 1 hour.gpx",
+    "folder": "Pro Bike Races",
+    "name": "CRO Race S2 2026 1 hour",
+    "distance_km": 34.32,
+    "elevation_m": 372.9,
+    "profile_score": 33.3,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-23T17:25:56.923000"
   },
   {
     "file": "Pro Bike Races/Heistse Pijl.gpx",
@@ -3140,6 +3180,16 @@
     "upload_date": "2025-10-07T16:44:05.455000"
   },
   {
+    "file": "Pro Bike Races/Tour of Poyang S4 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poyang S4 2026",
+    "distance_km": 75.39,
+    "elevation_m": 1093.8,
+    "profile_score": 50.3,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-23T18:25:41.372000"
+  },
+  {
     "file": "Pro Bike Races/Fl\u00e8che du Sud Stage 5 Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "Fl\u00e8che du Sud Stage 5 Circuit",
@@ -3268,6 +3318,16 @@
     "profile_score": 7.3,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-06-23T23:41:12.876000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race S2 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "CRO Race S2 2026",
+    "distance_km": 73.01,
+    "elevation_m": 751.6,
+    "profile_score": 42.4,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-23T17:22:57.355000"
   },
   {
     "file": "Pro Bike Races/Vuelta Stage 10 2026.gpx",
@@ -3658,6 +3718,16 @@
     "profile_score": 60.7,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2026-08-17T16:36:18.772000"
+  },
+  {
+    "file": "Pro Bike Races/World Champs 2026 Montreal.gpx",
+    "folder": "Pro Bike Races",
+    "name": "World Champs 2026 Montreal",
+    "distance_km": 77.31,
+    "elevation_m": 624.2,
+    "profile_score": 56.8,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-23T14:27:23.600000"
   },
   {
     "file": "Pro Bike Races/Champs Elysees Circuit.gpx",
@@ -4418,16 +4488,6 @@
     "profile_score": 9.1,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-01-23T16:56:28.297000"
-  },
-  {
-    "file": "Pro Bike Races/World Champs 2026 Quebec.gpx",
-    "folder": "Pro Bike Races",
-    "name": "World Champs 2026 Quebec",
-    "distance_km": 77.31,
-    "elevation_m": 624.2,
-    "profile_score": 56.8,
-    "stage_type": "Climbing, uphill finish",
-    "upload_date": "2026-09-14T16:13:59.290000"
   },
   {
     "file": "Pro Bike Races/Tour de Vend\u00e9e 77k 828m.gpx",
@@ -5480,6 +5540,46 @@
     "upload_date": "2026-02-04T15:39:48.138000"
   },
   {
+    "file": "Iconic World Routes/Morocco/Tizi n'Tichka Pass Morocco.gpx",
+    "folder": "Iconic World Routes/Morocco",
+    "name": "Tizi n'Tichka Pass Morocco",
+    "distance_km": 15.26,
+    "elevation_m": 626.6,
+    "profile_score": 66.6,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-24T01:47:38.336000"
+  },
+  {
+    "file": "Iconic World Routes/Morocco/Ounila Valley Morocco.gpx",
+    "folder": "Iconic World Routes/Morocco",
+    "name": "Ounila Valley Morocco",
+    "distance_km": 46.3,
+    "elevation_m": 420.1,
+    "profile_score": 12.9,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-24T01:52:15.616000"
+  },
+  {
+    "file": "Iconic World Routes/Morocco/Dad\u00e8s Gorge Hairpins Morocco.gpx",
+    "folder": "Iconic World Routes/Morocco",
+    "name": "Dad\u00e8s Gorge Hairpins Morocco",
+    "distance_km": 49.84,
+    "elevation_m": 729.9,
+    "profile_score": 39.4,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-09-24T01:40:00.896000"
+  },
+  {
+    "file": "Iconic World Routes/Morocco/Tizi n'Test Pass Morocco.gpx",
+    "folder": "Iconic World Routes/Morocco",
+    "name": "Tizi n'Test Pass Morocco",
+    "distance_km": 64.25,
+    "elevation_m": 1053.3,
+    "profile_score": 56.9,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-24T01:58:22.613000"
+  },
+  {
     "file": "Iconic World Routes/Japan/Shimanami Kaido Japan.gpx",
     "folder": "Iconic World Routes/Japan",
     "name": "Shimanami Kaido Japan",
@@ -5910,6 +6010,66 @@
     "upload_date": "2026-09-11T17:47:04.613000"
   },
   {
+    "file": "Iconic World Routes/Croatia/Pelje\u0161ac Peninsula Spine Croatia.gpx",
+    "folder": "Iconic World Routes/Croatia",
+    "name": "Pelje\u0161ac Peninsula Spine Croatia",
+    "distance_km": 56.62,
+    "elevation_m": 865.0,
+    "profile_score": 63.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-23T20:54:39.569000"
+  },
+  {
+    "file": "Iconic World Routes/Croatia/Velebit Mountain Climb Croatia.gpx",
+    "folder": "Iconic World Routes/Croatia",
+    "name": "Velebit Mountain Climb Croatia",
+    "distance_km": 19.01,
+    "elevation_m": 889.8,
+    "profile_score": 116.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-23T20:07:26.834000"
+  },
+  {
+    "file": "Iconic World Routes/Croatia/Sveti Jure Summit Croatia.gpx",
+    "folder": "Iconic World Routes/Croatia",
+    "name": "Sveti Jure Summit Croatia",
+    "distance_km": 25.91,
+    "elevation_m": 1521.5,
+    "profile_score": 229.9,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-23T19:46:33.897000"
+  },
+  {
+    "file": "Iconic World Routes/Croatia/Cres Island Ridge Croatia.gpx",
+    "folder": "Iconic World Routes/Croatia",
+    "name": "Cres Island Ridge Croatia",
+    "distance_km": 26.49,
+    "elevation_m": 502.5,
+    "profile_score": 40.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-23T20:03:02.557000"
+  },
+  {
+    "file": "Iconic World Routes/Croatia/Istrian Hilltop Route Croatia.gpx",
+    "folder": "Iconic World Routes/Croatia",
+    "name": "Istrian Hilltop Route Croatia",
+    "distance_km": 16.95,
+    "elevation_m": 259.0,
+    "profile_score": 41.1,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-23T20:58:11"
+  },
+  {
+    "file": "Iconic World Routes/Croatia/Coastal Highway Karlobag to Starigrad-Paklenica Croatia.gpx",
+    "folder": "Iconic World Routes/Croatia",
+    "name": "Coastal Highway Karlobag to Starigrad-Paklenica Croatia",
+    "distance_km": 47.92,
+    "elevation_m": 378.3,
+    "profile_score": 10.4,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-23T19:42:01.413000"
+  },
+  {
     "file": "Iconic World Routes/Scotland/Bealach na B\u00e0 Applecross Pass.gpx",
     "folder": "Iconic World Routes/Scotland",
     "name": "Bealach na B\u00e0 Applecross Pass",
@@ -6180,6 +6340,16 @@
     "upload_date": "2026-09-21T15:19:59.752000"
   },
   {
+    "file": "Iconic World Routes/Ethiopia/Gheralta Sandstone Monolith Corridor Ethiopia.gpx",
+    "folder": "Iconic World Routes/Ethiopia",
+    "name": "Gheralta Sandstone Monolith Corridor Ethiopia",
+    "distance_km": 33.57,
+    "elevation_m": 173.4,
+    "profile_score": 1.4,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-23T19:23:21.765000"
+  },
+  {
     "file": "Iconic World Routes/Ethiopia/Blue Nile Gorge Escarpment Ethiopia.gpx",
     "folder": "Iconic World Routes/Ethiopia",
     "name": "Blue Nile Gorge Escarpment Ethiopia",
@@ -6198,6 +6368,26 @@
     "profile_score": 192.8,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-09-21T17:17:58.915000"
+  },
+  {
+    "file": "Iconic World Routes/Ethiopia/Dilb Pass & Wollo Highlands Ethiopia.gpx",
+    "folder": "Iconic World Routes/Ethiopia",
+    "name": "Dilb Pass & Wollo Highlands Ethiopia",
+    "distance_km": 105.63,
+    "elevation_m": 2197.8,
+    "profile_score": 102.2,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-23T19:15:06.113000"
+  },
+  {
+    "file": "Iconic World Routes/Ethiopia/Great Rift Lakes Climb Ethiopia.gpx",
+    "folder": "Iconic World Routes/Ethiopia",
+    "name": "Great Rift Lakes Climb Ethiopia",
+    "distance_km": 19.53,
+    "elevation_m": 1320.1,
+    "profile_score": 265.3,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-23T19:30:30.251000"
   },
   {
     "file": "Iconic World Routes/New Zealand/Crown Range Road New Zealand.gpx",
