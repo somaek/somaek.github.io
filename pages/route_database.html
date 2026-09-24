@@ -30,7 +30,6 @@
             --scroll-track: #e5e7eb;
             --scroll-thumb: #9ca3af;
             --scroll-thumb-hover: #2563eb;
-            --select-arrow: url("data:image/svg+xml;utf8,<svg fill='%23111827' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
         }
         
         .dark {
@@ -39,7 +38,6 @@
             --scroll-track: #2c0c5c;
             --scroll-thumb: #6c3f9c;
             --scroll-thumb-hover: #00FFFF;
-            --select-arrow: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
         }
 
         body { 
@@ -55,20 +53,6 @@
         ::-webkit-scrollbar-track { background: var(--scroll-track); }
         ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
-
-        select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: var(--select-arrow);
-            background-repeat: no-repeat;
-            background-position-x: 98%;
-            background-position-y: 50%;
-        }
-        select option {
-            background-color: var(--bg-body);
-            color: var(--text-body);
-        }
 
         /* Fix Leaflet map z-indexing when inside modals */
         .leaflet-container {
@@ -314,25 +298,21 @@
             useEffect(() => {
                 if (!mapRef.current || points.length === 0) return;
 
-                // Setup map and layers exactly once
                 if (!mapInstance.current) {
-                    // "Normal Map Colors" Option (CartoDB Voyager - Permissive OSM alternative)
                     const standardMap = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_3swu_1_05bff878d7bd66607747e979', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
                         maxZoom: 20
                     });
                     
-                    // "Overhead Shot" Option (Satellite/Imagery)
                     const satelliteMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
                         maxZoom: 18
                     });
 
                     mapInstance.current = L.map(mapRef.current, {
-                        layers: [standardMap] // Default view is normal colors
+                        layers: [standardMap] 
                     });
 
-                    // Add Map Toggle Control
                     L.control.layers({
                         "Normal Map": standardMap,
                         "Overhead Satellite": satelliteMap
@@ -341,7 +321,6 @@
 
                 const map = mapInstance.current;
                 
-                // Clear any old lines or markers if route updates
                 map.eachLayer((layer) => {
                     if (layer instanceof L.Polyline || layer instanceof L.Marker) {
                         map.removeLayer(layer);
@@ -350,16 +329,14 @@
 
                 const latlngs = points.map(p => [p.lat, p.lon]);
                 
-                // Draw the main GPX track polyline
                 const polyline = L.polyline(latlngs, {
-                    color: '#2563eb', // Blue-600
+                    color: '#2563eb', 
                     weight: 5, 
                     opacity: 0.85,
                     lineCap: 'round',
                     lineJoin: 'round'
                 }).addTo(map);
 
-                // --- Start Marker (Green Flag) ---
                 const startIcon = L.divIcon({
                     html: `
                         <div style="filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.7));">
@@ -371,10 +348,9 @@
                     `,
                     className: 'bg-transparent border-0',
                     iconSize: [30, 30],
-                    iconAnchor: [6, 28] // Anchor near bottom-left where the pole is
+                    iconAnchor: [6, 28] 
                 });
 
-                // --- Finish Marker (Checkered Flag) ---
                 const finishIcon = L.divIcon({
                     html: `
                         <div style="filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.7));">
@@ -403,7 +379,6 @@
                     map.fitBounds(polyline.getBounds(), { padding: [40, 40] });
                 }
 
-                // Force layout recalculation just in case the modal animation caused a sizing glitch
                 setTimeout(() => map.invalidateSize(), 150);
 
             }, [points]);
@@ -593,7 +568,6 @@
                 <div className="fixed inset-0 z-50 bg-gray-100 dark:bg-[#2c0c5c] overflow-y-auto print:bg-white text-gray-900 dark:text-white font-roboto transition-colors">
                     <div className="max-w-6xl mx-auto space-y-6 p-4 md:p-8 pt-6">
                         
-                        {/* Header Bar */}
                         <div className="flex justify-between items-center border-b border-gray-300 dark:border-[#6c3f9c] pb-4 sticky top-0 bg-gray-100 dark:bg-[#2c0c5c] z-30 pt-2 print:hidden transition-colors shadow-sm">
                             <div className="flex items-center gap-4">
                                 <button onClick={onClose} className="p-2 bg-white dark:bg-[#4a217c] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-700 dark:text-white hover:text-white dark:hover:text-black rounded-sm border border-gray-300 dark:border-[#6c3f9c] transition-colors shadow-md group">
@@ -621,7 +595,6 @@
                             </div>
                         </div>
 
-                        {/* Top Stats */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
                             <StatCard title="Distance" value={`${profileData.totalDistance.toFixed(1)} km`} icon={<FileText />} />
                             <StatCard title="Total Climbing" value={`${Math.round(profileData.totalClimbing)} m`} icon={<TrendingUp />} />
@@ -629,7 +602,6 @@
                             <StatCard title="Stage Type" value={profileData.stage_type || 'N/A'} icon={<Flag />} />
                         </div>
 
-                        {/* Overhead Route Map View */}
                         <div className="bg-white dark:bg-[#4a217c] rounded-sm p-4 md:p-6 border border-gray-300 dark:border-[#6c3f9c] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
                             <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-gray-900 dark:text-white mb-4 relative z-10 print:text-black">
                                 <span className="w-2 h-6 bg-blue-600 dark:bg-[#00FFFF] inline-block"></span> Route Map
@@ -639,7 +611,6 @@
                             </div>
                         </div>
 
-                        {/* Elevation Chart */}
                         <div className="bg-white dark:bg-[#4a217c] rounded-sm p-4 md:p-6 border border-gray-300 dark:border-[#6c3f9c] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
                             <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none"><Mountain className="w-32 h-32 text-blue-600 dark:text-[#00FFFF]" /></div>
                             <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-gray-900 dark:text-white mb-4 relative z-10 print:text-black">
@@ -650,7 +621,6 @@
                             </div>
                         </div>
 
-                        {/* Climbs Table */}
                         <div className="bg-white dark:bg-[#4a217c] rounded-sm overflow-hidden border border-gray-300 dark:border-[#6c3f9c] shadow-lg transition-colors">
                             <div className="p-4 border-b border-gray-300 dark:border-[#6c3f9c] bg-gray-50 dark:bg-[#2c0c5c] transition-colors">
                                 <h3 className="font-bold text-lg uppercase tracking-wide text-gray-900 dark:text-white font-oswald">Scored Climbs Analysis</h3>
@@ -713,17 +683,19 @@
             const [loading, setLoading] = useState(true);
             const [sortConfig, setSortConfig] = useState({ key: 'upload_date', direction: 'desc' });
             const [searchTerm, setSearchTerm] = useState('');
-            const [selectedFolder, setSelectedFolder] = useState('');
+            
+            // New state structure for Hierarchical Folders
+            const [folderTree, setFolderTree] = useState({});
+            const [selectedPath, setSelectedPath] = useState([]);
+
             const [filters, setFilters] = useState({ distMin: '', distMax: '', eleMin: '', eleMax: '', scoreMin: '', scoreMax: '' });
             
             const [uniqueStageTypes, setUniqueStageTypes] = useState([]);
-            const [uniqueFolders, setUniqueFolders] = useState([]);
             const [selectedTypes, setSelectedTypes] = useState([]);
 
             const [activeProfile, setActiveProfile] = useState(null);
             const [processingId, setProcessingId] = useState(null);
             
-            // Theme State setup
             const [isDarkMode, setIsDarkMode] = useState(false);
 
             useEffect(() => {
@@ -740,13 +712,28 @@
                     .then(data => {
                         setRoutes(data);
                         const types = new Set();
-                        const folders = new Set();
+                        const tree = {};
+
                         data.forEach(r => {
                             if(r.stage_type) types.add(r.stage_type);
-                            if(r.folder) folders.add(r.folder);
+                            
+                            // Build the folder hierarchy tree directly from the file path
+                            if (r.file) {
+                                const parts = r.file.split('/');
+                                parts.pop(); // Remove the filename piece to just have the folders
+                                
+                                let currentLevel = tree;
+                                parts.forEach(part => {
+                                    if (!currentLevel[part]) {
+                                        currentLevel[part] = {};
+                                    }
+                                    currentLevel = currentLevel[part];
+                                });
+                            }
                         });
+
                         setUniqueStageTypes(Array.from(types).sort());
-                        setUniqueFolders(Array.from(folders).sort());
+                        setFolderTree(tree);
                         setLoading(false);
                     })
                     .catch(err => { console.error("Error loading routes:", err); setLoading(false); });
@@ -808,11 +795,13 @@
                     const matchEle = route.elevation_m >= eMin && route.elevation_m <= eMax;
                     const matchScore = (route.profile_score || 0) >= sMin && (route.profile_score || 0) <= sMax;
                     const matchType = selectedTypes.length === 0 || selectedTypes.includes(route.stage_type);
-                    const matchFolder = selectedFolder === '' || route.folder === selectedFolder;
+                    
+                    // New path matching: Checks if the file path begins exactly with the selected folder path
+                    const matchFolder = selectedPath.length === 0 || (route.file && route.file.startsWith(selectedPath.join('/') + '/'));
 
                     return matchName && matchDist && matchEle && matchScore && matchType && matchFolder;
                 });
-            }, [routes, searchTerm, filters, selectedTypes, selectedFolder]);
+            }, [routes, searchTerm, filters, selectedTypes, selectedPath]);
 
             const sortedRoutes = useMemo(() => {
                 let sortableItems = [...filteredRoutes];
@@ -827,6 +816,71 @@
                 }
                 return sortableItems;
             }, [filteredRoutes, sortConfig]);
+
+            const renderFolderTree = () => {
+                const rows = [];
+                let currentLevel = folderTree;
+
+                // Helper to create a single row of folder pills
+                const createRow = (levelNodes, levelIndex, parentPath) => {
+                    const nodeNames = Object.keys(levelNodes).sort();
+                    if (nodeNames.length === 0) return null;
+
+                    return (
+                        <div key={`folder-row-${levelIndex}`} className={`flex flex-wrap gap-2 ${levelIndex > 0 ? 'mt-3 pt-3 border-t border-gray-200 dark:border-[#6c3f9c]/40' : ''}`}>
+                            {levelIndex === 0 && (
+                                <button
+                                    onClick={() => setSelectedPath([])}
+                                    className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedPath.length === 0 ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}
+                                >
+                                    All Collections
+                                </button>
+                            )}
+                            {levelIndex > 0 && (
+                                <button
+                                    onClick={() => setSelectedPath(parentPath)}
+                                    className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedPath.length === levelIndex ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}
+                                >
+                                    All in {parentPath[parentPath.length - 1]}
+                                </button>
+                            )}
+                            {nodeNames.map(node => {
+                                const nodePath = [...parentPath, node];
+                                const isSelected = selectedPath[levelIndex] === node;
+                                return (
+                                    <button
+                                        key={node}
+                                        onClick={() => setSelectedPath(nodePath)}
+                                        className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm flex items-center gap-1.5 ${isSelected ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}
+                                    >
+                                        <FolderIcon className="w-3.5 h-3.5" /> {node}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    );
+                };
+
+                // Always push the top/root level folders
+                rows.push(createRow(currentLevel, 0, []));
+
+                // Loop through the selected path and build sub-rows incrementally
+                for (let i = 0; i < selectedPath.length; i++) {
+                    const selected = selectedPath[i];
+                    if (currentLevel[selected]) {
+                        currentLevel = currentLevel[selected];
+                        const hasChildren = Object.keys(currentLevel).length > 0;
+                        if (hasChildren) {
+                            const parentPath = selectedPath.slice(0, i + 1);
+                            rows.push(createRow(currentLevel, i + 1, parentPath));
+                        }
+                    } else {
+                        break;
+                    }
+                }
+
+                return <div className="flex flex-col">{rows}</div>;
+            };
 
             const SortHeader = ({ label, sortKey, className = "" }) => (
                 <th className={`px-6 py-4 cursor-pointer hover:text-blue-600 dark:hover:text-[#00FFFF] transition-colors select-none ${className}`} onClick={() => requestSort(sortKey)}>
@@ -850,7 +904,6 @@
                                 <p className="text-gray-500 dark:text-neutral-300 text-sm tracking-widest uppercase font-oswald mt-1 text-blue-600 dark:text-[#ff4500]">VIRTUAL CYCLING GPX INDEX</p>
                             </div>
                             
-                            {/* Theme Toggle Button */}
                             <button
                                 onClick={() => setIsDarkMode(!isDarkMode)}
                                 className="p-2.5 rounded-full bg-white dark:bg-[#4a217c] text-gray-700 dark:text-[#00FFFF] border border-gray-300 dark:border-[#6c3f9c] hover:bg-gray-100 dark:hover:bg-[#6c3f9c] transition-colors shadow-sm"
@@ -861,19 +914,22 @@
                         </header>
 
                         <div className="bg-white dark:bg-[#4a217c] p-6 rounded-sm border border-gray-300 dark:border-[#6c3f9c] shadow-lg space-y-6 transition-colors">
-                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                                <div className="lg:col-span-2 flex gap-4 items-center bg-gray-50 dark:bg-[#2c0c5c] p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus-within:border-blue-600 dark:focus-within:border-[#00FFFF] transition-colors">
-                                    <Search className="text-blue-600 dark:text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
-                                    <input type="text" placeholder="Search routes by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-transparent text-gray-900 dark:text-white p-2 outline-none font-oswald tracking-wide text-lg placeholder-gray-400 dark:placeholder-neutral-500" />
-                                </div>
-                                <div className="flex gap-4 items-center bg-gray-50 dark:bg-[#2c0c5c] p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus-within:border-blue-600 dark:focus-within:border-[#00FFFF] transition-colors">
-                                    <FolderIcon className="text-blue-600 dark:text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
-                                    <select value={selectedFolder} onChange={(e) => setSelectedFolder(e.target.value)} className="w-full bg-transparent text-gray-900 dark:text-white p-2 outline-none font-oswald tracking-wide text-lg cursor-pointer">
-                                        <option value="">All Collections</option>
-                                        {uniqueFolders.map((folder, i) => <option key={i} value={folder}>{folder}</option>)}
-                                    </select>
-                                </div>
+                            
+                            {/* Search Full Width */}
+                            <div className="flex gap-4 items-center bg-gray-50 dark:bg-[#2c0c5c] p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus-within:border-blue-600 dark:focus-within:border-[#00FFFF] transition-colors">
+                                <Search className="text-blue-600 dark:text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
+                                <input type="text" placeholder="Search routes by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-transparent text-gray-900 dark:text-white p-2 outline-none font-oswald tracking-wide text-lg placeholder-gray-400 dark:placeholder-neutral-500" />
                             </div>
+
+                            {/* Hierarchical Collections Section */}
+                            <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
+                                <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">
+                                    <FolderIcon className="w-4 h-4" /> Collections
+                                </label>
+                                {renderFolderTree()}
+                            </div>
+
+                            {/* Filters Row */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
                                    <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Distance (km)</label>
@@ -900,6 +956,7 @@
                                    </div>
                                 </div>
                             </div>
+                            
                             <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
                                 <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest block mb-3 flex items-center gap-2"><Filter className="w-4 h-4" /> Stage Types (Multi-Select)</label>
                                 <div className="flex flex-wrap gap-2">
@@ -913,6 +970,7 @@
                             </div>
                         </div>
 
+                        {}
                         <div className="bg-white dark:bg-[#4a217c] rounded-sm overflow-hidden border border-gray-300 dark:border-[#6c3f9c] shadow-lg transition-colors">
                             <div className="p-4 bg-gray-100 dark:bg-[#2c0c5c] border-b border-gray-300 dark:border-[#6c3f9c] flex justify-between items-center transition-colors">
                                 <h2 className="text-lg font-bold font-oswald uppercase tracking-wider text-gray-900 dark:text-white">Results <span className="text-blue-600 dark:text-[#00FFFF] ml-2">({sortedRoutes.length})</span></h2>
