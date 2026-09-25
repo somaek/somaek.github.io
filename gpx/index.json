@@ -3310,6 +3310,16 @@
     "upload_date": "2026-08-21T21:54:18.903000"
   },
   {
+    "file": "Pro Bike Races/Ronde Van Calderdale.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Ronde Van Calderdale",
+    "distance_km": 124.2,
+    "elevation_m": 2675.5,
+    "profile_score": 183.9,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-24T14:50:53.080000"
+  },
+  {
     "file": "Pro Bike Races/Tucson Road Race.gpx",
     "folder": "Pro Bike Races",
     "name": "Tucson Road Race",
@@ -4840,6 +4850,16 @@
     "upload_date": "2026-03-11T21:24:47.373000"
   },
   {
+    "file": "Pro Bike Races/CRO Race S3 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "CRO Race S3 2026 Circuit",
+    "distance_km": 36.77,
+    "elevation_m": 802.9,
+    "profile_score": 113.0,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-24T16:47:12.995000"
+  },
+  {
     "file": "Pro Bike Races/Tour de Luxembourg S2 2026 Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "Tour de Luxembourg S2 2026 Circuit",
@@ -4918,6 +4938,16 @@
     "profile_score": 2.0,
     "stage_type": "Flat, flat finish",
     "upload_date": "2025-10-08T14:42:44.904000"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Poyang S5 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poyang S5 2026 Circuit",
+    "distance_km": 29.95,
+    "elevation_m": 265.3,
+    "profile_score": 15.2,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-24T16:53:33.023000"
   },
   {
     "file": "Pro Bike Races/Volta a Portugal 26 S6.gpx",
@@ -5578,6 +5608,26 @@
     "profile_score": 56.9,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-09-24T01:58:22.613000"
+  },
+  {
+    "file": "Iconic World Routes/Morocco/Igmir Oasis Morocco.gpx",
+    "folder": "Iconic World Routes/Morocco",
+    "name": "Igmir Oasis Morocco",
+    "distance_km": 40.47,
+    "elevation_m": 779.1,
+    "profile_score": 62.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-24T23:05:14.042000"
+  },
+  {
+    "file": "Iconic World Routes/Morocco/Todra Gorge Canyon Morocco.gpx",
+    "folder": "Iconic World Routes/Morocco",
+    "name": "Todra Gorge Canyon Morocco",
+    "distance_km": 40.69,
+    "elevation_m": 753.2,
+    "profile_score": 36.9,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-09-24T22:57:14.645000"
   },
   {
     "file": "Iconic World Routes/Japan/Shimanami Kaido Japan.gpx",
@@ -6328,6 +6378,36 @@
     "profile_score": 10.2,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-09-13T14:20:16.824000"
+  },
+  {
+    "file": "Iconic World Routes/Ireland/Healy Pass Cork Ireland.gpx",
+    "folder": "Iconic World Routes/Ireland",
+    "name": "Healy Pass Cork Ireland",
+    "distance_km": 12.79,
+    "elevation_m": 279.9,
+    "profile_score": 29.3,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-25T02:09:46.117000"
+  },
+  {
+    "file": "Iconic World Routes/Ireland/Moll's Gap to Ladies View Ireland.gpx",
+    "folder": "Iconic World Routes/Ireland",
+    "name": "Moll's Gap to Ladies View Ireland",
+    "distance_km": 17.52,
+    "elevation_m": 288.4,
+    "profile_score": 13.5,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-25T02:26:49.095000"
+  },
+  {
+    "file": "Iconic World Routes/Ireland/Conor Pass Kerry Ireland.gpx",
+    "folder": "Iconic World Routes/Ireland",
+    "name": "Conor Pass Kerry Ireland",
+    "distance_km": 16.97,
+    "elevation_m": 403.2,
+    "profile_score": 47.5,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-25T02:04:46.821000"
   },
   {
     "file": "Iconic World Routes/Ethiopia/Sanetti Plateau Alpine Pass Ethiopia.gpx",
