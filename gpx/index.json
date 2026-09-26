@@ -110,6 +110,16 @@
     "upload_date": "2026-08-30T19:21:36.724000"
   },
   {
+    "file": "Climbs/Revnice to Sedlo Czech.gpx",
+    "folder": "Climbs",
+    "name": "Revnice to Sedlo Czech",
+    "distance_km": 5.72,
+    "elevation_m": 291.5,
+    "profile_score": 38.2,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-25T19:51:05.383000"
+  },
+  {
     "file": "Climbs/RMNP Entrance to Rainbow Curve.gpx",
     "folder": "Climbs",
     "name": "RMNP Entrance to Rainbow Curve",
@@ -198,6 +208,16 @@
     "profile_score": 39.2,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-06-03T20:09:58.406000"
+  },
+  {
+    "file": "Climbs/King Ridge CA.gpx",
+    "folder": "Climbs",
+    "name": "King Ridge CA",
+    "distance_km": 11.99,
+    "elevation_m": 505.6,
+    "profile_score": 94.0,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-25T14:43:32.525000"
   },
   {
     "file": "Climbs/Babada\u011f.gpx",
@@ -300,6 +320,16 @@
     "upload_date": "2026-05-14T00:03:23.697000"
   },
   {
+    "file": "Climbs/Bear Gap Road PA.gpx",
+    "folder": "Climbs",
+    "name": "Bear Gap Road PA",
+    "distance_km": 6.08,
+    "elevation_m": 180.4,
+    "profile_score": 26.2,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-25T18:14:37.630000"
+  },
+  {
     "file": "Climbs/Lolo Pass (Mount Hood, OR).gpx",
     "folder": "Climbs",
     "name": "Lolo Pass (Mount Hood, OR)",
@@ -328,6 +358,16 @@
     "profile_score": 242.6,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2026-03-06T15:40:33.088000"
+  },
+  {
+    "file": "Climbs/Pine Flat Road near Healdsburg.gpx",
+    "folder": "Climbs",
+    "name": "Pine Flat Road near Healdsburg",
+    "distance_km": 12.5,
+    "elevation_m": 607.7,
+    "profile_score": 87.8,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-25T14:23:21.450000"
   },
   {
     "file": "Climbs/Mandeville Canyon CA.gpx",
@@ -408,6 +448,16 @@
     "profile_score": 166.0,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-05-09T01:20:44.989000"
+  },
+  {
+    "file": "Climbs/Browder Climb Dirt CA.gpx",
+    "folder": "Climbs",
+    "name": "Browder Climb Dirt CA",
+    "distance_km": 3.9,
+    "elevation_m": 174.1,
+    "profile_score": 22.9,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-25T20:16:01.519000"
   },
   {
     "file": "Climbs/Vratnik Pass Bulgaria.gpx",
@@ -2130,6 +2180,36 @@
     "upload_date": "2026-07-23T16:44:39.823000"
   },
   {
+    "file": "Interval Circuits/Revnice to Sedlo Czech - Loop.gpx",
+    "folder": "Interval Circuits",
+    "name": "Revnice to Sedlo Czech - Loop",
+    "distance_km": 11.69,
+    "elevation_m": 301.3,
+    "profile_score": 38.1,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-25T20:08:51.739000"
+  },
+  {
+    "file": "Interval Circuits/Pine Flat Road Down and Back Loop.gpx",
+    "folder": "Interval Circuits",
+    "name": "Pine Flat Road Down and Back Loop",
+    "distance_km": 25.26,
+    "elevation_m": 624.0,
+    "profile_score": 87.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-25T14:33:44.348000"
+  },
+  {
+    "file": "Interval Circuits/Bear Gap Road PA Interval loop.gpx",
+    "folder": "Interval Circuits",
+    "name": "Bear Gap Road PA Interval loop",
+    "distance_km": 6.1,
+    "elevation_m": 180.4,
+    "profile_score": 25.9,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-25T18:15:53.197000"
+  },
+  {
     "file": "Interval Circuits/Fort Stockton Mini Climb 2min.gpx",
     "folder": "Interval Circuits",
     "name": "Fort Stockton Mini Climb 2min",
@@ -3330,6 +3410,16 @@
     "upload_date": "2026-06-23T23:41:12.876000"
   },
   {
+    "file": "Pro Bike Races/Tour of Poyang S6 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poyang S6 2026",
+    "distance_km": 74.98,
+    "elevation_m": 471.0,
+    "profile_score": 5.4,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-25T17:54:44.304000"
+  },
+  {
     "file": "Pro Bike Races/CRO Race S2 2026.gpx",
     "folder": "Pro Bike Races",
     "name": "CRO Race S2 2026",
@@ -4478,6 +4568,16 @@
     "profile_score": 23.4,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-08-29T23:18:20"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race S4 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "CRO Race S4 2026",
+    "distance_km": 66.73,
+    "elevation_m": 1353.9,
+    "profile_score": 83.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-25T14:49:31.644000"
   },
   {
     "file": "Pro Bike Races/Bieno Race.gpx",
@@ -6384,30 +6484,30 @@
     "folder": "Iconic World Routes/Ireland",
     "name": "Healy Pass Cork Ireland",
     "distance_km": 12.79,
-    "elevation_m": 279.9,
-    "profile_score": 29.3,
+    "elevation_m": 284.7,
+    "profile_score": 30.0,
     "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-09-25T02:09:46.117000"
+    "upload_date": "2026-09-25T12:51:49.312000"
   },
   {
     "file": "Iconic World Routes/Ireland/Moll's Gap to Ladies View Ireland.gpx",
     "folder": "Iconic World Routes/Ireland",
     "name": "Moll's Gap to Ladies View Ireland",
     "distance_km": 17.52,
-    "elevation_m": 288.4,
-    "profile_score": 13.5,
+    "elevation_m": 296.0,
+    "profile_score": 14.4,
     "stage_type": "Hilly, flat finish",
-    "upload_date": "2026-09-25T02:26:49.095000"
+    "upload_date": "2026-09-25T12:52:43.279000"
   },
   {
     "file": "Iconic World Routes/Ireland/Conor Pass Kerry Ireland.gpx",
     "folder": "Iconic World Routes/Ireland",
     "name": "Conor Pass Kerry Ireland",
     "distance_km": 16.97,
-    "elevation_m": 403.2,
-    "profile_score": 47.5,
+    "elevation_m": 395.6,
+    "profile_score": 45.3,
     "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-09-25T02:04:46.821000"
+    "upload_date": "2026-09-25T12:50:14.497000"
   },
   {
     "file": "Iconic World Routes/Ethiopia/Sanetti Plateau Alpine Pass Ethiopia.gpx",
