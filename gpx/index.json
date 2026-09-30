@@ -250,6 +250,16 @@
     "upload_date": "2026-07-23T00:28:14.524000"
   },
   {
+    "file": "Climbs/Paradise to Bald Hill CA.gpx",
+    "folder": "Climbs",
+    "name": "Paradise to Bald Hill CA",
+    "distance_km": 7.27,
+    "elevation_m": 457.6,
+    "profile_score": 72.6,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-26T01:35:55.460000"
+  },
+  {
     "file": "Climbs/Grakallen Norway.gpx",
     "folder": "Climbs",
     "name": "Grakallen Norway",
@@ -298,6 +308,16 @@
     "profile_score": 89.5,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2026-09-21T17:53:16.223000"
+  },
+  {
+    "file": "Climbs/Old Highway Trinity CA.gpx",
+    "folder": "Climbs",
+    "name": "Old Highway Trinity CA",
+    "distance_km": 7.74,
+    "elevation_m": 527.6,
+    "profile_score": 90.5,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-25T21:02:54.334000"
   },
   {
     "file": "Climbs/Refugio Beach to Santa Ynez Gravel.gpx",
@@ -470,6 +490,16 @@
     "upload_date": "2026-05-08T18:57:22.647000"
   },
   {
+    "file": "Climbs/Jerai Malaysia Climb.gpx",
+    "folder": "Climbs",
+    "name": "Jerai Malaysia Climb",
+    "distance_km": 14.94,
+    "elevation_m": 1185.5,
+    "profile_score": 263.0,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-28T22:06:33.146000"
+  },
+  {
     "file": "Climbs/Blockhaus Climb IT.gpx",
     "folder": "Climbs",
     "name": "Blockhaus Climb IT",
@@ -488,6 +518,16 @@
     "profile_score": 32.4,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2026-08-31T16:12:57.244000"
+  },
+  {
+    "file": "Climbs/joy lake to rose summit ca.gpx",
+    "folder": "Climbs",
+    "name": "joy lake to rose summit ca",
+    "distance_km": 15.55,
+    "elevation_m": 846.9,
+    "profile_score": 116.6,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-26T01:45:20.159000"
   },
   {
     "file": "Climbs/Mount Lemmon Tuscon AZ.gpx",
@@ -798,6 +838,16 @@
     "profile_score": 9.1,
     "stage_type": "Flat, uphill finish",
     "upload_date": "2026-05-07T20:08:50.858000"
+  },
+  {
+    "file": "Miscellaneous/Miquelon Canada.gpx",
+    "folder": "Miscellaneous",
+    "name": "Miquelon Canada",
+    "distance_km": 13.97,
+    "elevation_m": 257.0,
+    "profile_score": 27.2,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-29T21:27:04.446000"
   },
   {
     "file": "Miscellaneous/Dunloe and Killarney.gpx",
@@ -1168,6 +1218,16 @@
     "profile_score": 62.8,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-06-10T18:38:13.995000"
+  },
+  {
+    "file": "Miscellaneous/Poudre Canyon.gpx",
+    "folder": "Miscellaneous",
+    "name": "Poudre Canyon",
+    "distance_km": 102.29,
+    "elevation_m": 1601.0,
+    "profile_score": 60.4,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-29T16:24:52.878000"
   },
   {
     "file": "Miscellaneous/Lake Kussharo Hokkaido.gpx",
@@ -1638,16 +1698,6 @@
     "profile_score": 65.0,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-02-26T01:41:31.148000"
-  },
-  {
-    "file": "Miscellaneous/Ryan Local Routes/Poudre Canyon.gpx",
-    "folder": "Miscellaneous/Ryan Local Routes",
-    "name": "Poudre Canyon",
-    "distance_km": 102.16,
-    "elevation_m": 1671.3,
-    "profile_score": 61.9,
-    "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-02-28T02:13:35.689000"
   },
   {
     "file": "Miscellaneous/Ryan Local Routes/New Image A Ride.gpx",
@@ -3040,6 +3090,16 @@
     "upload_date": "2025-11-13T00:56:08"
   },
   {
+    "file": "Pro Bike Races/CRO Race S5 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "CRO Race S5 2026",
+    "distance_km": 64.5,
+    "elevation_m": 987.5,
+    "profile_score": 69.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-26T17:25:06.297000"
+  },
+  {
     "file": "Pro Bike Races/Tour du Finist\u00e8re Pays de Quimper - 63k 1139m.gpx",
     "folder": "Pro Bike Races",
     "name": "Tour du Finist\u00e8re Pays de Quimper - 63k 1139m",
@@ -3110,6 +3170,16 @@
     "upload_date": "2026-09-20T18:44:12.833000"
   },
   {
+    "file": "Pro Bike Races/Euro Champs 2026 Final Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Euro Champs 2026 Final Circuit",
+    "distance_km": 22.08,
+    "elevation_m": 384.6,
+    "profile_score": 44.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-28T21:20:55.237000"
+  },
+  {
     "file": "Pro Bike Races/Arctic Tour Norway S3.gpx",
     "folder": "Pro Bike Races",
     "name": "Arctic Tour Norway S3",
@@ -3170,6 +3240,16 @@
     "upload_date": "2025-12-16T22:39:53.460000"
   },
   {
+    "file": "Pro Bike Races/Tour of Poyang S9 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poyang S9 2026 Circuit",
+    "distance_km": 34.35,
+    "elevation_m": 648.6,
+    "profile_score": 60.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-28T16:17:45.958000"
+  },
+  {
     "file": "Pro Bike Races/Grand Prix Cerami Circuit 24k 224m.gpx",
     "folder": "Pro Bike Races",
     "name": "Grand Prix Cerami Circuit 24k 224m",
@@ -3198,6 +3278,16 @@
     "profile_score": 49.3,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-01-08T18:47:55.644000"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Poyang S8 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poyang S8 2026 Circuit",
+    "distance_km": 23.15,
+    "elevation_m": 318.5,
+    "profile_score": 29.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-28T15:52:29.201000"
   },
   {
     "file": "Pro Bike Races/Tour of Poyang S1 2026.gpx",
@@ -3920,6 +4010,16 @@
     "upload_date": "2026-01-24T21:24:27"
   },
   {
+    "file": "Pro Bike Races/Tour de Langkawi S3 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Langkawi S3 2026",
+    "distance_km": 195.42,
+    "elevation_m": 2037.6,
+    "profile_score": 28.5,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-29T16:11:42.478000"
+  },
+  {
     "file": "Pro Bike Races/Lidl Deutschland Tour - Stage 3.gpx",
     "folder": "Pro Bike Races",
     "name": "Lidl Deutschland Tour - Stage 3",
@@ -4048,6 +4148,16 @@
     "profile_score": 44.1,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-05-12T17:20:22.281000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race S6 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "CRO Race S6 2026",
+    "distance_km": 82.33,
+    "elevation_m": 342.3,
+    "profile_score": 5.1,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-28T15:38:50.262000"
   },
   {
     "file": "Pro Bike Races/Tour of Poyang S2 2026.gpx",
@@ -4188,6 +4298,16 @@
     "profile_score": 22.4,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-05-01T20:28:01.122000"
+  },
+  {
+    "file": "Pro Bike Races/Binche Chimay Binche 2.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Binche Chimay Binche 2",
+    "distance_km": 79.65,
+    "elevation_m": 576.5,
+    "profile_score": 7.4,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-27T21:07:20.439000"
   },
   {
     "file": "Pro Bike Races/Nokere Koerse Classics Course - 73k 551m.gpx",
@@ -4490,6 +4610,16 @@
     "upload_date": "2026-08-21T17:00:27.120000"
   },
   {
+    "file": "Pro Bike Races/Euro Champs 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Euro Champs 2026",
+    "distance_km": 71.37,
+    "elevation_m": 987.2,
+    "profile_score": 80.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-28T21:23:58.236000"
+  },
+  {
     "file": "Pro Bike Races/Tour des 100 Communes Circuit 23k 367m.gpx",
     "folder": "Pro Bike Races",
     "name": "Tour des 100 Communes Circuit 23k 367m",
@@ -4638,6 +4768,16 @@
     "profile_score": 14.7,
     "stage_type": "Flat, uphill finish",
     "upload_date": "2026-08-11T17:10:06.662000"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Poyang S10 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poyang S10 2026 Circuit",
+    "distance_km": 18.75,
+    "elevation_m": 141.3,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-29T17:29:48.426000"
   },
   {
     "file": "Pro Bike Races/Etoile de Bess\u00e8ges - Stage 1 Cote de la Tour LU.gpx",
@@ -4868,6 +5008,16 @@
     "profile_score": 42.5,
     "stage_type": "Hilly, uphill finish",
     "upload_date": "2026-02-21T23:37:05.139000"
+  },
+  {
+    "file": "Pro Bike Races/Tour of Poyang S7 2026 Circuit.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour of Poyang S7 2026 Circuit",
+    "distance_km": 41.21,
+    "elevation_m": 455.3,
+    "profile_score": 8.4,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-26T17:35:28.736000"
   },
   {
     "file": "Pro Bike Races/Tour of Poyang S3 2026.gpx",
@@ -6164,10 +6314,10 @@
     "folder": "Iconic World Routes/Croatia",
     "name": "Pelje\u0161ac Peninsula Spine Croatia",
     "distance_km": 56.62,
-    "elevation_m": 865.0,
-    "profile_score": 63.8,
+    "elevation_m": 1338.9,
+    "profile_score": 81.1,
     "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-09-23T20:54:39.569000"
+    "upload_date": "2026-09-27T14:44:57.710000"
   },
   {
     "file": "Iconic World Routes/Croatia/Velebit Mountain Climb Croatia.gpx",
@@ -6194,30 +6344,30 @@
     "folder": "Iconic World Routes/Croatia",
     "name": "Cres Island Ridge Croatia",
     "distance_km": 26.49,
-    "elevation_m": 502.5,
-    "profile_score": 40.1,
+    "elevation_m": 519.4,
+    "profile_score": 41.6,
     "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-09-23T20:03:02.557000"
+    "upload_date": "2026-09-27T14:42:55.496000"
   },
   {
     "file": "Iconic World Routes/Croatia/Istrian Hilltop Route Croatia.gpx",
     "folder": "Iconic World Routes/Croatia",
     "name": "Istrian Hilltop Route Croatia",
     "distance_km": 16.95,
-    "elevation_m": 259.0,
-    "profile_score": 41.1,
+    "elevation_m": 287.2,
+    "profile_score": 41.7,
     "stage_type": "Climbing, uphill finish",
-    "upload_date": "2026-09-23T20:58:11"
+    "upload_date": "2026-09-27T14:44:37.063000"
   },
   {
     "file": "Iconic World Routes/Croatia/Coastal Highway Karlobag to Starigrad-Paklenica Croatia.gpx",
     "folder": "Iconic World Routes/Croatia",
     "name": "Coastal Highway Karlobag to Starigrad-Paklenica Croatia",
     "distance_km": 47.92,
-    "elevation_m": 378.3,
-    "profile_score": 10.4,
+    "elevation_m": 484.0,
+    "profile_score": 10.7,
     "stage_type": "Flat, flat finish",
-    "upload_date": "2026-09-23T19:42:01.413000"
+    "upload_date": "2026-09-27T14:41:22.031000"
   },
   {
     "file": "Iconic World Routes/Scotland/Bealach na B\u00e0 Applecross Pass.gpx",
@@ -7278,6 +7428,16 @@
     "profile_score": 0,
     "stage_type": "Flat, flat finish",
     "upload_date": "2017-09-19T15:52:22"
+  },
+  {
+    "file": "Criterium Courses/Miquelon Langlade Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Miquelon Langlade Crit",
+    "distance_km": 4.47,
+    "elevation_m": 45.3,
+    "profile_score": 2.6,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-29T21:17:40.548000"
   },
   {
     "file": "Criterium Courses/Crybaby Hill Criterium.gpx",
