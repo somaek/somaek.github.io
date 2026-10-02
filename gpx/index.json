@@ -70,6 +70,16 @@
     "upload_date": "2026-02-24T19:14:49.370000"
   },
   {
+    "file": "Climbs/Genting Highlands Malaysia.gpx",
+    "folder": "Climbs",
+    "name": "Genting Highlands Malaysia",
+    "distance_km": 26.66,
+    "elevation_m": 1625.2,
+    "profile_score": 284.8,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-10-02T03:00:07.788000"
+  },
+  {
     "file": "Climbs/Cameron Highlands Climb Malaysia.gpx",
     "folder": "Climbs",
     "name": "Cameron Highlands Climb Malaysia",
@@ -1450,6 +1460,16 @@
     "upload_date": "2026-06-23T22:07:29.278000"
   },
   {
+    "file": "Miscellaneous/Flat ish Aruba.gpx",
+    "folder": "Miscellaneous",
+    "name": "Flat ish Aruba",
+    "distance_km": 49.64,
+    "elevation_m": 424.5,
+    "profile_score": 8.0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-01T19:50:53.504000"
+  },
+  {
     "file": "Miscellaneous/Hilly Geoje.gpx",
     "folder": "Miscellaneous",
     "name": "Hilly Geoje",
@@ -1538,6 +1558,16 @@
     "profile_score": 16.4,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-03-06T21:58:42.704000"
+  },
+  {
+    "file": "Miscellaneous/Aruba Duo Xtreme Race Route 2019.gpx",
+    "folder": "Miscellaneous",
+    "name": "Aruba Duo Xtreme Race Route 2019",
+    "distance_km": 58.16,
+    "elevation_m": 819.9,
+    "profile_score": 39.2,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-01T19:40:06.267000"
   },
   {
     "file": "Miscellaneous/Island Hopping in Kure Japan.gpx",
@@ -2660,6 +2690,16 @@
     "upload_date": "2026-09-17T16:39:41.394000"
   },
   {
+    "file": "Gravel Roads/Foco Fondo 2026.gpx",
+    "folder": "Gravel Roads",
+    "name": "Foco Fondo 2026",
+    "distance_km": 99.73,
+    "elevation_m": 889.8,
+    "profile_score": 13.6,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-01T15:19:33.093000"
+  },
+  {
     "file": "Gravel Roads/Foco Double.gpx",
     "folder": "Gravel Roads",
     "name": "Foco Double",
@@ -3348,6 +3388,16 @@
     "profile_score": 14.8,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-01-28T22:02:46.291000"
+  },
+  {
+    "file": "Pro Bike Races/Vuelta Internacional Femenina a Costa Rica S2 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Internacional Femenina a Costa Rica S2 2026",
+    "distance_km": 68.18,
+    "elevation_m": 835.5,
+    "profile_score": 39.5,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-02T02:32:45.219000"
   },
   {
     "file": "Pro Bike Races/Week 10 Gent-Wevelgem.gpx",
