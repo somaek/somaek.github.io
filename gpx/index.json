@@ -3660,6 +3660,16 @@
     "upload_date": "2026-03-10T22:19:45.013000"
   },
   {
+    "file": "Pro Bike Races/Cadel Evans Great Ocean Road Race.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Cadel Evans Great Ocean Road Race",
+    "distance_km": 75.52,
+    "elevation_m": 775.8,
+    "profile_score": 50.3,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-05T15:33:52.690000"
+  },
+  {
     "file": "Pro Bike Races/Dwars door het Hageland Circuit 24k 194m.gpx",
     "folder": "Pro Bike Races",
     "name": "Dwars door het Hageland Circuit 24k 194m",
@@ -5188,6 +5198,16 @@
     "profile_score": 10.9,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-09-20T18:14:17.886000"
+  },
+  {
+    "file": "Pro Bike Races/Lombardia 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Lombardia 2026",
+    "distance_km": 72.42,
+    "elevation_m": 1053.3,
+    "profile_score": 95.1,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-10-05T18:59:22.954000"
   },
   {
     "file": "Pro Bike Races/Volta a Portugal 26 S5 iTT.gpx",
