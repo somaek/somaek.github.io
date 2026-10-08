@@ -190,6 +190,16 @@
     "upload_date": "2026-02-24T19:18:35.852000"
   },
   {
+    "file": "Climbs/Tecate Peak Baja.gpx",
+    "folder": "Climbs",
+    "name": "Tecate Peak Baja",
+    "distance_km": 12.04,
+    "elevation_m": 676.2,
+    "profile_score": 116.6,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-10-07T22:02:25.174000"
+  },
+  {
     "file": "Climbs/Corno Alle Scale IT.gpx",
     "folder": "Climbs",
     "name": "Corno Alle Scale IT",
@@ -318,6 +328,16 @@
     "profile_score": 89.3,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-05-08T20:22:00.313000"
+  },
+  {
+    "file": "Climbs/La Seu d'Urgell a port d'Envalira.gpx",
+    "folder": "Climbs",
+    "name": "La Seu d'Urgell a port d'Envalira",
+    "distance_km": 46.92,
+    "elevation_m": 1723.0,
+    "profile_score": 179.2,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-10-07T21:01:08.871000"
   },
   {
     "file": "Climbs/Puntang - Pasir Jambu Ciwidey.gpx",
@@ -910,6 +930,16 @@
     "upload_date": "2026-06-08T16:41:17.756000"
   },
   {
+    "file": "Miscellaneous/Canyon de Guadalupe Baja.gpx",
+    "folder": "Miscellaneous",
+    "name": "Canyon de Guadalupe Baja",
+    "distance_km": 33.42,
+    "elevation_m": 374.2,
+    "profile_score": 21.0,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-10-07T16:11:41.475000"
+  },
+  {
     "file": "Miscellaneous/Anza borrego crit.gpx",
     "folder": "Miscellaneous",
     "name": "Anza borrego crit",
@@ -1018,6 +1048,16 @@
     "profile_score": 15.0,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-06-16T21:58:42.855000"
+  },
+  {
+    "file": "Miscellaneous/Wind River Canyon.gpx",
+    "folder": "Miscellaneous",
+    "name": "Wind River Canyon",
+    "distance_km": 50.95,
+    "elevation_m": 457.7,
+    "profile_score": 6.1,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-07T14:14:10.062000"
   },
   {
     "file": "Miscellaneous/Arapahoe Bay to Gravel Mountain.gpx",
@@ -1180,6 +1220,16 @@
     "upload_date": "2026-03-02T17:25:15.275000"
   },
   {
+    "file": "Miscellaneous/Glenwood Canyon.gpx",
+    "folder": "Miscellaneous",
+    "name": "Glenwood Canyon",
+    "distance_km": 40.73,
+    "elevation_m": 372.3,
+    "profile_score": 5.1,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-07T14:21:02.115000"
+  },
+  {
     "file": "Miscellaneous/Flagstaff.gpx",
     "folder": "Miscellaneous",
     "name": "Flagstaff",
@@ -1238,6 +1288,16 @@
     "profile_score": 62.8,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-06-10T18:38:13.995000"
+  },
+  {
+    "file": "Miscellaneous/Redstone Canyon.gpx",
+    "folder": "Miscellaneous",
+    "name": "Redstone Canyon",
+    "distance_km": 44.7,
+    "elevation_m": 628.2,
+    "profile_score": 15.3,
+    "stage_type": "Flat, uphill finish",
+    "upload_date": "2026-10-07T14:33:17.839000"
   },
   {
     "file": "Miscellaneous/Poudre Canyon.gpx",
@@ -1390,6 +1450,16 @@
     "upload_date": "2026-07-17T02:24:56.112000"
   },
   {
+    "file": "Miscellaneous/Royal Gorge Railway Colorado.gpx",
+    "folder": "Miscellaneous",
+    "name": "Royal Gorge Railway Colorado",
+    "distance_km": 18.75,
+    "elevation_m": 161.7,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-07T14:38:05.718000"
+  },
+  {
     "file": "Miscellaneous/Southern Iran.gpx",
     "folder": "Miscellaneous",
     "name": "Southern Iran",
@@ -1530,6 +1600,16 @@
     "upload_date": "2026-05-01T20:51:10.355000"
   },
   {
+    "file": "Miscellaneous/Berryessa Res CA.gpx",
+    "folder": "Miscellaneous",
+    "name": "Berryessa Res CA",
+    "distance_km": 59.23,
+    "elevation_m": 869.8,
+    "profile_score": 57.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-07T16:29:27.912000"
+  },
+  {
     "file": "Miscellaneous/Sanetti Plateau Alpine Pass Ethiopia 1 hour.gpx",
     "folder": "Miscellaneous",
     "name": "Sanetti Plateau Alpine Pass Ethiopia 1 hour",
@@ -1548,6 +1628,16 @@
     "profile_score": 8.5,
     "stage_type": "Hilly, uphill finish",
     "upload_date": "2026-05-04T18:06:53.026000"
+  },
+  {
+    "file": "Miscellaneous/Flathead Lake Montana.gpx",
+    "folder": "Miscellaneous",
+    "name": "Flathead Lake Montana",
+    "distance_km": 138.3,
+    "elevation_m": 1122.4,
+    "profile_score": 18.9,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-07T16:01:29.899000"
   },
   {
     "file": "Miscellaneous/Torrey 2.gpx",
@@ -3200,6 +3290,16 @@
     "upload_date": "2026-04-05T18:10:00.405000"
   },
   {
+    "file": "Pro Bike Races/Sasebo Criterium 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Sasebo Criterium 2026",
+    "distance_km": 1.41,
+    "elevation_m": 6.4,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-07T18:29:20.192000"
+  },
+  {
     "file": "Pro Bike Races/Tour de Gyeongnam - S1 - Geoje.gpx",
     "folder": "Pro Bike Races",
     "name": "Tour de Gyeongnam - S1 - Geoje",
@@ -3308,6 +3408,16 @@
     "profile_score": 7.2,
     "stage_type": "Flat, uphill finish",
     "upload_date": "2025-12-16T22:52:43.818000"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Kyushu Stage 3  2026 MIYAZAKI NICHINAN.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Kyushu Stage 3  2026 MIYAZAKI NICHINAN",
+    "distance_km": 63.95,
+    "elevation_m": 1000.4,
+    "profile_score": 62.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-07T19:14:19.408000"
   },
   {
     "file": "Pro Bike Races/2026 TDU W Stage 2 Finishing Circuit.gpx",
@@ -4340,6 +4450,16 @@
     "upload_date": "2026-06-22T19:44:43.842000"
   },
   {
+    "file": "Pro Bike Races/Tour de Kyushu Stage 2  2026 OITA-KUMAMOTO .gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Kyushu Stage 2  2026 OITA-KUMAMOTO ",
+    "distance_km": 65.79,
+    "elevation_m": 608.5,
+    "profile_score": 23.3,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-07T18:46:52.316000"
+  },
+  {
     "file": "Pro Bike Races/Ringerike_GP_(modified).gpx",
     "folder": "Pro Bike Races",
     "name": "Ringerike_GP_(modified)",
@@ -4628,6 +4748,16 @@
     "profile_score": 46.9,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2025-11-14T23:45:19"
+  },
+  {
+    "file": "Pro Bike Races/Tour de Kyushu Stage 1  2026 SAGA-FUKUOKA.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tour de Kyushu Stage 1  2026 SAGA-FUKUOKA",
+    "distance_km": 71.68,
+    "elevation_m": 401.8,
+    "profile_score": 7.2,
+    "stage_type": "Flat, uphill finish",
+    "upload_date": "2026-10-07T18:44:46.370000"
   },
   {
     "file": "Pro Bike Races/Amstel Gold for TPV - 75k 751m.gpx",
@@ -7040,6 +7170,16 @@
     "upload_date": "2026-09-18T18:57:21.261000"
   },
   {
+    "file": "Criterium Courses/Lombard Street Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Lombard Street Crit",
+    "distance_km": 1.11,
+    "elevation_m": 60.8,
+    "profile_score": 9.7,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-10-07T21:39:26.532000"
+  },
+  {
     "file": "Criterium Courses/Julian Loop.gpx",
     "folder": "Criterium Courses",
     "name": "Julian Loop",
@@ -7068,6 +7208,16 @@
     "profile_score": 6.4,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-09-14T23:33:17"
+  },
+  {
+    "file": "Criterium Courses/Luang Prabang Circuit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Luang Prabang Circuit",
+    "distance_km": 13.75,
+    "elevation_m": 115.0,
+    "profile_score": 5.8,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-08T00:51:14.719000"
   },
   {
     "file": "Criterium Courses/Saitama Criterium Course.gpx",
