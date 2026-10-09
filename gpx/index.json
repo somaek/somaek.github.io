@@ -640,6 +640,16 @@
     "upload_date": "2026-05-07T19:43:36.764000"
   },
   {
+    "file": "Miscellaneous/Fort Collins to Laramie.gpx",
+    "folder": "Miscellaneous",
+    "name": "Fort Collins to Laramie",
+    "distance_km": 101.94,
+    "elevation_m": 1209.1,
+    "profile_score": 31.5,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-08T17:12:59.538000"
+  },
+  {
     "file": "Miscellaneous/Butler Wash Loop.gpx",
     "folder": "Miscellaneous",
     "name": "Butler Wash Loop",
@@ -1128,6 +1138,16 @@
     "profile_score": 34.4,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-05-19T21:40:07.062000"
+  },
+  {
+    "file": "Miscellaneous/Button Rock Road Colorado.gpx",
+    "folder": "Miscellaneous",
+    "name": "Button Rock Road Colorado",
+    "distance_km": 14.24,
+    "elevation_m": 522.7,
+    "profile_score": 67.9,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-10-08T16:31:12.991000"
   },
   {
     "file": "Miscellaneous/Rancho Aguajito.gpx",
@@ -3003,11 +3023,11 @@
     "file": "Pro Bike Races/Grand Prix de Wallonie.gpx",
     "folder": "Pro Bike Races",
     "name": "Grand Prix de Wallonie",
-    "distance_km": 72.43,
-    "elevation_m": 618.8,
-    "profile_score": 26.7,
+    "distance_km": 72.4,
+    "elevation_m": 716.2,
+    "profile_score": 26.4,
     "stage_type": "Hilly, flat finish",
-    "upload_date": "2026-08-13T16:56:21.440000"
+    "upload_date": "2026-10-08T19:44:08.654000"
   },
   {
     "file": "Pro Bike Races/TDU Stage 2 - Uraidla - 25k 689m.gpx",
@@ -4513,11 +4533,11 @@
     "file": "Pro Bike Races/GP Oetingen Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "GP Oetingen Circuit",
-    "distance_km": 19.69,
-    "elevation_m": 216.7,
-    "profile_score": 9.9,
-    "stage_type": "Hilly, flat finish",
-    "upload_date": "2026-05-18T14:00:58.126000"
+    "distance_km": 19.67,
+    "elevation_m": 181.2,
+    "profile_score": 9.4,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-08T19:54:05.823000"
   },
   {
     "file": "Pro Bike Races/Tour de Luxembourg S2 2026.gpx",
