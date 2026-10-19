@@ -890,6 +890,16 @@
     "upload_date": "2026-05-07T20:08:50.858000"
   },
   {
+    "file": "Miscellaneous/Tour de Okinawa Road Race.gpx",
+    "folder": "Miscellaneous",
+    "name": "Tour de Okinawa Road Race",
+    "distance_km": 73.35,
+    "elevation_m": 1202.0,
+    "profile_score": 72.2,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-19T01:23:31.571000"
+  },
+  {
     "file": "Miscellaneous/Miquelon Canada.gpx",
     "folder": "Miscellaneous",
     "name": "Miquelon Canada",
@@ -4580,6 +4590,16 @@
     "upload_date": "2026-03-18T14:53:47.330000"
   },
   {
+    "file": "Pro Bike Races/Eneco Tour  Stage 5 Arnhem.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Eneco Tour  Stage 5 Arnhem",
+    "distance_km": 44.48,
+    "elevation_m": 225.1,
+    "profile_score": 2.3,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-18T15:01:33.213000"
+  },
+  {
     "file": "Pro Bike Races/Eschborn-Frankfurt.gpx",
     "folder": "Pro Bike Races",
     "name": "Eschborn-Frankfurt",
@@ -7778,6 +7798,16 @@
     "profile_score": 23.5,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-09-20T16:26:59"
+  },
+  {
+    "file": "Criterium Courses/Col Du Vam Circuit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Col Du Vam Circuit",
+    "distance_km": 13.69,
+    "elevation_m": 91.1,
+    "profile_score": 11.0,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-10-18T15:14:53.932000"
   },
   {
     "file": "Criterium Courses/Otley Town Centre Grand Prix.gpx",
