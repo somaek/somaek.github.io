@@ -182,6 +182,12 @@
                     <div id="filter-ageband" class="flex flex-wrap gap-1 max-h-24 overflow-y-auto pr-1"></div>
                 </div>
             </div>
+
+            <!-- 5. Week Filter (Full Width Row) -->
+            <div class="pt-3 border-t border-parchment-border">
+                <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Race Week</div>
+                <div id="filter-week" class="flex flex-wrap gap-1.5"></div>
+            </div>
         </section>
 
         <!-- Standings Table -->
@@ -392,7 +398,8 @@
                 genders: [],
                 penGroups: [],
                 ageBands: [],
-                raceTypes: []
+                raceTypes: [],
+                weeks: []
             },
 
             // Active Filter selections
@@ -401,6 +408,7 @@
                 penGroup: 'ALL',
                 ageBand: 'ALL',
                 raceType: 'ALL',
+                week: 'ALL',
                 search: ''
             },
 
@@ -524,6 +532,7 @@
             const penGroupsSet = new Set();
             const ageBandsSet = new Set();
             const raceTypesSet = new Set();
+            const weeksSet = new Set();
 
             for (let i = 1; i < rawRows.length; i++) {
                 const row = rawRows[i];
@@ -584,6 +593,7 @@
                 if (penGroup) penGroupsSet.add(penGroup);
                 if (ageBand && ageBand !== 'Unspecified') ageBandsSet.add(ageBand);
                 if (raceType) raceTypesSet.add(raceType);
+                if (week) weeksSet.add(week);
             }
 
             // Sort each EventKey's full results by Position ascending
@@ -617,6 +627,9 @@
 
             state.options.genders = Array.from(gendersSet).sort();
             state.options.ageBands = Array.from(ageBandsSet).sort();
+            state.options.weeks = Array.from(weeksSet).sort((a, b) =>
+                a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+            );
 
             // Update top summary counters
             document.getElementById('stat-events').textContent = eventsMap.size.toLocaleString();
@@ -680,10 +693,20 @@
             ageBandContainer.innerHTML = ageButtons
                 .map(btn => buildBtn('ageBand', btn.id, btn.label, state.filters.ageBand === btn.id))
                 .join('');
+
+            // 5. Week Filter Buttons
+            const weekContainer = document.getElementById('filter-week');
+            const weekButtons = [
+                { id: 'ALL', label: 'All Weeks' },
+                ...state.options.weeks.map(w => ({ id: w, label: w }))
+            ];
+            weekContainer.innerHTML = weekButtons
+                .map(btn => buildBtn('week', btn.id, btn.label, state.filters.week === btn.id))
+                .join('');
         }
 
         function recomputeStandings() {
-            const { gender, penGroup, ageBand, raceType, search } = state.filters;
+            const { gender, penGroup, ageBand, raceType, week, search } = state.filters;
             const searchLower = search.trim().toLowerCase();
 
             const ridersMap = new Map();
@@ -710,6 +733,11 @@
 
                 // 4. Race Type filter check
                 if (raceType !== 'ALL' && r.raceType !== raceType) {
+                    continue;
+                }
+
+                // 5. Week filter check
+                if (week !== 'ALL' && r.week !== week) {
                     continue;
                 }
 
@@ -1161,6 +1189,7 @@
                 state.filters.penGroup = 'ALL';
                 state.filters.ageBand = 'ALL';
                 state.filters.raceType = 'ALL';
+                state.filters.week = 'ALL';
                 state.filters.search = '';
                 state.sort.column = 'totalPoints';
                 state.sort.direction = 'desc';
