@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- PapaParse for robust fast CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <!-- Google Fonts: Fraunces (Retro Display), Work Sans (Body), Space Mono (Tabular Timing) -->
+    <!-- Google Fonts: Fraunces (Display), Work Sans (Body), Space Mono (Tabular Timing) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,28 +18,28 @@
             theme: {
                 extend: {
                     colors: {
-                        ochre: {
-                            DEFAULT: '#D9A036',
-                            light: '#E6B85C',
-                            dark: '#B5801F',
+                        pine: {
+                            DEFAULT: '#1C3322', // Deep Forest Pine (Dominant background)
+                            dark: '#122316',
+                            card: '#233E2B',
+                            border: '#2E5038',
+                            hover: '#2A4933'
                         },
-                        terracotta: {
-                            DEFAULT: '#A33B27',
-                            light: '#C24E38',
-                            dark: '#7D2B1B',
+                        rust: {
+                            DEFAULT: '#B84A22', // Tuscan Rust / Burnt Sienna (Primary accent)
+                            light: '#D25A30',
+                            dark: '#8C3516',
                         },
-                        denim: {
-                            DEFAULT: '#3B5266',
-                            light: '#526E87',
-                            dark: '#263745',
+                        chestnut: {
+                            DEFAULT: '#D49B35', // Golden Chestnut (Secondary accent/highlight)
+                            light: '#E0AD4D',
+                            dark: '#AD7B22',
                         },
-                        parchment: {
-                            DEFAULT: '#F7F3E8',
-                            dark: '#EBE4D1',
-                            card: '#FDFBF6',
-                            border: '#D5CBB4'
-                        },
-                        espresso: '#231F1D'
+                        mist: {
+                            DEFAULT: '#F2F0EB', // Mist White / Off-White (Text & high-contrast lines)
+                            muted: '#C4C2BC',
+                            dark: '#A6A49E'
+                        }
                     },
                     fontFamily: {
                         display: ['"Fraunces"', 'Georgia', 'serif'],
@@ -53,28 +53,28 @@
 
     <style>
         body {
-            background-color: #F7F3E8;
-            color: #231F1D;
+            background-color: #1C3322;
+            color: #F2F0EB;
         }
 
-        /* Subtle 4px heritage accent bar */
+        /* Lombardia Heritage Autumn Stripe */
         .heritage-stripe {
             height: 4px;
             background: linear-gradient(
                 90deg,
-                #D9A036 0%,
-                #D9A036 33.33%,
-                #A33B27 33.33%,
-                #A33B27 66.66%,
-                #3B5266 66.66%,
-                #3B5266 100%
+                #D49B35 0%,
+                #D49B35 33.33%,
+                #B84A22 33.33%,
+                #B84A22 66.66%,
+                #F2F0EB 66.66%,
+                #F2F0EB 100%
             );
         }
 
-        /* Minimalist Card Styling */
+        /* Atmospheric Card Styling */
         .clean-card {
-            background-color: #FDFBF6;
-            border: 1px solid #D5CBB4;
+            background-color: #233E2B;
+            border: 1px solid #2E5038;
         }
 
         /* Custom scrollbar for tables & modal */
@@ -83,45 +83,48 @@
             height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #EBE4D1;
+            background: #122316;
         }
         ::-webkit-scrollbar-thumb {
-            background: #3B5266;
+            background: #2E5038;
             border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #A33B27;
+            background: #B84A22;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-ochre selection:text-espresso">
+<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-chestnut selection:text-pine-dark">
 
-    <!-- Minimalist Header -->
-    <header class="bg-denim text-parchment">
+    <!-- Lombardia Atmospheric Header -->
+    <header class="bg-pine-dark text-mist border-b border-pine-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-parchment">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs font-mono uppercase tracking-widest text-chestnut">Go where the Pros go</span>
+                    </div>
+                    <h1 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-mist">
                         TPV Fall Classics
                     </h1>
-                    <p class="mt-1 text-parchment/75 text-sm">
+                    <p class="mt-1 text-mist-muted text-sm">
                         General Classification &amp; Event Standings
                     </p>
                 </div>
 
-                <!-- Minimalist Summary Counters -->
-                <div class="flex items-center gap-6 text-sm border-t md:border-t-0 pt-3 md:pt-0 border-parchment/15">
+                <!-- Autumn Summary Counters -->
+                <div class="flex items-center gap-6 text-sm border-t md:border-t-0 pt-3 md:pt-0 border-pine-border">
                     <div>
-                        <span class="text-parchment/60 text-xs uppercase font-mono block">Riders</span>
-                        <span id="stat-riders" class="font-mono text-lg font-bold text-ochre">—</span>
+                        <span class="text-mist-muted/70 text-xs uppercase font-mono block">Riders</span>
+                        <span id="stat-riders" class="font-mono text-lg font-bold text-chestnut">—</span>
                     </div>
                     <div>
-                        <span class="text-parchment/60 text-xs uppercase font-mono block">Events</span>
-                        <span id="stat-events" class="font-mono text-lg font-bold text-parchment">—</span>
+                        <span class="text-mist-muted/70 text-xs uppercase font-mono block">Events</span>
+                        <span id="stat-events" class="font-mono text-lg font-bold text-mist">—</span>
                     </div>
                     <div>
-                        <span class="text-parchment/60 text-xs uppercase font-mono block">Entries</span>
-                        <span id="stat-rows" class="font-mono text-lg font-bold text-parchment">—</span>
+                        <span class="text-mist-muted/70 text-xs uppercase font-mono block">Entries</span>
+                        <span id="stat-rows" class="font-mono text-lg font-bold text-mist">—</span>
                     </div>
                 </div>
             </div>
@@ -132,26 +135,26 @@
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
         <!-- Filter Console -->
-        <section aria-label="Classification Filters" class="clean-card rounded-lg p-4 sm:p-5 space-y-4 shadow-2xs">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-parchment-border">
+        <section aria-label="Classification Filters" class="clean-card rounded-lg p-4 sm:p-5 space-y-4 shadow-lg">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-pine-border">
                 <div class="relative w-full sm:w-80">
                     <input
                         type="text"
                         id="search-input"
                         placeholder="Search rider, team, or country..."
-                        class="w-full pl-9 pr-8 py-1.5 rounded-md bg-parchment border border-parchment-border focus:border-denim focus:outline-none text-sm text-espresso placeholder:text-espresso/45"
+                        class="w-full pl-9 pr-8 py-1.5 rounded-md bg-pine-dark border border-pine-border focus:border-chestnut focus:outline-none text-sm text-mist placeholder:text-mist-muted/50"
                     />
-                    <svg class="w-4 h-4 text-espresso/50 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-mist-muted/60 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
-                    <button id="clear-search-btn" title="Clear search" class="hidden absolute right-2.5 top-2 text-espresso/50 hover:text-terracotta">
+                    <button id="clear-search-btn" title="Clear search" class="hidden absolute right-2.5 top-2 text-mist-muted/60 hover:text-rust">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                 </div>
 
-                <button id="reset-filters-btn" class="self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-parchment-dark hover:bg-terracotta hover:text-parchment text-espresso font-mono text-xs font-medium transition">
+                <button id="reset-filters-btn" class="self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-pine-dark hover:bg-rust hover:text-mist text-mist-muted font-mono text-xs font-medium border border-pine-border hover:border-rust transition">
                     Reset Filters
                 </button>
             </div>
@@ -160,125 +163,125 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <!-- 1. Gender Filter -->
                 <div>
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Gender</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-chestnut mb-1.5">Gender</div>
                     <div id="filter-gender" class="flex flex-wrap gap-1"></div>
                 </div>
 
                 <!-- 2. Race Type Filter -->
                 <div>
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Race Type</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-chestnut mb-1.5">Race Type</div>
                     <div id="filter-racetype" class="flex flex-wrap gap-1"></div>
                 </div>
 
                 <!-- 3. Pen Group Filter -->
                 <div>
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Pen Group</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-chestnut mb-1.5">Pen Group</div>
                     <div id="filter-pengroup" class="flex flex-wrap gap-1"></div>
                 </div>
 
                 <!-- 4. AgeBand Filter -->
                 <div>
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Age Band</div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-chestnut mb-1.5">Age Band</div>
                     <div id="filter-ageband" class="flex flex-wrap gap-1 max-h-24 overflow-y-auto pr-1"></div>
                 </div>
             </div>
 
             <!-- 5. Week Filter (Full Width Row) -->
-            <div class="pt-3 border-t border-parchment-border">
-                <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Race Week</div>
+            <div class="pt-3 border-t border-pine-border">
+                <div class="text-[11px] font-mono uppercase tracking-wider text-chestnut mb-1.5">Race Week</div>
                 <div id="filter-week" class="flex flex-wrap gap-1.5"></div>
             </div>
         </section>
 
         <!-- Standings Table -->
-        <section aria-label="Rider General Classification" class="clean-card rounded-lg overflow-hidden shadow-2xs">
+        <section aria-label="Rider General Classification" class="clean-card rounded-lg overflow-hidden shadow-lg">
             <!-- Table Top Bar -->
-            <div class="bg-parchment-dark/60 px-4 sm:px-6 py-3 border-b border-parchment-border flex items-center justify-between">
-                <h2 class="font-display text-base sm:text-lg font-bold text-espresso">
+            <div class="bg-pine-dark px-4 sm:px-6 py-3 border-b border-pine-border flex items-center justify-between">
+                <h2 class="font-display text-base sm:text-lg font-bold text-mist">
                     Rider Standings
                 </h2>
-                <span id="showing-count-label" class="text-xs font-mono text-espresso/70">Showing 0 of 0 riders</span>
+                <span id="showing-count-label" class="text-xs font-mono text-mist-muted">Showing 0 of 0 riders</span>
             </div>
 
             <!-- Loading State -->
             <div id="loading-panel" class="py-16 px-4 text-center space-y-3">
-                <div class="inline-block w-8 h-8 border-2 border-denim border-t-terracotta rounded-full animate-spin"></div>
-                <div class="text-sm font-mono text-espresso/70">Loading race results...</div>
+                <div class="inline-block w-8 h-8 border-2 border-mist-muted border-t-chestnut rounded-full animate-spin"></div>
+                <div class="text-sm font-mono text-mist-muted">Loading race results...</div>
             </div>
 
             <!-- Standings Table Container -->
             <div id="table-wrapper" class="hidden overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-denim text-parchment font-mono text-xs uppercase tracking-wider select-none">
+                        <tr class="bg-pine-dark text-mist font-mono text-xs uppercase tracking-wider select-none border-b border-pine-border">
                             <th class="py-3 pl-4 pr-2 w-14 text-center">Pos</th>
-                            <th data-sort="name" class="sortable-th py-3 px-3 cursor-pointer hover:bg-denim-light transition">
+                            <th data-sort="name" class="sortable-th py-3 px-3 cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center gap-1">
                                     <span>Rider</span>
-                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
-                            <th data-sort="team" class="sortable-th py-3 px-3 hidden md:table-cell cursor-pointer hover:bg-denim-light transition">
+                            <th data-sort="team" class="sortable-th py-3 px-3 hidden md:table-cell cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center gap-1">
                                     <span>Team</span>
-                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
-                            <th data-sort="country" class="sortable-th py-3 px-3 text-center cursor-pointer hover:bg-denim-light transition">
+                            <th data-sort="country" class="sortable-th py-3 px-3 text-center cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center justify-center gap-1">
                                     <span>Country</span>
-                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
-                            <th data-sort="totalPoints" class="sortable-th py-3 px-3 text-right bg-terracotta hover:bg-terracotta-light text-parchment font-bold cursor-pointer transition">
+                            <th data-sort="totalPoints" class="sortable-th py-3 px-3 text-right bg-rust hover:bg-rust-light text-mist font-bold cursor-pointer transition">
                                 <div class="inline-flex items-center justify-end gap-1">
                                     <span>Total Pts</span>
                                     <span class="sort-indicator text-[10px]">▼</span>
                                 </div>
                             </th>
-                            <th data-sort="sprintPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-denim-light transition">
+                            <th data-sort="sprintPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center justify-end gap-1">
                                     <span>Sprint</span>
-                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
-                            <th data-sort="hillsPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-denim-light transition">
+                            <th data-sort="hillsPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center justify-end gap-1">
                                     <span>Hills</span>
-                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
-                            <th data-sort="climbPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-denim-light transition">
+                            <th data-sort="climbPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center justify-end gap-1">
                                     <span>Climb</span>
-                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
-                            <th data-sort="racesCount" class="sortable-th py-3 pl-2 pr-4 text-center w-20 cursor-pointer hover:bg-denim-light transition">
+                            <th data-sort="racesCount" class="sortable-th py-3 pl-2 pr-4 text-center w-20 cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center justify-center gap-1">
                                     <span>Races</span>
-                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
                         </tr>
                     </thead>
-                    <tbody id="riders-tbody" class="divide-y divide-parchment-border text-sm">
+                    <tbody id="riders-tbody" class="divide-y divide-pine-border text-sm">
                         <!-- Populated dynamically via JS -->
                     </tbody>
                 </table>
             </div>
 
             <!-- Pagination Footer -->
-            <div id="pagination-bar" class="hidden bg-parchment-dark/50 px-4 sm:px-6 py-3 border-t border-parchment-border flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div class="text-xs text-espresso/60">
+            <div id="pagination-bar" class="hidden bg-pine-dark px-4 sm:px-6 py-3 border-t border-pine-border flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="text-xs text-mist-muted">
                     Click any rider to view individual race results.
                 </div>
                 <div class="flex items-center gap-2">
-                    <button id="prev-page-btn" class="px-3 py-1 rounded bg-parchment-card border border-parchment-border text-espresso font-mono text-xs hover:border-denim disabled:opacity-40 disabled:pointer-events-none transition">
+                    <button id="prev-page-btn" class="px-3 py-1 rounded bg-pine border border-pine-border text-mist font-mono text-xs hover:border-chestnut hover:text-chestnut disabled:opacity-40 disabled:pointer-events-none transition">
                         ← Prev
                     </button>
-                    <span id="page-indicator" class="font-mono text-xs px-2 text-espresso">Page 1 of 1</span>
-                    <button id="next-page-btn" class="px-3 py-1 rounded bg-parchment-card border border-parchment-border text-espresso font-mono text-xs hover:border-denim disabled:opacity-40 disabled:pointer-events-none transition">
+                    <span id="page-indicator" class="font-mono text-xs px-2 text-mist-muted">Page 1 of 1</span>
+                    <button id="next-page-btn" class="px-3 py-1 rounded bg-pine border border-pine-border text-mist font-mono text-xs hover:border-chestnut hover:text-chestnut disabled:opacity-40 disabled:pointer-events-none transition">
                         Next →
                     </button>
                 </div>
@@ -287,26 +290,26 @@
     </main>
 
     <!-- Event Classification Modal -->
-    <div id="event-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-espresso/60 backdrop-blur-xs">
-        <div class="clean-card rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-xl">
+    <div id="event-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-pine-dark/80 backdrop-blur-xs">
+        <div class="clean-card rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
             
             <!-- Modal Header -->
-            <div class="bg-denim text-parchment px-5 py-4 flex items-start justify-between gap-4">
+            <div class="bg-pine-dark text-mist px-5 py-4 border-b border-pine-border flex items-start justify-between gap-4">
                 <div>
                     <div class="flex flex-wrap items-center gap-2 mb-1">
-                        <span id="modal-racetype-badge" class="bg-ochre text-espresso font-mono text-xs font-bold px-2 py-0.5 rounded-sm uppercase">
+                        <span id="modal-racetype-badge" class="bg-rust text-mist font-mono text-xs font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider">
                             Sprint
                         </span>
-                        <span id="modal-pengroup-badge" class="text-parchment/80 font-mono text-xs">
+                        <span id="modal-pengroup-badge" class="text-chestnut font-mono text-xs">
                             Pen Group
                         </span>
                     </div>
-                    <h3 id="modal-week-title" class="font-display text-xl sm:text-2xl font-bold text-parchment">
+                    <h3 id="modal-week-title" class="font-display text-xl sm:text-2xl font-bold text-mist">
                         Week Race Title
                     </h3>
                 </div>
 
-                <button id="close-modal-btn" class="p-1.5 rounded bg-parchment/10 hover:bg-parchment/20 text-parchment transition shrink-0" aria-label="Close modal">
+                <button id="close-modal-btn" class="p-1.5 rounded bg-pine-border/40 hover:bg-pine-border text-mist transition shrink-0" aria-label="Close modal">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
@@ -314,11 +317,11 @@
             </div>
 
             <!-- Modal Subbar -->
-            <div class="bg-parchment-dark px-5 py-2 border-b border-parchment-border flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                <span id="modal-finisher-count" class="text-espresso/80">0 Finishers</span>
+            <div class="bg-pine/80 px-5 py-2 border-b border-pine-border flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                <span id="modal-finisher-count" class="text-mist-muted">0 Finishers</span>
                 <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
-                    <input type="checkbox" id="modal-hide-bots" class="rounded border-denim text-terracotta focus:ring-0">
-                    <span class="text-espresso">Hide Bots</span>
+                    <input type="checkbox" id="modal-hide-bots" class="rounded border-pine-border text-rust focus:ring-0">
+                    <span class="text-mist">Hide Bots</span>
                 </label>
             </div>
 
@@ -326,7 +329,7 @@
             <div class="overflow-y-auto flex-grow">
                 <table class="w-full text-left border-collapse">
                     <thead class="sticky top-0 z-10">
-                        <tr class="bg-parchment-dark text-espresso font-mono text-xs uppercase border-b border-parchment-border">
+                        <tr class="bg-pine-dark text-mist-muted font-mono text-xs uppercase border-b border-pine-border">
                             <th class="py-2.5 pl-4 pr-2 w-14 text-center">Pos</th>
                             <th class="py-2.5 px-3">Rider Name</th>
                             <th class="py-2.5 px-3">Team</th>
@@ -336,41 +339,32 @@
                             <th class="py-2.5 pl-3 pr-5 text-right">Time / Gap</th>
                         </tr>
                     </thead>
-                    <tbody id="modal-results-tbody" class="divide-y divide-parchment-border text-sm">
+                    <tbody id="modal-results-tbody" class="divide-y divide-pine-border text-sm">
                         <!-- Dynamically populated with EventKey results -->
                     </tbody>
                 </table>
             </div>
 
             <!-- Modal Footer -->
-            <div class="bg-parchment-dark/60 px-5 py-2.5 border-t border-parchment-border flex items-center justify-end">
-                <button id="close-modal-footer-btn" class="px-4 py-1.5 rounded bg-denim text-parchment hover:bg-denim-dark font-mono text-xs font-medium transition">
+            <div class="bg-pine-dark px-5 py-2.5 border-t border-pine-border flex items-center justify-end">
+                <button id="close-modal-footer-btn" class="px-4 py-1.5 rounded bg-rust text-mist hover:bg-rust-light font-mono text-xs font-medium transition">
                     Close
                 </button>
             </div>
         </div>
     </div>
 
-    <footer class="mt-12 border-t border-parchment-border bg-parchment-dark/50 text-espresso/60">
+    <!-- Footer -->
+    <footer class="mt-12 border-t border-pine-border bg-pine-dark text-mist-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between text-xs font-mono">
-            <span>TPV Fall Classics</span>
-            <span>L'Eroica Heritage Series</span>
+            <span>Il Lombardia</span>
+            <span>The Race of the Falling Leaves</span>
         </div>
     </footer>
 
     <script>
         /**
          * TPV Fall Classics — Data Engine & Interactive UI
-         * Note on Duplicate Columns in CSV header:
-         * Header:
-         * [0] EventKey, [1] Pen, [2] Position, [3] Name, [4] Team, [5] Country,
-         * [6] Time, [7] DeltaTime, [8] Distance, [9] DeltaDistance,
-         * [10] Points (First - IGNORED), [11] Gender, [12] UID, [13] ARR, [14] ARRBand,
-         * [15] EventRating, [16] EventRatingBand, [17] AgeBand,
-         * [18] Pen Group (First - e.g. "Platinum 2"), [19] Week, [20] Type,
-         * [21] Points (Second - IMPORTANT!), [22] Elevation, [23] Pen Size,
-         * [24] Pen Group (Second - e.g. "Platinum"), [25] Total Rating,
-         * [26] Pen Rating, [27] Pen Range, [28] Race Type
          */
 
         const CSV_URLS = [
@@ -647,8 +641,8 @@
                     data-value="${escapeHtml(id)}"
                     class="px-2.5 py-1 rounded font-mono text-xs transition ${
                         active
-                            ? 'bg-denim text-parchment font-bold'
-                            : 'bg-parchment text-espresso/80 border border-parchment-border hover:border-denim'
+                            ? 'bg-rust text-mist font-bold shadow-sm'
+                            : 'bg-pine-dark text-mist-muted border border-pine-border hover:border-chestnut hover:text-mist'
                     }"
                 >${escapeHtml(label)}</button>
             `;
@@ -892,8 +886,8 @@
             if (slice.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="9" class="py-12 px-4 text-center text-espresso/70 font-mono">
-                            No riders match your current filter combination. Try clicking "Reset All Filters".
+                        <td colspan="9" class="py-12 px-4 text-center text-mist-muted font-mono">
+                            No riders match your current filter combination. Try clicking "Reset Filters".
                         </td>
                     </tr>
                 `;
@@ -912,20 +906,20 @@
                     <tr
                         data-rider-key="${escapeHtml(rider.riderKey)}"
                         class="rider-row cursor-pointer transition ${
-                            isExpanded ? 'bg-ochre/15' : 'hover:bg-parchment-dark/50'
+                            isExpanded ? 'bg-rust/20' : 'hover:bg-pine-hover/80'
                         }"
                     >
-                        <td class="py-3 pl-4 pr-2 text-center font-mono text-xs font-bold text-espresso/70">${rank}</td>
+                        <td class="py-3 pl-4 pr-2 text-center font-mono text-xs font-bold text-chestnut">${rank}</td>
                         <td class="py-3 px-3">
                             <div class="flex items-center gap-2">
-                                <svg class="w-3.5 h-3.5 text-terracotta transition-transform duration-150 shrink-0 ${isExpanded ? 'rotate-90' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-3.5 h-3.5 text-rust transition-transform duration-150 shrink-0 ${isExpanded ? 'rotate-90' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                                 </svg>
                                 <div>
-                                    <div class="font-semibold text-espresso">
+                                    <div class="font-semibold text-mist">
                                         ${escapeHtml(rider.name)}
                                     </div>
-                                    <div class="text-xs font-mono text-espresso/55 flex flex-wrap items-center gap-2 md:hidden">
+                                    <div class="text-xs font-mono text-mist-muted flex flex-wrap items-center gap-2 md:hidden">
                                         ${rider.team ? `<span>${escapeHtml(rider.team)}</span> •` : ''}
                                         <span>Sprint: ${formatPoints(rider.sprintPoints)}</span> •
                                         <span>Hills: ${formatPoints(rider.hillsPoints)}</span> •
@@ -934,31 +928,31 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="py-3 px-3 hidden md:table-cell text-espresso/75 text-xs">
-                            ${rider.team ? escapeHtml(rider.team) : '<span class="text-espresso/30">—</span>'}
+                        <td class="py-3 px-3 hidden md:table-cell text-mist-muted text-xs">
+                            ${rider.team ? escapeHtml(rider.team) : '<span class="text-mist-muted/30">—</span>'}
                         </td>
-                        <td class="py-3 px-3 text-center font-mono text-xs text-espresso/75">
+                        <td class="py-3 px-3 text-center font-mono text-xs text-mist-muted">
                             ${escapeHtml(rider.country || '—')}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono font-bold text-terracotta bg-terracotta/5">
+                        <td class="py-3 px-3 text-right font-mono font-bold text-chestnut bg-chestnut/10">
                             ${formatPoints(rider.totalPoints)}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.sprintPoints > 0 ? 'text-espresso' : 'text-espresso/35'}">
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.sprintPoints > 0 ? 'text-mist' : 'text-mist-muted/40'}">
                             ${formatPoints(rider.sprintPoints)}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.hillsPoints > 0 ? 'text-espresso' : 'text-espresso/35'}">
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.hillsPoints > 0 ? 'text-mist' : 'text-mist-muted/40'}">
                             ${formatPoints(rider.hillsPoints)}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.climbPoints > 0 ? 'text-espresso' : 'text-espresso/35'}">
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.climbPoints > 0 ? 'text-mist' : 'text-mist-muted/40'}">
                             ${formatPoints(rider.climbPoints)}
                         </td>
-                        <td class="py-3 pl-2 pr-4 text-center font-mono text-xs text-espresso/70">
+                        <td class="py-3 pl-2 pr-4 text-center font-mono text-xs text-mist-muted">
                             ${rider.races.length}
                         </td>
                     </tr>
                 `);
 
-                // Expanded Rider Detail Sub-Row (EventKey & Pen fields removed as requested)
+                // Expanded Rider Detail Sub-Row
                 if (isExpanded) {
                     const raceCardsHtml = rider.races.map(race => {
                         const timeDisplay = race.position === 1
@@ -969,24 +963,24 @@
                             <tr
                                 data-open-event="${escapeHtml(race.eventKey)}"
                                 data-rider-key="${escapeHtml(rider.riderKey)}"
-                                class="event-drill-row cursor-pointer bg-parchment-card hover:bg-ochre/15 transition border-b border-parchment-border last:border-b-0"
+                                class="event-drill-row cursor-pointer bg-pine/60 hover:bg-rust/25 transition border-b border-pine-border last:border-b-0"
                             >
-                                <td class="py-2 px-3 font-medium text-espresso">
+                                <td class="py-2 px-3 font-medium text-mist">
                                     ${escapeHtml(race.week)}
                                 </td>
-                                <td class="py-2 px-3 font-mono text-xs text-denim">
+                                <td class="py-2 px-3 font-mono text-xs text-chestnut">
                                     ${escapeHtml(race.raceType)}
                                 </td>
-                                <td class="py-2 px-3 font-mono text-xs text-center font-bold text-espresso">
+                                <td class="py-2 px-3 font-mono text-xs text-center font-bold text-mist">
                                     ${race.position}
                                 </td>
-                                <td class="py-2 px-3 font-mono text-xs font-bold text-right text-terracotta">
+                                <td class="py-2 px-3 font-mono text-xs font-bold text-right text-rust-light">
                                     ${formatPoints(race.points)}
                                 </td>
-                                <td class="py-2 px-3 font-mono text-xs text-right text-espresso/75">
+                                <td class="py-2 px-3 font-mono text-xs text-right text-mist-muted">
                                     ${escapeHtml(timeDisplay)}
                                 </td>
-                                <td class="py-2 px-3 text-right font-mono text-xs text-denim hover:underline">
+                                <td class="py-2 px-3 text-right font-mono text-xs text-chestnut hover:underline">
                                     View Race →
                                 </td>
                             </tr>
@@ -994,13 +988,13 @@
                     }).join('');
 
                     rowsHtml.push(`
-                        <tr class="bg-parchment-dark/40">
+                        <tr class="bg-pine-dark/60">
                             <td colspan="9" class="p-3 sm:p-4">
                                 <div class="clean-card rounded overflow-hidden">
                                     <div class="overflow-x-auto">
                                         <table class="w-full text-left border-collapse text-xs sm:text-sm">
                                             <thead>
-                                                <tr class="bg-parchment-dark text-espresso/70 font-mono text-[11px] uppercase border-b border-parchment-border">
+                                                <tr class="bg-pine-dark text-mist-muted font-mono text-[11px] uppercase border-b border-pine-border">
                                                     <th class="py-2 px-3">Week</th>
                                                     <th class="py-2 px-3">Race Type</th>
                                                     <th class="py-2 px-3 text-center">Position</th>
@@ -1064,39 +1058,39 @@
                 // Winner displays total time; subsequent positions display gap to winner
                 let timeHtml = '';
                 if (isWinner) {
-                    timeHtml = `<span class="font-bold text-espresso">${formatTotalTime(entry.time)}</span>`;
+                    timeHtml = `<span class="font-bold text-mist">${formatTotalTime(entry.time)}</span>`;
                 } else {
                     const gapSeconds = entry.deltaTime > 0
                         ? entry.deltaTime
                         : Math.max(0, entry.time - winnerTime);
-                    timeHtml = `<span class="text-terracotta font-medium">${formatGapTime(gapSeconds)}</span>`;
+                    timeHtml = `<span class="text-rust-light font-medium">${formatGapTime(gapSeconds)}</span>`;
                 }
 
                 return `
                     <tr class="${
                         isSelectedRider
-                            ? 'bg-ochre/25 font-semibold'
+                            ? 'bg-chestnut/30 font-semibold'
                             : entry.isBot
-                                ? 'text-espresso/50'
-                                : 'bg-parchment-card hover:bg-parchment-dark/40'
+                                ? 'text-mist-muted/40'
+                                : 'bg-pine-card hover:bg-pine-hover'
                     }">
-                        <td class="py-2 pl-4 pr-2 text-center font-mono text-xs font-bold">
+                        <td class="py-2 pl-4 pr-2 text-center font-mono text-xs font-bold text-chestnut">
                             ${entry.position}
                         </td>
                         <td class="py-2 px-3">
-                            <span class="text-espresso">${escapeHtml(entry.name)}</span>
-                            ${entry.country ? `<span class="font-mono text-[11px] text-espresso/50 ml-1">${escapeHtml(entry.country)}</span>` : ''}
+                            <span class="text-mist">${escapeHtml(entry.name)}</span>
+                            ${entry.country ? `<span class="font-mono text-[11px] text-mist-muted/60 ml-1">${escapeHtml(entry.country)}</span>` : ''}
                         </td>
-                        <td class="py-2 px-3 text-espresso/75 text-xs">
+                        <td class="py-2 px-3 text-mist-muted text-xs">
                             ${entry.team ? escapeHtml(entry.team) : '—'}
                         </td>
-                        <td class="py-2 px-3 text-center font-mono text-xs text-espresso/70">
+                        <td class="py-2 px-3 text-center font-mono text-xs text-mist-muted">
                             ${escapeHtml(entry.gender)}
                         </td>
-                        <td class="py-2 px-3 text-right font-mono text-xs text-espresso/80">
+                        <td class="py-2 px-3 text-right font-mono text-xs text-mist-muted">
                             ${entry.arr ? escapeHtml(entry.arr) : '—'}
                         </td>
-                        <td class="py-2 px-3 text-right font-mono text-xs font-bold text-espresso">
+                        <td class="py-2 px-3 text-right font-mono text-xs font-bold text-mist">
                             ${formatPoints(entry.points)}
                         </td>
                         <td class="py-2 pl-3 pr-5 text-right font-mono text-xs">
