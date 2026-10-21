@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPX Route Profile</title>
-    <!-- Switched from unpkg to cdnjs for reliable script loading -->
+    <!-- Tailwind CSS and React CDN Imports -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.development.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
     <style>
-        /* Define the Noto and Oswald/Roboto font stacks */
+        /* Import Oswald and Roboto Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
         
-        /* Apply fonts */
         .font-oswald {
             font-family: 'Oswald', sans-serif;
         }
@@ -21,21 +20,23 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        /* Set defaults for body elements */
         body {
             font-family: 'Roboto', sans-serif;
+            background-color: #1C3322;
+            color: #F2F0EB;
         }
         h1, h2, h3, h4 {
             font-family: 'Oswald', sans-serif;
         }
 
-        /* Print styles for road book export - Updated for new color scheme */
+        /* Print styles for road book export - Lombardia Theme */
         @media print {
             .print\:hidden {
               display: none !important;
             }
             body {
               background-color: white !important;
+              color: black !important;
             }
             .print\:text-black {
               color: black !important;
@@ -46,14 +47,12 @@
             .print\:border-black {
               border-color: black !important;
             }
-            /* Ensure text contrast for printing tables/inputs */
-            .bg-\[\#2c0c5c\], .bg-\[\#4a217c\] { /* New background colors */
+            .bg-\[\#1C3322\], .bg-\[\#25422D\], .bg-\[\#142418\] {
                 background-color: #f0f0f0 !important;
             }
             table, th, td {
                 color: black !important;
             }
-            /* Ensure climb colors/scores are visible */
             .print\:text-green-400, .print\:text-lime-400, .print\:text-yellow-400, .print\:text-amber-400, .print\:text-orange-400, .print\:text-red-400, .print\:text-red-500, .print\:text-red-600, .print\:text-red-700, .print\:text-red-800 {
                 color: black !important;
             }
@@ -104,18 +103,18 @@
           if (score >= 31) return '#ef4444'; // Red 500
           if (score >= 26) return '#f87171'; // Red 400
           if (score >= 21) return '#fb923c'; // Orange 400
-          if (score >= 16) return '#fbbf24'; // Amber 400
-          if (score >= 11) return '#facc15'; // Yellow 400
-          if (score >= 6) return '#a3e635';  // Lime 400
-          return '#4ade80'; // Green 400 (for 1-5)
+          if (score >= 16) return '#D49B35'; // Golden Chestnut
+          if (score >= 11) return '#eab308'; // Yellow 500
+          if (score >= 6) return '#84cc16';  // Lime 500
+          return '#4ade80'; // Green 400
         };
 
         const getGradientColor = (gradient) => {
             if (gradient >= 12) return '#991b1b'; // Dark Red
-            if (gradient >= 10) return '#dc2626'; // Red
-            if (gradient >= 8) return '#fb923c';  // Orange
-            if (gradient >= 5) return '#facc15';  // Yellow
-            if (gradient >= 3) return '#a3e635';  // Lime
+            if (gradient >= 10) return '#B84A22'; // Tuscan Rust
+            if (gradient >= 8) return '#d97706';  // Amber/Rust-Orange
+            if (gradient >= 5) return '#D49B35';  // Golden Chestnut
+            if (gradient >= 3) return '#84cc16';  // Lime
             return '#4ade80'; // Green
         };
 
@@ -125,8 +124,8 @@
             if (score >= 36) return 'text-red-300 print:text-red-600 bg-red-900/50';
             if (score >= 31) return 'text-red-300 print:text-red-500 bg-red-900/40';
             if (score >= 26) return 'text-red-300 print:text-red-400 bg-red-900/30';
-            if (score >= 21) return 'text-orange-300 print:text-orange-400 bg-orange-900/30';
-            if (score >= 16) return 'text-amber-300 print:text-amber-400 bg-amber-900/30';
+            if (score >= 21) return 'text-amber-300 print:text-orange-400 bg-amber-900/30';
+            if (score >= 16) return 'text-[#D49B35] print:text-amber-500 bg-[#D49B35]/20';
             if (score >= 11) return 'text-yellow-300 print:text-yellow-400 bg-yellow-900/30';
             if (score >= 6) return 'text-lime-300 print:text-lime-400 bg-lime-900/30';
             return 'text-green-400 print:text-green-300 bg-green-900/30';
@@ -184,13 +183,12 @@
             return 0;
         };
 
-        // --- NEW COMPONENT: Detailed Climb Modal ---
         const ClimbDetailModal = ({ climb, allPoints, onClose, units, unitLabels }) => {
             if (!climb) return null;
 
-            // 1. Calculate Segments for the Table (strictly the climb itself)
+            // 1. Calculate Segments for the Table
             const segments = useMemo(() => {
-                const targetLen = units === 'metric' ? 0.25 : 0.155; // 250m or ~0.15 miles
+                const targetLen = units === 'metric' ? 0.25 : 0.155; 
                 const optimalCount = Math.round(climb.lengthKm / targetLen);
                 const segmentCount = Math.max(10, Math.min(30, optimalCount));
 
@@ -221,21 +219,19 @@
                 return result;
             }, [climb, allPoints, units]);
 
-            // 2. Calculate Display Segments for the Chart (enforcing min 1.5km X-axis)
+            // 2. Calculate Display Segments for the Chart
             const { displaySegments, displayStart, displayRange } = useMemo(() => {
-                const minXRange = units === 'metric' ? 1.5 : 0.932; // 1.5km or ~0.932mi
+                const minXRange = units === 'metric' ? 1.5 : 0.932;
                 let dRange = Math.max(climb.lengthKm, minXRange);
                 let dStart = climb.startDist;
                 let dEnd = climb.startDist + dRange;
                 
                 const maxRouteDist = allPoints[allPoints.length-1]?.dist || dEnd;
                 
-                // Center the climb if the window is artificially expanded
                 if (climb.lengthKm < minXRange) {
                     const extra = minXRange - climb.lengthKm;
                     dStart = Math.max(0, climb.startDist - (extra / 2));
                     dEnd = dStart + minXRange;
-                    // Clamp to route boundaries
                     if (dEnd > maxRouteDist) {
                         dEnd = maxRouteDist;
                         dStart = Math.max(0, dEnd - minXRange);
@@ -243,7 +239,7 @@
                     dRange = dEnd - dStart;
                 }
                 
-                const targetLen = units === 'metric' ? 0.1 : 0.062; // High res for drawing
+                const targetLen = units === 'metric' ? 0.1 : 0.062;
                 const segmentCount = Math.max(20, Math.min(60, Math.round(dRange / targetLen)));
                 const segmentLength = dRange / segmentCount;
                 const result = [];
@@ -267,27 +263,23 @@
                 return { displaySegments: result, displayStart: dStart, displayRange: dRange };
             }, [climb, allPoints, units]);
 
-            // Chart Dimensions
             const width = 800;
             const height = 300;
             const padding = 40;
             const chartW = width - (padding*2);
             const chartH = height - (padding*2);
 
-            // Chart Scales with 10% Y-axis rule constraint
             const distMeters = units === 'metric' ? displayRange * 1000 : displayRange * 5280;
-            const minEleRangeLimit = distMeters * 0.10; // Y-axis must be at least 10% of X-axis
+            const minEleRangeLimit = distMeters * 0.10;
 
             const minEleActual = Math.min(...displaySegments.map(s => Math.min(s.startEle, s.endEle)));
             const maxEleActual = Math.max(...displaySegments.map(s => Math.max(s.startEle, s.endEle)));
             const actualEleRange = (maxEleActual - minEleActual) || 10;
             
-            // Add slight padding to actual elevations
             const paddedMinEle = minEleActual - (actualEleRange * 0.1);
             const paddedMaxEle = maxEleActual + (actualEleRange * 0.1);
             const paddedRange = paddedMaxEle - paddedMinEle;
             
-            // Apply the 10% minimum rule
             const finalEleRange = Math.max(paddedRange, minEleRangeLimit);
             
             const eleCenter = (paddedMinEle + paddedMaxEle) / 2;
@@ -298,7 +290,6 @@
             const getX = (dist) => padding + ((dist - displayStart) / displayRange) * chartW;
             const getY = (ele) => (height - padding) - ((ele - minEle) / eleRange) * chartH;
 
-            // Build SVG Paths from displaySegments
             const segmentPaths = displaySegments.map((seg, i) => {
                 const x1 = getX(seg.startDist);
                 const x2 = getX(seg.endDist);
@@ -310,7 +301,6 @@
                 return { d, color: getGradientColor(seg.gradient), ...seg };
             });
             
-            // Build Line for top
             const linePath = displaySegments.map((seg, i) => {
                  const x1 = getX(seg.startDist);
                  const x2 = getX(seg.endDist);
@@ -319,38 +309,36 @@
                  return `${i===0 ? 'M' : 'L'} ${x1} ${y1} L ${x2} ${y2}`;
             }).join(' ');
 
-            // Calculate label spacing to prevent overlapping when many context segments exist
             const climbDisplaySegments = displaySegments.filter(s => s.isClimb);
             const labelSkip = Math.max(1, Math.ceil(climbDisplaySegments.length / 15));
 
             return (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
-                    <div className="bg-[#2c0c5c] border border-[#6c3f9c] rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col" onClick={e => e.stopPropagation()}>
+                    <div className="bg-[#1C3322] border border-[#B84A22]/40 rounded-sm shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col text-[#F2F0EB]" onClick={e => e.stopPropagation()}>
                         
                         {/* Header */}
-                        <div className="flex justify-between items-center p-6 border-b border-[#6c3f9c] bg-[#4a217c]">
+                        <div className="flex justify-between items-center p-6 border-b border-[#B84A22]/30 bg-[#25422D]">
                             <div>
-                                <h2 className="text-2xl font-bold font-oswald text-white uppercase tracking-wide flex items-center gap-3">
-                                    <span className="bg-[#00FFFF] text-black px-2 py-0.5 rounded text-lg">#{climb.id}</span>
-                                    {climb.name || ''}
+                                <h2 className="text-2xl font-bold font-oswald text-[#F2F0EB] uppercase tracking-wide flex items-center gap-3">
+                                    <span className="bg-[#B84A22] text-[#F2F0EB] px-2.5 py-0.5 rounded-sm text-lg">#{climb.id}</span>
+                                    {climb.name || 'Climb Analysis'}
                                 </h2>
                                 <div className="text-neutral-300 text-sm mt-1 flex gap-4">
-                                    <span>Length: <strong className="text-white">{climb.lengthKm.toFixed(2)} {unitLabels.dist}</strong></span>
-                                    <span>Avg Grade: <strong className="text-white">{climb.gradientAvg.toFixed(1)}%</strong></span>
-                                    <span>Gain: <strong className="text-white">{climb.gain.toFixed(0)} {unitLabels.alt}</strong></span>
+                                    <span>Length: <strong className="text-[#D49B35]">{climb.lengthKm.toFixed(2)} {unitLabels.dist}</strong></span>
+                                    <span>Avg Grade: <strong className="text-[#D49B35]">{climb.gradientAvg.toFixed(1)}%</strong></span>
+                                    <span>Gain: <strong className="text-[#D49B35]">{climb.gain.toFixed(0)} {unitLabels.alt}</strong></span>
                                 </div>
                             </div>
-                            <button onClick={onClose} className="p-2 hover:bg-[#6c3f9c] rounded-full transition-colors text-white">
+                            <button onClick={onClose} className="p-2 hover:bg-[#B84A22]/20 rounded-full transition-colors text-[#F2F0EB]">
                                 <X className="w-6 h-6" />
                             </button>
                         </div>
 
                         {/* Content */}
                         <div className="p-6">
-                            <div className="bg-[#1a053a] rounded border border-[#6c3f9c] p-4 mb-6 relative">
-                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider flex justify-between items-center">
+                            <div className="bg-[#142418] rounded-sm border border-[#25422D] p-4 mb-6 relative">
+                                <h3 className="text-[#D49B35] font-oswald uppercase text-sm mb-4 tracking-wider flex justify-between items-center">
                                     Visual Profile
-                                
                                 </h3>
                                 
                                 <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
@@ -360,8 +348,8 @@
                                         const val = minEle + (ratio * eleRange);
                                         return (
                                             <g key={ratio}>
-                                                <line x1={padding} y1={y} x2={width-padding} y2={y} stroke="#6c3f9c" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.5" />
-                                                <text x={padding-5} y={y} fill="#ccc" fontSize="10" textAnchor="end" dy="3" fontFamily="Roboto">{Math.round(val)}</text>
+                                                <line x1={padding} y1={y} x2={width-padding} y2={y} stroke="#25422D" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.8" />
+                                                <text x={padding-5} y={y} fill="#F2F0EB" opacity="0.7" fontSize="10" textAnchor="end" dy="3" fontFamily="Roboto">{Math.round(val)}</text>
                                             </g>
                                         )
                                     })}
@@ -374,14 +362,14 @@
                                         
                                         return (
                                             <g key={i}>
-                                                <path d={seg.d} fill={isClimb ? seg.color : '#6c3f9c'} opacity={isClimb ? "0.6" : "0.15"} stroke="none" />
+                                                <path d={seg.d} fill={isClimb ? seg.color : '#25422D'} opacity={isClimb ? "0.75" : "0.2"} stroke="none" />
                                                 {/* Gradient Text */}
                                                 {shouldLabel && (
                                                     <text 
                                                         x={(getX(seg.startDist) + getX(seg.endDist)) / 2} 
                                                         y={(getY(seg.endEle)) - 10} 
                                                         textAnchor="middle" 
-                                                        fill="#fff" 
+                                                        fill="#F2F0EB" 
                                                         fontSize="10" 
                                                         fontWeight="bold"
                                                         className="drop-shadow-md"
@@ -394,34 +382,34 @@
                                     })}
                                     
                                     {/* Line Top */}
-                                    <path d={linePath} fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d={linePath} fill="none" stroke="#F2F0EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 
-                                    {/* Context Markers (drawn if context is present) */}
+                                    {/* Context Markers */}
                                     {climb.startDist - displayStart > 0.05 && (
                                         <g>
-                                            <line x1={getX(climb.startDist)} y1={padding} x2={getX(climb.startDist)} y2={height-padding} stroke="#00FFFF" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
-                                            <text x={getX(climb.startDist)} y={padding - 5} fill="#00FFFF" fontSize="9" textAnchor="middle" fontFamily="Oswald">START</text>
+                                            <line x1={getX(climb.startDist)} y1={padding} x2={getX(climb.startDist)} y2={height-padding} stroke="#D49B35" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
+                                            <text x={getX(climb.startDist)} y={padding - 5} fill="#D49B35" fontSize="9" textAnchor="middle" fontFamily="Oswald">START</text>
                                         </g>
                                     )}
                                     {(displayStart + displayRange) - climb.endDist > 0.05 && (
                                         <g>
-                                            <line x1={getX(climb.endDist)} y1={padding} x2={getX(climb.endDist)} y2={height-padding} stroke="#00FFFF" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
-                                            <text x={getX(climb.endDist)} y={padding - 5} fill="#00FFFF" fontSize="9" textAnchor="middle" fontFamily="Oswald">END</text>
+                                            <line x1={getX(climb.endDist)} y1={padding} x2={getX(climb.endDist)} y2={height-padding} stroke="#D49B35" strokeWidth="1" strokeDasharray="4 4" opacity="0.8" />
+                                            <text x={getX(climb.endDist)} y={padding - 5} fill="#D49B35" fontSize="9" textAnchor="middle" fontFamily="Oswald">END</text>
                                         </g>
                                     )}
 
                                     {/* X Axis */}
-                                    <line x1={padding} y1={height-padding} x2={width-padding} y2={height-padding} stroke="#6c3f9c" strokeWidth="1" />
-                                    <text x={padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="start">{displayStart.toFixed(1)}</text>
-                                    <text x={width-padding} y={height-15} fill="#ccc" fontSize="10" textAnchor="end">{(displayStart + displayRange).toFixed(1)} {unitLabels.dist}</text>
+                                    <line x1={padding} y1={height-padding} x2={width-padding} y2={height-padding} stroke="#25422D" strokeWidth="1" />
+                                    <text x={padding} y={height-15} fill="#F2F0EB" opacity="0.7" fontSize="10" textAnchor="start">{displayStart.toFixed(1)}</text>
+                                    <text x={width-padding} y={height-15} fill="#F2F0EB" opacity="0.7" fontSize="10" textAnchor="end">{(displayStart + displayRange).toFixed(1)} {unitLabels.dist}</text>
                                 </svg>
                             </div>
 
-                            {/* Detailed Table (strictly bound to the climb) */}
+                            {/* Detailed Table */}
                             <div className="overflow-x-auto">
-                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm mb-4 tracking-wider mt-2">Climb Segment Breakdown ({segments.length} splits)</h3>
+                                <h3 className="text-[#D49B35] font-oswald uppercase text-sm mb-4 tracking-wider mt-2">Climb Segment Breakdown ({segments.length} splits)</h3>
                                 <table className="w-full text-sm text-left">
-                                    <thead className="bg-[#4a217c] text-neutral-300 font-oswald uppercase text-xs">
+                                    <thead className="bg-[#25422D] text-neutral-300 font-oswald uppercase text-xs">
                                         <tr>
                                             <th className="px-4 py-2">Segment</th>
                                             <th className="px-4 py-2">Start ({unitLabels.dist})</th>
@@ -430,9 +418,9 @@
                                             <th className="px-4 py-2">Visual</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="text-white">
+                                    <tbody className="text-[#F2F0EB]">
                                         {segments.map((seg, i) => (
-                                            <tr key={i} className="border-b border-[#6c3f9c] last:border-0 hover:bg-[#6c3f9c]/30">
+                                            <tr key={i} className="border-b border-[#25422D] last:border-0 hover:bg-[#25422D]/50">
                                                 <td className="px-4 py-2 font-bold">{i+1}</td>
                                                 <td className="px-4 py-2 text-neutral-400">{seg.startDist.toFixed(2)}</td>
                                                 <td className="px-4 py-2 text-neutral-400">{seg.endDist.toFixed(2)}</td>
@@ -440,7 +428,7 @@
                                                     {seg.gradient.toFixed(1)}%
                                                 </td>
                                                 <td className="px-4 py-2">
-                                                    <div className="w-full h-2 bg-[#1a053a] rounded-full overflow-hidden">
+                                                    <div className="w-full h-2 bg-[#142418] rounded-full overflow-hidden">
                                                         <div 
                                                             className="h-full rounded-full" 
                                                             style={{ 
@@ -462,22 +450,18 @@
             );
         };
 
-        // --- NEW COMPONENT: Final Segment Modal (with Map) ---
         const FinalSegmentModal = ({ points, totalDistance, onClose, units, unitLabels }) => {
             const distanceToAnalyze = units === 'metric' ? 5 : 3.1;
             const startCutoff = Math.max(0, totalDistance - distanceToAnalyze);
             
-            // Filter points
             const segmentPoints = useMemo(() => {
                 return points.filter(p => p.dist >= startCutoff);
             }, [points, startCutoff]);
             
-            // Calc stats
             const stats = useMemo(() => {
                  if (segmentPoints.length < 2) return { gain: 0, gradientAvg: 0, maxGradient: 0, startEle: 0, endEle: 0, length: 0 };
                  const startEle = segmentPoints[0].ele;
                  const endEle = segmentPoints[segmentPoints.length-1].ele;
-                 const gain = Math.max(0, endEle - startEle); // Net gain or actual climbing? Simplified to net for now, or sum
                  
                  let totalClimb = 0;
                  let maxGrad = -999;
@@ -489,9 +473,8 @@
                      const dD = (p2.dist - p1.dist);
                      if (dH > 0) totalClimb += dH;
                      
-                     // Grad
                      const distMeters = units === 'metric' ? dD * 1000 : dD * 5280;
-                     if(distMeters > 5) { // avoid tiny divs
+                     if(distMeters > 5) {
                         const g = (dH / distMeters) * 100;
                         if(g > maxGrad) maxGrad = g;
                      }
@@ -517,10 +500,7 @@
                
                if(minLat === 0 && maxLat === 0 && minLon === 0 && maxLon === 0) return <div className="text-center text-neutral-500 py-10">Map coordinates missing</div>;
 
-               // Aspect correction
                const avgLat = (minLat + maxLat) / 2;
-               // Heuristic: If lat > 90 (impossible), assume data is in meters (game coordinates) and don't curve
-               // Or if min/max lat are basically 0.
                const isMeters = Math.abs(avgLat) > 90 || (Math.abs(minLat) < 0.001 && Math.abs(maxLat) < 0.001); 
                const correction = isMeters ? 1 : Math.cos(avgLat * Math.PI / 180);
                
@@ -533,59 +513,49 @@
                
                if (dx === 0 && dy === 0) return <div className="text-center text-neutral-500 py-10">Static point</div>;
                
-               // Scale to fit
                const scale = Math.min((width - 2*padding) / dx, (height - 2*padding) / dy) || 1;
                
                const getX = (lon) => padding + (lon - minLon) * correction * scale;
-               const getY = (lat) => (height - padding) - (lat - minLat) * scale; // Invert Y for standard coord systems (lat goes UP)
+               const getY = (lat) => (height - padding) - (lat - minLat) * scale;
                
                const pathD = points.map((p, i) => `${i===0?'M':'L'} ${getX(p.lon)} ${getY(p.lat)}`).join(' ');
                
-               // Finish Marker
                const lastP = points[points.length-1];
                const finishX = getX(lastP.lon);
                const finishY = getY(lastP.lat);
                
-               // Start Marker
                const startP = points[0];
                const startX = getX(startP.lon);
                const startY = getY(startP.lat);
 
                return (
-                   <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full bg-[#1a053a] border border-[#6c3f9c] rounded">
-                       {/* Grid */}
+                   <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full bg-[#142418] border border-[#25422D] rounded-sm">
                        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                           <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6c3f9c" strokeWidth="0.5" opacity="0.2"/>
+                           <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#25422D" strokeWidth="0.5" opacity="0.4"/>
                        </pattern>
                        <rect width="100%" height="100%" fill="url(#grid)" />
                        
-                       {/* Route Line */}
-                       <path d={pathD} fill="none" stroke="#00FFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-lg" />
+                       <path d={pathD} fill="none" stroke="#D49B35" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-lg" />
                        
-                       {/* Start Dot */}
                        <circle cx={startX} cy={startY} r="4" fill="#4ade80" stroke="white" strokeWidth="2" />
                        
-                       {/* Finish Flag */}
                        <g transform={`translate(${finishX-12}, ${finishY-24})`}>
-                          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="#facc15" stroke="white" strokeWidth="1"/>
+                          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="#B84A22" stroke="white" strokeWidth="1"/>
                           <line x1="4" x2="4" y1="24" y2="3" stroke="white" strokeWidth="2" />
                        </g>
                        
                        <text x={startX} y={startY+20} fill="#4ade80" fontSize="12" textAnchor="middle" fontWeight="bold">5KM TO GO</text>
-                       <text x={finishX} y={finishY+15} fill="#facc15" fontSize="12" textAnchor="middle" fontWeight="bold">FINISH</text>
+                       <text x={finishX} y={finishY+15} fill="#D49B35" fontSize="12" textAnchor="middle" fontWeight="bold">FINISH</text>
                    </svg>
                );
             }
 
-            // --- PROFILE VIEW (Updated with Gradients) ---
             const ProfileView = () => {
                 const chartH = 200;
                 const chartW = 600;
                 const pPad = 30;
 
-                // 1. Calculate Segments for coloring
-                // We want high resolution for the final bit, let's say 100m segments
-                const segLen = units === 'metric' ? 0.1 : 0.062; // ~100m
+                const segLen = units === 'metric' ? 0.1 : 0.062;
                 const totalLen = stats.length; 
                 const startD = segmentPoints[0].dist;
                 
@@ -596,17 +566,14 @@
                 const maxEle = Math.max(...segmentPoints.map(p => p.ele));
                 const eRange = Math.max(150, maxEle - minEle);   
                 
-                // Helper for scaling
                 const getX = (d) => pPad + ((d - startD) / totalLen) * (chartW - 2*pPad);
                 const getY = (e) => (chartH - pPad) - ((e - minEle) / eRange) * (chartH - 2*pPad);
 
                 for(let i=0; i<numSegs; i++) {
                     const sDist = startD + (i * segLen);
                     let eDist = startD + ((i+1) * segLen);
-                    // Clamp end distance
                     if(eDist > segmentPoints[segmentPoints.length-1].dist) eDist = segmentPoints[segmentPoints.length-1].dist;
                     
-                    // Use global points for accurate interpolation
                     const sEle = getElevationAt(sDist, points); 
                     const eEle = getElevationAt(eDist, points);
                     
@@ -626,13 +593,11 @@
                 
                 return (
                     <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full h-full">
-                        {/* Grid/Axes */}
-                        <text x={pPad} y={chartH-5} fill="#aaa" fontSize="17">{startD.toFixed(0)}k</text>
-                        <text x={chartW-pPad} y={chartH-5} fill="#aaa" fontSize="17" textAnchor="end">{segmentPoints[segmentPoints.length-1].dist.toFixed(0)}k</text>
-                        <text x={pPad-30} y={pPad} fill="#aaa" fontSize="14">{Math.round(maxEle)}m</text>
-                        <text x={pPad-30} y={chartH-pPad} fill="#aaa" fontSize="14">{Math.round(minEle)}m</text>
+                        <text x={pPad} y={chartH-5} fill="#F2F0EB" opacity="0.6" fontSize="17">{startD.toFixed(0)}k</text>
+                        <text x={chartW-pPad} y={chartH-5} fill="#F2F0EB" opacity="0.6" fontSize="17" textAnchor="end">{segmentPoints[segmentPoints.length-1].dist.toFixed(0)}k</text>
+                        <text x={pPad-30} y={pPad} fill="#F2F0EB" opacity="0.6" fontSize="14">{Math.round(maxEle)}m</text>
+                        <text x={pPad-30} y={chartH-pPad} fill="#F2F0EB" opacity="0.6" fontSize="14">{Math.round(minEle)}m</text>
 
-                        {/* Render Segments */}
                         {segments.map((seg, i) => (
                             <g key={i}>
                                 <path d={seg.d} fill={seg.color} stroke="none" opacity="0.6" />
@@ -645,16 +610,16 @@
 
             return (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
-                    <div className="bg-[#2c0c5c] border border-[#6c3f9c] rounded-lg shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-y-auto flex flex-col" onClick={e => e.stopPropagation()}>
+                    <div className="bg-[#1C3322] border border-[#B84A22]/40 rounded-sm shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-y-auto flex flex-col text-[#F2F0EB]" onClick={e => e.stopPropagation()}>
                         
-                        <div className="flex justify-between items-center p-6 border-b border-[#6c3f9c] bg-[#4a217c]">
+                        <div className="flex justify-between items-center p-6 border-b border-[#B84A22]/30 bg-[#25422D]">
                             <div>
-                                <h2 className="text-2xl font-bold font-oswald text-white uppercase tracking-wide flex items-center gap-3">
-                                    <span className="bg-[#facc15] text-black px-2 py-0.5 rounded text-lg">FINAL {distanceToAnalyze} {unitLabels.dist}</span>
+                                <h2 className="text-2xl font-bold font-oswald text-[#F2F0EB] uppercase tracking-wide flex items-center gap-3">
+                                    <span className="bg-[#B84A22] text-[#F2F0EB] px-2.5 py-0.5 rounded-sm text-lg">FINAL {distanceToAnalyze} {unitLabels.dist}</span>
                                     RUN-IN ANALYSIS
                                 </h2>
                             </div>
-                            <button onClick={onClose} className="p-2 hover:bg-[#6c3f9c] rounded-full transition-colors text-white">
+                            <button onClick={onClose} className="p-2 hover:bg-[#B84A22]/20 rounded-full transition-colors text-[#F2F0EB]">
                                 <X className="w-6 h-6" />
                             </button>
                         </div>
@@ -662,8 +627,8 @@
                         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Left Column: Map */}
                             <div className="flex flex-col gap-4">
-                                <h3 className="text-[#00FFFF] font-oswald uppercase text-sm tracking-wider">Overhead Technical Path</h3>
-                                <div className="h-64 md:h-80 w-full bg-black/20 rounded">
+                                <h3 className="text-[#D49B35] font-oswald uppercase text-sm tracking-wider">Overhead Technical Path</h3>
+                                <div className="h-64 md:h-80 w-full bg-[#142418] rounded-sm border border-[#25422D]">
                                     <MapView points={segmentPoints} />
                                 </div>
                             </div>
@@ -671,27 +636,27 @@
                             {/* Right Column: Stats & Profile */}
                             <div className="flex flex-col gap-6">
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                    <div className="bg-[#142418] p-4 rounded-sm border border-[#25422D]">
                                         <p className="text-neutral-400 text-xs uppercase">Avg Gradient</p>
-                                        <p className={`text-2xl font-bold font-oswald ${stats.gradientAvg > 0 ? 'text-[#facc15]' : 'text-[#4ade80]'}`}>{stats.gradientAvg.toFixed(1)}%</p>
+                                        <p className={`text-2xl font-bold font-oswald ${stats.gradientAvg > 0 ? 'text-[#D49B35]' : 'text-[#4ade80]'}`}>{stats.gradientAvg.toFixed(1)}%</p>
                                     </div>
-                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                    <div className="bg-[#142418] p-4 rounded-sm border border-[#25422D]">
                                         <p className="text-neutral-400 text-xs uppercase">Max Gradient</p>
-                                        <p className="text-2xl font-bold font-oswald text-white">{stats.maxGradient.toFixed(1)}%</p>
+                                        <p className="text-2xl font-bold font-oswald text-[#F2F0EB]">{stats.maxGradient.toFixed(1)}%</p>
                                     </div>
-                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                    <div className="bg-[#142418] p-4 rounded-sm border border-[#25422D]">
                                         <p className="text-neutral-400 text-xs uppercase">Net Elevation</p>
-                                        <p className="text-2xl font-bold font-oswald text-white">{Math.round(stats.endEle - stats.startEle)} {unitLabels.alt}</p>
+                                        <p className="text-2xl font-bold font-oswald text-[#F2F0EB]">{Math.round(stats.endEle - stats.startEle)} {unitLabels.alt}</p>
                                     </div>
-                                    <div className="bg-[#1a053a] p-4 rounded border border-[#6c3f9c]">
+                                    <div className="bg-[#142418] p-4 rounded-sm border border-[#25422D]">
                                         <p className="text-neutral-400 text-xs uppercase">Total Climbing</p>
-                                        <p className="text-2xl font-bold font-oswald text-white">{Math.round(stats.gain)} {unitLabels.alt}</p>
+                                        <p className="text-2xl font-bold font-oswald text-[#F2F0EB]">{Math.round(stats.gain)} {unitLabels.alt}</p>
                                     </div>
                                 </div>
 
                                 <div>
-                                     <h3 className="text-[#00FFFF] font-oswald uppercase text-sm tracking-wider mb-2">Elevation Profile</h3>
-                                     <div className="h-40 w-full bg-[#1a053a] border border-[#6c3f9c] rounded p-2">
+                                     <h3 className="text-[#D49B35] font-oswald uppercase text-sm tracking-wider mb-2">Elevation Profile</h3>
+                                     <div className="h-40 w-full bg-[#142418] border border-[#25422D] rounded-sm p-2">
                                          <ProfileView />
                                      </div>
                                 </div>
@@ -703,35 +668,27 @@
             );
         };
 
-
         const App = () => {
           const [dragActive, setDragActive] = useState(false);
           const [fileData, setFileData] = useState(null);
           
-          // Core source data (loaded from file)
           const [baseData, setBaseData] = useState(null);
           
-          // Target Distance determines the analysis length. Stored internally in KM.
           const [targetDistance, setTargetDistance] = useState(0); 
           const [minScoreThreshold, setMinScoreThreshold] = useState(2.0);
 
-          const [units, setUnits] = useState('metric'); // 'metric' or 'imperial'
+          const [units, setUnits] = useState('metric');
           const [isProcessing, setIsProcessing] = useState(false);
           const [fileName, setFileName] = useState(null); 
-          // --- CLIMB NAME VISIBILITY ---
           const [showClimbName, setShowClimbName] = useState(false);
-          // --- OUT AND BACK TOGGLE ---
           const [isOutAndBack, setIsOutAndBack] = useState(false);
-          // --- MODAL STATES ---
           const [selectedClimb, setSelectedClimb] = useState(null);
           const [showFinalAnalysis, setShowFinalAnalysis] = useState(false);
 
           const fileInputRef = useRef(null);
 
-          // --- PRESET ROUTES STATE ---
           const [presetRoutes, setPresetRoutes] = useState([]);
 
-          // --- FETCH GITHUB ROUTES ON LOAD ---
           useEffect(() => {
               const fetchRoutes = async () => {
                 try {
@@ -739,42 +696,35 @@
                   if (!response.ok) throw new Error('Failed to load routes from GitHub');
                   const data = await response.json();
                   
-                  // Filter and map the files
                   const routes = data
                     .filter(item => item.name.endsWith('.json') || item.name.endsWith('.gpx'))
                     .map(item => ({
                       name: item.name.replace(/\.(json|gpx)$/i, '').replace(/%20/g, ' '), 
-                      url: item.download_url // Uses the raw download URL
+                      url: item.download_url
                     }));
                     
                   setPresetRoutes(routes);
                 } catch (error) {
                   console.error("Error loading preset routes:", error);
-                  // Optional: handle error state visually if needed
                 }
               };
               
               fetchRoutes();
           }, []);
 
-          // Unit Conversion Factors
           const KM_TO_MILES = 0.621371;
           const M_TO_FEET = 3.28084;
 
           const unitLabels = units === 'metric' ? { dist: 'km', alt: 'm' } : { dist: 'mi', alt: 'ft' };
 
-          // Display Data derivation
           const displayData = useMemo(() => {
             if (!fileData) return null;
             
-            // If metric, return original data
             if (units === 'metric') return fileData;
 
-            // Helper conversion functions
             const toMiles = (km) => km * KM_TO_MILES;
             const toFeet = (m) => m * M_TO_FEET;
 
-            // Deep clone and convert
             return {
                 ...fileData,
                 totalDistance: toMiles(fileData.totalDistance),
@@ -806,25 +756,17 @@
           }, [fileData, units]);
 
 
-          // MAIN GENERATION LOGIC: Generates route based on targetDistance
           useEffect(() => {
             if (!baseData || targetDistance <= 0) return;
 
-            // PREPARATION: Define the "Single Loop" Unit
-            // If OutAndBack is true, the "Unit" is (Base + Mirror).
-            // If OutAndBack is false, the "Unit" is (Lap) [plus Leadin if composite].
-            
             let loopPoints = [];
             let loopDistance = 0;
             let introPoints = [];
             let introDistance = 0;
 
             if (isOutAndBack) {
-                // 1. Flatten original base data into one linear sequence for the "Out" leg
                 let outPoints = [];
                 if (baseData.type === 'composite') {
-                   // For Out-And-Back on composite, we treat the whole thing as one big route
-                   // We must offset the lap points to follow the leadin
                    const offsetLap = baseData.lap.points.map(p => ({...p, dist: p.dist + baseData.leadin.distance}));
                    outPoints = [...baseData.leadin.points, ...offsetLap];
                 } else {
@@ -832,26 +774,19 @@
                 }
                 const outDist = baseData.distance;
 
-                // 2. Create Mirror (Return Leg)
                 const reversed = [...outPoints].reverse();
-                // Avoid double point at turnaround by slicing first point of return
                 const returnLeg = reversed.slice(1).map(p => ({
                     ...p,
-                    // Distance math: Total Out + (Total Out - Point Dist)
                     dist: outDist + (outDist - p.dist)
                 }));
 
                 loopPoints = [...outPoints, ...returnLeg];
-                // Recalculate exact total distance from the points to be precise
                 loopDistance = loopPoints[loopPoints.length-1].dist;
                 
-                // In Out-And-Back mode, we treat the whole thing as the loop unit.
-                // We do NOT have a separate "leadin" concept for this mode usually.
                 introPoints = [];
                 introDistance = 0;
 
             } else {
-                // Standard Modes
                 if (baseData.type === 'composite') {
                     introPoints = baseData.leadin.points;
                     introDistance = baseData.leadin.distance;
@@ -863,16 +798,12 @@
                 }
             }
 
-
-            // GENERATION LOOP
             let fullPoints = [];
             let currentDistOffset = 0;
 
-            // Helper to slice and append points
             const appendSegment = (segmentPoints, segmentLength) => {
                 const remainingNeeded = targetDistance - currentDistOffset;
                 
-                // If we need more distance than this segment offers, add the whole thing
                 if (remainingNeeded >= segmentLength - 0.001) { 
                     const offsetPoints = segmentPoints.map(p => ({
                         ...p,
@@ -880,9 +811,8 @@
                     }));
                     fullPoints = fullPoints.concat(offsetPoints);
                     currentDistOffset += segmentLength;
-                    return true; // Continue looping
+                    return true;
                 } else {
-                    // We need a partial segment
                     const partialPoints = segmentPoints.filter(p => p.dist <= remainingNeeded);
                     const offsetPoints = partialPoints.map(p => ({
                         ...p,
@@ -890,27 +820,23 @@
                     }));
                     fullPoints = fullPoints.concat(offsetPoints);
                     currentDistOffset += remainingNeeded;
-                    return false; // Done
+                    return false;
                 }
             };
 
-            // 1. Add Intro (if any)
             let keepGoing = true;
             if (introPoints.length > 0) {
                  keepGoing = appendSegment(introPoints, introDistance);
             }
 
-            // 2. Loop the main body
             let safety = 0;
             while (keepGoing && currentDistOffset < targetDistance && safety < 200) {
                 const fullLap = appendSegment(loopPoints, loopDistance);
                 if (!fullLap) break;
-                // Prevent infinite loop if bad data
                 if (loopDistance <= 0) break;
                 safety++;
             }
 
-            // Run analysis on the generated fullPoints
             analyzeRoute(fullPoints, currentDistOffset);
 
           }, [baseData, targetDistance, minScoreThreshold, isOutAndBack]);
@@ -922,28 +848,23 @@
               setFileData(prev => {
                 if (!prev || !prev.climbs) return prev;
                 const newClimbs = [...prev.climbs];
-                // Check if valid merge target exists
                 if (index >= newClimbs.length - 1) return prev;
 
                 const c1 = newClimbs[index];
                 const c2 = newClimbs[index + 1];
 
-                // Create merged climb
                 const newStart = c1.startDist;
                 const newEnd = c2.endDist;
-                const newGain = c1.gain + c2.gain; // Approximation: sum of gains
+                const newGain = c1.gain + c2.gain;
                 const newChunks = [...c1.chunks, ...c2.chunks];
                 
                 const newLength = newEnd - newStart;
                 const newGradientAvg = (newGain / (newLength * 1000)) * 100;
                 
-                // Recalc max gradient
                 const newMaxGrad = Math.max(c1.maxGradient, c2.maxGradient);
                 
-                // Recalc Score
                 const newRawScore = Math.pow(newGradientAvg / 2, 2) * newLength;
                 
-                // Multiplier based on new finish distance
                 const distFromFinish = prev.totalDistance - newEnd;
                  let multiplier = 0.2;
                   if (distFromFinish <= 10) multiplier = 1.0;
@@ -965,13 +886,11 @@
                     finalScore: newFinalScore,
                     distFromFinish: distFromFinish,
                     multiplier: multiplier,
-                    name: c1.name // Keep name of top climb
+                    name: c1.name
                 };
 
-                // Replace c1 and c2 with mergedClimb
                 newClimbs.splice(index, 2, mergedClimb);
                 
-                // Renumber IDs
                 const renumbered = newClimbs.map((c, i) => ({...c, id: i + 1}));
 
                 return {
@@ -981,12 +900,10 @@
               });
             };
 
-          // Helper to manage Input Box state changes (Miles <-> Km conversion)
           const handleDistanceInputChange = (e) => {
               const val = parseFloat(e.target.value);
               if (isNaN(val) || val < 0) return;
 
-              // Convert input to internal KM
               if (units === 'metric') {
                   setTargetDistance(val);
               } else {
@@ -997,19 +914,13 @@
           const handleToggleOutAndBack = () => {
               const newValue = !isOutAndBack;
               setIsOutAndBack(newValue);
-              
-              // Automatically adjust target distance to reflect the geometry change
-              // If enabling: Double the distance
-              // If disabling: Halve the distance
               if (newValue) {
                   setTargetDistance(prev => prev * 2);
               } else {
-                   // Avoid setting to 0 if something weird happens
                   setTargetDistance(prev => Math.max(1, prev / 2));
               }
           };
 
-          // Helper to increase/decrease based on effective loop length
           const adjustLaps = (delta) => {
               if(!baseData) return;
               
@@ -1017,9 +928,8 @@
               let effectiveLeadinDist = 0;
               
               if (isOutAndBack) {
-                  // If Out-And-Back, the "Loop" is (Base * 2)
                   effectiveLoopDist = baseData.distance * 2;
-                  effectiveLeadinDist = 0; // Treated as one unit
+                  effectiveLeadinDist = 0;
               } else {
                   if(baseData.type === 'composite') {
                       effectiveLoopDist = baseData.lap.distance;
@@ -1030,10 +940,8 @@
                   }
               }
 
-              // Calculate current theoretical laps
-              // (Current Total - Leadin) / LoopDist
               const currentLapsDecimal = (targetDistance - effectiveLeadinDist) / effectiveLoopDist;
-              const currentLaps = Math.max(0, Math.round(currentLapsDecimal)); // round to nearest int
+              const currentLaps = Math.max(0, Math.round(currentLapsDecimal));
               
               const newLaps = Math.max(1, currentLaps + delta);
               
@@ -1041,7 +949,6 @@
               setTargetDistance(newTotalDist);
           };
           
-          // Calculate formatted lap count for display
           const getDisplayLaps = () => {
              if(!baseData || targetDistance === 0) return 1;
              
@@ -1058,7 +965,6 @@
              
              const val = effectiveDistForCalc / effectiveLoopDist;
              
-             // If extremely close to integer, show integer
              if (Math.abs(val - Math.round(val)) < 0.05) {
                  return Math.round(val);
              }
@@ -1078,7 +984,6 @@
             setFileData(prev => {
               if (!prev) return null;
               const newClimbs = [...prev.climbs];
-              // Ensure index is valid before updating and maintain immutability
               if (index >= 0 && index < newClimbs.length) {
                 newClimbs[index] = { ...newClimbs[index], name: value };
               }
@@ -1127,7 +1032,6 @@
                 distance: totalDist
               });
               
-              // Default to 1 lap (full distance)
               setTargetDistance(totalDist);
 
             } catch (error) {
@@ -1151,14 +1055,11 @@
                              const distMeters = Math.sqrt(dx * dx + dz * dz);
                              totalDist += (distMeters / 1000); 
                          }
-                         // UPDATED: Store X and Z as Lat/Lon for visualization mapping
-                         // NOTE: Game coordinates (meters) -> Lat/Lon (degrees) is not direct, 
-                         // but for 2D visualization it's sufficient to just map them to X/Y.
                          return {
                              ele: p.y, 
                              dist: totalDist,
-                             lat: p.z, // Mapping Z to Lat (North/South)
-                             lon: p.x  // Mapping X to Lon (East/West)
+                             lat: p.z,
+                             lon: p.x
                          };
                     });
                     return { points: pts, distance: totalDist };
@@ -1253,7 +1154,6 @@
             reader.readAsText(file);
           };
 
-          // --- FETCH PRESET ROUTE ---
           const loadPresetRoute = async (url) => {
              setIsProcessing(true);
              try {
@@ -1261,14 +1161,12 @@
                 if (!response.ok) throw new Error(`Fetch failed with status ${response.status}`);
                 
                 const text = await response.text();
-                // Determine format
                 if (text.trim().startsWith('{')) {
                     processJSON(text);
                 } else {
                     processGPX(text);
                 }
                 
-                // Attempt to guess name from URL if not already set by JSON
                 const urlParts = url.split('/');
                 const filename = urlParts[urlParts.length - 1].split('.')[0].replace(/%20/g, ' ');
                 setFileName(prev => prev || filename);
@@ -1286,7 +1184,6 @@
 
             let chunks = [];
 
-            // 1. Break route into distance chunks
             for (let i = 0; i < points.length; i++) {
               const start = points[i];
               let j = i + 1;
@@ -1303,7 +1200,6 @@
               }
             }
 
-            // 2. Identify Raw Uphill Runs
             let rawUphillRuns = [];
             let currentRun = null;
 
@@ -1333,7 +1229,6 @@
             if (currentRun) rawUphillRuns.push(currentRun);
             rawUphillRuns = rawUphillRuns.filter(run => run.gain >= 8);
 
-            // 3. Merge Runs
             let climbs = [];
             let currentClimbToBuild = null;
 
@@ -1358,12 +1253,11 @@
 
             if (rawUphillRuns.length === 0) climbs = [];
 
-            // 4. Filter, score, and finalize
             let allClimbs = climbs.filter(c => c.gain > 20).map((c) => { 
               const lengthKm = c.endDist - c.startDist;
               const gradientAvg = lengthKm > 0 ? (c.gain / (lengthKm * 1000)) * 100 : 0;
               let maxGradient = 0;
-                const WINDOW_SIZE = 2; // Combines adjacent 100m chunks for a 200m max gradient window
+                const WINDOW_SIZE = 2; 
                 for (let i = 0; i <= c.chunks.length - WINDOW_SIZE; i++) {
                     const windowGain = c.chunks.slice(i, i + WINDOW_SIZE).reduce((sum, chk) => sum + chk.gain, 0);
                     const windowDist = c.chunks[i + WINDOW_SIZE - 1].endDist - c.chunks[i].startDist;
@@ -1453,31 +1347,30 @@
           };
 
           const StatCard = ({ title, value, icon, highlight }) => {
-            // Updated colors for Allkin Classics style
-            const PRIMARY_ACCENT = '#00FFFF'; // Bright Cyan
-            const SECONDARY_ACCENT = '#ff4500'; // Bright Orange/Red for highlight
-            const BG_LIGHT = '#4a217c'; // Darker Purple
-            const BG_DARK = '#2c0c5c'; // Deep Purple
-            const BORDER_COLOR = '#6c3f9c'; // Lighter Purple for border
-            
-            const baseIconClass = highlight ? `text-[${SECONDARY_ACCENT}]` : 'text-neutral-300';
+            const PRIMARY_ACCENT = '#B84A22'; // Tuscan Rust
+            const SECONDARY_ACCENT = '#D49B35'; // Golden Chestnut
+            const BG_LIGHT = '#25422D'; // Deep Alpine Pine Card BG
+            const BG_DARK = '#1C3322'; // Deep Forest Pine
+            const BORDER_COLOR = '#2e5237'; // Pine Border
+
+            const baseIconClass = highlight ? 'text-[#D49B35]' : 'text-neutral-300';
             const clonedIcon = React.cloneElement(icon, {
               className: `w-5 h-5 ${baseIconClass} print:text-black`
             });
 
             return (
               <div className={`
-                p-6 rounded-sm border flex flex-col justify-between relative overflow-hidden group
-                ${highlight ? `bg-[${BG_DARK}] border-[${SECONDARY_ACCENT}]/50` : `bg-[${BG_LIGHT}] border-[${BORDER_COLOR}]`}
+                p-6 rounded-sm border flex flex-col justify-between relative overflow-hidden group transition-colors
+                ${highlight ? `bg-[#142418] border-[#B84A22]` : `bg-[#25422D] border-[#2e5237]`}
                 print:bg-white print:border-black print:text-black
               `}>
-                {highlight && <div className={`absolute top-0 right-0 w-16 h-16 bg-[${SECONDARY_ACCENT}]/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden`}></div>}
+                {highlight && <div className="absolute top-0 right-0 w-16 h-16 bg-[#B84A22]/15 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden"></div>}
 
                 <div className="flex justify-between items-start mb-4 relative z-10">
-                  <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? `text-[${SECONDARY_ACCENT}] print:text-black` : 'text-neutral-400 print:text-black/70'}`}>{title}</span>
+                  <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? 'text-[#D49B35] print:text-black' : 'text-neutral-400 print:text-black/70'}`}>{title}</span>
                   {clonedIcon}
                 </div>
-                <div className={`text-3xl md:text-4xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-white print:text-black' : 'text-neutral-100 print:text-black'}`}>
+                <div className={`text-3xl md:text-4xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-[#F2F0EB] print:text-black' : 'text-[#F2F0EB] print:text-black'}`}>
                   {value}
                 </div>
               </div>
@@ -1485,8 +1378,9 @@
           };
 
           const ElevationChart = ({ points, climbs, totalDistance, minEle, maxEle, unitLabels }) => {
-            const PRIMARY_ACCENT = '#00FFFF'; // Bright Cyan
-            const BORDER_COLOR = '#6c3f9c'; // Lighter Purple for border
+            const PRIMARY_ACCENT = '#B84A22'; // Tuscan Rust
+            const SECONDARY_ACCENT = '#D49B35'; // Golden Chestnut
+            const BORDER_COLOR = '#2e5237';
             
             const displayPoints = useMemo(() => {
               if (points.length < 500) return points;
@@ -1590,14 +1484,12 @@
             return (
               <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full preserve-3d">
                 <defs>
-                  {/* Updated gradient color to match the accent */}
                   <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor={PRIMARY_ACCENT} stopOpacity="0.3" />
+                    <stop offset="0%" stopColor={SECONDARY_ACCENT} stopOpacity="0.4" />
                     <stop offset="100%" stopColor={PRIMARY_ACCENT} stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
 
-                {/* Updated grid and axis colors */}
                 <line x1={hPadding} y1={height - vPadding} x2={width - hPadding} y2={height - vPadding} stroke={BORDER_COLOR} strokeWidth="1" />
                 <line x1={hPadding} y1={vPadding} x2={hPadding} y2={height - vPadding} stroke={BORDER_COLOR} strokeWidth="1" />
 
@@ -1643,8 +1535,8 @@
 
                 <path
                   d={pathD}
-                  stroke={PRIMARY_ACCENT} /* Updated line color to accent */
-                  strokeWidth="2.0" // Slightly thicker line
+                  stroke={SECONDARY_ACCENT}
+                  strokeWidth="2.0"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -1681,15 +1573,15 @@
                   </text>
                 ))}
 
-                {/* Updated axis label colors */}
-                <text x={hPadding} y={height} fill="#ccc" fontSize="10" dy="-5" fontFamily="Roboto" className="print:fill-black">0{unitLabels.dist}</text>
-                <text x={width - hPadding} y={height} fill="#ccc" fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto" className="print:fill-black">{totalDistance.toFixed(0)}{unitLabels.dist}</text>
+                <text x={hPadding} y={height} fill="#F2F0EB" opacity="0.7" fontSize="10" dy="-5" fontFamily="Roboto" className="print:fill-black">0{unitLabels.dist}</text>
+                <text x={width - hPadding} y={height} fill="#F2F0EB" opacity="0.7" fontSize="10" textAnchor="end" dy="-5" fontFamily="Roboto" className="print:fill-black">{totalDistance.toFixed(0)}{unitLabels.dist}</text>
                 {xLabels.map((label, i) => (
                   <text
                     key={`l-x-${i}`}
                     x={label.x}
                     y={height}
-                    fill="#ccc"
+                    fill="#F2F0EB"
+                    opacity="0.7"
                     fontSize="10"
                     textAnchor="middle"
                     dy="-5"
@@ -1700,14 +1592,15 @@
                   </text>
                 ))}
 
-                <text x={hPadding} y={vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(effectiveMaxEle)}{unitLabels.alt}</text>
-                <text x={hPadding} y={height - vPadding} fill="#ccc" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(minEle)}{unitLabels.alt}</text>
+                <text x={hPadding} y={vPadding} fill="#F2F0EB" opacity="0.7" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(effectiveMaxEle)}{unitLabels.alt}</text>
+                <text x={hPadding} y={height - vPadding} fill="#F2F0EB" opacity="0.7" fontSize="10" textAnchor="end" dx="-5" fontFamily="Roboto" className="print:fill-black">{Math.round(minEle)}{unitLabels.alt}</text>
                 {gridLines.map((line, i) => (
                   <text
                     key={`l-y-${i}`}
                     x={hPadding}
                     y={line.y}
-                    fill="#ccc"
+                    fill="#F2F0EB"
+                    opacity="0.7"
                     fontSize="10"
                     textAnchor="end"
                     dy="3"
@@ -1724,22 +1617,16 @@
           };
 
           const defaultTitle = 'Route Profile';
-          const PRIMARY_ACCENT = '#00FFFF'; // Bright Cyan
-          const SECONDARY_ACCENT = '#ff4500'; // Bright Orange/Red for highlight
-          const BG_LIGHT = '#4a217c'; // Darker Purple
-          const BG_DARK = '#2c0c5c'; // Deep Purple
-          const BORDER_COLOR = '#6c3f9c'; // Lighter Purple for border
 
           return (
-            <div className={`min-h-screen bg-[${BG_DARK}] text-white font-roboto selection:bg-[${PRIMARY_ACCENT}] selection:text-black p-4 md:p-8`}>
+            <div className="min-h-screen bg-[#1C3322] text-[#F2F0EB] font-roboto selection:bg-[#B84A22] selection:text-white p-4 md:p-8">
               <div className="max-w-6xl mx-auto space-y-8">
 
-                <header className={`flex items-center space-x-4 border-b border-[${BORDER_COLOR}] pb-6 print:hidden`}>
-                  <Activity className={`w-8 h-8 text-[${PRIMARY_ACCENT}]`} />
+                <header className="flex items-center space-x-4 border-b border-[#2e5237] pb-6 print:hidden">
+                  <Activity className="w-8 h-8 text-[#D49B35]" />
                   <div>
-                    {/* Updated Header Text */}
-                    <h1 className="text-3xl font-bold tracking-wide uppercase text-white font-oswald">{fileName || defaultTitle}</h1>
-                    <p className={`text-neutral-300 text-sm tracking-widest uppercase font-oswald mt-1 text-[${SECONDARY_ACCENT}]`}>GPX PROFILE ANALYZER</p>
+                    <h1 className="text-3xl font-bold tracking-wide uppercase text-[#F2F0EB] font-oswald">{fileName || defaultTitle}</h1>
+                    <p className="text-[#B84A22] text-sm tracking-widest uppercase font-oswald mt-1 font-semibold">GPX PROFILE ANALYZER</p>
                   </div>
                 </header>
 
@@ -1748,7 +1635,7 @@
                       <div
                         className={`
                           border-2 border-dashed rounded-sm p-16 text-center transition-all cursor-pointer group
-                          ${dragActive ? `border-[${PRIMARY_ACCENT}] bg-[${PRIMARY_ACCENT}]/10` : `border-[${BORDER_COLOR}] hover:border-[${PRIMARY_ACCENT}]/50 bg-[${BG_LIGHT}]`}
+                          ${dragActive ? 'border-[#D49B35] bg-[#D49B35]/10' : 'border-[#2e5237] hover:border-[#D49B35]/60 bg-[#25422D]'}
                         `}
                         onDragEnter={handleDrag}
                         onDragLeave={handleDrag}
@@ -1764,27 +1651,27 @@
                           onChange={handleChange}
                         />
                         <div className="flex flex-col items-center gap-6">
-                          <div className={`w-20 h-20 bg-[${BORDER_COLOR}] rounded-full flex items-center justify-center group-hover:bg-[${BORDER_COLOR}] transition-colors`}>
-                            <Upload className={`w-10 h-10 text-neutral-400 group-hover:text-[${PRIMARY_ACCENT}] transition-colors`} />
+                          <div className="w-20 h-20 bg-[#142418] rounded-full flex items-center justify-center group-hover:bg-[#B84A22]/20 transition-colors">
+                            <Upload className="w-10 h-10 text-neutral-400 group-hover:text-[#D49B35] transition-colors" />
                           </div>
                           <div>
-                            <h3 className="text-2xl font-bold uppercase text-white font-oswald tracking-wide">Upload Route File</h3>
-                            <p className="text-neutral-400 mt-2 font-light">Drag & drop a .gpx or .json file here to begin analysis</p>
+                            <h3 className="text-2xl font-bold uppercase text-[#F2F0EB] font-oswald tracking-wide">Upload Route File</h3>
+                            <p className="text-neutral-400 mt-2 font-light">Drag & drop a .gpx or .json file here to begin climb analysis</p>
                           </div>
-                          {isProcessing && <p className={`text-[${PRIMARY_ACCENT}] font-bold animate-pulse tracking-widest uppercase`}>Processing...</p>}
+                          {isProcessing && <p className="text-[#D49B35] font-bold animate-pulse tracking-widest uppercase">Processing...</p>}
                         </div>
                       </div>
 
                       {/* --- PRESET ROUTES SELECTION --- */}
-                      <div className="mt-8 pt-8 border-t border-[#6c3f9c] w-full">
-                         <h3 className="text-xl font-bold uppercase text-white font-oswald tracking-wide mb-4 text-center">OR Select a Standard Route</h3>
+                      <div className="mt-8 pt-8 border-t border-[#2e5237] w-full">
+                         <h3 className="text-xl font-bold uppercase text-[#F2F0EB] font-oswald tracking-wide mb-4 text-center">OR Select a Standard Route</h3>
                          <div className="flex justify-center">
                              <div className="relative w-full max-w-md">
                                  <select 
                                      onChange={(e) => {
                                          if(e.target.value) loadPresetRoute(e.target.value);
                                      }}
-                                     className="w-full bg-[#2c0c5c] border border-[#6c3f9c] text-white p-3 pr-10 rounded appearance-none focus:outline-none focus:border-[#00FFFF] font-oswald tracking-wide uppercase cursor-pointer transition-colors hover:border-[#00FFFF]/50"
+                                     className="w-full bg-[#142418] border border-[#2e5237] text-[#F2F0EB] p-3 pr-10 rounded-sm appearance-none focus:outline-none focus:border-[#D49B35] font-oswald tracking-wide uppercase cursor-pointer transition-colors hover:border-[#D49B35]/50"
                                      defaultValue=""
                                  >
                                      <option value="" disabled>-- Choose an Island Route --</option>
@@ -1796,13 +1683,12 @@
                                          <option disabled>Loading routes...</option>
                                      )}
                                  </select>
-                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-white">
+                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#F2F0EB]">
                                      <ChevronDown className="w-4 h-4" />
                                  </div>
                              </div>
                          </div>
                       </div>
-                      {/* --- END PRESET ROUTES --- */}
 
                     </div>
                 )}
@@ -1811,41 +1697,41 @@
                   <div className="space-y-6">
 
                     {/* Controls Bar */}
-                    <div className={`bg-[${BG_LIGHT}] rounded-sm p-4 border border-[${BORDER_COLOR}] flex flex-wrap items-center justify-between gap-4 print:hidden`}>
+                    <div className="bg-[#25422D] rounded-sm p-4 border border-[#2e5237] flex flex-wrap items-center justify-between gap-4 print:hidden">
                       
-                      {/* Left: Distance Controls (Combined Laps + Input) */}
+                      {/* Left: Distance Controls */}
                       <div className="flex flex-wrap items-center gap-6">
                         
                         {/* 1. Lap Controls */}
                         <div className="flex items-center gap-3">
-                            <div className={`bg-[${BG_DARK}] p-2 rounded-sm hidden sm:block`}>
-                                <RotateCw className={`w-5 h-5 text-[${PRIMARY_ACCENT}]`} />
+                            <div className="bg-[#142418] p-2 rounded-sm hidden sm:block">
+                                <RotateCw className="w-5 h-5 text-[#D49B35]" />
                             </div>
                             <div className="flex flex-col">
-                                <h3 className="font-bold uppercase text-sm text-white font-oswald tracking-wide">Laps</h3>
+                                <h3 className="font-bold uppercase text-sm text-[#F2F0EB] font-oswald tracking-wide">Laps</h3>
                                 <p className="text-xs text-neutral-400">{getDisplayLaps()} Laps</p>
                             </div>
-                            <div className={`flex items-center bg-[${BG_DARK}] rounded-sm p-1 border border-[${BORDER_COLOR}]`}>
+                            <div className="flex items-center bg-[#142418] rounded-sm p-1 border border-[#2e5237]">
                                 <button
                                     onClick={() => adjustLaps(-1)}
-                                    className={`px-3 py-1 text-neutral-400 hover:text-white hover:bg-[${BORDER_COLOR}] rounded-sm transition-colors font-bold`}
+                                    className="px-3 py-1 text-neutral-400 hover:text-[#F2F0EB] hover:bg-[#2e5237] rounded-sm transition-colors font-bold"
                                     aria-label="Decrease laps"
                                 >-</button>
                                 <button
                                     onClick={() => adjustLaps(1)}
-                                    className={`px-3 py-1 text-neutral-400 hover:text-white hover:bg-[${BORDER_COLOR}] rounded-sm transition-colors font-bold`}
+                                    className="px-3 py-1 text-neutral-400 hover:text-[#F2F0EB] hover:bg-[#2e5237] rounded-sm transition-colors font-bold"
                                     aria-label="Increase laps"
                                 >+</button>
                             </div>
                         </div>
 
                         {/* Divider */}
-                        <div className={`w-px h-8 bg-[${BORDER_COLOR}] hidden sm:block`}></div>
+                        <div className="w-px h-8 bg-[#2e5237] hidden sm:block"></div>
 
                         {/* 2. Custom Distance Input */}
                         <div className="flex items-center gap-3">
                             <div className="flex flex-row items-center gap-4">
-                                <label className={`font-bold uppercase text-xs text-[${PRIMARY_ACCENT}] font-oswald tracking-wide`}>Custom Distance ({unitLabels.dist})</label>
+                                <label className="font-bold uppercase text-xs text-[#D49B35] font-oswald tracking-wide">Custom Distance ({unitLabels.dist})</label>
                                 <div className="flex items-center">
                                     <input 
                                         type="number"
@@ -1853,18 +1739,19 @@
                                         step="0.5"
                                         value={units === 'metric' ? targetDistance.toFixed(1) : (targetDistance * KM_TO_MILES).toFixed(1)}
                                         onChange={handleDistanceInputChange}
-                                        className={`bg-[${BG_DARK}] border border-[${BORDER_COLOR}] text-white text-lg font-bold font-oswald px-3 py-1 w-28 rounded-sm focus:outline-none focus:border-[${PRIMARY_ACCENT}] transition-colors`}
+                                        className="bg-[#142418] border border-[#2e5237] text-[#F2F0EB] text-lg font-bold font-oswald px-3 py-1 w-28 rounded-sm focus:outline-none focus:border-[#D49B35] transition-colors"
                                     />
                                 </div>
                             </div>
                         </div>
+
                         {/* Divider */}
-                        <div className="w-px h-8 bg-[#6c3f9c] hidden lg:block"></div>
+                        <div className="w-px h-8 bg-[#2e5237] hidden lg:block"></div>
                     
                         {/* Custom Score Filter Input */}
                         <div className="flex items-center gap-3">
                             <div className="flex flex-row items-center gap-4">
-                                <label className="font-bold uppercase text-xs text-[#00FFFF] font-oswald tracking-wide">Min Score Filter</label>
+                                <label className="font-bold uppercase text-xs text-[#D49B35] font-oswald tracking-wide">Min Score Filter</label>
                                 <div className="flex items-center">
                                     <input 
                                         type="number"
@@ -1872,7 +1759,7 @@
                                         step="0.5"
                                         value={minScoreThreshold}
                                         onChange={(e) => setMinScoreThreshold(parseFloat(e.target.value) || 0)}
-                                        className="bg-[#2c0c5c] border border-[#6c3f9c] text-white text-lg font-bold font-oswald px-3 py-1 w-20 rounded-sm focus:outline-none focus:border-[#00FFFF] transition-colors"
+                                        className="bg-[#142418] border border-[#2e5237] text-[#F2F0EB] text-lg font-bold font-oswald px-3 py-1 w-20 rounded-sm focus:outline-none focus:border-[#D49B35] transition-colors"
                                     />
                                 </div>
                             </div>
@@ -1889,30 +1776,30 @@
                             className={`
                                 flex items-center gap-2 px-3 py-2 rounded-sm border transition-all text-xs font-bold uppercase tracking-wide
                                 ${isOutAndBack 
-                                    ? `bg-[${PRIMARY_ACCENT}] text-black border-[${PRIMARY_ACCENT}]` 
-                                    : `bg-[${BG_DARK}] text-neutral-400 border-[${BORDER_COLOR}] hover:text-white`
+                                    ? 'bg-[#B84A22] text-[#F2F0EB] border-[#B84A22]' 
+                                    : 'bg-[#142418] text-neutral-400 border-[#2e5237] hover:text-[#F2F0EB]'
                                 }
                             `}
                         >
-                            <ArrowLeftRight className={`w-4 h-4 ${isOutAndBack ? 'text-black' : ''}`} />
+                            <ArrowLeftRight className={`w-4 h-4 ${isOutAndBack ? 'text-[#F2F0EB]' : ''}`} />
                             {isOutAndBack ? 'Out & Back' : 'One Way'}
                         </button>
                         
                         {/* Units Group */}
                         <div className="flex items-center gap-3">
-                            <div className={`bg-[${BG_DARK}] p-2 rounded-sm hidden sm:block`}>
-                              <Ruler className={`w-5 h-5 text-[${PRIMARY_ACCENT}]`} />
+                            <div className="bg-[#142418] p-2 rounded-sm hidden sm:block">
+                              <Ruler className="w-5 h-5 text-[#D49B35]" />
                             </div>
-                            <div className={`flex bg-[${BG_DARK}] rounded-sm p-1 border border-[${BORDER_COLOR}]`}>
+                            <div className="flex bg-[#142418] rounded-sm p-1 border border-[#2e5237]">
                                <button 
                                  onClick={() => setUnits('metric')}
-                                 className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'metric' ? `bg-[${PRIMARY_ACCENT}] text-black` : 'text-neutral-400 hover:text-white'}`}
+                                 className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'metric' ? 'bg-[#B84A22] text-[#F2F0EB]' : 'text-neutral-400 hover:text-[#F2F0EB]'}`}
                                >
                                 Metric
                                </button>
                                <button 
                                  onClick={() => setUnits('imperial')}
-                                 className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'imperial' ? `bg-[${PRIMARY_ACCENT}] text-black` : 'text-neutral-400 hover:text-white'}`}
+                                 className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-sm transition-all ${units === 'imperial' ? 'bg-[#B84A22] text-[#F2F0EB]' : 'text-neutral-400 hover:text-[#F2F0EB]'}`}
                                >
                                 Imperial
                                </button>
@@ -1934,7 +1821,7 @@
                         <StatCard
                           title="Profile Score"
                           value={Math.round(displayData.totalScore)}
-                          icon={<Activity className={`w-5 h-5 text-[${SECONDARY_ACCENT}]`} />}
+                          icon={<Activity className="w-5 h-5 text-[#D49B35]" />}
                           highlight
                         />
                       </div>
@@ -1954,13 +1841,13 @@
                       </div>
                     </div>
 
-                    <div className={`bg-[${BG_LIGHT}] rounded-sm p-6 border border-[${BORDER_COLOR}] shadow-xl overflow-hidden print:bg-white print:border-black relative`}>
+                    <div className="bg-[#25422D] rounded-sm p-6 border border-[#2e5237] shadow-xl overflow-hidden print:bg-white print:border-black relative">
                       <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
-                        <Mountain className={`w-32 h-32 text-[${PRIMARY_ACCENT}]`} />
+                        <Mountain className="w-32 h-32 text-[#D49B35]" />
                       </div>
                       <div className="flex justify-between items-center mb-6 relative z-10">
-                        <h3 className="font-bold text-xl uppercase tracking-wide flex items-center gap-2 font-oswald text-white print:text-black">
-                          <span className={`w-2 h-8 bg-[${PRIMARY_ACCENT}] inline-block mr-2`}></span>
+                        <h3 className="font-bold text-xl uppercase tracking-wide flex items-center gap-2 font-oswald text-[#F2F0EB] print:text-black">
+                          <span className="w-2 h-8 bg-[#B84A22] inline-block mr-2"></span>
                           Elevation Profile
                         </h3>
                       </div>
@@ -1977,35 +1864,33 @@
                       </div>
                     </div>
 
-                    <div className={`bg-[${BG_LIGHT}] rounded-sm overflow-hidden border border-[${BORDER_COLOR}] shadow-lg`}>
-                      <div className={`p-5 border-b border-[${BORDER_COLOR}] bg-[${BG_DARK}] flex justify-between items-end`}>
+                    <div className="bg-[#25422D] rounded-sm overflow-hidden border border-[#2e5237] shadow-lg">
+                      <div className="p-5 border-b border-[#2e5237] bg-[#142418] flex justify-between items-end">
                         <div>
-                          <h3 className="font-bold text-xl uppercase tracking-wide text-white font-oswald">Scored Climbs</h3>
+                          <h3 className="font-bold text-xl uppercase tracking-wide text-[#F2F0EB] font-oswald">Scored Climbs</h3>
                           <p className="text-xs text-neutral-400 mt-1">Click any climb to view 10-segment analysis</p>
                         </div>
-                        {/* --- TOGGLE BUTTON --- */}
                         <button
                           onClick={() => setShowClimbName(prev => !prev)}
-                          className="px-3 py-1 bg-[#3b0687] hover:bg-[#5e31a9] text-neutral-300 hover:text-white rounded-sm text-xs font-bold uppercase tracking-widest flex items-center gap-1 transition-colors print:hidden"
+                          className="px-3 py-1 bg-[#1C3322] hover:bg-[#25422D] border border-[#2e5237] text-neutral-300 hover:text-[#F2F0EB] rounded-sm text-xs font-bold uppercase tracking-widest flex items-center gap-1 transition-colors print:hidden"
                         >
                           {showClimbName ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                           {showClimbName ? 'Hide Names' : 'Show Names'}
                         </button>
-                        {/* --- END TOGGLE BUTTON --- */}
                       </div>
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left">
-                            <thead className={`text-neutral-400 bg-[${BG_DARK}] uppercase text-xs font-bold tracking-wider font-oswald`}>
+                            <thead className="text-neutral-400 bg-[#142418] uppercase text-xs font-bold tracking-wider font-oswald">
                                 <tr>
-                                    <th className={`px-6 py-4 w-10 border-b border-[${BORDER_COLOR}]`}>No.</th>
-                                    {showClimbName && <th className="px-6 py-4 w-64 border-b border-[#5e31a9]">Climb Name</th>}
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>To Finish</th>
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Length</th>
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Avg %</th>
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Max %</th>
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Raw Score</th>
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}]`}>Category</th> 
-                                    <th className={`px-6 py-4 border-b border-[${BORDER_COLOR}] text-right w-24`}>Actions</th> {/* NEW ACTIONS HEADER */}
+                                    <th className="px-6 py-4 w-10 border-b border-[#2e5237]">No.</th>
+                                    {showClimbName && <th className="px-6 py-4 w-64 border-b border-[#2e5237]">Climb Name</th>}
+                                    <th className="px-6 py-4 border-b border-[#2e5237]">To Finish</th>
+                                    <th className="px-6 py-4 border-b border-[#2e5237]">Length</th>
+                                    <th className="px-6 py-4 border-b border-[#2e5237]">Avg %</th>
+                                    <th className="px-6 py-4 border-b border-[#2e5237]">Max %</th>
+                                    <th className="px-6 py-4 border-b border-[#2e5237]">Raw Score</th>
+                                    <th className="px-6 py-4 border-b border-[#2e5237]">Category</th> 
+                                    <th className="px-6 py-4 border-b border-[#2e5237] text-right w-24">Actions</th>
                                 </tr>
                             </thead>
                           <tbody>
@@ -2016,65 +1901,58 @@
                                 <tr 
                                   key={idx} 
                                   onClick={() => setSelectedClimb(climb)}
-                                  className={`hover:bg-[#5e31a9] transition-colors group cursor-pointer print:text-black`}
+                                  className="hover:bg-[#142418]/80 border-b border-[#2e5237]/50 last:border-0 transition-colors group cursor-pointer print:text-black"
                                 >
-                                  <td className={`px-6 py-3 font-bold text-[${PRIMARY_ACCENT}] font-oswald print:text-black`}>
+                                  <td className="px-6 py-3 font-bold text-[#D49B35] font-oswald print:text-black">
                                     {climb.id}
                                   </td>
-                                   {/* --- CONDITIONAL DATA CELL --- */}
                                    {showClimbName && (
                                       <td className="px-6 py-3" onClick={e => e.stopPropagation()}>
                                           <input
                                             type="text"
                                             placeholder="NAME..."
-                                            value={climb.name}
+                                            value={climb.name || ''}
                                             onChange={(e) => updateClimbName(idx, e.target.value)}
-                                            className="bg-[#3b0687] border border-[#5e31a9] rounded-none px-3 py-1 text-white w-full focus:border-[#00B4FF] focus:outline-none focus:ring-1 focus:ring-[#00B4FF] placeholder-neutral-500 uppercase font-bold text-sm print:text-black print:bg-white print:border-black transition-all"
+                                            className="bg-[#142418] border border-[#2e5237] text-[#F2F0EB] px-2 py-1 rounded-sm w-full font-oswald tracking-wide focus:outline-none focus:border-[#D49B35]"
                                           />
                                       </td>
                                    )}
-                                  <td className="px-6 py-4 text-white font-bold print:text-black">
+                                  <td className="px-6 py-3 font-medium text-neutral-300 print:text-black">
                                     {climb.distFromFinish.toFixed(1)} {unitLabels.dist}
                                   </td>
-                                  <td className="px-6 py-4 text-white font-medium print:text-black">{climb.lengthKm.toFixed(2)} {unitLabels.dist}</td>
-                                  <td className="px-6 py-4 text-neutral-200 font-medium print:text-black">
-                                      {climb.gradientAvg.toFixed(1)}%
+                                  <td className="px-6 py-3 font-medium text-neutral-300 print:text-black">
+                                    {climb.lengthKm.toFixed(2)} {unitLabels.dist}
                                   </td>
-                                  <td className="px-6 py-4">
-                                    <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${
-                                      climb.maxGradient > 12 ? 'bg-red-900/30 text-red-300 print:bg-red-100 print:text-red-300' :
-                                        climb.maxGradient > 8 ? 'bg-orange-900/30 text-orange-300 print:bg-orange-100 print:text-orange-300' : 'bg-lime-900/30 text-lime-300 print:bg-green-100 print:text-green-300'
-                                      }`}>
-                                      {climb.maxGradient.toFixed(1)}%
+                                  <td className="px-6 py-3 font-medium text-neutral-300 print:text-black">
+                                    {climb.gradientAvg.toFixed(1)}%
+                                  </td>
+                                  <td className="px-6 py-3 font-medium text-neutral-300 print:text-black">
+                                    {climb.maxGradient.toFixed(1)}%
+                                  </td>
+                                  <td className="px-6 py-3 font-bold">
+                                    <span className={`px-2 py-1 rounded-sm text-xs font-oswald ${getScoreClass(climb.rawScore)}`}>
+                                      {climb.rawScore.toFixed(1)}
                                     </span>
                                   </td>
-                                  <td className="px-6 py-4">
-                                    <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded ${getScoreClass(climb.rawScore)}`}>
-                                      {Math.round(climb.rawScore)}
-                                    </span>
+                                  <td className="px-6 py-3 font-bold">
+                                    {getClimbCategory(climb.rawScore) ? (
+                                      <span className="px-2 py-0.5 bg-[#B84A22]/20 border border-[#B84A22]/50 text-[#F2F0EB] text-xs font-oswald rounded-sm">
+                                        Cat {getClimbCategory(climb.rawScore)}
+                                      </span>
+                                    ) : (
+                                      <span className="text-neutral-500 text-xs">-</span>
+                                    )}
                                   </td>
-                                  <td className="px-6 py-4">
-                                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#2c0c5c] border border-[#6c3f9c] text-white font-bold font-oswald text-xs">
-                                        {getClimbCategory(climb.rawScore)}
-                                    </span>
-                                  </td>
-                                  <td className="px-6 py-4 text-right flex justify-end gap-2" onClick={e => e.stopPropagation()}>
-                                     {/* Merge Button - Only show if not last item */}
+                                  <td className="px-6 py-3 text-right" onClick={e => e.stopPropagation()}>
                                      {idx < displayData.climbs.length - 1 && (
                                          <button 
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                mergeClimbs(idx);
-                                            }}
-                                            className="p-1.5 bg-[#4a217c] hover:bg-[#00FFFF] hover:text-black rounded transition-colors text-neutral-400"
+                                            onClick={() => mergeClimbs(idx)}
+                                            className="px-2 py-1 bg-[#142418] hover:bg-[#B84A22] text-neutral-300 hover:text-[#F2F0EB] border border-[#2e5237] rounded-sm text-xs font-oswald uppercase transition-colors"
                                             title="Merge with next climb"
                                          >
-                                             <Link className="w-4 h-4" />
+                                            Merge ↓
                                          </button>
                                      )}
-                                     <button className="p-1.5 hover:text-white transition-colors text-neutral-500">
-                                         <Search className="w-4 h-4" />
-                                     </button>
                                   </td>
                                 </tr>
                               ))
@@ -2084,70 +1962,51 @@
                       </div>
                     </div>
 
-                    {/* NEW FINAL 5KM BUTTON */}
-                    <div className="flex justify-end mt-4 mb-4">
+                    {/* Final 5k Analysis Trigger Card */}
+                    <div className="bg-[#25422D] rounded-sm p-6 border border-[#2e5237] flex justify-between items-center">
+                        <div>
+                            <h3 className="font-bold text-xl uppercase tracking-wide text-[#F2F0EB] font-oswald">Final Run-In Technical Map</h3>
+                            <p className="text-xs text-neutral-400 mt-1">View overhead trajectory and terrain profile for the closing stretch</p>
+                        </div>
                         <button 
                             onClick={() => setShowFinalAnalysis(true)}
-                            className="flex items-center gap-2 px-6 py-3 bg-[#facc15] hover:bg-[#fbbf24] text-black font-bold uppercase tracking-widest rounded-sm shadow-lg hover:shadow-[#facc15]/40 transition-all font-oswald"
+                            className="px-5 py-2.5 bg-[#B84A22] hover:bg-[#B84A22]/80 text-[#F2F0EB] font-bold font-oswald tracking-wide uppercase rounded-sm shadow-md transition-all flex items-center gap-2"
                         >
                             <MapIcon className="w-5 h-5" />
-                            View Final {units === 'metric' ? '5km' : '3.1mi'} Analysis
+                            Analyze Final Run-In
                         </button>
                     </div>
 
-                    <div className={`bg-[${BG_LIGHT}] border border-[${BORDER_COLOR}] rounded-sm p-5 flex gap-4 text-sm text-neutral-300 items-start print:bg-white print:border-black print:text-black`}>
-                      <Info className={`w-5 h-5 shrink-0 text-[${PRIMARY_ACCENT}] mt-0.5 print:text-black`} />
-                      <div>
-                        <p className="font-bold uppercase text-white font-oswald mb-1 print:text-black">Scoring Methodology</p>
-                        <p className="opacity-80 leading-relaxed font-light print:opacity-100">
-                          Raw Climb Score = <code>(Gradient/2)² * Length (km)</code>. <br />
-                          Climbs with less than {units === 'metric' ? '20m' : '66ft'} vertical gain, OR those where (Avg Grade &lt; 2% AND Max Grade &lt; 3%) are excluded from the initial filter. <br />
-                          Weighted by position: Climbs within the final {units === 'metric' ? '75km' : '47mi'} receive progressive multipliers (up to 100% value in final {units === 'metric' ? '10km' : '6.2mi'}).<br />
-                          
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-center pt-8 pb-12 gap-4 print:hidden">
-                      <button
-                        onClick={() => {
-                          setFileData(null);
-                          setFileName(null);
-                        }}
-                        className={`px-8 py-3 bg-[${PRIMARY_ACCENT}] hover:bg-[${PRIMARY_ACCENT}]/80 text-black font-bold uppercase tracking-widest rounded-sm text-sm transition-colors shadow-lg hover:shadow-[${PRIMARY_ACCENT}]/40 flex items-center gap-2`}
-                      >
-                        <Upload className="w-4 h-4" /> New Analysis
-                      </button>
-                    </div>
-
-                    {/* MODAL OVERLAYS */}
-                    <ClimbDetailModal 
-                        climb={selectedClimb} 
-                        allPoints={displayData.points} 
-                        onClose={() => setSelectedClimb(null)} 
-                        units={units}
-                        unitLabels={unitLabels}
-                    />
-
-                    {showFinalAnalysis && (
-                        <FinalSegmentModal 
-                            points={displayData.points}
-                            totalDistance={displayData.totalDistance}
-                            onClose={() => setShowFinalAnalysis(false)}
-                            units={units}
-                            unitLabels={unitLabels}
-                        />
-                    )}
-
                   </div>
                 )}
+
+                {/* Modals */}
+                {selectedClimb && (
+                    <ClimbDetailModal 
+                        climb={selectedClimb}
+                        allPoints={displayData.points}
+                        units={units}
+                        unitLabels={unitLabels}
+                        onClose={() => setSelectedClimb(null)}
+                    />
+                )}
+
+                {showFinalAnalysis && displayData && (
+                    <FinalSegmentModal 
+                        points={displayData.points}
+                        totalDistance={displayData.totalDistance}
+                        units={units}
+                        unitLabels={unitLabels}
+                        onClose={() => setShowFinalAnalysis(false)}
+                    />
+                )}
+
               </div>
             </div>
           );
         };
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     </script>
 </body>
 </html>
