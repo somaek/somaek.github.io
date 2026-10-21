@@ -8,19 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Palette extracted from the image */
-            --bg-deep: #1a0b2e;
-            --bg-card: #2d1b4d;
-            --accent-cyan: #00f2ff;
-            --accent-orange: #ff4d00;
-            --border-muted: rgba(255, 255, 255, 0.1);
+            /* Il Lombardia Color Palette */
+            --bg-deep: #1C3322;
+            --bg-card: #24422e;
+            --accent-rust: #B84A22;
+            --accent-gold: #D49B35;
+            --text-offwhite: #F2F0EB;
+            --border-muted: rgba(242, 240, 235, 0.15);
         }
 
         body {
             background-color: var(--bg-deep);
-            /* Subtle radial gradient to mimic the UI depth in the screenshot */
-            background-image: radial-gradient(circle at top right, #2a134d 0%, #1a0b2e 60%);
-            color: #ffffff;
+            background-image: radial-gradient(circle at top right, #2b4f35 0%, #1C3322 70%);
+            color: var(--text-offwhite);
             font-family: 'Roboto', sans-serif;
             margin: 0;
             min-height: 100vh;
@@ -36,29 +36,41 @@
         }
 
         .card:hover {
-            border-color: var(--accent-cyan);
+            border-color: var(--accent-gold);
             transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
-        .btn-cyan {
-            background-color: var(--accent-cyan);
-            color: #000;
+        .btn-rust {
+            background-color: var(--accent-rust);
+            color: #F2F0EB;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 0px #008ba3;
+            box-shadow: 0 4px 0px #853316;
         }
 
-        .btn-cyan:hover {
+        .btn-rust:hover {
             filter: brightness(1.1);
             transform: translateY(1px);
-            box-shadow: 0 2px 0px #008ba3;
+            box-shadow: 0 2px 0px #853316;
         }
 
-        /* The vertical accent bar seen in the elevation profile section */
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: #1C3322;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0px #9e7123;
+        }
+
+        .btn-gold:hover {
+            filter: brightness(1.1);
+            transform: translateY(1px);
+            box-shadow: 0 2px 0px #9e7123;
+        }
+
         .accent-bar {
             width: 4px;
             height: 24px;
-            background-color: var(--accent-cyan);
+            background-color: var(--accent-gold);
             display: inline-block;
             margin-right: 12px;
             border-radius: 2px;
@@ -66,8 +78,8 @@
 
         .divider {
             height: 1px;
-            background: linear-gradient(to right, var(--accent-cyan), transparent);
-            opacity: 0.3;
+            background: linear-gradient(to right, var(--accent-gold), transparent);
+            opacity: 0.4;
             margin: 2rem 0;
         }
     </style>
@@ -79,15 +91,15 @@
         <!-- Header based on the Analyzer UI -->
         <header class="mb-20">
             <div class="flex items-center mb-4">
-                <svg class="text-cyan-400 mr-3" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                <div class="h-px flex-grow bg-white/10 ml-4"></div>
+                <svg class="text-[#D49B35] mr-3" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <div class="h-px flex-grow bg-[#F2F0EB]/15 ml-4"></div>
             </div>
             
-            <h1 class="font-oswald text-5xl md:text-7xl font-bold uppercase tracking-tight mb-4">
+            <h1 class="font-oswald text-5xl md:text-7xl font-bold uppercase tracking-tight mb-4 text-[#F2F0EB]">
                 Technical tools for <br/>
-                <span class="text-[#00f2ff]">Virtual Racing.</span>
+                <span class="text-[#D49B35]">Virtual Racing.</span>
             </h1>
-            <p class="text-gray-400 text-xl font-light leading-relaxed max-w-2xl">
+            <p class="text-[#F2F0EB]/80 text-xl font-light leading-relaxed max-w-2xl">
                 Simple, browser-based utilities for event organizers and racers.
                 Inspired by high-performance telemetry data.
             </p>
@@ -100,20 +112,20 @@
             <div class="card p-10 flex flex-col h-full rounded-md">
                 <div class="flex items-center mb-6">
                     <div class="accent-bar"></div>
-                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-cyan-400">Telemetry Engine</span>
+                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#D49B35]">Telemetry Engine</span>
                 </div>
                 
-                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4">
-                    GPX Profile <span class="text-cyan-400">Analyzer</span>
+                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4 text-[#F2F0EB]">
+                    GPX Profile <span class="text-[#D49B35]">Analyzer</span>
                 </h2>
                 
-                <p class="text-indigo-100/70 font-light mb-10 flex-grow leading-relaxed">
+                <p class="text-[#F2F0EB]/75 font-light mb-10 flex-grow leading-relaxed">
                     Generate profile scores, analyze climb categories, and visualize elevation gradients. Built for race directors creating high-fidelity road books.
                 </p>
 
                 <div class="divider"></div>
                 
-                <a href="https://somaek.github.io/GPXProfile.html" class="btn-cyan inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
+                <a href="https://somaek.github.io/GPXProfile.html" class="btn-gold inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
                     Initialize Analyzer
                 </a>
             </div>
@@ -121,116 +133,116 @@
             <!-- Tool 2: Results & Awards -->
             <div class="card p-10 flex flex-col h-full rounded-md">
                 <div class="flex items-center mb-6">
-                    <div class="accent-bar" style="background-color: #ff4d00;"></div>
-                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#ff4d00]">Classification</span>
+                    <div class="accent-bar" style="background-color: #B84A22;"></div>
+                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#B84A22]">Classification</span>
                 </div>
                 
-                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4">
-                    Awards <span class="text-[#ff4d00]">Dashboard</span>
+                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4 text-[#F2F0EB]">
+                    Awards <span class="text-[#B84A22]">Dashboard</span>
                 </h2>
                 
-                <p class="text-indigo-100/70 font-light mb-10 flex-grow leading-relaxed">
+                <p class="text-[#F2F0EB]/75 font-light mb-10 flex-grow leading-relaxed">
                     Process CSV results to automatically identify age-group winners and podiums. Clean visualization for race recaps and social media distribution.
                 </p>
 
-                <div class="divider" style="background: linear-gradient(to right, #ff4d00, transparent);"></div>
+                <div class="divider" style="background: linear-gradient(to right, #B84A22, transparent);"></div>
                 
-                <a href="https://somaek.github.io/results_awards.html" class="btn-cyan inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm" style="background-color: #ff4d00; box-shadow: 0 4px 0px #9e3000;">
+                <a href="https://somaek.github.io/results_awards.html" class="btn-rust inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
                     Launch Dashboard
                 </a>
             </div>
+
             <!-- Tool 3: Slicer -->
             <div class="card p-10 flex flex-col h-full rounded-md">
                 <div class="flex items-center mb-6">
-                    <div class="accent-bar" style="background-color: #ff4d00;"></div>
-                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#ff4d00]">Editing</span>
+                    <div class="accent-bar" style="background-color: #B84A22;"></div>
+                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#B84A22]">Editing</span>
                 </div>
                 
-                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4">
-                    GPX <span class="text-[#ff4d00]">Slicer</span>
+                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4 text-[#F2F0EB]">
+                    GPX <span class="text-[#B84A22]">Slicer</span>
                 </h2>
                 
-                <p class="text-indigo-100/70 font-light mb-10 flex-grow leading-relaxed">
+                <p class="text-[#F2F0EB]/75 font-light mb-10 flex-grow leading-relaxed">
                     Quickly divide up GPX files into segments for upload to TPV.
                 </p>
 
-                <div class="divider" style="background: linear-gradient(to right, #ff4d00, transparent);"></div>
+                <div class="divider" style="background: linear-gradient(to right, #B84A22, transparent);"></div>
                 
-                <a href="https://somaek.github.io/Segmenter.html" class="btn-cyan inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm" style="background-color: #ff4d00; box-shadow: 0 4px 0px #9e3000;">
+                <a href="https://somaek.github.io/Segmenter.html" class="btn-rust inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
                     Launch Segmenter
                 </a>
             </div>
+
             <!-- Tool 4: GPXZ Elevation -->
             <div class="card p-10 flex flex-col h-full rounded-md">
                 <div class="flex items-center mb-6">
                     <div class="accent-bar"></div>
-                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-cyan-400">LANDSCAPE FITTING</span>
+                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#D49B35]">LANDSCAPE FITTING</span>
                 </div>
                 
-                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4">
-                    GPX <span class="text-cyan-400">Elevation Tool</span>
+                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4 text-[#F2F0EB]">
+                    GPX <span class="text-[#D49B35]">Elevation Tool</span>
                 </h2>
                 
-                <p class="text-indigo-100/70 font-light mb-10 flex-grow leading-relaxed">
+                <p class="text-[#F2F0EB]/75 font-light mb-10 flex-grow leading-relaxed">
                     Use your GPXZ API key to bring high resolution altitude data to your gpx files.
                 </p>
 
                 <div class="divider"></div>
                 
-                <a href="https://somaek.github.io/GPXOptimizer.html" class="btn-cyan inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
+                <a href="https://somaek.github.io/GPXOptimizer.html" class="btn-gold inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
                     Initialize Optimizer
                 </a>
             </div>
+
             <!-- Tool 5: Out and Back -->
             <div class="card p-10 flex flex-col h-full rounded-md">
                 <div class="flex items-center mb-6">
                     <div class="accent-bar"></div>
-                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-cyan-400">OVERLAP FIXING</span>
+                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#D49B35]">OVERLAP FIXING</span>
                 </div>
                 
-                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4">
-                    GPX <span class="text-cyan-400">Overlap Alignment Tool</span>
+                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4 text-[#F2F0EB]">
+                    GPX <span class="text-[#D49B35]">Overlap Alignment Tool</span>
                 </h2>
                 
-                <p class="text-indigo-100/70 font-light mb-10 flex-grow leading-relaxed">
+                <p class="text-[#F2F0EB]/75 font-light mb-10 flex-grow leading-relaxed">
                     Identifies segments that overlaps and makes them identical.
                 </p>
 
                 <div class="divider"></div>
                 
-                <a href="https://somaek.github.io/gpxoutback.html" class="btn-cyan inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
+                <a href="https://somaek.github.io/gpxoutback.html" class="btn-gold inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
                     Initialize Overlapper
                 </a>
             </div>
+
             <!-- Tool 6: Route Database -->
            <div class="card p-10 flex flex-col h-full rounded-md">
                 <div class="flex items-center mb-6">
-                    <div class="accent-bar" style="background-color: #ff4d00;"></div>
-                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#ff4d00]">ROUTE DATABASE</span>
+                    <div class="accent-bar" style="background-color: #B84A22;"></div>
+                    <span class="font-oswald text-xs uppercase tracking-[0.3em] text-[#B84A22]">ROUTE DATABASE</span>
                 </div>
                 
-                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4">
-                    GPX <span class="text-[#ff4d00]">Directory</span>
+                <h2 class="font-oswald text-4xl font-bold uppercase tracking-wide mb-4 text-[#F2F0EB]">
+                    GPX <span class="text-[#B84A22]">Directory</span>
                 </h2>
                 
-                <p class="text-indigo-100/70 font-light mb-10 flex-grow leading-relaxed">
+                <p class="text-[#F2F0EB]/75 font-light mb-10 flex-grow leading-relaxed">
                     Find and sort a huge selection of GPX routes
                 </p>
 
-                <div class="divider"></div>
+                <div class="divider" style="background: linear-gradient(to right, #B84A22, transparent);"></div>
                 
-                <a href="https://somaek.github.io/route_database.html" class="btn-cyan inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm" style="background-color: #ff4d00; box-shadow: 0 4px 0px #9e3000;">
+                <a href="https://somaek.github.io/route_database.html" class="btn-rust inline-block text-center font-oswald font-bold uppercase py-4 tracking-widest rounded-sm text-sm">
                     Access Database
                 </a>
             </div>
 
-
         </div>
 
-
     </main>
-
-
 
 </body>
 </html>
