@@ -1,4 +1,4 @@
-EventKey,Pen,Position,Name,Team,Country,Time,DeltaTime,Distance,DeltaDistance,Points,Gender,UID,ARR,ARRBand,EventRating,EventRatingBand,AgeBand,Pen Group,Week,Type,Points,Elevation,Pen Size,Pen Group,Total Rating,Pen Rating,Pen Range,Race Type
+EventKey,Pen,Position,Name,Team,Country,Time,DeltaTime,Distance,DeltaDistance,NPoints,Gender,UID,ARR,ARRBand,EventRating,EventRatingBand,AgeBand,Pen Group,Week,Type,Points,Elevation,Pen Size,Pen Group,Total Rating,Pen Rating,Pen Range,Race Type
 122174,0,1,Matías Pérez,Pedalers,URU,6141.1,0.0,78018.914,0,0,Male,D80404FC3853EAFD,1423,Platinum 2,1423,Platinum 2,35-39,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.9,483,91,Platinum,129584,1424,0.51,Sprint
 122174,0,2,Ben Goodfellow,,GBR,6143.3,2.2,78018.914,0,0,Male,1BD254BED961385E,1458,Platinum 2,1458,Platinum 2,Senior,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.6,483,91,Platinum,129584,1424,0.51,Sprint
 122174,0,3,Mikael Engmark Helligsø,Filsø Naturferie - BikePro,DEN,6152.1,11.1,78018.914,0,0,Male,F5B70B9DC79ADDCD,1437,Platinum 2,1437,Platinum 2,45-49,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.3,483,91,Platinum,129584,1424,0.51,Sprint
