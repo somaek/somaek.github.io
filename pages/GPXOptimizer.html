@@ -7,19 +7,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #221240; color: #ffffff; }
+        /* Modern aesthetic adhering to Deep Forest Pine palette */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #1C3322; 
+            color: #F2F0EB; 
+        }
         .font-display { font-family: 'Oswald', sans-serif; }
         
-        /* Custom scrollbar for log */
+        /* Custom scrollbar for log in atmospheric forest tones */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #180b30; }
-        ::-webkit-scrollbar-thumb { background: #382161; }
-        ::-webkit-scrollbar-thumb:hover { background: #00e5ff; }
+        ::-webkit-scrollbar-track { background: #122216; }
+        ::-webkit-scrollbar-thumb { background: #2A4832; }
+        ::-webkit-scrollbar-thumb:hover { background: #D49B35; }
 
         .loader {
-            border-top-color: #00e5ff;
+            border-top-color: #D49B35;
             -webkit-animation: spinner 1.5s linear infinite;
             animation: spinner 1.5s linear infinite;
         }
@@ -29,149 +34,149 @@
         }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8">
-    <div class="max-w-6xl mx-auto">
+<body class="min-h-screen p-4 md:p-8 selection:bg-[#B84A22] selection:text-[#F2F0EB]">
+    <div class="max-w-6xl mx-auto space-y-6">
         
-        <!-- Header -->
-        <header class="flex items-center gap-4 mb-6 pb-6 border-b border-[#382161]">
-            <svg class="w-10 h-10 text-[#00e5ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Header Section -->
+        <header class="flex items-center gap-4 pb-6 border-b border-[#2A4832]/60">
+            <svg class="w-10 h-10 text-[#D49B35] drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
             </svg>
             <div>
-                <h1 class="text-3xl md:text-4xl font-display font-bold uppercase tracking-wide">GPX Elevation Optimizer</h1>
-                <p class="text-xs text-[#a390c9] font-bold tracking-widest uppercase mt-1">Powered by AWS Terrarium Data & <a href="https://www.gpxz.io/app" class="hover:text-white transition-colors underline">GPXZ API</a></p>
+                <h1 class="text-3xl md:text-4xl font-display font-bold uppercase tracking-wide text-[#F2F0EB]">GPX Elevation Optimizer</h1>
+                <p class="text-xs text-[#D49B35]/80 font-bold tracking-widest uppercase mt-1">Powered by AWS Terrarium Data & <a href="https://www.gpxz.io/app" class="hover:text-[#F2F0EB] transition-colors underline decoration-[#B84A22]">GPXZ API</a></p>
             </div>
         </header>
 
         <!-- Top Control Bar -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#382161] p-4 mb-6 shadow-lg">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#233F2B] p-4 rounded-lg border border-[#2A4832] shadow-xl">
             <div class="flex flex-wrap items-center gap-6">
                 
                 <!-- Data Source Toggle -->
                 <div class="flex items-center gap-3">
-                    <label class="text-[#00e5ff] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Source</label>
-                    <select id="dataSource" class="bg-[#180b30] text-white px-3 py-1.5 border border-transparent focus:border-[#00e5ff] outline-none text-sm transition-colors cursor-pointer">
+                    <label class="text-[#D49B35] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Source</label>
+                    <select id="dataSource" class="bg-[#122216] text-[#F2F0EB] px-3 py-1.5 rounded border border-[#2A4832] focus:border-[#D49B35] outline-none text-sm transition-colors cursor-pointer">
                         <option value="terrarium">AWS Terrarium (Free)</option>
                         <option value="gpxz">GPXZ API (Key required)</option>
                     </select>
                 </div>
 
-                <div class="hidden md:block w-px h-8 bg-[#221240]"></div>
+                <div class="hidden md:block w-px h-8 bg-[#2A4832]"></div>
                 
                 <!-- API Key (Hidden by default) -->
                 <div id="apiKeyContainer" class="hidden items-center gap-3">
-                    <label class="text-[#00e5ff] text-xs font-bold tracking-widest uppercase whitespace-nowrap">API Key</label>
-                    <input type="text" id="apiKey" value="" class="bg-[#180b30] text-white px-3 py-1.5 w-64 border border-transparent focus:border-[#00e5ff] outline-none font-mono text-sm transition-colors placeholder-[#4a3675]">
+                    <label class="text-[#D49B35] text-xs font-bold tracking-widest uppercase whitespace-nowrap">API Key</label>
+                    <input type="text" id="apiKey" value="" class="bg-[#122216] text-[#F2F0EB] px-3 py-1.5 w-64 rounded border border-[#2A4832] focus:border-[#D49B35] outline-none font-mono text-sm transition-colors placeholder-[#2A4832]">
                 </div>
                 
                 <!-- Batch Size (Hidden by default) -->
                 <div id="batchSizeContainer" class="hidden items-center gap-3">
-                    <label class="text-[#00e5ff] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Batch</label>
-                    <input type="number" id="batchSize" value="350" min="5" max="150" class="bg-[#180b30] text-white px-3 py-1 w-20 border border-transparent focus:border-[#00e5ff] outline-none font-display text-xl text-center transition-colors">
+                    <label class="text-[#D49B35] text-xs font-bold tracking-widest uppercase whitespace-nowrap">Batch</label>
+                    <input type="number" id="batchSize" value="350" min="5" max="150" class="bg-[#122216] text-[#F2F0EB] px-3 py-1 w-20 rounded border border-[#2A4832] focus:border-[#D49B35] outline-none font-display text-xl text-center transition-colors">
                 </div>
             </div>
             
             <!-- Process Action Button -->
-            <button id="processBtn" disabled class="bg-[#00e5ff] text-[#180b30] px-6 py-2 font-display font-bold text-lg uppercase tracking-wider hover:bg-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            <button id="processBtn" disabled class="bg-[#B84A22] text-[#F2F0EB] px-6 py-2.5 rounded font-display font-bold text-lg uppercase tracking-wider hover:bg-[#D49B35] hover:text-[#122216] transition-all duration-200 shadow-md disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                 Start Processing
             </button>
             
-            <a id="downloadBtn" class="hidden bg-[#00e5ff] text-[#180b30] px-6 py-2 font-display font-bold text-lg uppercase tracking-wider hover:bg-white transition-colors items-center justify-center gap-2 cursor-pointer">
+            <a id="downloadBtn" class="hidden bg-[#D49B35] text-[#122216] px-6 py-2.5 rounded font-display font-bold text-lg uppercase tracking-wider hover:bg-[#F2F0EB] hover:text-[#1C3322] transition-all duration-200 shadow-md items-center justify-center gap-2 cursor-pointer">
                 Download GPX
             </a>
         </div>
 
         <!-- 4-Card Stats Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <!-- Card 1: Status -->
-            <div class="bg-[#382161] p-5 flex flex-col justify-between min-h-[120px]">
+            <div class="bg-[#233F2B] p-5 rounded-lg border border-[#2A4832] flex flex-col justify-between min-h-[120px] shadow-lg">
                 <div class="flex justify-between items-start mb-2">
-                    <span class="text-xs text-[#a390c9] tracking-widest uppercase font-bold">File Status</span>
-                    <svg class="w-4 h-4 text-[#a390c9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                    <span class="text-xs text-[#F2F0EB]/60 tracking-widest uppercase font-bold">File Status</span>
+                    <svg class="w-4 h-4 text-[#D49B35]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
                 </div>
-                <div id="cardFileStatus" class="text-3xl font-display font-bold tracking-wide">Awaiting GPX</div>
+                <div id="cardFileStatus" class="text-3xl font-display font-bold tracking-wide text-[#F2F0EB]">Awaiting GPX</div>
             </div>
 
-            <!-- Card 2: Fetched Points -->
-            <div class="bg-[#382161] p-5 flex flex-col justify-between min-h-[120px] border border-[#ff4500] relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-16 h-16 bg-[#ff4500] opacity-10 rounded-bl-full"></div>
+            <!-- Card 2: Fetched Points (Primary Tuscan Rust Accent) -->
+            <div class="bg-[#233F2B] p-5 rounded-lg flex flex-col justify-between min-h-[120px] border-2 border-[#B84A22] relative overflow-hidden shadow-lg">
+                <div class="absolute top-0 right-0 w-16 h-16 bg-[#B84A22] opacity-15 rounded-bl-full"></div>
                 <div class="flex justify-between items-start mb-2 relative z-10">
-                    <span class="text-xs text-[#ff4500] tracking-widest uppercase font-bold">Points Updated</span>
-                    <svg class="w-4 h-4 text-[#ff4500]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    <span class="text-xs text-[#B84A22] tracking-widest uppercase font-bold">Points Updated</span>
+                    <svg class="w-4 h-4 text-[#B84A22]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                 </div>
                 <div class="flex items-end gap-2 relative z-10">
-                    <span id="cardFetched" class="text-5xl font-display font-bold tracking-wide">0</span>
+                    <span id="cardFetched" class="text-5xl font-display font-bold tracking-wide text-[#F2F0EB]">0</span>
                 </div>
             </div>
 
             <!-- Card 3: Total Points -->
-            <div class="bg-[#382161] p-5 flex flex-col justify-between min-h-[120px]">
+            <div class="bg-[#233F2B] p-5 rounded-lg border border-[#2A4832] flex flex-col justify-between min-h-[120px] shadow-lg">
                 <div class="flex justify-between items-start mb-2">
-                    <span class="text-xs text-[#a390c9] tracking-widest uppercase font-bold">Total Points</span>
-                    <svg class="w-4 h-4 text-[#a390c9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span class="text-xs text-[#F2F0EB]/60 tracking-widest uppercase font-bold">Total Points</span>
+                    <svg class="w-4 h-4 text-[#D49B35]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
                 <div class="flex items-end gap-2">
-                    <span id="cardPoints" class="text-4xl font-display font-bold tracking-wide">0</span>
-                    <span class="text-[#a390c9] font-display text-xl mb-1">pts</span>
+                    <span id="cardPoints" class="text-4xl font-display font-bold tracking-wide text-[#F2F0EB]">0</span>
+                    <span class="text-[#D49B35] font-display text-xl mb-1">pts</span>
                 </div>
             </div>
 
             <!-- Card 4: Progress -->
-            <div class="bg-[#382161] p-5 flex flex-col justify-between min-h-[120px]">
+            <div class="bg-[#233F2B] p-5 rounded-lg border border-[#2A4832] flex flex-col justify-between min-h-[120px] shadow-lg">
                 <div class="flex justify-between items-start mb-2">
-                    <span class="text-xs text-[#a390c9] tracking-widest uppercase font-bold">Progress</span>
-                    <svg class="w-4 h-4 text-[#a390c9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                    <span class="text-xs text-[#F2F0EB]/60 tracking-widest uppercase font-bold">Progress</span>
+                    <svg class="w-4 h-4 text-[#D49B35]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
                 </div>
                 <div class="flex items-center justify-between">
-                    <span id="cardProgress" class="text-4xl font-display font-bold tracking-wide">0%</span>
-                    <div id="spinner" class="hidden loader rounded-full border-4 border-t-4 border-[#382161] h-6 w-6"></div>
+                    <span id="cardProgress" class="text-4xl font-display font-bold tracking-wide text-[#F2F0EB]">0%</span>
+                    <div id="spinner" class="hidden loader rounded-full border-4 border-t-4 border-[#2A4832] h-6 w-6"></div>
                 </div>
                 <!-- Progress bar line -->
-                <div class="w-full bg-[#180b30] h-1.5 mt-3 rounded-full overflow-hidden">
-                    <div id="progressBar" class="bg-[#00e5ff] h-full transition-all duration-300" style="width: 0%"></div>
+                <div class="w-full bg-[#122216] h-1.5 mt-3 rounded-full overflow-hidden border border-[#2A4832]/30">
+                    <div id="progressBar" class="bg-[#D49B35] h-full transition-all duration-300" style="width: 0%"></div>
                 </div>
             </div>
         </div>
 
         <!-- Main Panel: Upload & Logs -->
-        <main class="bg-[#382161] p-6 sm:p-8 relative overflow-hidden shadow-xl">
-            <!-- Background Decoration -->
-            <svg class="absolute bottom-4 right-4 w-48 h-48 text-[#221240] opacity-50 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+        <main class="bg-[#233F2B] p-6 sm:p-8 rounded-lg border border-[#2A4832] relative overflow-hidden shadow-2xl">
+            <!-- Background Decoration SVG -->
+            <svg class="absolute bottom-4 right-4 w-48 h-48 text-[#122216] opacity-30 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
 
             <div class="flex items-center gap-3 mb-6">
-                <div class="w-1.5 h-6 bg-[#00e5ff]"></div>
-                <h2 class="text-xl font-display font-bold uppercase tracking-wide">Data Source</h2>
+                <div class="w-1.5 h-6 bg-[#B84A22] rounded-full"></div>
+                <h2 class="text-xl font-display font-bold uppercase tracking-wide text-[#F2F0EB]">Data Source</h2>
             </div>
 
             <!-- Upload Section -->
             <section class="mb-8 relative z-10">
-                <div id="dropZone" class="flex justify-center px-6 pt-10 pb-12 border-2 border-[#543b8a] border-dashed bg-[#221240] bg-opacity-40 hover:bg-opacity-60 cursor-pointer transition-all">
+                <div id="dropZone" class="flex justify-center px-6 pt-10 pb-12 border-2 border-[#2A4832] border-dashed rounded-lg bg-[#122216]/60 hover:bg-[#122216]/90 hover:border-[#D49B35] cursor-pointer transition-all duration-200">
                     <div class="space-y-2 text-center">
-                        <svg class="mx-auto h-12 w-12 text-[#a390c9]" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                        <svg class="mx-auto h-12 w-12 text-[#D49B35]" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <div class="flex text-sm text-[#a390c9] justify-center pt-2">
-                            <label for="fileUpload" class="relative cursor-pointer rounded-md font-bold text-[#00e5ff] hover:text-white transition-colors focus-within:outline-none uppercase tracking-wider">
+                        <div class="flex text-sm text-[#F2F0EB]/80 justify-center pt-2">
+                            <label for="fileUpload" class="relative cursor-pointer rounded-md font-bold text-[#D49B35] hover:text-[#F2F0EB] transition-colors focus-within:outline-none uppercase tracking-wider">
                                 <span>Select GPX File</span>
                                 <input id="fileUpload" name="fileUpload" type="file" accept=".gpx" class="sr-only">
                             </label>
-                            <p class="pl-2 uppercase tracking-wider">or drag and drop</p>
+                            <p class="pl-2 uppercase tracking-wider text-[#F2F0EB]/60">or drag and drop</p>
                         </div>
                     </div>
                 </div>
                 
-                <div id="fileInfo" class="hidden mt-4 p-3 bg-[#180b30] border-l-2 border-[#00e5ff] text-sm flex items-center justify-between">
-                    <span id="fileName" class="text-white font-mono"></span>
+                <div id="fileInfo" class="hidden mt-4 p-3 bg-[#122216] rounded border-l-4 border-[#D49B35] text-sm flex items-center justify-between">
+                    <span id="fileName" class="text-[#F2F0EB] font-mono"></span>
                 </div>
             </section>
 
             <!-- Log -->
             <div class="mt-8 relative z-10">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-1.5 h-6 bg-[#ff4500]"></div>
-                    <h3 class="text-xl font-display font-bold uppercase tracking-wide">Processing Log</h3>
+                    <div class="w-1.5 h-6 bg-[#D49B35] rounded-full"></div>
+                    <h3 class="text-xl font-display font-bold uppercase tracking-wide text-[#F2F0EB]">Processing Log</h3>
                 </div>
-                <div id="logOutput" class="w-full h-48 p-4 bg-[#180b30] text-[#00e5ff] text-xs font-mono overflow-y-auto whitespace-pre-wrap border border-[#221240] shadow-inner">SYSTEM READY. WAITING FOR GPX UPLOAD...
+                <div id="logOutput" class="w-full h-48 p-4 bg-[#122216] text-[#D49B35] text-xs font-mono overflow-y-auto whitespace-pre-wrap border border-[#2A4832] rounded shadow-inner">SYSTEM READY. WAITING FOR GPX UPLOAD...
 </div>
             </div>
         </main>
@@ -227,18 +232,18 @@
             const time = new Date().toLocaleTimeString('en-US', { hour12: false });
             const div = document.createElement('div');
             div.textContent = `[${time}] > ${msg}`;
-            if (isError) div.className = 'text-[#ff4500]';
+            if (isError) div.className = 'text-[#B84A22] font-semibold';
             logOutput.appendChild(div);
             logOutput.scrollTop = logOutput.scrollHeight;
         }
 
         // Setup File Selection
         fileUpload.addEventListener('change', handleFileSelect);
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-[#2d1b54]', 'border-[#00e5ff]'); });
-        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-[#2d1b54]', 'border-[#00e5ff]'); });
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-[#122216]', 'border-[#D49B35]'); });
+        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('bg-[#122216]', 'border-[#D49B35]'); });
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            dropZone.classList.remove('bg-[#2d1b54]', 'border-[#00e5ff]');
+            dropZone.classList.remove('bg-[#122216]', 'border-[#D49B35]');
             if (e.dataTransfer.files.length) { fileUpload.files = e.dataTransfer.files; handleFileSelect(); }
         });
 
@@ -256,7 +261,7 @@
                 fileInfo.classList.remove('hidden');
                 
                 cardFileStatus.textContent = "Ready";
-                cardFileStatus.className = "text-3xl font-display font-bold tracking-wide text-[#00e5ff]";
+                cardFileStatus.className = "text-3xl font-display font-bold tracking-wide text-[#D49B35]";
                 
                 cardPoints.textContent = targetPoints.length;
                 cardFetched.textContent = "0";
@@ -347,7 +352,7 @@
             spinner.classList.remove('hidden');
             
             cardFileStatus.textContent = "Processing";
-            cardFileStatus.className = "text-3xl font-display font-bold tracking-wide text-[#ff4500]";
+            cardFileStatus.className = "text-3xl font-display font-bold tracking-wide text-[#B84A22]";
 
             let processedTotalCount = 0;
 
@@ -450,7 +455,7 @@
             progressBar.style.width = '100%';
             cardProgress.textContent = '100%';
             cardFileStatus.textContent = "Complete";
-            cardFileStatus.className = "text-3xl font-display font-bold tracking-wide text-[#00e5ff]";
+            cardFileStatus.className = "text-3xl font-display font-bold tracking-wide text-[#D49B35]";
             spinner.classList.add('hidden');
             log(`Processing complete. Total points updated: ${processedTotalCount}`);
             
