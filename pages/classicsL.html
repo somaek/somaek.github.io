@@ -3,343 +3,1234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allkin Classics Leaderboard</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>TPV Fall Classics — Official Results & Standings</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        
-        :root {
-            --accent: #3D1087;
-        }
+    <!-- PapaParse for robust fast CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <!-- Google Fonts: Fraunces (Retro Display), Work Sans (Body), Space Mono (Tabular Timing) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #ffffff;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .header-banner {
-            background-image: url('https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/ALLKIN_CLASSICS.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 0;
-            padding-top: 35.5%;
-        }
-
-        @media (max-width: 640px) {
-            .header-banner {
-                padding-top: 52%; 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ochre: {
+                            DEFAULT: '#D9A036',
+                            light: '#E6B85C',
+                            dark: '#B5801F',
+                        },
+                        terracotta: {
+                            DEFAULT: '#A33B27',
+                            light: '#C24E38',
+                            dark: '#7D2B1B',
+                        },
+                        denim: {
+                            DEFAULT: '#3B5266',
+                            light: '#526E87',
+                            dark: '#263745',
+                        },
+                        parchment: {
+                            DEFAULT: '#F7F3E8',
+                            dark: '#EBE4D1',
+                            card: '#FDFBF6',
+                            border: '#D5CBB4'
+                        },
+                        espresso: '#231F1D'
+                    },
+                    fontFamily: {
+                        display: ['"Fraunces"', 'Georgia', 'serif'],
+                        sans: ['"Work Sans"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    }
+                }
             }
         }
-        
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
+    </script>
+
+    <style>
+        body {
+            background-color: #F7F3E8;
+            color: #231F1D;
         }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+        /* Subtle 4px heritage accent bar */
+        .heritage-stripe {
+            height: 4px;
+            background: linear-gradient(
+                90deg,
+                #D9A036 0%,
+                #D9A036 33.33%,
+                #A33B27 33.33%,
+                #A33B27 66.66%,
+                #3B5266 66.66%,
+                #3B5266 100%
+            );
+        }
+
+        /* Minimalist Card Styling */
+        .clean-card {
+            background-color: #FDFBF6;
+            border: 1px solid #D5CBB4;
+        }
+
+        /* Custom scrollbar for tables & modal */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EBE4D1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3B5266;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A33B27;
         }
     </style>
 </head>
-<body class="text-slate-900">
-    <div id="root"></div>
+<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-ochre selection:text-espresso">
 
-    <script type="text/babel">
-        const { useState, useMemo, useEffect } = React;
-
-        const CSV_URL = 'https://github.com/somaek/somaek.github.io/blob/c1aafb912f0a464ca8e9262b10b66e5411c192cd/classicsL.csv';
-        const ACCENT_COLOR = '#3D1087';
-
-        const App = () => {
-            const [data, setData] = useState([]);
-            const [loading, setLoading] = useState(true);
-            const [error, setError] = useState(null);
-            const [searchTerm, setSearchTerm] = useState('');
-            const [expandedId, setExpandedId] = useState(null);
-            const [filterRank, setFilterRank] = useState('All');
-            const [filterGender, setFilterGender] = useState('All');
-            const [filterAge, setFilterAge] = useState('All');
-            const [activeCategory, setActiveCategory] = useState('Total Points');
-
-            useEffect(() => {
-                const fetchData = async () => {
-                    try {
-                        setLoading(true);
-                        const response = await fetch(CSV_URL);
-                        if (!response.ok) throw new Error('Failed to fetch data');
-                        const csvText = await response.text();
-                        
-                        const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
-                        const headers = lines[0].split(',').map(h => h.trim());
-                        
-                        const result = lines.slice(1).map(line => {
-                            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                            const obj = {};
-                            headers.forEach((header, i) => {
-                                let val = values[i]?.trim() || '';
-                                obj[header] = val.replace(/^"|"$/g, '');
-                            });
-                            return obj;
-                        });
-                        
-                        setData(result);
-                    } catch (err) {
-                        setError('Could not load leaderboard.');
-                        console.error(err);
-                    } finally {
-                        setLoading(false);
-                    }
-                };
-                fetchData();
-            }, []);
-
-            const ageBands = useMemo(() => {
-                const bands = new Set(data.map(r => r.AgeBand).filter(Boolean));
-                return ['All', ...Array.from(bands).sort()];
-            }, [data]);
-
-            const ranks = ['All', 'Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze'];
-            const genders = ['All', 'Male', 'Female', 'Bot'];
-            const categories = [
-                { id: 'Total Points', label: 'Total' },
-                { id: 'All Rounder', label: 'All Rounder' },
-                { id: 'Climb', label: 'Climb' },
-                { id: 'Hills', label: 'Hills' },
-                { id: 'Sprint', label: 'Sprint' }
-            ];
-
-            const filteredAndSortedData = useMemo(() => {
-                const filtered = data.filter(rider => {
-                    const name = rider.Name || '';
-                    const team = rider.Team || '';
-                    const matchesSearch = name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                                          team.toLowerCase().includes(searchTerm.toLowerCase());
-                    const matchesRank = filterRank === 'All' || rider.Rank === filterRank;
-                    const matchesGender = filterGender === 'All' || rider.Gender === filterGender;
-                    const matchesAge = filterAge === 'All' || rider.AgeBand === filterAge;
-                    return matchesSearch && matchesRank && matchesGender && matchesAge;
-                });
-
-                // Sort based on active category points
-                return filtered.sort((a, b) => {
-                    const valA = parseInt(a[activeCategory]) || 0;
-                    const valB = parseInt(b[activeCategory]) || 0;
-                    return valB - valA;
-                });
-            }, [data, searchTerm, filterRank, filterGender, filterAge, activeCategory]);
-
-            const toggleExpand = (id) => {
-                setExpandedId(prev => (prev === id ? null : id));
-            };
-
-            const getRankColor = (rank) => {
-                switch (rank) {
-                    case 'Diamond': return 'text-cyan-700 bg-cyan-50 border-cyan-200';
-                    case 'Platinum': return 'text-indigo-700 bg-indigo-50 border-indigo-200';
-                    case 'Gold': return 'text-amber-700 bg-amber-50 border-amber-200';
-                    case 'Silver': return 'text-slate-600 bg-slate-100 border-slate-200';
-                    case 'Bronze': return 'text-orange-700 bg-orange-50 border-orange-200';
-                    default: return 'text-slate-500 bg-slate-50 border-slate-200';
-                }
-            };
-
-            return (
-                <div className="min-h-screen bg-white">
-                    <header className="header-banner"></header>
-
-                    <main className="max-w-6xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-10 relative z-20 pb-20">
-                        {/* Search & Filters */}
-                        <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-10">
-                            <div className="space-y-6">
-                                <div className="relative">
-                                    <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Search rider or team..." 
-                                        className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-indigo-200 transition-all text-base font-medium"
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                    />
-                                </div>
-                                
-                                <div className="space-y-6">
-                                    {/* Points Category Filter */}
-                                    <div className="space-y-2">
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Points Standing</div>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {categories.map(cat => (
-                                                <button
-                                                    key={cat.id}
-                                                    onClick={() => setActiveCategory(cat.id)}
-                                                    className={`px-4 py-2 rounded-xl border text-sm font-bold transition-all shadow-sm ${
-                                                        activeCategory === cat.id ? 'text-white border-transparent' : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300'
-                                                    }`}
-                                                    style={activeCategory === cat.id ? {backgroundColor: ACCENT_COLOR} : {}}
-                                                >
-                                                    {cat.label}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Tier Filter */}
-                                    <div className="space-y-2">
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Tier</div>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {ranks.map(rank => (
-                                                <button
-                                                    key={rank}
-                                                    onClick={() => setFilterRank(rank)}
-                                                    className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
-                                                        filterRank === rank ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
-                                                    }`}
-                                                >
-                                                    {rank}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Class</div>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {genders.map(g => (
-                                                    <button
-                                                        key={g}
-                                                        onClick={() => setFilterGender(g)}
-                                                        className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
-                                                            filterGender === g ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
-                                                        }`}
-                                                    >
-                                                        {g === 'All' ? 'All' : g === 'Bot' ? '🤖 Bot' : g}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Age Category</div>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {ageBands.map(band => (
-                                                    <button
-                                                        key={band}
-                                                        onClick={() => setFilterAge(band)}
-                                                        className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${
-                                                            filterAge === band ? 'bg-slate-900 border-slate-900 text-white' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'
-                                                        }`}
-                                                    >
-                                                        {band}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* List Header */}
-                        <div className="grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-100">
-                            <div className="col-span-2 sm:col-span-1">Rank</div>
-                            <div className="col-span-7 sm:col-span-6">Competitor</div>
-                            <div className="hidden sm:block sm:col-span-2 text-right">Races</div>
-                            <div className="col-span-3 sm:col-span-3 text-right">
-                                {categories.find(c => c.id === activeCategory)?.label}
-                            </div>
-                        </div>
-
-                        {/* Results */}
-                        <div className="divide-y divide-slate-100">
-                            {loading ? (
-                                <div className="py-20 text-center text-slate-400 animate-pulse">Loading standings...</div>
-                            ) : error ? (
-                                <div className="py-20 text-center text-red-400">{error}</div>
-                            ) : filteredAndSortedData.map((rider, index) => {
-                                const riderId = `${rider.Name}-${index}`;
-                                return (
-                                <div key={riderId}>
-                                    <div 
-                                        onClick={() => toggleExpand(riderId)}
-                                        className={`grid grid-cols-12 gap-2 px-4 sm:px-8 py-4 items-center cursor-pointer transition-colors ${expandedId === riderId ? 'bg-slate-50' : 'hover:bg-slate-50/50'}`}
-                                    >
-                                        <div className="col-span-2 sm:col-span-1 font-mono font-bold text-slate-900">
-                                            {(index + 1).toString().padStart(2, '0')}
-                                        </div>
-                                        <div className="col-span-7 sm:col-span-6 pr-2">
-                                            <div className="font-bold text-slate-900 truncate leading-tight flex items-center gap-2">
-                                                {rider.Name}
-                                                <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold border ${getRankColor(rider.Rank)}`}>
-                                                    {rider.Rank}
-                                                </span>
-                                            </div>
-                                            <div className="text-[10px] text-slate-400 uppercase font-medium truncate">
-                                                {rider.Team || 'Independent'} • {rider.AgeBand}
-                                            </div>
-                                        </div>
-                                        <div className="hidden sm:block sm:col-span-2 text-right font-mono font-bold text-slate-500">
-                                            {rider.Races}
-                                        </div>
-                                        <div className="col-span-3 sm:col-span-3 text-right flex items-center justify-end gap-3 sm:gap-6">
-                                            <div className="text-lg sm:text-2xl font-mono font-black text-slate-900">{rider[activeCategory] || '0'}</div>
-                                            <i className={`text-slate-300 text-xs fa-solid ${expandedId === riderId ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
-                                        </div>
-                                    </div>
-
-                                    {expandedId === riderId && (
-                                        <div className="p-4 sm:p-8 bg-slate-50 border-t border-slate-200">
-                                            <div className="flex justify-between items-center mb-6">
-                                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Full Scorecard</span>
-                                                <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[9px] font-bold border bg-white">{rider.Rank}</span>
-                                            </div>
-                                            
-                                            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                                                {categories.map(cat => (
-                                                    <div key={cat.id} className={`p-4 rounded-xl border shadow-sm transition-all ${activeCategory === cat.id ? 'bg-white border-indigo-200 ring-2 ring-indigo-50' : 'bg-white/60 border-slate-200'}`}>
-                                                        <div className={`text-[9px] font-black uppercase mb-1 ${activeCategory === cat.id ? 'text-indigo-600' : 'text-slate-400'}`}>{cat.label}</div>
-                                                        <div className="text-xl font-mono font-bold text-slate-900">{rider[cat.id] || '0'}</div>
-                                                    </div>
-                                                ))}
-                                            </div>
-
-                                            <div className="mt-6 flex flex-wrap gap-8 border-t border-slate-200 pt-6">
-                                                <div>
-                                                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Age Band</div>
-                                                    <div className="text-base font-bold text-slate-700">{rider.AgeBand || 'N/A'}</div>
-                                                </div>
-                                                <div>
-                                                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Class</div>
-                                                    <div className="text-base font-bold text-slate-700 flex items-center gap-1">
-                                                        {rider.Gender === 'Bot' ? <span>🤖 Bot</span> : rider.Gender}
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-wider">Total Races</div>
-                                                    <div className="text-base font-bold text-slate-700">{rider.Races}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                );
-                            })}
-                            {!loading && filteredAndSortedData.length === 0 && (
-                                <div className="py-20 text-center text-slate-400">No riders found matching your criteria.</div>
-                            )}
-                        </div>
-                    </main>
+    <!-- Minimalist Header -->
+    <header class="bg-denim text-parchment">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-parchment">
+                        TPV Fall Classics
+                    </h1>
+                    <p class="mt-1 text-parchment/75 text-sm">
+                        General Classification &amp; Event Standings
+                    </p>
                 </div>
-            );
+
+                <!-- Minimalist Summary Counters -->
+                <div class="flex items-center gap-6 text-sm border-t md:border-t-0 pt-3 md:pt-0 border-parchment/15">
+                    <div>
+                        <span class="text-parchment/60 text-xs uppercase font-mono block">Riders</span>
+                        <span id="stat-riders" class="font-mono text-lg font-bold text-ochre">—</span>
+                    </div>
+                    <div>
+                        <span class="text-parchment/60 text-xs uppercase font-mono block">Events</span>
+                        <span id="stat-events" class="font-mono text-lg font-bold text-parchment">—</span>
+                    </div>
+                    <div>
+                        <span class="text-parchment/60 text-xs uppercase font-mono block">Entries</span>
+                        <span id="stat-rows" class="font-mono text-lg font-bold text-parchment">—</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="heritage-stripe"></div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Filter Console -->
+        <section aria-label="Classification Filters" class="clean-card rounded-lg p-4 sm:p-5 space-y-4 shadow-2xs">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-parchment-border">
+                <div class="relative w-full sm:w-80">
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Search rider, team, or country..."
+                        class="w-full pl-9 pr-8 py-1.5 rounded-md bg-parchment border border-parchment-border focus:border-denim focus:outline-none text-sm text-espresso placeholder:text-espresso/45"
+                    />
+                    <svg class="w-4 h-4 text-espresso/50 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <button id="clear-search-btn" title="Clear search" class="hidden absolute right-2.5 top-2 text-espresso/50 hover:text-terracotta">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <button id="reset-filters-btn" class="self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-parchment-dark hover:bg-terracotta hover:text-parchment text-espresso font-mono text-xs font-medium transition">
+                    Reset Filters
+                </button>
+            </div>
+
+            <!-- 4 Filter Button Groups -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- 1. Gender Filter -->
+                <div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Gender</div>
+                    <div id="filter-gender" class="flex flex-wrap gap-1"></div>
+                </div>
+
+                <!-- 2. Race Type Filter -->
+                <div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Race Type</div>
+                    <div id="filter-racetype" class="flex flex-wrap gap-1"></div>
+                </div>
+
+                <!-- 3. Pen Group Filter -->
+                <div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Pen Group</div>
+                    <div id="filter-pengroup" class="flex flex-wrap gap-1"></div>
+                </div>
+
+                <!-- 4. AgeBand Filter -->
+                <div>
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-espresso/60 mb-1.5">Age Band</div>
+                    <div id="filter-ageband" class="flex flex-wrap gap-1 max-h-24 overflow-y-auto pr-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Standings Table -->
+        <section aria-label="Rider General Classification" class="clean-card rounded-lg overflow-hidden shadow-2xs">
+            <!-- Table Top Bar -->
+            <div class="bg-parchment-dark/60 px-4 sm:px-6 py-3 border-b border-parchment-border flex items-center justify-between">
+                <h2 class="font-display text-base sm:text-lg font-bold text-espresso">
+                    Rider Standings
+                </h2>
+                <span id="showing-count-label" class="text-xs font-mono text-espresso/70">Showing 0 of 0 riders</span>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-panel" class="py-16 px-4 text-center space-y-3">
+                <div class="inline-block w-8 h-8 border-2 border-denim border-t-terracotta rounded-full animate-spin"></div>
+                <div class="text-sm font-mono text-espresso/70">Loading race results...</div>
+            </div>
+
+            <!-- Standings Table Container -->
+            <div id="table-wrapper" class="hidden overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-denim text-parchment font-mono text-xs uppercase tracking-wider select-none">
+                            <th class="py-3 pl-4 pr-2 w-14 text-center">Pos</th>
+                            <th data-sort="name" class="sortable-th py-3 px-3 cursor-pointer hover:bg-denim-light transition">
+                                <div class="inline-flex items-center gap-1">
+                                    <span>Rider</span>
+                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                </div>
+                            </th>
+                            <th data-sort="team" class="sortable-th py-3 px-3 hidden md:table-cell cursor-pointer hover:bg-denim-light transition">
+                                <div class="inline-flex items-center gap-1">
+                                    <span>Team</span>
+                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                </div>
+                            </th>
+                            <th data-sort="country" class="sortable-th py-3 px-3 text-center cursor-pointer hover:bg-denim-light transition">
+                                <div class="inline-flex items-center justify-center gap-1">
+                                    <span>Country</span>
+                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                </div>
+                            </th>
+                            <th data-sort="totalPoints" class="sortable-th py-3 px-3 text-right bg-terracotta hover:bg-terracotta-light text-parchment font-bold cursor-pointer transition">
+                                <div class="inline-flex items-center justify-end gap-1">
+                                    <span>Total Pts</span>
+                                    <span class="sort-indicator text-[10px]">▼</span>
+                                </div>
+                            </th>
+                            <th data-sort="sprintPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-denim-light transition">
+                                <div class="inline-flex items-center justify-end gap-1">
+                                    <span>Sprint</span>
+                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                </div>
+                            </th>
+                            <th data-sort="hillsPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-denim-light transition">
+                                <div class="inline-flex items-center justify-end gap-1">
+                                    <span>Hills</span>
+                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                </div>
+                            </th>
+                            <th data-sort="climbPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-denim-light transition">
+                                <div class="inline-flex items-center justify-end gap-1">
+                                    <span>Climb</span>
+                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                </div>
+                            </th>
+                            <th data-sort="racesCount" class="sortable-th py-3 pl-2 pr-4 text-center w-20 cursor-pointer hover:bg-denim-light transition">
+                                <div class="inline-flex items-center justify-center gap-1">
+                                    <span>Races</span>
+                                    <span class="sort-indicator text-[10px] opacity-60"></span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="riders-tbody" class="divide-y divide-parchment-border text-sm">
+                        <!-- Populated dynamically via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Footer -->
+            <div id="pagination-bar" class="hidden bg-parchment-dark/50 px-4 sm:px-6 py-3 border-t border-parchment-border flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="text-xs text-espresso/60">
+                    Click any rider to view individual race results.
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="prev-page-btn" class="px-3 py-1 rounded bg-parchment-card border border-parchment-border text-espresso font-mono text-xs hover:border-denim disabled:opacity-40 disabled:pointer-events-none transition">
+                        ← Prev
+                    </button>
+                    <span id="page-indicator" class="font-mono text-xs px-2 text-espresso">Page 1 of 1</span>
+                    <button id="next-page-btn" class="px-3 py-1 rounded bg-parchment-card border border-parchment-border text-espresso font-mono text-xs hover:border-denim disabled:opacity-40 disabled:pointer-events-none transition">
+                        Next →
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Event Classification Modal -->
+    <div id="event-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-espresso/60 backdrop-blur-xs">
+        <div class="clean-card rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-xl">
+            
+            <!-- Modal Header -->
+            <div class="bg-denim text-parchment px-5 py-4 flex items-start justify-between gap-4">
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-1">
+                        <span id="modal-racetype-badge" class="bg-ochre text-espresso font-mono text-xs font-bold px-2 py-0.5 rounded-sm uppercase">
+                            Sprint
+                        </span>
+                        <span id="modal-pengroup-badge" class="text-parchment/80 font-mono text-xs">
+                            Pen Group
+                        </span>
+                    </div>
+                    <h3 id="modal-week-title" class="font-display text-xl sm:text-2xl font-bold text-parchment">
+                        Week Race Title
+                    </h3>
+                </div>
+
+                <button id="close-modal-btn" class="p-1.5 rounded bg-parchment/10 hover:bg-parchment/20 text-parchment transition shrink-0" aria-label="Close modal">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Subbar -->
+            <div class="bg-parchment-dark px-5 py-2 border-b border-parchment-border flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                <span id="modal-finisher-count" class="text-espresso/80">0 Finishers</span>
+                <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+                    <input type="checkbox" id="modal-hide-bots" class="rounded border-denim text-terracotta focus:ring-0">
+                    <span class="text-espresso">Hide Bots</span>
+                </label>
+            </div>
+
+            <!-- Modal Results Table -->
+            <div class="overflow-y-auto flex-grow">
+                <table class="w-full text-left border-collapse">
+                    <thead class="sticky top-0 z-10">
+                        <tr class="bg-parchment-dark text-espresso font-mono text-xs uppercase border-b border-parchment-border">
+                            <th class="py-2.5 pl-4 pr-2 w-14 text-center">Pos</th>
+                            <th class="py-2.5 px-3">Rider Name</th>
+                            <th class="py-2.5 px-3">Team</th>
+                            <th class="py-2.5 px-3 text-center">Gender</th>
+                            <th class="py-2.5 px-3 text-right">ARR</th>
+                            <th class="py-2.5 px-3 text-right">Points</th>
+                            <th class="py-2.5 pl-3 pr-5 text-right">Time / Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modal-results-tbody" class="divide-y divide-parchment-border text-sm">
+                        <!-- Dynamically populated with EventKey results -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-parchment-dark/60 px-5 py-2.5 border-t border-parchment-border flex items-center justify-end">
+                <button id="close-modal-footer-btn" class="px-4 py-1.5 rounded bg-denim text-parchment hover:bg-denim-dark font-mono text-xs font-medium transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-12 border-t border-parchment-border bg-parchment-dark/50 text-espresso/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between text-xs font-mono">
+            <span>TPV Fall Classics</span>
+            <span>L'Eroica Heritage Series</span>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * TPV Fall Classics — Data Engine & Interactive UI
+         * Note on Duplicate Columns in CSV header:
+         * Header:
+         * [0] EventKey, [1] Pen, [2] Position, [3] Name, [4] Team, [5] Country,
+         * [6] Time, [7] DeltaTime, [8] Distance, [9] DeltaDistance,
+         * [10] Points (First - IGNORED), [11] Gender, [12] UID, [13] ARR, [14] ARRBand,
+         * [15] EventRating, [16] EventRatingBand, [17] AgeBand,
+         * [18] Pen Group (First - e.g. "Platinum 2"), [19] Week, [20] Type,
+         * [21] Points (Second - IMPORTANT!), [22] Elevation, [23] Pen Size,
+         * [24] Pen Group (Second - e.g. "Platinum"), [25] Total Rating,
+         * [26] Pen Rating, [27] Pen Range, [28] Race Type
+         */
+
+        const CSV_URLS = [
+            'https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/classicsL.csv',
+            'https://raw.githubusercontent.com/somaek/somaek.github.io/8ebb9612ba73fd2d155789b5a61da073bab37e15/classicsL.csv',
+            'https://cdn.jsdelivr.net/gh/somaek/somaek.github.io@8ebb9612ba73fd2d155789b5a61da073bab37e15/classicsL.csv'
+        ];
+
+        // Embedded fallback sample rows from user prompt in case offline
+        const FALLBACK_SAMPLE_CSV = `EventKey,Pen,Position,Name,Team,Country,Time,DeltaTime,Distance,DeltaDistance,Points,Gender,UID,ARR,ARRBand,EventRating,EventRatingBand,AgeBand,Pen Group,Week,Type,Points,Elevation,Pen Size,Pen Group,Total Rating,Pen Rating,Pen Range,Race Type
+122174,0,1,Matías Pérez,Pedalers,URU,6141.1,0.0,78018.914,0,0,Male,D80404FC3853EAFD,1423,Platinum 2,1423,Platinum 2,35-39,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.9,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,2,Ben Goodfellow,,GBR,6143.3,2.2,78018.914,0,0,Male,1BD254BED961385E,1458,Platinum 2,1458,Platinum 2,Senior,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.6,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,3,Mikael Engmark Helligsø,Filsø Naturferie - BikePro,DEN,6152.1,11.1,78018.914,0,0,Male,F5B70B9DC79ADDCD,1437,Platinum 2,1437,Platinum 2,45-49,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.3,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,4,Wendell Shannon,,SWE,6153.0,11.9,78018.914,0,0,Bot,Bot4857,1721,Diamond 2,1721,Diamond 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.0,483,91,Diamond,129584,1424,0.51,Sprint`;
+
+        // Application State
+        const state = {
+            allRows: [],            // Normalized race entry objects
+            eventsByKey: new Map(), // EventKey -> Array of all race rows (human + bot)
+            ridersList: [],         // Filtered & aggregated riders sorted by Total Points
+            expandedRiderKeys: new Set(), // Currently expanded rider IDs in the table
+
+            // Distinct values discovered in dataset
+            options: {
+                genders: [],
+                penGroups: [],
+                ageBands: [],
+                raceTypes: []
+            },
+
+            // Active Filter selections
+            filters: {
+                gender: 'HUMANS', // 'HUMANS' (default: all non-bot), 'ALL' (includes Bot), or specific gender e.g. 'Male', 'Female', 'Bot'
+                penGroup: 'ALL',
+                ageBand: 'ALL',
+                raceType: 'ALL',
+                search: ''
+            },
+
+            // Pagination for smooth rendering on large datasets
+            pagination: {
+                page: 1,
+                pageSize: 50
+            },
+
+            // Active sort configuration for Standings Table
+            sort: {
+                column: 'totalPoints',
+                direction: 'desc' // 'asc' | 'desc'
+            },
+
+            // Currently open EventKey modal state
+            modal: {
+                eventKey: null,
+                highlightRiderKey: null,
+                hideBots: false
+            }
         };
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        /**
+         * Formats total seconds (e.g. 6141.1) into H:MM:SS.d or MM:SS.d
+         */
+        function formatTotalTime(seconds) {
+            const num = parseFloat(seconds);
+            if (!Number.isFinite(num) || num <= 0) return '—';
+            const hrs = Math.floor(num / 3600);
+            const mins = Math.floor((num % 3600) / 60);
+            const secs = (num % 60).toFixed(1);
+            const paddedMins = hrs > 0 ? String(mins).padStart(2, '0') : String(mins);
+            const paddedSecs = secs < 10 ? `0${secs}` : `${secs}`;
+            return hrs > 0 ? `${hrs}:${paddedMins}:${paddedSecs}` : `${paddedMins}:${paddedSecs}`;
+        }
+
+        /**
+         * Formats gap in seconds (e.g. 11.1) into +11.1s or +M:SS.d
+         */
+        function formatGapTime(deltaSeconds) {
+            const num = parseFloat(deltaSeconds);
+            if (!Number.isFinite(num) || num <= 0) return '+0.0s';
+            if (num < 60) {
+                return `+${num.toFixed(1)}s`;
+            }
+            const hrs = Math.floor(num / 3600);
+            const mins = Math.floor((num % 3600) / 60);
+            const secs = (num % 60).toFixed(1);
+            const paddedSecs = secs < 10 ? `0${secs}` : `${secs}`;
+            if (hrs > 0) {
+                return `+${hrs}:${String(mins).padStart(2, '0')}:${paddedSecs}`;
+            }
+            return `+${mins}:${paddedSecs}`;
+        }
+
+        /**
+         * Formats points to 1 decimal place
+         */
+        function formatPoints(pts) {
+            const num = parseFloat(pts);
+            if (!Number.isFinite(num) || num === 0) return '0.0';
+            return num.toFixed(1);
+        }
+
+        /**
+         * Safely escapes HTML special characters
+         */
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function processRawCsvRows(rawRows) {
+            if (!rawRows || rawRows.length < 2) return;
+
+            // Locate column indices dynamically from the header row so we always grab the SECOND Points column
+            const header = rawRows[0].map(h => String(h || '').trim());
+
+            const pointsIndices = [];
+            const penGroupIndices = [];
+
+            header.forEach((colName, idx) => {
+                const lower = colName.toLowerCase();
+                if (lower === 'points') pointsIndices.push(idx);
+                if (lower === 'pen group') penGroupIndices.push(idx);
+            });
+
+            const colIdx = {
+                eventKey: header.indexOf('EventKey') !== -1 ? header.indexOf('EventKey') : 0,
+                pen: header.indexOf('Pen') !== -1 ? header.indexOf('Pen') : 1,
+                position: header.indexOf('Position') !== -1 ? header.indexOf('Position') : 2,
+                name: header.indexOf('Name') !== -1 ? header.indexOf('Name') : 3,
+                team: header.indexOf('Team') !== -1 ? header.indexOf('Team') : 4,
+                country: header.indexOf('Country') !== -1 ? header.indexOf('Country') : 5,
+                time: header.indexOf('Time') !== -1 ? header.indexOf('Time') : 6,
+                deltaTime: header.indexOf('DeltaTime') !== -1 ? header.indexOf('DeltaTime') : 7,
+                gender: header.indexOf('Gender') !== -1 ? header.indexOf('Gender') : 11,
+                uid: header.indexOf('UID') !== -1 ? header.indexOf('UID') : 12,
+                arr: header.indexOf('ARR') !== -1 ? header.indexOf('ARR') : 13,
+                ageBand: header.indexOf('AgeBand') !== -1 ? header.indexOf('AgeBand') : 17,
+                week: header.indexOf('Week') !== -1 ? header.indexOf('Week') : 19,
+                seriesType: header.indexOf('Type') !== -1 ? header.indexOf('Type') : 20,
+                // IMPORTANT: Use the second Points column (index 21) if two exist!
+                points: pointsIndices.length > 1 ? pointsIndices[1] : (pointsIndices[0] ?? 21),
+                // For Pen Group, check both columns (index 24 is broad e.g. Platinum, index 18 is sub-band e.g. Platinum 2)
+                penGroupBroad: penGroupIndices.length > 1 ? penGroupIndices[1] : (penGroupIndices[0] ?? 24),
+                penGroupSub: penGroupIndices[0] ?? 18,
+                raceType: header.indexOf('Race Type') !== -1 ? header.indexOf('Race Type') : 28
+            };
+
+            const parsedRows = [];
+            const eventsMap = new Map();
+
+            const gendersSet = new Set();
+            const penGroupsSet = new Set();
+            const ageBandsSet = new Set();
+            const raceTypesSet = new Set();
+
+            for (let i = 1; i < rawRows.length; i++) {
+                const row = rawRows[i];
+                if (!row || row.length < 10) continue;
+
+                const eventKey = String(row[colIdx.eventKey] ?? '').trim();
+                const name = String(row[colIdx.name] ?? '').trim();
+                if (!eventKey || !name) continue;
+
+                const position = parseInt(row[colIdx.position], 10) || 9999;
+                const team = String(row[colIdx.team] ?? '').trim();
+                const country = String(row[colIdx.country] ?? '').trim();
+                const time = parseFloat(row[colIdx.time]) || 0;
+                const deltaTime = parseFloat(row[colIdx.deltaTime]) || 0;
+                const gender = String(row[colIdx.gender] ?? '').trim() || 'Unknown';
+                const uid = String(row[colIdx.uid] ?? '').trim();
+                const arr = String(row[colIdx.arr] ?? '').trim();
+                const ageBand = String(row[colIdx.ageBand] ?? '').trim() || 'Unspecified';
+                const penGroupBroad = String(row[colIdx.penGroupBroad] ?? '').trim();
+                const penGroupSub = String(row[colIdx.penGroupSub] ?? '').trim();
+                const penGroup = penGroupBroad || penGroupSub || 'Unassigned';
+                const week = String(row[colIdx.week] ?? '').trim() || `Event ${eventKey}`;
+                const points = parseFloat(row[colIdx.points]) || 0;
+                const raceType = String(row[colIdx.raceType] ?? '').trim() || 'Other';
+
+                const isBot = gender.toLowerCase() === 'bot' || uid.toLowerCase().startsWith('bot');
+                const riderKey = uid ? uid : `${name}__${country}`;
+
+                const entry = {
+                    eventKey,
+                    position,
+                    name,
+                    team,
+                    country,
+                    time,
+                    deltaTime,
+                    gender,
+                    isBot,
+                    uid,
+                    arr,
+                    riderKey,
+                    ageBand,
+                    penGroup,
+                    penGroupSub,
+                    week,
+                    points,
+                    raceType
+                };
+
+                parsedRows.push(entry);
+
+                if (!eventsMap.has(eventKey)) {
+                    eventsMap.set(eventKey, []);
+                }
+                eventsMap.get(eventKey).push(entry);
+
+                gendersSet.add(gender);
+                if (penGroup) penGroupsSet.add(penGroup);
+                if (ageBand && ageBand !== 'Unspecified') ageBandsSet.add(ageBand);
+                if (raceType) raceTypesSet.add(raceType);
+            }
+
+            // Sort each EventKey's full results by Position ascending
+            eventsMap.forEach((list) => {
+                list.sort((a, b) => a.position - b.position);
+            });
+
+            state.allRows = parsedRows;
+            state.eventsByKey = eventsMap;
+
+            // Order filter options logically
+            const preferredPenOrder = ['Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze', 'Copper'];
+            state.options.penGroups = Array.from(penGroupsSet).sort((a, b) => {
+                const idxA = preferredPenOrder.findIndex(p => a.startsWith(p));
+                const idxB = preferredPenOrder.findIndex(p => b.startsWith(p));
+                if (idxA !== -1 && idxB !== -1) return idxA - idxB || a.localeCompare(b);
+                if (idxA !== -1) return -1;
+                if (idxB !== -1) return 1;
+                return a.localeCompare(b);
+            });
+
+            const preferredRaceTypes = ['Sprint', 'Hills', 'Climb'];
+            state.options.raceTypes = Array.from(raceTypesSet).sort((a, b) => {
+                const idxA = preferredRaceTypes.indexOf(a);
+                const idxB = preferredRaceTypes.indexOf(b);
+                if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+                if (idxA !== -1) return -1;
+                if (idxB !== -1) return 1;
+                return a.localeCompare(b);
+            });
+
+            state.options.genders = Array.from(gendersSet).sort();
+            state.options.ageBands = Array.from(ageBandsSet).sort();
+
+            // Update top summary counters
+            document.getElementById('stat-events').textContent = eventsMap.size.toLocaleString();
+            document.getElementById('stat-rows').textContent = parsedRows.length.toLocaleString();
+
+            renderFilterButtons();
+            recomputeStandings();
+        }
+
+        function renderFilterButtons() {
+            const buildBtn = (filterName, id, label, active) => `
+                <button
+                    type="button"
+                    data-filter="${filterName}"
+                    data-value="${escapeHtml(id)}"
+                    class="px-2.5 py-1 rounded font-mono text-xs transition ${
+                        active
+                            ? 'bg-denim text-parchment font-bold'
+                            : 'bg-parchment text-espresso/80 border border-parchment-border hover:border-denim'
+                    }"
+                >${escapeHtml(label)}</button>
+            `;
+
+            // 1. Gender Filter Buttons
+            const genderContainer = document.getElementById('filter-gender');
+            const genderButtons = [
+                { id: 'HUMANS', label: 'Humans' },
+                ...state.options.genders.map(g => ({ id: g, label: g })),
+                { id: 'ALL', label: 'All' }
+            ];
+            genderContainer.innerHTML = genderButtons
+                .map(btn => buildBtn('gender', btn.id, btn.label, state.filters.gender === btn.id))
+                .join('');
+
+            // 2. Race Type Filter Buttons
+            const raceTypeContainer = document.getElementById('filter-racetype');
+            const raceTypeButtons = [
+                { id: 'ALL', label: 'All' },
+                ...state.options.raceTypes.map(rt => ({ id: rt, label: rt }))
+            ];
+            raceTypeContainer.innerHTML = raceTypeButtons
+                .map(btn => buildBtn('raceType', btn.id, btn.label, state.filters.raceType === btn.id))
+                .join('');
+
+            // 3. Pen Group Filter Buttons
+            const penGroupContainer = document.getElementById('filter-pengroup');
+            const penButtons = [
+                { id: 'ALL', label: 'All' },
+                ...state.options.penGroups.map(pg => ({ id: pg, label: pg }))
+            ];
+            penGroupContainer.innerHTML = penButtons
+                .map(btn => buildBtn('penGroup', btn.id, btn.label, state.filters.penGroup === btn.id))
+                .join('');
+
+            // 4. AgeBand Filter Buttons
+            const ageBandContainer = document.getElementById('filter-ageband');
+            const ageButtons = [
+                { id: 'ALL', label: 'All' },
+                ...state.options.ageBands.map(ab => ({ id: ab, label: ab }))
+            ];
+            ageBandContainer.innerHTML = ageButtons
+                .map(btn => buildBtn('ageBand', btn.id, btn.label, state.filters.ageBand === btn.id))
+                .join('');
+        }
+
+        function recomputeStandings() {
+            const { gender, penGroup, ageBand, raceType, search } = state.filters;
+            const searchLower = search.trim().toLowerCase();
+
+            const ridersMap = new Map();
+
+            for (let i = 0; i < state.allRows.length; i++) {
+                const r = state.allRows[i];
+
+                // 1. Gender filter check (Human genders only by default)
+                if (gender === 'HUMANS') {
+                    if (r.isBot) continue;
+                } else if (gender !== 'ALL') {
+                    if (r.gender !== gender) continue;
+                }
+
+                // 2. Pen Group filter check
+                if (penGroup !== 'ALL' && r.penGroup !== penGroup && r.penGroupSub !== penGroup) {
+                    continue;
+                }
+
+                // 3. AgeBand filter check
+                if (ageBand !== 'ALL' && r.ageBand !== ageBand) {
+                    continue;
+                }
+
+                // 4. Race Type filter check
+                if (raceType !== 'ALL' && r.raceType !== raceType) {
+                    continue;
+                }
+
+                let rider = ridersMap.get(r.riderKey);
+                if (!rider) {
+                    rider = {
+                        riderKey: r.riderKey,
+                        name: r.name,
+                        team: r.team,
+                        country: r.country,
+                        gender: r.gender,
+                        ageBand: r.ageBand,
+                        penGroup: r.penGroup,
+                        totalPoints: 0,
+                        sprintPoints: 0,
+                        hillsPoints: 0,
+                        climbPoints: 0,
+                        otherPoints: 0,
+                        races: []
+                    };
+                    ridersMap.set(r.riderKey, rider);
+                } else {
+                    // Keep non-empty team or country if updated in another race
+                    if (!rider.team && r.team) rider.team = r.team;
+                    if (!rider.country && r.country) rider.country = r.country;
+                }
+
+                rider.totalPoints += r.points;
+
+                const rtLower = r.raceType.toLowerCase();
+                if (rtLower === 'sprint') {
+                    rider.sprintPoints += r.points;
+                } else if (rtLower === 'hills' || rtLower === 'hill') {
+                    rider.hillsPoints += r.points;
+                } else if (rtLower === 'climb' || rtLower === 'mountain') {
+                    rider.climbPoints += r.points;
+                } else {
+                    rider.otherPoints += r.points;
+                }
+
+                rider.races.push(r);
+            }
+
+            // Filter by search query (rider name, team, or country)
+            let ridersArray = Array.from(ridersMap.values());
+            if (searchLower) {
+                ridersArray = ridersArray.filter(rider =>
+                    rider.name.toLowerCase().includes(searchLower) ||
+                    (rider.team && rider.team.toLowerCase().includes(searchLower)) ||
+                    (rider.country && rider.country.toLowerCase().includes(searchLower))
+                );
+            }
+
+            // Sort each rider's individual race list by Week label & EventKey
+            ridersArray.forEach(rider => {
+                rider.racesCount = rider.races.length;
+                rider.races.sort((a, b) => {
+                    const weekCmp = a.week.localeCompare(b.week, undefined, { numeric: true });
+                    if (weekCmp !== 0) return weekCmp;
+                    return String(a.eventKey).localeCompare(String(b.eventKey), undefined, { numeric: true });
+                });
+            });
+
+            state.ridersList = ridersArray;
+            sortRidersList();
+            state.pagination.page = 1;
+
+            document.getElementById('stat-riders').textContent = ridersArray.length.toLocaleString();
+            renderSortIndicators();
+            renderStandingsTable();
+        }
+
+        function sortRidersList() {
+            const { column, direction } = state.sort;
+            const dirMultiplier = direction === 'asc' ? 1 : -1;
+
+            state.ridersList.sort((a, b) => {
+                let cmp = 0;
+
+                if (column === 'name' || column === 'team' || column === 'country') {
+                    const valA = (a[column] || '').trim();
+                    const valB = (b[column] || '').trim();
+                    // Push empty strings to the bottom regardless of sort direction
+                    if (!valA && valB) return 1;
+                    if (valA && !valB) return -1;
+                    cmp = valA.localeCompare(valB, undefined, { sensitivity: 'base' }) * dirMultiplier;
+                } else {
+                    const numA = Number(a[column]) || 0;
+                    const numB = Number(b[column]) || 0;
+                    if (Math.abs(numA - numB) > 1e-6) {
+                        cmp = (numA - numB) * dirMultiplier;
+                    }
+                }
+
+                // Tie-breakers: Total Points descending, then Rider Name ascending
+                if (cmp === 0) {
+                    if (Math.abs(b.totalPoints - a.totalPoints) > 1e-6) {
+                        return b.totalPoints - a.totalPoints;
+                    }
+                    return a.name.localeCompare(b.name);
+                }
+                return cmp;
+            });
+        }
+
+        function renderSortIndicators() {
+            const headers = document.querySelectorAll('th.sortable-th');
+            headers.forEach(th => {
+                const col = th.getAttribute('data-sort');
+                const indicator = th.querySelector('.sort-indicator');
+                if (!indicator) return;
+
+                if (col === state.sort.column) {
+                    indicator.textContent = state.sort.direction === 'asc' ? '▲' : '▼';
+                    indicator.classList.remove('opacity-60');
+                } else {
+                    indicator.textContent = '↕';
+                    indicator.classList.add('opacity-60');
+                }
+            });
+        }
+
+        function renderStandingsTable() {
+            const loadingPanel = document.getElementById('loading-panel');
+            const tableWrapper = document.getElementById('table-wrapper');
+            const paginationBar = document.getElementById('pagination-bar');
+            const tbody = document.getElementById('riders-tbody');
+
+            loadingPanel.classList.add('hidden');
+            tableWrapper.classList.remove('hidden');
+            paginationBar.classList.remove('hidden');
+
+            const totalRiders = state.ridersList.length;
+            const { page, pageSize } = state.pagination;
+            const totalPages = Math.max(1, Math.ceil(totalRiders / pageSize));
+            const safePage = Math.min(Math.max(1, page), totalPages);
+            state.pagination.page = safePage;
+
+            const startIdx = (safePage - 1) * pageSize;
+            const endIdx = Math.min(startIdx + pageSize, totalRiders);
+            const slice = state.ridersList.slice(startIdx, endIdx);
+
+            document.getElementById('showing-count-label').textContent =
+                totalRiders === 0
+                    ? 'No matching riders'
+                    : `Showing ${startIdx + 1}–${endIdx} of ${totalRiders.toLocaleString()} riders`;
+
+            document.getElementById('page-indicator').textContent = `Page ${safePage} of ${totalPages}`;
+            document.getElementById('prev-page-btn').disabled = safePage <= 1;
+            document.getElementById('next-page-btn').disabled = safePage >= totalPages;
+
+            if (slice.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="py-12 px-4 text-center text-espresso/70 font-mono">
+                            No riders match your current filter combination. Try clicking "Reset All Filters".
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            const rowsHtml = [];
+
+            for (let i = 0; i < slice.length; i++) {
+                const rider = slice[i];
+                const rank = startIdx + i + 1;
+                const isExpanded = state.expandedRiderKeys.has(rider.riderKey);
+
+                // Main Rider Row
+                rowsHtml.push(`
+                    <tr
+                        data-rider-key="${escapeHtml(rider.riderKey)}"
+                        class="rider-row cursor-pointer transition ${
+                            isExpanded ? 'bg-ochre/15' : 'hover:bg-parchment-dark/50'
+                        }"
+                    >
+                        <td class="py-3 pl-4 pr-2 text-center font-mono text-xs font-bold text-espresso/70">${rank}</td>
+                        <td class="py-3 px-3">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-3.5 h-3.5 text-terracotta transition-transform duration-150 shrink-0 ${isExpanded ? 'rotate-90' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-espresso">
+                                        ${escapeHtml(rider.name)}
+                                    </div>
+                                    <div class="text-xs font-mono text-espresso/55 flex flex-wrap items-center gap-2 md:hidden">
+                                        ${rider.team ? `<span>${escapeHtml(rider.team)}</span> •` : ''}
+                                        <span>Sprint: ${formatPoints(rider.sprintPoints)}</span> •
+                                        <span>Hills: ${formatPoints(rider.hillsPoints)}</span> •
+                                        <span>Climb: ${formatPoints(rider.climbPoints)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-3 px-3 hidden md:table-cell text-espresso/75 text-xs">
+                            ${rider.team ? escapeHtml(rider.team) : '<span class="text-espresso/30">—</span>'}
+                        </td>
+                        <td class="py-3 px-3 text-center font-mono text-xs text-espresso/75">
+                            ${escapeHtml(rider.country || '—')}
+                        </td>
+                        <td class="py-3 px-3 text-right font-mono font-bold text-terracotta bg-terracotta/5">
+                            ${formatPoints(rider.totalPoints)}
+                        </td>
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.sprintPoints > 0 ? 'text-espresso' : 'text-espresso/35'}">
+                            ${formatPoints(rider.sprintPoints)}
+                        </td>
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.hillsPoints > 0 ? 'text-espresso' : 'text-espresso/35'}">
+                            ${formatPoints(rider.hillsPoints)}
+                        </td>
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.climbPoints > 0 ? 'text-espresso' : 'text-espresso/35'}">
+                            ${formatPoints(rider.climbPoints)}
+                        </td>
+                        <td class="py-3 pl-2 pr-4 text-center font-mono text-xs text-espresso/70">
+                            ${rider.races.length}
+                        </td>
+                    </tr>
+                `);
+
+                // Expanded Rider Detail Sub-Row (EventKey & Pen fields removed as requested)
+                if (isExpanded) {
+                    const raceCardsHtml = rider.races.map(race => {
+                        const timeDisplay = race.position === 1
+                            ? `${formatTotalTime(race.time)} (Winner)`
+                            : `${formatTotalTime(race.time)} (${formatGapTime(race.deltaTime)})`;
+
+                        return `
+                            <tr
+                                data-open-event="${escapeHtml(race.eventKey)}"
+                                data-rider-key="${escapeHtml(rider.riderKey)}"
+                                class="event-drill-row cursor-pointer bg-parchment-card hover:bg-ochre/15 transition border-b border-parchment-border last:border-b-0"
+                            >
+                                <td class="py-2 px-3 font-medium text-espresso">
+                                    ${escapeHtml(race.week)}
+                                </td>
+                                <td class="py-2 px-3 font-mono text-xs text-denim">
+                                    ${escapeHtml(race.raceType)}
+                                </td>
+                                <td class="py-2 px-3 font-mono text-xs text-center font-bold text-espresso">
+                                    ${race.position}
+                                </td>
+                                <td class="py-2 px-3 font-mono text-xs font-bold text-right text-terracotta">
+                                    ${formatPoints(race.points)}
+                                </td>
+                                <td class="py-2 px-3 font-mono text-xs text-right text-espresso/75">
+                                    ${escapeHtml(timeDisplay)}
+                                </td>
+                                <td class="py-2 px-3 text-right font-mono text-xs text-denim hover:underline">
+                                    View Race →
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+
+                    rowsHtml.push(`
+                        <tr class="bg-parchment-dark/40">
+                            <td colspan="9" class="p-3 sm:p-4">
+                                <div class="clean-card rounded overflow-hidden">
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                                            <thead>
+                                                <tr class="bg-parchment-dark text-espresso/70 font-mono text-[11px] uppercase border-b border-parchment-border">
+                                                    <th class="py-2 px-3">Week</th>
+                                                    <th class="py-2 px-3">Race Type</th>
+                                                    <th class="py-2 px-3 text-center">Position</th>
+                                                    <th class="py-2 px-3 text-right">Points</th>
+                                                    <th class="py-2 px-3 text-right">Time / Gap</th>
+                                                    <th class="py-2 px-3 text-right">Results</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                ${raceCardsHtml}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    `);
+                }
+            }
+
+            tbody.innerHTML = rowsHtml.join('');
+        }
+
+        function openEventModal(eventKey, highlightRiderKey = null) {
+            const eventEntries = state.eventsByKey.get(String(eventKey));
+            if (!eventEntries || eventEntries.length === 0) return;
+
+            state.modal.eventKey = String(eventKey);
+            state.modal.highlightRiderKey = highlightRiderKey;
+
+            const sample = eventEntries[0];
+            document.getElementById('modal-racetype-badge').textContent = sample.raceType;
+            document.getElementById('modal-pengroup-badge').textContent = sample.penGroupSub || sample.penGroup;
+            document.getElementById('modal-week-title').textContent = sample.week;
+
+            renderModalTableRows();
+
+            const modalEl = document.getElementById('event-modal');
+            modalEl.classList.remove('hidden');
+            modalEl.classList.add('flex');
+        }
+
+        function renderModalTableRows() {
+            const { eventKey, highlightRiderKey, hideBots } = state.modal;
+            const entries = state.eventsByKey.get(String(eventKey)) || [];
+            const tbody = document.getElementById('modal-results-tbody');
+
+            const filteredEntries = hideBots ? entries.filter(e => !e.isBot) : entries;
+
+            // Find winner time for gap fallback calculation if DeltaTime is missing
+            const winnerEntry = entries.find(e => e.position === 1) || entries[0];
+            const winnerTime = winnerEntry ? winnerEntry.time : 0;
+
+            document.getElementById('modal-finisher-count').textContent =
+                `${filteredEntries.length} Finishers`;
+
+            tbody.innerHTML = filteredEntries.map(entry => {
+                const isSelectedRider = highlightRiderKey && entry.riderKey === highlightRiderKey;
+                const isWinner = entry.position === 1;
+
+                // Winner displays total time; subsequent positions display gap to winner
+                let timeHtml = '';
+                if (isWinner) {
+                    timeHtml = `<span class="font-bold text-espresso">${formatTotalTime(entry.time)}</span>`;
+                } else {
+                    const gapSeconds = entry.deltaTime > 0
+                        ? entry.deltaTime
+                        : Math.max(0, entry.time - winnerTime);
+                    timeHtml = `<span class="text-terracotta font-medium">${formatGapTime(gapSeconds)}</span>`;
+                }
+
+                return `
+                    <tr class="${
+                        isSelectedRider
+                            ? 'bg-ochre/25 font-semibold'
+                            : entry.isBot
+                                ? 'text-espresso/50'
+                                : 'bg-parchment-card hover:bg-parchment-dark/40'
+                    }">
+                        <td class="py-2 pl-4 pr-2 text-center font-mono text-xs font-bold">
+                            ${entry.position}
+                        </td>
+                        <td class="py-2 px-3">
+                            <span class="text-espresso">${escapeHtml(entry.name)}</span>
+                            ${entry.country ? `<span class="font-mono text-[11px] text-espresso/50 ml-1">${escapeHtml(entry.country)}</span>` : ''}
+                        </td>
+                        <td class="py-2 px-3 text-espresso/75 text-xs">
+                            ${entry.team ? escapeHtml(entry.team) : '—'}
+                        </td>
+                        <td class="py-2 px-3 text-center font-mono text-xs text-espresso/70">
+                            ${escapeHtml(entry.gender)}
+                        </td>
+                        <td class="py-2 px-3 text-right font-mono text-xs text-espresso/80">
+                            ${entry.arr ? escapeHtml(entry.arr) : '—'}
+                        </td>
+                        <td class="py-2 px-3 text-right font-mono text-xs font-bold text-espresso">
+                            ${formatPoints(entry.points)}
+                        </td>
+                        <td class="py-2 pl-3 pr-5 text-right font-mono text-xs">
+                            ${timeHtml}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function closeEventModal() {
+            const modalEl = document.getElementById('event-modal');
+            modalEl.classList.add('hidden');
+            modalEl.classList.remove('flex');
+        }
+
+        function setupEventListeners() {
+            // Filter Button & Sort Header Clicks (Event Delegation)
+            document.addEventListener('click', (e) => {
+                const sortHeader = e.target.closest('th.sortable-th');
+                if (sortHeader) {
+                    const col = sortHeader.getAttribute('data-sort');
+                    if (state.sort.column === col) {
+                        state.sort.direction = state.sort.direction === 'desc' ? 'asc' : 'desc';
+                    } else {
+                        state.sort.column = col;
+                        // Default text columns to ascending (A-Z) and numeric columns to descending (highest first)
+                        const isTextCol = col === 'name' || col === 'team' || col === 'country';
+                        state.sort.direction = isTextCol ? 'asc' : 'desc';
+                    }
+                    state.pagination.page = 1;
+                    sortRidersList();
+                    renderSortIndicators();
+                    renderStandingsTable();
+                    return;
+                }
+
+                const filterBtn = e.target.closest('button[data-filter]');
+                if (filterBtn) {
+                    const filterKey = filterBtn.getAttribute('data-filter');
+                    const filterVal = filterBtn.getAttribute('data-value');
+                    state.filters[filterKey] = filterVal;
+                    renderFilterButtons();
+                    recomputeStandings();
+                    return;
+                }
+
+                // Expand/Collapse Rider Row
+                const riderRow = e.target.closest('tr.rider-row');
+                if (riderRow) {
+                    const riderKey = riderRow.getAttribute('data-rider-key');
+                    if (state.expandedRiderKeys.has(riderKey)) {
+                        state.expandedRiderKeys.delete(riderKey);
+                    } else {
+                        state.expandedRiderKeys.add(riderKey);
+                    }
+                    renderStandingsTable();
+                    return;
+                }
+
+                // Open Full EventKey Classification Modal from Rider's Race Log
+                const eventRow = e.target.closest('tr.event-drill-row');
+                if (eventRow) {
+                    const eventKey = eventRow.getAttribute('data-open-event');
+                    const riderKey = eventRow.getAttribute('data-rider-key');
+                    openEventModal(eventKey, riderKey);
+                    return;
+                }
+            });
+
+            // Search Input
+            const searchInput = document.getElementById('search-input');
+            const clearSearchBtn = document.getElementById('clear-search-btn');
+            searchInput.addEventListener('input', (e) => {
+                state.filters.search = e.target.value;
+                clearSearchBtn.classList.toggle('hidden', !state.filters.search);
+                recomputeStandings();
+            });
+
+            clearSearchBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                state.filters.search = '';
+                clearSearchBtn.classList.add('hidden');
+                recomputeStandings();
+            });
+
+            // Reset All Filters Button
+            document.getElementById('reset-filters-btn').addEventListener('click', () => {
+                state.filters.gender = 'HUMANS';
+                state.filters.penGroup = 'ALL';
+                state.filters.ageBand = 'ALL';
+                state.filters.raceType = 'ALL';
+                state.filters.search = '';
+                state.sort.column = 'totalPoints';
+                state.sort.direction = 'desc';
+                state.expandedRiderKeys.clear();
+                searchInput.value = '';
+                clearSearchBtn.classList.add('hidden');
+                renderFilterButtons();
+                recomputeStandings();
+            });
+
+            // Pagination Controls
+            document.getElementById('prev-page-btn').addEventListener('click', () => {
+                if (state.pagination.page > 1) {
+                    state.pagination.page--;
+                    renderStandingsTable();
+                    window.scrollTo({ top: 320, behavior: 'smooth' });
+                }
+            });
+            document.getElementById('next-page-btn').addEventListener('click', () => {
+                state.pagination.page++;
+                renderStandingsTable();
+                window.scrollTo({ top: 320, behavior: 'smooth' });
+            });
+
+            // Modal Close & Bot Toggle
+            document.getElementById('close-modal-btn').addEventListener('click', closeEventModal);
+            document.getElementById('close-modal-footer-btn').addEventListener('click', closeEventModal);
+            document.getElementById('event-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'event-modal') closeEventModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeEventModal();
+            });
+            document.getElementById('modal-hide-bots').addEventListener('change', (e) => {
+                state.modal.hideBots = e.target.checked;
+                renderModalTableRows();
+            });
+        }
+
+        async function loadRemoteCsv() {
+            for (const url of CSV_URLS) {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const csvText = await response.text();
+                    Papa.parse(csvText, {
+                        skipEmptyLines: true,
+                        complete: (results) => {
+                            processRawCsvRows(results.data);
+                        }
+                    });
+                    return;
+                } catch (err) {
+                    console.warn(`Failed fetching from ${url}:`, err);
+                }
+            }
+
+            // Fallback to sample data if offline or blocked
+            Papa.parse(FALLBACK_SAMPLE_CSV, {
+                skipEmptyLines: true,
+                complete: (results) => {
+                    processRawCsvRows(results.data);
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setupEventListeners();
+            loadRemoteCsv();
+        });
     </script>
 </body>
 </html>
