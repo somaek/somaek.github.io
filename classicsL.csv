@@ -1,39 +1,398 @@
-Name,Team,Races,Total Points,All Rounder,Climb,Hills,Sprint,Rank,Gender,AgeBand
-Jay  Santi,Pedalers,3,93.0,63.8,60.7,0.0,32.3,Gold,Male,50-54
-Ryan Yates,Allkin Racing,3,92.0,64.4,58.2,0.0,33.8,Gold,Male,40-44
-Ben Goodfellow,,2,76.9,76.9,41.3,0.0,35.6,Platinum,Male,Senior
-Mikael Engmark Helligsø,Filsø Naturferie - BikePro,2,74.9,74.9,39.6,0.0,35.3,Platinum,Male,45-49
-Matías Pérez,Pedalers,2,73.9,73.9,38.0,0.0,35.9,Platinum,Male,35-39
-Alexandre Peigne,Occitan Riders,2,72.4,39.3,72.4,0.0,0.0,Platinum,Male,45-49
-christophe contant,Pedalers,2,70.1,70.1,37.2,0.0,32.9,Diamond,Male,50-54
-Jone Bakke Gravdal,DIRT,2,68.9,68.9,34.8,0.0,34.1,Platinum,Male,45-49
-Matthieu Hubert,Race3R,2,64.0,64.0,32.3,0.0,31.7,Platinum,Male,45-49
-Gregory Frison,M4shup Collective,1,42.9,42.9,42.9,0.0,0.0,Diamond,Male,35-39
-huseyin celebi,,1,42.1,42.1,42.1,0.0,0.0,Gold,Male,45-49
-J D O,M4shup Collective,1,40.4,40.4,40.4,0.0,0.0,Diamond,Male,40-44
-Doug Hart,Ilkley CC,1,38.8,38.8,38.8,0.0,0.0,Platinum,Male,50-54
-Paul  Watkins,TTT Project,1,38.7,38.7,38.7,0.0,0.0,Diamond,Male,50-54
-Paul  Watkins,TTT Project,1,36.4,36.4,36.4,0.0,0.0,Gold,Male,50-54
-John Sammut,Pocomotion,1,35.5,35.5,35.5,0.0,0.0,Platinum,Male,45-49
-Even Øistensen,Race3R,1,35.3,35.3,0.0,0.0,35.3,Platinum,Male,50-54
-Julian Burren,,1,34.4,34.4,0.0,0.0,34.4,Platinum,Male,35-39
-Ryan Hamilton,Wadenterror,1,33.9,33.9,33.9,0.0,0.0,Platinum,Male,50-54
-Jerome Colisson,Riders Givrés du Trainer,1,33.5,33.5,0.0,0.0,33.5,Platinum,Male,50-54
-Mark Siega,Race3R,1,33.2,33.2,0.0,0.0,33.2,Gold,Male,50-54
-Jon Livengood,BaseCamp Train Where You Belong,1,32.0,32.0,0.0,0.0,32.0,Platinum,Male,50-54
-Frederik Foulon,Race3R,1,30.5,30.5,0.0,0.0,30.5,Gold,Male,40-44
-Kurt Angus,Allkin Racing,1,29.8,29.8,29.8,0.0,0.0,Gold,Male,45-49
-Henrik Holst Elstrøm,Filsø Naturferie - BikePro,1,29.0,29.0,29.0,0.0,0.0,Platinum,Male,55-59
-Thomas Helveg,Pure Power,1,26.6,26.6,0.0,0.0,26.6,Gold,Male,55-59
-Fabrice LAVOISIER,,1,26.5,26.5,26.5,0.0,0.0,Silver,Male,45-49
-Mike Lockwood,,1,26.3,26.3,0.0,0.0,26.3,Silver,Male,55-59
-jesper hvisthule,Filsø Naturferie - BikePro,1,25.7,25.7,25.7,0.0,0.0,Silver,Male,60-64
-jean pierre fournier,Riders Givrés du Trainer,1,25.1,25.1,0.0,0.0,25.1,Silver,Male,65-69
-Kurt Nørum Pedersen,Filsø Naturferie - BikePro,1,24.9,24.9,24.9,0.0,0.0,Gold,Male,55-59
-H JeAr,,1,21.0,21.0,21.0,0.0,0.0,Silver,Human,
-jean levert,,1,19.1,19.1,0.0,0.0,19.1,Bronze,Male,65-69
-henrik simonsen,Stjær e-Cycling,1,17.5,17.5,17.5,0.0,0.0,Gold,Male,55-59
-Jakob Mathiasen,Filsø Naturferie - BikePro,1,15.1,15.1,0.0,0.0,15.1,Gold,Male,60-64
-Jurgen NW,Flandria,1,12.1,12.1,0.0,0.0,12.1,Silver,Male,50-54
-Donald Munro,indieVelo Founders Club,1,10.6,10.6,10.6,0.0,0.0,Silver,Human,
-Ciro Cioffi,Team Italy SUD,1,8.6,8.6,8.6,0.0,0.0,Bronze,Male,50-54
+EventKey,Pen,Position,Name,Team,Country,Time,DeltaTime,Distance,DeltaDistance,Points,Gender,UID,ARR,ARRBand,EventRating,EventRatingBand,AgeBand,Pen Group,Week,Type,Points,Elevation,Pen Size,Pen Group,Total Rating,Pen Rating,Pen Range,Race Type
+122174,0,1,Matías Pérez,Pedalers,URU,6141.1,0.0,78018.914,0,0,Male,D80404FC3853EAFD,1423,Platinum 2,1423,Platinum 2,35-39,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.9,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,2,Ben Goodfellow,,GBR,6143.3,2.2,78018.914,0,0,Male,1BD254BED961385E,1458,Platinum 2,1458,Platinum 2,Senior,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.6,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,3,Mikael Engmark Helligsø,Filsø Naturferie - BikePro,DEN,6152.1,11.1,78018.914,0,0,Male,F5B70B9DC79ADDCD,1437,Platinum 2,1437,Platinum 2,45-49,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.3,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,4,Wendell Shannon,,SWE,6153.0,11.9,78018.914,0,0,Bot,Bot4857,1721,Diamond 2,1721,Diamond 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.0,483,91,Diamond,129584,1424,0.51,Sprint
+122174,0,5,Florian Bertrand,Heat,FRA,6158.8,17.7,78018.914,0,0,Bot,Bot9807,1730,Diamond 2,1730,Diamond 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.7,483,91,Diamond,129584,1424,0.51,Sprint
+122174,0,6,Julian Burren,,SUI,6163.9,22.8,78018.914,0,0,Male,3EE22AAAE0FE66C3,1364,Platinum 1,1364,Platinum 1,35-39,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.4,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,7,Jone Bakke Gravdal,DIRT,NOR,6164.5,23.4,78018.914,0,0,Male,A0F6F7E89915B1DC,1415,Platinum 2,1415,Platinum 2,45-49,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.1,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,8,Ryan Yates,Allkin Racing,USA,6177.6,36.5,78018.914,0,0,Male,2FDBB5DD4345DCB5,1260,Gold 3,1260,Gold 3,40-44,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.8,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,9,Jerome Colisson,Riders Givrés du Trainer,FRA,6367.0,225.9,78018.914,0,0,Male,ABEB3D1505EE9F55,1425,Platinum 2,1425,Platinum 2,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.5,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,10,Mark Siega,Race3R,USA,6496.3,355.2,78018.914,0,0,Male,5DF992475739EF28,1248,Gold 3,1248,Gold 3,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.2,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,11,christophe contant,Pedalers,FRA,6496.6,355.5,78018.914,0,0,Male,56C62083B46B34F3,1605,Diamond 1,1605,Diamond 1,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.9,483,91,Diamond,129584,1424,0.51,Sprint
+122174,0,12,Mahdi Ghasemi,Orbit,IRI,6497.4,356.3,78018.914,0,0,Bot,Bot5603,1383,Platinum 1,1383,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.6,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,13,Jay  Santi,Pedalers,CAN,6497.6,356.5,78018.914,0,0,Male,DEE9CDE9AAFC3773,1209,Gold 3,1209,Gold 3,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.3,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,14,Jon Livengood,BaseCamp Train Where You Belong,USA,6498.8,357.7,78018.914,0,0,Male,A57692F853784DDF,200,Bronze 1,1394,Platinum 1,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.0,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,15,Matthieu Hubert,Race3R,FRA,6502.3,361.2,78018.914,0,0,Male,E1D0C43C683EFE3B,1373,Platinum 1,1373,Platinum 1,45-49,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.7,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,16,Heiko Lang,,AUT,6526.2,385.1,78018.914,0,0,Bot,Bot3196,1360,Platinum 1,1360,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.4,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,17,Jes Clemmensen,Meisterkuhl,DEN,6556.5,415.4,78018.914,0,0,Bot,Bot9722,1183,Gold 2,1183,Gold 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.1,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,18,Christian Svensson,,SWE,6644.1,503.0,78018.914,0,0,Bot,Bot6968,1418,Platinum 2,1418,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.8,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,19,Frederik Foulon,Race3R,BEL,6644.2,503.1,78018.914,0,0,Male,90F081BDB1E7B017,1208,Gold 3,1208,Gold 3,40-44,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.5,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,20,Fiorenzo Spina,,ITA,6646.2,505.1,78018.914,0,0,Bot,Bot6169,1362,Platinum 1,1362,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.2,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,21,Joaquin Perez,Delta,ESP,6690.6,549.5,78018.914,0,0,Bot,Bot6821,1316,Platinum 1,1316,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.9,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,22,Juan Mamani,True Form,BOL,6690.6,549.5,78018.914,0,0,Bot,Bot4615,1343,Platinum 1,1343,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.6,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,23,Stacy Barnes,,AUS,6712.6,571.5,78018.914,0,0,Bot,Bot7579,1273,Gold 3,1273,Gold 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.3,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,24,Ilias Mylonas,Titans,GRE,6712.6,571.5,78018.914,0,0,Bot,Bot1630,1316,Platinum 1,1316,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.0,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,25,Radosław Duda,Aria Olefson,POL,6723.9,582.8,78018.914,0,0,Bot,Bot7528,1315,Platinum 1,1315,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.7,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,26,Luis Morales,,CUB,6764.7,623.6,78018.914,0,0,Bot,Bot71,1326,Platinum 1,1326,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.4,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,27,Enzo Andre,Orbit,FRA,6768.3,627.2,78018.914,0,0,Bot,Bot803,1151,Gold 2,1151,Gold 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.1,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,28,René Bertrand,,FRA,6918.7,777.6,78018.914,0,0,Bot,Bot9652,1303,Platinum 1,1303,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.8,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,29,Petter Kristiansen,,NOR,6933.1,792.0,78018.914,0,0,Bot,Bot8850,1372,Platinum 1,1372,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.5,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,30,Johannes Jonsson,,SWE,6941.3,800.2,78018.914,0,0,Bot,Bot8875,1324,Platinum 1,1324,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.2,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,31,Edwin Argueta,,ESA,6969.6,828.5,78018.914,0,0,Bot,Bot5856,1396,Platinum 1,1396,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.9,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,32,Thomas Helveg,Pure Power,DEN,6975.5,834.4,78018.914,0,0,Male,1380A6ADAED1F442,1006,Gold 1,1006,Gold 1,55-59,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.6,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,33,Mike Lockwood,,USA,6985.2,844.1,78018.914,0,0,Male,57E8DA4F5AF2656D,100,Bronze 1,847,Silver 2,55-59,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.3,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,34,Erick Xiong,HCOM,GBR,6987.1,846.0,78018.914,0,0,Bot,Bot2401,1205,Gold 3,1205,Gold 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.0,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,35,Sheikh Nair,,UAE,6987.2,846.1,78018.914,0,0,Bot,Bot8764,1088,Gold 1,1088,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.7,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,36,Felix Neumann,,SUI,6991.6,850.6,78018.914,0,0,Bot,Bot5254,1056,Gold 1,1056,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.4,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,37,jean pierre fournier,Riders Givrés du Trainer,FRA,6997.7,856.6,78018.914,0,0,Male,F0B521815E1E89FF,885,Silver 2,885,Silver 2,65-69,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.1,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,38,Ioannis Kyriacou,,CYP,6997.8,856.7,78018.914,0,0,Bot,Bot3597,1116,Gold 2,1116,Gold 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.8,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,39,Morten Isaksen,Patriot,NOR,7004.1,863.0,78018.914,0,0,Bot,Bot108,1103,Gold 2,1103,Gold 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.5,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,40,Maurice Bell,,CAN,7007.4,866.3,78018.914,0,0,Bot,Bot6363,1074,Gold 1,1074,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.2,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,41,Patricia Ruiz,,USA,7007.8,866.7,78018.914,0,0,Bot,Bot3467,848,Silver 2,848,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.9,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,42,Dana Förster,Nitro,GER,7008.4,867.3,78018.914,0,0,Bot,Bot7537,1012,Gold 1,1012,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.6,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,43,Youssouf Abdallah,,DJI,7020.6,879.5,78018.914,0,0,Bot,Bot9982,1268,Gold 3,1268,Gold 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.3,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,44,Sven Nordin,Saitama,SWE,7020.7,879.6,78018.914,0,0,Bot,Bot4534,1307,Platinum 1,1307,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.0,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,45,Emiliano Ceccarelli,Zonkify,ITA,7021.0,879.9,78018.914,0,0,Bot,Bot6709,1299,Gold 3,1299,Gold 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.7,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,46,Andrew Crisostomo,Meisterkuhl,GUM,7021.0,879.9,78018.914,0,0,Bot,Bot6122,1305,Platinum 1,1305,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.4,483,91,Platinum,129584,1424,0.51,Sprint
+122174,0,47,Levi Glass,,GBR,7021.3,880.2,78018.914,0,0,Bot,Bot2063,1150,Gold 2,1150,Gold 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.1,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,48,Paul Mamea,,ASA,7021.4,880.3,78018.914,0,0,Bot,Bot9789,1131,Gold 2,1131,Gold 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.8,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,49,Clément Meyer,,FRA,7029.4,888.3,78018.914,0,0,Bot,Bot5274,905,Silver 3,905,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.5,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,50,Eelis Nieminen,,FIN,7053.7,912.6,78018.914,0,0,Bot,Bot8656,1029,Gold 1,1029,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.2,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,51,Rami Hasan,Delta,UAE,7053.8,912.7,78018.914,0,0,Bot,Bot5021,981,Silver 3,981,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.9,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,52,Stan Barajas,,AUS,7071.4,930.3,78018.914,0,0,Bot,Bot3384,1094,Gold 1,1094,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.6,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,53,Saleh Al-Mazrouei,,UAE,7125.1,984.0,78018.914,0,0,Bot,Bot6899,886,Silver 2,886,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.3,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,54,Jérôme Payet,Douvan,FRA,7240.3,1099.2,78018.914,0,0,Bot,Bot9636,993,Silver 3,993,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.0,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,55,Lemuel Kerr,Orbit,NZL,7240.4,1099.3,78018.914,0,0,Bot,Bot4303,1069,Gold 1,1069,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.7,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,56,Elliot Conner,,NZL,7260.7,1119.6,78018.914,0,0,Bot,Bot1051,1001,Gold 1,1001,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.4,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,57,jean levert,,FRA,7276.5,1135.4,78018.914,0,0,Male,95D77EE8015F5A1F,100,Bronze 1,401,Bronze 1,65-69,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.1,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,58,John Ramirez,,AUS,7276.9,1135.8,78018.914,0,0,Bot,Bot7980,924,Silver 3,924,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.8,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,59,Adam Schneider,,GER,7285.0,1143.9,78018.914,0,0,Bot,Bot6966,1041,Gold 1,1041,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.5,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,60,Clint Gibson,,USA,7296.2,1155.1,78018.914,0,0,Bot,Bot1183,908,Silver 3,908,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.2,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,61,Syed Qureshi,Aspire,KSA,7297.4,1156.3,78018.914,0,0,Bot,Bot8329,969,Silver 3,969,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.9,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,62,Meir Kadosh,Eckleson,ISR,7297.5,1156.4,78018.914,0,0,Bot,Bot9927,1024,Gold 1,1024,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.6,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,63,Lilla Boros,Windsail,HUN,7297.7,1156.6,78018.914,0,0,Bot,Bot8723,1048,Gold 1,1048,Gold 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.2,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,64,Naira Mkhitaryan,,ARM,7298.6,1157.5,78018.914,0,0,Bot,Bot9191,847,Silver 2,847,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,16.9,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,65,Marc Van der Meer,,NED,7300.6,1159.5,78018.914,0,0,Bot,Bot1664,927,Silver 3,927,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,16.6,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,66,Aleksandar Bykhovets,,CZE,7301.0,1159.9,78018.914,0,0,Bot,Bot9383,793,Silver 1,793,Silver 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,16.3,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,67,Angeles Romero,Saint,ESP,7301.7,1160.6,78018.914,0,0,Bot,Bot4332,894,Silver 2,894,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,16.0,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,68,Denis Evans,Windsail,ENG,7372.8,1231.7,78018.914,0,0,Bot,Bot3923,792,Silver 1,792,Silver 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,15.7,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,69,Dallas Mejia,,AUS,7374.7,1233.6,78018.914,0,0,Bot,Bot4969,702,Silver 1,702,Silver 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,15.4,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,70,Jakob Mathiasen,Filsø Naturferie - BikePro,DEN,7629.8,1488.7,78018.914,0,0,Male,D84056419E21EF43,1081,Gold 1,1081,Gold 1,60-64,Platinum 2,Week 3 Island Classic,Spring Classics 2026,15.1,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,71,Ulpu Toivonen,Windsail,FIN,7679.3,1538.2,78018.914,0,0,Bot,Bot123,847,Silver 2,847,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,14.8,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,72,Yannick Thiry,,BEL,7700.7,1559.6,78018.914,0,0,Bot,Bot1158,908,Silver 3,908,Silver 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,14.5,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,73,Reinhold Köhler,Fujikai,AUT,7734.8,1593.7,78018.914,0,0,Bot,Bot7113,863,Silver 2,863,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,14.2,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,74,Paolo Milani,Base,ITA,7744.5,1603.4,78018.914,0,0,Bot,Bot5625,751,Silver 1,751,Silver 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,13.9,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,75,Niels De Bruin,,NED,7782.7,1641.6,78018.914,0,0,Bot,Bot5887,870,Silver 2,870,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,13.6,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,76,Arthur Roy,,FRA,7782.8,1641.7,78018.914,0,0,Bot,Bot4970,820,Silver 2,820,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,13.3,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,77,Abdourahman Youssouf,Monova,DJI,7783.6,1642.5,78018.914,0,0,Bot,Bot7019,869,Silver 2,869,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,13.0,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,78,Sarah Simon,YES,BEL,7973.6,1832.5,78018.914,0,0,Bot,Bot1435,891,Silver 2,891,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,12.7,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,79,Maureen Reid,,GBR,7975.9,1834.8,78018.914,0,0,Bot,Bot3573,515,Bronze 2,515,Bronze 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,12.4,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,80,Jurgen NW,Flandria,BEL,7977.6,1836.5,78018.914,0,0,Male,745F8BEE91BA8CCE,792,Silver 1,792,Silver 1,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,12.1,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,81,Rasoherina Rakoto,,MAD,8033.0,1891.9,78018.914,0,0,Bot,Bot144,732,Silver 1,732,Silver 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,11.8,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,82,Ingrid Isaksen,Nuvio,NOR,8061.9,1920.8,78018.914,0,0,Bot,Bot9406,591,Bronze 2,591,Bronze 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,11.5,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,83,Kim Bell,Saitama,CAN,8064.3,1923.2,78018.914,0,0,Bot,Bot6934,603,Bronze 3,603,Bronze 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,11.2,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,84,Nathan Allen,,IRL,8089.1,1948.0,78018.914,0,0,Bot,Bot9867,798,Silver 1,798,Silver 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,10.9,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,85,Maryellen Sharp,Windsail,RSA,8092.5,1951.4,78018.914,0,0,Bot,Bot8423,553,Bronze 2,553,Bronze 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,10.6,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,86,Agam Amsalem,,ISR,8093.2,1952.1,78018.914,0,0,Bot,Bot1297,625,Bronze 3,625,Bronze 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,10.3,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,87,Maëlle Martins,eVOX,LUX,8148.3,2007.2,78018.914,0,0,Bot,Bot505,695,Bronze 3,695,Bronze 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,10.0,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,88,Noah Lace,,IOM,8168.7,2027.6,78018.914,0,0,Bot,Bot2392,824,Silver 2,824,Silver 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,9.7,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,89,Ida Miller,,DEN,8168.7,2027.6,78018.914,0,0,Bot,Bot5748,615,Bronze 3,615,Bronze 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,9.4,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,90,Kim Boisvert,Nuvio,CAN,8169.1,2028.0,78018.914,0,0,Bot,Bot8706,719,Silver 1,719,Silver 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,9.1,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,91,Stephanie Lang,Fable,GER,8455.2,2314.1,78018.914,0,0,Bot,Bot9710,613,Bronze 3,613,Bronze 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,8.8,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,DNF,Lem Curran,Team Lou,USA,321.3,0.0,2913.318,0,0,Male,4C4549B1EEBD85F0,1088,Gold 1,1088,Gold 1,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,DNF,Torstein Hansen,,NOR,4778.5,0.0,56484.558,0,0,Male,B8D1C815CCA6B655,906,Silver 3,906,Silver 3,45-49,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Silver,129584,1424,0.51,Sprint
+122174,0,DNF,Jason Boynton,,USA,5051.3,0.0,46871.015,0,0,Male,6189E7003FF05302,100,Bronze 1,1025,Gold 1,45-49,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,DNF,Nicki Haugaard,Filsø Naturferie - BikePro,DEN,5586.8,0.0,58271.156,0,0,Male,3C5D0D411A49BB61,1181,Gold 2,1181,Gold 2,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Gold,129584,1424,0.51,Sprint
+122174,0,DNF,Hanan Al-Shehhi,Dashix,UAE,8013.9,0.0,69289.476,0,0,Bot,Bot8111,585,Bronze 2,585,Bronze 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,DNF,Victoria Macleod,,SCO,8073.8,0.0,69529.656,0,0,Bot,Bot1389,571,Bronze 2,571,Bronze 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,DNF,Fiorella Rossi,,ITA,8133.8,0.0,70230.578,0,0,Bot,Bot7480,483,Bronze 1,483,Bronze 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Bronze,129584,1424,0.51,Sprint
+122174,0,DNF,Les Campos,,ENG,8193.8,0.0,70416.585,0,0,Bot,Bot3553,601,Bronze 3,601,Bronze 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,91,Bronze,129584,1424,0.51,Sprint
+122178,0,1,Even Øistensen,Race3R,NOR,6420.9,0.0,78018.914,0,0,Male,A4DD9760300BDC00,1427,Platinum 2,1427,Platinum 2,50-54,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,2,Borys Shvets,Roklit,UKR,6421.7,0.8,78018.914,0,0,Bot,Bot1312,1414,Platinum 2,1414,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,35.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,3,Eric Lemoine,,FRA,6422.3,1.4,78018.914,0,0,Bot,Bot6162,1512,Platinum 3,1512,Platinum 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,4,Wilson Lewis,,AUS,6422.6,1.7,78018.914,0,0,Bot,Bot1895,1390,Platinum 1,1390,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,5,Dobroslav Pulszky,Aspire,SRB,6422.7,1.7,78018.914,0,0,Bot,Bot1229,1444,Platinum 2,1444,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,6,Thierno Sylla,,GUI,6433.4,12.5,78018.914,0,0,Bot,Bot9360,1323,Platinum 1,1323,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,7,Nico Winkler,Douvan,SUI,6433.5,12.6,78018.914,0,0,Bot,Bot5236,1368,Platinum 1,1368,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,8,Jules Hicks,,USA,6433.6,12.7,78018.914,0,0,Bot,Bot362,1351,Platinum 1,1351,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,34.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,9,Birger Hedegaard,eVOX,DEN,6433.7,12.8,78018.914,0,0,Bot,Bot9505,1412,Platinum 2,1412,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,10,Sanford Casey,,GBR,6433.7,12.8,78018.914,0,0,Bot,Bot7473,1303,Platinum 1,1303,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,11,George Friesen,,CAN,6433.9,13.0,78018.914,0,0,Bot,Bot1169,1353,Platinum 1,1353,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,12,Greg Trujillo,,AUS,6434.0,13.1,78018.914,0,0,Bot,Bot6044,1392,Platinum 1,1392,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,13,Mika Maes,,BEL,6434.2,13.3,78018.914,0,0,Bot,Bot8756,1392,Platinum 1,1392,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,33.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,14,Lionel Martel,,CAN,6504.7,83.8,78018.914,0,0,Bot,Bot2357,1408,Platinum 2,1408,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,15,Marco Fortin,,CAN,6505.6,84.7,78018.914,0,0,Bot,Bot1575,1451,Platinum 2,1451,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,16,Jun Ōta,,JPN,6505.8,84.9,78018.914,0,0,Bot,Bot5764,1338,Platinum 1,1338,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,17,Thaddeus Gordon,,USA,6506.1,85.1,78018.914,0,0,Bot,Bot5047,1361,Platinum 1,1361,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,18,Ianto Bennett,,WAL,6506.2,85.3,78018.914,0,0,Bot,Bot8557,1394,Platinum 1,1394,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,32.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,19,Arthur Seymour,,BAH,6509.3,88.4,78018.914,0,0,Bot,Bot5250,1422,Platinum 2,1422,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,20,Philippe Fabre,,FRA,6510.2,89.3,78018.914,0,0,Bot,Bot5751,1439,Platinum 2,1439,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,21,Hiro Kinoshita,,JPN,6512.5,91.6,78018.914,0,0,Bot,Bot1197,1551,Platinum 3,1551,Platinum 3,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,22,Ian Ortiz,AMO Solutions,ARG,6513.4,92.5,78018.914,0,0,Bot,Bot2339,1497,Platinum 2,1497,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,23,Joshua Burgess,Titans,GBR,6515.7,94.8,78018.914,0,0,Bot,Bot6430,1465,Platinum 2,1465,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,31.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,24,Sammy Griffin,,GBR,6518.3,97.4,78018.914,0,0,Bot,Bot686,1389,Platinum 1,1389,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,25,Aldo Esposito,,ITA,6519.2,98.3,78018.914,0,0,Bot,Bot8577,1456,Platinum 2,1456,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,26,Erwin Dougherty,,AUS,6519.2,98.3,78018.914,0,0,Bot,Bot4582,1426,Platinum 2,1426,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,27,Daishi Abe,,JPN,6519.5,98.5,78018.914,0,0,Bot,Bot4685,1464,Platinum 2,1464,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,28,Jerry Elliott,,AUS,6519.5,98.6,78018.914,0,0,Bot,Bot4975,1441,Platinum 2,1441,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,30.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,29,Lee Adams,,GBR,6519.7,98.8,78018.914,0,0,Bot,Bot2976,1345,Platinum 1,1345,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,30,Menachem Levy,,ISR,6519.7,98.8,78018.914,0,0,Bot,Bot2643,1344,Platinum 1,1344,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,31,Anton Schwarz,Aspire,GER,6520.2,99.3,78018.914,0,0,Bot,Bot7529,1419,Platinum 2,1419,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,32,Kurt Förster,,GER,6520.3,99.4,78018.914,0,0,Bot,Bot8554,1317,Platinum 1,1317,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,33,Goran Ješić,Orbit,SVK,6520.4,99.5,78018.914,0,0,Bot,Bot9803,1337,Platinum 1,1337,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,29.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,34,Domingos Pereira,,ANG,6520.8,99.9,78018.914,0,0,Bot,Bot3448,1409,Platinum 2,1409,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,35,Forrest Beck,,AUS,6521.3,100.4,78018.914,0,0,Bot,Bot8843,1417,Platinum 2,1417,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,36,Mussie Araya,,ERI,6521.3,100.4,78018.914,0,0,Bot,Bot5991,1332,Platinum 1,1332,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,37,Van Montgomery,,GBR,6521.7,100.7,78018.914,0,0,Bot,Bot3097,1451,Platinum 2,1451,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,38,Raymond Duenas,,GUM,6522.0,101.1,78018.914,0,0,Bot,Bot2042,1345,Platinum 1,1345,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,39,Bauro Tamuera,,KIR,6522.3,101.4,78018.914,0,0,Bot,Bot8096,1340,Platinum 1,1340,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,28.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,40,Bhargava Rai,Zonkify,IND,6522.3,101.4,78018.914,0,0,Bot,Bot8609,1325,Platinum 1,1325,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,41,Werner Kaiser,,AUT,6522.5,101.6,78018.914,0,0,Bot,Bot8068,1407,Platinum 2,1407,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,42,Alexander Bisgaard,,DEN,6523.1,102.2,78018.914,0,0,Bot,Bot3091,1319,Platinum 1,1319,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,43,Jim Macleod,,SCO,6523.1,102.2,78018.914,0,0,Bot,Bot5671,1331,Platinum 1,1331,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,44,Benicio Torres,,ARG,6523.2,102.2,78018.914,0,0,Bot,Bot453,1357,Platinum 1,1357,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,27.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,45,Kari Heiskanen,,FIN,6523.2,102.3,78018.914,0,0,Bot,Bot2577,1310,Platinum 1,1310,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,46,Keith Ballard,,NZL,6523.3,102.4,78018.914,0,0,Bot,Bot184,1361,Platinum 1,1361,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,47,Demeter Andreev,Patriot,BUL,6523.3,102.4,78018.914,0,0,Bot,Bot8108,1409,Platinum 2,1409,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,48,Graham Erskine,Aguda,SCO,6523.4,102.5,78018.914,0,0,Bot,Bot5033,1305,Platinum 1,1305,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,49,Marshall Tucker,Hinal,AUS,6523.4,102.5,78018.914,0,0,Bot,Bot6831,1343,Platinum 1,1343,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,26.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,50,David Abad,,ESP,6523.4,102.5,78018.914,0,0,Bot,Bot3369,1379,Platinum 1,1379,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,51,Lucien Lalonde,,CAN,6523.6,102.7,78018.914,0,0,Bot,Bot996,1407,Platinum 2,1407,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,52,Rüdiger Becker,,GER,6523.7,102.8,78018.914,0,0,Bot,Bot7191,1324,Platinum 1,1324,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,53,Curt McCullough,Heat,AUS,6523.8,102.9,78018.914,0,0,Bot,Bot1707,1334,Platinum 1,1334,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,54,Duncan Burke,,AUS,6539.4,118.5,78018.914,0,0,Bot,Bot7752,1313,Platinum 1,1313,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,25.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,55,Lasse Busch,,SUI,6539.5,118.6,78018.914,0,0,Bot,Bot3598,1356,Platinum 1,1356,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,56,Tommy Parra,,USA,6540.4,119.5,78018.914,0,0,Bot,Bot4246,1360,Platinum 1,1360,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,57,Eemil Mäkelä,Saint,FIN,6540.6,119.6,78018.914,0,0,Bot,Bot4132,1304,Platinum 1,1304,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,58,Lazaro Delgado,,CUB,6540.6,119.7,78018.914,0,0,Bot,Bot4755,1416,Platinum 2,1416,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,59,Bjørn Pettersen,Eckleson,NOR,6557.8,136.9,78018.914,0,0,Bot,Bot2727,1331,Platinum 1,1331,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,24.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,60,Joseph Stein,,AUT,6611.3,190.4,78018.914,0,0,Bot,Bot3359,1421,Platinum 2,1421,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,61,Corrado Fusco,,ITA,6611.5,190.6,78018.914,0,0,Bot,Bot1399,1330,Platinum 1,1330,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,62,Wilmer Amaya,Roklit,HON,6630.2,209.3,78018.914,0,0,Bot,Bot2012,1346,Platinum 1,1346,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,63,Ruojie Kim,Pioma,CHN,6630.3,209.4,78018.914,0,0,Bot,Bot238,1318,Platinum 1,1318,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,64,Norris Arnold,Fujikai,NZL,6630.5,209.6,78018.914,0,0,Bot,Bot4613,1347,Platinum 1,1347,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,23.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,65,Walter Melendez,,ESA,6630.8,209.8,78018.914,0,0,Bot,Bot9970,1315,Platinum 1,1315,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,66,Torben Andersson,Ampex,DEN,6630.9,210.0,78018.914,0,0,Bot,Bot1214,1317,Platinum 1,1317,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,67,Marcin Pawlak,,POL,6631.2,210.3,78018.914,0,0,Bot,Bot2251,1382,Platinum 1,1382,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,68,Romain Devos,,BEL,6631.2,210.3,78018.914,0,0,Bot,Bot9543,1327,Platinum 1,1327,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,69,Tapio Partanen,,FIN,6631.4,210.5,78018.914,0,0,Bot,Bot9290,1331,Platinum 1,1331,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,22.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,70,Mirko Kovačević,Roklit,BIH,6631.6,210.7,78018.914,0,0,Bot,Bot5112,1383,Platinum 1,1383,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,71,Thanh Castro,,AUS,6631.6,210.7,78018.914,0,0,Bot,Bot1283,1302,Platinum 1,1302,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,72,Quentin Duke,,NZL,6631.7,210.8,78018.914,0,0,Bot,Bot4871,1315,Platinum 1,1315,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,73,Ramon Miles,,GBR,6679.6,258.7,78018.914,0,0,Bot,Bot2262,1315,Platinum 1,1315,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,74,Matthew Salazar,Titans,SGP,6680.3,259.4,78018.914,0,0,Bot,Bot6730,1366,Platinum 1,1366,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,75,Rajeev Al Romaihi,,QAT,6680.4,259.5,78018.914,0,0,Bot,Bot1249,1344,Platinum 1,1344,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,21.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,76,Janko Kucka,Krowen,CRO,6680.6,259.7,78018.914,0,0,Bot,Bot4302,1378,Platinum 1,1378,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,77,Jamil Ansari,,KSA,6680.8,259.9,78018.914,0,0,Bot,Bot4292,1312,Platinum 1,1312,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,78,Leonardo Marino,Capital,ITA,6699.4,278.5,78018.914,0,0,Bot,Bot2824,1379,Platinum 1,1379,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,79,Jassim Al Baker,,QAT,6708.9,288.0,78018.914,0,0,Bot,Bot6189,1468,Platinum 2,1468,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,80,Xander Fontaine,,BEL,6709.8,288.9,78018.914,0,0,Bot,Bot8697,1343,Platinum 1,1343,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,20.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,81,Akihito Suzuki,Roklit,JPN,6711.4,290.5,78018.914,0,0,Bot,Bot2712,1310,Platinum 1,1310,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,82,Ismo Rissanen,Nitro,FIN,6711.6,290.7,78018.914,0,0,Bot,Bot4637,1302,Platinum 1,1302,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,83,Daniel Nilsson,,SWE,6711.7,290.8,78018.914,0,0,Bot,Bot7743,1341,Platinum 1,1341,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,84,Emil Beneš,,SVK,6711.8,290.9,78018.914,0,0,Bot,Bot3048,1343,Platinum 1,1343,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,85,Adam Mizzi,Kumori,MLT,6712.3,291.4,78018.914,0,0,Bot,Bot3340,1450,Platinum 2,1450,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,19.0,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,86,Christian Möller,,GER,6748.6,327.7,78018.914,0,0,Bot,Bot5552,1366,Platinum 1,1366,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.8,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,87,Berry Wilkerson,Capital,USA,6748.7,327.8,78018.914,0,0,Bot,Bot1124,1370,Platinum 1,1370,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.6,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,88,Roberto Rivas,,ESP,6748.8,327.9,78018.914,0,0,Bot,Bot7168,1310,Platinum 1,1310,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.4,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,89,Denis David,,FRA,6748.9,328.0,78018.914,0,0,Bot,Bot8599,1373,Platinum 1,1373,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.2,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,90,Adam Blais,,CAN,6749.0,328.1,78018.914,0,0,Bot,Bot8471,1454,Platinum 2,1454,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,18.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,91,David Wallin,Titans,SWE,6749.0,328.1,78018.914,0,0,Bot,Bot230,1404,Platinum 2,1404,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,92,Harrison Bridges,,NZL,6749.1,328.2,78018.914,0,0,Bot,Bot1174,1320,Platinum 1,1320,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.7,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,93,Louis Pierre,,GDL,6749.2,328.3,78018.914,0,0,Bot,Bot5545,1303,Platinum 1,1303,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.5,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,94,Pieteer Bos,Zonkify,NED,6749.3,328.4,78018.914,0,0,Bot,Bot6409,1373,Platinum 1,1373,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.3,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,95,Themba Mthethwa,HCOM,SWZ,6749.4,328.5,78018.914,0,0,Bot,Bot3901,1403,Platinum 2,1403,Platinum 2,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,17.1,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,96,Boris Takac,,CZE,6749.4,328.5,78018.914,0,0,Bot,Bot9488,1361,Platinum 1,1361,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,16.9,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,DNF,Gilbert Fontaine,Nitro,FRA,6471.1,0.0,74432.429,0,0,Bot,Bot5537,1316,Platinum 1,1316,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,DNF,Nicolas Jung,,LUX,6531.0,0.0,75034.437,0,0,Bot,Bot9875,1311,Platinum 1,1311,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,96,Platinum,134496,1401,0.04,Sprint
+122178,0,DNF,Joseph Lace,Douvan,IOM,6591.1,0.0,75719.367,0,0,Bot,Bot8236,1379,Platinum 1,1379,Platinum 1,,Platinum 2,Week 3 Island Classic,Spring Classics 2026,,483,96,Platinum,134496,1401,0.04,Sprint
+120786,0,1,Alexandre Peigne,Occitan Riders,FRA,6402.9,0.0,76801,0,0,Male,9A5A42A2AAD1410F,1532,Platinum 3,1532,Platinum 3,45-49,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,39.3,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,2,Paul  Watkins,TTT Project,GBR,6438.0,35.1,76801,0,0,Male,1C187305EC910212,1797,Diamond 2,1797,Diamond 2,50-54,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,38.7,631,43,Diamond,64156,1492,0.26,Climb
+120786,0,3,Frédéric Roche,Monova,FRA,6445.8,42.9,76801,0,0,Bot,Bot6619,1480,Platinum 2,1480,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,38.1,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,4,Marcel Bourgeois,,FRA,6481.8,78.9,76801,0,0,Bot,Bot9059,1510,Platinum 3,1510,Platinum 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,37.5,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,5,Max Roman,Aguda,GBR,6486.4,83.5,76801,0,0,Bot,Bot9633,1484,Platinum 2,1484,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,36.9,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,6,George Clucas,Monova,IOM,6522.1,119.2,76801,0,0,Bot,Bot2219,1483,Platinum 2,1483,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,36.3,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,7,Dennis Edwards,,CAN,6532.3,129.4,76801,0,0,Bot,Bot2747,1479,Platinum 2,1479,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,35.7,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,8,Samuel Pires,,BRA,6536.6,133.7,76801,0,0,Bot,Bot7393,1511,Platinum 3,1511,Platinum 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,35.2,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,9,Jochen Hübner,,SUI,6537.1,134.3,76801,0,0,Bot,Bot4146,1496,Platinum 2,1496,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,34.6,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,10,Ron Crane,,AUS,6549.5,146.6,76801,0,0,Bot,Bot8975,1488,Platinum 2,1488,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,34.0,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,11,Josef Jäger,Fiber Shot,SUI,6683.4,280.5,76801,0,0,Bot,Bot7116,1360,Platinum 1,1360,Platinum 1,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,33.4,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,12,Jackie Ventura,,USA,6688.2,285.4,76801,0,0,Bot,Bot9245,1345,Platinum 1,1345,Platinum 1,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,32.8,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,13,Fraser Kinnaird,,SCO,6713.4,310.5,76801,0,0,Bot,Bot2453,1492,Platinum 2,1492,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,32.2,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,14,Kenneth Pettersson,Ampex,SWE,6714.4,311.5,76801,0,0,Bot,Bot5714,1503,Platinum 3,1503,Platinum 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,31.6,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,15,Christodoulos Constantinides,eVOX,CYP,6714.4,311.6,76801,0,0,Bot,Bot7305,1510,Platinum 3,1510,Platinum 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,31.0,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,16,Minjun Ran,,KOR,6715.0,312.2,76801,0,0,Bot,Bot2172,1574,Platinum 3,1574,Platinum 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,30.5,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,17,Edgars Krūmiņš,,LAT,6720.9,318.0,76801,0,0,Bot,Bot1154,1517,Platinum 3,1517,Platinum 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,29.9,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,18,Jay  Santi,Pedalers,CAN,6727.1,324.3,76801,0,0,Male,DEE9CDE9AAFC3773,1169,Gold 2,1169,Gold 2,50-54,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,29.3,631,43,Gold,64156,1492,0.26,Climb
+120786,0,19,Eeli Huttunen,True Form,FIN,6729.1,326.2,76801,0,0,Bot,Bot5215,1267,Gold 3,1267,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,28.7,631,43,Gold,64156,1492,0.26,Climb
+120786,0,20,Lourdes Proctor,,AUS,6729.5,326.6,76801,0,0,Bot,Bot3577,1264,Gold 3,1264,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,28.1,631,43,Gold,64156,1492,0.26,Climb
+120786,0,21,Ryan Yates,Allkin Racing,USA,6743.7,340.9,76801,0,0,Male,2FDBB5DD4345DCB5,1257,Gold 3,1257,Gold 3,40-44,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,27.5,631,43,Gold,64156,1492,0.26,Climb
+120786,0,22,Maui Vaihotu,,EAS,6751.8,348.9,76801,0,0,Bot,Bot4799,1354,Platinum 1,1354,Platinum 1,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,26.9,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,23,Jonathon Deleon,,USA,6760.7,357.8,76801,0,0,Bot,Bot3563,1421,Platinum 2,1421,Platinum 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,26.3,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,24,Thomas Claeys,AMO Solutions,BEL,6784.6,381.8,76801,0,0,Bot,Bot5839,1230,Gold 3,1230,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,25.8,631,43,Gold,64156,1492,0.26,Climb
+120786,0,25,Dennis Paquet,,CAN,6785.3,382.4,76801,0,0,Bot,Bot6288,1265,Gold 3,1265,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,25.2,631,43,Gold,64156,1492,0.26,Climb
+120786,0,26,Michael Griffith,,BAR,6795.9,393.0,76801,0,0,Bot,Bot1358,1233,Gold 3,1233,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,24.6,631,43,Gold,64156,1492,0.26,Climb
+120786,0,27,Malong Thon,Eckleson,SSD,6810.4,407.5,76801,0,0,Bot,Bot5727,1239,Gold 3,1239,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,24.0,631,43,Gold,64156,1492,0.26,Climb
+120786,0,28,Tun Win,,MYA,6833.8,431.0,76801,0,0,Bot,Bot3159,1291,Gold 3,1291,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,23.4,631,43,Gold,64156,1492,0.26,Climb
+120786,0,29,Mārtiņš Kalniņš,True Form,LAT,6848.9,446.0,76801,0,0,Bot,Bot1415,1148,Gold 2,1148,Gold 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,22.8,631,43,Gold,64156,1492,0.26,Climb
+120786,0,30,Nicolas Reyes,,ESP,6855.0,452.1,76801,0,0,Bot,Bot87,1240,Gold 3,1240,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,22.2,631,43,Gold,64156,1492,0.26,Climb
+120786,0,31,Leandro Rizzi,,ITA,6855.1,452.2,76801,0,0,Bot,Bot6198,1169,Gold 2,1169,Gold 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,21.7,631,43,Gold,64156,1492,0.26,Climb
+120786,0,32,David Beck,,LIE,6864.9,462.1,76801,0,0,Bot,Bot8466,1115,Gold 2,1115,Gold 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,21.1,631,43,Gold,64156,1492,0.26,Climb
+120786,0,33,Daisy Quillin,,IOM,6865.2,462.3,76801,0,0,Bot,Bot2846,1156,Gold 2,1156,Gold 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,20.5,631,43,Gold,64156,1492,0.26,Climb
+120786,0,34,Duggu Nair,HCOM,IND,6901.2,498.4,76801,0,0,Bot,Bot9501,1187,Gold 2,1187,Gold 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,19.9,631,43,Gold,64156,1492,0.26,Climb
+120786,0,35,Bart De Groot,,NED,6997.1,594.3,76801,0,0,Bot,Bot3556,1223,Gold 3,1223,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,19.3,631,43,Gold,64156,1492,0.26,Climb
+120786,0,36,Alfredo Herrero,,ESP,7008.3,605.4,76801,0,0,Bot,Bot6146,1227,Gold 3,1227,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,18.7,631,43,Gold,64156,1492,0.26,Climb
+120786,0,37,Mamadou Diallo,,GUI,7012.3,609.4,76801,0,0,Bot,Bot3575,1096,Gold 1,1096,Gold 1,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,18.1,631,43,Gold,64156,1492,0.26,Climb
+120786,0,38,henrik simonsen,Stjær e-Cycling,DEN,7035.4,632.5,76801,0,0,Male,8174DDAFEC8FC8D1,1091,Gold 1,1091,Gold 1,55-59,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,17.5,631,43,Gold,64156,1492,0.26,Climb
+120786,0,39,Magdalini Apostolou,,GRE,7112.7,709.8,76801,0,0,Bot,Bot4354,952,Silver 3,952,Silver 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,17.0,631,43,Silver,64156,1492,0.26,Climb
+120786,0,40,Daigo Mori,Zonkify,JPN,7129.6,726.7,76801,0,0,Bot,Bot6609,1191,Gold 2,1191,Gold 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,16.4,631,43,Gold,64156,1492,0.26,Climb
+120786,0,41,Harris Taylor,Saitama,ENG,7131.6,728.7,76801,0,0,Bot,Bot3034,1126,Gold 2,1126,Gold 2,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,15.8,631,43,Gold,64156,1492,0.26,Climb
+120786,0,42,Remo Moretti,,ITA,7187.1,784.3,76801,0,0,Bot,Bot8253,1221,Gold 3,1221,Gold 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,15.2,631,43,Gold,64156,1492,0.26,Climb
+120786,0,43,Reid Hammond,,ENG,7193.9,791.0,76801,0,0,Bot,Bot8266,986,Silver 3,986,Silver 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,14.6,631,43,Silver,64156,1492,0.26,Climb
+120786,0,DNF,Nicki Haugaard,BikePro-Filsø Naturferie,DEN,3584.7,0.0,45275.898,0,0,Male,3C5D0D411A49BB61,1170,Gold 2,1170,Gold 2,50-54,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,,631,43,Gold,64156,1492,0.26,Climb
+120786,0,DNF,Mark Skilling,Race3R,SCO,4157.0,0.0,51953.277,0,0,Male,758C554B721A0502,1345,Platinum 1,1345,Platinum 1,50-54,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,,631,43,Platinum,64156,1492,0.26,Climb
+120786,0,DNF,Robert Van Vliet,,NED,7066.7,0.0,70067.117,0,0,Bot,Bot4389,956,Silver 3,956,Silver 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,,631,43,Silver,64156,1492,0.26,Climb
+120786,0,DNF,Tomas Alvarez,,AUS,7126.7,0.0,71648.695,0,0,Bot,Bot5568,1002,Gold 1,1002,Gold 1,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,,631,43,Gold,64156,1492,0.26,Climb
+120786,0,DNF,Hikari Hara,,JPN,7186.7,0.0,73194.312,0,0,Bot,Bot3167,1022,Gold 1,1022,Gold 1,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,,631,43,Gold,64156,1492,0.26,Climb
+120786,0,DNF,Bart Van der Heijden,,NED,7246.7,0.0,74289.867,0,0,Bot,Bot8482,968,Silver 3,968,Silver 3,,Platinum 3,Week 1 World Champs Montreal,Spring Classics 2026,,631,43,Silver,64156,1492,0.26,Climb
+120787,0,1,Ritsu Sasaki,Saitama,jpn,6735.0,0.0,76801,0,0,Bot,Bot1034,1481,Platinum 2,1481,Platinum 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,35.4,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,2,Jone Bakke Gravdal,DIRT,nor,6852.9,117972.0,76801,0,0,Human,A0F6F7E89915B1DC,1408,Platinum 2,1408,Platinum 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,34.8,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,3,André Martinez,,fra,6915.7,180758.0,76801,0,0,Bot,Bot8750,1351,Platinum 1,1351,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,34.1,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,4,Sanzhar Asanov,,kaz,6931.3,196304.0,76801,0,0,Bot,Bot7698,1356,Platinum 1,1356,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,33.5,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,5,Thad Franklin,,usa,6979.5,244510.0,76801,0,0,Bot,Bot5574,1301,Platinum 1,1301,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,32.8,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,6,Eirik Strand,,nor,6990.7,255762.0,76801,0,0,Bot,Bot7863,1341,Platinum 1,1341,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,32.1,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,7,Timo Neumann,,ger,7001.9,266887.0,76801,0,0,Bot,Bot2465,1292,Gold 3,1292,Gold 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,31.5,631,37,Gold,49802,1346,0.33,Climb
+120787,0,8,Matviy Melnichuk,,ukr,7012.8,277782.0,76801,0,0,Bot,Bot7396,1392,Platinum 1,1392,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,30.8,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,9,Kamal Hassan,,uae,7013.1,278174.0,76801,0,0,Bot,Bot7987,1324,Platinum 1,1324,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,30.2,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,10,Hikaru Hayashi,,jpn,7020.4,285457.0,76801,0,0,Bot,Bot2975,1297,Gold 3,1297,Gold 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,29.5,631,37,Gold,49802,1346,0.33,Climb
+120787,0,11,Arthur Paquet,,can,7021.0,286051.0,76801,0,0,Bot,Bot8688,1237,Gold 3,1237,Gold 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,28.9,631,37,Gold,49802,1346,0.33,Climb
+120787,0,12,Stefanos Panagiotopoulos,Eckleson,gre,7025.4,290418.0,76801,0,0,Bot,Bot5427,1381,Platinum 1,1381,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,28.2,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,13,Emerson Beck,Capital,usa,7040.6,305586.0,76801,0,0,Bot,Bot4624,1304,Platinum 1,1304,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,27.6,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,14,Jim Macleod,,sco,7075.4,340406.0,76801,0,0,Bot,Bot5671,1342,Platinum 1,1342,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,26.9,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,15,Ethan Appadoo,Capital,mri,7091.3,356355.0,76801,0,0,Bot,Bot3424,1309,Platinum 1,1309,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,26.2,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,16,René Bertrand,,fra,7094.5,359551.0,76801,0,0,Bot,Bot9652,1304,Platinum 1,1304,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,25.6,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,17,Quentin Duke,,nzl,7137.6,402623.0,76801,0,0,Bot,Bot4871,1319,Platinum 1,1319,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,24.9,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,18,Madeleine Ward,Kumori,can,7168.2,433215.0,76801,0,0,Bot,Bot2940,997,Silver 3,997,Silver 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,24.3,631,37,Silver,49802,1346,0.33,Climb
+120787,0,19,Nicolas Jung,,lux,7292.7,557680.0,76801,0,0,Bot,Bot9875,1326,Platinum 1,1326,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,23.6,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,20,Niyaz Shaheen,,mdv,7296.5,561541.0,76801,0,0,Bot,Bot5466,1295,Gold 3,1295,Gold 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,23.0,631,37,Gold,49802,1346,0.33,Climb
+120787,0,21,Virgil Sparks,Windsail,aus,7383.6,648598.0,76801,0,0,Bot,Bot4023,1006,Gold 1,1006,Gold 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,22.3,631,37,Gold,49802,1346,0.33,Climb
+120787,0,22,Ethan Damme,,bel,7405.4,670375.0,76801,0,0,Bot,Bot7683,1369,Platinum 1,1369,Platinum 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,21.6,631,37,Platinum,49802,1346,0.33,Climb
+120787,0,23,H JeAr,,chn,7406.4,671394.0,76801,0,0,Human,12CD80DC50E85C87,100,Carbon 1,802,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,21.0,631,37,Silver,49802,1346,0.33,Climb
+120787,0,24,Angelo D'Ambrosio,,ita,7524.3,789365.0,76801,0,0,Bot,Bot3864,1084,Gold 1,1084,Gold 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,20.3,631,37,Gold,49802,1346,0.33,Climb
+120787,0,25,Vaughn Barker,,aus,7674.3,939345.0,76801,0,0,Bot,Bot5963,882,Silver 2,882,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,19.7,631,37,Silver,49802,1346,0.33,Climb
+120787,0,26,Shari Lucas,,aus,7676.9,941944.0,76801,0,0,Bot,Bot1659,879,Silver 2,879,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,19.0,631,37,Silver,49802,1346,0.33,Climb
+120787,0,27,Rasmus Leppänen,,fin,7698.0,963000.0,76801,0,0,Bot,Bot1696,1030,Gold 1,1030,Gold 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,18.4,631,37,Gold,49802,1346,0.33,Climb
+120787,0,28,Betsan Price,Aspire,wal,7711.1,976132.0,76801,0,0,Bot,Bot8529,955,Silver 3,955,Silver 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,17.7,631,37,Silver,49802,1346,0.33,Climb
+120787,0,29,Isaac Seegoolam,Ampex,mri,7867.0,1132018.0,76801,0,0,Bot,Bot4714,877,Silver 2,877,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,17.1,631,37,Silver,49802,1346,0.33,Climb
+120787,0,30,Paulo Viegas,Saint,por,7907.9,1172882.0,76801,0,0,Bot,Bot2132,1019,Gold 1,1019,Gold 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,16.4,631,37,Gold,49802,1346,0.33,Climb
+120787,0,31,Mordechai Ezra,Windsail,isr,7923.2,1188205.0,76801,0,0,Bot,Bot3423,878,Silver 2,878,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,15.7,631,37,Silver,49802,1346,0.33,Climb
+120787,0,32,Robert Lecomte,,fra,7923.6,1188632.0,76801,0,0,Bot,Bot7676,849,Silver 2,849,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,15.1,631,37,Silver,49802,1346,0.33,Climb
+120787,0,33,Bill Cantu,AI Thunder,skn,7924.6,1189614.0,76801,0,0,Bot,Bot7200,875,Silver 2,875,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,14.4,631,37,Silver,49802,1346,0.33,Climb
+120787,0,34,Thad Buck,,usa,8056.3,1321314.0,76801,0,0,Bot,Bot4645,856,Silver 2,856,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,13.8,631,37,Silver,49802,1346,0.33,Climb
+120787,0,35,Eric Jansen,,ned,8187.5,1452481.0,76801,0,0,Bot,Bot7189,801,Silver 2,801,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,13.1,631,37,Silver,49802,1346,0.33,Climb
+120787,0,36,Tim Spence,Optech,usa,8188.9,1453917.0,76801,0,0,Bot,Bot1218,879,Silver 2,879,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,12.5,631,37,Silver,49802,1346,0.33,Climb
+120787,0,37,Chinhwa Deungjeong,AI Thunder,kor,8281.2,1546205.0,76801,0,0,Bot,Bot8900,847,Silver 2,847,Silver 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,11.8,631,37,Silver,49802,1346,0.33,Climb
+120787,0,DNF,Marlene Moyer,Hinal,gbr,7459.4,0.0,59610.55,0,0,Bot,Bot8531,493,Bronze 1,493,Bronze 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Bronze,49802,1346,0.33,Climb
+120787,0,DNF,Tamer Al-Qudwa,,ple,7519.4,0.0,64090.96,0,0,Bot,Bot7794,494,Bronze 1,494,Bronze 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Bronze,49802,1346,0.33,Climb
+120787,0,DNF,Mateo Díaz,,pan,7579.3,0.0,64212.64,0,0,Bot,Bot6099,496,Bronze 1,496,Bronze 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Bronze,49802,1346,0.33,Climb
+120787,0,DNF,Helena Resende,,por,7639.4,0.0,65121.503,0,0,Bot,Bot9372,584,Bronze 2,584,Bronze 2,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Bronze,49802,1346,0.33,Climb
+120787,0,DNF,Lena Ås,Windsail,nor,7699.4,0.0,65357.113,0,0,Bot,Bot6623,635,Bronze 3,635,Bronze 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Bronze,49802,1346,0.33,Climb
+120787,0,DNF,Johanna Zimmer,,sui,7759.4,0.0,68915.648,0,0,Bot,Bot5253,608,Bronze 3,608,Bronze 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Bronze,49802,1346,0.33,Climb
+120787,0,DNF,Kaisa Johansson,,fin,7819.4,0.0,69701.07,0,0,Bot,Bot683,708,Silver 1,708,Silver 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Silver,49802,1346,0.33,Climb
+120787,0,DNF,Oleg Didak,Base,cze,7879.4,0.0,70012.179,0,0,Bot,Bot8625,920,Silver 3,920,Silver 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Silver,49802,1346,0.33,Climb
+120787,0,DNF,Sebastian Caicedo,Base,col,7939.4,0.0,70336.929,0,0,Bot,Bot8825,902,Silver 3,902,Silver 3,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Silver,49802,1346,0.33,Climb
+120787,0,DNF,Danny Green,,can,7999.3,0.0,72595.171,0,0,Bot,Bot6567,775,Silver 1,775,Silver 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Silver,49802,1346,0.33,Climb
+120787,0,DNF,Carlos Neves,Formix,por,8059.4,0.0,72995.32,0,0,Bot,Bot1417,737,Silver 1,737,Silver 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Silver,49802,1346,0.33,Climb
+120787,0,DNF,Adele Krüger,Pioma,ger,8119.4,0.0,73662.335,0,0,Bot,Bot2438,758,Silver 1,758,Silver 1,,Platinum 2,Week 1 World Champs Montreal,Spring Classics 2026,,631,37,Silver,49802,1346,0.33,Climb
+121720,0,1,Gregory Frison,M4shup Collective,FRA,6561.4,0.0,72418.156,0,0,Male,25238B3BC618DB07,1840,Diamond 3,1840,Diamond 3,35-39,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,42.9,1100,44,Diamond,63690,1448,0.64,Climb
+121720,0,2,huseyin celebi,,GER,6569.2,7.8,72418.156,0,0,Male,515350D33C86A2B1,100,Bronze 1,1080,Gold 1,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,42.1,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,3,Ben Goodfellow,,GBR,6586.6,25.2,72418.156,0,0,Male,1BD254BED961385E,1455,Platinum 2,1455,Platinum 2,Senior,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,41.3,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,4,J D O,M4shup Collective,USA,6654.9,93.5,72418.156,0,0,Male,242BF89E66D4067D,1606,Diamond 1,1606,Diamond 1,40-44,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,40.4,1100,44,Diamond,63690,1448,0.64,Climb
+121720,0,5,Mikael Engmark Helligsø,Filsø Naturferie - BikePro,DEN,6675.8,114.4,72418.156,0,0,Male,F5B70B9DC79ADDCD,1425,Platinum 2,1425,Platinum 2,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,39.6,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,6,Doug Hart,Ilkley CC,GBR,6798.5,237.1,72418.156,0,0,Male,11799A7C1CF76DE9,1440,Platinum 2,1440,Platinum 2,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,38.8,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,7,Matías Pérez,Riders Givrés du Trainer,URU,6826.3,264.9,72418.156,0,0,Male,D80404FC3853EAFD,1419,Platinum 2,1419,Platinum 2,35-39,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,38.0,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,8,christophe contant,Pedalers,FRA,6887.8,326.3,72418.156,0,0,Male,56C62083B46B34F3,1605,Diamond 1,1605,Diamond 1,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,37.2,1100,44,Diamond,63690,1448,0.64,Climb
+121720,0,9,Paul  Watkins,TTT Project,GBR,6911.1,349.6,72418.156,0,0,Male,742A64225D668508,100,Bronze 1,1206,Gold 3,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,36.4,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,10,John Sammut,Pocomotion,GBR,6936.0,374.6,72418.156,0,0,Male,BFBB53397ACACE09,1523,Platinum 3,1523,Platinum 3,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,35.5,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,11,Nick Armstrong,Aria Olefson,CAN,6936.9,375.5,72418.156,0,0,Bot,Bot8328,1259,Gold 3,1259,Gold 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,34.7,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,12,Ryan Hamilton,Wadenterror,CAN,6968.2,406.8,72418.156,0,0,Male,FE6B6E687C77DA38,1305,Platinum 1,1305,Platinum 1,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,33.9,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,13,Alexandre Peigne,Occitan Riders,FRA,7219.5,658.1,72418.156,0,0,Male,9A5A42A2AAD1410F,1540,Platinum 3,1540,Platinum 3,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,33.1,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,14,Matthieu Hubert,Race3R,FRA,7346.9,785.5,72418.156,0,0,Male,E1D0C43C683EFE3B,1374,Platinum 1,1374,Platinum 1,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,32.3,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,15,Jay  Santi,Pedalers,CAN,7496.1,934.7,72418.156,0,0,Male,DEE9CDE9AAFC3773,1202,Gold 3,1202,Gold 3,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,31.5,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,16,Ryan Yates,Allkin Racing,USA,7595.9,1034.4,72418.156,0,0,Male,2FDBB5DD4345DCB5,1261,Gold 3,1261,Gold 3,40-44,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,30.6,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,17,Kurt Angus,Allkin Racing,GBR,7632.7,1071.3,72418.156,0,0,Male,AE665891E96CC699,1223,Gold 3,1223,Gold 3,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,29.8,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,18,Henrik Holst Elstrøm,Filsø Naturferie - BikePro,DEN,7643.8,1082.4,72418.156,0,0,Male,7CEFEF52E4B62CC1,1307,Platinum 1,1307,Platinum 1,55-59,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,29.0,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,19,Susanne Krog,,DEN,7665.2,1103.8,72418.156,0,0,Bot,Bot6572,986,Silver 3,986,Silver 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,28.2,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,20,Roger Dahl,True Form,NOR,7665.3,1103.9,72418.156,0,0,Bot,Bot8215,1010,Gold 1,1010,Gold 1,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,27.4,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,21,Fabrice LAVOISIER,,FRA,7908.3,1346.9,72418.156,0,0,Male,AE85598456D3ED97,300,Bronze 1,890,Silver 2,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,26.5,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,22,jesper hvisthule,Filsø Naturferie - BikePro,DEN,8013.9,1452.5,72418.156,0,0,Male,26A831C3832714A4,966,Silver 3,966,Silver 3,60-64,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,25.7,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,23,Kurt Nørum Pedersen,Filsø Naturferie - BikePro,DEN,8102.4,1541.0,72418.156,0,0,Male,5894B8BAC2235FF0,1039,Gold 1,1039,Gold 1,55-59,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,24.9,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,24,Tonny Persson,,DEN,8113.4,1552.0,72418.156,0,0,Bot,Bot369,944,Silver 3,944,Silver 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,24.1,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,25,Ciro Guzman,,ARG,8160.8,1599.3,72418.156,0,0,Bot,Bot7195,965,Silver 3,965,Silver 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,23.3,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,26,Kareem Webster,,AIA,8165.9,1604.5,72418.156,0,0,Bot,Bot3647,1116,Gold 2,1116,Gold 2,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,22.5,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,27,Carl Valenzuela,,USA,8166.0,1604.5,72418.156,0,0,Bot,Bot6581,1069,Gold 1,1069,Gold 1,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,21.6,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,28,Danielle Roche,,FRA,8320.2,1758.7,72418.156,0,0,Bot,Bot9874,760,Silver 1,760,Silver 1,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,20.8,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,29,Lachlan Cockburn,Monova,SCO,8336.7,1775.2,72418.156,0,0,Bot,Bot5619,805,Silver 2,805,Silver 2,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,20.0,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,30,Niko Hakala,,FIN,8378.8,1817.4,72418.156,0,0,Bot,Bot2882,851,Silver 2,851,Silver 2,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,19.2,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,31,Maria Guerrero,Roklit,COL,8391.7,1830.3,72418.156,0,0,Bot,Bot2112,697,Bronze 3,697,Bronze 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,18.4,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,32,Mohamed Acosta,,ESP,8647.1,2085.6,72418.156,0,0,Bot,Bot3987,741,Silver 1,741,Silver 1,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,17.6,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,33,Youchen Ten,,CHN,8765.0,2203.6,72418.156,0,0,Bot,Bot4383,675,Bronze 3,675,Bronze 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,16.7,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,34,Jan Smits,eVOX,NED,8769.0,2207.6,72418.156,0,0,Bot,Bot9105,691,Bronze 3,691,Bronze 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,15.9,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,35,Camille Legrand,Fujikai,FRA,8773.1,2211.7,72418.156,0,0,Bot,Bot1013,637,Bronze 3,637,Bronze 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,15.1,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,36,Gabriela Domínguez,eVOX,PAR,8806.4,2244.9,72418.156,0,0,Bot,Bot5505,656,Bronze 3,656,Bronze 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,14.3,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,37,Stella Marchi,Fiber Shot,ITA,8808.7,2247.2,72418.156,0,0,Bot,Bot6916,756,Silver 1,756,Silver 1,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,13.5,1100,44,Silver,63690,1448,0.64,Climb
+121720,0,38,Anna Hellström,Capital,SWE,9077.1,2515.7,72418.156,0,0,Bot,Bot3124,615,Bronze 3,615,Bronze 3,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,12.7,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,39,Galina Kulyk,Capital,UKR,9126.7,2565.3,72418.156,0,0,Bot,Bot8024,565,Bronze 2,565,Bronze 2,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,11.8,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,40,Ulrika Holmgren,Kumori,SWE,9497.8,2936.4,72418.156,0,0,Bot,Bot4840,498,Bronze 1,498,Bronze 1,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,11.0,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,41,Kholoud D'Souza,,KSA,9586.2,3024.7,72418.156,0,0,Bot,Bot9599,546,Bronze 2,546,Bronze 2,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,10.2,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,42,Jeannie Byrd,Kumori,AUS,10008.3,3446.9,72418.156,0,0,Bot,Bot40,538,Bronze 2,538,Bronze 2,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,9.4,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,43,Ciro Cioffi,Team Italy SUD,ITA,10465.3,3903.9,72418.156,0,0,Male,D7DEB074FB2F985F,100,Bronze 1,388,Bronze 1,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,8.6,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,44,Sultana Siddiqui,,KSA,10921.8,4360.4,72418.156,0,0,Bot,Bot83,384,Bronze 1,384,Bronze 1,,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,7.8,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,DNF,Lem Curran,Team Lou,USA,1137.9,0.0,10452.593,0,0,Male,4C4549B1EEBD85F0,1088,Gold 1,1088,Gold 1,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,DNF,Gábor Horváth,Hungarian Indoor Cycling,HUN,2134.8,0.0,20836.121,0,0,Male,E8B73C770588DE98,100,Bronze 1,114,Bronze 1,40-44,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Bronze,63690,1448,0.64,Climb
+121720,0,DNF,Stuart O'Sullivan,,IRL,3613.8,0.0,34366.546,0,0,Male,909493C6FD4B485D,100,Bronze 1,1152,Gold 2,Senior,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,DNF,Ingmar van Bers  ЯƦ,Rasio Racing,NED,3712.1,0.0,30396.457,0,0,Male,CD5412BA8B11551C,1449,Platinum 2,1449,Platinum 2,40-44,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,DNF,Martin Ørum eCKD,Filsø Naturferie - BikePro,DEN,5324.1,0.0,52880.527,0,0,Male,A5FA5FE91F5DF1AC,1211,Gold 3,1211,Gold 3,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Gold,63690,1448,0.64,Climb
+121720,0,DNF,Jørgen van Bers,Rasio Racing,NED,5393.5,0.0,53221.246,0,0,Male,8670C50448748478,1316,Platinum 1,1316,Platinum 1,45-49,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,DNF,Jon Livengood,BaseCamp Train Where You Belong,USA,7092.0,0.0,69525.859,0,0,Male,A57692F853784DDF,100,Bronze 1,1406,Platinum 2,50-54,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Platinum,63690,1448,0.64,Climb
+121720,0,DNF,Mike Lockwood,,USA,7214.7,0.0,67858.148,0,0,Male,57E8DA4F5AF2656D,100,Bronze 1,859,Silver 2,55-59,Diamond 3,Week 2 Il Lombardia,Spring Classics 2026,,1100,44,Silver,63690,1448,0.64,Climb
+121721,0,1,Kwame Amedekanya,,tog,7729.0,0.0,72418.156,0,0,Bot,Bot1177,1120,Gold 2,1120,Gold 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,31.5,1100,49,Gold,52112,1064,0.45,Climb
+121721,0,2,Michael Brandt,,ger,7786.2,57244.0,72418.156,0,0,Bot,Bot745,1156,Gold 2,1156,Gold 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,31.0,1100,49,Gold,52112,1064,0.45,Climb
+121721,0,3,Antoni Laskowski,,pol,7820.2,91214.0,72418.156,0,0,Bot,Bot5690,1163,Gold 2,1163,Gold 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,30.6,1100,49,Gold,52112,1064,0.45,Climb
+121721,0,4,Kenzo Shimizu,,jpn,7883.5,154561.0,72418.156,0,0,Bot,Bot6274,1007,Gold 1,1007,Gold 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,30.1,1100,49,Gold,52112,1064,0.45,Climb
+121721,0,5,Nitai Masarweh,,isr,7917.2,188237.0,72418.156,0,0,Bot,Bot6799,1232,Gold 3,1232,Gold 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,29.6,1100,49,Gold,52112,1064,0.45,Climb
+121721,0,6,Jaime Ibañez,YES,esp,7919.0,190033.0,72418.156,0,0,Bot,Bot2835,985,Silver 3,985,Silver 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,29.1,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,7,Kévin Blanchard,,fra,8016.0,287077.0,72418.156,0,0,Bot,Bot8851,1146,Gold 2,1146,Gold 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,28.7,1100,49,Gold,52112,1064,0.45,Climb
+121721,0,8,Nicolo D'Amico,,ita,8068.6,339650.0,72418.156,0,0,Bot,Bot4751,997,Silver 3,997,Silver 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,28.2,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,9,Tasha Patrick,Eckleson,usa,8294.6,565623.0,72418.156,0,0,Bot,Bot9127,832,Silver 2,832,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,27.7,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,10,Fernand Clement,,fra,8406.3,677347.0,72418.156,0,0,Bot,Bot1991,765,Silver 1,765,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,27.2,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,11,Francisco Randolph,Nuvio,rsa,8412.4,683476.0,72418.156,0,0,Bot,Bot2506,812,Silver 2,812,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,26.8,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,12,Saimi Mäkinen,HCOM,fin,8414.7,685786.0,72418.156,0,0,Bot,Bot9601,737,Silver 1,737,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,26.3,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,13,Flora Schumacher,Eckleson,aut,8429.5,700489.0,72418.156,0,0,Bot,Bot627,761,Silver 1,761,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,25.8,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,14,Al Fisher,,sgp,8454.4,725483.0,72418.156,0,0,Bot,Bot1878,834,Silver 2,834,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,25.3,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,15,Sascha Hoffmann,,ger,8498.0,769010.0,72418.156,0,0,Bot,Bot9483,829,Silver 2,829,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,24.8,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,16,Joaquim Pimentel,,por,8510.5,781523.0,72418.156,0,0,Bot,Bot9070,887,Silver 2,887,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,24.4,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,17,Miguel Lopez,Heat,col,8568.5,839516.0,72418.156,0,0,Bot,Bot9407,824,Silver 2,824,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,23.9,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,18,Haidar Kazem,,irq,8604.9,875928.0,72418.156,0,0,Bot,Bot5299,756,Silver 1,756,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,23.4,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,19,Joe Narruhn,,fsm,8661.5,932584.0,72418.156,0,0,Bot,Bot9494,829,Silver 2,829,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,22.9,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,20,Maria Peeters,,ned,8670.8,941808.0,72418.156,0,0,Bot,Bot7441,896,Silver 2,896,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,22.5,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,21,Adam Leclercq,,bel,8690.8,961862.0,72418.156,0,0,Bot,Bot641,813,Silver 2,813,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,22.0,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,22,Raja Sharma,AMO Solutions,ksa,8732.4,1003450.0,72418.156,0,0,Bot,Bot1839,673,Bronze 3,673,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,21.5,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,23,Enzo Fabre,,fra,8734.4,1005476.0,72418.156,0,0,Bot,Bot2993,796,Silver 1,796,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,21.0,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,24,George Pinder,,bah,8734.7,1005723.0,72418.156,0,0,Bot,Bot61,835,Silver 2,835,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,20.6,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,25,Jerry Poirier,,can,8750.0,1021034.0,72418.156,0,0,Bot,Bot2366,789,Silver 1,789,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,20.1,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,26,Preben Thuesen,HCOM,den,8861.3,1132382.0,72418.156,0,0,Bot,Bot1301,769,Silver 1,769,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,19.6,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,27,Ivan Thomsen,,den,8861.8,1132887.0,72418.156,0,0,Bot,Bot693,830,Silver 2,830,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,19.1,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,28,Efstratios Markou,Delta,gre,8868.6,1139667.0,72418.156,0,0,Bot,Bot5221,817,Silver 2,817,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,18.7,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,29,Chiara Bruni,Sherpa,ita,8869.2,1140209.0,72418.156,0,0,Bot,Bot720,813,Silver 2,813,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,18.2,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,30,Jangmi Ran,,kor,8896.6,1167611.0,72418.156,0,0,Bot,Bot8683,666,Bronze 3,666,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,17.7,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,31,Masami Hasegawa,,jpn,8905.2,1176285.0,72418.156,0,0,Bot,Bot4584,675,Bronze 3,675,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,17.2,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,32,Latonya Sampson,,aus,8962.3,1233351.0,72418.156,0,0,Bot,Bot9556,757,Silver 1,757,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,16.8,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,33,Stella Karppinen,Aguda,fin,8962.3,1233370.0,72418.156,0,0,Bot,Bot433,824,Silver 2,824,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,16.3,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,34,Angeles Rueda,,esp,8962.4,1233422.0,72418.156,0,0,Bot,Bot9549,833,Silver 2,833,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,15.8,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,35,Adele Seifert,,sui,8962.4,1233454.0,72418.156,0,0,Bot,Bot8397,836,Silver 2,836,Silver 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,15.3,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,36,Jaap Vermeulen,,ned,8964.0,1235037.0,72418.156,0,0,Bot,Bot647,742,Silver 1,742,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,14.9,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,37,Lucas Mathieu,,bel,9066.5,1337539.0,72418.156,0,0,Bot,Bot1163,706,Silver 1,706,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,14.4,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,38,Jeannine Petit,,fra,9173.5,1444582.0,72418.156,0,0,Bot,Bot7844,628,Bronze 3,628,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,13.9,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,39,Ingrid Isaksen,Nuvio,nor,9209.6,1480653.0,72418.156,0,0,Bot,Bot9406,592,Bronze 2,592,Bronze 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,13.4,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,40,Andrew MacDonald,,sco,9228.4,1499439.0,72418.156,0,0,Bot,Bot9449,607,Bronze 3,607,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,12.9,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,41,Bogdana Kostić,Nuvio,svk,9615.7,1886739.0,72418.156,0,0,Bot,Bot7306,615,Bronze 3,615,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,12.5,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,42,Yoojoon Cho,Ampex,kor,9682.5,1953548.0,72418.156,0,0,Bot,Bot7214,585,Bronze 2,585,Bronze 2,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,12.0,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,43,Andreas Peters,True Form,ger,9734.2,2005228.0,72418.156,0,0,Bot,Bot6315,725,Silver 1,725,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,11.5,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,44,Maryse Champagne,Hector,can,9747.9,2018954.0,72418.156,0,0,Bot,Bot826,656,Bronze 3,656,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,11.0,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,45,Donald Munro,indieVelo Founders Club,rsa,10011.2,2282208.0,72418.156,0,0,Human,7176DAE52397B265,711,Silver 1,711,Silver 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,10.6,1100,49,Silver,52112,1064,0.45,Climb
+121721,0,46,Marcel Hines,Hector,gbr,10035.7,2306788.0,72418.156,0,0,Bot,Bot8726,606,Bronze 3,606,Bronze 3,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,10.1,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,47,Ineke Bos,,ned,10288.8,2559803.0,72418.156,0,0,Bot,Bot4779,481,Bronze 1,481,Bronze 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,9.6,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,48,Carys Richards,,wal,10294.9,2565940.0,72418.156,0,0,Bot,Bot8069,466,Bronze 1,466,Bronze 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,9.1,1100,49,Bronze,52112,1064,0.45,Climb
+121721,0,49,Nettie Flowers,,eng,10442.2,2713215.0,72418.156,0,0,Bot,Bot5146,472,Bronze 1,472,Bronze 1,,Gold 2,Week 2 Il Lombardia,Spring Classics 2026,8.7,1100,49,Bronze,52112,1064,0.45,Climb
