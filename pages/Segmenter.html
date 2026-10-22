@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physics-Aware GPX Chopper</title>
     
-    <!-- Google Fonts for the condensed bold aesthetic -->
+    <!-- Google Fonts for condensed bold aesthetic and clean body text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS with updated Deep Forest Pine theme colors -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,17 +21,16 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        appBg: '#1e0a45',
-                        cardBg: '#2b1654',
-                        cardAlt: '#321c60',
-                        inputBg: '#140632',
-                        borderColor: '#402772',
-                        textMuted: '#a38cde',
-                        neonCyan: '#00f0ff',
-                        neonGreen: '#39ff14',
-                        neonYellow: '#ffde00',
-                        neonOrange: '#ff9900',
-                        neonPink: '#ff00a0',
+                        // Deep Forest Pine Theme Palette
+                        appBg: '#1C3322',        // Deep Forest Pine background
+                        cardBg: '#132418',       // Slightly darker green card container
+                        cardAlt: '#172B1D',      // Alternate card row background
+                        inputBg: '#0E1A11',      // Dark input field background
+                        borderColor: '#2D4E35',  // Forest subtle border
+                        textMuted: '#9AB2A0',    // Soft mist green text
+                        textOffWhite: '#F2F0EB', // Mist White main text
+                        tuscanRust: '#B84A22',   // Primary Accent (Tuscan Rust / Burnt Sienna)
+                        goldenChestnut: '#D49B35', // Secondary Accent (Golden Chestnut)
                     }
                 }
             }
@@ -43,7 +42,7 @@
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
 </head>
-<body class="bg-appBg text-white font-sans antialiased selection:bg-neonCyan selection:text-black">
+<body class="bg-appBg text-textOffWhite font-sans antialiased selection:bg-goldenChestnut selection:text-inputBg">
     <div id="root"></div>
 
     <script type="text/babel">
@@ -62,7 +61,6 @@
         const RefreshCw = ({className}) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>;
 
 
-        // --- PHYSICS & MATH UTILS ---
         function haversine(lat1, lon1, lat2, lon2) {
           const R = 6371e3; 
           const rad = Math.PI / 180;
@@ -144,7 +142,6 @@
           return climbs;
         }
 
-        // --- MAIN COMPONENT ---
         function GPXSegmenter() {
           const [fileData, setFileData] = useState(null);
           const [fileName, setFileName] = useState('');
@@ -185,7 +182,6 @@
                       const data = JSON.parse(content);
                       let rawPts = [];
                       
-                      // Handle structures like Base Camp.json
                       if (data.leadin && data.leadin.coordinates) {
                           rawPts.push(...data.leadin.coordinates);
                       }
@@ -194,7 +190,6 @@
                           if (rawPts.length > 0) {
                               const lastPt = rawPts[rawPts.length - 1];
                               const firstPt = data.lap.coordinates[0];
-                              // Prevent point duplication when merging lead-in and lap
                               if (lastPt.x === firstPt.x && lastPt.z === firstPt.z) {
                                   rawPts.push(...data.lap.coordinates.slice(1));
                               } else {
@@ -205,14 +200,11 @@
                           }
                       } 
                       
-                      // Fallback for flat JSON arrays
                       if (rawPts.length === 0) {
                           if (data.coordinates) rawPts = data.coordinates;
                           else if (Array.isArray(data)) rawPts = data;
                       }
 
-                      // Convert XYZ to standard lat/lon degree scales so Haversine still calculates accurate meter distances.
-                      // 1 degree of latitude = ~111,139 meters. 
                       points = rawPts.map(pt => ({
                           lat: pt.z / 111139,
                           lon: pt.x / 111139,
@@ -224,7 +216,6 @@
                       alert("Invalid JSON format.");
                   }
               } else {
-                  // Standard GPX Parsing
                   const parser = new DOMParser();
                   const xmlDoc = parser.parseFromString(content, "text/xml");
                   const trkpts = xmlDoc.getElementsByTagName("trkpt");
@@ -245,7 +236,6 @@
             reader.readAsText(file);
           };
 
-          // Effect to handle Out-and-Back and Laps modifiers
           useEffect(() => {
               if (!basePoints || basePoints.length === 0) {
                   setParsedPoints([]);
@@ -254,102 +244,84 @@
               
               let currentPt = [...basePoints];
               
-              // Helper function to generate a lightbulb loop at the end of a segment
               const generateLightbulbLoop = (pPrev, pLast) => {
                   const loopPts = [];
                   const DEG_TO_M = 111139;
 
-                  // Determine heading of the segment leading into the loop
                   const dx = (pLast.lon - pPrev.lon) * DEG_TO_M;
                   const dy = (pLast.lat - pPrev.lat) * DEG_TO_M;
                   const heading = Math.atan2(dy, dx);
 
-                  // Forward and Right vectors
                   const Fx = Math.cos(heading);
                   const Fy = Math.sin(heading);
                   const Rx = Math.cos(heading - Math.PI / 2);
                   const Ry = Math.sin(heading - Math.PI / 2);
 
-                  // End of the 20m forward runway (origin for the loop geometry)
                   const oX = pLast.lon * DEG_TO_M + 20 * Fx;
                   const oY = pLast.lat * DEG_TO_M + 20 * Fy;
 
-                  // Helper to inject local (x: right, y: forward) offsets as GPX lat/lon
                   const addLocalPoint = (x, y) => {
                       const gx = oX + x * Rx + y * Fx;
                       const gy = oY + x * Ry + y * Fy;
                       loopPts.push({
                           lat: gy / DEG_TO_M,
                           lon: gx / DEG_TO_M,
-                          ele: pLast.ele // Keep elevation flat for turnaround loop stability
+                          ele: pLast.ele
                       });
                   };
 
-                  // 1. End of Outbound Runway
                   addLocalPoint(0, 0);
 
                   const r = 15;
                   const sqrt3 = Math.sqrt(3);
 
-                  // 2. Entry Right Curve (sweeps 60 degrees to ease into the bulb)
                   const stepsEntry = 6;
                   for (let i = 1; i <= stepsEntry; i++) {
                       const t = Math.PI - (Math.PI / 3) * (i / stepsEntry);
                       addLocalPoint(r + r * Math.cos(t), r * Math.sin(t));
                   }
 
-                  // 3. Main Left Curve (sweeps 300 degrees to form the loop body)
                   const stepsMain = 24;
                   for (let i = 1; i <= stepsMain; i++) {
                       const t = -Math.PI / 3 + (5 * Math.PI / 3) * (i / stepsMain);
                       addLocalPoint(r * Math.cos(t), r * sqrt3 + r * Math.sin(t));
                   }
 
-                  // 4. Exit Right Curve (sweeps 60 degrees to lock back onto the runway axis)
                   const stepsExit = 6;
                   for (let i = 1; i <= stepsExit; i++) {
                       const t = Math.PI / 3 - (Math.PI / 3) * (i / stepsExit);
                       addLocalPoint(-r + r * Math.cos(t), r * Math.sin(t));
                   }
                   
-                  // Loop finishes exactly back at local (0,0) heading backward
                   return loopPts;
               };
 
-              // 1. Apply Out and Back with Double Lightbulb Turnarounds
               if (isOutAndBack) {
                   let loop1Pts = [];
                   let loop2Pts = [];
                   
                   if (basePoints.length >= 2) {
-                      // Outbound turnaround loop (at the end of the route, preparing to head back)
                       loop1Pts = generateLightbulbLoop(
                           basePoints[basePoints.length - 2], 
                           basePoints[basePoints.length - 1]
                       );
                       
-                      // Inbound turnaround loop (at the start of the route, completing the full circuit)
-                      // Because the reversed track is approaching basePoints[0] from basePoints[1],
-                      // basePoints[1] is the "prev" point and basePoints[0] is the "last" point.
                       loop2Pts = generateLightbulbLoop(
                           basePoints[1], 
                           basePoints[0]
                       );
                   }
                   
-                  // By retaining the final point in the reversed arrays, the 20m return runways are automatically bridged.
                   const reversed = [...basePoints].reverse(); 
                   currentPt = [...currentPt, ...loop1Pts, ...reversed, ...loop2Pts];
               }
               
-              // 2. Apply Laps
               let finalPts = [...currentPt];
               for (let i = 1; i < laps; i++) {
                   let lapPts = currentPt;
                   const lastPt = finalPts[finalPts.length - 1];
                   const firstPt = currentPt[0];
                   
-                  // If the loop connects perfectly, drop the duplicate start point on subsequent laps
                   if (lastPt.lat === firstPt.lat && lastPt.lon === firstPt.lon) {
                       lapPts = currentPt.slice(1);
                   }
@@ -360,7 +332,6 @@
               setParsedPoints(finalPts);
           }, [basePoints, isOutAndBack, laps]);
 
-          // Effect to calculate physics
           useEffect(() => {
             if (parsedPoints.length === 0) return;
             setIsProcessing(true);
@@ -395,7 +366,6 @@
             }, 50);
           }, [parsedPoints, riderWeight, bikeWeight, ftp, intensity]);
 
-          // Effect to generate split indices
           useEffect(() => {
               if (enrichedPoints.length === 0) return;
 
@@ -417,7 +387,6 @@
               setSplitIndices(newSplits);
           }, [enrichedPoints, splitMode, targetMinutes, targetDivisions]);
 
-          // Memo to generate segments based on boundaries
           const segments = useMemo(() => {
               if (enrichedPoints.length === 0) return [];
               
@@ -496,32 +465,35 @@
             document.body.removeChild(link);
           };
 
-          const segmentColors = ['#00f0ff', '#39ff14', '#ff9900', '#ffde00', '#ff00a0'];
+          // Palette featuring Tuscan Rust, Golden Chestnut, and warm accent variations for segments
+          const segmentColors = ['#B84A22', '#D49B35', '#C06C38', '#E5B15C', '#8E381A'];
 
           return (
             <div className="min-h-screen p-4 md:p-8 lg:p-12">
               <div className="max-w-7xl mx-auto space-y-8">
                 
+                {/* Header */}
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="text-neonCyan">
+                  <div className="text-goldenChestnut">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-12 h-12" strokeLinecap="square" strokeLinejoin="miter">
                         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                     </svg>
                   </div>
                   <div>
-                    <h1 className="text-4xl font-oswald font-black italic tracking-wide text-white uppercase leading-none">GPX Slicer</h1>
+                    <h1 className="text-4xl font-oswald font-black italic tracking-wide text-textOffWhite uppercase leading-none">GPX Slicer</h1>
                     <p className="text-textMuted text-sm font-oswald uppercase tracking-widest mt-1">Physics-Aware GPX Chopper</p>
                   </div>
                 </div>
 
+                {/* Configuration Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   
                   {/* UPLOAD & ROUTE MODIFIERS CARD */}
-                  <div className="bg-cardBg p-6 border border-borderColor flex flex-col h-full relative group">
-                    <label className="flex flex-col items-center justify-center w-full min-h-[120px] cursor-pointer bg-inputBg hover:bg-cardAlt transition border-2 border-dashed border-borderColor mb-4 flex-grow">
+                  <div className="bg-cardBg p-6 border border-borderColor rounded-md flex flex-col h-full relative group shadow-lg">
+                    <label className="flex flex-col items-center justify-center w-full min-h-[120px] cursor-pointer bg-inputBg hover:bg-cardAlt transition border-2 border-dashed border-borderColor rounded mb-4 flex-grow">
                       <div className="flex flex-col items-center justify-center p-4 text-center">
-                        <UploadCloud className="w-8 h-8 text-textMuted mb-2 group-hover:text-neonCyan transition" />
-                        <p className="text-sm text-white font-oswald font-black uppercase tracking-widest">
+                        <UploadCloud className="w-8 h-8 text-textMuted mb-2 group-hover:text-goldenChestnut transition" />
+                        <p className="text-sm text-textOffWhite font-oswald font-black uppercase tracking-widest">
                           {fileName ? fileName : 'Upload GPX or JSON'}
                         </p>
                       </div>
@@ -530,7 +502,7 @@
 
                     <div className="flex gap-4 border-t border-borderColor/50 pt-4 mt-auto">
                         <div className="flex-1">
-                            <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest flex items-center gap-1 mb-1">
+                            <label className="text-[10px] font-oswald font-black text-goldenChestnut uppercase tracking-widest flex items-center gap-1 mb-1">
                                 <RefreshCw className="w-3 h-3" /> Laps
                             </label>
                             <input 
@@ -538,7 +510,7 @@
                                 min="1" 
                                 value={laps} 
                                 onChange={e => setLaps(Math.max(1, parseInt(e.target.value) || 1))} 
-                                className="w-full bg-inputBg border border-borderColor text-white font-bold px-3 py-1.5 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" 
+                                className="w-full bg-inputBg border border-borderColor text-textOffWhite rounded font-bold px-3 py-1.5 text-sm focus:border-goldenChestnut focus:ring-1 focus:ring-goldenChestnut outline-none transition" 
                             />
                         </div>
                         <div className="flex-1 flex flex-col justify-end pb-1.5">
@@ -547,53 +519,55 @@
                                     type="checkbox" 
                                     checked={isOutAndBack} 
                                     onChange={e => setIsOutAndBack(e.target.checked)} 
-                                    className="accent-neonCyan w-4 h-4 cursor-pointer" 
+                                    className="accent-goldenChestnut w-4 h-4 cursor-pointer" 
                                 />
-                                <span className="text-[10px] font-oswald font-black text-textMuted group-hover:text-neonCyan transition uppercase tracking-widest leading-none mt-0.5">Out & Back</span>
+                                <span className="text-[10px] font-oswald font-black text-textMuted group-hover:text-goldenChestnut transition uppercase tracking-widest leading-none mt-0.5">Out & Back</span>
                             </label>
                         </div>
                     </div>
                   </div>
 
-                  <div className="bg-cardBg p-6 border border-borderColor col-span-1">
+                  {/* RIDER PROFILE CARD */}
+                  <div className="bg-cardBg p-6 border border-borderColor rounded-md col-span-1 shadow-lg">
                     <h2 className="text-xs font-oswald font-black uppercase tracking-[0.2em] text-textMuted mb-4 flex items-center gap-2">
-                      <Activity className="text-neonPink w-4 h-4" /> Rider Profile
+                      <Activity className="text-tuscanRust w-4 h-4" /> Rider Profile
                     </h2>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Weight (kg)</label>
-                        <input type="number" value={riderWeight} onChange={e => setRiderWeight(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                        <label className="text-[10px] font-oswald font-black text-goldenChestnut uppercase tracking-widest">Weight (kg)</label>
+                        <input type="number" value={riderWeight} onChange={e => setRiderWeight(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-textOffWhite rounded font-bold px-3 py-2 text-sm focus:border-goldenChestnut focus:ring-1 focus:ring-goldenChestnut outline-none transition" />
                       </div>
                       <div>
-                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Bike Wt (kg)</label>
-                        <input type="number" value={bikeWeight} onChange={e => setBikeWeight(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                        <label className="text-[10px] font-oswald font-black text-goldenChestnut uppercase tracking-widest">Bike Wt (kg)</label>
+                        <input type="number" value={bikeWeight} onChange={e => setBikeWeight(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-textOffWhite rounded font-bold px-3 py-2 text-sm focus:border-goldenChestnut focus:ring-1 focus:ring-goldenChestnut outline-none transition" />
                       </div>
                       <div>
-                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">FTP (Watts)</label>
-                        <input type="number" value={ftp} onChange={e => setFtp(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                        <label className="text-[10px] font-oswald font-black text-goldenChestnut uppercase tracking-widest">FTP (Watts)</label>
+                        <input type="number" value={ftp} onChange={e => setFtp(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-textOffWhite rounded font-bold px-3 py-2 text-sm focus:border-goldenChestnut focus:ring-1 focus:ring-goldenChestnut outline-none transition" />
                       </div>
                       <div>
-                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Intensity (%)</label>
-                        <input type="number" value={intensity} onChange={e => setIntensity(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                        <label className="text-[10px] font-oswald font-black text-goldenChestnut uppercase tracking-widest">Intensity (%)</label>
+                        <input type="number" value={intensity} onChange={e => setIntensity(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-textOffWhite rounded font-bold px-3 py-2 text-sm focus:border-goldenChestnut focus:ring-1 focus:ring-goldenChestnut outline-none transition" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-cardBg p-6 border border-borderColor col-span-1">
+                  {/* CHOPPING STRATEGY CARD */}
+                  <div className="bg-cardBg p-6 border border-borderColor rounded-md col-span-1 shadow-lg">
                     <h2 className="text-xs font-oswald font-black uppercase tracking-[0.2em] text-textMuted mb-4 flex items-center gap-2">
-                      <Divide className="text-neonYellow w-4 h-4" /> Chopping Strategy
+                      <Divide className="text-goldenChestnut w-4 h-4" /> Chopping Strategy
                     </h2>
                     
-                    <div className="flex bg-inputBg mb-4 border border-borderColor">
+                    <div className="flex bg-inputBg mb-4 border border-borderColor rounded overflow-hidden">
                       <button 
                         onClick={() => setSplitMode('time')}
-                        className={`flex-1 py-2 text-[11px] font-oswald font-black uppercase tracking-widest transition ${splitMode === 'time' ? 'bg-neonCyan text-black' : 'text-textMuted hover:text-white'}`}
+                        className={`flex-1 py-2 text-[11px] font-oswald font-black uppercase tracking-widest transition ${splitMode === 'time' ? 'bg-tuscanRust text-textOffWhite' : 'text-textMuted hover:text-textOffWhite'}`}
                       >
                         Target Time
                       </button>
                       <button 
                         onClick={() => setSplitMode('divisions')}
-                        className={`flex-1 py-2 text-[11px] font-oswald font-black uppercase tracking-widest transition ${splitMode === 'divisions' ? 'bg-neonCyan text-black' : 'text-textMuted hover:text-white'}`}
+                        className={`flex-1 py-2 text-[11px] font-oswald font-black uppercase tracking-widest transition ${splitMode === 'divisions' ? 'bg-tuscanRust text-textOffWhite' : 'text-textMuted hover:text-textOffWhite'}`}
                       >
                         Divisions
                       </button>
@@ -601,31 +575,31 @@
 
                     {splitMode === 'time' ? (
                       <div>
-                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Time per Segment (mins)</label>
-                        <input type="number" value={targetMinutes} onChange={e => setTargetMinutes(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                        <label className="text-[10px] font-oswald font-black text-goldenChestnut uppercase tracking-widest">Time per Segment (mins)</label>
+                        <input type="number" value={targetMinutes} onChange={e => setTargetMinutes(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-textOffWhite rounded font-bold px-3 py-2 text-sm focus:border-goldenChestnut focus:ring-1 focus:ring-goldenChestnut outline-none transition" />
                       </div>
                     ) : (
                       <div>
-                        <label className="text-[10px] font-oswald font-black text-neonCyan uppercase tracking-widest">Number of Segments</label>
-                        <input type="number" value={targetDivisions} onChange={e => setTargetDivisions(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-white font-bold px-3 py-2 text-sm focus:border-neonCyan focus:ring-1 focus:ring-neonCyan outline-none transition" />
+                        <label className="text-[10px] font-oswald font-black text-goldenChestnut uppercase tracking-widest">Number of Segments</label>
+                        <input type="number" value={targetDivisions} onChange={e => setTargetDivisions(e.target.value)} className="w-full mt-1 bg-inputBg border border-borderColor text-textOffWhite rounded font-bold px-3 py-2 text-sm focus:border-goldenChestnut focus:ring-1 focus:ring-goldenChestnut outline-none transition" />
                       </div>
                     )}
                   </div>
                 </div>
 
-                {}
+                {/* Elevation Chart & Segments Section */}
                 {segments.length > 0 && (
                   <div className="space-y-6">
-                    <div className="bg-cardBg p-6 lg:p-8 border border-borderColor relative overflow-hidden group">
-                      <svg viewBox="0 0 24 24" className="absolute top-4 right-4 w-32 h-32 text-appBg opacity-50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                    <div className="bg-cardBg p-6 lg:p-8 border border-borderColor rounded-md relative overflow-hidden group shadow-xl">
+                      <svg viewBox="0 0 24 24" className="absolute top-4 right-4 w-32 h-32 text-appBg opacity-40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
                       
                       <div className="flex items-center justify-between mb-8 relative z-10">
                         <div className="flex items-center gap-3">
-                          <div className="w-2 h-6 bg-neonCyan"></div>
-                          <h2 className="text-xl font-oswald font-black uppercase tracking-wider text-white">Elevation Profile</h2>
+                          <div className="w-2 h-6 bg-goldenChestnut rounded-xs"></div>
+                          <h2 className="text-xl font-oswald font-black uppercase tracking-wider text-textOffWhite">Elevation Profile</h2>
                         </div>
                         {splitIndices.length > 0 && (
-                           <div className="bg-[#140632] border border-neonCyan/50 text-neonCyan text-[10px] font-oswald font-black uppercase px-3 py-1 rounded-full flex items-center gap-2 tracking-widest opacity-80 shadow-[0_0_10px_rgba(0,240,255,0.2)]">
+                           <div className="bg-inputBg border border-goldenChestnut/50 text-goldenChestnut text-[10px] font-oswald font-black uppercase px-3 py-1 rounded-full flex items-center gap-2 tracking-widest shadow-inner">
                               <MoveHorizontal className="w-3 h-3" /> Drag vertical lines to adjust segments
                            </div>
                         )}
@@ -641,10 +615,11 @@
                       </div>
                     </div>
 
-                    <div className="bg-cardBg border border-borderColor overflow-hidden">
-                      <div className="p-6 border-b border-borderColor flex justify-between items-end">
+                    {/* Segments Table */}
+                    <div className="bg-cardBg border border-borderColor rounded-md overflow-hidden shadow-xl">
+                      <div className="p-6 border-b border-borderColor flex justify-between items-end bg-cardAlt/40">
                          <div>
-                            <h2 className="text-2xl font-oswald font-black uppercase tracking-wide text-white">Individual Segments</h2>
+                            <h2 className="text-2xl font-oswald font-black uppercase tracking-wide text-textOffWhite">Individual Segments</h2>
                             <p className="text-xs text-textMuted mt-1">Updates instantly when boundaries are dragged</p>
                          </div>
                       </div>
@@ -652,7 +627,7 @@
                       <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                           <thead>
-                            <tr className="bg-[#221245] border-b border-borderColor">
+                            <tr className="bg-inputBg border-b border-borderColor">
                               <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">No.</th>
                               <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Est. Time</th>
                               <th className="px-6 py-4 text-textMuted font-oswald font-black text-[10px] uppercase tracking-widest">Distance</th>
@@ -667,38 +642,38 @@
                               const distKm = seg.distance / 1000;
                               const speedKph = seg.time > 0 ? (seg.distance / seg.time) * 3.6 : 0;
                               const rowColor = idx % 2 === 0 ? 'bg-cardBg' : 'bg-cardAlt';
-                              const activeNeon = segmentColors[idx % segmentColors.length];
+                              const activeAccent = segmentColors[idx % segmentColors.length];
 
                               return (
-                                <tr key={idx} className={`${rowColor} hover:bg-[#3d2a6a] transition border-b border-borderColor/50 last:border-0 group`}>
+                                <tr key={idx} className={`${rowColor} hover:bg-[#1C3322]/80 transition border-b border-borderColor/50 last:border-0 group`}>
                                   <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="font-oswald font-black text-xl" style={{ color: activeNeon }}>
+                                    <span className="font-oswald font-black text-xl" style={{ color: activeAccent }}>
                                       {idx + 1}
                                     </span>
                                   </td>
-                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-white text-sm">
+                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-textOffWhite text-sm">
                                     {formatTime(seg.time)}
                                   </td>
-                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-white text-sm">
+                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-textOffWhite text-sm">
                                     {distKm.toFixed(2)} km
                                   </td>
                                   <td className="px-6 py-4 whitespace-nowrap">
-                                     <span className="inline-block px-2 py-0.5 bg-[#140632] border border-[#402772] text-[#ffde00] font-bold text-xs">
+                                     <span className="inline-block px-2.5 py-0.5 bg-inputBg border border-borderColor text-goldenChestnut rounded font-bold text-xs">
                                         {seg.elevationGain.toFixed(0)} m
                                      </span>
                                   </td>
                                   <td className="px-6 py-4 whitespace-nowrap">
-                                     <span className="inline-block px-2 py-0.5 bg-[#140632] border border-neonPink text-neonPink font-bold text-xs">
+                                     <span className="inline-block px-2.5 py-0.5 bg-inputBg border border-tuscanRust/60 text-tuscanRust rounded font-bold text-xs">
                                         {Math.round(seg.profileScore)}
                                      </span>
                                   </td>
-                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-white text-sm">
+                                  <td className="px-6 py-4 whitespace-nowrap font-bold text-textOffWhite text-sm">
                                     {speedKph.toFixed(1)} km/h
                                   </td>
                                   <td className="px-6 py-4 whitespace-nowrap text-right">
                                     <button 
                                       onClick={() => downloadGPX(seg, idx)}
-                                      className="inline-flex items-center justify-center text-textMuted hover:text-neonCyan transition p-2"
+                                      className="inline-flex items-center justify-center text-textMuted hover:text-goldenChestnut transition p-2"
                                       title="Download GPX"
                                     >
                                       <Download className="w-5 h-5" />
@@ -718,7 +693,6 @@
           );
         }
 
-        // --- SVG Interactive Chart Component ---
         function ElevationChart({ enrichedPoints, segments, splitIndices, setSplitIndices, colors }) {
           if (!enrichedPoints || enrichedPoints.length === 0) return null;
 
@@ -794,7 +768,6 @@
                   }
               }
 
-              // Constrain indices
               let minAllowed = draggingIdx > 0 ? splitIndices[draggingIdx - 1] + 10 : 10;
               let maxAllowed = draggingIdx < splitIndices.length - 1 ? splitIndices[draggingIdx + 1] - 10 : enrichedPoints.length - 10;
               
@@ -826,16 +799,16 @@
                style={{ userSelect: 'none' }}
             >
               {/* Background Grid */}
-              <line x1={padding.left} y1={padding.top} x2={width-padding.right} y2={padding.top} stroke="#402772" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1={padding.left} y1={height/2} x2={width-padding.right} y2={height/2} stroke="#402772" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1={padding.left} y1={height-padding.bottom} x2={width-padding.right} y2={height-padding.bottom} stroke="#402772" strokeWidth="1" />
+              <line x1={padding.left} y1={padding.top} x2={width-padding.right} y2={padding.top} stroke="#2D4E35" strokeWidth="1" strokeDasharray="4 4" />
+              <line x1={padding.left} y1={height/2} x2={width-padding.right} y2={height/2} stroke="#2D4E35" strokeWidth="1" strokeDasharray="4 4" />
+              <line x1={padding.left} y1={height-padding.bottom} x2={width-padding.right} y2={height-padding.bottom} stroke="#2D4E35" strokeWidth="1" />
 
               {/* Labels */}
-              <text x={padding.left - 10} y={padding.top} fill="#a38cde" fontSize="12" textAnchor="end" alignmentBaseline="middle">{Math.round(maxEle)}m</text>
-              <text x={padding.left - 10} y={height - padding.bottom} fill="#a38cde" fontSize="12" textAnchor="end" alignmentBaseline="middle">{Math.round(minEle)}m</text>
+              <text x={padding.left - 10} y={padding.top} fill="#9AB2A0" fontSize="12" textAnchor="end" alignmentBaseline="middle">{Math.round(maxEle)}m</text>
+              <text x={padding.left - 10} y={height - padding.bottom} fill="#9AB2A0" fontSize="12" textAnchor="end" alignmentBaseline="middle">{Math.round(minEle)}m</text>
               
-              <text x={padding.left} y={height - 15} fill="#a38cde" fontSize="12" textAnchor="middle">0 km</text>
-              <text x={width - padding.right} y={height - 15} fill="#a38cde" fontSize="12" textAnchor="middle">{(maxDist/1000).toFixed(1)} km</text>
+              <text x={padding.left} y={height - 15} fill="#9AB2A0" fontSize="12" textAnchor="middle">0 km</text>
+              <text x={width - padding.right} y={height - 15} fill="#9AB2A0" fontSize="12" textAnchor="middle">{(maxDist/1000).toFixed(1)} km</text>
 
               {/* Polygons */}
               {segments.map((seg, idx) => (
@@ -843,7 +816,7 @@
                   key={`seg-${idx}`}
                   d={getPointsPath(seg.points)}
                   fill={colors[idx % colors.length]}
-                  fillOpacity="0.15"
+                  fillOpacity="0.3"
                   stroke={colors[idx % colors.length]}
                   strokeWidth="2"
                   className="transition-all duration-300"
@@ -863,11 +836,11 @@
                       >
                           {/* Invisible wider line for easier grabbing */}
                           <line x1={x} y1={padding.top} x2={x} y2={height-padding.bottom} stroke="transparent" strokeWidth="16" />
-                          <line x1={x} y1={padding.top} x2={x} y2={height-padding.bottom} stroke="#fff" strokeWidth="2" strokeDasharray="4 2" />
+                          <line x1={x} y1={padding.top} x2={x} y2={height-padding.bottom} stroke="#F2F0EB" strokeWidth="2" strokeDasharray="4 2" />
                           
                           {/* Drag Handle Top */}
-                          <rect x={x-10} y={padding.top - 10} width="20" height="20" fill="#140632" stroke="#00f0ff" strokeWidth="2" rx="4" />
-                          <circle cx={x} cy={padding.top} r="2" fill="#00f0ff" />
+                          <rect x={x-10} y={padding.top - 10} width="20" height="20" fill="#0E1A11" stroke="#D49B35" strokeWidth="2" rx="4" />
+                          <circle cx={x} cy={padding.top} r="2" fill="#D49B35" />
                       </g>
                   );
               })}
