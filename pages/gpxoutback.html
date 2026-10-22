@@ -15,21 +15,36 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts for the new aesthetic -->
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;1,800&family=Teko:wght@600&display=swap" rel="stylesheet">
+    <!-- Google Fonts for the historic, elegant aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        .font-teko { font-family: 'Teko', sans-serif; }
-        #map { height: 100%; min-height: 400px; z-index: 10; background-color: #161129; }
-        .slider-label { display: flex; justify-content: space-between; margin-bottom: 0.25rem; }
+        body { 
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: #1C3322;
+            color: #F2F0EB;
+        }
+        .font-teko { 
+            font-family: 'Cormorant Garamond', Georgia, serif; 
+        }
+        #map { 
+            height: 100%; 
+            min-height: 400px; 
+            z-index: 10; 
+            background-color: #E6E1D6; 
+        }
+        .slider-label { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 0.35rem; 
+        }
         
-        /* Dark Map Trick: Inverts map tiles and hue rotates to match a dark purple/blue theme */
+        /* Warm Earthy / Vintage Parchment Map Filter */
         .leaflet-layer,
         .leaflet-control-zoom-in,
         .leaflet-control-zoom-out,
         .leaflet-control-attribution {
-            filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(110%);
+            filter: sepia(28%) brightness(95%) contrast(95%) saturate(85%);
         }
 
         /* Custom Range Slider Styling */
@@ -42,41 +57,63 @@
             height: 16px;
             width: 16px;
             border-radius: 50%;
-            background: #64e6e0;
+            background: #D49B35;
+            border: 2px solid #F2F0EB;
             cursor: pointer;
             margin-top: -6px;
-            box-shadow: 0 0 10px rgba(100, 230, 224, 0.5);
+            box-shadow: 0 0 12px rgba(212, 155, 53, 0.6);
+            transition: transform 0.15s ease, background-color 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: #e0ab48;
         }
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
             height: 4px;
             cursor: pointer;
-            background: #3c2f6d;
+            background: #2C4C35;
             border-radius: 2px;
+        }
+
+        /* Custom subtle scrollbars for the sidebar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #16291B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C4C35;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B84A22;
         }
     </style>
 </head>
-<body class="bg-[#161129] text-white h-screen flex flex-col md:flex-row overflow-hidden">
+<body class="bg-[#1C3322] text-[#F2F0EB] h-screen flex flex-col md:flex-row overflow-hidden">
 
     <!-- Sidebar / Controls -->
-    <div class="w-full md:w-[450px] bg-[#241c44] border-r border-[#3d2f6d] flex flex-col h-full z-20 overflow-y-auto">
-        <div class="p-8 pb-4">
-            <h1 class="text-4xl font-extrabold italic flex items-center gap-3 text-white uppercase tracking-wider font-teko">
-                <i data-lucide="activity" class="text-[#64e6e0] w-8 h-8"></i> GPX Route Out and Back and Circuit Alignment Tool
+    <div class="w-full md:w-[450px] bg-[#1C3322] border-r border-[#2C4C35] flex flex-col h-full z-20 overflow-y-auto shadow-[4px_0_24px_rgba(0,0,0,0.35)]">
+        <div class="p-8 pb-5 border-b border-[#2C4C35]/70 bg-[#172A1C]/50">
+            <h1 class="text-3xl md:text-4xl font-bold italic flex items-start gap-3.5 text-[#F2F0EB] tracking-wide font-teko leading-tight">
+                <i data-lucide="activity" class="text-[#D49B35] w-8 h-8 shrink-0 mt-1"></i> 
+                <span>GPX Route Out and Back and Circuit Alignment Tool</span>
             </h1>
-            <p class="text-[#b1a2e2] text-[10px] font-bold mt-1 uppercase tracking-[0.2em]">
+            <p class="text-[#F2F0EB]/70 text-[10px] font-semibold mt-3 uppercase tracking-[0.16em] leading-relaxed">
                 Aligns points in overlapping sections of a gpx course. Note: Junctions can sometimes get ugly. Recommend to upload via TPV Hub and edit individual points near junctions
             </p>
         </div>
 
         <div class="p-6 flex-grow flex flex-col gap-6">
             <!-- File Upload -->
-            <div class="border border-[#3d2f6d] bg-[#241c44] p-5 rounded-sm">
+            <div class="border border-[#2C4C35] bg-[#16291B] p-5 rounded shadow-inner">
                 <div class="flex items-center justify-center w-full">
-                    <label class="flex flex-col items-center justify-center w-full h-32 border border-[#3d2f6d] border-dashed rounded-sm cursor-pointer bg-[#191430] hover:bg-[#1e183a] transition">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <i data-lucide="upload-cloud" class="w-8 h-8 text-[#b1a2e2] mb-2"></i>
-                            <p class="text-sm text-[#b1a2e2] font-bold uppercase tracking-widest" id="file-name-display">Upload GPX File</p>
+                    <label class="flex flex-col items-center justify-center w-full h-32 border border-[#B84A22]/60 hover:border-[#D49B35] border-dashed rounded cursor-pointer bg-[#1C3322]/70 hover:bg-[#223D29] transition duration-300 group">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4 text-center">
+                            <i data-lucide="upload-cloud" class="w-8 h-8 text-[#B84A22] group-hover:text-[#D49B35] transition-colors mb-2.5"></i>
+                            <p class="text-xs text-[#F2F0EB]/80 font-bold uppercase tracking-widest transition-colors" id="file-name-display">Upload GPX File</p>
                         </div>
                         <input id="gpx-upload" type="file" class="hidden" accept=".gpx" />
                     </label>
@@ -84,73 +121,89 @@
             </div>
 
             <!-- Settings -->
-            <div class="bg-[#241c44] p-5 rounded-sm border border-[#3d2f6d]">
-                <h3 class="text-[11px] font-bold text-[#b1a2e2] uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
-                    <i data-lucide="sliders" class="w-4 h-4 text-[#64e6e0]"></i> Algorithm Settings
+            <div class="bg-[#16291B] p-5 rounded border border-[#2C4C35] shadow-inner">
+                <h3 class="text-[11px] font-bold text-[#D49B35] uppercase tracking-[0.18em] mb-5 flex items-center gap-2 border-b border-[#2C4C35]/80 pb-2.5">
+                    <i data-lucide="sliders" class="w-4 h-4 text-[#B84A22]"></i> Algorithm Settings
                 </h3>
                 
                 <div class="mb-6">
                     <div class="slider-label">
-                        <span class="text-xs font-bold text-white uppercase tracking-wider">Min Route Separation</span>
-                        <span class="text-xs font-bold text-[#64e6e0]" id="val-min-dist">200m</span>
+                        <span class="text-xs font-semibold text-[#F2F0EB]/90 uppercase tracking-wider">Min Route Separation</span>
+                        <span class="text-xs font-bold text-[#D49B35]" id="val-min-dist">200m</span>
                     </div>
                     <input type="range" id="min-dist" min="50" max="5000" step="50" value="200" class="w-full">
                 </div>
 
                 <div>
                     <div class="slider-label">
-                        <span class="text-xs font-bold text-white uppercase tracking-wider">Snap Threshold</span>
-                        <span class="text-xs font-bold text-[#64e6e0]" id="val-snap-dist">5m</span>
+                        <span class="text-xs font-semibold text-[#F2F0EB]/90 uppercase tracking-wider">Snap Threshold</span>
+                        <span class="text-xs font-bold text-[#D49B35]" id="val-snap-dist">5m</span>
                     </div>
                     <input type="range" id="snap-dist" min="1" max="100" step="1" value="5" class="w-full">
                 </div>
             </div>
 
             <!-- Stats -->
-            <div id="stats-panel" class="hidden bg-[#191430] border border-[#3d2f6d] p-5 rounded-sm">
-                <h3 class="text-[11px] font-bold text-[#b1a2e2] uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                    <i data-lucide="bar-chart-2" class="w-4 h-4 text-[#64e6e0]"></i> Processing Results
+            <div id="stats-panel" class="hidden bg-[#16291B] border border-[#D49B35]/40 p-5 rounded shadow-[0_0_20px_rgba(212,155,53,0.08)]">
+                <h3 class="text-[11px] font-bold text-[#D49B35] uppercase tracking-[0.18em] mb-4 flex items-center gap-2 border-b border-[#2C4C35]/80 pb-2.5">
+                    <i data-lucide="bar-chart-2" class="w-4 h-4 text-[#B84A22]"></i> Processing Results
                 </h3>
-                <ul class="text-sm text-white space-y-3 font-bold uppercase tracking-wider">
-                    <li class="flex justify-between">Original points: <span id="stat-orig" class="text-[#64e6e0]">0</span></li>
-                    <li class="flex justify-between">New points: <span id="stat-fixed" class="text-[#64e6e0]">0</span></li>
-                    <li class="flex justify-between text-[#b1a2e2]">Re-aligned: <span id="stat-snapped" class="text-green-400">0</span></li>
+                <ul class="text-xs text-[#F2F0EB] space-y-3 font-semibold uppercase tracking-wider">
+                    <li class="flex justify-between items-center">
+                        <span class="text-[#F2F0EB]/75">Original points:</span> 
+                        <span id="stat-orig" class="text-[#F2F0EB] font-bold text-sm">0</span>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <span class="text-[#F2F0EB]/75">New points:</span> 
+                        <span id="stat-fixed" class="text-[#F2F0EB] font-bold text-sm">0</span>
+                    </li>
+                    <li class="flex justify-between items-center pt-1 border-t border-[#2C4C35]/50">
+                        <span class="text-[#D49B35]">Re-aligned:</span> 
+                        <span id="stat-snapped" class="text-[#D49B35] font-bold text-sm drop-shadow-[0_0_8px_rgba(212,155,53,0.4)]">0</span>
+                    </li>
                 </ul>
             </div>
         </div>
 
-        <div class="p-6 border-t border-[#3d2f6d] bg-[#241c44]">
-            <button id="download-btn" disabled class="w-full flex items-center justify-center gap-2 bg-[#191430] text-[#5b4a9b] font-bold py-4 px-4 rounded-sm uppercase tracking-widest cursor-not-allowed transition duration-200 text-sm">
-                <i data-lucide="download" class="w-5 h-5"></i> Download Fixed GPX
+        <div class="p-6 border-t border-[#2C4C35] bg-[#16291B]">
+            <button id="download-btn" disabled class="w-full flex items-center justify-center gap-2 bg-[#1C3322] text-[#F2F0EB]/30 border border-[#2C4C35] font-bold py-4 px-4 rounded uppercase tracking-widest cursor-not-allowed transition duration-300 text-xs">
+                <i data-lucide="download" class="w-4 h-4"></i> Download Fixed GPX
             </button>
         </div>
     </div>
 
     <!-- Map Area -->
-    <div class="flex-grow relative h-full bg-[#161129]">
+    <div class="flex-grow relative h-full bg-[#142418]">
         <div id="map"></div>
         
         <!-- Loading Overlay -->
-        <div id="loading-overlay" class="hidden absolute inset-0 bg-[#161129]/90 z-[1000] flex flex-col items-center justify-center backdrop-blur-sm">
-            <i data-lucide="loader-2" class="w-12 h-12 text-[#64e6e0] animate-spin mb-4"></i>
-            <h2 class="text-2xl font-bold text-white uppercase tracking-wider font-teko">Processing Route...</h2>
-            <p class="text-[#b1a2e2] mt-2 uppercase tracking-widest text-xs font-bold">Aligning out-and-back segments</p>
+        <div id="loading-overlay" class="hidden absolute inset-0 bg-[#1C3322]/90 z-[1000] flex flex-col items-center justify-center backdrop-blur-sm">
+            <i data-lucide="loader-2" class="w-12 h-12 text-[#D49B35] animate-spin mb-4"></i>
+            <h2 class="text-3xl font-bold italic text-[#F2F0EB] tracking-wide font-teko">Processing Route...</h2>
+            <p class="text-[#D49B35] mt-2 uppercase tracking-[0.2em] text-[11px] font-semibold">Aligning out-and-back segments</p>
         </div>
         
         <!-- Map Legend -->
-        <div class="absolute bottom-6 right-6 z-[400] bg-[#241c44] p-4 rounded-sm border border-[#3d2f6d] text-xs font-bold uppercase tracking-wider">
+        <div class="absolute bottom-6 right-6 z-[400] bg-[#1C3322]/95 backdrop-blur-md p-4 rounded border border-[#2C4C35] shadow-xl text-xs font-semibold uppercase tracking-wider">
             <div class="flex items-center gap-3 mb-3">
-                <div class="w-6 h-[4px] bg-[#ff2a6d] opacity-80 rounded"></div>
-                <span class="text-white">Original Track</span>
+                <div class="w-6 h-[4px] bg-[#B84A22] rounded"></div>
+                <span class="text-[#F2F0EB]/90">Original Track</span>
             </div>
             <div class="flex items-center gap-3 mb-3">
-                <div class="w-6 h-[2px] bg-[#8d7ebc] rounded"></div>
-                <span class="text-white">New Route</span>
+                <div class="w-6 h-[2px] bg-[#1C3322] border border-[#F2F0EB]/40 rounded"></div>
+                <span class="text-[#F2F0EB]/90">New Route</span>
             </div>
             <div class="flex items-center gap-3">
-                <div class="w-6 h-[3px] bg-[#64e6e0] rounded"></div>
-                <span class="text-[#64e6e0]">Aligned Out-and-Back</span>
+                <div class="w-6 h-[3px] bg-[#D49B35] rounded shadow-[0_0_8px_#D49B35]"></div>
+                <span class="text-[#D49B35] font-bold">Aligned Out-and-Back</span>
             </div>
+        </div>
+
+        <!-- Custom Notification Modal (Fallback for invalid GPX files) -->
+        <div id="message-modal" class="hidden absolute top-6 left-1/2 -translate-x-1/2 z-[2000] bg-[#16291B] border border-[#B84A22] text-[#F2F0EB] px-6 py-4 rounded shadow-2xl flex items-center gap-4 max-w-md w-full">
+            <i data-lucide="alert-triangle" class="w-6 h-6 text-[#B84A22] shrink-0"></i>
+            <p id="message-modal-text" class="text-xs font-semibold tracking-wider uppercase flex-grow"></p>
+            <button id="message-modal-close" class="text-[#F2F0EB]/60 hover:text-[#F2F0EB] text-xs font-bold uppercase tracking-widest px-2 py-1">Close</button>
         </div>
     </div>
 
@@ -158,11 +211,19 @@
         // Initialize Icons
         lucide.createIcons();
 
-        // Map Initialization
+        // CARTO API Key Configuration
+        // Replace the placeholder string below with your actual CARTO API key
+        const CARTO_API_KEY = "cb1_3swu_1_05bff878d7bd66607747e979";
+
+        // Map Initialization (Using CARTO tiles with optional API key authentication)
         const map = L.map('map').setView([0, 0], 2);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 19
+        const cartoKeyParam = (CARTO_API_KEY && CARTO_API_KEY !== "YOUR_CARTO_API_KEY_HERE") 
+            ? `?key=${encodeURIComponent(CARTO_API_KEY)}` 
+            : "";
+
+        L.tileLayer(`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png${cartoKeyParam}`, {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            maxZoom: 20
         }).addTo(map);
 
         let originalLayer = null;
@@ -200,6 +261,18 @@
         const downloadBtn = document.getElementById('download-btn');
         const loadingOverlay = document.getElementById('loading-overlay');
         const statsPanel = document.getElementById('stats-panel');
+        const messageModal = document.getElementById('message-modal');
+        const messageModalText = document.getElementById('message-modal-text');
+        const messageModalClose = document.getElementById('message-modal-close');
+
+        function showNotification(msg) {
+            messageModalText.textContent = msg;
+            messageModal.classList.remove('hidden');
+        }
+
+        messageModalClose.addEventListener('click', () => {
+            messageModal.classList.add('hidden');
+        });
 
         // Event Listeners for UI
         minDistSlider.addEventListener('input', (e) => {
@@ -220,8 +293,8 @@
             
             originalFileName = file.name;
             fileNameDisplay.textContent = file.name;
-            fileNameDisplay.classList.remove('text-[#b1a2e2]');
-            fileNameDisplay.classList.add('text-[#64e6e0]');
+            fileNameDisplay.classList.remove('text-[#F2F0EB]/80');
+            fileNameDisplay.classList.add('text-[#D49B35]');
             
             const reader = new FileReader();
             reader.onload = (event) => {
@@ -279,7 +352,7 @@
                 });
 
                 if (originalPoints.length === 0) {
-                    alert("No track points found in this GPX file. Please ensure it contains <trkpt> elements.");
+                    showNotification("No track points found in this GPX file. Please ensure it contains <trkpt> elements.");
                     showLoading(false);
                     return;
                 }
@@ -416,9 +489,9 @@
             document.getElementById('stat-fixed').textContent = fixedPoints.length;
             document.getElementById('stat-snapped').textContent = snappedCount;
 
-            // Enable Download
-            downloadBtn.classList.remove('bg-[#191430]', 'text-[#5b4a9b]', 'cursor-not-allowed');
-            downloadBtn.classList.add('bg-[#64e6e0]', 'text-[#161129]', 'hover:bg-[#4bc2bd]', 'shadow-[0_0_15px_rgba(100,230,224,0.3)]');
+            // Enable Download with Tuscan Rust primary accent and Golden Chestnut hover glow
+            downloadBtn.classList.remove('bg-[#1C3322]', 'text-[#F2F0EB]/30', 'border-[#2C4C35]', 'cursor-not-allowed');
+            downloadBtn.classList.add('bg-[#B84A22]', 'text-[#F2F0EB]', 'border-[#D49B35]/50', 'hover:bg-[#9E3D1A]', 'hover:border-[#D49B35]', 'shadow-[0_4px_20px_rgba(184,74,34,0.4)]');
             downloadBtn.disabled = false;
 
             // Clear old layers
@@ -429,13 +502,13 @@
             const origCoords = originalPoints.map(p => [p.lat, p.lon]);
             const newCoords = fixedPoints.map(p => [p.lat, p.lon]);
 
-            // Draw original path in brighter neon pink
-            originalLayer = L.polyline(origCoords, { color: '#ff2a6d', weight: 4, opacity: 0.75 }).addTo(map);
+            // Draw original path in Tuscan Rust / Burnt Sienna (#B84A22)
+            originalLayer = L.polyline(origCoords, { color: '#B84A22', weight: 4, opacity: 0.85 }).addTo(map);
 
-            // Draw the complete fixed path as a base (subtle muted violet)
-            baseNewLayer = L.polyline(newCoords, { color: '#8d7ebc', weight: 2, opacity: 0.9 }).addTo(map);
+            // Draw the complete fixed path as a base in Deep Forest Pine (#1C3322) for contrast on light map
+            baseNewLayer = L.polyline(newCoords, { color: '#1C3322', weight: 2.5, opacity: 0.85 }).addTo(map);
 
-            // Build and draw only the snapped sections in neon teal
+            // Build and draw only the snapped sections in Golden Chestnut (#D49B35)
             let snappedSegments = [];
             let currentSegment = [];
 
@@ -454,7 +527,7 @@
             }
 
             snappedSegments.forEach(seg => {
-                const poly = L.polyline(seg, { color: '#64e6e0', weight: 4, opacity: 1.0 });
+                const poly = L.polyline(seg, { color: '#D49B35', weight: 4, opacity: 1.0 });
                 snappedLayersGroup.addLayer(poly);
             });
             snappedLayersGroup.addTo(map);
