@@ -25,19 +25,19 @@
         .font-roboto { font-family: 'Roboto', sans-serif; }
         
         :root {
-            --bg-body: #f3f4f6;
-            --text-body: #111827;
-            --scroll-track: #e5e7eb;
-            --scroll-thumb: #9ca3af;
-            --scroll-thumb-hover: #2563eb;
+            --bg-body: #F2F0EB;
+            --text-body: #1C3322;
+            --scroll-track: #E2DFD6;
+            --scroll-thumb: #B84A22;
+            --scroll-thumb-hover: #D49B35;
         }
         
         .dark {
-            --bg-body: #2c0c5c;
-            --text-body: #ffffff;
-            --scroll-track: #2c0c5c;
-            --scroll-thumb: #6c3f9c;
-            --scroll-thumb-hover: #00FFFF;
+            --bg-body: #1C3322;
+            --text-body: #F2F0EB;
+            --scroll-track: #1C3322;
+            --scroll-thumb: #B84A22;
+            --scroll-thumb-hover: #D49B35;
         }
 
         body { 
@@ -65,7 +65,7 @@
             .print\:text-black { color: black !important; }
             .print\:bg-white { background-color: white !important; }
             .print\:border-black { border-color: black !important; }
-            .bg-\[\#2c0c5c\], .bg-\[\#4a217c\], .dark\:bg-\[\#2c0c5c\], .dark\:bg-\[\#4a217c\] { background-color: #f0f0f0 !important; }
+            .bg-\[\#1C3322\], .bg-\[\#24422D\], .dark\:bg-\[\#1C3322\], .dark\:bg-\[\#24422D\] { background-color: #f0f0f0 !important; }
             table, th, td { color: black !important; }
         }
     </style>
@@ -128,30 +128,30 @@
         };
 
         const getScoreHexColor = (score) => {
-            if (score >= 46) return '#991b1b'; if (score >= 41) return '#b91c1c';
-            if (score >= 36) return '#dc2626'; if (score >= 31) return '#ef4444';
-            if (score >= 26) return '#f87171'; if (score >= 21) return '#fb923c';
-            if (score >= 16) return '#fbbf24'; if (score >= 11) return '#facc15';
-            if (score >= 6) return '#a3e635';  return '#4ade80'; 
+            if (score >= 46) return '#B84A22'; if (score >= 41) return '#B84A22';
+            if (score >= 36) return '#D49B35'; if (score >= 31) return '#D49B35';
+            if (score >= 26) return '#D49B35'; if (score >= 21) return '#D49B35';
+            if (score >= 16) return '#3A684A'; if (score >= 11) return '#3A684A';
+            if (score >= 6) return '#3A684A';  return '#24422D'; 
         };
 
         const getGradientColor = (gradient) => {
-            if (gradient >= 12) return '#991b1b'; if (gradient >= 10) return '#dc2626';
-            if (gradient >= 8) return '#fb923c';  if (gradient >= 5) return '#facc15';
-            if (gradient >= 3) return '#a3e635';  return '#4ade80';
+            if (gradient >= 12) return '#B84A22'; if (gradient >= 10) return '#B84A22';
+            if (gradient >= 8) return '#D49B35';  if (gradient >= 5) return '#D49B35';
+            if (gradient >= 3) return '#3A684A';  return '#24422D';
         };
 
         const getScoreClass = (score) => {
-            if (score >= 46) return 'text-red-700 dark:text-red-300 print:text-red-800 bg-red-100 dark:bg-red-900/70 border border-red-200 dark:border-transparent';
-            if (score >= 41) return 'text-red-600 dark:text-red-300 print:text-red-700 bg-red-100 dark:bg-red-900/60 border border-red-200 dark:border-transparent';
-            if (score >= 36) return 'text-red-600 dark:text-red-300 print:text-red-600 bg-red-100 dark:bg-red-900/50 border border-red-200 dark:border-transparent';
-            if (score >= 31) return 'text-red-500 dark:text-red-300 print:text-red-500 bg-red-100 dark:bg-red-900/40 border border-red-200 dark:border-transparent';
-            if (score >= 26) return 'text-red-500 dark:text-red-300 print:text-red-400 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-transparent';
-            if (score >= 21) return 'text-orange-600 dark:text-orange-300 print:text-orange-400 bg-orange-100 dark:bg-orange-900/30 border border-orange-200 dark:border-transparent';
-            if (score >= 16) return 'text-amber-600 dark:text-amber-300 print:text-amber-400 bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-transparent';
-            if (score >= 11) return 'text-yellow-600 dark:text-yellow-300 print:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-200 dark:border-transparent';
-            if (score >= 6) return 'text-lime-600 dark:text-lime-300 print:text-lime-400 bg-lime-100 dark:bg-lime-900/30 border border-lime-200 dark:border-transparent';
-            return 'text-green-600 dark:text-green-400 print:text-green-300 bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-transparent';
+            if (score >= 46) return 'text-[#B84A22] dark:text-[#B84A22] print:text-red-800 bg-[#B84A22]/10 dark:bg-[#B84A22]/20 border border-[#B84A22]/30 dark:border-transparent';
+            if (score >= 41) return 'text-[#B84A22] dark:text-[#B84A22] print:text-red-700 bg-[#B84A22]/10 dark:bg-[#B84A22]/20 border border-[#B84A22]/30 dark:border-transparent';
+            if (score >= 36) return 'text-[#D49B35] dark:text-[#D49B35] print:text-red-600 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
+            if (score >= 31) return 'text-[#D49B35] dark:text-[#D49B35] print:text-red-500 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
+            if (score >= 26) return 'text-[#D49B35] dark:text-[#D49B35] print:text-red-400 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
+            if (score >= 21) return 'text-[#D49B35] dark:text-[#D49B35] print:text-orange-400 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
+            if (score >= 16) return 'text-[#3A684A] dark:text-[#F2F0EB] print:text-amber-400 bg-[#3A684A]/10 dark:bg-[#3A684A]/30 border border-[#3A684A]/30 dark:border-transparent';
+            if (score >= 11) return 'text-[#3A684A] dark:text-[#F2F0EB] print:text-yellow-400 bg-[#3A684A]/10 dark:bg-[#3A684A]/30 border border-[#3A684A]/30 dark:border-transparent';
+            if (score >= 6) return 'text-[#3A684A] dark:text-[#F2F0EB] print:text-lime-400 bg-[#3A684A]/10 dark:bg-[#3A684A]/30 border border-[#3A684A]/30 dark:border-transparent';
+            return 'text-[#1C3322] dark:text-[#F2F0EB] print:text-green-300 bg-[#24422D]/10 dark:bg-[#24422D]/40 border border-[#24422D]/30 dark:border-transparent';
         };
         
         const getClimbCategory = (score) => {
@@ -274,17 +274,17 @@
         };
 
         const StatCard = ({ title, value, icon, highlight }) => {
-            const baseIconClass = highlight ? `text-blue-600 dark:text-[#ff4500]` : 'text-gray-500 dark:text-neutral-300';
+            const baseIconClass = highlight ? `text-[#D49B35] dark:text-[#D49B35]` : 'text-[#3A684A] dark:text-[#F2F0EB]/70';
             const clonedIcon = React.cloneElement(icon, { className: `w-5 h-5 ${baseIconClass} print:text-black` });
             
             return (
-                <div className={`p-4 rounded-sm border flex flex-col justify-between relative overflow-hidden group ${highlight ? `bg-blue-50 border-blue-200 dark:bg-[#2c0c5c] dark:border-[#ff4500]/50` : `bg-white border-gray-300 dark:bg-[#4a217c] dark:border-[#6c3f9c]`} print:bg-white print:border-black print:text-black transition-colors`}>
-                    {highlight && <div className={`absolute top-0 right-0 w-16 h-16 bg-blue-500/10 dark:bg-[#ff4500]/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden`}></div>}
+                <div className={`p-4 rounded-sm border flex flex-col justify-between relative overflow-hidden group ${highlight ? `bg-[#24422D] border-[#D49B35]/60 dark:bg-[#24422D] dark:border-[#D49B35]` : `bg-white border-[#E2DFD6] dark:bg-[#24422D] dark:border-[#3A684A]`} print:bg-white print:border-black print:text-black transition-colors`}>
+                    {highlight && <div className={`absolute top-0 right-0 w-16 h-16 bg-[#D49B35]/10 dark:bg-[#D49B35]/15 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 print:hidden`}></div>}
                     <div className="flex justify-between items-start mb-2 relative z-10">
-                        <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? `text-blue-700 dark:text-[#ff4500] print:text-black` : 'text-gray-500 dark:text-neutral-400 print:text-black/70'}`}>{title}</span>
+                        <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? `text-[#D49B35] dark:text-[#D49B35] print:text-black` : 'text-[#3A684A] dark:text-[#F2F0EB]/60 print:text-black/70'}`}>{title}</span>
                         {clonedIcon}
                     </div>
-                    <div className={`text-2xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-blue-900 dark:text-white print:text-black' : 'text-gray-900 dark:text-neutral-100 print:text-black'}`}>
+                    <div className={`text-2xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-[#1C3322] dark:text-[#F2F0EB] print:text-black' : 'text-[#1C3322] dark:text-[#F2F0EB] print:text-black'}`}>
                         {value}
                     </div>
                 </div>
@@ -330,9 +330,9 @@
                 const latlngs = points.map(p => [p.lat, p.lon]);
                 
                 const polyline = L.polyline(latlngs, {
-                    color: '#2563eb', 
+                    color: '#B84A22', 
                     weight: 5, 
-                    opacity: 0.85,
+                    opacity: 0.9,
                     lineCap: 'round',
                     lineJoin: 'round'
                 }).addTo(map);
@@ -341,7 +341,7 @@
                     html: `
                         <div style="filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.7));">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="#22c55e" />
+                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="#3A684A" />
                                 <line x1="4" x2="4" y1="22" y2="15" stroke-width="2.5" />
                             </svg>
                         </div>
@@ -357,10 +357,10 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <defs>
                                     <pattern id="checker" width="6" height="6" patternUnits="userSpaceOnUse">
-                                        <rect width="3" height="3" fill="black"/>
-                                        <rect x="3" width="3" height="3" fill="white"/>
-                                        <rect y="3" width="3" height="3" fill="white"/>
-                                        <rect x="3" y="3" width="3" height="3" fill="black"/>
+                                        <rect width="3" height="3" fill="#1C3322"/>
+                                        <rect x="3" width="3" height="3" fill="#F2F0EB"/>
+                                        <rect y="3" width="3" height="3" fill="#F2F0EB"/>
+                                        <rect x="3" y="3" width="3" height="3" fill="#1C3322"/>
                                     </pattern>
                                 </defs>
                                 <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="url(#checker)" />
@@ -384,8 +384,8 @@
             }, [points]);
 
             return (
-                <div className="w-full h-full relative rounded z-10 border border-gray-300 dark:border-transparent">
-                    <div ref={mapRef} className="w-full h-full rounded" style={{ backgroundColor: '#e5e7eb' }} />
+                <div className="w-full h-full relative rounded z-10 border border-[#E2DFD6] dark:border-[#3A684A]">
+                    <div ref={mapRef} className="w-full h-full rounded" style={{ backgroundColor: '#E2DFD6' }} />
                 </div>
             );
         };
@@ -443,15 +443,15 @@
             const xLabels = [];
             for (let i = 1; i <= 4; i++) xLabels.push({ dist: distInterval * i, x: getX(distInterval * i) });
 
-            const gridColor = isDarkMode ? "#6c3f9c" : "#cbd5e1";
-            const mainLineColor = isDarkMode ? "#00FFFF" : "#2563eb";
-            const textColor = isDarkMode ? "#ccc" : "#64748b";
+            const gridColor = isDarkMode ? "#3A684A" : "#CBD5E1";
+            const mainLineColor = isDarkMode ? "#D49B35" : "#B84A22";
+            const textColor = isDarkMode ? "#F2F0EB" : "#1C3322";
 
             return (
                 <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full preserve-3d">
                     <defs>
                         <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                            <stop offset="0%" stopColor={mainLineColor} stopOpacity={isDarkMode ? "0.3" : "0.15"} />
+                            <stop offset="0%" stopColor={mainLineColor} stopOpacity={isDarkMode ? "0.35" : "0.2"} />
                             <stop offset="100%" stopColor={mainLineColor} stopOpacity="0.0" />
                         </linearGradient>
                     </defs>
@@ -466,13 +466,13 @@
                     ))}
 
                     <path d={fillD} fill="url(#gradient)" opacity="0.6" />
-                    {climbData.map((c) => <path key={`fill-${c.key}`} d={c.fillD} fill={c.color} opacity={isDarkMode ? "0.4" : "0.2"} stroke="none" />)}
+                    {climbData.map((c) => <path key={`fill-${c.key}`} d={c.fillD} fill={c.color} opacity={isDarkMode ? "0.4" : "0.25"} stroke="none" />)}
                     
                     <path d={pathD} stroke={mainLineColor} strokeWidth="2.0" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     
                     {climbData.map((c) => <path key={`line-${c.key}`} d={c.lineD} stroke={c.color} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />)}
                     {climbData.map((c) => (
-                        <text key={`num-${c.id}`} x={c.numberCoords.x} y={c.numberCoords.y} dx="-5" fill={c.color} fontSize="12" fontWeight="bold" textAnchor="middle" fontFamily="Oswald" className="drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                        <text key={`num-${c.id}`} x={c.numberCoords.x} y={c.numberCoords.y} dx="-5" fill={c.color} fontSize="12" fontWeight="bold" textAnchor="middle" fontFamily="Oswald" className="drop-shadow-[0_1.2px_1.2px_rgba(28,51,34,0.9)] dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.9)]">
                             {c.id}
                         </text>
                     ))}
@@ -512,25 +512,25 @@
             }, [climb, allPoints]);
 
             return (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-gray-900/40 dark:bg-black/80 backdrop-blur-sm print:hidden" onClick={onClose}>
-                    <div className="bg-gray-50 dark:bg-[#2c0c5c] border border-gray-300 dark:border-[#6c3f9c] rounded-lg shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto flex flex-col transition-colors" onClick={e => e.stopPropagation()}>
-                        <div className="flex justify-between items-center p-5 border-b border-gray-300 dark:border-[#6c3f9c] bg-white dark:bg-[#4a217c] sticky top-0 z-10 transition-colors">
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-[#1C3322]/60 dark:bg-[#1C3322]/90 backdrop-blur-sm print:hidden" onClick={onClose}>
+                    <div className="bg-[#F2F0EB] dark:bg-[#1C3322] border border-[#3A684A] rounded-lg shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto flex flex-col transition-colors" onClick={e => e.stopPropagation()}>
+                        <div className="flex justify-between items-center p-5 border-b border-[#3A684A] bg-white dark:bg-[#24422D] sticky top-0 z-10 transition-colors">
                             <div>
-                                <h2 className="text-xl font-bold font-oswald text-gray-900 dark:text-white uppercase tracking-wide flex items-center gap-3">
-                                    <span className="bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black px-2 py-0.5 rounded text-lg">#{climb.id}</span>
+                                <h2 className="text-xl font-bold font-oswald text-[#1C3322] dark:text-[#F2F0EB] uppercase tracking-wide flex items-center gap-3">
+                                    <span className="bg-[#B84A22] text-[#F2F0EB] px-2 py-0.5 rounded text-lg">#{climb.id}</span>
                                     Segment Breakdown
                                 </h2>
-                                <div className="text-gray-600 dark:text-neutral-300 text-sm mt-1 flex gap-4">
-                                    <span>Length: <strong className="text-gray-900 dark:text-white">{climb.lengthKm.toFixed(2)} km</strong></span>
-                                    <span>Avg Grade: <strong className="text-gray-900 dark:text-white">{climb.gradientAvg.toFixed(1)}%</strong></span>
-                                    <span>Gain: <strong className="text-gray-900 dark:text-white">{climb.gain.toFixed(0)} m</strong></span>
+                                <div className="text-[#3A684A] dark:text-[#F2F0EB]/80 text-sm mt-1 flex gap-4">
+                                    <span>Length: <strong className="text-[#1C3322] dark:text-[#F2F0EB]">{climb.lengthKm.toFixed(2)} km</strong></span>
+                                    <span>Avg Grade: <strong className="text-[#1C3322] dark:text-[#F2F0EB]">{climb.gradientAvg.toFixed(1)}%</strong></span>
+                                    <span>Gain: <strong className="text-[#1C3322] dark:text-[#F2F0EB]">{climb.gain.toFixed(0)} m</strong></span>
                                 </div>
                             </div>
-                            <button onClick={onClose} className="p-2 hover:bg-gray-200 dark:hover:bg-[#6c3f9c] rounded-full transition-colors text-gray-700 dark:text-white"><X className="w-6 h-6" /></button>
+                            <button onClick={onClose} className="p-2 hover:bg-[#E2DFD6] dark:hover:bg-[#3A684A] rounded-full transition-colors text-[#1C3322] dark:text-[#F2F0EB]"><X className="w-6 h-6" /></button>
                         </div>
                         <div className="p-6 overflow-x-auto">
                             <table className="w-full text-sm text-left">
-                                <thead className="bg-gray-200 dark:bg-[#4a217c] text-gray-700 dark:text-neutral-300 font-oswald uppercase text-xs transition-colors">
+                                <thead className="bg-[#E2DFD6] dark:bg-[#24422D] text-[#1C3322] dark:text-[#F2F0EB]/80 font-oswald uppercase text-xs transition-colors">
                                     <tr>
                                         <th className="px-4 py-2">Segment</th>
                                         <th className="px-4 py-2">Start (km)</th>
@@ -539,15 +539,15 @@
                                         <th className="px-4 py-2">Visual</th>
                                     </tr>
                                 </thead>
-                                <tbody className="text-gray-900 dark:text-white">
+                                <tbody className="text-[#1C3322] dark:text-[#F2F0EB]">
                                     {segments.map((seg, i) => (
-                                        <tr key={i} className="border-b border-gray-200 dark:border-[#6c3f9c] last:border-0 hover:bg-gray-200/50 dark:hover:bg-[#6c3f9c]/30">
+                                        <tr key={i} className="border-b border-[#3A684A]/30 last:border-0 hover:bg-[#E2DFD6]/50 dark:hover:bg-[#3A684A]/20">
                                             <td className="px-4 py-2 font-bold">{i+1}</td>
-                                            <td className="px-4 py-2 text-gray-500 dark:text-neutral-400">{seg.startDist.toFixed(2)}</td>
-                                            <td className="px-4 py-2 text-gray-500 dark:text-neutral-400">{seg.endDist.toFixed(2)}</td>
+                                            <td className="px-4 py-2 text-[#3A684A] dark:text-[#F2F0EB]/70">{seg.startDist.toFixed(2)}</td>
+                                            <td className="px-4 py-2 text-[#3A684A] dark:text-[#F2F0EB]/70">{seg.endDist.toFixed(2)}</td>
                                             <td className="px-4 py-2 font-bold" style={{ color: getGradientColor(seg.gradient) }}>{seg.gradient.toFixed(1)}%</td>
                                             <td className="px-4 py-2">
-                                                <div className="w-full h-2 bg-gray-200 dark:bg-[#1a053a] rounded-full overflow-hidden">
+                                                <div className="w-full h-2 bg-[#E2DFD6] dark:bg-[#112117] rounded-full overflow-hidden">
                                                     <div className="h-full rounded-full" style={{ width: `${Math.min(100, (seg.gradient / 15) * 100)}%`, backgroundColor: getGradientColor(seg.gradient) }}></div>
                                                 </div>
                                             </td>
@@ -565,28 +565,28 @@
             const [selectedClimb, setSelectedClimb] = useState(null);
             
             return (
-                <div className="fixed inset-0 z-50 bg-gray-100 dark:bg-[#2c0c5c] overflow-y-auto print:bg-white text-gray-900 dark:text-white font-roboto transition-colors">
+                <div className="fixed inset-0 z-50 bg-[#F2F0EB] dark:bg-[#1C3322] overflow-y-auto print:bg-white text-[#1C3322] dark:text-[#F2F0EB] font-roboto transition-colors">
                     <div className="max-w-6xl mx-auto space-y-6 p-4 md:p-8 pt-6">
                         
-                        <div className="flex justify-between items-center border-b border-gray-300 dark:border-[#6c3f9c] pb-4 sticky top-0 bg-gray-100 dark:bg-[#2c0c5c] z-30 pt-2 print:hidden transition-colors shadow-sm">
+                        <div className="flex justify-between items-center border-b border-[#3A684A] pb-4 sticky top-0 bg-[#F2F0EB] dark:bg-[#1C3322] z-30 pt-2 print:hidden transition-colors shadow-sm">
                             <div className="flex items-center gap-4">
-                                <button onClick={onClose} className="p-2 bg-white dark:bg-[#4a217c] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-700 dark:text-white hover:text-white dark:hover:text-black rounded-sm border border-gray-300 dark:border-[#6c3f9c] transition-colors shadow-md group">
+                                <button onClick={onClose} className="p-2 bg-white dark:bg-[#24422D] hover:bg-[#B84A22] text-[#1C3322] dark:text-[#F2F0EB] hover:text-white rounded-sm border border-[#3A684A] transition-colors shadow-md group">
                                     <ArrowLeft className="w-5 h-5" />
                                 </button>
                                 <div>
-                                    <h1 className="text-2xl md:text-3xl font-bold tracking-wide uppercase text-gray-900 dark:text-white font-oswald flex flex-col md:flex-row md:items-center gap-2">
+                                    <h1 className="text-2xl md:text-3xl font-bold tracking-wide uppercase text-[#1C3322] dark:text-[#F2F0EB] font-oswald flex flex-col md:flex-row md:items-center gap-2">
                                         {profileData.name}
                                         {profileData.folder && (
-                                            <span className="text-sm bg-gray-200 dark:bg-[#4a217c] text-gray-600 dark:text-neutral-300 px-2 py-0.5 rounded border border-gray-300 dark:border-[#6c3f9c] flex items-center w-fit gap-1"><FolderIcon className="w-3 h-3"/> {profileData.folder}</span>
+                                            <span className="text-sm bg-[#E2DFD6] dark:bg-[#24422D] text-[#3A684A] dark:text-[#F2F0EB]/90 px-2 py-0.5 rounded border border-[#3A684A] flex items-center w-fit gap-1"><FolderIcon className="w-3 h-3"/> {profileData.folder}</span>
                                         )}
                                     </h1>
-                                    <p className="text-gray-500 dark:text-neutral-300 text-xs tracking-widest uppercase font-oswald mt-1 text-blue-600 dark:text-[#ff4500]">GPX PROFILE ANALYSIS</p>
+                                    <p className="text-[#B84A22] dark:text-[#D49B35] text-xs tracking-widest uppercase font-oswald mt-1">GPX PROFILE ANALYSIS</p>
                                 </div>
                             </div>
                             <div>
                                 <button 
                                     onClick={onDownload}
-                                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#4a217c] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-700 dark:text-white hover:text-white dark:hover:text-black font-oswald tracking-widest uppercase text-sm border border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600 dark:hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer"
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#24422D] hover:bg-[#B84A22] text-[#1C3322] dark:text-[#F2F0EB] hover:text-white font-oswald tracking-widest uppercase text-sm border border-[#3A684A] hover:border-[#B84A22] rounded transition-all shadow-md cursor-pointer"
                                     title="Download GPX"
                                 >
                                     <Download className="w-4 h-4" />
@@ -602,55 +602,55 @@
                             <StatCard title="Stage Type" value={profileData.stage_type || 'N/A'} icon={<Flag />} />
                         </div>
 
-                        <div className="bg-white dark:bg-[#4a217c] rounded-sm p-4 md:p-6 border border-gray-300 dark:border-[#6c3f9c] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
-                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-gray-900 dark:text-white mb-4 relative z-10 print:text-black">
-                                <span className="w-2 h-6 bg-blue-600 dark:bg-[#00FFFF] inline-block"></span> Route Map
+                        <div className="bg-white dark:bg-[#24422D] rounded-sm p-4 md:p-6 border border-[#3A684A] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
+                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-[#1C3322] dark:text-[#F2F0EB] mb-4 relative z-10 print:text-black">
+                                <span className="w-2 h-6 bg-[#B84A22] inline-block"></span> Route Map
                             </h3>
                             <div className="h-64 md:h-96 w-full relative z-10">
                                 <RouteMap points={profileData.points} />
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-[#4a217c] rounded-sm p-4 md:p-6 border border-gray-300 dark:border-[#6c3f9c] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
-                            <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none"><Mountain className="w-32 h-32 text-blue-600 dark:text-[#00FFFF]" /></div>
-                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-gray-900 dark:text-white mb-4 relative z-10 print:text-black">
-                                <span className="w-2 h-6 bg-blue-600 dark:bg-[#00FFFF] inline-block"></span> Elevation Profile
+                        <div className="bg-white dark:bg-[#24422D] rounded-sm p-4 md:p-6 border border-[#3A684A] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
+                            <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none"><Mountain className="w-32 h-32 text-[#B84A22]" /></div>
+                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-[#1C3322] dark:text-[#F2F0EB] mb-4 relative z-10 print:text-black">
+                                <span className="w-2 h-6 bg-[#B84A22] inline-block"></span> Elevation Profile
                             </h3>
                             <div className="h-64 w-full relative z-10">
                                 <ElevationChart points={profileData.points} climbs={profileData.climbs} totalDistance={profileData.totalDistance} minEle={profileData.minEle} maxEle={profileData.maxEle} isDarkMode={isDarkMode} />
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-[#4a217c] rounded-sm overflow-hidden border border-gray-300 dark:border-[#6c3f9c] shadow-lg transition-colors">
-                            <div className="p-4 border-b border-gray-300 dark:border-[#6c3f9c] bg-gray-50 dark:bg-[#2c0c5c] transition-colors">
-                                <h3 className="font-bold text-lg uppercase tracking-wide text-gray-900 dark:text-white font-oswald">Scored Climbs Analysis</h3>
-                                <p className="text-xs text-gray-500 dark:text-neutral-400 mt-1">Click a climb for segmented gradient breakdown.</p>
+                        <div className="bg-white dark:bg-[#24422D] rounded-sm overflow-hidden border border-[#3A684A] shadow-lg transition-colors">
+                            <div className="p-4 border-b border-[#3A684A] bg-[#F2F0EB] dark:bg-[#1C3322] transition-colors">
+                                <h3 className="font-bold text-lg uppercase tracking-wide text-[#1C3322] dark:text-[#F2F0EB] font-oswald">Scored Climbs Analysis</h3>
+                                <p className="text-xs text-[#3A684A] dark:text-[#F2F0EB]/70 mt-1">Click a climb for segmented gradient breakdown.</p>
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-left">
-                                    <thead className="text-gray-500 dark:text-neutral-400 bg-gray-100 dark:bg-[#2c0c5c] uppercase text-xs font-bold tracking-wider font-oswald transition-colors">
+                                    <thead className="text-[#3A684A] dark:text-[#F2F0EB]/70 bg-[#E2DFD6] dark:bg-[#1C3322] uppercase text-xs font-bold tracking-wider font-oswald transition-colors">
                                         <tr>
-                                            <th className="px-6 py-4 w-12 border-b border-gray-200 dark:border-[#6c3f9c]">No.</th>
-                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">To Finish</th>
-                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Length</th>
-                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Avg %</th>
-                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Max %</th>
-                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Score</th>
-                                            <th className="px-6 py-4 border-b border-gray-200 dark:border-[#6c3f9c]">Cat</th>
+                                            <th className="px-6 py-4 w-12 border-b border-[#3A684A]">No.</th>
+                                            <th className="px-6 py-4 border-b border-[#3A684A]">To Finish</th>
+                                            <th className="px-6 py-4 border-b border-[#3A684A]">Length</th>
+                                            <th className="px-6 py-4 border-b border-[#3A684A]">Avg %</th>
+                                            <th className="px-6 py-4 border-b border-[#3A684A]">Max %</th>
+                                            <th className="px-6 py-4 border-b border-[#3A684A]">Score</th>
+                                            <th className="px-6 py-4 border-b border-[#3A684A]">Cat</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="text-gray-900 dark:text-white">
+                                    <tbody className="text-[#1C3322] dark:text-[#F2F0EB]">
                                         {profileData.climbs.length === 0 ? (
-                                            <tr><td colSpan="7" className="p-8 text-center text-gray-500 dark:text-neutral-500 italic print:text-black">No significant climbs detected.</td></tr>
+                                            <tr><td colSpan="7" className="p-8 text-center text-[#3A684A] dark:text-[#F2F0EB]/60 italic print:text-black">No significant climbs detected.</td></tr>
                                         ) : (
                                             profileData.climbs.map((climb, idx) => (
-                                                <tr key={idx} onClick={() => setSelectedClimb(climb)} className="hover:bg-gray-50 dark:hover:bg-[#5e31a9] transition-colors group cursor-pointer print:text-black border-b border-gray-200 dark:border-[#6c3f9c]/50 last:border-0">
-                                                    <td className="px-6 py-3 font-bold text-blue-600 dark:text-[#00FFFF] font-oswald">{climb.id}</td>
+                                                <tr key={idx} onClick={() => setSelectedClimb(climb)} className="hover:bg-[#E2DFD6]/60 dark:hover:bg-[#3A684A]/30 transition-colors group cursor-pointer print:text-black border-b border-[#3A684A]/40 last:border-0">
+                                                    <td className="px-6 py-3 font-bold text-[#B84A22] dark:text-[#D49B35] font-oswald">{climb.id}</td>
                                                     <td className="px-6 py-3 font-bold">{climb.distFromFinish.toFixed(1)} km</td>
                                                     <td className="px-6 py-3 font-medium">{climb.lengthKm.toFixed(2)} km</td>
-                                                    <td className="px-6 py-3 text-gray-600 dark:text-neutral-200 font-medium">{climb.gradientAvg.toFixed(1)}%</td>
+                                                    <td className="px-6 py-3 text-[#3A684A] dark:text-[#F2F0EB]/90 font-medium">{climb.gradientAvg.toFixed(1)}%</td>
                                                     <td className="px-6 py-3">
-                                                        <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${climb.maxGradient > 12 ? 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-300' : climb.maxGradient > 8 ? 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-300' : 'bg-lime-100 dark:bg-lime-900/40 text-lime-600 dark:text-lime-300'}`}>
+                                                        <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${climb.maxGradient > 12 ? 'bg-[#B84A22]/20 text-[#B84A22] dark:text-[#D49B35]' : climb.maxGradient > 8 ? 'bg-[#D49B35]/20 text-[#D49B35]' : 'bg-[#3A684A]/20 text-[#3A684A] dark:text-[#F2F0EB]'}`}>
                                                             {climb.maxGradient.toFixed(1)}%
                                                         </span>
                                                     </td>
@@ -660,7 +660,7 @@
                                                         </span>
                                                     </td>
                                                     <td className="px-6 py-3">
-                                                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-[#2c0c5c] border border-gray-300 dark:border-[#6c3f9c] text-gray-900 dark:text-white font-bold font-oswald text-xs">
+                                                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#E2DFD6] dark:bg-[#1C3322] border border-[#3A684A] text-[#1C3322] dark:text-[#F2F0EB] font-bold font-oswald text-xs">
                                                             {getClimbCategory(climb.rawScore) || '-'}
                                                         </span>
                                                     </td>
@@ -696,7 +696,7 @@
             const [activeProfile, setActiveProfile] = useState(null);
             const [processingId, setProcessingId] = useState(null);
             
-            const [isDarkMode, setIsDarkMode] = useState(false);
+            const [isDarkMode, setIsDarkMode] = useState(true);
 
             useEffect(() => {
                 if (isDarkMode) {
@@ -827,11 +827,11 @@
                     if (nodeNames.length === 0) return null;
 
                     return (
-                        <div key={`folder-row-${levelIndex}`} className={`flex flex-wrap gap-2 ${levelIndex > 0 ? 'mt-3 pt-3 border-t border-gray-200 dark:border-[#6c3f9c]/40' : ''}`}>
+                        <div key={`folder-row-${levelIndex}`} className={`flex flex-wrap gap-2 ${levelIndex > 0 ? 'mt-3 pt-3 border-t border-[#3A684A]/40' : ''}`}>
                             {levelIndex === 0 && (
                                 <button
                                     onClick={() => setSelectedPath([])}
-                                    className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedPath.length === 0 ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}
+                                    className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedPath.length === 0 ? 'bg-[#B84A22] text-[#F2F0EB] border-[#B84A22] shadow-[#B84A22]/20' : 'bg-white dark:bg-[#112117] text-[#3A684A] dark:text-[#F2F0EB]/80 border-[#3A684A] hover:border-[#B84A22]'}`}
                                 >
                                     All Collections
                                 </button>
@@ -839,7 +839,7 @@
                             {levelIndex > 0 && (
                                 <button
                                     onClick={() => setSelectedPath(parentPath)}
-                                    className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedPath.length === levelIndex ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}
+                                    className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedPath.length === levelIndex ? 'bg-[#B84A22] text-[#F2F0EB] border-[#B84A22] shadow-[#B84A22]/20' : 'bg-white dark:bg-[#112117] text-[#3A684A] dark:text-[#F2F0EB]/80 border-[#3A684A] hover:border-[#B84A22]'}`}
                                 >
                                     All in {parentPath[parentPath.length - 1]}
                                 </button>
@@ -851,7 +851,7 @@
                                     <button
                                         key={node}
                                         onClick={() => setSelectedPath(nodePath)}
-                                        className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm flex items-center gap-1.5 ${isSelected ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}
+                                        className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm flex items-center gap-1.5 ${isSelected ? 'bg-[#B84A22] text-[#F2F0EB] border-[#B84A22] shadow-[#B84A22]/20' : 'bg-white dark:bg-[#112117] text-[#3A684A] dark:text-[#F2F0EB]/80 border-[#3A684A] hover:border-[#B84A22]'}`}
                                     >
                                         <FolderIcon className="w-3.5 h-3.5" /> {node}
                                     </button>
@@ -883,47 +883,47 @@
             };
 
             const SortHeader = ({ label, sortKey, className = "" }) => (
-                <th className={`px-6 py-4 cursor-pointer hover:text-blue-600 dark:hover:text-[#00FFFF] transition-colors select-none ${className}`} onClick={() => requestSort(sortKey)}>
+                <th className={`px-6 py-4 cursor-pointer hover:text-[#B84A22] dark:hover:text-[#D49B35] transition-colors select-none ${className}`} onClick={() => requestSort(sortKey)}>
                     <div className="flex items-center gap-2">
                         {label}
-                        <ArrowUpDown className={`w-4 h-4 ${sortConfig.key === sortKey ? 'text-blue-600 dark:text-[#00FFFF]' : 'text-gray-400 dark:text-neutral-500'}`} />
+                        <ArrowUpDown className={`w-4 h-4 ${sortConfig.key === sortKey ? 'text-[#B84A22] dark:text-[#D49B35]' : 'text-[#3A684A] dark:text-[#F2F0EB]/40'}`} />
                     </div>
                 </th>
             );
 
             return (
-                <div className="min-h-screen text-gray-900 dark:text-white selection:bg-blue-200 dark:selection:bg-[#00FFFF] selection:text-black p-4 md:p-8 transition-colors">
+                <div className="min-h-screen text-[#1C3322] dark:text-[#F2F0EB] selection:bg-[#B84A22]/30 dark:selection:bg-[#D49B35]/40 selection:text-white p-4 md:p-8 transition-colors">
                     
                     {activeProfile && <RouteProfileModal profileData={activeProfile} onClose={() => setActiveProfile(null)} onDownload={(e) => handleDownload(e, activeProfile.file, activeProfile.name)} isDarkMode={isDarkMode} />}
 
                     <div className="max-w-7xl mx-auto space-y-8">
-                        <header className="flex items-center space-x-4 border-b border-gray-300 dark:border-[#6c3f9c] pb-6">
-                            <Activity className="w-8 h-8 text-blue-600 dark:text-[#00FFFF]" />
+                        <header className="flex items-center space-x-4 border-b border-[#3A684A] pb-6">
+                            <Activity className="w-8 h-8 text-[#B84A22] dark:text-[#D49B35]" />
                             <div className="flex-1">
-                                <h1 className="text-3xl font-bold tracking-wide uppercase text-gray-900 dark:text-white font-oswald">Route Database</h1>
-                                <p className="text-gray-500 dark:text-neutral-300 text-sm tracking-widest uppercase font-oswald mt-1 text-blue-600 dark:text-[#ff4500]">VIRTUAL CYCLING GPX INDEX</p>
+                                <h1 className="text-3xl font-bold tracking-wide uppercase text-[#1C3322] dark:text-[#F2F0EB] font-oswald">Route Database</h1>
+                                <p className="text-[#3A684A] dark:text-[#F2F0EB]/70 text-sm tracking-widest uppercase font-oswald mt-1">VIRTUAL CYCLING GPX INDEX</p>
                             </div>
                             
                             <button
                                 onClick={() => setIsDarkMode(!isDarkMode)}
-                                className="p-2.5 rounded-full bg-white dark:bg-[#4a217c] text-gray-700 dark:text-[#00FFFF] border border-gray-300 dark:border-[#6c3f9c] hover:bg-gray-100 dark:hover:bg-[#6c3f9c] transition-colors shadow-sm"
+                                className="p-2.5 rounded-full bg-white dark:bg-[#24422D] text-[#1C3322] dark:text-[#D49B35] border border-[#3A684A] hover:bg-[#E2DFD6] dark:hover:bg-[#3A684A] transition-colors shadow-sm"
                                 title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
                             >
                                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                             </button>
                         </header>
 
-                        <div className="bg-white dark:bg-[#4a217c] p-6 rounded-sm border border-gray-300 dark:border-[#6c3f9c] shadow-lg space-y-6 transition-colors">
+                        <div className="bg-white dark:bg-[#24422D] p-6 rounded-sm border border-[#3A684A] shadow-lg space-y-6 transition-colors">
                             
                             {/* Search Full Width */}
-                            <div className="flex gap-4 items-center bg-gray-50 dark:bg-[#2c0c5c] p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus-within:border-blue-600 dark:focus-within:border-[#00FFFF] transition-colors">
-                                <Search className="text-blue-600 dark:text-[#00FFFF] w-6 h-6 ml-2 shrink-0" />
-                                <input type="text" placeholder="Search routes by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-transparent text-gray-900 dark:text-white p-2 outline-none font-oswald tracking-wide text-lg placeholder-gray-400 dark:placeholder-neutral-500" />
+                            <div className="flex gap-4 items-center bg-[#F2F0EB] dark:bg-[#1C3322] p-2 rounded border border-[#3A684A] focus-within:border-[#B84A22] dark:focus-within:border-[#D49B35] transition-colors">
+                                <Search className="text-[#B84A22] dark:text-[#D49B35] w-6 h-6 ml-2 shrink-0" />
+                                <input type="text" placeholder="Search routes by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-transparent text-[#1C3322] dark:text-[#F2F0EB] p-2 outline-none font-oswald tracking-wide text-lg placeholder-[#3A684A] dark:placeholder-[#F2F0EB]/40" />
                             </div>
 
                             {/* Hierarchical Collections Section */}
-                            <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
-                                <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">
+                            <div className="bg-[#F2F0EB] dark:bg-[#1C3322] p-4 rounded border border-[#3A684A] transition-colors">
+                                <label className="text-xs font-bold text-[#B84A22] dark:text-[#D49B35] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">
                                     <FolderIcon className="w-4 h-4" /> Collections
                                 </label>
                                 {renderFolderTree()}
@@ -931,53 +931,53 @@
 
                             {/* Filters Row */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
-                                   <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Distance (km)</label>
+                                <div className="bg-[#F2F0EB] dark:bg-[#1C3322] p-4 rounded border border-[#3A684A] transition-colors">
+                                   <label className="text-xs font-bold text-[#B84A22] dark:text-[#D49B35] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Distance (km)</label>
                                    <div className="flex items-center gap-3">
-                                       <input type="number" placeholder="Min" value={filters.distMin} onChange={(e) => handleFilterChange(e, 'distMin')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
-                                       <span className="text-gray-500 dark:text-neutral-500 font-bold uppercase text-xs">To</span>
-                                       <input type="number" placeholder="Max" value={filters.distMax} onChange={(e) => handleFilterChange(e, 'distMax')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
+                                       <input type="number" placeholder="Min" value={filters.distMin} onChange={(e) => handleFilterChange(e, 'distMin')} className="w-full bg-white dark:bg-[#112117] text-[#1C3322] dark:text-[#F2F0EB] p-2 rounded border border-[#3A684A] focus:outline-none focus:border-[#B84A22] dark:focus:border-[#D49B35] font-roboto transition-colors" />
+                                       <span className="text-[#3A684A] dark:text-[#F2F0EB]/60 font-bold uppercase text-xs">To</span>
+                                       <input type="number" placeholder="Max" value={filters.distMax} onChange={(e) => handleFilterChange(e, 'distMax')} className="w-full bg-white dark:bg-[#112117] text-[#1C3322] dark:text-[#F2F0EB] p-2 rounded border border-[#3A684A] focus:outline-none focus:border-[#B84A22] dark:focus:border-[#D49B35] font-roboto transition-colors" />
                                    </div>
                                 </div>
-                                <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
-                                   <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Elevation (m)</label>
+                                <div className="bg-[#F2F0EB] dark:bg-[#1C3322] p-4 rounded border border-[#3A684A] transition-colors">
+                                   <label className="text-xs font-bold text-[#B84A22] dark:text-[#D49B35] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Elevation (m)</label>
                                    <div className="flex items-center gap-3">
-                                       <input type="number" placeholder="Min" value={filters.eleMin} onChange={(e) => handleFilterChange(e, 'eleMin')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
-                                       <span className="text-gray-500 dark:text-neutral-500 font-bold uppercase text-xs">To</span>
-                                       <input type="number" placeholder="Max" value={filters.eleMax} onChange={(e) => handleFilterChange(e, 'eleMax')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
+                                       <input type="number" placeholder="Min" value={filters.eleMin} onChange={(e) => handleFilterChange(e, 'eleMin')} className="w-full bg-white dark:bg-[#112117] text-[#1C3322] dark:text-[#F2F0EB] p-2 rounded border border-[#3A684A] focus:outline-none focus:border-[#B84A22] dark:focus:border-[#D49B35] font-roboto transition-colors" />
+                                       <span className="text-[#3A684A] dark:text-[#F2F0EB]/60 font-bold uppercase text-xs">To</span>
+                                       <input type="number" placeholder="Max" value={filters.eleMax} onChange={(e) => handleFilterChange(e, 'eleMax')} className="w-full bg-white dark:bg-[#112117] text-[#1C3322] dark:text-[#F2F0EB] p-2 rounded border border-[#3A684A] focus:outline-none focus:border-[#B84A22] dark:focus:border-[#D49B35] font-roboto transition-colors" />
                                    </div>
                                 </div>
-                                <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
-                                   <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Profile Score</label>
+                                <div className="bg-[#F2F0EB] dark:bg-[#1C3322] p-4 rounded border border-[#3A684A] transition-colors">
+                                   <label className="text-xs font-bold text-[#B84A22] dark:text-[#D49B35] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Profile Score</label>
                                    <div className="flex items-center gap-3">
-                                       <input type="number" placeholder="Min" value={filters.scoreMin} onChange={(e) => handleFilterChange(e, 'scoreMin')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
-                                       <span className="text-gray-500 dark:text-neutral-500 font-bold uppercase text-xs">To</span>
-                                       <input type="number" placeholder="Max" value={filters.scoreMax} onChange={(e) => handleFilterChange(e, 'scoreMax')} className="w-full bg-white dark:bg-[#1a053a] text-gray-900 dark:text-white p-2 rounded border border-gray-300 dark:border-[#6c3f9c] focus:outline-none focus:border-blue-600 dark:focus:border-[#00FFFF] font-roboto transition-colors" />
+                                       <input type="number" placeholder="Min" value={filters.scoreMin} onChange={(e) => handleFilterChange(e, 'scoreMin')} className="w-full bg-white dark:bg-[#112117] text-[#1C3322] dark:text-[#F2F0EB] p-2 rounded border border-[#3A684A] focus:outline-none focus:border-[#B84A22] dark:focus:border-[#D49B35] font-roboto transition-colors" />
+                                       <span className="text-[#3A684A] dark:text-[#F2F0EB]/60 font-bold uppercase text-xs">To</span>
+                                       <input type="number" placeholder="Max" value={filters.scoreMax} onChange={(e) => handleFilterChange(e, 'scoreMax')} className="w-full bg-white dark:bg-[#112117] text-[#1C3322] dark:text-[#F2F0EB] p-2 rounded border border-[#3A684A] focus:outline-none focus:border-[#B84A22] dark:focus:border-[#D49B35] font-roboto transition-colors" />
                                    </div>
                                 </div>
                             </div>
                             
-                            <div className="bg-gray-50 dark:bg-[#2c0c5c] p-4 rounded border border-gray-300 dark:border-[#6c3f9c] transition-colors">
-                                <label className="text-xs font-bold text-blue-700 dark:text-[#ff4500] uppercase font-oswald tracking-widest block mb-3 flex items-center gap-2"><Filter className="w-4 h-4" /> Stage Types (Multi-Select)</label>
+                            <div className="bg-[#F2F0EB] dark:bg-[#1C3322] p-4 rounded border border-[#3A684A] transition-colors">
+                                <label className="text-xs font-bold text-[#B84A22] dark:text-[#D49B35] uppercase font-oswald tracking-widest block mb-3 flex items-center gap-2"><Filter className="w-4 h-4" /> Stage Types (Multi-Select)</label>
                                 <div className="flex flex-wrap gap-2">
                                    {uniqueStageTypes.map((type, i) => (
-                                       <button key={i} onClick={() => toggleType(type)} className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedTypes.includes(type) ? 'bg-blue-600 dark:bg-[#00FFFF] text-white dark:text-black border-blue-600 dark:border-[#00FFFF] shadow-blue-600/20 dark:shadow-[#00FFFF]/20' : 'bg-white dark:bg-[#1a053a] text-gray-600 dark:text-neutral-300 border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600/50 dark:hover:border-[#00FFFF]/50'}`}>
+                                       <button key={i} onClick={() => toggleType(type)} className={`px-4 py-2 rounded-sm text-xs font-bold font-oswald uppercase tracking-widest border transition-colors shadow-sm ${selectedTypes.includes(type) ? 'bg-[#B84A22] text-[#F2F0EB] border-[#B84A22] shadow-[#B84A22]/20' : 'bg-white dark:bg-[#112117] text-[#3A684A] dark:text-[#F2F0EB]/80 border-[#3A684A] hover:border-[#B84A22]'}`}>
                                            {type}
                                        </button>
                                    ))}
-                                   {uniqueStageTypes.length === 0 && <span className="text-gray-500 dark:text-neutral-500 text-sm italic">Loading types...</span>}
+                                   {uniqueStageTypes.length === 0 && <span className="text-[#3A684A] dark:text-[#F2F0EB]/50 text-sm italic">Loading types...</span>}
                                 </div>
                             </div>
                         </div>
 
-                        {}
-                        <div className="bg-white dark:bg-[#4a217c] rounded-sm overflow-hidden border border-gray-300 dark:border-[#6c3f9c] shadow-lg transition-colors">
-                            <div className="p-4 bg-gray-100 dark:bg-[#2c0c5c] border-b border-gray-300 dark:border-[#6c3f9c] flex justify-between items-center transition-colors">
-                                <h2 className="text-lg font-bold font-oswald uppercase tracking-wider text-gray-900 dark:text-white">Results <span className="text-blue-600 dark:text-[#00FFFF] ml-2">({sortedRoutes.length})</span></h2>
+                        {/* Results Table Section */}
+                        <div className="bg-white dark:bg-[#24422D] rounded-sm overflow-hidden border border-[#3A684A] shadow-lg transition-colors">
+                            <div className="p-4 bg-[#F2F0EB] dark:bg-[#1C3322] border-b border-[#3A684A] flex justify-between items-center transition-colors">
+                                <h2 className="text-lg font-bold font-oswald uppercase tracking-wider text-[#1C3322] dark:text-[#F2F0EB]">Results <span className="text-[#B84A22] dark:text-[#D49B35] ml-2">({sortedRoutes.length})</span></h2>
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm text-left">
-                                    <thead className="text-gray-600 dark:text-neutral-400 bg-gray-50 dark:bg-[#1a053a] uppercase text-xs font-bold tracking-wider font-oswald transition-colors">
+                                    <thead className="text-[#3A684A] dark:text-[#F2F0EB]/70 bg-[#E2DFD6] dark:bg-[#112117] uppercase text-xs font-bold tracking-wider font-oswald transition-colors">
                                         <tr>
                                             <SortHeader label="Route Name" sortKey="name" />
                                             <SortHeader label="Updated" sortKey="upload_date" className="w-28" />
@@ -988,35 +988,35 @@
                                             <th className="px-6 py-4 text-right">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="text-gray-900 dark:text-white">
+                                    <tbody className="text-[#1C3322] dark:text-[#F2F0EB]">
                                         {loading ? (
-                                            <tr><td colSpan="6" className="p-8 text-center text-blue-600 dark:text-[#00FFFF] font-bold tracking-widest uppercase animate-pulse font-oswald">Loading Routes...</td></tr>
+                                            <tr><td colSpan="6" className="p-8 text-center text-[#B84A22] dark:text-[#D49B35] font-bold tracking-widest uppercase animate-pulse font-oswald">Loading Routes...</td></tr>
                                         ) : sortedRoutes.length === 0 ? (
-                                            <tr><td colSpan="6" className="p-8 text-center text-gray-500 dark:text-neutral-400 italic font-light">No routes match your filters.</td></tr>
+                                            <tr><td colSpan="6" className="p-8 text-center text-[#3A684A] dark:text-[#F2F0EB]/60 italic font-light">No routes match your filters.</td></tr>
                                         ) : (
                                             sortedRoutes.map((route, idx) => (
-                                                <tr key={idx} className="hover:bg-gray-100 dark:hover:bg-[#5e31a9] border-b border-gray-200 dark:border-[#6c3f9c] transition-colors group">
+                                                <tr key={idx} className="hover:bg-[#E2DFD6]/60 dark:hover:bg-[#3A684A]/30 border-b border-[#3A684A]/40 transition-colors group">
                                                     <td className="px-6 py-4">
-                                                        <div className="font-bold text-gray-900 dark:text-white text-base">{route.name}</div>
-                                                        {route.folder && <div className="text-sm text-gray-500 dark:text-neutral-400 font-normal mt-1 flex items-center gap-1"><FolderIcon className="w-3 h-3" /> {route.folder}</div>}
+                                                        <div className="font-bold text-[#1C3322] dark:text-[#F2F0EB] text-base">{route.name}</div>
+                                                        {route.folder && <div className="text-sm text-[#3A684A] dark:text-[#F2F0EB]/70 font-normal mt-1 flex items-center gap-1"><FolderIcon className="w-3 h-3" /> {route.folder}</div>}
                                                     </td>
-                                                    <td className="px-6 py-4 text-gray-500 dark:text-neutral-400 font-medium whitespace-nowrap">
+                                                    <td className="px-6 py-4 text-[#3A684A] dark:text-[#F2F0EB]/70 font-medium whitespace-nowrap">
                                                         {route.upload_date ? new Date(route.upload_date).toLocaleDateString() : 'N/A'}
                                                     </td>
-                                                    <td className="px-6 py-4 text-blue-600 dark:text-[#00FFFF] font-bold font-oswald text-lg">{route.distance_km}</td>
-                                                    <td className="px-6 py-4 text-gray-700 dark:text-neutral-200 font-medium">{route.elevation_m}</td>
+                                                    <td className="px-6 py-4 text-[#B84A22] dark:text-[#D49B35] font-bold font-oswald text-lg">{route.distance_km}</td>
+                                                    <td className="px-6 py-4 text-[#1C3322] dark:text-[#F2F0EB]/90 font-medium">{route.elevation_m}</td>
                                                     <td className="px-6 py-4 font-oswald text-lg font-bold">
-                                                        <span className={`px-2 py-1 rounded ${route.profile_score >= 40 ? 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400' : route.profile_score >= 20 ? 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400' : 'bg-lime-100 dark:bg-lime-900/40 text-lime-600 dark:text-lime-400'}`}>
+                                                        <span className={`px-2 py-1 rounded ${route.profile_score >= 40 ? 'bg-[#B84A22]/20 text-[#B84A22] dark:text-[#D49B35]' : route.profile_score >= 20 ? 'bg-[#D49B35]/20 text-[#D49B35]' : 'bg-[#3A684A]/20 text-[#3A684A] dark:text-[#F2F0EB]'}`}>
                                                             {Math.round(route.profile_score || 0)}
                                                         </span>
                                                     </td>
-                                                    <td className="px-6 py-4 text-gray-600 dark:text-neutral-300 capitalize">{route.stage_type || 'N/A'}</td>
+                                                    <td className="px-6 py-4 text-[#3A684A] dark:text-[#F2F0EB]/80 capitalize">{route.stage_type || 'N/A'}</td>
                                                     <td className="px-6 py-4 text-right">
                                                         <div className="flex justify-end gap-2">
                                                             <button 
                                                                 onClick={(e) => handleViewProfile(e, route)}
                                                                 disabled={processingId === route.file}
-                                                                className={`inline-flex items-center gap-2 p-2 px-3 bg-white dark:bg-[#3b0687] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-700 dark:text-neutral-200 hover:text-white dark:hover:text-black font-oswald tracking-widest uppercase text-xs border border-gray-300 dark:border-[#5e31a9] hover:border-blue-600 dark:hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer ${processingId === route.file ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                                                className={`inline-flex items-center gap-2 p-2 px-3 bg-white dark:bg-[#112117] hover:bg-[#B84A22] text-[#1C3322] dark:text-[#F2F0EB] hover:text-white font-oswald tracking-widest uppercase text-xs border border-[#3A684A] hover:border-[#B84A22] rounded transition-all shadow-md cursor-pointer ${processingId === route.file ? 'opacity-50 cursor-not-allowed' : ''}`}
                                                                 title="View Interactive Profile"
                                                             >
                                                                 {processingId === route.file ? <Loader className="w-4 h-4" /> : <MapIcon className="w-4 h-4" />}
@@ -1024,7 +1024,7 @@
                                                             </button>
                                                             <button 
                                                                 onClick={(e) => handleDownload(e, route.file, route.name)}
-                                                                className="inline-flex p-2 bg-gray-50 dark:bg-[#2c0c5c] hover:bg-blue-600 dark:hover:bg-[#00FFFF] text-gray-600 dark:text-neutral-300 hover:text-white dark:hover:text-black border border-gray-300 dark:border-[#6c3f9c] hover:border-blue-600 dark:hover:border-[#00FFFF] rounded transition-all shadow-md cursor-pointer"
+                                                                className="inline-flex p-2 bg-[#F2F0EB] dark:bg-[#1C3322] hover:bg-[#B84A22] text-[#3A684A] dark:text-[#F2F0EB]/80 hover:text-white border border-[#3A684A] hover:border-[#B84A22] rounded transition-all shadow-md cursor-pointer"
                                                                 title="Download GPX"
                                                             >
                                                                 <Download className="w-4 h-4" />
