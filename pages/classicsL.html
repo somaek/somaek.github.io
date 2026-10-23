@@ -884,31 +884,18 @@
         function renderStandingsTable() {
             const loadingPanel = document.getElementById('loading-panel');
             const tableWrapper = document.getElementById('table-wrapper');
-            const paginationBar = document.getElementById('pagination-bar');
             const tbody = document.getElementById('riders-tbody');
 
             loadingPanel.classList.add('hidden');
             tableWrapper.classList.remove('hidden');
-            paginationBar.classList.remove('hidden');
 
             const totalRiders = state.ridersList.length;
-            const { page, pageSize } = state.pagination;
-            const totalPages = Math.max(1, Math.ceil(totalRiders / pageSize));
-            const safePage = Math.min(Math.max(1, page), totalPages);
-            state.pagination.page = safePage;
-
-            const startIdx = (safePage - 1) * pageSize;
-            const endIdx = Math.min(startIdx + pageSize, totalRiders);
-            const slice = state.ridersList.slice(startIdx, endIdx);
+            const slice = state.ridersList; // Show all riders instead of a page slice
 
             document.getElementById('showing-count-label').textContent =
                 totalRiders === 0
                     ? 'No matching riders'
-                    : `Showing ${startIdx + 1}–${endIdx} of ${totalRiders.toLocaleString()} riders`;
-
-            document.getElementById('page-indicator').textContent = `Page ${safePage} of ${totalPages}`;
-            document.getElementById('prev-page-btn').disabled = safePage <= 1;
-            document.getElementById('next-page-btn').disabled = safePage >= totalPages;
+                    : `Showing all ${totalRiders.toLocaleString()} riders`;
 
             if (slice.length === 0) {
                 tbody.innerHTML = `
@@ -926,7 +913,7 @@
 
             for (let i = 0; i < slice.length; i++) {
                 const rider = slice[i];
-                const rank = startIdx + i + 1;
+                const rank = i + 1; // Position index based on full list
                 const isExpanded = state.expandedRiderKeys.has(rider.riderKey);
 
                 // Main Rider Row
