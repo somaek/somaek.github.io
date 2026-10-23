@@ -97,34 +97,37 @@
 <body class="min-h-screen flex flex-col font-sans antialiased selection:bg-chestnut selection:text-pine-dark">
 
    <!-- Lombardia Atmospheric Header -->
-<header class="bg-pine-dark text-mist border-b border-pine-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="text-xs font-mono uppercase tracking-widest text-chestnut">Go where the Pros go</span>
+    <header class="bg-pine-dark text-mist border-b border-pine-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <!-- Left Header Block: Tagline + Wide Logo Image -->
+                <div class="w-full md:w-2/3 flex flex-col justify-center">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs font-mono uppercase tracking-widest text-chestnut">Go where the Pros go</span>
+                    </div>
+                    <img src="https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/classicscup.png" 
+                         alt="TPV Fall Classics Logo" 
+                         class="w-full h-auto max-w-2xl object-contain object-left">
                 </div>
-                <img src="https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/classicscup.png" alt="TPV Fall Classics Logo" class="h-12 sm:h-16 w-auto object-contain">
-            </div>
-
-            <!-- Autumn Summary Counters -->
-            <div class="flex items-center gap-6 text-sm border-t md:border-t-0 pt-3 md:pt-0 border-pine-border">
-                <div>
-                    <span class="text-mist-muted/70 text-xs uppercase font-mono block">Riders</span>
-                    <span id="stat-riders" class="font-mono text-lg font-bold text-chestnut">—</span>
-                </div>
-                <div>
-                    <span class="text-mist-muted/70 text-xs uppercase font-mono block">Events</span>
-                    <span id="stat-events" class="font-mono text-lg font-bold text-mist">—</span>
-                </div>
-                <div>
-                    <span class="text-mist-muted/70 text-xs uppercase font-mono block">Entries</span>
-                    <span id="stat-rows" class="font-mono text-lg font-bold text-mist">—</span>
+    
+                <!-- Autumn Summary Counters -->
+                <div class="flex items-center gap-6 text-sm border-t md:border-t-0 pt-3 md:pt-0 border-pine-border shrink-0">
+                    <div>
+                        <span class="text-mist-muted/70 text-xs uppercase font-mono block">Riders</span>
+                        <span id="stat-riders" class="font-mono text-lg font-bold text-chestnut">—</span>
+                    </div>
+                    <div>
+                        <span class="text-mist-muted/70 text-xs uppercase font-mono block">Events</span>
+                        <span id="stat-events" class="font-mono text-lg font-bold text-mist">—</span>
+                    </div>
+                    <div>
+                        <span class="text-mist-muted/70 text-xs uppercase font-mono block">Entries</span>
+                        <span id="stat-rows" class="font-mono text-lg font-bold text-mist">—</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
