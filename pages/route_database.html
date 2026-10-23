@@ -127,31 +127,34 @@
             return 0;
         };
 
+        // High-contrast, distinct color scale for climbs against dark forest green & light backgrounds
         const getScoreHexColor = (score) => {
-            if (score >= 46) return '#B84A22'; if (score >= 41) return '#B84A22';
-            if (score >= 36) return '#D49B35'; if (score >= 31) return '#D49B35';
-            if (score >= 26) return '#D49B35'; if (score >= 21) return '#D49B35';
-            if (score >= 16) return '#3A684A'; if (score >= 11) return '#3A684A';
-            if (score >= 6) return '#3A684A';  return '#24422D'; 
+            if (score >= 150) return '#E879F9'; // Bright Magenta/Purple (HC)
+            if (score >= 75)  return '#EF4444'; // Vibrant Red (Cat 1)
+            if (score >= 37)  return '#F97316'; // Bright Orange (Cat 2)
+            if (score >= 18)  return '#FACC15'; // Vivid Yellow (Cat 3)
+            if (score >= 10)  return '#A3E635'; // Bright Lime (Cat 4)
+            return '#38BDF8';                   // Sky Blue (Uncategorized / Minor Climb)
         };
 
+        // High-contrast gradient colors for segment breakdown
         const getGradientColor = (gradient) => {
-            if (gradient >= 12) return '#B84A22'; if (gradient >= 10) return '#B84A22';
-            if (gradient >= 8) return '#D49B35';  if (gradient >= 5) return '#D49B35';
-            if (gradient >= 3) return '#3A684A';  return '#24422D';
+            if (gradient >= 12) return '#E879F9'; // Purple/Magenta (Extreme)
+            if (gradient >= 9)  return '#EF4444'; // Red (Very Steep)
+            if (gradient >= 6)  return '#F97316'; // Orange (Steep)
+            if (gradient >= 4)  return '#FACC15'; // Yellow (Moderate)
+            if (gradient >= 2)  return '#A3E635'; // Lime (Gentle)
+            return '#38BDF8';                     // Sky Blue (False Flat)
         };
 
+        // Matching Tailwind badge classes for climb scores in tables
         const getScoreClass = (score) => {
-            if (score >= 46) return 'text-[#B84A22] dark:text-[#B84A22] print:text-red-800 bg-[#B84A22]/10 dark:bg-[#B84A22]/20 border border-[#B84A22]/30 dark:border-transparent';
-            if (score >= 41) return 'text-[#B84A22] dark:text-[#B84A22] print:text-red-700 bg-[#B84A22]/10 dark:bg-[#B84A22]/20 border border-[#B84A22]/30 dark:border-transparent';
-            if (score >= 36) return 'text-[#D49B35] dark:text-[#D49B35] print:text-red-600 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
-            if (score >= 31) return 'text-[#D49B35] dark:text-[#D49B35] print:text-red-500 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
-            if (score >= 26) return 'text-[#D49B35] dark:text-[#D49B35] print:text-red-400 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
-            if (score >= 21) return 'text-[#D49B35] dark:text-[#D49B35] print:text-orange-400 bg-[#D49B35]/10 dark:bg-[#D49B35]/20 border border-[#D49B35]/30 dark:border-transparent';
-            if (score >= 16) return 'text-[#3A684A] dark:text-[#F2F0EB] print:text-amber-400 bg-[#3A684A]/10 dark:bg-[#3A684A]/30 border border-[#3A684A]/30 dark:border-transparent';
-            if (score >= 11) return 'text-[#3A684A] dark:text-[#F2F0EB] print:text-yellow-400 bg-[#3A684A]/10 dark:bg-[#3A684A]/30 border border-[#3A684A]/30 dark:border-transparent';
-            if (score >= 6) return 'text-[#3A684A] dark:text-[#F2F0EB] print:text-lime-400 bg-[#3A684A]/10 dark:bg-[#3A684A]/30 border border-[#3A684A]/30 dark:border-transparent';
-            return 'text-[#1C3322] dark:text-[#F2F0EB] print:text-green-300 bg-[#24422D]/10 dark:bg-[#24422D]/40 border border-[#24422D]/30 dark:border-transparent';
+            if (score >= 150) return 'text-fuchsia-800 dark:text-fuchsia-300 print:text-fuchsia-800 bg-fuchsia-500/15 dark:bg-fuchsia-500/25 border border-fuchsia-500/40';
+            if (score >= 75)  return 'text-red-700 dark:text-red-300 print:text-red-700 bg-red-500/15 dark:bg-red-500/25 border border-red-500/40';
+            if (score >= 37)  return 'text-orange-700 dark:text-orange-300 print:text-orange-700 bg-orange-500/15 dark:bg-orange-500/25 border border-orange-500/40';
+            if (score >= 18)  return 'text-amber-800 dark:text-yellow-300 print:text-amber-700 bg-yellow-500/20 dark:bg-yellow-500/25 border border-yellow-500/40';
+            if (score >= 10)  return 'text-lime-800 dark:text-lime-300 print:text-lime-700 bg-lime-500/20 dark:bg-lime-500/25 border border-lime-500/40';
+            return 'text-sky-800 dark:text-sky-300 print:text-sky-700 bg-sky-500/15 dark:bg-sky-500/25 border border-sky-500/40';
         };
         
         const getClimbCategory = (score) => {
@@ -284,7 +287,7 @@
                         <span className={`text-xs font-bold uppercase tracking-widest font-oswald ${highlight ? `text-[#D49B35] dark:text-[#D49B35] print:text-black` : 'text-[#3A684A] dark:text-[#F2F0EB]/60 print:text-black/70'}`}>{title}</span>
                         {clonedIcon}
                     </div>
-                    <div className={`text-2xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-[#1C3322] dark:text-[#F2F0EB] print:text-black' : 'text-[#1C3322] dark:text-[#F2F0EB] print:text-black'}`}>
+                    <div className={`text-2xl font-bold font-oswald tracking-tight relative z-10 ${highlight ? 'text-[#F2F0EB] dark:text-[#F2F0EB] print:text-black' : 'text-[#1C3322] dark:text-[#F2F0EB] print:text-black'}`}>
                         {value}
                     </div>
                 </div>
@@ -397,7 +400,7 @@
                 return points.filter((_, i) => i % factor === 0);
             }, [points]);
 
-            const height = 250; const width = 800; const vPadding = 20; const hPadding = 5;  
+            const height = 250; const width = 800; const vPadding = 24; const hPadding = 5;  
             const safeTotalDistance = totalDistance > 0 ? totalDistance : 1;
             const MIN_RANGE = 400; // Metric
             const effectiveMaxEle = (maxEle - minEle) < MIN_RANGE ? minEle + MIN_RANGE : maxEle;
@@ -413,7 +416,7 @@
                 return climbs.map((climb) => {
                     const fillPoints = points.filter(p => p.dist >= climb.startDist && p.dist <= climb.endDist);
                     if (fillPoints.length < 2) return null;
-                    const startPoint = points.reduce((prev, curr) => (Math.abs(curr.dist - climb.startDist) < Math.abs(prev.dist - climb.startDist) ? curr : prev), points[0]);
+                    const summitPoint = points.reduce((prev, curr) => (Math.abs(curr.dist - climb.endDist) < Math.abs(prev.dist - climb.endDist) ? curr : prev), points[0]);
                     
                     const topFillPath = fillPoints.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${getX(p.dist)} ${getY(p.ele)}`).join(' ');
                     const fillD = `M ${getX(climb.startDist)} ${height - vPadding} ${topFillPath.replace('M', 'L')} L ${getX(climb.endDist)} ${height - vPadding} Z`;
@@ -424,10 +427,13 @@
                         return chunkPoints.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${getX(p.dist)} ${getY(p.ele)}`).join(' ');
                     }).join(' ');
 
+                    const labelX = Math.min(width - 15, Math.max(15, getX((climb.startDist + climb.endDist) / 2)));
+                    const labelY = Math.max(16, getY(summitPoint.ele) - 14);
+
                     return {
                         fillD, lineD: topPathSegments, color: getScoreHexColor(climb.rawScore),
                         id: climb.id, key: climb.startDist + climb.endDist,
-                        numberCoords: { x: getX(startPoint.dist), y: getY(startPoint.ele) - 40, ele: startPoint.ele }
+                        numberCoords: { x: labelX, y: labelY, ele: summitPoint.ele }
                     };
                 }).filter(c => c !== null);
             }, [climbs, points, safeEleRange, safeTotalDistance, minEle, maxEle]); 
@@ -443,38 +449,53 @@
             const xLabels = [];
             for (let i = 1; i <= 4; i++) xLabels.push({ dist: distInterval * i, x: getX(distInterval * i) });
 
-            const gridColor = isDarkMode ? "#3A684A" : "#CBD5E1";
-            const mainLineColor = isDarkMode ? "#D49B35" : "#B84A22";
+            const gridColor = isDarkMode ? "#4E8762" : "#CBD5E1";
+            // Neutralize base elevation line so colored climbs stand out clearly
+            const mainLineColor = isDarkMode ? "#A3B8AA" : "#64748B";
             const textColor = isDarkMode ? "#F2F0EB" : "#1C3322";
 
             return (
                 <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full preserve-3d">
                     <defs>
                         <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                            <stop offset="0%" stopColor={mainLineColor} stopOpacity={isDarkMode ? "0.35" : "0.2"} />
-                            <stop offset="100%" stopColor={mainLineColor} stopOpacity="0.0" />
+                            <stop offset="0%" stopColor={mainLineColor} stopOpacity={isDarkMode ? "0.25" : "0.2"} />
+                            <stop offset="100%" stopColor={mainLineColor} stopOpacity="0.02" />
                         </linearGradient>
                     </defs>
                     <line x1={hPadding} y1={height - vPadding} x2={width - hPadding} y2={height - vPadding} stroke={gridColor} strokeWidth="1" />
                     <line x1={hPadding} y1={vPadding} x2={hPadding} y2={height - vPadding} stroke={gridColor} strokeWidth="1" />
 
                     {gridLines.map((line, i) => (
-                        <line key={i} x1={hPadding} y1={line.y} x2={width - hPadding} y2={line.y} stroke={gridColor} strokeWidth="0.5" strokeDasharray="4 4" />
+                        <line key={i} x1={hPadding} y1={line.y} x2={width - hPadding} y2={line.y} stroke={gridColor} strokeWidth="0.5" strokeDasharray="4 4" opacity="0.6" />
                     ))}
                     {xLabels.map((label, i) => (
-                        <line key={`x-${i}`} x1={label.x} y1={vPadding} x2={label.x} y2={height - vPadding} stroke={gridColor} strokeWidth="0.5" strokeDasharray="4 4" />
+                        <line key={`x-${i}`} x1={label.x} y1={vPadding} x2={label.x} y2={height - vPadding} stroke={gridColor} strokeWidth="0.5" strokeDasharray="4 4" opacity="0.6" />
                     ))}
 
-                    <path d={fillD} fill="url(#gradient)" opacity="0.6" />
-                    {climbData.map((c) => <path key={`fill-${c.key}`} d={c.fillD} fill={c.color} opacity={isDarkMode ? "0.4" : "0.25"} stroke="none" />)}
+                    {/* Base Elevation Fill */}
+                    <path d={fillD} fill="url(#gradient)" opacity="0.8" />
                     
+                    {/* Highlighted Climb Fills */}
+                    {climbData.map((c) => (
+                        <path key={`fill-${c.key}`} d={c.fillD} fill={c.color} opacity={isDarkMode ? "0.55" : "0.45"} stroke="none" />
+                    ))}
+                    
+                    {/* Base Elevation Line */}
                     <path d={pathD} stroke={mainLineColor} strokeWidth="2.0" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     
-                    {climbData.map((c) => <path key={`line-${c.key}`} d={c.lineD} stroke={c.color} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />)}
+                    {/* Highlighted Climb Top Strokes */}
                     {climbData.map((c) => (
-                        <text key={`num-${c.id}`} x={c.numberCoords.x} y={c.numberCoords.y} dx="-5" fill={c.color} fontSize="12" fontWeight="bold" textAnchor="middle" fontFamily="Oswald" className="drop-shadow-[0_1.2px_1.2px_rgba(28,51,34,0.9)] dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.9)]">
-                            {c.id}
-                        </text>
+                        <path key={`line-${c.key}`} d={c.lineD} stroke={c.color} strokeWidth="3.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    ))}
+
+                    {/* High-Contrast Climb Number Badges */}
+                    {climbData.map((c) => (
+                        <g key={`num-${c.id}`} transform={`translate(${c.numberCoords.x}, ${c.numberCoords.y})`}>
+                            <circle r="9" fill={isDarkMode ? "#112117" : "#FFFFFF"} stroke={c.color} strokeWidth="2" />
+                            <text y="3.5" fill={c.color} fontSize="10" fontWeight="bold" textAnchor="middle" fontFamily="Oswald">
+                                {c.id}
+                            </text>
+                        </g>
                     ))}
 
                     <text x={hPadding} y={height} fill={textColor} fontSize="10" dy="-5" fontFamily="Roboto">0km</text>
@@ -517,7 +538,7 @@
                         <div className="flex justify-between items-center p-5 border-b border-[#3A684A] bg-white dark:bg-[#24422D] sticky top-0 z-10 transition-colors">
                             <div>
                                 <h2 className="text-xl font-bold font-oswald text-[#1C3322] dark:text-[#F2F0EB] uppercase tracking-wide flex items-center gap-3">
-                                    <span className="bg-[#B84A22] text-[#F2F0EB] px-2 py-0.5 rounded text-lg">#{climb.id}</span>
+                                    <span className="px-2.5 py-0.5 rounded text-lg text-[#112117] font-bold" style={{ backgroundColor: getScoreHexColor(climb.rawScore) }}>#{climb.id}</span>
                                     Segment Breakdown
                                 </h2>
                                 <div className="text-[#3A684A] dark:text-[#F2F0EB]/80 text-sm mt-1 flex gap-4">
@@ -545,10 +566,14 @@
                                             <td className="px-4 py-2 font-bold">{i+1}</td>
                                             <td className="px-4 py-2 text-[#3A684A] dark:text-[#F2F0EB]/70">{seg.startDist.toFixed(2)}</td>
                                             <td className="px-4 py-2 text-[#3A684A] dark:text-[#F2F0EB]/70">{seg.endDist.toFixed(2)}</td>
-                                            <td className="px-4 py-2 font-bold" style={{ color: getGradientColor(seg.gradient) }}>{seg.gradient.toFixed(1)}%</td>
-                                            <td className="px-4 py-2">
-                                                <div className="w-full h-2 bg-[#E2DFD6] dark:bg-[#112117] rounded-full overflow-hidden">
-                                                    <div className="h-full rounded-full" style={{ width: `${Math.min(100, (seg.gradient / 15) * 100)}%`, backgroundColor: getGradientColor(seg.gradient) }}></div>
+                                            <td className="px-4 py-2 font-bold">
+                                                <span className="px-2 py-0.5 rounded bg-[#112117]/80 dark:bg-[#112117] font-mono text-xs" style={{ color: getGradientColor(seg.gradient) }}>
+                                                    {seg.gradient.toFixed(1)}%
+                                                </span>
+                                            </td>
+                                            <td className="px-4 py-2 w-1/3">
+                                                <div className="w-full h-2.5 bg-[#CBD5E1] dark:bg-[#112117] rounded-full overflow-hidden">
+                                                    <div className="h-full rounded-full" style={{ width: `${Math.max(5, Math.min(100, (seg.gradient / 15) * 100))}%`, backgroundColor: getGradientColor(seg.gradient) }}></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -564,6 +589,15 @@
         const RouteProfileModal = ({ profileData, onClose, onDownload, isDarkMode }) => {
             const [selectedClimb, setSelectedClimb] = useState(null);
             
+            const legendItems = [
+                { label: 'HC (>150)', color: '#E879F9' },
+                { label: 'Cat 1 (75-150)', color: '#EF4444' },
+                { label: 'Cat 2 (37-75)', color: '#F97316' },
+                { label: 'Cat 3 (18-37)', color: '#FACC15' },
+                { label: 'Cat 4 (10-18)', color: '#A3E635' },
+                { label: 'Minor (<10)', color: '#38BDF8' },
+            ];
+
             return (
                 <div className="fixed inset-0 z-50 bg-[#F2F0EB] dark:bg-[#1C3322] overflow-y-auto print:bg-white text-[#1C3322] dark:text-[#F2F0EB] font-roboto transition-colors">
                     <div className="max-w-6xl mx-auto space-y-6 p-4 md:p-8 pt-6">
@@ -613,9 +647,20 @@
 
                         <div className="bg-white dark:bg-[#24422D] rounded-sm p-4 md:p-6 border border-[#3A684A] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
                             <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none"><Mountain className="w-32 h-32 text-[#B84A22]" /></div>
-                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-[#1C3322] dark:text-[#F2F0EB] mb-4 relative z-10 print:text-black">
-                                <span className="w-2 h-6 bg-[#B84A22] inline-block"></span> Elevation Profile
-                            </h3>
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 relative z-10">
+                                <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-[#1C3322] dark:text-[#F2F0EB] print:text-black">
+                                    <span className="w-2 h-6 bg-[#B84A22] inline-block"></span> Elevation Profile
+                                </h3>
+                                {/* High Contrast Climb Category Color Legend */}
+                                <div className="flex flex-wrap items-center gap-3 text-xs font-oswald tracking-wider uppercase bg-[#F2F0EB] dark:bg-[#1C3322] px-3 py-1.5 rounded border border-[#3A684A]/50">
+                                    {legendItems.map((item, idx) => (
+                                        <div key={idx} className="flex items-center gap-1.5">
+                                            <span className="w-3 h-3 rounded-full inline-block shadow-sm" style={{ backgroundColor: item.color }}></span>
+                                            <span className="text-[#1C3322] dark:text-[#F2F0EB]/90">{item.label}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                             <div className="h-64 w-full relative z-10">
                                 <ElevationChart points={profileData.points} climbs={profileData.climbs} totalDistance={profileData.totalDistance} minEle={profileData.minEle} maxEle={profileData.maxEle} isDarkMode={isDarkMode} />
                             </div>
@@ -645,12 +690,16 @@
                                         ) : (
                                             profileData.climbs.map((climb, idx) => (
                                                 <tr key={idx} onClick={() => setSelectedClimb(climb)} className="hover:bg-[#E2DFD6]/60 dark:hover:bg-[#3A684A]/30 transition-colors group cursor-pointer print:text-black border-b border-[#3A684A]/40 last:border-0">
-                                                    <td className="px-6 py-3 font-bold text-[#B84A22] dark:text-[#D49B35] font-oswald">{climb.id}</td>
+                                                    <td className="px-6 py-3 font-bold font-oswald">
+                                                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs text-[#112117] font-bold" style={{ backgroundColor: getScoreHexColor(climb.rawScore) }}>
+                                                            {climb.id}
+                                                        </span>
+                                                    </td>
                                                     <td className="px-6 py-3 font-bold">{climb.distFromFinish.toFixed(1)} km</td>
                                                     <td className="px-6 py-3 font-medium">{climb.lengthKm.toFixed(2)} km</td>
                                                     <td className="px-6 py-3 text-[#3A684A] dark:text-[#F2F0EB]/90 font-medium">{climb.gradientAvg.toFixed(1)}%</td>
                                                     <td className="px-6 py-3">
-                                                        <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${climb.maxGradient > 12 ? 'bg-[#B84A22]/20 text-[#B84A22] dark:text-[#D49B35]' : climb.maxGradient > 8 ? 'bg-[#D49B35]/20 text-[#D49B35]' : 'bg-[#3A684A]/20 text-[#3A684A] dark:text-[#F2F0EB]'}`}>
+                                                        <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${climb.maxGradient >= 12 ? 'bg-fuchsia-500/20 text-fuchsia-800 dark:text-fuchsia-300' : climb.maxGradient >= 9 ? 'bg-red-500/20 text-red-700 dark:text-red-300' : climb.maxGradient >= 6 ? 'bg-orange-500/20 text-orange-700 dark:text-orange-300' : 'bg-lime-500/20 text-lime-800 dark:text-lime-300'}`}>
                                                             {climb.maxGradient.toFixed(1)}%
                                                         </span>
                                                     </td>
@@ -660,7 +709,7 @@
                                                         </span>
                                                     </td>
                                                     <td className="px-6 py-3">
-                                                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#E2DFD6] dark:bg-[#1C3322] border border-[#3A684A] text-[#1C3322] dark:text-[#F2F0EB] font-bold font-oswald text-xs">
+                                                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#E2DFD6] dark:bg-[#1C3322] border-2 font-bold font-oswald text-xs" style={{ borderColor: getScoreHexColor(climb.rawScore) }}>
                                                             {getClimbCategory(climb.rawScore) || '-'}
                                                         </span>
                                                     </td>
@@ -684,7 +733,7 @@
             const [sortConfig, setSortConfig] = useState({ key: 'upload_date', direction: 'desc' });
             const [searchTerm, setSearchTerm] = useState('');
             
-            // New state structure for Hierarchical Folders
+            // State structure for Hierarchical Folders
             const [folderTree, setFolderTree] = useState({});
             const [selectedPath, setSelectedPath] = useState([]);
 
@@ -796,7 +845,7 @@
                     const matchScore = (route.profile_score || 0) >= sMin && (route.profile_score || 0) <= sMax;
                     const matchType = selectedTypes.length === 0 || selectedTypes.includes(route.stage_type);
                     
-                    // New path matching: Checks if the file path begins exactly with the selected folder path
+                    // Path matching: Checks if the file path begins exactly with the selected folder path
                     const matchFolder = selectedPath.length === 0 || (route.file && route.file.startsWith(selectedPath.join('/') + '/'));
 
                     return matchName && matchDist && matchEle && matchScore && matchType && matchFolder;
@@ -990,9 +1039,9 @@
                                     </thead>
                                     <tbody className="text-[#1C3322] dark:text-[#F2F0EB]">
                                         {loading ? (
-                                            <tr><td colSpan="6" className="p-8 text-center text-[#B84A22] dark:text-[#D49B35] font-bold tracking-widest uppercase animate-pulse font-oswald">Loading Routes...</td></tr>
+                                            <tr><td colSpan="7" className="p-8 text-center text-[#B84A22] dark:text-[#D49B35] font-bold tracking-widest uppercase animate-pulse font-oswald">Loading Routes...</td></tr>
                                         ) : sortedRoutes.length === 0 ? (
-                                            <tr><td colSpan="6" className="p-8 text-center text-[#3A684A] dark:text-[#F2F0EB]/60 italic font-light">No routes match your filters.</td></tr>
+                                            <tr><td colSpan="7" className="p-8 text-center text-[#3A684A] dark:text-[#F2F0EB]/60 italic font-light">No routes match your filters.</td></tr>
                                         ) : (
                                             sortedRoutes.map((route, idx) => (
                                                 <tr key={idx} className="hover:bg-[#E2DFD6]/60 dark:hover:bg-[#3A684A]/30 border-b border-[#3A684A]/40 transition-colors group">
