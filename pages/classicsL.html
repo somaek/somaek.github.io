@@ -233,10 +233,16 @@
                                     <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
-                            <th data-sort="totalPoints" class="sortable-th py-3 px-3 text-right bg-rust hover:bg-rust-light text-mist font-bold cursor-pointer transition">
+                            <th data-sort="allRounderPoints" title="Sum of best single score in Sprint, Hills, and Climb (max 3 races)" class="sortable-th py-3 px-3 text-right cursor-pointer transition">
+                                <div class="inline-flex items-center justify-end gap-1">
+                                    <span>All Rounder</span>
+                                    <span class="sort-indicator text-[10px]">▼</span>
+                                </div>
+                            </th>
+                            <th data-sort="totalPoints" class="sortable-th py-3 px-3 text-right cursor-pointer hover:bg-pine-hover transition">
                                 <div class="inline-flex items-center justify-end gap-1">
                                     <span>Total Pts</span>
-                                    <span class="sort-indicator text-[10px]">▼</span>
+                                    <span class="sort-indicator text-[10px] text-chestnut opacity-60"></span>
                                 </div>
                             </th>
                             <th data-sort="sprintPoints" class="sortable-th py-3 px-3 text-right hidden sm:table-cell cursor-pointer hover:bg-pine-hover transition">
@@ -384,7 +390,7 @@
         const state = {
             allRows: [],            // Normalized race entry objects
             eventsByKey: new Map(), // EventKey -> Array of all race rows (human + bot)
-            ridersList: [],         // Filtered & aggregated riders sorted by Total Points
+            ridersList: [],         // Filtered & aggregated riders sorted by active column
             expandedRiderKeys: new Set(), // Currently expanded rider IDs in the table
 
             // Distinct values discovered in dataset
@@ -412,9 +418,9 @@
                 pageSize: 50
             },
 
-            // Active sort configuration for Standings Table
+            // Active sort configuration for Standings Table (All Rounder is default)
             sort: {
-                column: 'totalPoints',
+                column: 'allRounderPoints',
                 direction: 'desc' // 'asc' | 'desc'
             },
 
@@ -745,6 +751,10 @@
                         gender: r.gender,
                         ageBand: r.ageBand,
                         penGroup: r.penGroup,
+                        allRounderPoints: 0,
+                        bestSprint: 0,
+                        bestHills: 0,
+                        bestClimb: 0,
                         totalPoints: 0,
                         sprintPoints: 0,
                         hillsPoints: 0,
@@ -764,13 +774,19 @@
                 const rtLower = r.raceType.toLowerCase();
                 if (rtLower === 'sprint') {
                     rider.sprintPoints += r.points;
+                    if (r.points > rider.bestSprint) rider.bestSprint = r.points;
                 } else if (rtLower === 'hills' || rtLower === 'hill') {
                     rider.hillsPoints += r.points;
+                    if (r.points > rider.bestHills) rider.bestHills = r.points;
                 } else if (rtLower === 'climb' || rtLower === 'mountain') {
                     rider.climbPoints += r.points;
+                    if (r.points > rider.bestClimb) rider.bestClimb = r.points;
                 } else {
                     rider.otherPoints += r.points;
                 }
+
+                // All Rounder = sum of best single score from Sprint, Hills, and Climb (max 3 races)
+                rider.allRounderPoints = rider.bestSprint + rider.bestHills + rider.bestClimb;
 
                 rider.races.push(r);
             }
@@ -826,8 +842,11 @@
                     }
                 }
 
-                // Tie-breakers: Total Points descending, then Rider Name ascending
+                // Tie-breakers: All Rounder descending, Total Points descending, then Rider Name ascending
                 if (cmp === 0) {
+                    if (Math.abs(b.allRounderPoints - a.allRounderPoints) > 1e-6) {
+                        return b.allRounderPoints - a.allRounderPoints;
+                    }
                     if (Math.abs(b.totalPoints - a.totalPoints) > 1e-6) {
                         return b.totalPoints - a.totalPoints;
                     }
@@ -842,14 +861,23 @@
             headers.forEach(th => {
                 const col = th.getAttribute('data-sort');
                 const indicator = th.querySelector('.sort-indicator');
+                const isActive = col === state.sort.column;
+
+                // Toggle active header highlight styling
+                th.classList.toggle('bg-rust', isActive);
+                th.classList.toggle('hover:bg-rust-light', isActive);
+                th.classList.toggle('text-mist', isActive);
+                th.classList.toggle('font-bold', isActive);
+                th.classList.toggle('hover:bg-pine-hover', !isActive);
+
                 if (!indicator) return;
 
-                if (col === state.sort.column) {
+                if (isActive) {
                     indicator.textContent = state.sort.direction === 'asc' ? '▲' : '▼';
-                    indicator.classList.remove('opacity-60');
+                    indicator.classList.remove('opacity-60', 'text-chestnut');
                 } else {
                     indicator.textContent = '↕';
-                    indicator.classList.add('opacity-60');
+                    indicator.classList.add('opacity-60', 'text-chestnut');
                 }
             });
         }
@@ -886,7 +914,7 @@
             if (slice.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="9" class="py-12 px-4 text-center text-mist-muted font-mono">
+                        <td colspan="10" class="py-12 px-4 text-center text-mist-muted font-mono">
                             No riders match your current filter combination. Try clicking "Reset Filters".
                         </td>
                     </tr>
@@ -895,6 +923,7 @@
             }
 
             const rowsHtml = [];
+            const activeSortCol = state.sort.column;
 
             for (let i = 0; i < slice.length; i++) {
                 const rider = slice[i];
@@ -910,13 +939,13 @@
                         }"
                     >
                         <td class="py-3 pl-4 pr-2 text-center font-mono text-xs font-bold text-chestnut">${rank}</td>
-                        <td class="py-3 px-3">
+                        <td class="py-3 px-3 ${activeSortCol === 'name' ? 'bg-chestnut/10' : ''}">
                             <div class="flex items-center gap-2">
                                 <svg class="w-3.5 h-3.5 text-rust transition-transform duration-150 shrink-0 ${isExpanded ? 'rotate-90' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                                 </svg>
                                 <div>
-                                    <div class="font-semibold text-mist">
+                                    <div class="font-semibold ${activeSortCol === 'name' ? 'text-chestnut font-bold' : 'text-mist'}">
                                         ${escapeHtml(rider.name)}
                                     </div>
                                     <div class="text-xs font-mono text-mist-muted flex flex-wrap items-center gap-2 md:hidden">
@@ -928,25 +957,40 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="py-3 px-3 hidden md:table-cell text-mist-muted text-xs">
+                        <td class="py-3 px-3 hidden md:table-cell text-xs ${activeSortCol === 'team' ? 'font-bold text-chestnut bg-chestnut/10' : 'text-mist-muted'}">
                             ${rider.team ? escapeHtml(rider.team) : '<span class="text-mist-muted/30">—</span>'}
                         </td>
-                        <td class="py-3 px-3 text-center font-mono text-xs text-mist-muted">
+                        <td class="py-3 px-3 text-center font-mono text-xs ${activeSortCol === 'country' ? 'font-bold text-chestnut bg-chestnut/10' : 'text-mist-muted'}">
                             ${escapeHtml(rider.country || '—')}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono font-bold text-chestnut bg-chestnut/10">
+                        <td class="py-3 px-3 text-right font-mono ${activeSortCol === 'allRounderPoints' ? 'font-bold text-chestnut bg-chestnut/10' : 'font-semibold text-mist'}">
+                            ${formatPoints(rider.allRounderPoints)}
+                        </td>
+                        <td class="py-3 px-3 text-right font-mono ${activeSortCol === 'totalPoints' ? 'font-bold text-chestnut bg-chestnut/10' : 'font-semibold text-mist'}">
                             ${formatPoints(rider.totalPoints)}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.sprintPoints > 0 ? 'text-mist' : 'text-mist-muted/40'}">
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${
+                            activeSortCol === 'sprintPoints'
+                                ? 'font-bold text-chestnut bg-chestnut/10'
+                                : rider.sprintPoints > 0 ? 'text-mist' : 'text-mist-muted/40'
+                        }">
                             ${formatPoints(rider.sprintPoints)}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.hillsPoints > 0 ? 'text-mist' : 'text-mist-muted/40'}">
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${
+                            activeSortCol === 'hillsPoints'
+                                ? 'font-bold text-chestnut bg-chestnut/10'
+                                : rider.hillsPoints > 0 ? 'text-mist' : 'text-mist-muted/40'
+                        }">
                             ${formatPoints(rider.hillsPoints)}
                         </td>
-                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${rider.climbPoints > 0 ? 'text-mist' : 'text-mist-muted/40'}">
+                        <td class="py-3 px-3 text-right font-mono text-xs sm:table-cell hidden ${
+                            activeSortCol === 'climbPoints'
+                                ? 'font-bold text-chestnut bg-chestnut/10'
+                                : rider.climbPoints > 0 ? 'text-mist' : 'text-mist-muted/40'
+                        }">
                             ${formatPoints(rider.climbPoints)}
                         </td>
-                        <td class="py-3 pl-2 pr-4 text-center font-mono text-xs text-mist-muted">
+                        <td class="py-3 pl-2 pr-4 text-center font-mono text-xs ${activeSortCol === 'racesCount' ? 'font-bold text-chestnut bg-chestnut/10' : 'text-mist-muted'}">
                             ${rider.races.length}
                         </td>
                     </tr>
@@ -989,7 +1033,7 @@
 
                     rowsHtml.push(`
                         <tr class="bg-pine-dark/60">
-                            <td colspan="9" class="p-3 sm:p-4">
+                            <td colspan="10" class="p-3 sm:p-4">
                                 <div class="clean-card rounded overflow-hidden">
                                     <div class="overflow-x-auto">
                                         <table class="w-full text-left border-collapse text-xs sm:text-sm">
@@ -1185,7 +1229,7 @@
                 state.filters.raceType = 'ALL';
                 state.filters.week = 'ALL';
                 state.filters.search = '';
-                state.sort.column = 'totalPoints';
+                state.sort.column = 'allRounderPoints';
                 state.sort.direction = 'desc';
                 state.expandedRiderKeys.clear();
                 searchInput.value = '';
