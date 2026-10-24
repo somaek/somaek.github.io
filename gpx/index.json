@@ -1,5 +1,15 @@
 [
   {
+    "file": "Climbs/Chiang Mai Sunset Viewpoint.gpx",
+    "folder": "Climbs",
+    "name": "Chiang Mai Sunset Viewpoint",
+    "distance_km": 39.07,
+    "elevation_m": 1325.9,
+    "profile_score": 173.4,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-23T16:43:02.042000"
+  },
+  {
     "file": "Climbs/Sa Bassa Mallorca.gpx",
     "folder": "Climbs",
     "name": "Sa Bassa Mallorca",
@@ -1130,6 +1140,16 @@
     "upload_date": "2026-04-30T20:55:53.160000"
   },
   {
+    "file": "Miscellaneous/Heda Port to Nishiurakisho Loop.gpx",
+    "folder": "Miscellaneous",
+    "name": "Heda Port to Nishiurakisho Loop",
+    "distance_km": 46.03,
+    "elevation_m": 867.8,
+    "profile_score": 66.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-23T16:32:48.941000"
+  },
+  {
     "file": "Miscellaneous/Through Loreto Baja.gpx",
     "folder": "Miscellaneous",
     "name": "Through Loreto Baja",
@@ -1623,11 +1643,11 @@
     "file": "Miscellaneous/Heda Port to Nishiurakisho.gpx",
     "folder": "Miscellaneous",
     "name": "Heda Port to Nishiurakisho",
-    "distance_km": 23.05,
-    "elevation_m": 814.2,
-    "profile_score": 53.4,
+    "distance_km": 22.88,
+    "elevation_m": 435.6,
+    "profile_score": 38.2,
     "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-05-01T20:51:10.355000"
+    "upload_date": "2026-10-23T16:31:32.008000"
   },
   {
     "file": "Miscellaneous/Berryessa Res CA.gpx",
