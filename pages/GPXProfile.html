@@ -97,39 +97,32 @@
          */
 
         const getScoreHexColor = (score) => {
-          if (score >= 46) return '#991b1b'; // Red 800
-          if (score >= 41) return '#b91c1c'; // Red 700
-          if (score >= 36) return '#dc2626'; // Red 600
-          if (score >= 31) return '#ef4444'; // Red 500
-          if (score >= 26) return '#f87171'; // Red 400
-          if (score >= 21) return '#fb923c'; // Orange 400
-          if (score >= 16) return '#D49B35'; // Golden Chestnut
-          if (score >= 11) return '#eab308'; // Yellow 500
-          if (score >= 6) return '#84cc16';  // Lime 500
-          return '#4ade80'; // Green 400
+            if (score >= 150) return '#E879F9'; // Bright Magenta/Purple (HC)
+            if (score >= 75)  return '#EF4444'; // Vibrant Red (Cat 1)
+            if (score >= 37)  return '#F97316'; // Bright Orange (Cat 2)
+            if (score >= 18)  return '#FACC15'; // Vivid Yellow (Cat 3)
+            if (score >= 10)  return '#A3E635'; // Bright Lime (Cat 4)
+            return '#38BDF8';                   // Sky Blue (Uncategorized / Minor Climb)
         };
 
         const getGradientColor = (gradient) => {
-            if (gradient >= 12) return '#991b1b'; // Dark Red
-            if (gradient >= 10) return '#B84A22'; // Tuscan Rust
-            if (gradient >= 8) return '#d97706';  // Amber/Rust-Orange
-            if (gradient >= 5) return '#D49B35';  // Golden Chestnut
-            if (gradient >= 3) return '#84cc16';  // Lime
-            return '#4ade80'; // Green
+            if (gradient >= 12) return '#E879F9'; // Purple/Magenta (Extreme)
+            if (gradient >= 9)  return '#EF4444'; // Red (Very Steep)
+            if (gradient >= 6)  return '#F97316'; // Orange (Steep)
+            if (gradient >= 4)  return '#FACC15'; // Yellow (Moderate)
+            if (gradient >= 2)  return '#A3E635'; // Lime (Gentle)
+            return '#38BDF8';                     // Sky Blue (False Flat)
         };
 
         const getScoreClass = (score) => {
-            if (score >= 46) return 'text-red-300 print:text-red-800 bg-red-900/70';
-            if (score >= 41) return 'text-red-300 print:text-red-700 bg-red-900/60';
-            if (score >= 36) return 'text-red-300 print:text-red-600 bg-red-900/50';
-            if (score >= 31) return 'text-red-300 print:text-red-500 bg-red-900/40';
-            if (score >= 26) return 'text-red-300 print:text-red-400 bg-red-900/30';
-            if (score >= 21) return 'text-amber-300 print:text-orange-400 bg-amber-900/30';
-            if (score >= 16) return 'text-[#D49B35] print:text-amber-500 bg-[#D49B35]/20';
-            if (score >= 11) return 'text-yellow-300 print:text-yellow-400 bg-yellow-900/30';
-            if (score >= 6) return 'text-lime-300 print:text-lime-400 bg-lime-900/30';
-            return 'text-green-400 print:text-green-300 bg-green-900/30';
+            if (score >= 150) return 'text-fuchsia-300 print:text-fuchsia-800 bg-fuchsia-500/25 border border-fuchsia-500/40';
+            if (score >= 75)  return 'text-red-300 print:text-red-700 bg-red-500/25 border border-red-500/40';
+            if (score >= 37)  return 'text-orange-300 print:text-orange-700 bg-orange-500/25 border border-orange-500/40';
+            if (score >= 18)  return 'text-yellow-300 print:text-amber-700 bg-yellow-500/25 border border-yellow-500/40';
+            if (score >= 10)  return 'text-lime-300 print:text-lime-700 bg-lime-500/25 border border-lime-500/40';
+            return 'text-sky-300 print:text-sky-700 bg-sky-500/25 border border-sky-500/40';
         };
+
         const getClimbCategory = (score) => {
             if (score < 10) return null;
             if (score > 150) return 'HC';
@@ -320,7 +313,7 @@
                         <div className="flex justify-between items-center p-6 border-b border-[#B84A22]/30 bg-[#25422D]">
                             <div>
                                 <h2 className="text-2xl font-bold font-oswald text-[#F2F0EB] uppercase tracking-wide flex items-center gap-3">
-                                    <span className="bg-[#B84A22] text-[#F2F0EB] px-2.5 py-0.5 rounded-sm text-lg">#{climb.id}</span>
+                                    <span className="text-[#142418] px-2.5 py-0.5 rounded-sm text-lg font-bold" style={{ backgroundColor: getScoreHexColor(climb.rawScore) }}>#{climb.id}</span>
                                     {climb.name || 'Climb Analysis'}
                                 </h2>
                                 <div className="text-neutral-300 text-sm mt-1 flex gap-4">
@@ -688,6 +681,15 @@
           const fileInputRef = useRef(null);
 
           const [presetRoutes, setPresetRoutes] = useState([]);
+
+          const legendItems = [
+              { label: 'HC (>150)', color: '#E879F9' },
+              { label: 'Cat 1 (75-150)', color: '#EF4444' },
+              { label: 'Cat 2 (37-75)', color: '#F97316' },
+              { label: 'Cat 3 (18-37)', color: '#FACC15' },
+              { label: 'Cat 4 (10-18)', color: '#A3E635' },
+              { label: 'Minor (<10)', color: '#38BDF8' },
+          ];
 
           useEffect(() => {
               const fetchRoutes = async () => {
@@ -1390,7 +1392,7 @@
 
             const height = 250;
             const width = 800; 
-            const vPadding = 20; 
+            const vPadding = 35; // Increased top padding for floating badges
             const hPadding = 5;  
             const safeTotalDistance = totalDistance > 0 ? totalDistance : 1;
             
@@ -1414,13 +1416,6 @@
 
             const climbData = useMemo(() => {
               return climbs.map((climb, index) => {
-                const climbPoints = points.filter(p => p.dist >= climb.startDist && p.dist <= climb.endDist);
-
-                const startPoint = points.reduce((prev, curr) =>
-                  (Math.abs(curr.dist - climb.startDist) < Math.abs(prev.dist - climb.startDist) ? curr : prev),
-                  points[0] 
-                );
-
                 const topPathSegments = climb.chunks.map(chunk => {
                   const chunkPoints = points.filter(p => p.dist >= chunk.startDist && p.dist <= chunk.endDist);
                   if (chunkPoints.length < 2) return '';
@@ -1444,8 +1439,15 @@
                 `;
 
                 const color = getScoreHexColor(climb.rawScore);
-                const numberX = getX(startPoint.dist);
-                const numberY = getY(startPoint.ele) - 40; 
+                
+                // Calculate middle of the climb and place badge slightly above the peak elevation of this segment
+                const maxEleInClimb = fillPoints.length > 0 ? Math.max(...fillPoints.map(p => p.ele)) : 0;
+                const midDist = (climb.startDist + climb.endDist) / 2;
+                const numberX = getX(midDist);
+                const preferredY = getY(maxEleInClimb) - 22; // Float 22px above the peak
+                
+                // Ensure it doesn't clip through the top of the SVG view boundary (radius 9 + stroke)
+                const numberY = Math.max(preferredY, 15);
 
                 return {
                   fillD,
@@ -1453,7 +1455,7 @@
                   color,
                   id: climb.id,
                   key: climb.startDist + climb.endDist,
-                  numberCoords: { x: numberX, y: numberY, ele: startPoint.ele }
+                  numberCoords: { x: numberX, y: numberY, ele: maxEleInClimb }
                 };
               }).filter(c => c !== null);
             }, [climbs, points, safeEleRange, safeTotalDistance, minEle, maxEle]); 
@@ -1557,20 +1559,12 @@
                 ))}
 
                 {climbData.map((c) => (
-                  <text
-                    key={`num-${c.id}`}
-                    x={c.numberCoords.x}
-                    y={c.numberCoords.y}
-                    dx="-5"
-                    fill={c.color}
-                    fontSize="12"
-                    fontWeight="bold"
-                    textAnchor="middle"
-                    fontFamily="Oswald"
-                    className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] print:fill-black"
-                  >
-                    {c.id}
-                  </text>
+                    <g key={`num-${c.id}`} transform={`translate(${c.numberCoords.x}, ${c.numberCoords.y})`}>
+                        <circle r="9" fill="#142418" stroke={c.color} strokeWidth="2" className="print:fill-white" />
+                        <text y="3.5" fill={c.color} fontSize="10" fontWeight="bold" textAnchor="middle" fontFamily="Oswald" className="print:fill-black">
+                            {c.id}
+                        </text>
+                    </g>
                 ))}
 
                 <text x={hPadding} y={height} fill="#F2F0EB" opacity="0.7" fontSize="10" dy="-5" fontFamily="Roboto" className="print:fill-black">0{unitLabels.dist}</text>
@@ -1845,11 +1839,20 @@
                       <div className="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
                         <Mountain className="w-32 h-32 text-[#D49B35]" />
                       </div>
-                      <div className="flex justify-between items-center mb-6 relative z-10">
+                      <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4 relative z-10">
                         <h3 className="font-bold text-xl uppercase tracking-wide flex items-center gap-2 font-oswald text-[#F2F0EB] print:text-black">
                           <span className="w-2 h-8 bg-[#B84A22] inline-block mr-2"></span>
                           Elevation Profile
                         </h3>
+                        {/* High Contrast Climb Category Color Legend */}
+                        <div className="flex flex-wrap items-center gap-3 text-xs font-oswald tracking-wider uppercase bg-[#142418] px-3 py-1.5 rounded-sm border border-[#2e5237] print:hidden">
+                            {legendItems.map((item, idx) => (
+                                <div key={idx} className="flex items-center gap-1.5">
+                                    <span className="w-3 h-3 rounded-full inline-block shadow-sm" style={{ backgroundColor: item.color }}></span>
+                                    <span className="text-[#F2F0EB]/90">{item.label}</span>
+                                </div>
+                            ))}
+                        </div>
                       </div>
 
                       <div className="h-64 w-full relative z-10">
@@ -1888,7 +1891,7 @@
                                     <th className="px-6 py-4 border-b border-[#2e5237]">Length</th>
                                     <th className="px-6 py-4 border-b border-[#2e5237]">Avg %</th>
                                     <th className="px-6 py-4 border-b border-[#2e5237]">Max %</th>
-                                    <th className="px-6 py-4 border-b border-[#2e5237]">Raw Score</th>
+                                    <th className="px-6 py-4 border-b border-[#2e5237]">Score</th>
                                     <th className="px-6 py-4 border-b border-[#2e5237]">Category</th> 
                                     <th className="px-6 py-4 border-b border-[#2e5237] text-right w-24">Actions</th>
                                 </tr>
@@ -1903,8 +1906,10 @@
                                   onClick={() => setSelectedClimb(climb)}
                                   className="hover:bg-[#142418]/80 border-b border-[#2e5237]/50 last:border-0 transition-colors group cursor-pointer print:text-black"
                                 >
-                                  <td className="px-6 py-3 font-bold text-[#D49B35] font-oswald print:text-black">
-                                    {climb.id}
+                                  <td className="px-6 py-3 font-bold font-oswald print:text-black">
+                                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs text-[#142418] font-bold print:text-white" style={{ backgroundColor: getScoreHexColor(climb.rawScore) }}>
+                                        {climb.id}
+                                    </span>
                                   </td>
                                    {showClimbName && (
                                       <td className="px-6 py-3" onClick={e => e.stopPropagation()}>
@@ -1930,18 +1935,14 @@
                                     {climb.maxGradient.toFixed(1)}%
                                   </td>
                                   <td className="px-6 py-3 font-bold">
-                                    <span className={`px-2 py-1 rounded-sm text-xs font-oswald ${getScoreClass(climb.rawScore)}`}>
+                                    <span className={`px-2 py-1 rounded-sm text-xs font-oswald tracking-wider ${getScoreClass(climb.rawScore)}`}>
                                       {climb.rawScore.toFixed(1)}
                                     </span>
                                   </td>
                                   <td className="px-6 py-3 font-bold">
-                                    {getClimbCategory(climb.rawScore) ? (
-                                      <span className="px-2 py-0.5 bg-[#B84A22]/20 border border-[#B84A22]/50 text-[#F2F0EB] text-xs font-oswald rounded-sm">
-                                        Cat {getClimbCategory(climb.rawScore)}
-                                      </span>
-                                    ) : (
-                                      <span className="text-neutral-500 text-xs">-</span>
-                                    )}
+                                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#1C3322] border-2 font-bold font-oswald text-xs print:bg-white" style={{ borderColor: getScoreHexColor(climb.rawScore) }}>
+                                        {getClimbCategory(climb.rawScore) || '-'}
+                                    </span>
                                   </td>
                                   <td className="px-6 py-3 text-right" onClick={e => e.stopPropagation()}>
                                      {idx < displayData.climbs.length - 1 && (
