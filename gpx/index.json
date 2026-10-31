@@ -240,6 +240,16 @@
     "upload_date": "2026-08-11T19:38:14.122000"
   },
   {
+    "file": "Gravel Roads/Eupen Gravel.gpx",
+    "folder": "Gravel Roads",
+    "name": "Eupen Gravel",
+    "distance_km": 99.87,
+    "elevation_m": 1800.0,
+    "profile_score": 93.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-30T19:42:51.153000"
+  },
+  {
     "file": "Gravel Roads/Arsenal_Ride_CW.gpx",
     "folder": "Gravel Roads",
     "name": "Arsenal_Ride_CW",
@@ -268,6 +278,16 @@
     "profile_score": 0,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-05-18T17:20:27.099000"
+  },
+  {
+    "file": "Gravel Roads/Cl\u00e1sica Ja\u00e9n  Circuit.gpx",
+    "folder": "Gravel Roads",
+    "name": "Cl\u00e1sica Ja\u00e9n  Circuit",
+    "distance_km": 34.45,
+    "elevation_m": 493.0,
+    "profile_score": 27.4,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-30T15:45:29.052000"
   },
   {
     "file": "Gravel Roads/Grassroots Gravel - The Half 3 of 4.gpx",
@@ -398,6 +418,16 @@
     "profile_score": 8.0,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-05-07T23:40:22.183000"
+  },
+  {
+    "file": "Gravel Roads/Harentals Country Roads.gpx",
+    "folder": "Gravel Roads",
+    "name": "Harentals Country Roads",
+    "distance_km": 83.4,
+    "elevation_m": 213.8,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-31T02:31:38.981000"
   },
   {
     "file": "Gravel Roads/Rad Dirt Fest Long Loop.gpx",
@@ -2440,6 +2470,16 @@
     "upload_date": "2025-10-21T22:55:02"
   },
   {
+    "file": "Pro Bike Races/Tro Bro Leon.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Tro Bro Leon",
+    "distance_km": 74.23,
+    "elevation_m": 594.3,
+    "profile_score": 17.2,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-30T16:11:04.386000"
+  },
+  {
     "file": "Pro Bike Races/Giro Himledalen.gpx",
     "folder": "Pro Bike Races",
     "name": "Giro Himledalen",
@@ -4298,6 +4338,16 @@
     "profile_score": 36.1,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2025-10-10T18:08:01.104000"
+  },
+  {
+    "file": "Pro Bike Races/Vuelta Ciclista del Uruguay Femenina Stage 1 2026.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Vuelta Ciclista del Uruguay Femenina Stage 1 2026",
+    "distance_km": 84.91,
+    "elevation_m": 913.2,
+    "profile_score": 44.1,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-30T16:51:37.616000"
   },
   {
     "file": "Pro Bike Races/Allkin_Flanders_2nd_Half.gpx",
