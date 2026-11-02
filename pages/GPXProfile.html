@@ -1067,6 +1067,45 @@
                     return { points: pts, distance: totalDist };
                 };
 
+                // Support for the new JSON format (roads array & route array)
+                if (data.roads && data.route) {
+                    let allCoords = [];
+                    data.route.forEach(routeIdx => {
+                        const road = data.roads[routeIdx - 1]; // 1-based index based on JSON format
+                        if (road && road.pointsx10) {
+                            for (let i = 0; i < road.pointsx10.length; i += 3) {
+                                allCoords.push({
+                                    x: road.pointsx10[i] / 10,
+                                    y: road.pointsx10[i+1] / 10,
+                                    z: road.pointsx10[i+2] / 10
+                                });
+                            }
+                        }
+                    });
+
+                    if (allCoords.length > 0) {
+                        const result = processCoords(allCoords);
+                        const smoothedPoints = smoothElevation(result.points, 3);
+
+                        setBaseData({
+                            type: 'single',
+                            points: smoothedPoints,
+                            distance: result.distance
+                        });
+
+                        // Set out and back property if available in the route data
+                        if (data.outAndBack !== undefined) {
+                            setIsOutAndBack(data.outAndBack);
+                            setTargetDistance(data.outAndBack ? result.distance * 2 : result.distance);
+                        } else {
+                            setTargetDistance(result.distance);
+                        }
+
+                        if (data.name) setFileName(data.name);
+                        return; // Successfully parsed the new route JSON format, we can exit here
+                    }
+                }
+
                 if (data.lap && data.lap.coordinates && data.leadin && data.leadin.coordinates) {
                     const leadinData = processCoords(data.leadin.coordinates);
                     const lapData = processCoords(data.lap.coordinates);
