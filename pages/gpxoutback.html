@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPX Route Out and Back Alignment Tool</title>
+    <title>Route Out and Back Alignment Tool</title>
     
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,7 +15,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts for the historic, elegant aesthetic -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -39,7 +39,6 @@
             margin-bottom: 0.35rem; 
         }
         
-        /* Warm Earthy / Vintage Parchment Map Filter */
         .leaflet-layer,
         .leaflet-control-zoom-in,
         .leaflet-control-zoom-out,
@@ -47,7 +46,6 @@
             filter: sepia(28%) brightness(95%) contrast(95%) saturate(85%);
         }
 
-        /* Custom Range Slider Styling */
         input[type=range] {
             -webkit-appearance: none;
             background: transparent;
@@ -76,20 +74,10 @@
             border-radius: 2px;
         }
 
-        /* Custom subtle scrollbars for the sidebar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #16291B;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2C4C35;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #B84A22;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #16291B; }
+        ::-webkit-scrollbar-thumb { background: #2C4C35; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B84A22; }
     </style>
 </head>
 <body class="bg-[#1C3322] text-[#F2F0EB] h-screen flex flex-col md:flex-row overflow-hidden">
@@ -99,10 +87,10 @@
         <div class="p-8 pb-5 border-b border-[#2C4C35]/70 bg-[#172A1C]/50">
             <h1 class="text-3xl md:text-4xl font-bold italic flex items-start gap-3.5 text-[#F2F0EB] tracking-wide font-teko leading-tight">
                 <i data-lucide="activity" class="text-[#D49B35] w-8 h-8 shrink-0 mt-1"></i> 
-                <span>GPX Route Out and Back and Circuit Alignment Tool</span>
+                <span>Route Out and Back and Circuit Alignment Tool</span>
             </h1>
             <p class="text-[#F2F0EB]/70 text-[10px] font-semibold mt-3 uppercase tracking-[0.16em] leading-relaxed">
-                Aligns points in overlapping sections of a gpx course. Note: Junctions can sometimes get ugly. Recommend to upload via TPV Hub and edit individual points near junctions
+                Aligns points in overlapping sections of a course. Note: Junctions can sometimes get ugly. Recommend to upload via TPV Hub and edit individual points near junctions
             </p>
         </div>
 
@@ -113,9 +101,9 @@
                     <label class="flex flex-col items-center justify-center w-full h-32 border border-[#B84A22]/60 hover:border-[#D49B35] border-dashed rounded cursor-pointer bg-[#1C3322]/70 hover:bg-[#223D29] transition duration-300 group">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4 text-center">
                             <i data-lucide="upload-cloud" class="w-8 h-8 text-[#B84A22] group-hover:text-[#D49B35] transition-colors mb-2.5"></i>
-                            <p class="text-xs text-[#F2F0EB]/80 font-bold uppercase tracking-widest transition-colors" id="file-name-display">Upload GPX File</p>
+                            <p class="text-xs text-[#F2F0EB]/80 font-bold uppercase tracking-widest transition-colors" id="file-name-display">Upload GPX or JSON</p>
                         </div>
-                        <input id="gpx-upload" type="file" class="hidden" accept=".gpx" />
+                        <input id="route-upload" type="file" class="hidden" accept=".gpx,.json" />
                     </label>
                 </div>
             </div>
@@ -167,7 +155,7 @@
 
         <div class="p-6 border-t border-[#2C4C35] bg-[#16291B]">
             <button id="download-btn" disabled class="w-full flex items-center justify-center gap-2 bg-[#1C3322] text-[#F2F0EB]/30 border border-[#2C4C35] font-bold py-4 px-4 rounded uppercase tracking-widest cursor-not-allowed transition duration-300 text-xs">
-                <i data-lucide="download" class="w-4 h-4"></i> Download Fixed GPX
+                <i data-lucide="download" class="w-4 h-4"></i> Download Fixed Route
             </button>
         </div>
     </div>
@@ -199,7 +187,6 @@
             </div>
         </div>
 
-        <!-- Custom Notification Modal (Fallback for invalid GPX files) -->
         <div id="message-modal" class="hidden absolute top-6 left-1/2 -translate-x-1/2 z-[2000] bg-[#16291B] border border-[#B84A22] text-[#F2F0EB] px-6 py-4 rounded shadow-2xl flex items-center gap-4 max-w-md w-full">
             <i data-lucide="alert-triangle" class="w-6 h-6 text-[#B84A22] shrink-0"></i>
             <p id="message-modal-text" class="text-xs font-semibold tracking-wider uppercase flex-grow"></p>
@@ -208,21 +195,17 @@
     </div>
 
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // CARTO API Key Configuration
-        // Replace the placeholder string below with your actual CARTO API key
         const CARTO_API_KEY = "cb1_3swu_1_05bff878d7bd66607747e979";
 
-        // Map Initialization (Using CARTO tiles with optional API key authentication)
         const map = L.map('map').setView([0, 0], 2);
         const cartoKeyParam = (CARTO_API_KEY && CARTO_API_KEY !== "YOUR_CARTO_API_KEY_HERE") 
             ? `?key=${encodeURIComponent(CARTO_API_KEY)}` 
             : "";
 
         L.tileLayer(`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png${cartoKeyParam}`, {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
             maxZoom: 20
         }).addTo(map);
 
@@ -230,14 +213,15 @@
         let baseNewLayer = null;
         let snappedLayersGroup = L.featureGroup();
 
-        // State
+        // State Variables
+        let currentFileType = 'gpx';
+        let originalJsonData = null;
         let rawXMLDoc = null;
         let originalPoints = [];
         let fixedPoints = [];
-        let finalXMLString = "";
+        let finalFileString = "";
         let originalFileName = "route.gpx";
 
-        // Utility: Haversine distance in meters
         function haversine(lat1, lon1, lat2, lon2) {
             const R = 6371e3;
             const p1 = lat1 * Math.PI/180;
@@ -251,8 +235,7 @@
             return R * c;
         }
 
-        // DOM Elements
-        const fileUpload = document.getElementById('gpx-upload');
+        const fileUpload = document.getElementById('route-upload');
         const fileNameDisplay = document.getElementById('file-name-display');
         const minDistSlider = document.getElementById('min-dist');
         const snapDistSlider = document.getElementById('snap-dist');
@@ -274,18 +257,10 @@
             messageModal.classList.add('hidden');
         });
 
-        // Event Listeners for UI
-        minDistSlider.addEventListener('input', (e) => {
-            valMinDist.textContent = e.target.value + 'm';
-        });
-        
-        snapDistSlider.addEventListener('input', (e) => {
-            valSnapDist.textContent = e.target.value + 'm';
-        });
-
-        // Reprocess when sliders change
-        minDistSlider.addEventListener('change', processGPXData);
-        snapDistSlider.addEventListener('change', processGPXData);
+        minDistSlider.addEventListener('input', (e) => { valMinDist.textContent = e.target.value + 'm'; });
+        snapDistSlider.addEventListener('input', (e) => { valSnapDist.textContent = e.target.value + 'm'; });
+        minDistSlider.addEventListener('change', processData);
+        snapDistSlider.addEventListener('change', processData);
 
         fileUpload.addEventListener('change', (e) => {
             const file = e.target.files[0];
@@ -298,18 +273,29 @@
             
             const reader = new FileReader();
             reader.onload = (event) => {
-                parseGPX(event.target.result);
+                const content = event.target.result;
+                if (file.name.toLowerCase().endsWith('.json')) {
+                    currentFileType = 'json';
+                    parseJSON(content);
+                } else {
+                    currentFileType = 'gpx';
+                    parseGPX(content);
+                }
             };
             reader.readAsText(file);
         });
 
         downloadBtn.addEventListener('click', () => {
-            if (!finalXMLString) return;
-            const blob = new Blob([finalXMLString], { type: 'application/gpx+xml' });
+            if (!finalFileString) return;
+            const isJson = currentFileType === 'json';
+            const mimeType = isJson ? 'application/json' : 'application/gpx+xml';
+            const ext = isJson ? '.json' : '.gpx';
+            
+            const blob = new Blob([finalFileString], { type: mimeType });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = originalFileName.replace('.gpx', '_fixed.gpx');
+            a.download = originalFileName.replace(new RegExp(`\\${ext}$`, 'i'), `_fixed${ext}`);
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -321,6 +307,70 @@
             else loadingOverlay.classList.add('hidden');
         }
 
+        function parseJSON(jsonString) {
+            showLoading(true);
+            setTimeout(() => {
+                try {
+                    originalJsonData = JSON.parse(jsonString);
+                    originalPoints = [];
+                    let cumDist = 0;
+                    let prevPt = null;
+
+                    const latMid = originalJsonData.latMid || 0;
+                    const lonMid = originalJsonData.lonMid || 0;
+                    
+                    const metersPerLat = 111320;
+                    const metersPerLon = 111320 * Math.cos(latMid * Math.PI / 180);
+
+                    const roads = originalJsonData.roads;
+                    const route = originalJsonData.route;
+
+                    route.forEach(roadIdx => {
+                        const road = roads[roadIdx - 1]; 
+                        if (!road) return;
+                        
+                        const pts = road.pointsx10;
+                        for (let i = 0; i < pts.length; i += 3) {
+                            const x = pts[i] / 10;
+                            const y = pts[i+1] / 10;
+                            const z = pts[i+2] / 10;
+
+                            const lat = latMid + (z / metersPerLat);
+                            const lon = lonMid + (x / metersPerLon);
+
+                            if (prevPt) {
+                                cumDist += haversine(prevPt.lat, prevPt.lon, lat, lon);
+                            }
+
+                            const p = {
+                                lat, lon, 
+                                ele: y,
+                                x, y, z,
+                                roadType: road.roadType,
+                                roadWidthStart: road.roadWidthStart,
+                                roadWidthEnd: road.roadWidthEnd,
+                                time: null,
+                                dist: cumDist
+                            };
+                            originalPoints.push(p);
+                            prevPt = p;
+                        }
+                    });
+
+                    if (originalPoints.length === 0) {
+                        showNotification("No track points found in this JSON file.");
+                        showLoading(false);
+                        return;
+                    }
+
+                    processData();
+                } catch (e) {
+                    showNotification("Error parsing JSON file. Ensure it is valid road data.");
+                    showLoading(false);
+                }
+            }, 100);
+        }
+
         function parseGPX(xmlString) {
             showLoading(true);
             
@@ -328,7 +378,6 @@
                 const parser = new DOMParser();
                 rawXMLDoc = parser.parseFromString(xmlString, "text/xml");
                 
-                // Extract points
                 const trkpts = rawXMLDoc.querySelectorAll('trkpt');
                 originalPoints = [];
                 let cumDist = 0;
@@ -357,25 +406,24 @@
                     return;
                 }
 
-                processGPXData();
+                processData();
             }, 100);
         }
 
-        function processGPXData() {
+        function processData() {
             if (originalPoints.length === 0) return;
             showLoading(true);
 
             setTimeout(() => {
                 const minLoopDist = parseFloat(minDistSlider.value);
                 const snapDist = parseFloat(snapDistSlider.value);
-                const maxJumpDist = 200; // max allowable canonical distance jump to interpolate
+                const maxJumpDist = 200; 
 
                 let canonicalPoints = [];
                 fixedPoints = [];
                 let last_matched_k = null;
                 let snappedCount = 0;
 
-                // Optimization boundary
                 const snapDistDeg = (snapDist / 111000) * 1.5; 
 
                 for (let i = 0; i < originalPoints.length; i++) {
@@ -383,11 +431,9 @@
                     let best_match = null;
                     let candidates = [];
 
-                    // 1. Find overlapping points from earlier in the canonical path
                     for (let j = 0; j < canonicalPoints.length; j++) {
                         let c = canonicalPoints[j];
                         if (p.dist - c.routeDist > minLoopDist) {
-                            // Fast bounding box check
                             if (Math.abs(p.lat - c.lat) > snapDistDeg || Math.abs(p.lon - c.lon) > snapDistDeg) continue;
                             
                             let sDist = haversine(p.lat, p.lon, c.lat, c.lon);
@@ -397,7 +443,6 @@
                         }
                     }
 
-                    // 2. Select best match (preferring continuity)
                     if (candidates.length > 0) {
                         if (last_matched_k !== null) {
                             let localCandidates = candidates.filter(cand =>
@@ -415,7 +460,6 @@
 
                     let new_points_to_output = [];
 
-                    // 3. Output Generation Logic
                     if (best_match) {
                         snappedCount++;
                         let k = best_match.index;
@@ -426,27 +470,31 @@
                             if (k !== last_matched_k) {
                                 let dist_jump = Math.abs(canonicalPoints[k].routeDist - canonicalPoints[last_matched_k].routeDist);
                                 if (dist_jump < maxJumpDist) {
-                                    // Fill in the exact canonical sequence between the last match and current match
                                     let step = k > last_matched_k ? 1 : -1;
                                     for (let m = last_matched_k + step; m !== k + step; m += step) {
                                         new_points_to_output.push(canonicalPoints[m]);
                                     }
                                 } else {
-                                    // Discontinuity, just snap without filling
                                     new_points_to_output.push(canonicalPoints[k]);
                                 }
                             }
                         }
                         last_matched_k = k;
                     } else {
-                        // New path discovered
-                        let cp = { lat: p.lat, lon: p.lon, ele: p.ele, index: canonicalPoints.length, routeDist: p.dist };
+                        let cp = { 
+                            lat: p.lat, lon: p.lon, ele: p.ele, 
+                            x: p.x, y: p.y, z: p.z,
+                            roadType: p.roadType,
+                            roadWidthStart: p.roadWidthStart,
+                            roadWidthEnd: p.roadWidthEnd,
+                            index: canonicalPoints.length, 
+                            routeDist: p.dist 
+                        };
                         canonicalPoints.push(cp);
                         new_points_to_output.push(cp);
                         last_matched_k = null;
                     }
 
-                    // 4. Time Interpolation
                     if (new_points_to_output.length > 0) {
                         let t_end = p.time;
                         let t_start = fixedPoints.length > 0 ? fixedPoints[fixedPoints.length - 1].time : t_end;
@@ -478,23 +526,24 @@
                 }
 
                 updateMapAndUI(snappedCount);
-                buildXML();
+                buildOutput();
             }, 50);
         }
 
         function updateMapAndUI(snappedCount) {
-            // Update Stats
             statsPanel.classList.remove('hidden');
             document.getElementById('stat-orig').textContent = originalPoints.length;
             document.getElementById('stat-fixed').textContent = fixedPoints.length;
             document.getElementById('stat-snapped').textContent = snappedCount;
 
-            // Enable Download with Tuscan Rust primary accent and Golden Chestnut hover glow
+            const btnText = currentFileType === 'json' ? "Download Fixed JSON" : "Download Fixed GPX";
+            downloadBtn.innerHTML = `<i data-lucide="download" class="w-4 h-4"></i> ${btnText}`;
+            lucide.createIcons();
+
             downloadBtn.classList.remove('bg-[#1C3322]', 'text-[#F2F0EB]/30', 'border-[#2C4C35]', 'cursor-not-allowed');
             downloadBtn.classList.add('bg-[#B84A22]', 'text-[#F2F0EB]', 'border-[#D49B35]/50', 'hover:bg-[#9E3D1A]', 'hover:border-[#D49B35]', 'shadow-[0_4px_20px_rgba(184,74,34,0.4)]');
             downloadBtn.disabled = false;
 
-            // Clear old layers
             if (originalLayer) map.removeLayer(originalLayer);
             if (baseNewLayer) map.removeLayer(baseNewLayer);
             snappedLayersGroup.clearLayers();
@@ -502,13 +551,9 @@
             const origCoords = originalPoints.map(p => [p.lat, p.lon]);
             const newCoords = fixedPoints.map(p => [p.lat, p.lon]);
 
-            // Draw original path in Tuscan Rust / Burnt Sienna (#B84A22)
             originalLayer = L.polyline(origCoords, { color: '#B84A22', weight: 4, opacity: 0.85 }).addTo(map);
-
-            // Draw the complete fixed path as a base in Deep Forest Pine (#1C3322) for contrast on light map
             baseNewLayer = L.polyline(newCoords, { color: '#1C3322', weight: 2.5, opacity: 0.85 }).addTo(map);
 
-            // Build and draw only the snapped sections in Golden Chestnut (#D49B35)
             let snappedSegments = [];
             let currentSegment = [];
 
@@ -522,9 +567,7 @@
                     currentSegment = [];
                 }
             });
-            if (currentSegment.length > 1) {
-                snappedSegments.push(currentSegment);
-            }
+            if (currentSegment.length > 1) snappedSegments.push(currentSegment);
 
             snappedSegments.forEach(seg => {
                 const poly = L.polyline(seg, { color: '#D49B35', weight: 4, opacity: 1.0 });
@@ -537,12 +580,85 @@
             showLoading(false);
         }
 
+        function buildOutput() {
+            if (currentFileType === 'json') {
+                buildJSON();
+            } else {
+                buildXML();
+            }
+        }
+
+        function buildJSON() {
+            let outRoads = [];
+            let outRoute = [];
+            let currentRoad = null;
+            let currentRoadIdx = 0;
+            let prevPoint = null;
+
+            fixedPoints.forEach(p => {
+                let rType = p.roadType !== undefined ? p.roadType : 0;
+                let rWStart = p.roadWidthStart;
+                let rWEnd = p.roadWidthEnd;
+
+                let isNewSegment = false;
+                
+                // Compare accurately against undefined instead of assuming null
+                if (!currentRoad) {
+                    isNewSegment = true;
+                } else if (currentRoad.roadType !== rType || currentRoad.roadWidthStart !== rWStart || currentRoad.roadWidthEnd !== rWEnd) {
+                    isNewSegment = true;
+                }
+
+                if (isNewSegment) {
+                    currentRoad = { roadType: rType, pointsx10: [] };
+                    if (rWStart !== undefined) currentRoad.roadWidthStart = rWStart;
+                    if (rWEnd !== undefined) currentRoad.roadWidthEnd = rWEnd;
+                    
+                    // Mesh Continuity: Push the last point of the previous section to overlap the start of this section
+                    if (prevPoint) {
+                        currentRoad.pointsx10.push(Math.round(prevPoint.x * 10), Math.round(prevPoint.y * 10), Math.round(prevPoint.z * 10));
+                    }
+                    
+                    outRoads.push(currentRoad);
+                    currentRoadIdx++;
+                    outRoute.push(currentRoadIdx);
+                }
+                
+                const px = Math.round(p.x * 10);
+                const py = Math.round(p.y * 10);
+                const pz = Math.round(p.z * 10);
+
+                // Check for duplicate intersection boundaries to prevent zero-length coordinates
+                const len = currentRoad.pointsx10.length;
+                if (len >= 3) {
+                    const lastX = currentRoad.pointsx10[len - 3];
+                    const lastY = currentRoad.pointsx10[len - 2];
+                    const lastZ = currentRoad.pointsx10[len - 1];
+                    if (lastX === px && lastY === py && lastZ === pz) {
+                        prevPoint = p;
+                        return; // Skip redundant coordinate
+                    }
+                }
+                
+                currentRoad.pointsx10.push(px, py, pz);
+                prevPoint = p;
+            });
+
+            const finalJson = {
+                ...originalJsonData,
+                roads: outRoads,
+                route: outRoute
+            };
+
+            finalFileString = JSON.stringify(finalJson);
+        }
+
         function buildXML() {
             const ns = "http://www.topografix.com/GPX/1/1";
             const doc = document.implementation.createDocument(ns, "gpx", null);
             const gpx = doc.documentElement;
             gpx.setAttribute("version", "1.1");
-            gpx.setAttribute("creator", "GPX Route Fixer (Virtual Cycling)");
+            gpx.setAttribute("creator", "GPX Route Fixer");
 
             const trk = doc.createElementNS(ns, "trk");
             const name = doc.createElementNS(ns, "name");
@@ -575,7 +691,7 @@
             gpx.appendChild(trk);
 
             const serializer = new XMLSerializer();
-            finalXMLString = '<?xml version="1.0" encoding="UTF-8"?>\n' + serializer.serializeToString(doc);
+            finalFileString = '<?xml version="1.0" encoding="UTF-8"?>\n' + serializer.serializeToString(doc);
         }
     </script>
 </body>
