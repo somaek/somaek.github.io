@@ -54,7 +54,6 @@
         ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
 
-        /* Fix Leaflet map z-indexing when inside modals */
         .leaflet-container {
             z-index: 10;
         }
@@ -93,6 +92,7 @@
         const Loader = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`animate-spin ${props.className}`}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>;
         const Sun = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>;
         const Moon = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>;
+        const Layers = (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg>;
 
         const haversineDistance = (lat1, lon1, lat2, lon2) => {
             const R = 6371;
@@ -127,27 +127,24 @@
             return 0;
         };
 
-        // High-contrast, distinct color scale for climbs against dark forest green & light backgrounds
         const getScoreHexColor = (score) => {
-            if (score >= 150) return '#E879F9'; // Bright Magenta/Purple (HC)
-            if (score >= 75)  return '#EF4444'; // Vibrant Red (Cat 1)
-            if (score >= 37)  return '#F97316'; // Bright Orange (Cat 2)
-            if (score >= 18)  return '#FACC15'; // Vivid Yellow (Cat 3)
-            if (score >= 10)  return '#A3E635'; // Bright Lime (Cat 4)
-            return '#38BDF8';                   // Sky Blue (Uncategorized / Minor Climb)
+            if (score >= 150) return '#E879F9'; 
+            if (score >= 75)  return '#EF4444'; 
+            if (score >= 37)  return '#F97316'; 
+            if (score >= 18)  return '#FACC15'; 
+            if (score >= 10)  return '#A3E635'; 
+            return '#38BDF8';                   
         };
 
-        // High-contrast gradient colors for segment breakdown
         const getGradientColor = (gradient) => {
-            if (gradient >= 12) return '#E879F9'; // Purple/Magenta (Extreme)
-            if (gradient >= 9)  return '#EF4444'; // Red (Very Steep)
-            if (gradient >= 6)  return '#F97316'; // Orange (Steep)
-            if (gradient >= 4)  return '#FACC15'; // Yellow (Moderate)
-            if (gradient >= 2)  return '#A3E635'; // Lime (Gentle)
-            return '#38BDF8';                     // Sky Blue (False Flat)
+            if (gradient >= 12) return '#E879F9'; 
+            if (gradient >= 9)  return '#EF4444'; 
+            if (gradient >= 6)  return '#F97316'; 
+            if (gradient >= 4)  return '#FACC15'; 
+            if (gradient >= 2)  return '#A3E635'; 
+            return '#38BDF8';                     
         };
 
-        // Matching Tailwind badge classes for climb scores in tables
         const getScoreClass = (score) => {
             if (score >= 150) return 'text-fuchsia-800 dark:text-fuchsia-300 print:text-fuchsia-800 bg-fuchsia-500/15 dark:bg-fuchsia-500/25 border border-fuchsia-500/40';
             if (score >= 75)  return 'text-red-700 dark:text-red-300 print:text-red-700 bg-red-500/15 dark:bg-red-500/25 border border-red-500/40';
@@ -166,21 +163,14 @@
             return '4';
         };
 
-        const analyzeGPXText = (gpxText, minScoreThreshold = 2.0) => {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(gpxText, 'text/xml');
-            const trkpts = xmlDoc.getElementsByTagName('trkpt');
-            if (trkpts.length === 0) throw new Error("No track points found in GPX");
+        const getSurfaceColor = (roadType) => {
+            if (roadType === 1) return '#D49B35'; // Gravel/Dirt
+            if (roadType === 2) return '#64748B'; // Cobbles
+            return '#B84A22'; // Paved
+        };
 
-            let rawPoints = [];
-            for (let i = 0; i < trkpts.length; i++) {
-                const p = trkpts[i];
-                const lat = parseFloat(p.getAttribute('lat'));
-                const lon = parseFloat(p.getAttribute('lon'));
-                const ele = parseFloat(p.getElementsByTagName('ele')[0]?.textContent || 0);
-                rawPoints.push({ lat, lon, ele });
-            }
-
+        // Shared Core Processing for both GPX and JSON formats
+        const processPointsData = (rawPoints, minScoreThreshold = 2.0) => {
             let totalDist = 0;
             let pointsWithDist = rawPoints.map((p, i) => {
                 if (i > 0) totalDist += haversineDistance(rawPoints[i - 1].lat, rawPoints[i - 1].lon, p.lat, p.lon);
@@ -276,6 +266,68 @@
             };
         };
 
+        const analyzeGPXText = (gpxText, minScoreThreshold = 2.0) => {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(gpxText, 'text/xml');
+            const trkpts = xmlDoc.getElementsByTagName('trkpt');
+            if (trkpts.length === 0) throw new Error("No track points found in GPX");
+
+            let rawPoints = [];
+            for (let i = 0; i < trkpts.length; i++) {
+                const p = trkpts[i];
+                const lat = parseFloat(p.getAttribute('lat'));
+                const lon = parseFloat(p.getAttribute('lon'));
+                const ele = parseFloat(p.getElementsByTagName('ele')[0]?.textContent || 0);
+                rawPoints.push({ lat, lon, ele });
+            }
+            return processPointsData(rawPoints, minScoreThreshold);
+        };
+
+        const analyzeJSONText = (jsonText, minScoreThreshold = 2.0) => {
+            const data = JSON.parse(jsonText);
+            const latMid = data.latMid;
+            const lonMid = data.lonMid;
+            let rawPoints = [];
+
+            // Approximate conversion from meters to degrees based on latitude midpoint
+            const latPerMeter = 1 / 111111;
+            const lonPerMeter = 1 / (111111 * Math.cos(latMid * Math.PI / 180));
+
+            const routeSequence = data.route || Array.from({length: data.roads.length}, (_, i) => i + 1);
+
+            routeSequence.forEach(roadIdx => {
+                const road = data.roads[roadIdx - 1]; // Route arrays are typically 1-indexed
+                if (!road || !road.pointsx10) return;
+
+                const pts = road.pointsx10;
+                for (let i = 0; i < pts.length; i += 3) {
+                    const x = pts[i] / 10;
+                    const y = pts[i + 1] / 10;
+                    const ele = pts[i + 2] / 10;
+
+                    const lat = latMid + (y * latPerMeter);
+                    const lon = lonMid + (x * lonPerMeter);
+                    
+                    rawPoints.push({ lat, lon, ele, roadType: road.roadType });
+                }
+            });
+
+            // Clean up exact coordinate overlaps commonly created between JSON segments
+            let uniquePoints = [];
+            for (let i = 0; i < rawPoints.length; i++) {
+                if (i > 0) {
+                    const prev = rawPoints[i - 1];
+                    const curr = rawPoints[i];
+                    if (Math.abs(prev.lat - curr.lat) < 1e-6 && Math.abs(prev.lon - curr.lon) < 1e-6) {
+                        continue;
+                    }
+                }
+                uniquePoints.push(rawPoints[i]);
+            }
+
+            return processPointsData(uniquePoints, minScoreThreshold);
+        };
+
         const StatCard = ({ title, value, icon, highlight }) => {
             const baseIconClass = highlight ? `text-[#D49B35] dark:text-[#D49B35]` : 'text-[#3A684A] dark:text-[#F2F0EB]/70';
             const clonedIcon = React.cloneElement(icon, { className: `w-5 h-5 ${baseIconClass} print:text-black` });
@@ -303,18 +355,16 @@
 
                 if (!mapInstance.current) {
                     const standardMap = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_3swu_1_05bff878d7bd66607747e979', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                        attribution: '&copy; OpenStreetMap contributors',
                         maxZoom: 20
                     });
                     
                     const satelliteMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+                        attribution: 'Tiles &copy; Esri',
                         maxZoom: 18
                     });
 
-                    mapInstance.current = L.map(mapRef.current, {
-                        layers: [standardMap] 
-                    });
+                    mapInstance.current = L.map(mapRef.current, { layers: [standardMap] });
 
                     L.control.layers({
                         "Normal Map": standardMap,
@@ -330,15 +380,33 @@
                     }
                 });
 
-                const latlngs = points.map(p => [p.lat, p.lon]);
-                
-                const polyline = L.polyline(latlngs, {
-                    color: '#B84A22', 
-                    weight: 5, 
-                    opacity: 0.9,
-                    lineCap: 'round',
-                    lineJoin: 'round'
-                }).addTo(map);
+                // Group points by surface type to render multi-colored segments
+                let currentSurface = points[0]?.roadType || 0;
+                let currentSegment = [];
+                let mapBounds = L.latLngBounds();
+
+                points.forEach((p, i) => {
+                    const coord = [p.lat, p.lon];
+                    currentSegment.push(coord);
+                    mapBounds.extend(coord);
+                    
+                    if (p.roadType !== undefined && p.roadType !== currentSurface) {
+                        L.polyline(currentSegment, {
+                            color: getSurfaceColor(currentSurface), 
+                            weight: 5, opacity: 0.9, lineCap: 'round', lineJoin: 'round'
+                        }).addTo(map);
+                        
+                        currentSurface = p.roadType;
+                        currentSegment = [coord]; // Ensure continuous connection
+                    }
+                });
+
+                if (currentSegment.length > 1) {
+                    L.polyline(currentSegment, {
+                        color: getSurfaceColor(currentSurface), 
+                        weight: 5, opacity: 0.9, lineCap: 'round', lineJoin: 'round'
+                    }).addTo(map);
+                }
 
                 const startIcon = L.divIcon({
                     html: `
@@ -376,10 +444,10 @@
                     iconAnchor: [6, 28]
                 });
 
-                if (latlngs.length > 0) {
-                    L.marker(latlngs[0], {icon: startIcon}).addTo(map);
-                    L.marker(latlngs[latlngs.length - 1], {icon: finishIcon}).addTo(map);
-                    map.fitBounds(polyline.getBounds(), { padding: [40, 40] });
+                if (points.length > 0) {
+                    L.marker([points[0].lat, points[0].lon], {icon: startIcon}).addTo(map);
+                    L.marker([points[points.length-1].lat, points[points.length-1].lon], {icon: finishIcon}).addTo(map);
+                    map.fitBounds(mapBounds, { padding: [40, 40] });
                 }
 
                 setTimeout(() => map.invalidateSize(), 150);
@@ -402,7 +470,7 @@
 
             const height = 250; const width = 800; const vPadding = 24; const hPadding = 5;  
             const safeTotalDistance = totalDistance > 0 ? totalDistance : 1;
-            const MIN_RANGE = 400; // Metric
+            const MIN_RANGE = 400; 
             const effectiveMaxEle = (maxEle - minEle) < MIN_RANGE ? minEle + MIN_RANGE : maxEle;
             const safeEleRange = effectiveMaxEle - minEle > 0 ? effectiveMaxEle - minEle : 1;
 
@@ -450,7 +518,6 @@
             for (let i = 1; i <= 4; i++) xLabels.push({ dist: distInterval * i, x: getX(distInterval * i) });
 
             const gridColor = isDarkMode ? "#4E8762" : "#CBD5E1";
-            // Neutralize base elevation line so colored climbs stand out clearly
             const mainLineColor = isDarkMode ? "#A3B8AA" : "#64748B";
             const textColor = isDarkMode ? "#F2F0EB" : "#1C3322";
 
@@ -472,23 +539,18 @@
                         <line key={`x-${i}`} x1={label.x} y1={vPadding} x2={label.x} y2={height - vPadding} stroke={gridColor} strokeWidth="0.5" strokeDasharray="4 4" opacity="0.6" />
                     ))}
 
-                    {/* Base Elevation Fill */}
                     <path d={fillD} fill="url(#gradient)" opacity="0.8" />
                     
-                    {/* Highlighted Climb Fills */}
                     {climbData.map((c) => (
                         <path key={`fill-${c.key}`} d={c.fillD} fill={c.color} opacity={isDarkMode ? "0.55" : "0.45"} stroke="none" />
                     ))}
                     
-                    {/* Base Elevation Line */}
                     <path d={pathD} stroke={mainLineColor} strokeWidth="2.0" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     
-                    {/* Highlighted Climb Top Strokes */}
                     {climbData.map((c) => (
                         <path key={`line-${c.key}`} d={c.lineD} stroke={c.color} strokeWidth="3.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     ))}
 
-                    {/* High-Contrast Climb Number Badges */}
                     {climbData.map((c) => (
                         <g key={`num-${c.id}`} transform={`translate(${c.numberCoords.x}, ${c.numberCoords.y})`}>
                             <circle r="9" fill={isDarkMode ? "#112117" : "#FFFFFF"} stroke={c.color} strokeWidth="2" />
@@ -610,21 +672,26 @@
                                 <div>
                                     <h1 className="text-2xl md:text-3xl font-bold tracking-wide uppercase text-[#1C3322] dark:text-[#F2F0EB] font-oswald flex flex-col md:flex-row md:items-center gap-2">
                                         {profileData.name}
+                                        {profileData.file && profileData.file.endsWith('.json') && (
+                                            <span className="ml-0 md:ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest bg-emerald-500/20 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300 border border-emerald-500/40" title="TrainingPeaks Virtual Mixed Surface">
+                                                <Layers className="w-3 h-3" /> TPV JSON
+                                            </span>
+                                        )}
                                         {profileData.folder && (
                                             <span className="text-sm bg-[#E2DFD6] dark:bg-[#24422D] text-[#3A684A] dark:text-[#F2F0EB]/90 px-2 py-0.5 rounded border border-[#3A684A] flex items-center w-fit gap-1"><FolderIcon className="w-3 h-3"/> {profileData.folder}</span>
                                         )}
                                     </h1>
-                                    <p className="text-[#B84A22] dark:text-[#D49B35] text-xs tracking-widest uppercase font-oswald mt-1">GPX PROFILE ANALYSIS</p>
+                                    <p className="text-[#B84A22] dark:text-[#D49B35] text-xs tracking-widest uppercase font-oswald mt-1">PROFILE ANALYSIS</p>
                                 </div>
                             </div>
                             <div>
                                 <button 
                                     onClick={onDownload}
                                     className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#24422D] hover:bg-[#B84A22] text-[#1C3322] dark:text-[#F2F0EB] hover:text-white font-oswald tracking-widest uppercase text-sm border border-[#3A684A] hover:border-[#B84A22] rounded transition-all shadow-md cursor-pointer"
-                                    title="Download GPX"
+                                    title="Download File"
                                 >
                                     <Download className="w-4 h-4" />
-                                    <span className="hidden md:inline">Download GPX</span>
+                                    <span className="hidden md:inline">Download</span>
                                 </button>
                             </div>
                         </div>
@@ -637,9 +704,20 @@
                         </div>
 
                         <div className="bg-white dark:bg-[#24422D] rounded-sm p-4 md:p-6 border border-[#3A684A] shadow-xl overflow-hidden print:bg-white print:border-black relative transition-colors">
-                            <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-[#1C3322] dark:text-[#F2F0EB] mb-4 relative z-10 print:text-black">
-                                <span className="w-2 h-6 bg-[#B84A22] inline-block"></span> Route Map
-                            </h3>
+                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 relative z-10 gap-4">
+                                <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-[#1C3322] dark:text-[#F2F0EB] print:text-black">
+                                    <span className="w-2 h-6 bg-[#B84A22] inline-block"></span> Route Map
+                                </h3>
+                                
+                                {profileData.file && profileData.file.endsWith('.json') && (
+                                    <div className="flex flex-wrap items-center gap-3 text-xs font-oswald tracking-wider uppercase bg-[#F2F0EB] dark:bg-[#1C3322] px-3 py-1.5 rounded border border-[#3A684A]/50">
+                                        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full inline-block bg-[#B84A22]"></span> Asphalt</span>
+                                        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full inline-block bg-[#D49B35]"></span> Gravel</span>
+                                        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full inline-block bg-[#64748B]"></span> Cobbles</span>
+                                    </div>
+                                )}
+                            </div>
+                            
                             <div className="h-64 md:h-96 w-full relative z-10">
                                 <RouteMap points={profileData.points} />
                             </div>
@@ -651,7 +729,6 @@
                                 <h3 className="font-bold text-lg uppercase tracking-wide flex items-center gap-2 font-oswald text-[#1C3322] dark:text-[#F2F0EB] print:text-black">
                                     <span className="w-2 h-6 bg-[#B84A22] inline-block"></span> Elevation Profile
                                 </h3>
-                                {/* High Contrast Climb Category Color Legend */}
                                 <div className="flex flex-wrap items-center gap-3 text-xs font-oswald tracking-wider uppercase bg-[#F2F0EB] dark:bg-[#1C3322] px-3 py-1.5 rounded border border-[#3A684A]/50">
                                     {legendItems.map((item, idx) => (
                                         <div key={idx} className="flex items-center gap-1.5">
@@ -733,7 +810,6 @@
             const [sortConfig, setSortConfig] = useState({ key: 'upload_date', direction: 'desc' });
             const [searchTerm, setSearchTerm] = useState('');
             
-            // State structure for Hierarchical Folders
             const [folderTree, setFolderTree] = useState({});
             const [selectedPath, setSelectedPath] = useState([]);
 
@@ -766,10 +842,9 @@
                         data.forEach(r => {
                             if(r.stage_type) types.add(r.stage_type);
                             
-                            // Build the folder hierarchy tree directly from the file path
                             if (r.file) {
                                 const parts = r.file.split('/');
-                                parts.pop(); // Remove the filename piece to just have the folders
+                                parts.pop(); 
                                 
                                 let currentLevel = tree;
                                 parts.forEach(part => {
@@ -799,7 +874,8 @@
                     .then(blob => {
                         const blobUrl = window.URL.createObjectURL(blob);
                         const a = document.createElement('a');
-                        a.href = blobUrl; a.download = `${routeName}.gpx`; 
+                        const ext = fileName.endsWith('.json') ? '.json' : '.gpx';
+                        a.href = blobUrl; a.download = `${routeName}${ext}`; 
                         document.body.appendChild(a); a.click(); a.remove();
                         window.URL.revokeObjectURL(blobUrl);
                     })
@@ -812,9 +888,16 @@
                 try {
                     const rawUrl = `https://raw.githubusercontent.com/somaek/somaek.github.io/refs/heads/main/gpx/${route.file}`;
                     const res = await fetch(rawUrl);
-                    if (!res.ok) throw new Error("Could not fetch GPX file.");
+                    if (!res.ok) throw new Error("Could not fetch file.");
                     const text = await res.text();
-                    const analyzedData = analyzeGPXText(text);
+                    
+                    let analyzedData;
+                    if (route.file && route.file.endsWith('.json')) {
+                        analyzedData = analyzeJSONText(text);
+                    } else {
+                        analyzedData = analyzeGPXText(text);
+                    }
+                    
                     setActiveProfile({ ...route, ...analyzedData });
                 } catch (err) {
                     console.error("Profile Analysis Failed:", err);
@@ -845,7 +928,6 @@
                     const matchScore = (route.profile_score || 0) >= sMin && (route.profile_score || 0) <= sMax;
                     const matchType = selectedTypes.length === 0 || selectedTypes.includes(route.stage_type);
                     
-                    // Path matching: Checks if the file path begins exactly with the selected folder path
                     const matchFolder = selectedPath.length === 0 || (route.file && route.file.startsWith(selectedPath.join('/') + '/'));
 
                     return matchName && matchDist && matchEle && matchScore && matchType && matchFolder;
@@ -870,7 +952,6 @@
                 const rows = [];
                 let currentLevel = folderTree;
 
-                // Helper to create a single row of folder pills
                 const createRow = (levelNodes, levelIndex, parentPath) => {
                     const nodeNames = Object.keys(levelNodes).sort();
                     if (nodeNames.length === 0) return null;
@@ -910,10 +991,8 @@
                     );
                 };
 
-                // Always push the top/root level folders
                 rows.push(createRow(currentLevel, 0, []));
 
-                // Loop through the selected path and build sub-rows incrementally
                 for (let i = 0; i < selectedPath.length; i++) {
                     const selected = selectedPath[i];
                     if (currentLevel[selected]) {
@@ -950,7 +1029,7 @@
                             <Activity className="w-8 h-8 text-[#B84A22] dark:text-[#D49B35]" />
                             <div className="flex-1">
                                 <h1 className="text-3xl font-bold tracking-wide uppercase text-[#1C3322] dark:text-[#F2F0EB] font-oswald">Route Database</h1>
-                                <p className="text-[#3A684A] dark:text-[#F2F0EB]/70 text-sm tracking-widest uppercase font-oswald mt-1">VIRTUAL CYCLING GPX INDEX</p>
+                                <p className="text-[#3A684A] dark:text-[#F2F0EB]/70 text-sm tracking-widest uppercase font-oswald mt-1">VIRTUAL CYCLING INDEX</p>
                             </div>
                             
                             <button
@@ -964,13 +1043,11 @@
 
                         <div className="bg-white dark:bg-[#24422D] p-6 rounded-sm border border-[#3A684A] shadow-lg space-y-6 transition-colors">
                             
-                            {/* Search Full Width */}
                             <div className="flex gap-4 items-center bg-[#F2F0EB] dark:bg-[#1C3322] p-2 rounded border border-[#3A684A] focus-within:border-[#B84A22] dark:focus-within:border-[#D49B35] transition-colors">
                                 <Search className="text-[#B84A22] dark:text-[#D49B35] w-6 h-6 ml-2 shrink-0" />
                                 <input type="text" placeholder="Search routes by name..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-transparent text-[#1C3322] dark:text-[#F2F0EB] p-2 outline-none font-oswald tracking-wide text-lg placeholder-[#3A684A] dark:placeholder-[#F2F0EB]/40" />
                             </div>
 
-                            {/* Hierarchical Collections Section */}
                             <div className="bg-[#F2F0EB] dark:bg-[#1C3322] p-4 rounded border border-[#3A684A] transition-colors">
                                 <label className="text-xs font-bold text-[#B84A22] dark:text-[#D49B35] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">
                                     <FolderIcon className="w-4 h-4" /> Collections
@@ -978,7 +1055,6 @@
                                 {renderFolderTree()}
                             </div>
 
-                            {/* Filters Row */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="bg-[#F2F0EB] dark:bg-[#1C3322] p-4 rounded border border-[#3A684A] transition-colors">
                                    <label className="text-xs font-bold text-[#B84A22] dark:text-[#D49B35] uppercase font-oswald tracking-widest flex items-center gap-2 mb-3">Distance (km)</label>
@@ -1019,7 +1095,6 @@
                             </div>
                         </div>
 
-                        {/* Results Table Section */}
                         <div className="bg-white dark:bg-[#24422D] rounded-sm overflow-hidden border border-[#3A684A] shadow-lg transition-colors">
                             <div className="p-4 bg-[#F2F0EB] dark:bg-[#1C3322] border-b border-[#3A684A] flex justify-between items-center transition-colors">
                                 <h2 className="text-lg font-bold font-oswald uppercase tracking-wider text-[#1C3322] dark:text-[#F2F0EB]">Results <span className="text-[#B84A22] dark:text-[#D49B35] ml-2">({sortedRoutes.length})</span></h2>
@@ -1046,7 +1121,14 @@
                                             sortedRoutes.map((route, idx) => (
                                                 <tr key={idx} className="hover:bg-[#E2DFD6]/60 dark:hover:bg-[#3A684A]/30 border-b border-[#3A684A]/40 transition-colors group">
                                                     <td className="px-6 py-4">
-                                                        <div className="font-bold text-[#1C3322] dark:text-[#F2F0EB] text-base">{route.name}</div>
+                                                        <div className="font-bold text-[#1C3322] dark:text-[#F2F0EB] text-base flex items-center">
+                                                            {route.name}
+                                                            {route.file && route.file.endsWith('.json') && (
+                                                                <span className="ml-2 hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest bg-emerald-500/20 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-300 border border-emerald-500/40" title="TrainingPeaks Virtual Mixed Surface">
+                                                                    <Layers className="w-3 h-3" /> TPV
+                                                                </span>
+                                                            )}
+                                                        </div>
                                                         {route.folder && <div className="text-sm text-[#3A684A] dark:text-[#F2F0EB]/70 font-normal mt-1 flex items-center gap-1"><FolderIcon className="w-3 h-3" /> {route.folder}</div>}
                                                     </td>
                                                     <td className="px-6 py-4 text-[#3A684A] dark:text-[#F2F0EB]/70 font-medium whitespace-nowrap">
@@ -1074,7 +1156,7 @@
                                                             <button 
                                                                 onClick={(e) => handleDownload(e, route.file, route.name)}
                                                                 className="inline-flex p-2 bg-[#F2F0EB] dark:bg-[#1C3322] hover:bg-[#B84A22] text-[#3A684A] dark:text-[#F2F0EB]/80 hover:text-white border border-[#3A684A] hover:border-[#B84A22] rounded transition-all shadow-md cursor-pointer"
-                                                                title="Download GPX"
+                                                                title="Download File"
                                                             >
                                                                 <Download className="w-4 h-4" />
                                                             </button>
