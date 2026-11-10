@@ -169,7 +169,6 @@
             return '#B84A22'; // Paved
         };
 
-        // Shared Core Processing for both GPX and JSON formats
         const processPointsData = (rawPoints, minScoreThreshold = 2.0) => {
             let totalDist = 0;
             let pointsWithDist = rawPoints.map((p, i) => {
@@ -285,34 +284,33 @@
 
         const analyzeJSONText = (jsonText, minScoreThreshold = 2.0) => {
             const data = JSON.parse(jsonText);
-            const latMid = data.latMid;
-            const lonMid = data.lonMid;
+            const latMid = data.latMid || 0;
+            const lonMid = data.lonMid || 0;
             let rawPoints = [];
 
-            // Approximate conversion from meters to degrees based on latitude midpoint
-            const latPerMeter = 1 / 111111;
-            const lonPerMeter = 1 / (111111 * Math.cos(latMid * Math.PI / 180));
+            const metersPerLat = 111320;
+            const metersPerLon = 111320 * Math.cos(latMid * Math.PI / 180);
 
             const routeSequence = data.route || Array.from({length: data.roads.length}, (_, i) => i + 1);
 
             routeSequence.forEach(roadIdx => {
-                const road = data.roads[roadIdx - 1]; // Route arrays are typically 1-indexed
+                const road = data.roads[roadIdx - 1]; 
                 if (!road || !road.pointsx10) return;
 
                 const pts = road.pointsx10;
                 for (let i = 0; i < pts.length; i += 3) {
                     const x = pts[i] / 10;
                     const y = pts[i + 1] / 10;
-                    const ele = pts[i + 2] / 10;
+                    const z = pts[i + 2] / 10;
 
-                    const lat = latMid + (y * latPerMeter);
-                    const lon = lonMid + (x * lonPerMeter);
+                    const lat = latMid + (z / metersPerLat);
+                    const lon = lonMid + (x / metersPerLon);
+                    const ele = y;
                     
                     rawPoints.push({ lat, lon, ele, roadType: road.roadType });
                 }
             });
 
-            // Clean up exact coordinate overlaps commonly created between JSON segments
             let uniquePoints = [];
             for (let i = 0; i < rawPoints.length; i++) {
                 if (i > 0) {
@@ -380,7 +378,6 @@
                     }
                 });
 
-                // Group points by surface type to render multi-colored segments
                 let currentSurface = points[0]?.roadType || 0;
                 let currentSegment = [];
                 let mapBounds = L.latLngBounds();
@@ -397,7 +394,7 @@
                         }).addTo(map);
                         
                         currentSurface = p.roadType;
-                        currentSegment = [coord]; // Ensure continuous connection
+                        currentSegment = [coord];
                     }
                 });
 
