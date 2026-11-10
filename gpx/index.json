@@ -455,7 +455,7 @@
     "name": "SBT Red Course TPV",
     "distance_km": 70.91,
     "elevation_m": 889.2,
-    "profile_score": 34.6,
+    "profile_score": 34.1,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-07-18T22:20:47.713000"
   },
@@ -1155,7 +1155,7 @@
     "name": "Cyprus_Climb",
     "distance_km": 54.95,
     "elevation_m": 1357.9,
-    "profile_score": 138.8,
+    "profile_score": 134.3,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-03-17T17:44:12.549000"
   },
@@ -1505,7 +1505,7 @@
     "name": "Skyline Drive Shenandoah National Park Virginia",
     "distance_km": 168.33,
     "elevation_m": 2749.5,
-    "profile_score": 93.0,
+    "profile_score": 89.7,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-09-08T20:06:28.200000"
   },
@@ -1835,7 +1835,7 @@
     "name": "Chungju Lake Road",
     "distance_km": 36.5,
     "elevation_m": 535.3,
-    "profile_score": 37.0,
+    "profile_score": 35.6,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-09-10T18:21:04.925000"
   },
@@ -2235,7 +2235,7 @@
     "name": "Atacama High Altiplano Chile",
     "distance_km": 92.82,
     "elevation_m": 2748.6,
-    "profile_score": 179.7,
+    "profile_score": 179.3,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-09-11T17:54:20.589000"
   },
@@ -2390,6 +2390,106 @@
     "upload_date": "2026-09-10T23:45:46"
   },
   {
+    "file": "Island JSON Files/Figure Of Eight.json",
+    "folder": "Island JSON Files",
+    "name": "Figure Of Eight",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:29:35.121000"
+  },
+  {
+    "file": "Island JSON Files/Base Camps.json",
+    "folder": "Island JSON Files",
+    "name": "Base Camps",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:00:54.639000"
+  },
+  {
+    "file": "Island JSON Files/Flat Eight.json",
+    "folder": "Island JSON Files",
+    "name": "Flat Eight",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:42:34.924000"
+  },
+  {
+    "file": "Island JSON Files/Fast Finish.json",
+    "folder": "Island JSON Files",
+    "name": "Fast Finish",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:26:19.436000"
+  },
+  {
+    "file": "Island JSON Files/Parry Vlo-Bae Lite.json",
+    "folder": "Island JSON Files",
+    "name": "Parry Vlo-Bae Lite",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:59:51.387000"
+  },
+  {
+    "file": "Island JSON Files/Ice Switchbacks.json",
+    "folder": "Island JSON Files",
+    "name": "Ice Switchbacks",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:52:46.197000"
+  },
+  {
+    "file": "Island JSON Files/Northern Hill Climb Lap.json",
+    "folder": "Island JSON Files",
+    "name": "Northern Hill Climb Lap",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:58:10.938000"
+  },
+  {
+    "file": "Island JSON Files/Right-Hand Wall Hug.json",
+    "folder": "Island JSON Files",
+    "name": "Right-Hand Wall Hug",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:29:04.723000"
+  },
+  {
+    "file": "Island JSON Files/Three Peaks.json",
+    "folder": "Island JSON Files",
+    "name": "Three Peaks",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:01:02.317000"
+  },
+  {
+    "file": "Island JSON Files/Drome to Dome.json",
+    "folder": "Island JSON Files",
+    "name": "Drome to Dome",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:42:55.970000"
+  },
+  {
     "file": "Island JSON Files/World Route - Michaelgate Lincoln .gpx",
     "folder": "Island JSON Files",
     "name": "World Route - Michaelgate Lincoln ",
@@ -2398,6 +2498,716 @@
     "profile_score": 12.4,
     "stage_type": "Hilly, uphill finish",
     "upload_date": "2026-02-04T15:39:48.138000"
+  },
+  {
+    "file": "Island JSON Files/Northern Hill Climb.json",
+    "folder": "Island JSON Files",
+    "name": "Northern Hill Climb",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:43:51.225000"
+  },
+  {
+    "file": "Island JSON Files/False Flat.json",
+    "folder": "Island JSON Files",
+    "name": "False Flat",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:52:24.918000"
+  },
+  {
+    "file": "Island JSON Files/Lagoona Seeker.json",
+    "folder": "Island JSON Files",
+    "name": "Lagoona Seeker",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:29:12.559000"
+  },
+  {
+    "file": "Island JSON Files/Drome to Dome Direct Lap.json",
+    "folder": "Island JSON Files",
+    "name": "Drome to Dome Direct Lap",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:58:33.227000"
+  },
+  {
+    "file": "Island JSON Files/Short Sharp Shock Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Short Sharp Shock Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:30:46.059000"
+  },
+  {
+    "file": "Island JSON Files/Reindeer Games Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Reindeer Games Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-14T18:40:54.453000"
+  },
+  {
+    "file": "Island JSON Files/Let It Flow Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Let It Flow Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-14T18:41:30.404000"
+  },
+  {
+    "file": "Island JSON Files/Little Loops.json",
+    "folder": "Island JSON Files",
+    "name": "Little Loops",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:44:11.760000"
+  },
+  {
+    "file": "Island JSON Files/Coastal Loop.json",
+    "folder": "Island JSON Files",
+    "name": "Coastal Loop",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:33:57.574000"
+  },
+  {
+    "file": "Island JSON Files/Mountain Top View.json",
+    "folder": "Island JSON Files",
+    "name": "Mountain Top View",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:44:02.994000"
+  },
+  {
+    "file": "Island JSON Files/Loop the Loop.json",
+    "folder": "Island JSON Files",
+    "name": "Loop the Loop",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:42:17.358000"
+  },
+  {
+    "file": "Island JSON Files/Climber's Pride.json",
+    "folder": "Island JSON Files",
+    "name": "Climber's Pride",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:53:20.950000"
+  },
+  {
+    "file": "Island JSON Files/Upper Climb.json",
+    "folder": "Island JSON Files",
+    "name": "Upper Climb",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:53:48.388000"
+  },
+  {
+    "file": "Island JSON Files/Figure Of Sixteen.json",
+    "folder": "Island JSON Files",
+    "name": "Figure Of Sixteen",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:29:55.743000"
+  },
+  {
+    "file": "Island JSON Files/Ice Circuit.json",
+    "folder": "Island JSON Files",
+    "name": "Ice Circuit",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:52:10.711000"
+  },
+  {
+    "file": "Island JSON Files/A Hilly Day Out.json",
+    "folder": "Island JSON Files",
+    "name": "A Hilly Day Out",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:52:36.516000"
+  },
+  {
+    "file": "Island JSON Files/Coast And Roast Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Coast And Roast Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:31:03.977000"
+  },
+  {
+    "file": "Island JSON Files/Reindeer Games.json",
+    "folder": "Island JSON Files",
+    "name": "Reindeer Games",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-14T18:40:37.947000"
+  },
+  {
+    "file": "Island JSON Files/Short Sharp Shock.json",
+    "folder": "Island JSON Files",
+    "name": "Short Sharp Shock",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:30:05.327000"
+  },
+  {
+    "file": "Island JSON Files/Two Lake Loop.json",
+    "folder": "Island JSON Files",
+    "name": "Two Lake Loop",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:31:09.364000"
+  },
+  {
+    "file": "Island JSON Files/South Lake Loop Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "South Lake Loop Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:41:18.972000"
+  },
+  {
+    "file": "Island JSON Files/All Around The Watertower.json",
+    "folder": "Island JSON Files",
+    "name": "All Around The Watertower",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-14T18:41:41.233000"
+  },
+  {
+    "file": "Island JSON Files/North Lake Loop Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "North Lake Loop Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:40:56.812000"
+  },
+  {
+    "file": "Island JSON Files/Climber's Sprint.json",
+    "folder": "Island JSON Files",
+    "name": "Climber's Sprint",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:53:57.717000"
+  },
+  {
+    "file": "Island JSON Files/Lagoona Seeker Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Lagoona Seeker Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-15T17:44:40.551000"
+  },
+  {
+    "file": "Island JSON Files/Coastal Loop Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Coastal Loop Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:34:25.820000"
+  },
+  {
+    "file": "Island JSON Files/Phone Home.json",
+    "folder": "Island JSON Files",
+    "name": "Phone Home",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:31:22.426000"
+  },
+  {
+    "file": "Island JSON Files/Crossover Circuit.json",
+    "folder": "Island JSON Files",
+    "name": "Crossover Circuit",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:41:39.694000"
+  },
+  {
+    "file": "Island JSON Files/Phone Home Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Phone Home Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:31:29.657000"
+  },
+  {
+    "file": "Island JSON Files/Straight Up.json",
+    "folder": "Island JSON Files",
+    "name": "Straight Up",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:53:29.020000"
+  },
+  {
+    "file": "Island JSON Files/Swings and Roundabouts.json",
+    "folder": "Island JSON Files",
+    "name": "Swings and Roundabouts",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:33:23.738000"
+  },
+  {
+    "file": "Island JSON Files/Parry Vlo-Bae Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Parry Vlo-Bae Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:00:02.973000"
+  },
+  {
+    "file": "Island JSON Files/Coast And Roast.json",
+    "folder": "Island JSON Files",
+    "name": "Coast And Roast",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:30:54.639000"
+  },
+  {
+    "file": "Island JSON Files/Easy Hill Climb.json",
+    "folder": "Island JSON Files",
+    "name": "Easy Hill Climb",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:56:31.754000"
+  },
+  {
+    "file": "Island JSON Files/Island Coasts Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Island Coasts Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-15T17:45:07.448000"
+  },
+  {
+    "file": "Island JSON Files/Two Legs Bad.json",
+    "folder": "Island JSON Files",
+    "name": "Two Legs Bad",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:31:11.992000"
+  },
+  {
+    "file": "Island JSON Files/Easy Hill Climb Lap.json",
+    "folder": "Island JSON Files",
+    "name": "Easy Hill Climb Lap",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:23:09.125000"
+  },
+  {
+    "file": "Island JSON Files/Marathon.json",
+    "folder": "Island JSON Files",
+    "name": "Marathon",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:55:36.310000"
+  },
+  {
+    "file": "Island JSON Files/Mid Loops East.json",
+    "folder": "Island JSON Files",
+    "name": "Mid Loops East",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:56:21.803000"
+  },
+  {
+    "file": "Island JSON Files/Drome to Dome Direct.json",
+    "folder": "Island JSON Files",
+    "name": "Drome to Dome Direct",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:58:20.455000"
+  },
+  {
+    "file": "Island JSON Files/Let It Flow.json",
+    "folder": "Island JSON Files",
+    "name": "Let It Flow",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-14T18:41:17.134000"
+  },
+  {
+    "file": "Island JSON Files/Forest Velodrome.json",
+    "folder": "Island JSON Files",
+    "name": "Forest Velodrome",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:41:56.674000"
+  },
+  {
+    "file": "Island JSON Files/Mid Loops West.json",
+    "folder": "Island JSON Files",
+    "name": "Mid Loops West",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:56:10.007000"
+  },
+  {
+    "file": "Island JSON Files/Climber's Delight.json",
+    "folder": "Island JSON Files",
+    "name": "Climber's Delight",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:00:23.660000"
+  },
+  {
+    "file": "Island JSON Files/Left-Hand Wall Hug.json",
+    "folder": "Island JSON Files",
+    "name": "Left-Hand Wall Hug",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:28:55.376000"
+  },
+  {
+    "file": "Island JSON Files/Big Loop.json",
+    "folder": "Island JSON Files",
+    "name": "Big Loop",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:29:28.206000"
+  },
+  {
+    "file": "Island JSON Files/A Bit Of Everything Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "A Bit Of Everything Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:28:43.957000"
+  },
+  {
+    "file": "Island JSON Files/Ice Switchbacks Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Ice Switchbacks Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:52:58.456000"
+  },
+  {
+    "file": "Island JSON Files/Parry Vlo-Bae.json",
+    "folder": "Island JSON Files",
+    "name": "Parry Vlo-Bae",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:42:06.233000"
+  },
+  {
+    "file": "Island JSON Files/A Bit Of Everything.json",
+    "folder": "Island JSON Files",
+    "name": "A Bit Of Everything",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:26:27.929000"
+  },
+  {
+    "file": "Island JSON Files/Base Camp Redux.json",
+    "folder": "Island JSON Files",
+    "name": "Base Camp Redux",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:00:46.958000"
+  },
+  {
+    "file": "Island JSON Files/The Swan.json",
+    "folder": "Island JSON Files",
+    "name": "The Swan",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:42:25.960000"
+  },
+  {
+    "file": "Island JSON Files/Switchback Hill Climb Lap.json",
+    "folder": "Island JSON Files",
+    "name": "Switchback Hill Climb Lap",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:57:55.748000"
+  },
+  {
+    "file": "Island JSON Files/A Grand Day Out.json",
+    "folder": "Island JSON Files",
+    "name": "A Grand Day Out",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:34:40.205000"
+  },
+  {
+    "file": "Island JSON Files/Climber's Thrill.json",
+    "folder": "Island JSON Files",
+    "name": "Climber's Thrill",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:53:10.871000"
+  },
+  {
+    "file": "Island JSON Files/Base Camp.json",
+    "folder": "Island JSON Files",
+    "name": "Base Camp",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:31:18.617000"
+  },
+  {
+    "file": "Island JSON Files/Parry Vlo-Bae Lite Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Parry Vlo-Bae Lite Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:00:15.292000"
+  },
+  {
+    "file": "Island JSON Files/So Near Yet So Far.json",
+    "folder": "Island JSON Files",
+    "name": "So Near Yet So Far",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:44:42.509000"
+  },
+  {
+    "file": "Island JSON Files/South Lake Loop.json",
+    "folder": "Island JSON Files",
+    "name": "South Lake Loop",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:41:08.603000"
+  },
+  {
+    "file": "Island JSON Files/All Around The Watertower Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "All Around The Watertower Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-14T18:41:51.488000"
+  },
+  {
+    "file": "Island JSON Files/Lower Climb.json",
+    "folder": "Island JSON Files",
+    "name": "Lower Climb",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:53:38.375000"
+  },
+  {
+    "file": "Island JSON Files/North Lake Loop.json",
+    "folder": "Island JSON Files",
+    "name": "North Lake Loop",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:40:45.872000"
+  },
+  {
+    "file": "Island JSON Files/Loop the Loop Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Loop the Loop Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:55:58.712000"
+  },
+  {
+    "file": "Island JSON Files/Dragon's Flight.json",
+    "folder": "Island JSON Files",
+    "name": "Dragon's Flight",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:26:08.539000"
+  },
+  {
+    "file": "Island JSON Files/Island Coasts.json",
+    "folder": "Island JSON Files",
+    "name": "Island Coasts",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:29:42.957000"
+  },
+  {
+    "file": "Island JSON Files/Ice Breaker.json",
+    "folder": "Island JSON Files",
+    "name": "Ice Breaker",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T18:29:20.270000"
+  },
+  {
+    "file": "Island JSON Files/Switchback Hill Climb.json",
+    "folder": "Island JSON Files",
+    "name": "Switchback Hill Climb",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:41:29.790000"
+  },
+  {
+    "file": "Island JSON Files/Big Loop Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Big Loop Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-15T17:44:57.558000"
+  },
+  {
+    "file": "Island JSON Files/Loched and Loaded.json",
+    "folder": "Island JSON Files",
+    "name": "Loched and Loaded",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T16:42:45.166000"
+  },
+  {
+    "file": "Island JSON Files/Marathon Reverse.json",
+    "folder": "Island JSON Files",
+    "name": "Marathon Reverse",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:55:46.842000"
+  },
+  {
+    "file": "Island JSON Files/Sprinter's Climb.json",
+    "folder": "Island JSON Files",
+    "name": "Sprinter's Climb",
+    "distance_km": 0.0,
+    "elevation_m": 0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2025-12-05T17:54:47.426000"
   },
   {
     "file": "Pro Bike Races/Tour de Luxembourg S2 2026 Circuit.gpx",
@@ -2585,7 +3395,7 @@
     "name": "Week 10 Gent-Wevelgem",
     "distance_km": 72.82,
     "elevation_m": 655.1,
-    "profile_score": 25.6,
+    "profile_score": 25.2,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2025-10-07T16:44:05.455000"
   },
@@ -3095,7 +3905,7 @@
     "name": "Vuelta Internacional Femenina a Costa Rica S2 2026",
     "distance_km": 68.18,
     "elevation_m": 835.5,
-    "profile_score": 39.5,
+    "profile_score": 38.4,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-10-02T02:32:45.219000"
   },
@@ -3855,7 +4665,7 @@
     "name": "Tour of Britain S3 Ampthill - 77k 584m",
     "distance_km": 77.54,
     "elevation_m": 581.5,
-    "profile_score": 9.7,
+    "profile_score": 9.4,
     "stage_type": "Flat, flat finish",
     "upload_date": "2025-12-11T15:45:22.811000"
   },
@@ -4015,7 +4825,7 @@
     "name": "Tour de Gyeongnam - S4 - Namhae",
     "distance_km": 30.79,
     "elevation_m": 503.4,
-    "profile_score": 62.3,
+    "profile_score": 61.3,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2026-06-12T13:28:47.791000"
   },
@@ -4636,7 +5446,7 @@
     "distance_km": 38.25,
     "elevation_m": 309.9,
     "profile_score": 5.6,
-    "stage_type": "Flat, uphill finish",
+    "stage_type": "Flat, flat finish",
     "upload_date": "2026-04-27T18:06:48.289000"
   },
   {
@@ -4895,7 +5705,7 @@
     "name": "Flanders Fields Updated LID",
     "distance_km": 72.72,
     "elevation_m": 620.6,
-    "profile_score": 21.7,
+    "profile_score": 21.3,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-05-04T17:20:13.576000"
   },
@@ -6465,7 +7275,7 @@
     "name": "LEtape Ireland 2025 150K 1 of 2",
     "distance_km": 73.55,
     "elevation_m": 901.7,
-    "profile_score": 64.8,
+    "profile_score": 51.1,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-06-26T16:12:02"
   },
@@ -6755,7 +7565,7 @@
     "name": "Samcheok to Gunnam Korea",
     "distance_km": 74.15,
     "elevation_m": 742.4,
-    "profile_score": 24.9,
+    "profile_score": 24.2,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-06-08T16:41:17.756000"
   },
@@ -7480,6 +8290,16 @@
     "upload_date": "2026-08-15T20:12:27"
   },
   {
+    "file": "Criterium Courses/Lowell Crit.gpx.json",
+    "folder": "Criterium Courses",
+    "name": "Lowell Crit.gpx",
+    "distance_km": 2.72,
+    "elevation_m": 48.1,
+    "profile_score": 3.9,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-10T03:41:17.881000"
+  },
+  {
     "file": "Criterium Courses/Perry South Pittsburgh Crit.gpx",
     "folder": "Criterium Courses",
     "name": "Perry South Pittsburgh Crit",
@@ -7820,74 +8640,674 @@
     "upload_date": "2026-09-11T14:40:17.577000"
   },
   {
-    "file": "Criterium Courses/Crit the whole world/Reine-Norway.gpx",
+    "file": "Criterium Courses/Crit the whole world/G\u00f6reme-Turkey.gpx.json",
     "folder": "Criterium Courses/Crit the whole world",
-    "name": "Reine-Norway",
-    "distance_km": 3.53,
-    "elevation_m": 49.2,
+    "name": "G\u00f6reme-Turkey.gpx",
+    "distance_km": 2.4,
+    "elevation_m": 48.1,
     "profile_score": 0,
     "stage_type": "Flat, flat finish",
-    "upload_date": "2026-11-10T02:46:14.394000"
+    "upload_date": "2026-11-10T03:32:02.405000"
   },
   {
-    "file": "Criterium Courses/Crit the whole world/G\u00f6reme-Turkey.gpx",
+    "file": "Criterium Courses/Crit the whole world/Karakorum-Mongolia.gpx.json",
     "folder": "Criterium Courses/Crit the whole world",
-    "name": "G\u00f6reme-Turkey",
-    "distance_km": 2.36,
-    "elevation_m": 79.1,
-    "profile_score": 6.7,
-    "stage_type": "Climbing, uphill finish",
-    "upload_date": "2026-11-10T03:29:28.684000"
-  },
-  {
-    "file": "Criterium Courses/Crit the whole world/Bethlehem-Palestine.gpx",
-    "folder": "Criterium Courses/Crit the whole world",
-    "name": "Bethlehem-Palestine",
-    "distance_km": 5.11,
-    "elevation_m": 113.4,
-    "profile_score": 10.5,
+    "name": "Karakorum-Mongolia.gpx",
+    "distance_km": 8.87,
+    "elevation_m": 154.9,
+    "profile_score": 20.7,
     "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-11-10T02:35:43.864000"
+    "upload_date": "2026-11-10T01:41:41.840000"
   },
   {
-    "file": "Criterium Courses/Crit the whole world/Ronda-Spain.gpx",
+    "file": "Criterium Courses/Crit the whole world/Algeria Gharda\u00efa.gpx.json",
     "folder": "Criterium Courses/Crit the whole world",
-    "name": "Ronda-Spain",
-    "distance_km": 6.86,
-    "elevation_m": 153.9,
-    "profile_score": 12.6,
-    "stage_type": "Climbing, uphill finish",
-    "upload_date": "2026-11-10T03:03:22.893000"
-  },
-  {
-    "file": "Criterium Courses/Crit the whole world/Visby-Sweden.gpx",
-    "folder": "Criterium Courses/Crit the whole world",
-    "name": "Visby-Sweden",
-    "distance_km": 12.67,
-    "elevation_m": 45.4,
+    "name": "Algeria Gharda\u00efa.gpx",
+    "distance_km": 6.75,
+    "elevation_m": 50.8,
     "profile_score": 0,
     "stage_type": "Flat, flat finish",
-    "upload_date": "2026-11-10T03:09:06.959000"
+    "upload_date": "2026-11-09T22:18:09.941000"
   },
   {
-    "file": "Criterium Courses/Crit the whole world/Pokhara-Nepal.gpx",
+    "file": "Criterium Courses/Crit the whole world/Gitega Burundi.gpx.json",
     "folder": "Criterium Courses/Crit the whole world",
-    "name": "Pokhara-Nepal",
-    "distance_km": 5.1,
-    "elevation_m": 38.6,
+    "name": "Gitega Burundi.gpx",
+    "distance_km": 12.01,
+    "elevation_m": 161.6,
+    "profile_score": 7.5,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-09T22:49:19.379000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Limbe-Cameroon.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Limbe-Cameroon.gpx",
+    "distance_km": 2.5,
+    "elevation_m": 67.8,
+    "profile_score": 5.4,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-09T23:06:46.657000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Yangshuo-China.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Yangshuo-China.gpx",
+    "distance_km": 9.17,
+    "elevation_m": 138.5,
+    "profile_score": 14.3,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-10T01:55:27.288000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Bethlehem-Palestine.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Bethlehem-Palestine.gpx",
+    "distance_km": 5.11,
+    "elevation_m": 87.5,
+    "profile_score": 7.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-10T02:40:36.321000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Ronda-Spain.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Ronda-Spain.gpx",
+    "distance_km": 6.82,
+    "elevation_m": 152.6,
+    "profile_score": 13.7,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-10T03:05:31.036000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Visby-Sweden.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Visby-Sweden.gpx",
+    "distance_km": 12.66,
+    "elevation_m": 52.1,
     "profile_score": 0,
     "stage_type": "Flat, flat finish",
-    "upload_date": "2026-11-10T02:28:34.548000"
+    "upload_date": "2026-11-10T03:16:04.620000"
   },
   {
-    "file": "Criterium Courses/Crit the whole world/Sintra-Portugal.gpx",
+    "file": "Criterium Courses/Crit the whole world/Benin Ouidah.gpx.json",
     "folder": "Criterium Courses/Crit the whole world",
-    "name": "Sintra-Portugal",
-    "distance_km": 3.34,
-    "elevation_m": 96.0,
-    "profile_score": 11.2,
+    "name": "Benin Ouidah.gpx",
+    "distance_km": 2.92,
+    "elevation_m": 12.0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-09T22:32:03.374000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Cidade Velha-Cabo Verde.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Cidade Velha-Cabo Verde.gpx",
+    "distance_km": 1.62,
+    "elevation_m": 22.2,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-09T22:52:03.041000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Kaesong-North Korea.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Kaesong-North Korea.gpx",
+    "distance_km": 1.93,
+    "elevation_m": 34.7,
+    "profile_score": 3.3,
     "stage_type": "Climbing, uphill finish",
-    "upload_date": "2026-11-10T02:54:00.351000"
+    "upload_date": "2026-11-09T23:18:22.516000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Fada-Chad.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Fada-Chad.gpx",
+    "distance_km": 3.62,
+    "elevation_m": 28.0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-09T23:13:30.889000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Maun Botswana.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Maun Botswana.gpx",
+    "distance_km": 6.8,
+    "elevation_m": 35.3,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-09T22:34:59.404000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Telluride Colorado-United States.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Telluride Colorado-United States.gpx",
+    "distance_km": 3.33,
+    "elevation_m": 72.3,
+    "profile_score": 10.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-09T23:31:09.132000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Sintra-Portugal.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Sintra-Portugal.gpx",
+    "distance_km": 3.37,
+    "elevation_m": 85.6,
+    "profile_score": 9.2,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-10T02:59:35.820000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Moroni-Comoros.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Moroni-Comoros.gpx",
+    "distance_km": 1.86,
+    "elevation_m": 33.6,
+    "profile_score": 2.0,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-11-09T23:14:49.616000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Reine-Norway.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Reine-Norway.gpx",
+    "distance_km": 3.52,
+    "elevation_m": 31.8,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-10T02:51:17.510000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Banfora Burkina Faso.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Banfora Burkina Faso.gpx",
+    "distance_km": 9.63,
+    "elevation_m": 74.9,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-09T22:41:29.569000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Bamyan-Afghanistan.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Bamyan-Afghanistan.gpx",
+    "distance_km": 6.91,
+    "elevation_m": 84.6,
+    "profile_score": 9.5,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-10T01:48:59.548000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Angola Lubango.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Angola Lubango.gpx",
+    "distance_km": 4.43,
+    "elevation_m": 70.6,
+    "profile_score": 5.0,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-09T22:26:46.618000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Bayanga-Central African Republic.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Bayanga-Central African Republic.gpx",
+    "distance_km": 3.54,
+    "elevation_m": 41.8,
+    "profile_score": 2.8,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-11-09T23:08:02.403000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Srimangal-Bangladesh.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Srimangal-Bangladesh.gpx",
+    "distance_km": 6.56,
+    "elevation_m": 44.8,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-10T01:45:34.184000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Pokhara-Nepal.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Pokhara-Nepal.gpx",
+    "distance_km": 5.09,
+    "elevation_m": 36.5,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-10T02:31:27.603000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/M\u00fcnsterland Giro.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "M\u00fcnsterland Giro.gpx",
+    "distance_km": 76.34,
+    "elevation_m": 564.5,
+    "profile_score": 16.0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-06T18:57:07.666000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Saitama Criterium Course.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Saitama Criterium Course.gpx",
+    "distance_km": 3.53,
+    "elevation_m": 46.7,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-02T16:51:26.114000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Rattlesnake Butte.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Rattlesnake Butte.gpx",
+    "distance_km": 29.0,
+    "elevation_m": 311.1,
+    "profile_score": 7.2,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-10T13:48:14.491000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Refugio Beach to Santa Ynez Gravel.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Refugio Beach to Santa Ynez Gravel.gpx",
+    "distance_km": 24.52,
+    "elevation_m": 766.7,
+    "profile_score": 100.5,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-01T05:09:58.128000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/FoCo Fondo Classic 2 hour.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "FoCo Fondo Classic 2 hour.gpx",
+    "distance_km": 69.25,
+    "elevation_m": 767.9,
+    "profile_score": 18.0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-31T21:46:27.942000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Tour de Okinawa Road Race.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Tour de Okinawa Road Race.gpx",
+    "distance_km": 73.23,
+    "elevation_m": 1322.2,
+    "profile_score": 76.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-03T16:04:34.793000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Jangsuwan Circuit.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Jangsuwan Circuit.gpx",
+    "distance_km": 11.16,
+    "elevation_m": 137.2,
+    "profile_score": 9.3,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-09T04:19:46.180000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/WYO 131 Gravel.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "WYO 131 Gravel.gpx",
+    "distance_km": 74.89,
+    "elevation_m": 992.7,
+    "profile_score": 43.4,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-03T01:58:49.385000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Baeksu Coastal Road.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Baeksu Coastal Road.gpx",
+    "distance_km": 29.45,
+    "elevation_m": 323.5,
+    "profile_score": 10.3,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-09T03:54:40.738000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Elands Pass Mpumalanga South Africa.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Elands Pass Mpumalanga South Africa.gpx",
+    "distance_km": 53.42,
+    "elevation_m": 378.9,
+    "profile_score": 13.0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-03T18:22:17.577000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Big Sky Gravel 50 Classic Length.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Big Sky Gravel 50 Classic Length.gpx",
+    "distance_km": 69.69,
+    "elevation_m": 898.1,
+    "profile_score": 29.9,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-06T16:35:14.926000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Harentals Country Roads.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Harentals Country Roads.gpx",
+    "distance_km": 83.68,
+    "elevation_m": 531.3,
+    "profile_score": 2.3,
+    "stage_type": "Flat, uphill finish",
+    "upload_date": "2026-10-31T21:09:34.189000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Mad Gravel Hemi 5-0 Race.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Mad Gravel Hemi 5-0 Race.gpx",
+    "distance_km": 75.34,
+    "elevation_m": 912.3,
+    "profile_score": 18.4,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-02T20:33:42.060000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Eupen Gravel.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Eupen Gravel.gpx",
+    "distance_km": 99.43,
+    "elevation_m": 1604.2,
+    "profile_score": 76.5,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-10-31T15:00:11.159000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Salt Point CA.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Salt Point CA.gpx",
+    "distance_km": 26.16,
+    "elevation_m": 589.6,
+    "profile_score": 54.1,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-01T05:37:40.197000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Cowles Mountain San Diego MTB.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Cowles Mountain San Diego MTB.gpx",
+    "distance_km": 6.33,
+    "elevation_m": 389.9,
+    "profile_score": 89.4,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-03T16:12:49.744000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Mussau Island Unpaved Loop.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Mussau Island Unpaved Loop.gpx",
+    "distance_km": 69.21,
+    "elevation_m": 1064.4,
+    "profile_score": 59.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-02T17:59:10.965000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Coastal Jeju.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Coastal Jeju.gpx",
+    "distance_km": 40.85,
+    "elevation_m": 343.4,
+    "profile_score": 13.2,
+    "stage_type": "Flat, uphill finish",
+    "upload_date": "2026-11-09T04:02:49.125000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Gooikse Pijl Circuit 21k 229m.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Gooikse Pijl Circuit 21k 229m.gpx",
+    "distance_km": 21.66,
+    "elevation_m": 229.2,
+    "profile_score": 7.1,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-05T16:13:45.837000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Chungju Lake Road.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Chungju Lake Road.gpx",
+    "distance_km": 36.6,
+    "elevation_m": 572.0,
+    "profile_score": 41.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-09T03:54:18.689000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Grand Prix de Wallonie.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Grand Prix de Wallonie.gpx",
+    "distance_km": 72.28,
+    "elevation_m": 701.1,
+    "profile_score": 25.1,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-02T18:10:29.220000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Dunloe and Killarney.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Dunloe and Killarney.gpx",
+    "distance_km": 55.11,
+    "elevation_m": 683.6,
+    "profile_score": 31.0,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-03T16:09:45.567000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/KLGC 2026 55mile Comet Route.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "KLGC 2026 55mile Comet Route.gpx",
+    "distance_km": 88.14,
+    "elevation_m": 1247.8,
+    "profile_score": 56.5,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-02T03:13:35.391000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Misiryeong Yetgil Seoraksan Mountain.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Misiryeong Yetgil Seoraksan Mountain.gpx",
+    "distance_km": 11.11,
+    "elevation_m": 606.1,
+    "profile_score": 123.5,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-09T03:57:54.644000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/World Cup Dendermonde 2025.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "World Cup Dendermonde 2025.gpx",
+    "distance_km": 2.1,
+    "elevation_m": 20.4,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-02T01:58:29.777000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Strade Section for Racing League.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Strade Section for Racing League.gpx",
+    "distance_km": 35.62,
+    "elevation_m": 492.4,
+    "profile_score": 31.1,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-11-01T20:32:33.901000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/2026 Boulder Roubaix.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "2026 Boulder Roubaix.gpx",
+    "distance_km": 48.21,
+    "elevation_m": 401.5,
+    "profile_score": 2.8,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-10-31T15:47:26.538000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Tro Bro Leon.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Tro Bro Leon.gpx",
+    "distance_km": 74.01,
+    "elevation_m": 751.3,
+    "profile_score": 22.3,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-31T22:33:58.590000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Tour de Okinawa 2.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Tour de Okinawa 2.gpx",
+    "distance_km": 66.06,
+    "elevation_m": 890.2,
+    "profile_score": 63.6,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-05T21:01:30.142000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Colorado Koppenberg Gravel Race.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Colorado Koppenberg Gravel Race.gpx",
+    "distance_km": 8.26,
+    "elevation_m": 95.7,
+    "profile_score": 4.4,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-10-31T21:31:21.366000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Giro Emilia.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Giro Emilia.gpx",
+    "distance_km": 64.31,
+    "elevation_m": 1029.0,
+    "profile_score": 109.7,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-02T02:48:37.006000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Near Slovak Paradise National Park.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Near Slovak Paradise National Park.gpx",
+    "distance_km": 78.7,
+    "elevation_m": 724.8,
+    "profile_score": 43.7,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-11-08T21:45:11.360000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Philly Cycling Classic.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Philly Cycling Classic.gpx",
+    "distance_km": 23.51,
+    "elevation_m": 190.4,
+    "profile_score": 13.4,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-08T04:06:33.009000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Core4 USAC Gravel Event.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Core4 USAC Gravel Event.gpx",
+    "distance_km": 74.23,
+    "elevation_m": 731.1,
+    "profile_score": 6.1,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-02T20:15:26.581000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Strade Bianche.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Strade Bianche.gpx",
+    "distance_km": 64.79,
+    "elevation_m": 995.0,
+    "profile_score": 64.3,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-10-31T22:36:23.615000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Munsterland Giro 2.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Munsterland Giro 2.gpx",
+    "distance_km": 80.17,
+    "elevation_m": 595.1,
+    "profile_score": 20.0,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-08T04:36:22.945000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Foco Fondo Hard Section.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Foco Fondo Hard Section",
+    "distance_km": 42.53,
+    "elevation_m": 506.7,
+    "profile_score": 14.8,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-02T20:43:38.878000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Ringerike GP.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Ringerike GP.gpx",
+    "distance_km": 70.78,
+    "elevation_m": 929.0,
+    "profile_score": 55.8,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-06T17:41:36.235000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Mayhem Gulch Trail.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Mayhem Gulch Trail.gpx",
+    "distance_km": 21.46,
+    "elevation_m": 581.8,
+    "profile_score": 71.4,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-03T16:20:18.917000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/World Gravel Championships 2026.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "World Gravel Championships 2026.gpx",
+    "distance_km": 68.22,
+    "elevation_m": 1189.1,
+    "profile_score": 77.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-07T17:40:33.750000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Wild Westie 70.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Wild Westie 70.gpx",
+    "distance_km": 70.2,
+    "elevation_m": 1114.4,
+    "profile_score": 49.6,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-03T01:53:28.166000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/Sani Pass South Africa Gravel Road.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "Sani Pass South Africa Gravel Road.gpx",
+    "distance_km": 24.5,
+    "elevation_m": 1404.4,
+    "profile_score": 281.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-06T20:36:55.734000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/De Ronde.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "De Ronde",
+    "distance_km": 69.73,
+    "elevation_m": 652.4,
+    "profile_score": 40.2,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-03T03:45:15.879000"
   },
   {
     "file": "Interval Circuits/Malibu 10 minute Climb.gpx",
