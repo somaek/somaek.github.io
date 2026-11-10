@@ -57,7 +57,7 @@ jobs:
       - name: Build JSON Index
         run: |
           pip install gpxpy
-          python -c '
+          python << 'EOF'
           import os, json, gpxpy, math, datetime
 
           def haversine(lat1, lon1, lat2, lon2):
@@ -77,4 +77,171 @@ jobs:
               for i in range(len(points)):
                   start = max(0, i - 3)
                   end = min(len(points), i + 4)
-                  avg_ele =
+                  avg_ele = sum(p["ele"] for p in points[start:end]) / (end - start)
+                  smoothed.append({"dist": points[i]["dist"], "ele": avg_ele})
+              
+              # 2. Chunking (0.1km)
+              chunks = []
+              i = 0
+              while i < len(smoothed):
+                  start_p = smoothed[i]
+                  j = i + 1
+                  while j < len(smoothed) and smoothed[j]["dist"] - start_p["dist"] < 0.1:
+                      j += 1
+                  if j < len(smoothed):
+                      end_p = smoothed[j]
+                      dist = end_p["dist"] - start_p["dist"]
+                      gain = end_p["ele"] - start_p["ele"]
+                      grad = (gain / (dist * 1000)) * 100 if dist > 0 else 0
+                      chunks.append({"start": start_p["dist"], "end": end_p["dist"], "gain": gain, "grad": grad})
+                      i = j
+                  else:
+                      break
+
+              # 3. Identify Uphill Runs (>1.5% gradient)
+              runs = []
+              cur = None
+              for c in chunks:
+                  if c["grad"] > 1.5:
+                      if not cur:
+                          cur = {"start": c["start"], "end": c["end"], "gain": c["gain"], "chunks": [c]}
+                      else:
+                          cur["end"] = c["end"]
+                          cur["gain"] += c["gain"]
+                          cur["chunks"].append(c)
+                  else:
+                      if cur:
+                          runs.append(cur)
+                          cur = None
+              if cur: runs.append(cur)
+              runs = [r for r in runs if r["gain"] >= 8]
+
+              # 4. Merge Runs (gap <= 0.35km)
+              climbs = []
+              cur = None
+              for r in runs:
+                  if not cur:
+                      cur = dict(r)
+                  else:
+                      if r["start"] - cur["end"] <= 0.35:
+                          cur["end"] = r["end"]
+                          cur["gain"] += r["gain"]
+                          cur["chunks"].extend(r["chunks"])
+                      else:
+                          climbs.append(cur)
+                          cur = dict(r)
+              if cur: climbs.append(cur)
+
+              # 5. Score
+              total_score = 0
+              has_uphill_finish = False
+              for c in climbs:
+                  if c["gain"] > 20:
+                      length_km = c["end"] - c["start"]
+                      grad_avg = (c["gain"] / (length_km * 1000)) * 100 if length_km > 0 else 0
+                      max_grad = max((chk["grad"] for chk in c["chunks"]), default=0)
+                      
+                      if not (grad_avg < 2 and max_grad < 3):
+                          raw_score = (grad_avg / 2)**2 * length_km
+                          dff = total_dist - c["end"]
+                          
+                          mult = 0.2
+                          if dff <= 10: mult = 1.0
+                          elif dff <= 25: mult = 0.8
+                          elif dff <= 50: mult = 0.6
+                          elif dff <= 75: mult = 0.4
+                          
+                          total_score += raw_score * mult
+                          if dff <= 1.0:
+                              has_uphill_finish = True
+
+              # 6. Stage Type
+              ratio = total_score / 80 if total_dist >= 40 else total_score / (2 * total_dist)
+              terrain = "Climbing" if ratio >= 0.56 else "Hilly" if ratio >= 0.25 else "Flat"
+              finish = "uphill finish" if has_uphill_finish else "flat finish"
+              
+              return round(total_score, 1), f"{terrain}, {finish}"
+
+          data = []
+          for root, dirs, files in os.walk("gpx"):
+              for file in files:
+                  if file.lower() == "index.json":
+                      continue
+                      
+                  if file.lower().endswith(".gpx") or file.lower().endswith(".json"):
+                      f_name = os.path.join(root, file)
+                      try:
+                          mtime = os.path.getmtime(f_name)
+                          upload_date = datetime.datetime.fromtimestamp(mtime).isoformat()
+                          name = os.path.splitext(file)[0]
+                          rel_path = os.path.relpath(f_name, "gpx")
+                          folder_path = os.path.dirname(rel_path).replace("\\\\", "/")
+                          
+                          points = []
+                          total_dist = 0.0
+                          up_gain = 0.0
+
+                          # GPX Parsing
+                          if file.lower().endswith(".gpx"):
+                              with open(f_name, "r", encoding="utf-8") as f:
+                                  gpx = gpxpy.parse(f)
+                                  total_dist = (gpx.length_2d() / 1000) if gpx.length_2d() else 0
+                                  up_gain, _ = gpx.get_uphill_downhill()
+                                  
+                                  calc_dist = 0.0
+                                  last_pt = None
+                                  for track in gpx.tracks:
+                                      for segment in track.segments:
+                                          for pt in segment.points:
+                                              if last_pt:
+                                                  calc_dist += haversine(last_pt.latitude, last_pt.longitude, pt.latitude, pt.longitude)
+                                              points.append({"dist": calc_dist, "ele": pt.elevation or 0})
+                                              last_pt = pt
+                          
+                          # JSON Parsing
+                          elif file.lower().endswith(".json"):
+                              with open(f_name, "r", encoding="utf-8") as f:
+                                  route_data = json.load(f)
+                                  
+                                  last_x, last_z = None, None
+                                  
+                                  for road in route_data.get("roads", []):
+                                      pts = road.get("pointsx10", [])
+                                      for i in range(0, len(pts), 3):
+                                          if i + 2 < len(pts):
+                                              x, y, z = pts[i], pts[i+1], pts[i+2]
+                                              ele = y / 10.0
+                                              
+                                              if last_x is not None and last_z is not None:
+                                                  d_m = math.sqrt((x - last_x)**2 + (z - last_z)**2) / 10.0
+                                                  total_dist += (d_m / 1000.0)
+                                              
+                                              if points and ele > points[-1]["ele"]:
+                                                  up_gain += (ele - points[-1]["ele"])
+                                              
+                                              points.append({"dist": total_dist, "ele": ele})
+                                              last_x, last_z = x, z
+
+                          profile_score, stage_type = calculate_profile_metrics(points, total_dist)
+                          
+                          data.append({
+                              "file": rel_path.replace("\\\\", "/"),
+                              "folder": folder_path,
+                              "name": name,
+                              "distance_km": round(total_dist, 2),
+                              "elevation_m": round(up_gain if up_gain else 0, 1),
+                              "profile_score": profile_score,
+                              "stage_type": stage_type,
+                              "upload_date": upload_date
+                          })
+                      except Exception as e:
+                          print(f"Skipped {f_name}: {e}")
+                  
+          with open("gpx/index.json", "w", encoding="utf-8") as f:
+              json.dump(data, f, indent=2)
+          EOF
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "sync: update GPX and JSON route files from Google Drive"
+          file_pattern: "gpx/**"
