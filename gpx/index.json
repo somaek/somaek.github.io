@@ -7260,6 +7260,16 @@
     "upload_date": "2026-10-18T15:14:53.932000"
   },
   {
+    "file": "Criterium Courses/Lowell Crit.gpx",
+    "folder": "Criterium Courses",
+    "name": "Lowell Crit",
+    "distance_km": 2.72,
+    "elevation_m": 47.9,
+    "profile_score": 4.5,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-10T03:39:51.322000"
+  },
+  {
     "file": "Criterium Courses/Angel Island San Francisco CA.gpx",
     "folder": "Criterium Courses",
     "name": "Angel Island San Francisco CA",
@@ -7808,6 +7818,76 @@
     "profile_score": 0,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-09-11T14:40:17.577000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Reine-Norway.gpx",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Reine-Norway",
+    "distance_km": 3.53,
+    "elevation_m": 49.2,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-10T02:46:14.394000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/G\u00f6reme-Turkey.gpx",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "G\u00f6reme-Turkey",
+    "distance_km": 2.36,
+    "elevation_m": 79.1,
+    "profile_score": 6.7,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-10T03:29:28.684000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Bethlehem-Palestine.gpx",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Bethlehem-Palestine",
+    "distance_km": 5.11,
+    "elevation_m": 113.4,
+    "profile_score": 10.5,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-10T02:35:43.864000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Ronda-Spain.gpx",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Ronda-Spain",
+    "distance_km": 6.86,
+    "elevation_m": 153.9,
+    "profile_score": 12.6,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-10T03:03:22.893000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Visby-Sweden.gpx",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Visby-Sweden",
+    "distance_km": 12.67,
+    "elevation_m": 45.4,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-10T03:09:06.959000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Pokhara-Nepal.gpx",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Pokhara-Nepal",
+    "distance_km": 5.1,
+    "elevation_m": 38.6,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-10T02:28:34.548000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Sintra-Portugal.gpx",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Sintra-Portugal",
+    "distance_km": 3.34,
+    "elevation_m": 96.0,
+    "profile_score": 11.2,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-10T02:54:00.351000"
   },
   {
     "file": "Interval Circuits/Malibu 10 minute Climb.gpx",
