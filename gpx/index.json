@@ -7720,6 +7720,16 @@
     "upload_date": "2026-10-31T15:47:26.538000"
   },
   {
+    "file": "TPV Ready Mixed Surface Roads/2026 In Flanders Fields.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "2026 In Flanders Fields.gpx",
+    "distance_km": 79.15,
+    "elevation_m": 720.8,
+    "profile_score": 18.9,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-11T20:23:54.260000"
+  },
+  {
     "file": "TPV Ready Mixed Surface Roads/Gooikse Pijl Circuit 21k 229m.gpx.json",
     "folder": "TPV Ready Mixed Surface Roads",
     "name": "Gooikse Pijl Circuit 21k 229m.gpx",
@@ -7790,6 +7800,16 @@
     "upload_date": "2026-10-31T21:09:34.189000"
   },
   {
+    "file": "TPV Ready Mixed Surface Roads/2026 Milano-Sanremo.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "2026 Milano-Sanremo.gpx",
+    "distance_km": 76.41,
+    "elevation_m": 958.6,
+    "profile_score": 53.4,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-11T15:58:30.919000"
+  },
+  {
     "file": "TPV Ready Mixed Surface Roads/Philly Cycling Classic.gpx.json",
     "folder": "TPV Ready Mixed Surface Roads",
     "name": "Philly Cycling Classic.gpx",
@@ -7818,6 +7838,26 @@
     "profile_score": 14.8,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-11-02T20:43:38.878000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/2026 Omloop.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "2026 Omloop.gpx",
+    "distance_km": 77.92,
+    "elevation_m": 656.6,
+    "profile_score": 34.4,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-11T16:10:05.296000"
+  },
+  {
+    "file": "TPV Ready Mixed Surface Roads/2026 Kuurne Brussels Kuurne.gpx.json",
+    "folder": "TPV Ready Mixed Surface Roads",
+    "name": "2026 Kuurne Brussels Kuurne.gpx",
+    "distance_km": 78.75,
+    "elevation_m": 691.0,
+    "profile_score": 25.9,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-11-11T18:49:31.609000"
   },
   {
     "file": "TPV Ready Mixed Surface Roads/World Cup Dendermonde 2025.gpx.json",
