@@ -3450,6 +3450,16 @@
     "upload_date": "2026-09-11T14:16:57.066000"
   },
   {
+    "file": "Pro Bike Races/Rocky Mountain Beer Classic.gpx",
+    "folder": "Pro Bike Races",
+    "name": "Rocky Mountain Beer Classic",
+    "distance_km": 71.81,
+    "elevation_m": 851.0,
+    "profile_score": 46.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-13T18:38:11.913000"
+  },
+  {
     "file": "Pro Bike Races/Tour de Gyeongnam - S2 - Tongyeong.gpx",
     "folder": "Pro Bike Races",
     "name": "Tour de Gyeongnam - S2 - Tongyeong",
@@ -4518,6 +4528,16 @@
     "profile_score": 65.7,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-04-06T22:21:19.228000"
+  },
+  {
+    "file": "Pro Bike Races/Rocky Mountain Beer Classic.gpx.json",
+    "folder": "Pro Bike Races",
+    "name": "Rocky Mountain Beer Classic.gpx",
+    "distance_km": 71.73,
+    "elevation_m": 806.9,
+    "profile_score": 45.1,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-11-13T18:43:13.157000"
   },
   {
     "file": "Pro Bike Races/Champs Elysees Circuit.gpx",
@@ -9298,6 +9318,16 @@
     "profile_score": 50.4,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-06-03T20:19:08.881000"
+  },
+  {
+    "file": "Miscellaneous/Marble To Glenwood.gpx",
+    "folder": "Miscellaneous",
+    "name": "Marble To Glenwood",
+    "distance_km": 64.51,
+    "elevation_m": 174.5,
+    "profile_score": 1.1,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-13T17:06:23.754000"
   },
   {
     "file": "Miscellaneous/Yosemite Valley.gpx",
