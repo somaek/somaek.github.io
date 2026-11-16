@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPV Nearest Riders & Bib HUD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        pine: {
+                            950: '#132418', // Deepest recess for inputs & badges
+                            900: '#1C3322', // Dominant Deep Forest Pine background
+                            850: '#223D29', // Elevated card surface
+                            800: '#2A4A32', // Borders and subtle dividers
+                            700: '#375E41', // Hover borders / muted strokes
+                        },
+                        rust: {
+                            500: '#C9562C',
+                            600: '#B84A22', // Primary Tuscan Rust / Burnt Sienna accent
+                            700: '#9A3B19',
+                        },
+                        chestnut: {
+                            400: '#E2AC48',
+                            500: '#D49B35', // Secondary Golden Chestnut highlight
+                            600: '#B58124',
+                        },
+                        mist: {
+                            50: '#F9F8F6',
+                            100: '#F2F0EB', // Mist White primary text
+                            300: '#D5D1C6', // Muted warm cream secondary text
+                            400: '#A8A69B', // Subtle labels
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-pine-900 text-mist-100 font-sans antialiased min-h-screen flex flex-col selection:bg-rust-600 selection:text-mist-100">
+
+    <!-- Top Navigation / Header -->
+    <header class="border-b border-pine-800 bg-pine-950/80 backdrop-blur-md sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rust-600 to-chestnut-500 flex items-center justify-center shadow-lg shadow-rust-600/25 border border-chestnut-500/30">
+                    <!-- Bib / Peloton Icon -->
+                    <svg class="w-5 h-5 text-mist-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                    </svg>
+                </div>
+                <h1 class="text-lg font-bold tracking-tight text-mist-100">TPV Nearest Riders & Bibs</h1>
+            </div>
+
+            <!-- Connection Status & Folder Selection -->
+            <div class="flex items-center gap-2.5">
+                <div id="statusBadge" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-pine-850 border border-pine-700 text-xs font-medium text-mist-300">
+                    <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-mist-400/60"></span>
+                    <span id="statusText">Disconnected</span>
+                </div>
+
+                <button id="btnConnect" type="button" class="px-4 py-2 rounded-xl bg-rust-600 hover:bg-rust-500 active:scale-[0.99] text-xs font-semibold text-mist-100 shadow-lg shadow-rust-600/30 border border-rust-500/40 transition flex items-center gap-2 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Select Broadcast Folder</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification Banner (Replaces alert) -->
+    <div id="bannerContainer" class="max-w-6xl w-full mx-auto px-4 sm:px-6 mt-3 hidden">
+        <div id="bannerBox" class="rounded-2xl p-3 border flex items-center justify-between gap-3 text-xs sm:text-sm">
+            <span id="bannerMessage" class="font-medium"></span>
+            <button id="bannerClose" type="button" class="text-mist-300 hover:text-mist-100 p-1 rounded-lg cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Glanceable HUD Content -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+
+        <!-- Race & Group Context Bar (from groups.json + focus.json + entries.json) -->
+        <section class="bg-pine-850/95 border border-pine-800 rounded-2xl p-4 sm:p-5 shadow-xl">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3.5">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-mist-300">Race & Pack Overview</h2>
+                    <span id="entriesCountBadge" class="text-xs font-mono font-medium px-2.5 py-0.5 rounded-lg bg-pine-950 text-chestnut-400 border border-pine-700">0 Entries Loaded</span>
+                </div>
+
+                <!-- View Mode, Polling & Sort Controls -->
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <!-- Mode Toggle: Nearby Only vs Track All -->
+                    <div class="inline-flex rounded-xl bg-pine-950 p-1 border border-pine-700" role="group">
+                        <button id="btnModeNearby" type="button" class="px-3 py-1 rounded-lg text-xs font-semibold bg-rust-600 text-mist-100 shadow transition cursor-pointer">
+                            Nearby & Leaders
+                        </button>
+                        <button id="btnModeAll" type="button" class="px-3 py-1 rounded-lg text-xs font-semibold text-mist-300 hover:text-mist-100 transition cursor-pointer">
+                            Track All (Bibs)
+                        </button>
+                    </div>
+
+                    <select id="selectSortMode" class="bg-pine-950 border border-pine-700 rounded-xl px-3 py-1.5 text-xs font-semibold text-mist-100 focus:outline-none focus:border-chestnut-500 cursor-pointer">
+                        <option value="position">Sort: Race Position</option>
+                        <option value="nearest">Sort: TPV Nearest Order</option>
+                        <option value="bib">Sort: Bib Number</option>
+                    </select>
+
+                    <select id="selectPollRate" class="bg-pine-950 border border-pine-700 rounded-xl px-3 py-1.5 text-xs font-mono font-semibold text-mist-100 focus:outline-none focus:border-chestnut-500 cursor-pointer">
+                        <option value="500" selected>500 ms (2 Hz)</option>
+                        <option value="1000">1000 ms (1 Hz)</option>
+                        <option value="2000">2000 ms (0.5 Hz)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 3 Summary Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                <!-- Focused Rider Card -->
+                <div class="bg-pine-950/90 border border-pine-800 rounded-xl p-3.5 flex items-center justify-between">
+                    <div>
+                        <span class="block text-[11px] font-semibold uppercase tracking-wider text-mist-400 mb-1">Focused Rider</span>
+                        <div class="flex items-center gap-2">
+                            <span id="focusFlag" class="text-xl leading-none">🏁</span>
+                            <span id="focusName" class="text-base sm:text-lg font-bold text-mist-100 truncate max-w-[180px]">Waiting...</span>
+                        </div>
+                        <span id="focusMeta" class="text-xs font-mono text-mist-400 mt-0.5 block">Pos -- • -- km/h</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-[10px] font-bold uppercase tracking-wider text-chestnut-500">BIB</span>
+                        <span id="focusBib" class="text-3xl font-mono font-extrabold text-chestnut-400">--</span>
+                    </div>
+                </div>
+
+                <!-- Active Pack / Group Card (groups.json) -->
+                <div class="bg-pine-950/90 border border-pine-800 rounded-xl p-3.5 flex items-center justify-between">
+                    <div>
+                        <span class="block text-[11px] font-semibold uppercase tracking-wider text-mist-400 mb-1">Active Group</span>
+                        <div class="flex items-center gap-2">
+                            <span id="groupBadge" class="text-base sm:text-lg font-bold text-mist-100">Peloton</span>
+                            <span id="groupSizeBadge" class="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-chestnut-500/15 text-chestnut-400 border border-chestnut-500/40">-- riders</span>
+                        </div>
+                        <span id="groupLeaderText" class="text-xs font-medium text-mist-300 mt-0.5 block truncate max-w-[210px]">Leader: --</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-[10px] font-bold uppercase tracking-wider text-mist-400">GAP</span>
+                        <span id="groupGapText" class="text-xl font-mono font-bold text-mist-100">0s</span>
+                    </div>
+                </div>
+
+                <!-- Nearby Breakaway / Other Groups Summary -->
+                <div class="bg-pine-950/90 border border-pine-800 rounded-xl p-3.5 flex flex-col justify-between">
+                    <span class="block text-[11px] font-semibold uppercase tracking-wider text-mist-400 mb-1">All Race Groups</span>
+                    <div id="allGroupsList" class="flex flex-wrap gap-1.5 items-center min-h-[28px]">
+                        <span class="text-xs font-mono text-mist-400">Waiting for groups.json...</span>
+                    </div>
+                    <span id="nearestCountText" class="text-xs font-mono text-mist-400 mt-1 block">Showing 0 nearby riders</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Primary Nearest Riders Bib Leaderboard -->
+        <section class="bg-pine-850/95 border border-pine-800 rounded-2xl p-4 sm:p-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-chestnut-500/10 blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4 relative z-10">
+                <h2 id="boardTitle" class="text-xs font-semibold uppercase tracking-wider text-mist-300">Nearest Riders — Live Bib Numbers</h2>
+                <div class="flex items-center gap-3">
+                    <span id="boardSubtitle" class="text-xs font-mono text-mist-400">Auto-matched via entries.json</span>
+                    <button id="btnClearHistory" type="button" class="hidden text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-pine-950 hover:bg-pine-800 text-mist-300 border border-pine-700 transition cursor-pointer">
+                        Clear Seen Cache
+                    </button>
+                </div>
+            </div>
+
+            <!-- Column Headers (Desktop) -->
+            <div class="hidden sm:grid grid-cols-12 gap-3 px-4 pb-2 text-[11px] font-bold uppercase tracking-wider text-mist-400 border-b border-pine-800 relative z-10">
+                <div class="col-span-2">Bib #</div>
+                <div class="col-span-1 text-center">Pos</div>
+                <div class="col-span-5">Rider & Country</div>
+                <div class="col-span-2">Group / Team</div>
+                <div class="col-span-2 text-right">Gap / Speed</div>
+            </div>
+
+            <!-- Rider Cards Container -->
+            <div id="ridersList" class="divide-y divide-pine-800/80 mt-1 relative z-10">
+                <!-- Empty / Waiting State -->
+                <div class="py-12 text-center">
+                    <p class="text-base font-semibold text-mist-300">Connect your TPV Broadcast folder to view live bib numbers</p>
+                    <p class="text-xs text-mist-400 mt-1 font-mono">/Users/ryanyates/TPVirtual/Broadcast</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        /**
+         * TPV Nearest Riders & Bib HUD
+         * Reads entries.json, nearest.json, groups.json, and focus.json from TPV Broadcast folder.
+         */
+
+        // ==========================================
+        // 1. IOC / UCI 3-Letter Country Code -> Flag Emoji & ISO2 Map
+        // ==========================================
+        const IOC_TO_ISO2 = {
+            AFG: 'AF', ALB: 'AL', ALG: 'DZ', AND: 'AD', ANG: 'AO', ARG: 'AR', ARM: 'AM', AUS: 'AU', AUT: 'AT', AZE: 'AZ',
+            BAH: 'BS', BAN: 'BD', BAR: 'BB', BDI: 'BI', BEL: 'BE', BEN: 'BJ', BER: 'BM', BIH: 'BA', BLR: 'BY', BOL: 'BO',
+            BOT: 'BW', BRA: 'BR', BRN: 'BH', BUL: 'BG', BUR: 'BF', CAN: 'CA', CHI: 'CL', CHN: 'CN', CIV: 'CI', CMR: 'CM',
+            COD: 'CD', COL: 'CO', CRC: 'CR', CRO: 'HR', CUB: 'CU', CYP: 'CY', CZE: 'CZ', DEN: 'DK', DOM: 'DO', ECU: 'EC',
+            EGY: 'EG', ERI: 'ER', ESA: 'SV', ESP: 'ES', EST: 'EE', ETH: 'ET', FIJ: 'FJ', FIN: 'FI', FRA: 'FR', GBR: 'GB',
+            GEO: 'GE', GER: 'DE', GHA: 'GH', GRE: 'GR', GUA: 'GT', HKG: 'HK', HON: 'HN', HUN: 'HU', INA: 'ID', IND: 'IN',
+            IRI: 'IR', IRL: 'IE', IRQ: 'IQ', ISL: 'IS', ISR: 'IL', ITA: 'IT', JAM: 'JM', JOR: 'JO', JPN: 'JP', KAZ: 'KZ',
+            KEN: 'KE', KGZ: 'KG', KOR: 'KR', KSA: 'SA', KUW: 'KW', LAT: 'LV', LBA: 'LY', LBN: 'LB', LIE: 'LI', LTU: 'LT',
+            LUX: 'LU', MAR: 'MA', MAS: 'MY', MDA: 'MD', MEX: 'MX', MGL: 'MN', MKD: 'MK', MLT: 'MT', MNE: 'ME', MON: 'MC',
+            MOZ: 'MZ', MRI: 'MU', NAM: 'NA', NCA: 'NI', NED: 'NL', NEP: 'NP', NGR: 'NG', NOR: 'NO', NZL: 'NZ', OMA: 'OM',
+            PAK: 'PK', PAN: 'PA', PAR: 'PY', PER: 'PE', PHI: 'PH', POL: 'PL', POR: 'PT', PUR: 'PR', QAT: 'QA', ROU: 'RO',
+            RSA: 'ZA', RUS: 'RU', RWA: 'RW', SEN: 'SN', SGP: 'SG', SLO: 'SI', SMR: 'SM', SRB: 'RS', SRI: 'LK', SUI: 'CH',
+            SVK: 'SK', SWE: 'SE', SYR: 'SY', TAN: 'TZ', THA: 'TH', TPE: 'TW', TTO: 'TT', TUN: 'TN', TUR: 'TR', UAE: 'AE',
+            UGA: 'UG', UKR: 'UA', URU: 'UY', USA: 'US', UZB: 'UZ', VEN: 'VE', VIE: 'VN', ZAM: 'ZM', ZIM: 'ZW',
+            ENG: 'GB', SCO: 'GB', WAL: 'GB', NIR: 'GB'
+        };
+
+        function getCountryFlag(code) {
+            if (!code || typeof code !== 'string') return '🏳️';
+            const clean = code.trim().toUpperCase();
+            const iso2 = IOC_TO_ISO2[clean] || (clean.length === 2 ? clean : null);
+            if (!iso2 || iso2.length !== 2) return '🏳️';
+            const codePoints = [...iso2].map(c => 127397 + c.charCodeAt(0));
+            return String.fromCodePoint(...codePoints);
+        }
+
+        // ==========================================
+        // 2. Application State & DOM References
+        // ==========================================
+        const state = {
+            dirHandle: null,
+            pollTimerId: null,
+            pollIntervalMs: 500,
+            viewMode: 'nearby', // 'nearby' | 'all'
+            sortMode: 'position',
+            consecutiveErrors: 0,
+
+            // Lookup map: normalized rider name -> { bibNum, name, country, team, teamCode }
+            entriesByName: new Map(),
+            totalEntriesCount: 0,
+            lastEntriesFetchMs: 0,
+
+            // Persistent rider telemetry cache across the session: normalized name -> last seen snapshot
+            riderHistoryByName: new Map(),
+
+            // Live data caches
+            nearestRiders: [],
+            groups: [],
+            focusedRider: null,
+        };
+
+        const els = {
+            btnConnect: document.getElementById('btnConnect'),
+            statusDot: document.getElementById('statusDot'),
+            statusText: document.getElementById('statusText'),
+
+            bannerContainer: document.getElementById('bannerContainer'),
+            bannerBox: document.getElementById('bannerBox'),
+            bannerMessage: document.getElementById('bannerMessage'),
+            bannerClose: document.getElementById('bannerClose'),
+
+            entriesCountBadge: document.getElementById('entriesCountBadge'),
+            btnModeNearby: document.getElementById('btnModeNearby'),
+            btnModeAll: document.getElementById('btnModeAll'),
+            selectSortMode: document.getElementById('selectSortMode'),
+            selectPollRate: document.getElementById('selectPollRate'),
+
+            boardTitle: document.getElementById('boardTitle'),
+            boardSubtitle: document.getElementById('boardSubtitle'),
+            btnClearHistory: document.getElementById('btnClearHistory'),
+
+            focusFlag: document.getElementById('focusFlag'),
+            focusName: document.getElementById('focusName'),
+            focusMeta: document.getElementById('focusMeta'),
+            focusBib: document.getElementById('focusBib'),
+
+            groupBadge: document.getElementById('groupBadge'),
+            groupSizeBadge: document.getElementById('groupSizeBadge'),
+            groupLeaderText: document.getElementById('groupLeaderText'),
+            groupGapText: document.getElementById('groupGapText'),
+            allGroupsList: document.getElementById('allGroupsList'),
+            nearestCountText: document.getElementById('nearestCountText'),
+
+            ridersList: document.getElementById('ridersList'),
+        };
+
+        // ==========================================
+        // 3. UI Helpers & Banner Notifications
+        // ==========================================
+        function showBanner(message, type = 'info') {
+            els.bannerContainer.classList.remove('hidden');
+            els.bannerMessage.textContent = message;
+            els.bannerBox.className = 'rounded-2xl p-3.5 border flex items-center justify-between gap-3 text-sm ';
+            if (type === 'error') {
+                els.bannerBox.className += 'bg-rust-700/35 border-rust-500/60 text-mist-100';
+            } else if (type === 'success') {
+                els.bannerBox.className += 'bg-pine-850 border-chestnut-500/50 text-mist-100';
+            } else {
+                els.bannerBox.className += 'bg-pine-950/90 border-pine-700 text-mist-300';
+            }
+        }
+
+        els.bannerClose.addEventListener('click', () => {
+            els.bannerContainer.classList.add('hidden');
+        });
+
+        function setConnectionStatus(status, label) {
+            els.statusText.textContent = label;
+            els.statusDot.className = 'w-2.5 h-2.5 rounded-full ';
+            if (status === 'connected') {
+                els.statusDot.className += 'bg-chestnut-400 animate-pulse shadow-[0_0_8px_rgba(212,155,53,0.85)]';
+            } else if (status === 'error') {
+                els.statusDot.className += 'bg-rust-500';
+            } else {
+                els.statusDot.className += 'bg-mist-400/60';
+            }
+        }
+
+        function normalizeName(name) {
+            return (name || '').trim().toLowerCase();
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str ?? '';
+            return div.innerHTML;
+        }
+
+        function formatTimeGap(gapMsOrSec) {
+            if (!gapMsOrSec || gapMsOrSec === 0) return '0.0s';
+            // TPV broadcasts timeGap typically in milliseconds (e.g. 1250 -> 1.3s) or seconds
+            const sec = Math.abs(gapMsOrSec) > 300 ? gapMsOrSec / 1000 : gapMsOrSec;
+            const sign = sec > 0 ? '+' : '';
+            if (Math.abs(sec) >= 60) {
+                const mins = Math.floor(Math.abs(sec) / 60);
+                const rem = Math.round(Math.abs(sec) % 60);
+                return `${sec < 0 ? '-' : '+'}${mins}m${String(rem).padStart(2, '0')}s`;
+            }
+            return `${sign}${sec.toFixed(1)}s`;
+        }
+
+        function formatSpeedKmh(rawSpeed) {
+            if (typeof rawSpeed !== 'number' || isNaN(rawSpeed)) return '-- km/h';
+            // In TPV JSON, speed is in mm/s or cm/s (e.g., 12387 -> ~44.6 km/h if mm/s: 12.387 * 3.6 = 44.6 km/h)
+            const mps = rawSpeed > 200 ? rawSpeed / 1000 : rawSpeed;
+            const kmh = mps * 3.6;
+            return `${kmh.toFixed(1)} km/h`;
+        }
+
+        // ==========================================
+        // 4. IndexedDB Directory Handle Persistence
+        // ==========================================
+        const DB_NAME = 'tpv_nearest_fs_db';
+        const STORE_NAME = 'handles';
+
+        function openHandleDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open(DB_NAME, 1);
+                req.onupgradeneeded = () => {
+                    if (!req.result.objectStoreNames.contains(STORE_NAME)) {
+                        req.result.createObjectStore(STORE_NAME);
+                    }
+                };
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        async function saveDirectoryHandle(dirHandle) {
+            try {
+                const db = await openHandleDB();
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                tx.objectStore(STORE_NAME).put(dirHandle, 'broadcastDir');
+                await new Promise((resolve, reject) => {
+                    tx.oncomplete = resolve;
+                    tx.onerror = () => reject(tx.error);
+                });
+            } catch (e) {
+                console.warn('Could not persist folder handle:', e);
+            }
+        }
+
+        async function loadSavedDirectoryHandle() {
+            try {
+                const db = await openHandleDB();
+                const tx = db.transaction(STORE_NAME, 'readonly');
+                const req = tx.objectStore(STORE_NAME).get('broadcastDir');
+                return await new Promise((resolve, reject) => {
+                    req.onsuccess = () => resolve(req.result || null);
+                    req.onerror = () => reject(req.error);
+                });
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function verifyDirPermission(requestIfNeeded = false) {
+            if (!state.dirHandle) return false;
+            try {
+                let perm = await state.dirHandle.queryPermission({ mode: 'read' });
+                if (perm !== 'granted' && requestIfNeeded) {
+                    perm = await state.dirHandle.requestPermission({ mode: 'read' });
+                }
+                return perm === 'granted';
+            } catch (_) {
+                return false;
+            }
+        }
+
+        /**
+         * Safely reads and parses a JSON file by filename from state.dirHandle.
+         * Re-acquires the file handle fresh each tick to avoid macOS atomic-write stale inode errors.
+         */
+        async function readJsonFile(filename) {
+            if (!state.dirHandle) return null;
+            try {
+                const fh = await state.dirHandle.getFileHandle(filename, { create: false });
+                const file = await fh.getFile();
+                const text = await file.text();
+                if (!text || !text.trim()) return null;
+                return JSON.parse(text);
+            } catch (_) {
+                return null;
+            }
+        }
+
+        // ==========================================
+        // 5. Polling & Cross-Referencing Broadcast Files
+        // ==========================================
+        async function pollBroadcastFiles() {
+            if (!state.dirHandle) return;
+
+            const hasPerm = await verifyDirPermission(false);
+            if (!hasPerm) {
+                state.consecutiveErrors += 1;
+                if (state.consecutiveErrors >= 8) {
+                    setConnectionStatus('error', 'Click to Re-authorize');
+                    showBanner('Browser paused folder access. Click "Select Broadcast Folder" once to resume.', 'error');
+                    stopPolling();
+                }
+                return;
+            }
+
+            const now = performance.now();
+
+            // 1. Refresh entries.json every 3 seconds (or immediately if empty)
+            if (state.entriesByName.size === 0 || (now - state.lastEntriesFetchMs) > 3000) {
+                const entriesData = await readJsonFile('entries.json');
+                if (Array.isArray(entriesData)) {
+                    state.lastEntriesFetchMs = now;
+                    state.totalEntriesCount = entriesData.length;
+                    const map = new Map();
+                    for (const entry of entriesData) {
+                        if (entry && entry.name) {
+                            map.set(normalizeName(entry.name), entry);
+                        }
+                    }
+                    state.entriesByName = map;
+                    els.entriesCountBadge.textContent = `${state.totalEntriesCount} Entries Loaded`;
+                }
+            }
+
+            // 2. Read nearest.json, groups.json, and focus.json in parallel
+            const [nearestData, groupsData, focusData] = await Promise.all([
+                readJsonFile('nearest.json'),
+                readJsonFile('groups.json'),
+                readJsonFile('focus.json')
+            ]);
+
+            if (!nearestData && !groupsData && !focusData) {
+                state.consecutiveErrors += 1;
+                if (state.consecutiveErrors >= 12) {
+                    setConnectionStatus('error', 'Waiting for files...');
+                }
+                return;
+            }
+
+            state.consecutiveErrors = 0;
+            setConnectionStatus('connected', 'Live: nearest.json');
+
+            if (Array.isArray(nearestData)) {
+                state.nearestRiders = nearestData;
+            }
+            if (Array.isArray(groupsData)) {
+                state.groups = groupsData;
+            }
+            if (focusData) {
+                state.focusedRider = Array.isArray(focusData) ? focusData[0] : focusData;
+            }
+
+            renderDashboard();
+        }
+
+        function lookupBibInfo(riderObj) {
+            if (!riderObj || !riderObj.name) return null;
+            return state.entriesByName.get(normalizeName(riderObj.name)) || null;
+        }
+
+        function formatAgeSince(timestampMs) {
+            if (!timestampMs) return 'Not seen yet';
+            const sec = Math.max(0, Math.round((Date.now() - timestampMs) / 1000));
+            if (sec <= 2) return 'Live now';
+            if (sec < 60) return `${sec}s ago`;
+            const mins = Math.floor(sec / 60);
+            const rem = sec % 60;
+            return `${mins}m ${rem}s ago`;
+        }
+
+        // ==========================================
+        // 6. Rendering HUD & Rider Rows
+        // ==========================================
+        function renderDashboard() {
+            const focusedNameNorm = normalizeName(state.focusedRider?.name);
+            const nowEpoch = Date.now();
+
+            // --- A. Focused Rider Overview Card ---
+            if (state.focusedRider && state.focusedRider.name) {
+                const entry = lookupBibInfo(state.focusedRider);
+                const country = state.focusedRider.country || entry?.country || '';
+                const bib = entry?.bibNum ?? '--';
+                const speedStr = formatSpeedKmh(state.focusedRider.speed);
+
+                // Find focused rider's position from nearestRiders if available
+                const inNearest = state.nearestRiders.find(r => normalizeName(r.name) === focusedNameNorm);
+                const posStr = inNearest?.position ? `Pos #${inNearest.position}` : 'Focused Rider';
+
+                els.focusFlag.textContent = getCountryFlag(country);
+                els.focusName.textContent = state.focusedRider.name;
+                els.focusBib.textContent = bib !== '--' ? `#${bib}` : '--';
+                els.focusMeta.textContent = `${posStr} • ${speedStr}`;
+            }
+
+            // --- B. Groups Overview Card (groups.json) ---
+            if (state.groups.length > 0) {
+                // Find the group containing the focused rider or largest peloton
+                const primaryGroup = state.groups.find(g => g.isPeloton) || state.groups[0];
+                const label = primaryGroup.isPeloton ? 'Main Peloton' : `Group #${primaryGroup.groupNum1 || 1}`;
+                els.groupBadge.textContent = label;
+                els.groupSizeBadge.textContent = `${primaryGroup.size ?? '--'} riders`;
+                els.groupLeaderText.textContent = primaryGroup.leader ? `Leader: ${primaryGroup.leader}` : 'Leader: --';
+                els.groupGapText.textContent = formatTimeGap(primaryGroup.timeGap1 ?? 0);
+
+                // Render pills for all active groups
+                els.allGroupsList.innerHTML = state.groups.map(g => {
+                    const gTitle = g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1}`;
+                    const gapStr = g.timeGap1 ? ` (${formatTimeGap(g.timeGap1)})` : '';
+                    return `<span class="text-xs font-mono px-2 py-0.5 rounded-lg bg-pine-850 border border-pine-700 text-mist-100">${escapeHtml(gTitle)}: <strong class="text-chestnut-400">${g.size ?? '?'}</strong>${escapeHtml(gapStr)}</span>`;
+                }).join('');
+            }
+
+            // --- C. Group Resolution Helper & Persistent Cache Update ---
+            const groupLeaderMap = new Map();
+            state.groups.forEach((g, idx) => {
+                if (g && g.leader) {
+                    const gLabel = g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || (idx + 1)}`;
+                    groupLeaderMap.set(normalizeName(g.leader), {
+                        group: g,
+                        label: gLabel,
+                        index: idx
+                    });
+                }
+            });
+
+            function resolveRiderGroupLabel(rider) {
+                const norm = normalizeName(rider.name);
+                if (groupLeaderMap.has(norm)) {
+                    return groupLeaderMap.get(norm).label;
+                }
+                if (state.groups.length === 0) return null;
+                if (state.groups.length === 1) {
+                    const g = state.groups[0];
+                    return g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || 1}`;
+                }
+
+                // Match rider's timeGap to the closest group's timeGap1 (within 2.5 seconds)
+                const rGapSec = Math.abs(rider.timeGap ?? 0) > 300 ? (rider.timeGap ?? 0) / 1000 : (rider.timeGap ?? 0);
+                let bestGroup = null;
+                let bestDiff = Infinity;
+
+                for (let i = 0; i < state.groups.length; i++) {
+                    const g = state.groups[i];
+                    const gGapSec = Math.abs(g.timeGap1 ?? 0) > 300 ? (g.timeGap1 ?? 0) / 1000 : (g.timeGap1 ?? 0);
+                    const diff = Math.abs(rGapSec - gGapSec);
+                    if (diff < bestDiff) {
+                        bestDiff = diff;
+                        bestGroup = { g, idx: i };
+                    }
+                }
+
+                if (bestGroup && bestDiff <= 2.5) {
+                    return bestGroup.g.isPeloton ? 'Peloton' : `Grp ${bestGroup.g.groupNum1 || (bestGroup.idx + 1)}`;
+                }
+                return null;
+            }
+
+            // Update persistent cache with latest sightings from nearest.json, groups.json, and focus.json
+            const activeLiveNames = new Set();
+
+            state.nearestRiders.forEach((r, idx) => {
+                if (!r || !r.name) return;
+                const norm = normalizeName(r.name);
+                activeLiveNames.add(norm);
+                const prev = state.riderHistoryByName.get(norm) || {};
+                const groupLabel = resolveRiderGroupLabel(r) || prev.groupLabel || null;
+                const leaderInfo = groupLeaderMap.get(norm);
+
+                state.riderHistoryByName.set(norm, {
+                    ...prev,
+                    name: r.name,
+                    country: r.country || prev.country || '',
+                    team: r.team || prev.team || '',
+                    teamCode: r.teamCode || prev.teamCode || '',
+                    position: r.position ?? prev.position ?? null,
+                    timeGap: r.timeGap ?? prev.timeGap ?? null,
+                    speed: r.speed ?? prev.speed ?? null,
+                    isEliminated: Boolean(r.isEliminated),
+                    groupLabel,
+                    isGroupLeader: Boolean(leaderInfo),
+                    groupOrderIndex: leaderInfo ? leaderInfo.index : prev.groupOrderIndex,
+                    nearestOrderIndex: idx,
+                    lastSeenAt: nowEpoch
+                });
+            });
+
+            state.groups.forEach((g, idx) => {
+                if (!g || !g.leader) return;
+                const norm = normalizeName(g.leader);
+                activeLiveNames.add(norm);
+                const prev = state.riderHistoryByName.get(norm) || {};
+                const gLabel = g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || (idx + 1)}`;
+
+                state.riderHistoryByName.set(norm, {
+                    ...prev,
+                    name: g.leader,
+                    position: prev.position ?? null,
+                    timeGap: g.timeGap1 ?? prev.timeGap ?? 0,
+                    groupLabel: gLabel,
+                    isGroupLeader: true,
+                    groupOrderIndex: idx,
+                    lastSeenAt: nowEpoch
+                });
+            });
+
+            if (state.focusedRider && state.focusedRider.name) {
+                const norm = focusedNameNorm;
+                activeLiveNames.add(norm);
+                const prev = state.riderHistoryByName.get(norm) || {};
+                const groupLabel = resolveRiderGroupLabel(state.focusedRider) || prev.groupLabel || null;
+
+                state.riderHistoryByName.set(norm, {
+                    ...prev,
+                    name: state.focusedRider.name,
+                    country: state.focusedRider.country || prev.country || '',
+                    team: state.focusedRider.team || prev.team || '',
+                    teamCode: state.focusedRider.teamCode || prev.teamCode || '',
+                    speed: state.focusedRider.speed ?? prev.speed ?? null,
+                    groupLabel,
+                    lastSeenAt: nowEpoch
+                });
+            }
+
+            // --- D. Build Display List Based on Active View Mode ---
+            let displayRiders = [];
+
+            if (state.viewMode === 'all') {
+                // Start from every rider in entries.json
+                const seenInEntries = new Set();
+                state.entriesByName.forEach((entry, norm) => {
+                    seenInEntries.add(norm);
+                    const cached = state.riderHistoryByName.get(norm) || {};
+                    const isLiveNow = activeLiveNames.has(norm);
+                    displayRiders.push({
+                        name: entry.name,
+                        bibNum: entry.bibNum ?? null,
+                        country: entry.country || cached.country || '',
+                        team: entry.team || cached.team || '',
+                        teamCode: entry.teamCode || cached.teamCode || '',
+                        position: cached.position ?? null,
+                        timeGap: cached.timeGap ?? null,
+                        speed: cached.speed ?? null,
+                        isEliminated: Boolean(cached.isEliminated),
+                        groupLabel: cached.groupLabel || null,
+                        isGroupLeader: Boolean(cached.isGroupLeader),
+                        groupOrderIndex: cached.groupOrderIndex ?? 999,
+                        nearestOrderIndex: cached.nearestOrderIndex ?? 9999,
+                        lastSeenAt: cached.lastSeenAt || null,
+                        isLiveNow,
+                        isFocused: focusedNameNorm && norm === focusedNameNorm
+                    });
+                });
+
+                // Also append any live riders not yet found in entries.json
+                state.riderHistoryByName.forEach((cached, norm) => {
+                    if (!seenInEntries.has(norm)) {
+                        displayRiders.push({
+                            ...cached,
+                            bibNum: null,
+                            isLiveNow: activeLiveNames.has(norm),
+                            isFocused: focusedNameNorm && norm === focusedNameNorm
+                        });
+                    }
+                });
+
+                const seenCount = displayRiders.filter(r => r.lastSeenAt !== null).length;
+                els.nearestCountText.textContent = `Tracking ${displayRiders.length} total entries (${seenCount} seen so far)`;
+            } else {
+                // Nearby & Group Leaders Mode
+                const nearbyNames = new Set();
+
+                state.nearestRiders.forEach((r, originalIndex) => {
+                    if (!r || !r.name) return;
+                    const norm = normalizeName(r.name);
+                    nearbyNames.add(norm);
+                    const entry = lookupBibInfo(r);
+                    const cached = state.riderHistoryByName.get(norm) || {};
+                    displayRiders.push({
+                        ...r,
+                        originalIndex,
+                        bibNum: entry?.bibNum ?? null,
+                        country: r.country || entry?.country || '',
+                        team: r.team || entry?.team || '',
+                        teamCode: r.teamCode || entry?.teamCode || '',
+                        groupLabel: cached.groupLabel || resolveRiderGroupLabel(r),
+                        isGroupLeader: groupLeaderMap.has(norm),
+                        groupOrderIndex: groupLeaderMap.get(norm)?.index ?? 999,
+                        lastSeenAt: nowEpoch,
+                        isLiveNow: true,
+                        isFocused: focusedNameNorm && norm === focusedNameNorm
+                    });
+                });
+
+                // Inject missing group leaders from groups.json
+                state.groups.forEach((g, idx) => {
+                    if (!g || !g.leader) return;
+                    const leaderNorm = normalizeName(g.leader);
+                    if (!nearbyNames.has(leaderNorm)) {
+                        nearbyNames.add(leaderNorm);
+                        const entry = state.entriesByName.get(leaderNorm);
+                        const cached = state.riderHistoryByName.get(leaderNorm) || {};
+                        displayRiders.push({
+                            name: g.leader,
+                            bibNum: entry?.bibNum ?? null,
+                            country: entry?.country || '',
+                            team: entry?.team || '',
+                            teamCode: entry?.teamCode || '',
+                            speed: cached.speed ?? null,
+                            timeGap: g.timeGap1 ?? 0,
+                            position: cached.position ?? null,
+                            isEliminated: false,
+                            isInjectedLeader: true,
+                            isGroupLeader: true,
+                            groupOrderIndex: idx,
+                            groupLabel: g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || (idx + 1)}`,
+                            lastSeenAt: nowEpoch,
+                            isLiveNow: true,
+                            isFocused: focusedNameNorm && leaderNorm === focusedNameNorm
+                        });
+                    }
+                });
+
+                els.nearestCountText.textContent = `Showing ${displayRiders.length} rider${displayRiders.length === 1 ? '' : 's'} (nearest + group leaders)`;
+            }
+
+            if (displayRiders.length === 0) {
+                els.ridersList.innerHTML = `
+                    <div class="py-10 text-center">
+                        <p class="text-sm font-medium text-mist-300">${state.viewMode === 'all' ? 'Waiting for entries.json to populate the start list...' : 'No nearby riders reported in nearest.json yet.'}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort according to active sortMode
+            if (state.sortMode === 'bib') {
+                displayRiders.sort((a, b) => (a.bibNum ?? 9999) - (b.bibNum ?? 9999));
+            } else if (state.sortMode === 'position') {
+                displayRiders.sort((a, b) => {
+                    const posA = a.position ?? (a.isGroupLeader ? (a.groupOrderIndex ?? 0) + 0.1 : 9999);
+                    const posB = b.position ?? (b.isGroupLeader ? (b.groupOrderIndex ?? 0) + 0.1 : 9999);
+                    if (posA !== posB) return posA - posB;
+                    return (a.bibNum ?? 9999) - (b.bibNum ?? 9999);
+                });
+            } else if (state.sortMode === 'nearest' && state.viewMode === 'all') {
+                displayRiders.sort((a, b) => (a.nearestOrderIndex ?? 9999) - (b.nearestOrderIndex ?? 9999));
+            }
+
+            els.ridersList.innerHTML = displayRiders.map(r => {
+                const flag = getCountryFlag(r.country);
+                const bibDisplay = r.bibNum !== null ? r.bibNum : '?';
+                const hasEverBeenSeen = r.lastSeenAt !== null;
+                const posDisplay = r.position ? `#${r.position}` : (r.isGroupLeader ? 'LDR' : '--');
+                const gapDisplay = r.timeGap !== null && r.timeGap !== undefined ? formatTimeGap(r.timeGap) : '--';
+
+                let subStatusDisplay = '-- km/h';
+                if (state.viewMode === 'all') {
+                    subStatusDisplay = r.isLiveNow
+                        ? (r.speed !== null ? formatSpeedKmh(r.speed) : 'Live in feed')
+                        : formatAgeSince(r.lastSeenAt);
+                } else {
+                    subStatusDisplay = r.speed !== null ? formatSpeedKmh(r.speed) : (r.isInjectedLeader ? 'Group Leader' : '-- km/h');
+                }
+
+                const rowHighlight = r.isFocused
+                    ? 'bg-chestnut-500/15 border-l-4 border-l-chestnut-400 rounded-xl my-1'
+                    : r.isEliminated
+                        ? 'opacity-50 hover:bg-pine-950/50 rounded-xl'
+                        : !hasEverBeenSeen && state.viewMode === 'all'
+                            ? 'opacity-65 hover:opacity-95 hover:bg-pine-950/40 rounded-xl transition-opacity'
+                            : 'hover:bg-pine-950/60 rounded-xl transition-colors';
+
+                const bibBadgeStyle = r.isFocused
+                    ? 'bg-chestnut-500 text-pine-950 border-chestnut-400 shadow-md shadow-chestnut-500/20'
+                    : r.isLiveNow
+                        ? 'bg-pine-950 text-chestnut-400 border-pine-700'
+                        : 'bg-pine-950/70 text-mist-300 border-pine-800';
+
+                const groupBadgeHtml = r.groupLabel
+                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-bold ${r.groupLabel === 'Peloton' ? 'bg-pine-950 text-mist-100 border border-pine-700' : 'bg-chestnut-500/20 text-chestnut-400 border border-chestnut-500/40'}">${escapeHtml(r.groupLabel)}</span>`
+                    : '';
+
+                const teamBadge = r.teamCode
+                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-bold bg-rust-600/25 text-mist-100 border border-rust-500/50" title="${escapeHtml(r.team)}">${escapeHtml(r.teamCode)}</span>`
+                    : r.team
+                        ? `<span class="text-xs text-mist-300 truncate">${escapeHtml(r.team)}</span>`
+                        : '';
+
+                return `
+                    <div class="grid grid-cols-12 items-center gap-3 px-3 sm:px-4 py-3 ${rowHighlight}">
+                        <!-- Bib Number (Hero Glanceable Pill) -->
+                        <div class="col-span-3 sm:col-span-2 flex items-center gap-2">
+                            <span class="inline-flex items-center justify-center min-w-[3.4rem] px-2.5 py-1 rounded-xl border font-mono text-xl sm:text-2xl font-extrabold tracking-tight ${bibBadgeStyle}">
+                                ${escapeHtml(String(bibDisplay))}
+                            </span>
+                        </div>
+
+                        <!-- Race Position -->
+                        <div class="col-span-2 sm:col-span-1 text-center">
+                            <span class="font-mono text-sm sm:text-base font-bold ${r.isFocused || r.isGroupLeader ? 'text-chestnut-400' : hasEverBeenSeen ? 'text-mist-300' : 'text-mist-400/60'}">${escapeHtml(posDisplay)}</span>
+                        </div>
+
+                        <!-- Flag, Country Code & Rider Name -->
+                        <div class="col-span-7 sm:col-span-5 flex items-center gap-2.5 min-w-0">
+                            <span class="text-2xl leading-none select-none shrink-0" title="${escapeHtml(r.country)}">${flag}</span>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-base sm:text-lg text-mist-100 truncate">${escapeHtml(r.name)}</span>
+                                    ${r.isFocused ? '<span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-chestnut-500/20 text-chestnut-400 border border-chestnut-500/40 shrink-0">YOU</span>' : ''}
+                                    ${r.isGroupLeader && !r.isFocused ? '<span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-pine-950 text-chestnut-400 border border-chestnut-500/40 shrink-0">LEADER</span>' : ''}
+                                    ${state.viewMode === 'all' && r.isLiveNow && !r.isFocused ? '<span class="w-2 h-2 rounded-full bg-chestnut-400 shrink-0" title="Currently in live feed"></span>' : ''}
+                                    ${r.isEliminated ? '<span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-rust-600/30 text-rust-500 border border-rust-500/50 shrink-0">OUT</span>' : ''}
+                                </div>
+                                <div class="flex items-center gap-1.5 mt-0.5">
+                                    <span class="text-xs font-mono text-mist-400">${escapeHtml(r.country || '---')} ${r.team ? `• ${escapeHtml(r.team)}` : ''}</span>
+                                    <span class="sm:hidden">${groupBadgeHtml}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Group & Team Code (Desktop) -->
+                        <div class="hidden sm:flex sm:col-span-2 flex-wrap items-center gap-1.5">
+                            ${groupBadgeHtml}
+                            ${teamBadge}
+                        </div>
+
+                        <!-- Time Gap & Speed / Last Seen (Desktop) -->
+                        <div class="hidden sm:block sm:col-span-2 text-right font-mono">
+                            <span class="text-sm font-bold ${!hasEverBeenSeen ? 'text-mist-400/60' : r.timeGap === 0 ? 'text-mist-300' : 'text-chestnut-400'} block">${escapeHtml(gapDisplay)}</span>
+                            <span class="text-xs ${r.isLiveNow && state.viewMode === 'all' ? 'text-chestnut-400 font-semibold' : 'text-mist-400'} block">${escapeHtml(subStatusDisplay)}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function setViewMode(mode) {
+            state.viewMode = mode;
+            if (mode === 'all') {
+                els.btnModeAll.className = 'px-3 py-1 rounded-lg text-xs font-semibold bg-rust-600 text-mist-100 shadow transition cursor-pointer';
+                els.btnModeNearby.className = 'px-3 py-1 rounded-lg text-xs font-semibold text-mist-300 hover:text-mist-100 transition cursor-pointer';
+                els.boardTitle.textContent = 'All Race Entries — Bib Roster & Last Known Position';
+                els.boardSubtitle.textContent = 'Updates automatically when riders appear in live feeds';
+                els.btnClearHistory.classList.remove('hidden');
+
+                // Default to Bib Number sort when switching to Track All
+                state.sortMode = 'bib';
+                els.selectSortMode.value = 'bib';
+            } else {
+                els.btnModeNearby.className = 'px-3 py-1 rounded-lg text-xs font-semibold bg-rust-600 text-mist-100 shadow transition cursor-pointer';
+                els.btnModeAll.className = 'px-3 py-1 rounded-lg text-xs font-semibold text-mist-300 hover:text-mist-100 transition cursor-pointer';
+                els.boardTitle.textContent = 'Nearest Riders — Live Bib Numbers';
+                els.boardSubtitle.textContent = 'Auto-matched via entries.json';
+                els.btnClearHistory.classList.add('hidden');
+
+                // Default back to Race Position sort when switching to Nearby
+                state.sortMode = 'position';
+                els.selectSortMode.value = 'position';
+            }
+            renderDashboard();
+        }
+
+        // ==========================================
+        // 7. Folder Connection & Event Listeners
+        // ==========================================
+        async function connectToBroadcastFolder() {
+            if (!('showDirectoryPicker' in window)) {
+                showBanner('Your browser does not support folder access. Please open this page in Chrome, Edge, or Brave on macOS.', 'error');
+                return;
+            }
+
+            try {
+                if (state.dirHandle) {
+                    const ok = await verifyDirPermission(true);
+                    if (ok) {
+                        state.consecutiveErrors = 0;
+                        setConnectionStatus('connected', 'Live: nearest.json');
+                        showBanner(`Reconnected to saved "${state.dirHandle.name}" folder.`, 'success');
+                        startPolling();
+                        return;
+                    }
+                }
+
+                const dirHandle = await window.showDirectoryPicker({
+                    id: 'tpv-broadcast-dir',
+                    mode: 'read'
+                });
+
+                state.dirHandle = dirHandle;
+                await saveDirectoryHandle(dirHandle);
+                state.consecutiveErrors = 0;
+
+                setConnectionStatus('connected', 'Live: nearest.json');
+                showBanner(`Connected to "${dirHandle.name}". Reading entries.json, nearest.json & groups.json.`, 'success');
+                startPolling();
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    showBanner(`Could not open Broadcast folder: ${err.message}`, 'error');
+                }
+            }
+        }
+
+        function startPolling() {
+            stopPolling();
+            pollBroadcastFiles();
+            state.pollTimerId = setInterval(pollBroadcastFiles, state.pollIntervalMs);
+        }
+
+        function stopPolling() {
+            if (state.pollTimerId) {
+                clearInterval(state.pollTimerId);
+                state.pollTimerId = null;
+            }
+        }
+
+        els.btnConnect.addEventListener('click', connectToBroadcastFolder);
+
+        els.btnModeNearby.addEventListener('click', () => setViewMode('nearby'));
+        els.btnModeAll.addEventListener('click', () => setViewMode('all'));
+
+        els.btnClearHistory.addEventListener('click', () => {
+            state.riderHistoryByName.clear();
+            renderDashboard();
+            showBanner('Cleared cached rider positions. Rebuilding from live feeds...', 'info');
+        });
+
+        els.selectSortMode.addEventListener('change', (e) => {
+            state.sortMode = e.target.value;
+            renderDashboard();
+        });
+
+        els.selectPollRate.addEventListener('change', (e) => {
+            state.pollIntervalMs = Number(e.target.value);
+            if (state.dirHandle && state.pollTimerId) {
+                startPolling();
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const savedDir = await loadSavedDirectoryHandle();
+            if (savedDir) {
+                state.dirHandle = savedDir;
+                const ready = await verifyDirPermission(false);
+                if (ready) {
+                    setConnectionStatus('connected', 'Live: nearest.json');
+                    showBanner(`Auto-reconnected to saved "${savedDir.name}" folder.`, 'success');
+                    startPolling();
+                } else {
+                    els.btnConnect.querySelector('span').textContent = `Reconnect (${savedDir.name})`;
+                    showBanner(`Saved folder "${savedDir.name}" found. Click "Reconnect (${savedDir.name})" to resume streaming.`, 'info');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
