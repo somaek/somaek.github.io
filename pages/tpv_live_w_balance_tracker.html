@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPV Live W' Balance Tracker (intervals.icu Model)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        pine: {
+                            950: '#132418', // Deepest recess for inputs & canvas
+                            900: '#1C3322', // Dominant Deep Forest Pine background
+                            850: '#223D29', // Elevated card surface
+                            800: '#2A4A32', // Borders and subtle dividers
+                            700: '#375E41', // Hover borders / muted strokes
+                        },
+                        rust: {
+                            500: '#C9562C',
+                            600: '#B84A22', // Primary Tuscan Rust / Burnt Sienna accent
+                            700: '#9A3B19',
+                        },
+                        chestnut: {
+                            400: '#E2AC48',
+                            500: '#D49B35', // Secondary Golden Chestnut highlight
+                            600: '#B58124',
+                        },
+                        mist: {
+                            50: '#F9F8F6',
+                            100: '#F2F0EB', // Mist White primary text
+                            300: '#D5D1C6', // Muted warm cream secondary text
+                            400: '#A8A69B', // Subtle labels
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-pine-900 text-mist-100 font-sans antialiased min-h-screen flex flex-col selection:bg-rust-600 selection:text-mist-100">
+
+    <!-- Top Navigation / Header -->
+    <header class="border-b border-pine-800 bg-pine-950/80 backdrop-blur-md sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rust-600 to-chestnut-500 flex items-center justify-center shadow-lg shadow-rust-600/25 border border-chestnut-500/30">
+                    <svg class="w-5 h-5 text-mist-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h1 class="text-lg font-bold tracking-tight text-mist-100">TPV Live W' Balance</h1>
+            </div>
+
+            <!-- Connection Status & Folder Selection -->
+            <div class="flex items-center gap-2.5">
+                <div id="statusBadge" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-pine-850 border border-pine-700 text-xs font-medium text-mist-300">
+                    <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-mist-400/60"></span>
+                    <span id="statusText">Disconnected</span>
+                </div>
+
+                <button id="btnConnect" type="button" class="px-4 py-2 rounded-xl bg-rust-600 hover:bg-rust-500 active:scale-[0.99] text-xs font-semibold text-mist-100 shadow-lg shadow-rust-600/30 border border-rust-500/40 transition flex items-center gap-2 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Select Broadcast Folder</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification Banner (Replaces alert) -->
+    <div id="bannerContainer" class="max-w-6xl w-full mx-auto px-4 sm:px-6 mt-3 hidden">
+        <div id="bannerBox" class="rounded-2xl p-3 border flex items-center justify-between gap-3 text-xs sm:text-sm">
+            <span id="bannerMessage" class="font-medium"></span>
+            <button id="bannerClose" type="button" class="text-mist-300 hover:text-mist-100 p-1 rounded-lg">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Glanceable HUD Content -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+
+        <!-- Rider Threshold Settings & Reset -->
+        <section class="bg-pine-850/95 border border-pine-800 rounded-2xl p-4 sm:p-5 shadow-xl">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3.5">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-mist-300">Threshold Settings</h2>
+                    <span id="riderBadge" class="hidden text-xs font-medium px-2.5 py-0.5 rounded-lg bg-pine-950 text-chestnut-400 border border-pine-700"></span>
+                </div>
+                <button id="btnResetWbal" type="button" class="text-xs font-semibold px-3.5 py-1.5 rounded-xl bg-pine-950 hover:bg-pine-800 text-mist-100 border border-pine-700 transition cursor-pointer">
+                    Reset W' to 100%
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                <!-- FTP Input -->
+                <div class="bg-pine-950/90 border border-pine-800 rounded-xl p-3 focus-within:border-chestnut-500/70 transition">
+                    <label for="inputFtp" class="block text-xs font-medium text-mist-400 mb-1">FTP / Critical Power (W)</label>
+                    <div class="flex items-baseline gap-2">
+                        <input id="inputFtp" type="number" min="50" max="1000" step="1" value="280"
+                            class="w-full bg-transparent text-2xl font-mono font-bold text-mist-100 focus:outline-none">
+                        <span class="text-xs font-semibold text-chestnut-500">WATTS</span>
+                    </div>
+                </div>
+
+                <!-- W' kJ Input -->
+                <div class="bg-pine-950/90 border border-pine-800 rounded-xl p-3 focus-within:border-chestnut-500/70 transition">
+                    <label for="inputWPrime" class="block text-xs font-medium text-mist-400 mb-1">W' Capacity (kJ)</label>
+                    <div class="flex items-baseline gap-2">
+                        <input id="inputWPrime" type="number" min="1" max="100" step="0.1" value="20.0"
+                            class="w-full bg-transparent text-2xl font-mono font-bold text-mist-100 focus:outline-none">
+                        <span class="text-xs font-semibold text-chestnut-500">kJ</span>
+                    </div>
+                </div>
+
+                <!-- Poll Rate Selector -->
+                <div class="bg-pine-950/90 border border-pine-800 rounded-xl p-3 focus-within:border-chestnut-500/70 transition">
+                    <label for="selectPollRate" class="block text-xs font-medium text-mist-400 mb-1">Polling Interval</label>
+                    <select id="selectPollRate" class="w-full bg-transparent text-lg font-mono font-bold text-mist-100 focus:outline-none pt-1 cursor-pointer">
+                        <option value="250" class="bg-pine-950 text-mist-100">250 ms (4 Hz)</option>
+                        <option value="500" selected class="bg-pine-950 text-mist-100">500 ms (2 Hz)</option>
+                        <option value="1000" class="bg-pine-950 text-mist-100">1000 ms (1 Hz)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Primary W' Balance Hero Readout -->
+        <section class="bg-pine-850/95 border border-pine-800 rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden">
+            <div id="wbalGlow" class="absolute -right-16 -top-16 w-72 h-72 rounded-full bg-chestnut-500/15 blur-3xl pointer-events-none transition-colors duration-500"></div>
+
+            <div class="flex flex-wrap items-baseline justify-between gap-4 relative z-10">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-mist-400">Remaining W' Balance</span>
+                    <div class="flex items-baseline gap-3.5 mt-1">
+                        <span id="wbalKjDisplay" class="text-6xl sm:text-7xl font-mono font-extrabold tracking-tight text-chestnut-400 transition-colors duration-300">20.00</span>
+                        <span class="text-2xl font-mono font-semibold text-mist-300">kJ</span>
+                        <span id="wbalPctDisplay" class="text-xl sm:text-2xl font-mono font-bold px-3 py-1 rounded-xl bg-chestnut-500/15 text-chestnut-400 border border-chestnut-500/40">100.0%</span>
+                    </div>
+                </div>
+
+                <!-- Depletion / Recovery Rate Indicator -->
+                <div class="text-left sm:text-right">
+                    <span class="text-xs font-medium text-mist-400 block">Net Energy Flux</span>
+                    <span id="wbalDeltaRate" class="text-2xl font-mono font-bold text-mist-100">0 W</span>
+                    <span id="wbalTauDisplay" class="text-xs font-mono text-mist-400 block mt-0.5">τ = -- s</span>
+                </div>
+            </div>
+
+            <!-- High-Visibility Progress Bar -->
+            <div class="my-6 relative z-10">
+                <div class="w-full h-9 bg-pine-950 rounded-2xl p-1.5 border border-pine-800 shadow-inner overflow-hidden">
+                    <div id="wbalProgressBar" class="h-full rounded-xl bg-gradient-to-r from-chestnut-600 to-chestnut-400 transition-all duration-200 ease-out" style="width: 100%;"></div>
+                </div>
+                <div class="flex justify-between text-xs font-mono text-mist-400 mt-1.5 px-1">
+                    <span>0 kJ (Empty)</span>
+                    <span>25%</span>
+                    <span>50%</span>
+                    <span>75%</span>
+                    <span id="wbalMaxLabel">20.0 kJ (Full)</span>
+                </div>
+            </div>
+
+            <!-- Key Glanceable Estimates -->
+            <div class="grid grid-cols-3 gap-3.5 pt-4 border-t border-pine-800 relative z-10">
+                <div class="bg-pine-950/80 rounded-xl p-3.5 border border-pine-800">
+                    <span class="text-[11px] uppercase tracking-wider text-mist-400 block">Status / Estimate</span>
+                    <span id="wbalEstimateLabel" class="text-base sm:text-lg font-mono font-bold text-mist-100 mt-0.5 block">Fully Charged</span>
+                </div>
+                <div class="bg-pine-950/80 rounded-xl p-3.5 border border-pine-800">
+                    <span class="text-[11px] uppercase tracking-wider text-mist-400 block">Session Low</span>
+                    <span id="wbalMinReached" class="text-base sm:text-lg font-mono font-bold text-mist-100 mt-0.5 block">20.00 kJ (100%)</span>
+                </div>
+                <div class="bg-pine-950/80 rounded-xl p-3.5 border border-pine-800">
+                    <span class="text-[11px] uppercase tracking-wider text-mist-400 block">Effort Intensity</span>
+                    <span id="powerVsFtp" class="text-base sm:text-lg font-mono font-bold text-chestnut-400 mt-0.5 block">0% FTP</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-Time W' Balance & Power History Chart -->
+        <section class="bg-pine-850/95 border border-pine-800 rounded-2xl p-5 shadow-xl">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-mist-300">W' Balance & Power Trace (Last 5 Minutes)</h3>
+                <div class="flex items-center gap-4 text-xs font-medium">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-sm bg-chestnut-500 inline-block"></span>
+                        <span class="text-mist-300">W' Balance (%)</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-sm bg-mist-100/80 inline-block"></span>
+                        <span class="text-mist-300">Power (W)</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-0.5 bg-rust-500 inline-block"></span>
+                        <span class="text-mist-300">FTP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full h-64 sm:h-72 bg-pine-950/95 rounded-xl border border-pine-800 relative overflow-hidden">
+                <canvas id="telemetryChart" class="w-full h-full block"></canvas>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        /**
+         * TPV Live W' Balance Tracker
+         * Implements the intervals.icu / Skiba (2015) differential W'bal model:
+         * - When P > CP (FTP):  dW'/dt = -(P - CP)
+         * - When P <= CP (FTP): dW'/dt = (W'_0 - W'_bal) / tau
+         *   where tau = 546 * exp(-0.01 * (CP - P)) + 316
+         */
+
+        // ==========================================
+        // 1. Application State & Configuration
+        // ==========================================
+        const state = {
+            ftp: 280,                    // Critical Power / FTP in Watts
+            wPrimeMaxJoules: 20000,      // W' capacity in Joules (20 kJ = 20000 J)
+            wBalJoules: 20000,           // Current remaining W' in Joules
+            minWBalJoules: 20000,        // Lowest W' reached during session
+            pollIntervalMs: 500,         // File read frequency in ms
+
+            // File Handle & Timers
+            dirHandle: null,
+            fileHandle: null,
+            pollTimerId: null,
+            consecutiveReadErrors: 0,
+
+            // Timing for accurate integration (dt)
+            lastWallTimestampMs: null,
+            lastTpvTimeMs: null,
+
+            // Rolling history for chart (up to 300 seconds / 5 mins)
+            history: [],
+            maxHistoryPoints: 300,
+        };
+
+        // ==========================================
+        // 2. DOM Element References
+        // ==========================================
+        const els = {
+            btnConnect: document.getElementById('btnConnect'),
+            btnResetWbal: document.getElementById('btnResetWbal'),
+
+            statusDot: document.getElementById('statusDot'),
+            statusText: document.getElementById('statusText'),
+            riderBadge: document.getElementById('riderBadge'),
+
+            bannerContainer: document.getElementById('bannerContainer'),
+            bannerBox: document.getElementById('bannerBox'),
+            bannerMessage: document.getElementById('bannerMessage'),
+            bannerClose: document.getElementById('bannerClose'),
+
+            inputFtp: document.getElementById('inputFtp'),
+            inputWPrime: document.getElementById('inputWPrime'),
+            selectPollRate: document.getElementById('selectPollRate'),
+
+            wbalGlow: document.getElementById('wbalGlow'),
+            wbalKjDisplay: document.getElementById('wbalKjDisplay'),
+            wbalPctDisplay: document.getElementById('wbalPctDisplay'),
+            wbalDeltaRate: document.getElementById('wbalDeltaRate'),
+            wbalTauDisplay: document.getElementById('wbalTauDisplay'),
+            wbalProgressBar: document.getElementById('wbalProgressBar'),
+            wbalMaxLabel: document.getElementById('wbalMaxLabel'),
+            wbalEstimateLabel: document.getElementById('wbalEstimateLabel'),
+            wbalMinReached: document.getElementById('wbalMinReached'),
+            powerVsFtp: document.getElementById('powerVsFtp'),
+
+            canvas: document.getElementById('telemetryChart'),
+        };
+
+        // ==========================================
+        // 3. Persistence (localStorage) & Banner UI
+        // ==========================================
+        function loadSavedSettings() {
+            try {
+                const savedFtp = localStorage.getItem('tpv_wbal_ftp');
+                const savedWPrime = localStorage.getItem('tpv_wbal_wprime');
+                const savedPoll = localStorage.getItem('tpv_wbal_poll');
+
+                if (savedFtp && !isNaN(Number(savedFtp))) {
+                    state.ftp = Math.max(50, Number(savedFtp));
+                    els.inputFtp.value = state.ftp;
+                }
+                if (savedWPrime && !isNaN(Number(savedWPrime))) {
+                    const kj = Math.max(1, Number(savedWPrime));
+                    state.wPrimeMaxJoules = kj * 1000;
+                    state.wBalJoules = state.wPrimeMaxJoules;
+                    state.minWBalJoules = state.wPrimeMaxJoules;
+                    els.inputWPrime.value = kj.toFixed(1);
+                }
+                if (savedPoll && !isNaN(Number(savedPoll))) {
+                    state.pollIntervalMs = Number(savedPoll);
+                    els.selectPollRate.value = String(state.pollIntervalMs);
+                }
+            } catch (e) {
+                console.warn('Could not read localStorage:', e);
+            }
+            updateWBalVisuals(0, null);
+        }
+
+        function saveSettings() {
+            try {
+                localStorage.setItem('tpv_wbal_ftp', String(state.ftp));
+                localStorage.setItem('tpv_wbal_wprime', String(state.wPrimeMaxJoules / 1000));
+                localStorage.setItem('tpv_wbal_poll', String(state.pollIntervalMs));
+            } catch (e) {
+                console.warn('Could not save to localStorage:', e);
+            }
+        }
+
+        function showBanner(message, type = 'info') {
+            els.bannerContainer.classList.remove('hidden');
+            els.bannerMessage.textContent = message;
+
+            // Reset classes with Italian Alpine palette
+            els.bannerBox.className = 'rounded-2xl p-3.5 border flex items-center justify-between gap-3 text-sm ';
+            if (type === 'error') {
+                els.bannerBox.className += 'bg-rust-700/35 border-rust-500/60 text-mist-100';
+            } else if (type === 'success') {
+                els.bannerBox.className += 'bg-pine-850 border-chestnut-500/50 text-mist-100';
+            } else {
+                els.bannerBox.className += 'bg-pine-950/90 border-pine-700 text-mist-300';
+            }
+        }
+
+        els.bannerClose.addEventListener('click', () => {
+            els.bannerContainer.classList.add('hidden');
+        });
+
+        function setConnectionStatus(status, label) {
+            els.statusText.textContent = label;
+            els.statusDot.className = 'w-2.5 h-2.5 rounded-full ';
+            if (status === 'connected') {
+                els.statusDot.className += 'bg-chestnut-400 animate-pulse shadow-[0_0_8px_rgba(212,155,53,0.85)]';
+            } else if (status === 'error') {
+                els.statusDot.className += 'bg-rust-500';
+            } else {
+                els.statusDot.className += 'bg-mist-400/60';
+            }
+        }
+
+        // ==========================================
+        // 4. intervals.icu W' Balance Algorithm
+        // ==========================================
+        /**
+         * Updates W' balance over time interval `dtSeconds` at `powerWatts`
+         * Matches intervals.icu differential Skiba (2015) formulation.
+         */
+        function stepWPrimeBalance(powerWatts, dtSeconds) {
+            if (dtSeconds <= 0 || dtSeconds > 15) {
+                // Guard against invalid or huge time jumps (e.g., paused session)
+                return { netWatts: 0, tau: null };
+            }
+
+            const cp = state.ftp;
+            const wMax = state.wPrimeMaxJoules;
+            let wBal = state.wBalJoules;
+            let netWatts = 0;
+            let tau = null;
+
+            if (powerWatts > cp) {
+                // Depletion phase: linear expenditure above FTP
+                const excessPower = powerWatts - cp;
+                wBal -= excessPower * dtSeconds;
+                netWatts = -excessPower;
+            } else {
+                // Recovery phase: exponential recharge below or equal to FTP
+                // Skiba et al. (2015) time constant tau:
+                const dCP = cp - powerWatts;
+                tau = 546 * Math.exp(-0.01 * dCP) + 316;
+
+                // Exact exponential integration over dtSeconds:
+                // W_bal(t + dt) = W_max - (W_max - W_bal(t)) * exp(-dt / tau)
+                const prevWBal = wBal;
+                wBal = wMax - (wMax - wBal) * Math.exp(-dtSeconds / tau);
+                netWatts = (wBal - prevWBal) / dtSeconds;
+            }
+
+            // Clamp between 0 and W'_0
+            state.wBalJoules = Math.max(0, Math.min(wMax, wBal));
+
+            if (state.wBalJoules < state.minWBalJoules) {
+                state.minWBalJoules = state.wBalJoules;
+            }
+
+            return { netWatts, tau };
+        }
+
+        // ==========================================
+        // 5. Processing Incoming TPV JSON Data
+        // ==========================================
+        function processTelemetryPacket(rawJsonText) {
+            let parsed;
+            try {
+                parsed = JSON.parse(rawJsonText);
+            } catch (err) {
+                // TPV might be mid-write on rare occasions; safely skip partial reads
+                return;
+            }
+
+            // TPV focus.json is an array with 1 object: [{ "name": "...", "power": 150, ... }]
+            const rider = Array.isArray(parsed) ? parsed[0] : parsed;
+            if (!rider || typeof rider !== 'object') {
+                return;
+            }
+
+            if (rider.name) {
+                els.riderBadge.textContent = rider.name;
+                els.riderBadge.classList.remove('hidden');
+            }
+
+            const nowMs = performance.now();
+            let dtSeconds = state.pollIntervalMs / 1000;
+
+            // Determine accurate elapsed time (dt)
+            if (typeof rider.time === 'number' && state.lastTpvTimeMs !== null) {
+                const tpvDeltaMs = rider.time - state.lastTpvTimeMs;
+                if (tpvDeltaMs > 0 && tpvDeltaMs < 10000) {
+                    dtSeconds = tpvDeltaMs / 1000;
+                } else if (tpvDeltaMs === 0 && state.lastWallTimestampMs !== null) {
+                    dtSeconds = (nowMs - state.lastWallTimestampMs) / 1000;
+                }
+            } else if (state.lastWallTimestampMs !== null) {
+                dtSeconds = (nowMs - state.lastWallTimestampMs) / 1000;
+            }
+
+            state.lastWallTimestampMs = nowMs;
+            if (typeof rider.time === 'number') {
+                state.lastTpvTimeMs = rider.time;
+            }
+
+            // Extract power safely
+            const currentPower = Math.max(0, Number(rider.power) || 0);
+
+            // Step W' Balance
+            const { netWatts, tau } = stepWPrimeBalance(currentPower, dtSeconds);
+
+            // Push to rolling history
+            state.history.push({
+                t: nowMs,
+                power: currentPower,
+                wbalPct: (state.wBalJoules / state.wPrimeMaxJoules) * 100,
+                wbalKj: state.wBalJoules / 1000,
+            });
+            if (state.history.length > state.maxHistoryPoints) {
+                state.history.shift();
+            }
+
+            updateWBalVisuals(netWatts, tau, currentPower);
+            drawTelemetryChart();
+        }
+
+        // ==========================================
+        // 6. UI Updating & Visual Gauges
+        // ==========================================
+        function updateWBalVisuals(netWatts, tau, currentPower = 0) {
+            const wMaxKj = state.wPrimeMaxJoules / 1000;
+            const wBalKj = state.wBalJoules / 1000;
+            const pct = Math.max(0, Math.min(100, (state.wBalJoules / state.wPrimeMaxJoules) * 100));
+
+            els.wbalKjDisplay.textContent = wBalKj.toFixed(2);
+            els.wbalPctDisplay.textContent = `${pct.toFixed(1)}%`;
+            els.wbalProgressBar.style.width = `${pct}%`;
+            els.wbalMaxLabel.textContent = `${wMaxKj.toFixed(1)} kJ (Full)`;
+
+            // Min reached
+            const minKj = state.minWBalJoules / 1000;
+            const minPct = (state.minWBalJoules / state.wPrimeMaxJoules) * 100;
+            els.wbalMinReached.textContent = `${minKj.toFixed(2)} kJ (${minPct.toFixed(0)}%)`;
+
+            // Power vs FTP %
+            const ftpPct = state.ftp > 0 ? Math.round((currentPower / state.ftp) * 100) : 0;
+            els.powerVsFtp.textContent = `${ftpPct}% FTP`;
+
+            // Net Flux & Tau
+            const roundedFlux = Math.round(netWatts);
+            if (roundedFlux < 0) {
+                els.wbalDeltaRate.textContent = `${roundedFlux} W (Depleting)`;
+                els.wbalDeltaRate.className = 'text-xl sm:text-2xl font-mono font-bold text-rust-500';
+                els.wbalTauDisplay.textContent = 'Linear expenditure';
+            } else if (roundedFlux > 0) {
+                els.wbalDeltaRate.textContent = `+${roundedFlux} W (Recharging)`;
+                els.wbalDeltaRate.className = 'text-xl sm:text-2xl font-mono font-bold text-chestnut-400';
+                els.wbalTauDisplay.textContent = tau ? `τ = ${Math.round(tau)} s` : 'Exponential recovery';
+            } else {
+                els.wbalDeltaRate.textContent = '0 W';
+                els.wbalDeltaRate.className = 'text-xl sm:text-2xl font-mono font-bold text-mist-300';
+                els.wbalTauDisplay.textContent = tau ? `τ = ${Math.round(tau)} s` : 'τ = -- s';
+            }
+
+            // Time to Exhaustion (TTE) or Time to 90% Recovery
+            if (netWatts < -1 && state.wBalJoules > 0) {
+                const tteSec = Math.round(state.wBalJoules / Math.abs(netWatts));
+                const mins = Math.floor(tteSec / 60);
+                const secs = tteSec % 60;
+                els.wbalEstimateLabel.textContent = `TTE: ${mins}m ${String(secs).padStart(2, '0')}s`;
+                els.wbalEstimateLabel.className = 'text-base sm:text-lg font-mono font-bold text-rust-500 mt-0.5 block';
+            } else if (netWatts > 1 && pct < 90 && tau) {
+                const targetJoules = 0.9 * state.wPrimeMaxJoules;
+                const ratio = (state.wPrimeMaxJoules - targetJoules) / (state.wPrimeMaxJoules - state.wBalJoules);
+                if (ratio > 0 && ratio < 1) {
+                    const tRecSec = Math.round(-tau * Math.log(ratio));
+                    const mins = Math.floor(tRecSec / 60);
+                    const secs = tRecSec % 60;
+                    els.wbalEstimateLabel.textContent = `90% in ${mins}m ${String(secs).padStart(2, '0')}s`;
+                    els.wbalEstimateLabel.className = 'text-base sm:text-lg font-mono font-bold text-chestnut-400 mt-0.5 block';
+                }
+            } else {
+                els.wbalEstimateLabel.textContent = pct >= 99.5 ? 'Fully Charged' : 'Stabilizing';
+                els.wbalEstimateLabel.className = 'text-base sm:text-lg font-mono font-bold text-mist-100 mt-0.5 block';
+            }
+
+            // Dynamic Color Coding using Golden Chestnut -> Burnt Sienna -> Tuscan Rust
+            if (pct > 50) {
+                els.wbalKjDisplay.className = 'text-6xl sm:text-7xl font-mono font-extrabold tracking-tight text-chestnut-400 transition-colors duration-300';
+                els.wbalPctDisplay.className = 'text-xl sm:text-2xl font-mono font-bold px-3 py-1 rounded-xl bg-chestnut-500/15 text-chestnut-400 border border-chestnut-500/40';
+                els.wbalProgressBar.className = 'h-full rounded-xl bg-gradient-to-r from-chestnut-600 to-chestnut-400 transition-all duration-200 ease-out';
+                els.wbalGlow.className = 'absolute -right-16 -top-16 w-72 h-72 rounded-full bg-chestnut-500/15 blur-3xl pointer-events-none transition-colors duration-500';
+            } else if (pct > 25) {
+                els.wbalKjDisplay.className = 'text-6xl sm:text-7xl font-mono font-extrabold tracking-tight text-amber-400 transition-colors duration-300';
+                els.wbalPctDisplay.className = 'text-xl sm:text-2xl font-mono font-bold px-3 py-1 rounded-xl bg-rust-600/20 text-chestnut-400 border border-rust-500/50';
+                els.wbalProgressBar.className = 'h-full rounded-xl bg-gradient-to-r from-rust-600 to-chestnut-500 transition-all duration-200 ease-out';
+                els.wbalGlow.className = 'absolute -right-16 -top-16 w-72 h-72 rounded-full bg-rust-600/20 blur-3xl pointer-events-none transition-colors duration-500';
+            } else {
+                els.wbalKjDisplay.className = 'text-6xl sm:text-7xl font-mono font-extrabold tracking-tight text-rust-500 transition-colors duration-300';
+                els.wbalPctDisplay.className = 'text-xl sm:text-2xl font-mono font-bold px-3 py-1 rounded-xl bg-rust-600/25 text-mist-100 border border-rust-500/70';
+                els.wbalProgressBar.className = 'h-full rounded-xl bg-gradient-to-r from-rust-700 to-rust-500 transition-all duration-200 ease-out';
+                els.wbalGlow.className = 'absolute -right-16 -top-16 w-72 h-72 rounded-full bg-rust-600/30 blur-3xl pointer-events-none transition-colors duration-500';
+            }
+        }
+
+        // ==========================================
+        // 7. Real-Time Canvas Chart Renderer
+        // ==========================================
+        function drawTelemetryChart() {
+            const canvas = els.canvas;
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+
+            if (rect.width === 0 || rect.height === 0) return;
+
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            const w = rect.width;
+            const h = rect.height;
+            const padLeft = 42;
+            const padRight = 42;
+            const padTop = 16;
+            const padBottom = 22;
+            const plotW = w - padLeft - padRight;
+            const plotH = h - padTop - padBottom;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Gridlines (0%, 25%, 50%, 75%, 100%) in subtle pine border & mist labels
+            ctx.strokeStyle = 'rgba(55, 94, 65, 0.45)';
+            ctx.lineWidth = 1;
+            ctx.font = '10px "JetBrains Mono", monospace';
+            ctx.fillStyle = '#A8A69B';
+
+            const maxPowerScale = Math.max(600, state.ftp * 2.2);
+
+            for (let i = 0; i <= 4; i++) {
+                const frac = i / 4;
+                const y = padTop + plotH - frac * plotH;
+
+                ctx.beginPath();
+                ctx.moveTo(padLeft, y);
+                ctx.lineTo(w - padRight, y);
+                ctx.stroke();
+
+                // Left axis: W' %
+                ctx.textAlign = 'right';
+                ctx.fillText(`${Math.round(frac * 100)}%`, padLeft - 6, y + 3);
+
+                // Right axis: Watts
+                ctx.textAlign = 'left';
+                ctx.fillText(`${Math.round(frac * maxPowerScale)}W`, w - padRight + 6, y + 3);
+            }
+
+            // FTP Threshold Dashed Line (Tuscan Rust #B84A22)
+            const ftpY = padTop + plotH - Math.min(1, state.ftp / maxPowerScale) * plotH;
+            ctx.save();
+            ctx.setLineDash([5, 5]);
+            ctx.strokeStyle = 'rgba(184, 74, 34, 0.85)';
+            ctx.lineWidth = 1.4;
+            ctx.beginPath();
+            ctx.moveTo(padLeft, ftpY);
+            ctx.lineTo(w - padRight, ftpY);
+            ctx.stroke();
+            ctx.restore();
+
+            const pts = state.history;
+            if (pts.length < 2) return;
+
+            const stepX = plotW / Math.max(1, state.maxHistoryPoints - 1);
+            const startX = padLeft + (state.maxHistoryPoints - pts.length) * stepX;
+
+            // 1. Draw Power Line (Mist White #F2F0EB)
+            ctx.beginPath();
+            pts.forEach((p, idx) => {
+                const x = startX + idx * stepX;
+                const y = padTop + plotH - Math.min(1, p.power / maxPowerScale) * plotH;
+                if (idx === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.strokeStyle = 'rgba(242, 240, 235, 0.72)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // 2. Draw W' Balance Area & Line (Golden Chestnut #D49B35)
+            ctx.beginPath();
+            pts.forEach((p, idx) => {
+                const x = startX + idx * stepX;
+                const y = padTop + plotH - (p.wbalPct / 100) * plotH;
+                if (idx === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.strokeStyle = '#D49B35';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            // Subtle warm gradient fill under W' curve
+            ctx.lineTo(startX + (pts.length - 1) * stepX, padTop + plotH);
+            ctx.lineTo(startX, padTop + plotH);
+            ctx.closePath();
+            const grad = ctx.createLinearGradient(0, padTop, 0, padTop + plotH);
+            grad.addColorStop(0, 'rgba(212, 155, 53, 0.28)');
+            grad.addColorStop(1, 'rgba(184, 74, 34, 0.02)');
+            ctx.fillStyle = grad;
+            ctx.fill();
+        }
+
+        // ==========================================
+        // 8. IndexedDB Handle Persistence & Auto-Recovery
+        // ==========================================
+        const DB_NAME = 'tpv_wbal_fs_db';
+        const STORE_NAME = 'handles';
+
+        function openHandleDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open(DB_NAME, 1);
+                req.onupgradeneeded = () => {
+                    if (!req.result.objectStoreNames.contains(STORE_NAME)) {
+                        req.result.createObjectStore(STORE_NAME);
+                    }
+                };
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        async function saveDirectoryHandle(dirHandle) {
+            try {
+                const db = await openHandleDB();
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                tx.objectStore(STORE_NAME).put(dirHandle, 'broadcastDir');
+                await new Promise((resolve, reject) => {
+                    tx.oncomplete = resolve;
+                    tx.onerror = () => reject(tx.error);
+                });
+            } catch (e) {
+                console.warn('Could not persist folder handle in IndexedDB:', e);
+            }
+        }
+
+        async function loadSavedDirectoryHandle() {
+            try {
+                const db = await openHandleDB();
+                const tx = db.transaction(STORE_NAME, 'readonly');
+                const req = tx.objectStore(STORE_NAME).get('broadcastDir');
+                return await new Promise((resolve, reject) => {
+                    req.onsuccess = () => resolve(req.result || null);
+                    req.onerror = () => reject(req.error);
+                });
+            } catch (e) {
+                console.warn('Could not read saved folder handle:', e);
+                return null;
+            }
+        }
+
+        /**
+         * Resolves a fresh FileSystemFileHandle for `focus.json` from the saved Broadcast directory.
+         * This prevents NotReadableError / stale inode errors when TPV atomically replaces focus.json.
+         */
+        async function refreshFocusFileHandle(requestPermissionIfNeeded = false) {
+            if (!state.dirHandle) return false;
+
+            try {
+                let perm = await state.dirHandle.queryPermission({ mode: 'read' });
+                if (perm !== 'granted' && requestPermissionIfNeeded) {
+                    perm = await state.dirHandle.requestPermission({ mode: 'read' });
+                }
+                if (perm !== 'granted') {
+                    return false;
+                }
+
+                state.fileHandle = await state.dirHandle.getFileHandle('focus.json', { create: false });
+                return true;
+            } catch (err) {
+                return false;
+            }
+        }
+
+        async function connectToBroadcastFolder() {
+            if (!('showDirectoryPicker' in window)) {
+                showBanner('Your browser does not support folder access. Please open this page in Chrome, Edge, or Brave on macOS.', 'error');
+                return;
+            }
+
+            try {
+                if (state.dirHandle) {
+                    const granted = await refreshFocusFileHandle(true);
+                    if (granted) {
+                        state.lastWallTimestampMs = null;
+                        state.lastTpvTimeMs = null;
+                        state.consecutiveReadErrors = 0;
+                        setConnectionStatus('connected', 'Live: focus.json');
+                        showBanner('Reconnected to saved Broadcast folder. Streaming live W\' balance updates.', 'success');
+                        startPollingFile();
+                        return;
+                    }
+                }
+
+                const dirHandle = await window.showDirectoryPicker({
+                    id: 'tpv-broadcast-dir',
+                    mode: 'read'
+                });
+
+                state.dirHandle = dirHandle;
+                await saveDirectoryHandle(dirHandle);
+
+                const foundFile = await refreshFocusFileHandle(true);
+                state.lastWallTimestampMs = null;
+                state.lastTpvTimeMs = null;
+                state.consecutiveReadErrors = 0;
+
+                if (foundFile) {
+                    setConnectionStatus('connected', 'Live: focus.json');
+                    showBanner(`Connected to "${dirHandle.name}/focus.json". Folder remembered for automatic recovery.`, 'success');
+                } else {
+                    setConnectionStatus('connected', 'Waiting for focus.json...');
+                    showBanner(`Connected to "${dirHandle.name}". Waiting for TPV to create focus.json...`, 'info');
+                }
+
+                startPollingFile();
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Folder selection error:', err);
+                    showBanner(`Could not open Broadcast folder: ${err.message}`, 'error');
+                }
+            }
+        }
+
+        async function readFocusJsonOnce() {
+            if (!state.dirHandle && !state.fileHandle) return;
+
+            try {
+                if (!state.fileHandle && state.dirHandle) {
+                    const ok = await refreshFocusFileHandle(false);
+                    if (!ok) return;
+                }
+
+                const file = await state.fileHandle.getFile();
+                const text = await file.text();
+
+                if (text && text.trim().length > 0) {
+                    if (state.consecutiveReadErrors > 0) {
+                        setConnectionStatus('connected', 'Live: focus.json');
+                    }
+                    state.consecutiveReadErrors = 0;
+                    processTelemetryPacket(text);
+                }
+            } catch (err) {
+                state.consecutiveReadErrors += 1;
+                state.fileHandle = null;
+
+                if (state.dirHandle) {
+                    const reacquired = await refreshFocusFileHandle(false);
+                    if (reacquired) {
+                        try {
+                            const freshFile = await state.fileHandle.getFile();
+                            const freshText = await freshFile.text();
+                            if (freshText && freshText.trim().length > 0) {
+                                state.consecutiveReadErrors = 0;
+                                setConnectionStatus('connected', 'Live: focus.json');
+                                processTelemetryPacket(freshText);
+                                return;
+                            }
+                        } catch (_) {
+                            // Will retry automatically on next poll tick
+                        }
+                    }
+                }
+
+                if (state.consecutiveReadErrors >= 10) {
+                    console.error('Persistent polling read error:', err);
+                    setConnectionStatus('error', 'Click to Re-authorize');
+                    showBanner('Browser paused folder access. Click "Select Broadcast Folder" once to resume.', 'error');
+                    stopPollingFile();
+                }
+            }
+        }
+
+        function startPollingFile() {
+            stopPollingFile();
+            readFocusJsonOnce();
+            state.pollTimerId = setInterval(readFocusJsonOnce, state.pollIntervalMs);
+        }
+
+        function stopPollingFile() {
+            if (state.pollTimerId) {
+                clearInterval(state.pollTimerId);
+                state.pollTimerId = null;
+            }
+        }
+
+        // ==========================================
+        // 9. Event Listeners
+        // ==========================================
+        els.btnConnect.addEventListener('click', connectToBroadcastFolder);
+
+        els.btnResetWbal.addEventListener('click', () => {
+            state.wBalJoules = state.wPrimeMaxJoules;
+            state.minWBalJoules = state.wPrimeMaxJoules;
+            state.history = [];
+            updateWBalVisuals(0, null, 0);
+            drawTelemetryChart();
+            showBanner("W' Balance reset to 100%.", 'success');
+        });
+
+        els.inputFtp.addEventListener('input', (e) => {
+            const val = Number(e.target.value);
+            if (!isNaN(val) && val >= 50 && val <= 1000) {
+                state.ftp = val;
+                saveSettings();
+                drawTelemetryChart();
+            }
+        });
+
+        els.inputWPrime.addEventListener('input', (e) => {
+            const kj = Number(e.target.value);
+            if (!isNaN(kj) && kj >= 1 && kj <= 100) {
+                const prevMax = state.wPrimeMaxJoules;
+                const ratio = prevMax > 0 ? state.wBalJoules / prevMax : 1;
+                state.wPrimeMaxJoules = kj * 1000;
+                state.wBalJoules = state.wPrimeMaxJoules * ratio;
+                state.minWBalJoules = Math.min(state.minWBalJoules, state.wPrimeMaxJoules);
+                saveSettings();
+                updateWBalVisuals(0, null);
+            }
+        });
+
+        els.selectPollRate.addEventListener('change', (e) => {
+            state.pollIntervalMs = Number(e.target.value);
+            saveSettings();
+            if (state.fileHandle && state.pollTimerId) {
+                startPollingFile();
+            }
+        });
+
+        window.addEventListener('resize', drawTelemetryChart);
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            loadSavedSettings();
+            drawTelemetryChart();
+
+            // Check if a Broadcast folder handle was previously saved in IndexedDB
+            const savedDir = await loadSavedDirectoryHandle();
+            if (savedDir) {
+                state.dirHandle = savedDir;
+                const ready = await refreshFocusFileHandle(false);
+                if (ready) {
+                    setConnectionStatus('connected', 'Live: focus.json');
+                    showBanner(`Auto-reconnected to saved "${savedDir.name}" folder.`, 'success');
+                    startPollingFile();
+                } else {
+                    els.btnConnect.querySelector('span').textContent = `Reconnect (${savedDir.name})`;
+                    showBanner(`Saved folder "${savedDir.name}" found. Click "Reconnect (${savedDir.name})" to resume streaming.`, 'info');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
