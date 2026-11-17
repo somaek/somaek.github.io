@@ -68,8 +68,9 @@
             <div class="flex flex-wrap items-center gap-2">
                 <!-- Global Poll Rate -->
                 <select id="selectPollRate" class="bg-pine-850 border border-pine-700 rounded-xl px-2.5 py-1.5 text-xs font-mono font-semibold text-mist-100 focus:outline-none focus:border-chestnut-500 cursor-pointer" title="Broadcast folder polling rate">
+                    <option value="100" selected>100 ms</option>
                     <option value="250">250 ms</option>
-                    <option value="500" selected>500 ms</option>
+                    <option value="500">500 ms</option>
                     <option value="1000">1000 ms</option>
                 </select>
 
@@ -160,7 +161,7 @@
                 <div class="relative z-10 my-4">
                     <div class="flex flex-wrap items-end justify-between gap-2">
                         <div>
-                            <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Remaining W'</span>
+                            <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Remaining W' (3s Avg)</span>
                             <div class="flex items-baseline gap-2 mt-0.5">
                                 <span id="wbalKjDisplay" class="text-5xl sm:text-6xl font-mono font-extrabold tracking-tight text-chestnut-400 transition-colors duration-300">20.00</span>
                                 <span class="text-lg font-mono font-semibold text-mist-300">kJ</span>
@@ -200,7 +201,7 @@
                         <span id="wbalMinReached" class="text-xs sm:text-sm font-mono font-bold text-mist-100 mt-0.5 block truncate">20.00 kJ (100%)</span>
                     </div>
                     <div class="bg-pine-950/85 rounded-xl p-2.5 border border-pine-800">
-                        <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Intensity</span>
+                        <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Intensity (3s)</span>
                         <span id="powerVsFtp" class="text-xs sm:text-sm font-mono font-bold text-chestnut-400 mt-0.5 block truncate">0% FTP</span>
                     </div>
                 </div>
@@ -262,7 +263,7 @@
                 <div id="ridersList" class="divide-y divide-pine-800/80 mt-1 max-h-[310px] overflow-y-auto pr-1 flex-1">
                     <div class="py-12 text-center">
                         <p class="text-sm font-semibold text-mist-300">Connect your TPV Broadcast folder to view live bibs</p>
-                        <p class="text-xs text-mist-400 mt-1 font-mono">/Users/ryanyates/TPVirtual/Broadcast</p>
+                        <p class="text-xs text-mist-400 mt-1 font-mono">~/TPVirtual/Broadcast (Mac) • Documents\TPVirtual\Broadcast (Win)</p>
                     </div>
                 </div>
             </section>
@@ -419,7 +420,7 @@
             wPrimeMaxJoules: 20000,
             wBalJoules: 20000,
             minWBalJoules: 20000,
-            pollIntervalMs: 500,
+            pollIntervalMs: 100,
             checkpointIntervalSec: 60,
 
             // File System & Timers
@@ -428,28 +429,28 @@
             consecutiveErrors: 0,
             clearConfirmArmed: false,
 
-            // Integration Timestamps
+            // Integration & 3s Rolling Display Buffers
             lastWallTimestampMs: null,
             lastTpvTimeMs: null,
+            lastTpvTimeChangeWallMs: null,
+            displaySamples: [],
+            lastSecondaryFetchMs: 0,
             lastEntriesFetchMs: 0,
             lastEventFetchMs: 0,
 
-            // Rider & Group State
+            // Rider, Group & Logger State
+            viewMode: 'nearby', // 'nearby' | 'all'
+            sortMode: 'position', // 'position' | 'nearest' | 'bib'
+            eventInfo: null,
             entriesByName: new Map(),
             entriesList: [],
             riderHistoryByName: new Map(),
-            viewMode: 'nearby',
-            sortMode: 'position',
-
-            // Live Telemetry Snapshots
-            focusedRider: null,
             nearestRiders: [],
             groups: [],
-            eventInfo: null,
+            focusedRider: null,
             results: [],
 
-            // Race Log Keeper Timeline & Change Detection
-            timeline: [],
+            // Race Log Change-Detection Baselines
             lastCheckpointRaceSec: -999,
             lastGroupCount: 0,
             lastFrontLeader: '',
@@ -457,10 +458,10 @@
             lastFocusSurgeRaceSec: -999,
             eliminatedNames: new Set(),
             lastResultsSignature: '',
+            timeline: []
         };
 
         const els = {
-            // Header & Global Controls
             headerEventSub: document.getElementById('headerEventSub'),
             selectPollRate: document.getElementById('selectPollRate'),
             statusBadge: document.getElementById('statusBadge'),
@@ -469,13 +470,12 @@
             btnHeaderExportTxt: document.getElementById('btnHeaderExportTxt'),
             btnConnect: document.getElementById('btnConnect'),
 
-            // Notification Banner
             bannerContainer: document.getElementById('bannerContainer'),
             bannerBox: document.getElementById('bannerBox'),
             bannerMessage: document.getElementById('bannerMessage'),
             bannerClose: document.getElementById('bannerClose'),
 
-            // Module A: W' Balance Tracker
+            // W' Balance Elements
             wbalGlow: document.getElementById('wbalGlow'),
             riderBadge: document.getElementById('riderBadge'),
             btnResetWbal: document.getElementById('btnResetWbal'),
@@ -491,7 +491,7 @@
             wbalMinReached: document.getElementById('wbalMinReached'),
             powerVsFtp: document.getElementById('powerVsFtp'),
 
-            // Module B: Live Bib Tracker
+            // Bib Tracker Elements
             boardTitle: document.getElementById('boardTitle'),
             entriesCountBadge: document.getElementById('entriesCountBadge'),
             btnModeNearby: document.getElementById('btnModeNearby'),
@@ -502,7 +502,7 @@
             btnClearHistory: document.getElementById('btnClearHistory'),
             ridersList: document.getElementById('ridersList'),
 
-            // Module C: Race Log Keeper
+            // Race Log Keeper Elements
             eventTypeBadge: document.getElementById('eventTypeBadge'),
             raceClockDisplay: document.getElementById('raceClockDisplay'),
             raceDistProgress: document.getElementById('raceDistProgress'),
@@ -519,17 +519,17 @@
             logCountDisplay: document.getElementById('logCountDisplay'),
             timelineContainer: document.getElementById('timelineContainer'),
             exportStatsText: document.getElementById('exportStatsText'),
-            exportPreview: document.getElementById('exportPreview'),
+            exportPreview: document.getElementById('exportPreview')
         };
 
         // ==========================================
-        // 3. Settings Persistence & Banner Helpers
+        // 3. Settings, Banner & Connection Status
         // ==========================================
         async function loadUserSettings() {
             try {
                 const savedFtp = localStorage.getItem('tpv_hud_ftp');
                 const savedWPrime = localStorage.getItem('tpv_hud_wprime');
-                const savedPoll = localStorage.getItem('tpv_hud_poll');
+                const savedPoll = localStorage.getItem('tpv_hud_poll_v2');
 
                 if (savedFtp && !isNaN(Number(savedFtp))) {
                     state.ftp = Math.max(50, Number(savedFtp));
@@ -547,14 +547,14 @@
                     els.selectPollRate.value = String(state.pollIntervalMs);
                 }
             } catch (_) {}
-            updateWBalVisuals(0, null, 0);
+            updateWBalVisuals(state.wBalJoules, 0, null, 0);
         }
 
         function saveUserSettings() {
             try {
                 localStorage.setItem('tpv_hud_ftp', String(state.ftp));
                 localStorage.setItem('tpv_hud_wprime', String(state.wPrimeMaxJoules / 1000));
-                localStorage.setItem('tpv_hud_poll', String(state.pollIntervalMs));
+                localStorage.setItem('tpv_hud_poll_v2', String(state.pollIntervalMs));
             } catch (_) {}
         }
 
@@ -588,7 +588,7 @@
         }
 
         // ==========================================
-        // 4. Formatting & Telemetry Conversion Helpers
+        // 4. Formatting & Lookup Helpers
         // ==========================================
         function normalizeName(name) {
             return (name || '').trim().toLowerCase();
@@ -609,34 +609,6 @@
             const metaParts = [country, teamCode].filter(Boolean);
             const meta = metaParts.length > 0 ? ` (${metaParts.join(' - ')})` : '';
             return `${bib}${name}${meta}`;
-        }
-
-        function formatTimeGap(gapMsOrSec) {
-            if (!gapMsOrSec || gapMsOrSec === 0) return '0.0s';
-            const sec = Math.abs(gapMsOrSec) > 300 ? gapMsOrSec / 1000 : gapMsOrSec;
-            const sign = sec > 0 ? '+' : '';
-            if (Math.abs(sec) >= 60) {
-                const mins = Math.floor(Math.abs(sec) / 60);
-                const rem = Math.round(Math.abs(sec) % 60);
-                return `${sec < 0 ? '-' : '+'}${mins}m${String(rem).padStart(2, '0')}s`;
-            }
-            return `${sign}${sec.toFixed(1)}s`;
-        }
-
-        function formatSpeedKmh(rawSpeed) {
-            if (typeof rawSpeed !== 'number' || isNaN(rawSpeed) || rawSpeed <= 0) return '-- km/h';
-            const mps = rawSpeed > 200 ? rawSpeed / 1000 : rawSpeed;
-            return `${(mps * 3.6).toFixed(1)} km/h`;
-        }
-
-        function formatAgeSince(timestampMs) {
-            if (!timestampMs) return 'Not seen yet';
-            const sec = Math.max(0, Math.round((Date.now() - timestampMs) / 1000));
-            if (sec <= 2) return 'Live now';
-            if (sec < 60) return `${sec}s ago`;
-            const mins = Math.floor(sec / 60);
-            const rem = sec % 60;
-            return `${mins}m ${rem}s ago`;
         }
 
         function formatRaceClock(ms) {
@@ -675,6 +647,34 @@
             return `+${sec.toFixed(2)}s`;
         }
 
+        function formatTimeGap(gapMsOrSec) {
+            if (!gapMsOrSec || gapMsOrSec === 0) return '0.0s';
+            const sec = Math.abs(gapMsOrSec) > 300 ? gapMsOrSec / 1000 : gapMsOrSec;
+            const sign = sec > 0 ? '+' : '';
+            if (Math.abs(sec) >= 60) {
+                const mins = Math.floor(Math.abs(sec) / 60);
+                const rem = Math.round(Math.abs(sec) % 60);
+                return `${sec < 0 ? '-' : '+'}${mins}m${String(rem).padStart(2, '0')}s`;
+            }
+            return `${sign}${sec.toFixed(1)}s`;
+        }
+
+        function formatSpeedKmh(rawSpeed) {
+            if (typeof rawSpeed !== 'number' || isNaN(rawSpeed) || rawSpeed <= 0) return '-- km/h';
+            const mps = rawSpeed > 200 ? rawSpeed / 1000 : rawSpeed;
+            return `${(mps * 3.6).toFixed(1)} km/h`;
+        }
+
+        function formatAgeSince(timestampMs) {
+            if (!timestampMs) return 'Not seen';
+            const sec = Math.max(0, Math.round((Date.now() - timestampMs) / 1000));
+            if (sec <= 2) return 'Live';
+            if (sec < 60) return `${sec}s ago`;
+            const mins = Math.floor(sec / 60);
+            const rem = sec % 60;
+            return `${mins}m ${rem}s`;
+        }
+
         function getCurrentDistanceKm() {
             const f = state.focusedRider;
             const ev = state.eventInfo;
@@ -692,9 +692,9 @@
         }
 
         // ==========================================
-        // 5. IndexedDB Handle Persistence & JSON Reader
+        // 5. IndexedDB Folder Handle Persistence & JSON Reader
         // ==========================================
-        const DB_NAME = 'tpv_unified_hud_fs_db';
+        const DB_NAME = 'tpv_unified_hud_db';
         const STORE_NAME = 'handles';
 
         function openHandleDB() {
@@ -763,7 +763,7 @@
         }
 
         // ==========================================
-        // 6. Module A: W' Balance Logic (intervals.icu / Froncioni-Morton Model)
+        // 6. Module A: intervals.icu W' Balance Engine
         // ==========================================
         function stepWPrimeBalance(powerWatts, dtSeconds) {
             if (dtSeconds <= 0 || dtSeconds > 15) {
@@ -773,25 +773,23 @@
             const cp = state.ftp;
             const wMax = state.wPrimeMaxJoules;
             let wBal = state.wBalJoules;
+            const deltaW = cp - powerWatts;
             let netWatts = 0;
             let tau = null;
-            const deltaW = cp - powerWatts;
 
             if (deltaW > 0) {
-                // Recovery phase (exact intervals.icu formula):
-                // Sub-second equivalent of: for (j = 0; j < secs; j++) wb += deltaW * (wPrime - wb) / wPrime
+                // Recovery phase (power < CP): exact intervals.icu recurrence integrated over dtSeconds
                 tau = wMax / deltaW;
-                const stepRetention = Math.max(0, 1 - deltaW / wMax);
                 const prevWBal = wBal;
-                wBal = wMax - (wMax - wBal) * Math.pow(stepRetention, dtSeconds);
+                const retentionFactor = Math.max(0, 1 - (deltaW / wMax));
+                wBal = wMax - (wMax - wBal) * Math.pow(retentionFactor, dtSeconds);
                 netWatts = (wBal - prevWBal) / dtSeconds;
             } else {
-                // Depletion phase (power >= CP): linear expenditure above FTP
+                // Depletion phase (power >= CP): linear expenditure, permitted below 0 kJ
                 wBal += deltaW * dtSeconds;
                 netWatts = deltaW;
             }
 
-            // Cap upper bound at W'_0 while allowing negative W' balance below 0 (matching intervals.icu)
             state.wBalJoules = Math.min(wMax, wBal);
             if (state.wBalJoules < state.minWBalJoules) {
                 state.minWBalJoules = state.wBalJoules;
@@ -812,33 +810,67 @@
             }
 
             const nowMs = performance.now();
-            let dtSeconds = state.pollIntervalMs / 1000;
 
-            if (typeof rider.time === 'number' && state.lastTpvTimeMs !== null) {
-                const tpvDeltaMs = rider.time - state.lastTpvTimeMs;
-                if (tpvDeltaMs > 0 && tpvDeltaMs < 10000) {
-                    dtSeconds = tpvDeltaMs / 1000;
-                } else if (tpvDeltaMs === 0 && state.lastWallTimestampMs !== null) {
-                    dtSeconds = (nowMs - state.lastWallTimestampMs) / 1000;
+            // Track whether TPV's session clock is actively advancing (guards against paused sessions)
+            if (typeof rider.time === 'number') {
+                if (state.lastTpvTimeMs === null || rider.time !== state.lastTpvTimeMs) {
+                    state.lastTpvTimeMs = rider.time;
+                    state.lastTpvTimeChangeWallMs = nowMs;
                 }
-            } else if (state.lastWallTimestampMs !== null) {
+            } else {
+                state.lastTpvTimeChangeWallMs = nowMs;
+            }
+
+            let dtSeconds = state.pollIntervalMs / 1000;
+            if (state.lastWallTimestampMs !== null) {
                 dtSeconds = (nowMs - state.lastWallTimestampMs) / 1000;
             }
-
             state.lastWallTimestampMs = nowMs;
-            if (typeof rider.time === 'number') {
-                state.lastTpvTimeMs = rider.time;
+
+            const isSessionActive = state.lastTpvTimeChangeWallMs === null || (nowMs - state.lastTpvTimeChangeWallMs) < 2500;
+            const currentPower = Math.max(0, Number(rider.power) || 0);
+
+            let netWatts = 0;
+            let tau = null;
+            if (isSessionActive) {
+                const step = stepWPrimeBalance(currentPower, dtSeconds);
+                netWatts = step.netWatts;
+                tau = step.tau;
             }
 
-            const currentPower = Math.max(0, Number(rider.power) || 0);
-            const { netWatts, tau } = stepWPrimeBalance(currentPower, dtSeconds);
-            updateWBalVisuals(netWatts, tau, currentPower);
+            // Maintain a 3-second rolling buffer for readable HUD display numbers
+            state.displaySamples.push({
+                t: nowMs,
+                wBalJoules: state.wBalJoules,
+                netWatts,
+                power: currentPower
+            });
+            while (state.displaySamples.length > 1 && (nowMs - state.displaySamples[0].t) > 3000) {
+                state.displaySamples.shift();
+            }
+
+            let sumWBal = 0;
+            let sumNetWatts = 0;
+            let sumPower = 0;
+            for (const s of state.displaySamples) {
+                sumWBal += s.wBalJoules;
+                sumNetWatts += s.netWatts;
+                sumPower += s.power;
+            }
+            const count = state.displaySamples.length || 1;
+            const avgWBalJoules = sumWBal / count;
+            const avgNetWatts = sumNetWatts / count;
+            const avgPower = sumPower / count;
+            const avgDeltaW = state.ftp - avgPower;
+            const effectiveTau = avgDeltaW > 0 ? (state.wPrimeMaxJoules / avgDeltaW) : tau;
+
+            updateWBalVisuals(avgWBalJoules, avgNetWatts, effectiveTau, avgPower);
         }
 
-        function updateWBalVisuals(netWatts, tau, currentPower = 0) {
+        function updateWBalVisuals(displayWBalJoules, netWatts, tau, displayPower = 0) {
             const wMaxKj = state.wPrimeMaxJoules / 1000;
-            const wBalKj = state.wBalJoules / 1000;
-            const rawPct = Math.min(100, (state.wBalJoules / state.wPrimeMaxJoules) * 100);
+            const wBalKj = displayWBalJoules / 1000;
+            const rawPct = Math.min(100, (displayWBalJoules / state.wPrimeMaxJoules) * 100);
             const barWidthPct = Math.max(0, Math.min(100, rawPct));
 
             els.wbalKjDisplay.textContent = wBalKj.toFixed(2);
@@ -853,33 +885,33 @@
                 ? 'text-xs sm:text-sm font-mono font-bold text-rust-500 mt-0.5 block truncate'
                 : 'text-xs sm:text-sm font-mono font-bold text-mist-100 mt-0.5 block truncate';
 
-            const ftpPct = state.ftp > 0 ? Math.round((currentPower / state.ftp) * 100) : 0;
+            const ftpPct = state.ftp > 0 ? Math.round((displayPower / state.ftp) * 100) : 0;
             els.powerVsFtp.textContent = `${ftpPct}% FTP`;
 
             const roundedFlux = Math.round(netWatts);
             if (roundedFlux < 0) {
                 els.wbalDeltaRate.textContent = `${roundedFlux} W`;
                 els.wbalDeltaRate.className = 'text-sm sm:text-base font-mono font-bold text-rust-500 block';
-                els.wbalTauDisplay.textContent = state.wBalJoules < 0 ? 'Overdrawn (< 0)' : 'Depleting';
+                els.wbalTauDisplay.textContent = displayWBalJoules < 0 ? 'Overdrawn (< 0)' : 'Depleting (3s)';
             } else if (roundedFlux > 0) {
                 els.wbalDeltaRate.textContent = `+${roundedFlux} W`;
                 els.wbalDeltaRate.className = 'text-sm sm:text-base font-mono font-bold text-chestnut-400 block';
-                els.wbalTauDisplay.textContent = tau ? `τ = ${Math.round(tau)} s` : 'Recharging';
+                els.wbalTauDisplay.textContent = tau ? `τ = ${Math.round(tau)} s` : 'Recharging (3s)';
             } else {
                 els.wbalDeltaRate.textContent = '0 W';
                 els.wbalDeltaRate.className = 'text-sm sm:text-base font-mono font-bold text-mist-300 block';
                 els.wbalTauDisplay.textContent = tau ? `τ = ${Math.round(tau)} s` : 'τ = -- s';
             }
 
-            if (netWatts < -1 && state.wBalJoules > 0) {
-                const tteSec = Math.round(state.wBalJoules / Math.abs(netWatts));
+            if (netWatts < -1 && displayWBalJoules > 0) {
+                const tteSec = Math.round(displayWBalJoules / Math.abs(netWatts));
                 const mins = Math.floor(tteSec / 60);
                 const secs = tteSec % 60;
                 els.wbalEstimateLabel.textContent = `TTE: ${mins}m ${String(secs).padStart(2, '0')}s`;
                 els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-rust-500 mt-0.5 block truncate';
-            } else if (state.wBalJoules < 0 && netWatts > 1 && tau) {
+            } else if (displayWBalJoules < 0 && netWatts > 1 && tau) {
                 // Time to recover back to 0.0 kJ from negative W'
-                const zeroRatio = state.wPrimeMaxJoules / (state.wPrimeMaxJoules - state.wBalJoules);
+                const zeroRatio = state.wPrimeMaxJoules / (state.wPrimeMaxJoules - displayWBalJoules);
                 if (zeroRatio > 0 && zeroRatio < 1) {
                     const tZeroSec = Math.round(-tau * Math.log(zeroRatio));
                     const mins = Math.floor(tZeroSec / 60);
@@ -889,7 +921,7 @@
                 }
             } else if (netWatts > 1 && rawPct < 90 && tau) {
                 const targetJoules = 0.9 * state.wPrimeMaxJoules;
-                const ratio = (state.wPrimeMaxJoules - targetJoules) / (state.wPrimeMaxJoules - state.wBalJoules);
+                const ratio = (state.wPrimeMaxJoules - targetJoules) / (state.wPrimeMaxJoules - displayWBalJoules);
                 if (ratio > 0 && ratio < 1) {
                     const tRecSec = Math.round(-tau * Math.log(ratio));
                     const mins = Math.floor(tRecSec / 60);
@@ -897,7 +929,7 @@
                     els.wbalEstimateLabel.textContent = `90% in ${mins}m ${String(secs).padStart(2, '0')}s`;
                     els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-chestnut-400 mt-0.5 block truncate';
                 }
-            } else if (state.wBalJoules <= 0) {
+            } else if (displayWBalJoules <= 0) {
                 els.wbalEstimateLabel.textContent = 'Depleted (< 0 kJ)';
                 els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-rust-500 mt-0.5 block truncate';
             } else {
@@ -1603,7 +1635,7 @@
             const hasPerm = await verifyDirPermission(false);
             if (!hasPerm) {
                 state.consecutiveErrors += 1;
-                if (state.consecutiveErrors >= 8) {
+                if (state.consecutiveErrors >= 30) {
                     setConnectionStatus('error', 'Click to Re-authorize');
                     showBanner('Browser paused folder access. Click "Select Broadcast Folder" once to resume.', 'error');
                     stopPolling();
@@ -1636,15 +1668,40 @@
                 }
             }
 
-            // Read live telemetry files in parallel
-            const [focusData, nearestData, groupsData, resultsData] = await Promise.all([
-                readJsonFile('focus.json'),
-                readJsonFile('nearest.json'),
-                readJsonFile('groups.json'),
-                readJsonFile('resultsIndv.json')
-            ]);
+            // Always read focus.json at the full polling rate (e.g. 100 ms) for W' accuracy
+            const focusData = await readJsonFile('focus.json');
+            if (focusData) {
+                state.focusedRider = Array.isArray(focusData) ? focusData[0] : focusData;
+                processWBalUpdate();
+            }
 
-            if (!focusData && !nearestData && !groupsData && !resultsData && !state.eventInfo) {
+            // Read nearest.json, groups.json, and resultsIndv.json every ~250 ms
+            const shouldFetchSecondary = state.lastSecondaryFetchMs === 0 || (now - state.lastSecondaryFetchMs) >= 250;
+            let secondaryUpdated = false;
+
+            if (shouldFetchSecondary) {
+                state.lastSecondaryFetchMs = now;
+                const [nearestData, groupsData, resultsData] = await Promise.all([
+                    readJsonFile('nearest.json'),
+                    readJsonFile('groups.json'),
+                    readJsonFile('resultsIndv.json')
+                ]);
+
+                if (Array.isArray(nearestData)) {
+                    state.nearestRiders = nearestData;
+                    secondaryUpdated = true;
+                }
+                if (Array.isArray(groupsData)) {
+                    state.groups = groupsData;
+                    secondaryUpdated = true;
+                }
+                if (Array.isArray(resultsData)) {
+                    state.results = resultsData;
+                    secondaryUpdated = true;
+                }
+            }
+
+            if (!focusData && !secondaryUpdated && !state.eventInfo) {
                 state.consecutiveErrors += 1;
                 return;
             }
@@ -1652,25 +1709,12 @@
             state.consecutiveErrors = 0;
             setConnectionStatus('connected', 'Live: Broadcast');
 
-            if (focusData) {
-                state.focusedRider = Array.isArray(focusData) ? focusData[0] : focusData;
+            if (secondaryUpdated || focusData) {
+                renderBibTracker();
+                analyzeTelemetryForLog();
+                renderLoggerOverviewAndResults();
+                updateTxtExportPreview();
             }
-            if (Array.isArray(nearestData)) {
-                state.nearestRiders = nearestData;
-            }
-            if (Array.isArray(groupsData)) {
-                state.groups = groupsData;
-            }
-            if (Array.isArray(resultsData)) {
-                state.results = resultsData;
-            }
-
-            // Update all 3 modules
-            processWBalUpdate();
-            renderBibTracker();
-            analyzeTelemetryForLog();
-            renderLoggerOverviewAndResults();
-            updateTxtExportPreview();
         }
 
         async function connectToBroadcastFolder() {
@@ -1685,6 +1729,7 @@
                     if (ok) {
                         state.lastWallTimestampMs = null;
                         state.lastTpvTimeMs = null;
+                        state.lastTpvTimeChangeWallMs = null;
                         state.consecutiveErrors = 0;
                         setConnectionStatus('connected', 'Live: Broadcast');
                         showBanner(`Reconnected to saved "${state.dirHandle.name}" folder.`, 'success');
@@ -1702,6 +1747,7 @@
                 await dbPut('broadcastDir', dirHandle);
                 state.lastWallTimestampMs = null;
                 state.lastTpvTimeMs = null;
+                state.lastTpvTimeChangeWallMs = null;
                 state.consecutiveErrors = 0;
 
                 setConnectionStatus('connected', 'Live: Broadcast');
@@ -1739,7 +1785,8 @@
         els.btnResetWbal.addEventListener('click', () => {
             state.wBalJoules = state.wPrimeMaxJoules;
             state.minWBalJoules = state.wPrimeMaxJoules;
-            updateWBalVisuals(0, null, 0);
+            state.displaySamples = [];
+            updateWBalVisuals(state.wBalJoules, 0, null, 0);
             showBanner("W' Balance reset to 100%.", 'success');
         });
 
@@ -1759,8 +1806,9 @@
                 state.wPrimeMaxJoules = kj * 1000;
                 state.wBalJoules = state.wPrimeMaxJoules * ratio;
                 state.minWBalJoules = Math.min(state.minWBalJoules, state.wPrimeMaxJoules);
+                state.displaySamples = [];
                 saveUserSettings();
-                updateWBalVisuals(0, null, 0);
+                updateWBalVisuals(state.wBalJoules, 0, null, 0);
             }
         });
 
