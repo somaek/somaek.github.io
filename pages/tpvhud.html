@@ -383,6 +383,386 @@
         // ==========================================
         // 1. IOC / UCI 3-Letter Country Code -> Flag Emoji Map
         // ==========================================
+        const IOC_TO_ISO2 = {
+            AFG: 'AF', ALB: 'AL', ALG: 'DZ', AND: 'AD', ANG: 'AO', ARG: 'AR', ARM: 'AM', AUS: 'AU', AUT: 'AT', AZE: 'AZ',
+            BAH: 'BS', BAN: 'BD', BAR: 'BB', BDI: 'BI', BEL: 'BE', BEN: 'BJ', BER: 'BM', BIH: 'BA', BLR: 'BY', BOL: 'BO',
+            BOT: 'BW', BRA: 'BR', BRN: 'BH', BUL: 'BG', BUR: 'BF', CAN: 'CA', CHI: 'CL', CHN: 'CN', CIV: 'CI', CMR: 'CM',
+            COD: 'CD', COL: 'CO', CRC: 'CR', CRO: 'HR', CUB: 'CU', CYP: 'CY', CZE: 'CZ', DEN: 'DK', DOM: 'DO', ECU: 'EC',
+            EGY: 'EG', ERI: 'ER', ESA: 'SV', ESP: 'ES', EST: 'EE', ETH: 'ET', FIJ: 'FJ', FIN: 'FI', FRA: 'FR', GBR: 'GB',
+            GEO: 'GE', GER: 'DE', GHA: 'GH', GRE: 'GR', GUA: 'GT', HKG: 'HK', HON: 'HN', HUN: 'HU', INA: 'ID', IND: 'IN',
+            IRI: 'IR', IRL: 'IE', IRQ: 'IQ', ISL: 'IS', ISR: 'IL', ITA: 'IT', JAM: 'JM', JOR: 'JO', JPN: 'JP', KAZ: 'KZ',
+            KEN: 'KE', KGZ: 'KG', KOR: 'KR', KSA: 'SA', KUW: 'KW', LAT: 'LV', LBA: 'LY', LBN: 'LB', LIE: 'LI', LTU: 'LT',
+            LUX: 'LU', MAR: 'MA', MAS: 'MY', MDA: 'MD', MEX: 'MX', MGL: 'MN', MKD: 'MK', MLT: 'MT', MNE: 'ME', MON: 'MC',
+            MOZ: 'MZ', MRI: 'MU', NAM: 'NA', NCA: 'NI', NED: 'NL', NEP: 'NP', NGR: 'NG', NOR: 'NO', NZL: 'NZ', OMA: 'OM',
+            PAK: 'PK', PAN: 'PA', PAR: 'PY', PER: 'PE', PHI: 'PH', POL: 'PL', POR: 'PT', PUR: 'PR', QAT: 'QA', ROU: 'RO',
+            RSA: 'ZA', RUS: 'RU', RWA: 'RW', SEN: 'SN', SGP: 'SG', SLO: 'SI', SMR: 'SM', SRB: 'RS', SRI: 'LK', SUI: 'CH',
+            SVK: 'SK', SWE: 'SE', SYR: 'SY', TAN: 'TZ', THA: 'TH', TPE: 'TW', TTO: 'TT', TUN: 'TN', TUR: 'TR', UAE: 'AE',
+            UGA: 'UG', UKR: 'UA', URU: 'UY', USA: 'US', UZB: 'UZ', VEN: 'VE', VIE: 'VN', ZAM: 'ZM', ZIM: 'ZW',
+            ENG: 'GB', SCO: 'GB', WAL: 'GB', NIR: 'GB'
+        };
+
+        function getCountryFlag(code) {
+            if (!code || typeof code !== 'string') return '🏳️';
+            const clean = code.trim().toUpperCase();
+            const iso2 = IOC_TO_ISO2[clean] || (clean.length === 2 ? clean : null);
+            if (!iso2 || iso2.length !== 2) return '🏳️';
+            const codePoints = [...iso2].map(c => 127397 + c.charCodeAt(0));
+            return String.fromCodePoint(...codePoints);
+        }
+
+        // ==========================================
+        // 2. Unified Application State & DOM References
+        // ==========================================
+        const state = {
+            // User Settings
+            ftp: 280,
+            wPrimeMaxJoules: 20000,
+            wBalJoules: 20000,
+            minWBalJoules: 20000,
+            pollIntervalMs: 500,
+            checkpointIntervalSec: 60,
+
+            // File System & Timers
+            dirHandle: null,
+            pollTimerId: null,
+            consecutiveErrors: 0,
+            clearConfirmArmed: false,
+
+            // Integration Timestamps
+            lastWallTimestampMs: null,
+            lastTpvTimeMs: null,
+            lastEntriesFetchMs: 0,
+            lastEventFetchMs: 0,
+
+            // Rider & Group State
+            entriesByName: new Map(),
+            entriesList: [],
+            riderHistoryByName: new Map(),
+            viewMode: 'nearby',
+            sortMode: 'position',
+
+            // Live Telemetry Snapshots
+            focusedRider: null,
+            nearestRiders: [],
+            groups: [],
+            eventInfo: null,
+            results: [],
+
+            // Race Log Keeper Timeline & Change Detection
+            timeline: [],
+            lastCheckpointRaceSec: -999,
+            lastGroupCount: 0,
+            lastFrontLeader: '',
+            lastFrontGapSec: 0,
+            lastFocusSurgeRaceSec: -999,
+            eliminatedNames: new Set(),
+            lastResultsSignature: '',
+        };
+
+        const els = {
+            // Header & Global Controls
+            headerEventSub: document.getElementById('headerEventSub'),
+            selectPollRate: document.getElementById('selectPollRate'),
+            statusBadge: document.getElementById('statusBadge'),
+            statusDot: document.getElementById('statusDot'),
+            statusText: document.getElementById('statusText'),
+            btnHeaderExportTxt: document.getElementById('btnHeaderExportTxt'),
+            btnConnect: document.getElementById('btnConnect'),
+
+            // Notification Banner
+            bannerContainer: document.getElementById('bannerContainer'),
+            bannerBox: document.getElementById('bannerBox'),
+            bannerMessage: document.getElementById('bannerMessage'),
+            bannerClose: document.getElementById('bannerClose'),
+
+            // Module A: W' Balance Tracker
+            wbalGlow: document.getElementById('wbalGlow'),
+            riderBadge: document.getElementById('riderBadge'),
+            btnResetWbal: document.getElementById('btnResetWbal'),
+            inputFtp: document.getElementById('inputFtp'),
+            inputWPrime: document.getElementById('inputWPrime'),
+            wbalKjDisplay: document.getElementById('wbalKjDisplay'),
+            wbalPctDisplay: document.getElementById('wbalPctDisplay'),
+            wbalDeltaRate: document.getElementById('wbalDeltaRate'),
+            wbalTauDisplay: document.getElementById('wbalTauDisplay'),
+            wbalProgressBar: document.getElementById('wbalProgressBar'),
+            wbalMaxLabel: document.getElementById('wbalMaxLabel'),
+            wbalEstimateLabel: document.getElementById('wbalEstimateLabel'),
+            wbalMinReached: document.getElementById('wbalMinReached'),
+            powerVsFtp: document.getElementById('powerVsFtp'),
+
+            // Module B: Live Bib Tracker
+            boardTitle: document.getElementById('boardTitle'),
+            entriesCountBadge: document.getElementById('entriesCountBadge'),
+            btnModeNearby: document.getElementById('btnModeNearby'),
+            btnModeAll: document.getElementById('btnModeAll'),
+            selectSortMode: document.getElementById('selectSortMode'),
+            allGroupsList: document.getElementById('allGroupsList'),
+            nearestCountText: document.getElementById('nearestCountText'),
+            btnClearHistory: document.getElementById('btnClearHistory'),
+            ridersList: document.getElementById('ridersList'),
+
+            // Module C: Race Log Keeper
+            eventTypeBadge: document.getElementById('eventTypeBadge'),
+            raceClockDisplay: document.getElementById('raceClockDisplay'),
+            raceDistProgress: document.getElementById('raceDistProgress'),
+            eventCourseMeta: document.getElementById('eventCourseMeta'),
+            selectCheckpointSec: document.getElementById('selectCheckpointSec'),
+            btnClearLog: document.getElementById('btnClearLog'),
+            btnCopyTxt: document.getElementById('btnCopyTxt'),
+            btnExportTxt: document.getElementById('btnExportTxt'),
+            formCustomNote: document.getElementById('formCustomNote'),
+            inputCustomNote: document.getElementById('inputCustomNote'),
+            resultsSection: document.getElementById('resultsSection'),
+            resultsCountBadge: document.getElementById('resultsCountBadge'),
+            resultsList: document.getElementById('resultsList'),
+            logCountDisplay: document.getElementById('logCountDisplay'),
+            timelineContainer: document.getElementById('timelineContainer'),
+            exportStatsText: document.getElementById('exportStatsText'),
+            exportPreview: document.getElementById('exportPreview'),
+        };
+
+        // ==========================================
+        // 3. Settings Persistence & Banner Helpers
+        // ==========================================
+        async function loadUserSettings() {
+            try {
+                const savedFtp = localStorage.getItem('tpv_hud_ftp');
+                const savedWPrime = localStorage.getItem('tpv_hud_wprime');
+                const savedPoll = localStorage.getItem('tpv_hud_poll');
+
+                if (savedFtp && !isNaN(Number(savedFtp))) {
+                    state.ftp = Math.max(50, Number(savedFtp));
+                    els.inputFtp.value = state.ftp;
+                }
+                if (savedWPrime && !isNaN(Number(savedWPrime))) {
+                    const kj = Math.max(1, Number(savedWPrime));
+                    state.wPrimeMaxJoules = kj * 1000;
+                    state.wBalJoules = state.wPrimeMaxJoules;
+                    state.minWBalJoules = state.wPrimeMaxJoules;
+                    els.inputWPrime.value = kj.toFixed(1);
+                }
+                if (savedPoll && !isNaN(Number(savedPoll))) {
+                    state.pollIntervalMs = Number(savedPoll);
+                    els.selectPollRate.value = String(state.pollIntervalMs);
+                }
+            } catch (_) {}
+            updateWBalVisuals(0, null, 0);
+        }
+
+        function saveUserSettings() {
+            try {
+                localStorage.setItem('tpv_hud_ftp', String(state.ftp));
+                localStorage.setItem('tpv_hud_wprime', String(state.wPrimeMaxJoules / 1000));
+                localStorage.setItem('tpv_hud_poll', String(state.pollIntervalMs));
+            } catch (_) {}
+        }
+
+        function showBanner(message, type = 'info') {
+            els.bannerContainer.classList.remove('hidden');
+            els.bannerMessage.textContent = message;
+            els.bannerBox.className = 'rounded-2xl p-3 border flex items-center justify-between gap-3 text-xs sm:text-sm ';
+            if (type === 'error') {
+                els.bannerBox.className += 'bg-rust-700/35 border-rust-500/60 text-mist-100';
+            } else if (type === 'success') {
+                els.bannerBox.className += 'bg-pine-850 border-chestnut-500/50 text-mist-100';
+            } else {
+                els.bannerBox.className += 'bg-pine-950/90 border-pine-700 text-mist-300';
+            }
+        }
+
+        els.bannerClose.addEventListener('click', () => {
+            els.bannerContainer.classList.add('hidden');
+        });
+
+        function setConnectionStatus(status, label) {
+            els.statusText.textContent = label;
+            els.statusDot.className = 'w-2.5 h-2.5 rounded-full ';
+            if (status === 'connected') {
+                els.statusDot.className += 'bg-chestnut-400 animate-pulse shadow-[0_0_8px_rgba(212,155,53,0.85)]';
+            } else if (status === 'error') {
+                els.statusDot.className += 'bg-rust-500';
+            } else {
+                els.statusDot.className += 'bg-mist-400/60';
+            }
+        }
+
+        // ==========================================
+        // 4. Formatting & Telemetry Conversion Helpers
+        // ==========================================
+        function normalizeName(name) {
+            return (name || '').trim().toLowerCase();
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str ?? '';
+            return div.innerHTML;
+        }
+
+        function formatRiderTag(name, fallbackCountry = '', fallbackTeamCode = '') {
+            if (!name) return 'Unknown Rider';
+            const entry = state.entriesByName.get(normalizeName(name));
+            const bib = entry?.bibNum ? `#${entry.bibNum} ` : '';
+            const country = entry?.country || fallbackCountry || '';
+            const teamCode = entry?.teamCode || fallbackTeamCode || '';
+            const metaParts = [country, teamCode].filter(Boolean);
+            const meta = metaParts.length > 0 ? ` (${metaParts.join(' - ')})` : '';
+            return `${bib}${name}${meta}`;
+        }
+
+        function formatTimeGap(gapMsOrSec) {
+            if (!gapMsOrSec || gapMsOrSec === 0) return '0.0s';
+            const sec = Math.abs(gapMsOrSec) > 300 ? gapMsOrSec / 1000 : gapMsOrSec;
+            const sign = sec > 0 ? '+' : '';
+            if (Math.abs(sec) >= 60) {
+                const mins = Math.floor(Math.abs(sec) / 60);
+                const rem = Math.round(Math.abs(sec) % 60);
+                return `${sec < 0 ? '-' : '+'}${mins}m${String(rem).padStart(2, '0')}s`;
+            }
+            return `${sign}${sec.toFixed(1)}s`;
+        }
+
+        function formatSpeedKmh(rawSpeed) {
+            if (typeof rawSpeed !== 'number' || isNaN(rawSpeed) || rawSpeed <= 0) return '-- km/h';
+            const mps = rawSpeed > 200 ? rawSpeed / 1000 : rawSpeed;
+            return `${(mps * 3.6).toFixed(1)} km/h`;
+        }
+
+        function formatAgeSince(timestampMs) {
+            if (!timestampMs) return 'Not seen yet';
+            const sec = Math.max(0, Math.round((Date.now() - timestampMs) / 1000));
+            if (sec <= 2) return 'Live now';
+            if (sec < 60) return `${sec}s ago`;
+            const mins = Math.floor(sec / 60);
+            const rem = sec % 60;
+            return `${mins}m ${rem}s ago`;
+        }
+
+        function formatRaceClock(ms) {
+            if (typeof ms !== 'number' || isNaN(ms) || ms <= 0) return '00:00';
+            const totalSec = Math.floor(ms / 1000);
+            const hrs = Math.floor(totalSec / 3600);
+            const mins = Math.floor((totalSec % 3600) / 60);
+            const secs = totalSec % 60;
+            if (hrs > 0) {
+                return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+            return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function formatFinishTime(ms) {
+            if (typeof ms !== 'number' || isNaN(ms)) return '--:--';
+            const totalSec = Math.floor(ms / 1000);
+            const hundredths = Math.floor((ms % 1000) / 10);
+            const hrs = Math.floor(totalSec / 3600);
+            const mins = Math.floor((totalSec % 3600) / 60);
+            const secs = totalSec % 60;
+            if (hrs > 0) {
+                return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
+            }
+            return `${mins}:${String(secs).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
+        }
+
+        function formatDeltaSec(ms) {
+            if (!ms || ms === 0) return '0.00s';
+            const sec = Math.abs(ms) >= 100 ? ms / 1000 : ms;
+            if (sec >= 60) {
+                const m = Math.floor(sec / 60);
+                const s = (sec % 60).toFixed(1);
+                return `+${m}m${s.padStart(4, '0')}s`;
+            }
+            return `+${sec.toFixed(2)}s`;
+        }
+
+        function getCurrentDistanceKm() {
+            const f = state.focusedRider;
+            const ev = state.eventInfo;
+            if (!f) return null;
+
+            if (ev && ev.distance > 0 && f.eventDistanceTotal > 0 && f.eventDistanceDone >= 0) {
+                const ratio = Math.min(1, f.eventDistanceDone / f.eventDistanceTotal);
+                return ((ratio * ev.distance) / 1000).toFixed(2);
+            }
+            if (typeof f.eventDistanceDone === 'number' && f.eventDistanceDone > 0) {
+                const meters = f.eventDistanceDone > 100000 ? f.eventDistanceDone / 100 : f.eventDistanceDone;
+                return (meters / 1000).toFixed(2);
+            }
+            return null;
+        }
+
+        // ==========================================
+        // 5. IndexedDB Handle Persistence & JSON Reader
+        // ==========================================
+        const DB_NAME = 'tpv_unified_hud_fs_db';
+        const STORE_NAME = 'handles';
+
+        function openHandleDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open(DB_NAME, 1);
+                req.onupgradeneeded = () => {
+                    if (!req.result.objectStoreNames.contains(STORE_NAME)) {
+                        req.result.createObjectStore(STORE_NAME);
+                    }
+                };
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        async function dbPut(key, value) {
+            try {
+                const db = await openHandleDB();
+                const tx = db.transaction(STORE_NAME, 'readwrite');
+                tx.objectStore(STORE_NAME).put(value, key);
+                await new Promise((resolve, reject) => {
+                    tx.oncomplete = resolve;
+                    tx.onerror = () => reject(tx.error);
+                });
+            } catch (_) {}
+        }
+
+        async function dbGet(key) {
+            try {
+                const db = await openHandleDB();
+                const tx = db.transaction(STORE_NAME, 'readonly');
+                const req = tx.objectStore(STORE_NAME).get(key);
+                return await new Promise((resolve, reject) => {
+                    req.onsuccess = () => resolve(req.result || null);
+                    req.onerror = () => reject(req.error);
+                });
+            } catch (_) {
+                return null;
+            }
+        }
+
+        async function verifyDirPermission(requestIfNeeded = false) {
+            if (!state.dirHandle) return false;
+            try {
+                let perm = await state.dirHandle.queryPermission({ mode: 'read' });
+                if (perm !== 'granted' && requestIfNeeded) {
+                    perm = await state.dirHandle.requestPermission({ mode: 'read' });
+                }
+                return perm === 'granted';
+            } catch (_) {
+                return false;
+            }
+        }
+
+        async function readJsonFile(filename) {
+            if (!state.dirHandle) return null;
+            try {
+                const fh = await state.dirHandle.getFileHandle(filename, { create: false });
+                const file = await fh.getFile();
+                const text = await file.text();
+                if (!text || !text.trim()) return null;
+                return JSON.parse(text);
+            } catch (_) {
+                return null;
+            }
+        }
+
+        // ==========================================
         // 6. Module A: W' Balance Logic (intervals.icu / Froncioni-Morton Model)
         // ==========================================
         function stepWPrimeBalance(powerWatts, dtSeconds) {
