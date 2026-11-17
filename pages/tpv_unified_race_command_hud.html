@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPV Unified Race Command HUD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        pine: {
+                            950: '#132418', // Deepest recess for inputs & badges
+                            900: '#1C3322', // Dominant Deep Forest Pine background
+                            850: '#223D29', // Elevated card surface
+                            800: '#2A4A32', // Borders and subtle dividers
+                            700: '#375E41', // Hover borders / muted strokes
+                        },
+                        rust: {
+                            500: '#C9562C',
+                            600: '#B84A22', // Primary Tuscan Rust / Burnt Sienna accent
+                            700: '#9A3B19',
+                        },
+                        chestnut: {
+                            400: '#E2AC48',
+                            500: '#D49B35', // Secondary Golden Chestnut highlight
+                            600: '#B58124',
+                        },
+                        mist: {
+                            50: '#F9F8F6',
+                            100: '#F2F0EB', // Mist White primary text
+                            300: '#D5D1C6', // Muted warm cream secondary text
+                            400: '#A8A69B', // Subtle labels
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-pine-900 text-mist-100 font-sans antialiased min-h-screen flex flex-col selection:bg-rust-600 selection:text-mist-100">
+
+    <!-- Top Navigation / Header -->
+    <header class="border-b border-pine-800 bg-pine-950/85 backdrop-blur-md sticky top-0 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rust-600 to-chestnut-500 flex items-center justify-center shadow-lg shadow-rust-600/25 border border-chestnut-500/30">
+                    <svg class="w-5 h-5 text-mist-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight text-mist-100 leading-tight">TPV Race Command HUD</h1>
+                    <p id="headerEventSub" class="text-[11px] font-mono text-mist-400 truncate max-w-xs sm:max-w-md">W' Balance • Live Bibs • Race Log</p>
+                </div>
+            </div>
+
+            <!-- Global Controls -->
+            <div class="flex flex-wrap items-center gap-2">
+                <!-- Global Poll Rate -->
+                <select id="selectPollRate" class="bg-pine-850 border border-pine-700 rounded-xl px-2.5 py-1.5 text-xs font-mono font-semibold text-mist-100 focus:outline-none focus:border-chestnut-500 cursor-pointer" title="Broadcast folder polling rate">
+                    <option value="250">250 ms</option>
+                    <option value="500" selected>500 ms</option>
+                    <option value="1000">1000 ms</option>
+                </select>
+
+                <!-- Connection Status Badge -->
+                <div id="statusBadge" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-pine-850 border border-pine-700 text-xs font-medium text-mist-300">
+                    <span id="statusDot" class="w-2.5 h-2.5 rounded-full bg-mist-400/60"></span>
+                    <span id="statusText">Disconnected</span>
+                </div>
+
+                <!-- Quick Export .TXT -->
+                <button id="btnHeaderExportTxt" type="button" class="px-3.5 py-2 rounded-xl bg-chestnut-500 hover:bg-chestnut-400 active:scale-[0.99] text-xs font-bold text-pine-950 shadow-lg shadow-chestnut-500/20 border border-chestnut-400 transition flex items-center gap-1.5 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    <span>Export .TXT</span>
+                </button>
+
+                <!-- Connect Folder Button -->
+                <button id="btnConnect" type="button" class="px-4 py-2 rounded-xl bg-rust-600 hover:bg-rust-500 active:scale-[0.99] text-xs font-semibold text-mist-100 shadow-lg shadow-rust-600/30 border border-rust-500/40 transition flex items-center gap-2 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Select Broadcast Folder</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification Banner -->
+    <div id="bannerContainer" class="max-w-7xl w-full mx-auto px-4 sm:px-6 mt-3 hidden">
+        <div id="bannerBox" class="rounded-2xl p-3 border flex items-center justify-between gap-3 text-xs sm:text-sm">
+            <span id="bannerMessage" class="font-medium"></span>
+            <button id="bannerClose" type="button" class="text-mist-300 hover:text-mist-100 p-1 rounded-lg cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Unified Workspace -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-4 space-y-5">
+
+        <!-- TOP ROW: W' Balance Tracker (Left) + Bib Tracker (Right) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+
+            <!-- ========================================== -->
+            <!-- LEFT PANEL (5 cols): W' Balance Tracker    -->
+            <!-- ========================================== -->
+            <section class="lg:col-span-5 bg-pine-850/95 border border-pine-800 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col justify-between">
+                <div id="wbalGlow" class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-chestnut-500/15 blur-3xl pointer-events-none transition-colors duration-500"></div>
+
+                <!-- Card Header & Threshold Inputs -->
+                <div class="relative z-10 space-y-3.5">
+                    <div class="flex items-center justify-between gap-2">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-mist-300">W' Balance</h2>
+                            <span id="riderBadge" class="hidden text-[11px] font-mono font-semibold px-2 py-0.5 rounded-md bg-pine-950 text-chestnut-400 border border-pine-700 truncate"></span>
+                        </div>
+                        <button id="btnResetWbal" type="button" class="text-[11px] font-semibold px-3 py-1 rounded-xl bg-pine-950 hover:bg-pine-800 text-mist-100 border border-pine-700 transition shrink-0 cursor-pointer">
+                            Reset W'
+                        </button>
+                    </div>
+
+                    <!-- Compact FTP & W' Inputs -->
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <div class="bg-pine-950/90 border border-pine-800 rounded-xl px-3 py-2 focus-within:border-chestnut-500/70 transition">
+                            <label for="inputFtp" class="block text-[10px] font-semibold uppercase tracking-wider text-mist-400">FTP / CP (W)</label>
+                            <div class="flex items-baseline gap-1.5 mt-0.5">
+                                <input id="inputFtp" type="number" min="50" max="1000" step="1" value="280"
+                                    class="w-full bg-transparent text-xl font-mono font-bold text-mist-100 focus:outline-none">
+                                <span class="text-[10px] font-bold text-chestnut-500">W</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-pine-950/90 border border-pine-800 rounded-xl px-3 py-2 focus-within:border-chestnut-500/70 transition">
+                            <label for="inputWPrime" class="block text-[10px] font-semibold uppercase tracking-wider text-mist-400">W' Capacity</label>
+                            <div class="flex items-baseline gap-1.5 mt-0.5">
+                                <input id="inputWPrime" type="number" min="1" max="100" step="0.1" value="20.0"
+                                    class="w-full bg-transparent text-xl font-mono font-bold text-mist-100 focus:outline-none">
+                                <span class="text-[10px] font-bold text-chestnut-500">kJ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero W' Balance Gauge & Progress Bar -->
+                <div class="relative z-10 my-4">
+                    <div class="flex flex-wrap items-end justify-between gap-2">
+                        <div>
+                            <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Remaining W'</span>
+                            <div class="flex items-baseline gap-2 mt-0.5">
+                                <span id="wbalKjDisplay" class="text-5xl sm:text-6xl font-mono font-extrabold tracking-tight text-chestnut-400 transition-colors duration-300">20.00</span>
+                                <span class="text-lg font-mono font-semibold text-mist-300">kJ</span>
+                                <span id="wbalPctDisplay" class="text-base sm:text-lg font-mono font-bold px-2.5 py-0.5 rounded-xl bg-chestnut-500/15 text-chestnut-400 border border-chestnut-500/40">100.0%</span>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <span id="wbalDeltaRate" class="text-sm sm:text-base font-mono font-bold text-mist-100 block">0 W</span>
+                            <span id="wbalTauDisplay" class="text-[11px] font-mono text-mist-400 block">τ = -- s</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="mt-4">
+                        <div class="w-full h-8 bg-pine-950 rounded-2xl p-1.5 border border-pine-800 shadow-inner overflow-hidden">
+                            <div id="wbalProgressBar" class="h-full rounded-xl bg-gradient-to-r from-chestnut-600 to-chestnut-400 transition-all duration-200 ease-out" style="width: 100%;"></div>
+                        </div>
+                        <div class="flex justify-between text-[11px] font-mono text-mist-400 mt-1.5 px-1">
+                            <span>0 kJ</span>
+                            <span>25%</span>
+                            <span>50%</span>
+                            <span>75%</span>
+                            <span id="wbalMaxLabel">20.0 kJ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Required Stat Boxes: Status/Estimate, Session Low, Effort Intensity -->
+                <div class="grid grid-cols-3 gap-2.5 pt-3 border-t border-pine-800 relative z-10">
+                    <div class="bg-pine-950/85 rounded-xl p-2.5 border border-pine-800">
+                        <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Status / Est.</span>
+                        <span id="wbalEstimateLabel" class="text-xs sm:text-sm font-mono font-bold text-mist-100 mt-0.5 block truncate">Fully Charged</span>
+                    </div>
+                    <div class="bg-pine-950/85 rounded-xl p-2.5 border border-pine-800">
+                        <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Session Low</span>
+                        <span id="wbalMinReached" class="text-xs sm:text-sm font-mono font-bold text-mist-100 mt-0.5 block truncate">20.00 kJ (100%)</span>
+                    </div>
+                    <div class="bg-pine-950/85 rounded-xl p-2.5 border border-pine-800">
+                        <span class="text-[10px] font-semibold uppercase tracking-wider text-mist-400 block">Intensity</span>
+                        <span id="powerVsFtp" class="text-xs sm:text-sm font-mono font-bold text-chestnut-400 mt-0.5 block truncate">0% FTP</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- RIGHT PANEL (7 cols): Live Bib Tracker     -->
+            <!-- ========================================== -->
+            <section class="lg:col-span-7 bg-pine-850/95 border border-pine-800 rounded-2xl p-4 sm:p-5 shadow-xl relative overflow-hidden flex flex-col">
+                <!-- Header & Controls -->
+                <div class="flex flex-wrap items-center justify-between gap-2.5 mb-3">
+                    <div class="flex items-center gap-2">
+                        <h2 id="boardTitle" class="text-xs font-bold uppercase tracking-wider text-mist-300">Live Bib Tracker</h2>
+                        <span id="entriesCountBadge" class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded-md bg-pine-950 text-chestnut-400 border border-pine-700">0 Entries</span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        <!-- Mode Toggle: Nearby & Leaders vs Track All -->
+                        <div class="inline-flex rounded-xl bg-pine-950 p-0.5 border border-pine-700" role="group">
+                            <button id="btnModeNearby" type="button" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rust-600 text-mist-100 shadow transition cursor-pointer">
+                                Nearby & Leaders
+                            </button>
+                            <button id="btnModeAll" type="button" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-mist-300 hover:text-mist-100 transition cursor-pointer">
+                                Track All (Bibs)
+                            </button>
+                        </div>
+
+                        <select id="selectSortMode" class="bg-pine-950 border border-pine-700 rounded-xl px-2.5 py-1 text-xs font-semibold text-mist-100 focus:outline-none focus:border-chestnut-500 cursor-pointer">
+                            <option value="position">Sort: Position</option>
+                            <option value="nearest">Sort: Nearest</option>
+                            <option value="bib">Sort: Bib #</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Active Race Groups Strip (groups.json) -->
+                <div class="bg-pine-950/85 border border-pine-800 rounded-xl px-3 py-2 mb-3 flex flex-wrap items-center justify-between gap-2">
+                    <div id="allGroupsList" class="flex flex-wrap items-center gap-1.5">
+                        <span class="text-xs font-mono text-mist-400">Waiting for groups.json...</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="nearestCountText" class="text-[11px] font-mono text-mist-400">0 riders</span>
+                        <button id="btnClearHistory" type="button" class="hidden text-[11px] font-semibold px-2 py-0.5 rounded-lg bg-pine-850 hover:bg-pine-800 text-mist-300 border border-pine-700 transition cursor-pointer">
+                            Clear Cache
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Column Headers -->
+                <div class="grid grid-cols-12 gap-2 px-3 pb-1.5 text-[10px] font-bold uppercase tracking-wider text-mist-400 border-b border-pine-800">
+                    <div class="col-span-2">Bib #</div>
+                    <div class="col-span-1 text-center">Pos</div>
+                    <div class="col-span-5">Rider & Country</div>
+                    <div class="col-span-2">Group / Team</div>
+                    <div class="col-span-2 text-right">Gap / Speed</div>
+                </div>
+
+                <!-- Scrollable Rider Rows -->
+                <div id="ridersList" class="divide-y divide-pine-800/80 mt-1 max-h-[310px] overflow-y-auto pr-1 flex-1">
+                    <div class="py-12 text-center">
+                        <p class="text-sm font-semibold text-mist-300">Connect your TPV Broadcast folder to view live bibs</p>
+                        <p class="text-xs text-mist-400 mt-1 font-mono">/Users/ryanyates/TPVirtual/Broadcast</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- BOTTOM PANEL (Full Width): Race Log Keeper -->
+        <!-- ========================================== -->
+        <section class="bg-pine-850/95 border border-pine-800 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
+
+            <!-- Logger Top Bar: Event Summary + Controls + Export .TXT -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-3.5 border-b border-pine-800">
+                <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-mist-300">Race Log Keeper</h2>
+                        <span id="eventTypeBadge" class="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-rust-600/25 text-mist-100 border border-rust-500/50">Waiting for event.json</span>
+                        <span class="text-xs font-mono text-chestnut-400 font-bold" id="raceClockDisplay">00:00</span>
+                        <span class="text-xs font-mono text-mist-400" id="raceDistProgress">-- km</span>
+                    </div>
+                    <p id="eventCourseMeta" class="text-xs font-mono text-mist-300 mt-1 truncate">Event: -- • Route: -- • Distance: --</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <select id="selectCheckpointSec" class="bg-pine-950 border border-pine-700 rounded-xl px-2.5 py-1.5 text-xs font-mono font-semibold text-mist-100 focus:outline-none focus:border-chestnut-500 cursor-pointer" title="Automatic race situation snapshot interval">
+                        <option value="30">Snapshot: 30s</option>
+                        <option value="60" selected>Snapshot: 60s</option>
+                        <option value="120">Snapshot: 2m</option>
+                        <option value="0">Key Events Only</option>
+                    </select>
+
+                    <button id="btnClearLog" type="button" class="px-3 py-1.5 rounded-xl bg-pine-950 hover:bg-rust-700/40 text-xs font-semibold text-mist-300 hover:text-mist-100 border border-pine-700 transition cursor-pointer">
+                        Reset Log
+                    </button>
+
+                    <button id="btnCopyTxt" type="button" class="px-3 py-1.5 rounded-xl bg-pine-950 hover:bg-pine-800 text-xs font-semibold text-mist-100 border border-pine-700 transition cursor-pointer">
+                        Copy .TXT
+                    </button>
+
+                    <button id="btnExportTxt" type="button" class="px-3.5 py-1.5 rounded-xl bg-chestnut-500 hover:bg-chestnut-400 text-xs font-bold text-pine-950 shadow-md shadow-chestnut-500/20 transition flex items-center gap-1.5 cursor-pointer">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span>Export .TXT</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Manual Race Note Input & Quick Tactical Tags -->
+            <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2.5">
+                <form id="formCustomNote" class="flex-1 flex items-center gap-2">
+                    <input id="inputCustomNote" type="text" placeholder="Add manual race note (e.g., 'Crosswinds splitting the bunch on climb')..."
+                        class="flex-1 bg-pine-950 border border-pine-700 focus:border-chestnut-500 rounded-xl px-3.5 py-1.5 text-xs sm:text-sm text-mist-100 placeholder-mist-400/70 focus:outline-none">
+                    <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-pine-950 hover:bg-pine-800 text-xs font-semibold text-chestnut-400 border border-pine-700 transition shrink-0 cursor-pointer">
+                        + Log Note
+                    </button>
+                </form>
+
+                <div class="flex flex-wrap items-center gap-1.5">
+                    <button type="button" data-quick-note="Sharp attack off the front of the pack!" class="quick-note-btn px-2.5 py-1.5 rounded-lg bg-pine-950 hover:bg-pine-800 text-[11px] font-semibold text-mist-300 border border-pine-700 transition cursor-pointer">+ Attack</button>
+                    <button type="button" data-quick-note="Peloton raises the tempo to chase down the breakaway." class="quick-note-btn px-2.5 py-1.5 rounded-lg bg-pine-950 hover:bg-pine-800 text-[11px] font-semibold text-mist-300 border border-pine-700 transition cursor-pointer">+ Chase</button>
+                    <button type="button" data-quick-note="Final sprint wind-up begins!" class="quick-note-btn px-2.5 py-1.5 rounded-lg bg-pine-950 hover:bg-pine-800 text-[11px] font-semibold text-mist-300 border border-pine-700 transition cursor-pointer">+ Sprint</button>
+                </div>
+            </div>
+
+            <!-- Official Results Strip (Auto-appears when resultsIndv.json populates) -->
+            <div id="resultsSection" class="hidden bg-pine-950/90 border border-chestnut-500/50 rounded-xl p-3.5">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-chestnut-400"></span>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-chestnut-400">Official Race Classification (resultsIndv.json)</h3>
+                    </div>
+                    <span id="resultsCountBadge" class="text-xs font-mono text-mist-300">0 finishers</span>
+                </div>
+                <div id="resultsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-44 overflow-y-auto pr-1"></div>
+            </div>
+
+            <!-- Split View: Chronological Event Cards (Left) + Plain-Text .TXT Preview (Right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Chronological Timeline Feed -->
+                <div class="lg:col-span-7 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-mist-400">Chronological Events (<span id="logCountDisplay">0</span>)</span>
+                        <span class="text-[11px] font-mono text-mist-400">Newest first</span>
+                    </div>
+                    <div id="timelineContainer" class="space-y-2 max-h-72 overflow-y-auto pr-1">
+                        <div class="py-10 text-center border border-dashed border-pine-700 rounded-xl">
+                            <p class="text-xs sm:text-sm font-semibold text-mist-300">No race events recorded yet</p>
+                            <p class="text-[11px] text-mist-400 mt-1 font-mono">Auto-logs breakaways, regroupings, lead changes, surges & finish results</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plain-Text .TXT File Preview -->
+                <div class="lg:col-span-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-mist-400">Plain-Text Export Preview (.TXT)</span>
+                        <span id="exportStatsText" class="text-[11px] font-mono text-mist-400">0 lines</span>
+                    </div>
+                    <textarea id="exportPreview" readonly
+                        class="w-full h-72 bg-pine-950 border border-pine-800 rounded-xl p-3 font-mono text-xs text-mist-100/90 leading-relaxed focus:outline-none resize-none"></textarea>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        /**
+         * TPV Unified Race Command HUD
+         * Combines:
+         * 1. intervals.icu (Froncioni-Morton differential) W' Balance Tracker (focus.json)
+         * 2. Live Bib & Group Tracker (entries.json, nearest.json, groups.json, focus.json)
+         * 3. Plain-Text Race Log Keeper & .TXT Exporter (event.json, entries.json, groups.json, nearest.json, focus.json, resultsIndv.json)
+         */
+
+        // ==========================================
+        // 1. IOC / UCI 3-Letter Country Code -> Flag Emoji Map
+        // ==========================================
+        // 6. Module A: W' Balance Logic (intervals.icu / Froncioni-Morton Model)
+        // ==========================================
+        function stepWPrimeBalance(powerWatts, dtSeconds) {
+            if (dtSeconds <= 0 || dtSeconds > 15) {
+                return { netWatts: 0, tau: null };
+            }
+
+            const cp = state.ftp;
+            const wMax = state.wPrimeMaxJoules;
+            let wBal = state.wBalJoules;
+            let netWatts = 0;
+            let tau = null;
+            const deltaW = cp - powerWatts;
+
+            if (deltaW > 0) {
+                // Recovery phase (exact intervals.icu formula):
+                // Sub-second equivalent of: for (j = 0; j < secs; j++) wb += deltaW * (wPrime - wb) / wPrime
+                tau = wMax / deltaW;
+                const stepRetention = Math.max(0, 1 - deltaW / wMax);
+                const prevWBal = wBal;
+                wBal = wMax - (wMax - wBal) * Math.pow(stepRetention, dtSeconds);
+                netWatts = (wBal - prevWBal) / dtSeconds;
+            } else {
+                // Depletion phase (power >= CP): linear expenditure above FTP
+                wBal += deltaW * dtSeconds;
+                netWatts = deltaW;
+            }
+
+            // Cap upper bound at W'_0 while allowing negative W' balance below 0 (matching intervals.icu)
+            state.wBalJoules = Math.min(wMax, wBal);
+            if (state.wBalJoules < state.minWBalJoules) {
+                state.minWBalJoules = state.wBalJoules;
+            }
+
+            return { netWatts, tau };
+        }
+
+        function processWBalUpdate() {
+            const rider = state.focusedRider;
+            if (!rider || typeof rider !== 'object') return;
+
+            if (rider.name) {
+                const entry = state.entriesByName.get(normalizeName(rider.name));
+                const bibPrefix = entry?.bibNum ? `#${entry.bibNum} ` : '';
+                els.riderBadge.textContent = `${bibPrefix}${rider.name}`;
+                els.riderBadge.classList.remove('hidden');
+            }
+
+            const nowMs = performance.now();
+            let dtSeconds = state.pollIntervalMs / 1000;
+
+            if (typeof rider.time === 'number' && state.lastTpvTimeMs !== null) {
+                const tpvDeltaMs = rider.time - state.lastTpvTimeMs;
+                if (tpvDeltaMs > 0 && tpvDeltaMs < 10000) {
+                    dtSeconds = tpvDeltaMs / 1000;
+                } else if (tpvDeltaMs === 0 && state.lastWallTimestampMs !== null) {
+                    dtSeconds = (nowMs - state.lastWallTimestampMs) / 1000;
+                }
+            } else if (state.lastWallTimestampMs !== null) {
+                dtSeconds = (nowMs - state.lastWallTimestampMs) / 1000;
+            }
+
+            state.lastWallTimestampMs = nowMs;
+            if (typeof rider.time === 'number') {
+                state.lastTpvTimeMs = rider.time;
+            }
+
+            const currentPower = Math.max(0, Number(rider.power) || 0);
+            const { netWatts, tau } = stepWPrimeBalance(currentPower, dtSeconds);
+            updateWBalVisuals(netWatts, tau, currentPower);
+        }
+
+        function updateWBalVisuals(netWatts, tau, currentPower = 0) {
+            const wMaxKj = state.wPrimeMaxJoules / 1000;
+            const wBalKj = state.wBalJoules / 1000;
+            const rawPct = Math.min(100, (state.wBalJoules / state.wPrimeMaxJoules) * 100);
+            const barWidthPct = Math.max(0, Math.min(100, rawPct));
+
+            els.wbalKjDisplay.textContent = wBalKj.toFixed(2);
+            els.wbalPctDisplay.textContent = `${rawPct.toFixed(1)}%`;
+            els.wbalProgressBar.style.width = `${barWidthPct}%`;
+            els.wbalMaxLabel.textContent = `${wMaxKj.toFixed(1)} kJ`;
+
+            const minKj = state.minWBalJoules / 1000;
+            const minPct = (state.minWBalJoules / state.wPrimeMaxJoules) * 100;
+            els.wbalMinReached.textContent = `${minKj.toFixed(2)} kJ (${minPct.toFixed(0)}%)`;
+            els.wbalMinReached.className = state.minWBalJoules < 0
+                ? 'text-xs sm:text-sm font-mono font-bold text-rust-500 mt-0.5 block truncate'
+                : 'text-xs sm:text-sm font-mono font-bold text-mist-100 mt-0.5 block truncate';
+
+            const ftpPct = state.ftp > 0 ? Math.round((currentPower / state.ftp) * 100) : 0;
+            els.powerVsFtp.textContent = `${ftpPct}% FTP`;
+
+            const roundedFlux = Math.round(netWatts);
+            if (roundedFlux < 0) {
+                els.wbalDeltaRate.textContent = `${roundedFlux} W`;
+                els.wbalDeltaRate.className = 'text-sm sm:text-base font-mono font-bold text-rust-500 block';
+                els.wbalTauDisplay.textContent = state.wBalJoules < 0 ? 'Overdrawn (< 0)' : 'Depleting';
+            } else if (roundedFlux > 0) {
+                els.wbalDeltaRate.textContent = `+${roundedFlux} W`;
+                els.wbalDeltaRate.className = 'text-sm sm:text-base font-mono font-bold text-chestnut-400 block';
+                els.wbalTauDisplay.textContent = tau ? `τ = ${Math.round(tau)} s` : 'Recharging';
+            } else {
+                els.wbalDeltaRate.textContent = '0 W';
+                els.wbalDeltaRate.className = 'text-sm sm:text-base font-mono font-bold text-mist-300 block';
+                els.wbalTauDisplay.textContent = tau ? `τ = ${Math.round(tau)} s` : 'τ = -- s';
+            }
+
+            if (netWatts < -1 && state.wBalJoules > 0) {
+                const tteSec = Math.round(state.wBalJoules / Math.abs(netWatts));
+                const mins = Math.floor(tteSec / 60);
+                const secs = tteSec % 60;
+                els.wbalEstimateLabel.textContent = `TTE: ${mins}m ${String(secs).padStart(2, '0')}s`;
+                els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-rust-500 mt-0.5 block truncate';
+            } else if (state.wBalJoules < 0 && netWatts > 1 && tau) {
+                // Time to recover back to 0.0 kJ from negative W'
+                const zeroRatio = state.wPrimeMaxJoules / (state.wPrimeMaxJoules - state.wBalJoules);
+                if (zeroRatio > 0 && zeroRatio < 1) {
+                    const tZeroSec = Math.round(-tau * Math.log(zeroRatio));
+                    const mins = Math.floor(tZeroSec / 60);
+                    const secs = tZeroSec % 60;
+                    els.wbalEstimateLabel.textContent = `0 kJ in ${mins}m ${String(secs).padStart(2, '0')}s`;
+                    els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-chestnut-400 mt-0.5 block truncate';
+                }
+            } else if (netWatts > 1 && rawPct < 90 && tau) {
+                const targetJoules = 0.9 * state.wPrimeMaxJoules;
+                const ratio = (state.wPrimeMaxJoules - targetJoules) / (state.wPrimeMaxJoules - state.wBalJoules);
+                if (ratio > 0 && ratio < 1) {
+                    const tRecSec = Math.round(-tau * Math.log(ratio));
+                    const mins = Math.floor(tRecSec / 60);
+                    const secs = tRecSec % 60;
+                    els.wbalEstimateLabel.textContent = `90% in ${mins}m ${String(secs).padStart(2, '0')}s`;
+                    els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-chestnut-400 mt-0.5 block truncate';
+                }
+            } else if (state.wBalJoules <= 0) {
+                els.wbalEstimateLabel.textContent = 'Depleted (< 0 kJ)';
+                els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-rust-500 mt-0.5 block truncate';
+            } else {
+                els.wbalEstimateLabel.textContent = rawPct >= 99.5 ? 'Fully Charged' : 'Stabilizing';
+                els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-mist-100 mt-0.5 block truncate';
+            }
+
+            if (rawPct > 50) {
+                els.wbalKjDisplay.className = 'text-5xl sm:text-6xl font-mono font-extrabold tracking-tight text-chestnut-400 transition-colors duration-300';
+                els.wbalPctDisplay.className = 'text-base sm:text-lg font-mono font-bold px-2.5 py-0.5 rounded-xl bg-chestnut-500/15 text-chestnut-400 border border-chestnut-500/40';
+                els.wbalProgressBar.className = 'h-full rounded-xl bg-gradient-to-r from-chestnut-600 to-chestnut-400 transition-all duration-200 ease-out';
+                els.wbalGlow.className = 'absolute -right-16 -top-16 w-64 h-64 rounded-full bg-chestnut-500/15 blur-3xl pointer-events-none transition-colors duration-500';
+            } else if (rawPct > 25) {
+                els.wbalKjDisplay.className = 'text-5xl sm:text-6xl font-mono font-extrabold tracking-tight text-amber-400 transition-colors duration-300';
+                els.wbalPctDisplay.className = 'text-base sm:text-lg font-mono font-bold px-2.5 py-0.5 rounded-xl bg-rust-600/20 text-chestnut-400 border border-rust-500/50';
+                els.wbalProgressBar.className = 'h-full rounded-xl bg-gradient-to-r from-rust-600 to-chestnut-500 transition-all duration-200 ease-out';
+                els.wbalGlow.className = 'absolute -right-16 -top-16 w-64 h-64 rounded-full bg-rust-600/20 blur-3xl pointer-events-none transition-colors duration-500';
+            } else {
+                els.wbalKjDisplay.className = 'text-5xl sm:text-6xl font-mono font-extrabold tracking-tight text-rust-500 transition-colors duration-300';
+                els.wbalPctDisplay.className = rawPct < 0
+                    ? 'text-base sm:text-lg font-mono font-bold px-2.5 py-0.5 rounded-xl bg-rust-600/40 text-mist-100 border border-rust-500'
+                    : 'text-base sm:text-lg font-mono font-bold px-2.5 py-0.5 rounded-xl bg-rust-600/25 text-mist-100 border border-rust-500/70';
+                els.wbalProgressBar.className = 'h-full rounded-xl bg-gradient-to-r from-rust-700 to-rust-500 transition-all duration-200 ease-out';
+                els.wbalGlow.className = 'absolute -right-16 -top-16 w-64 h-64 rounded-full bg-rust-600/35 blur-3xl pointer-events-none transition-colors duration-500';
+            }
+        }
+
+        // ==========================================
+        // 7. Module B: Live Bib & Group Tracker
+        // ==========================================
+        function renderBibTracker() {
+            const focusedNameNorm = normalizeName(state.focusedRider?.name);
+            const nowEpoch = Date.now();
+
+            // Groups Pill Strip
+            if (state.groups.length > 0) {
+                els.allGroupsList.innerHTML = state.groups.map(g => {
+                    const gTitle = g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1}`;
+                    const gapStr = g.timeGap1 ? ` (${formatTimeGap(g.timeGap1)})` : '';
+                    return `<span class="text-[11px] font-mono px-2 py-0.5 rounded-lg bg-pine-850 border border-pine-700 text-mist-100">${escapeHtml(gTitle)}: <strong class="text-chestnut-400">${g.size ?? '?'}</strong>${escapeHtml(gapStr)}</span>`;
+                }).join('');
+            }
+
+            // Map Group Leaders
+            const groupLeaderMap = new Map();
+            state.groups.forEach((g, idx) => {
+                if (g && g.leader) {
+                    const gLabel = g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || (idx + 1)}`;
+                    groupLeaderMap.set(normalizeName(g.leader), { group: g, label: gLabel, index: idx });
+                }
+            });
+
+            function resolveRiderGroupLabel(rider) {
+                const norm = normalizeName(rider.name);
+                if (groupLeaderMap.has(norm)) return groupLeaderMap.get(norm).label;
+                if (state.groups.length === 0) return null;
+                if (state.groups.length === 1) {
+                    const g = state.groups[0];
+                    return g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || 1}`;
+                }
+
+                const rGapSec = Math.abs(rider.timeGap ?? 0) > 300 ? (rider.timeGap ?? 0) / 1000 : (rider.timeGap ?? 0);
+                let bestGroup = null;
+                let bestDiff = Infinity;
+
+                for (let i = 0; i < state.groups.length; i++) {
+                    const g = state.groups[i];
+                    const gGapSec = Math.abs(g.timeGap1 ?? 0) > 300 ? (g.timeGap1 ?? 0) / 1000 : (g.timeGap1 ?? 0);
+                    const diff = Math.abs(rGapSec - gGapSec);
+                    if (diff < bestDiff) {
+                        bestDiff = diff;
+                        bestGroup = { g, idx: i };
+                    }
+                }
+                if (bestGroup && bestDiff <= 2.5) {
+                    return bestGroup.g.isPeloton ? 'Peloton' : `Grp ${bestGroup.g.groupNum1 || (bestGroup.idx + 1)}`;
+                }
+                return null;
+            }
+
+            // Update Persistent Sighting Cache
+            const activeLiveNames = new Set();
+
+            state.nearestRiders.forEach((r, idx) => {
+                if (!r || !r.name) return;
+                const norm = normalizeName(r.name);
+                activeLiveNames.add(norm);
+                const prev = state.riderHistoryByName.get(norm) || {};
+                const groupLabel = resolveRiderGroupLabel(r) || prev.groupLabel || null;
+                const leaderInfo = groupLeaderMap.get(norm);
+
+                state.riderHistoryByName.set(norm, {
+                    ...prev,
+                    name: r.name,
+                    country: r.country || prev.country || '',
+                    team: r.team || prev.team || '',
+                    teamCode: r.teamCode || prev.teamCode || '',
+                    position: r.position ?? prev.position ?? null,
+                    timeGap: r.timeGap ?? prev.timeGap ?? null,
+                    speed: r.speed ?? prev.speed ?? null,
+                    isEliminated: Boolean(r.isEliminated),
+                    groupLabel,
+                    isGroupLeader: Boolean(leaderInfo),
+                    groupOrderIndex: leaderInfo ? leaderInfo.index : prev.groupOrderIndex,
+                    nearestOrderIndex: idx,
+                    lastSeenAt: nowEpoch
+                });
+            });
+
+            state.groups.forEach((g, idx) => {
+                if (!g || !g.leader) return;
+                const norm = normalizeName(g.leader);
+                activeLiveNames.add(norm);
+                const prev = state.riderHistoryByName.get(norm) || {};
+                const gLabel = g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || (idx + 1)}`;
+
+                state.riderHistoryByName.set(norm, {
+                    ...prev,
+                    name: g.leader,
+                    position: prev.position ?? null,
+                    timeGap: g.timeGap1 ?? prev.timeGap ?? 0,
+                    groupLabel: gLabel,
+                    isGroupLeader: true,
+                    groupOrderIndex: idx,
+                    lastSeenAt: nowEpoch
+                });
+            });
+
+            if (state.focusedRider && state.focusedRider.name) {
+                const norm = focusedNameNorm;
+                activeLiveNames.add(norm);
+                const prev = state.riderHistoryByName.get(norm) || {};
+                const groupLabel = resolveRiderGroupLabel(state.focusedRider) || prev.groupLabel || null;
+
+                state.riderHistoryByName.set(norm, {
+                    ...prev,
+                    name: state.focusedRider.name,
+                    country: state.focusedRider.country || prev.country || '',
+                    team: state.focusedRider.team || prev.team || '',
+                    teamCode: state.focusedRider.teamCode || prev.teamCode || '',
+                    speed: state.focusedRider.speed ?? prev.speed ?? null,
+                    groupLabel,
+                    lastSeenAt: nowEpoch
+                });
+            }
+
+            // Build Display List
+            let displayRiders = [];
+
+            if (state.viewMode === 'all') {
+                const seenInEntries = new Set();
+                state.entriesByName.forEach((entry, norm) => {
+                    seenInEntries.add(norm);
+                    const cached = state.riderHistoryByName.get(norm) || {};
+                    displayRiders.push({
+                        name: entry.name,
+                        bibNum: entry.bibNum ?? null,
+                        country: entry.country || cached.country || '',
+                        team: entry.team || cached.team || '',
+                        teamCode: entry.teamCode || cached.teamCode || '',
+                        position: cached.position ?? null,
+                        timeGap: cached.timeGap ?? null,
+                        speed: cached.speed ?? null,
+                        isEliminated: Boolean(cached.isEliminated),
+                        groupLabel: cached.groupLabel || null,
+                        isGroupLeader: Boolean(cached.isGroupLeader),
+                        groupOrderIndex: cached.groupOrderIndex ?? 999,
+                        nearestOrderIndex: cached.nearestOrderIndex ?? 9999,
+                        lastSeenAt: cached.lastSeenAt || null,
+                        isLiveNow: activeLiveNames.has(norm),
+                        isFocused: focusedNameNorm && norm === focusedNameNorm
+                    });
+                });
+
+                state.riderHistoryByName.forEach((cached, norm) => {
+                    if (!seenInEntries.has(norm)) {
+                        displayRiders.push({
+                            ...cached,
+                            bibNum: null,
+                            isLiveNow: activeLiveNames.has(norm),
+                            isFocused: focusedNameNorm && norm === focusedNameNorm
+                        });
+                    }
+                });
+
+                const seenCount = displayRiders.filter(r => r.lastSeenAt !== null).length;
+                els.nearestCountText.textContent = `${seenCount}/${displayRiders.length} seen`;
+            } else {
+                const nearbyNames = new Set();
+
+                state.nearestRiders.forEach((r, originalIndex) => {
+                    if (!r || !r.name) return;
+                    const norm = normalizeName(r.name);
+                    nearbyNames.add(norm);
+                    const entry = state.entriesByName.get(norm);
+                    const cached = state.riderHistoryByName.get(norm) || {};
+                    displayRiders.push({
+                        ...r,
+                        originalIndex,
+                        bibNum: entry?.bibNum ?? null,
+                        country: r.country || entry?.country || '',
+                        team: r.team || entry?.team || '',
+                        teamCode: r.teamCode || entry?.teamCode || '',
+                        groupLabel: cached.groupLabel || resolveRiderGroupLabel(r),
+                        isGroupLeader: groupLeaderMap.has(norm),
+                        groupOrderIndex: groupLeaderMap.get(norm)?.index ?? 999,
+                        lastSeenAt: nowEpoch,
+                        isLiveNow: true,
+                        isFocused: focusedNameNorm && norm === focusedNameNorm
+                    });
+                });
+
+                state.groups.forEach((g, idx) => {
+                    if (!g || !g.leader) return;
+                    const leaderNorm = normalizeName(g.leader);
+                    if (!nearbyNames.has(leaderNorm)) {
+                        nearbyNames.add(leaderNorm);
+                        const entry = state.entriesByName.get(leaderNorm);
+                        const cached = state.riderHistoryByName.get(leaderNorm) || {};
+                        displayRiders.push({
+                            name: g.leader,
+                            bibNum: entry?.bibNum ?? null,
+                            country: entry?.country || '',
+                            team: entry?.team || '',
+                            teamCode: entry?.teamCode || '',
+                            speed: cached.speed ?? null,
+                            timeGap: g.timeGap1 ?? 0,
+                            position: cached.position ?? null,
+                            isEliminated: false,
+                            isInjectedLeader: true,
+                            isGroupLeader: true,
+                            groupOrderIndex: idx,
+                            groupLabel: g.isPeloton ? 'Peloton' : `Grp ${g.groupNum1 || (idx + 1)}`,
+                            lastSeenAt: nowEpoch,
+                            isLiveNow: true,
+                            isFocused: focusedNameNorm && leaderNorm === focusedNameNorm
+                        });
+                    }
+                });
+
+                els.nearestCountText.textContent = `${displayRiders.length} nearby`;
+            }
+
+            if (displayRiders.length === 0) {
+                els.ridersList.innerHTML = `
+                    <div class="py-10 text-center">
+                        <p class="text-xs sm:text-sm font-medium text-mist-300">${state.viewMode === 'all' ? 'Waiting for entries.json...' : 'Waiting for nearest.json & groups.json...'}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort Riders
+            if (state.sortMode === 'bib') {
+                displayRiders.sort((a, b) => (a.bibNum ?? 9999) - (b.bibNum ?? 9999));
+            } else if (state.sortMode === 'position') {
+                displayRiders.sort((a, b) => {
+                    const posA = a.position ?? (a.isGroupLeader ? (a.groupOrderIndex ?? 0) + 0.1 : 9999);
+                    const posB = b.position ?? (b.isGroupLeader ? (b.groupOrderIndex ?? 0) + 0.1 : 9999);
+                    if (posA !== posB) return posA - posB;
+                    return (a.bibNum ?? 9999) - (b.bibNum ?? 9999);
+                });
+            } else if (state.sortMode === 'nearest' && state.viewMode === 'all') {
+                displayRiders.sort((a, b) => (a.nearestOrderIndex ?? 9999) - (b.nearestOrderIndex ?? 9999));
+            }
+
+            els.ridersList.innerHTML = displayRiders.map(r => {
+                const flag = getCountryFlag(r.country);
+                const bibDisplay = r.bibNum !== null ? r.bibNum : '?';
+                const hasEverBeenSeen = r.lastSeenAt !== null;
+                const posDisplay = r.position ? `#${r.position}` : (r.isGroupLeader ? 'LDR' : '--');
+                const gapDisplay = r.timeGap !== null && r.timeGap !== undefined ? formatTimeGap(r.timeGap) : '--';
+
+                let subStatusDisplay = '-- km/h';
+                if (state.viewMode === 'all') {
+                    subStatusDisplay = r.isLiveNow
+                        ? (r.speed !== null ? formatSpeedKmh(r.speed) : 'Live')
+                        : formatAgeSince(r.lastSeenAt);
+                } else {
+                    subStatusDisplay = r.speed !== null ? formatSpeedKmh(r.speed) : (r.isInjectedLeader ? 'Leader' : '-- km/h');
+                }
+
+                const rowHighlight = r.isFocused
+                    ? 'bg-chestnut-500/15 border-l-4 border-l-chestnut-400 rounded-xl my-0.5'
+                    : r.isEliminated
+                        ? 'opacity-50 hover:bg-pine-950/50 rounded-xl'
+                        : !hasEverBeenSeen && state.viewMode === 'all'
+                            ? 'opacity-65 hover:opacity-95 hover:bg-pine-950/40 rounded-xl transition-opacity'
+                            : 'hover:bg-pine-950/60 rounded-xl transition-colors';
+
+                const bibBadgeStyle = r.isFocused
+                    ? 'bg-chestnut-500 text-pine-950 border-chestnut-400 shadow-sm'
+                    : r.isLiveNow
+                        ? 'bg-pine-950 text-chestnut-400 border-pine-700'
+                        : 'bg-pine-950/70 text-mist-300 border-pine-800';
+
+                const groupBadgeHtml = r.groupLabel
+                    ? `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-bold ${r.groupLabel === 'Peloton' ? 'bg-pine-950 text-mist-100 border border-pine-700' : 'bg-chestnut-500/20 text-chestnut-400 border border-chestnut-500/40'}">${escapeHtml(r.groupLabel)}</span>`
+                    : '';
+
+                const teamBadge = r.teamCode
+                    ? `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono font-bold bg-rust-600/25 text-mist-100 border border-rust-500/50" title="${escapeHtml(r.team)}">${escapeHtml(r.teamCode)}</span>`
+                    : '';
+
+                return `
+                    <div class="grid grid-cols-12 items-center gap-2 px-2.5 py-2 ${rowHighlight}">
+                        <!-- Bib Number -->
+                        <div class="col-span-2 flex items-center">
+                            <span class="inline-flex items-center justify-center min-w-[2.6rem] px-2 py-0.5 rounded-lg border font-mono text-base sm:text-lg font-extrabold tracking-tight ${bibBadgeStyle}">
+                                ${escapeHtml(String(bibDisplay))}
+                            </span>
+                        </div>
+
+                        <!-- Race Position -->
+                        <div class="col-span-1 text-center">
+                            <span class="font-mono text-xs sm:text-sm font-bold ${r.isFocused || r.isGroupLeader ? 'text-chestnut-400' : hasEverBeenSeen ? 'text-mist-300' : 'text-mist-400/60'}">${escapeHtml(posDisplay)}</span>
+                        </div>
+
+                        <!-- Flag & Rider Name -->
+                        <div class="col-span-5 flex items-center gap-2 min-w-0">
+                            <span class="text-lg leading-none select-none shrink-0" title="${escapeHtml(r.country)}">${flag}</span>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="font-bold text-xs sm:text-sm text-mist-100 truncate">${escapeHtml(r.name)}</span>
+                                    ${r.isFocused ? '<span class="text-[9px] font-bold uppercase px-1 py-0.2 rounded bg-chestnut-500/20 text-chestnut-400 border border-chestnut-500/40 shrink-0">YOU</span>' : ''}
+                                    ${r.isGroupLeader && !r.isFocused ? '<span class="text-[9px] font-bold uppercase px-1 py-0.2 rounded bg-pine-950 text-chestnut-400 border border-chestnut-500/40 shrink-0">LDR</span>' : ''}
+                                    ${state.viewMode === 'all' && r.isLiveNow && !r.isFocused ? '<span class="w-1.5 h-1.5 rounded-full bg-chestnut-400 shrink-0"></span>' : ''}
+                                    ${r.isEliminated ? '<span class="text-[9px] font-bold uppercase px-1 py-0.2 rounded bg-rust-600/30 text-rust-500 border border-rust-500/50 shrink-0">OUT</span>' : ''}
+                                </div>
+                                <span class="text-[11px] font-mono text-mist-400 block truncate">${escapeHtml(r.country || '---')}${r.team ? ` • ${escapeHtml(r.team)}` : ''}</span>
+                            </div>
+                        </div>
+
+                        <!-- Group & Team Code -->
+                        <div class="col-span-2 flex flex-wrap items-center gap-1">
+                            ${groupBadgeHtml}
+                            ${teamBadge}
+                        </div>
+
+                        <!-- Time Gap & Speed / Last Seen -->
+                        <div class="col-span-2 text-right font-mono">
+                            <span class="text-xs font-bold ${!hasEverBeenSeen ? 'text-mist-400/60' : r.timeGap === 0 ? 'text-mist-300' : 'text-chestnut-400'} block">${escapeHtml(gapDisplay)}</span>
+                            <span class="text-[10px] ${r.isLiveNow && state.viewMode === 'all' ? 'text-chestnut-400 font-semibold' : 'text-mist-400'} block">${escapeHtml(subStatusDisplay)}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function setViewMode(mode) {
+            state.viewMode = mode;
+            if (mode === 'all') {
+                els.btnModeAll.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rust-600 text-mist-100 shadow transition cursor-pointer';
+                els.btnModeNearby.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold text-mist-300 hover:text-mist-100 transition cursor-pointer';
+                els.boardTitle.textContent = 'All Entries (Bib Roster)';
+                els.btnClearHistory.classList.remove('hidden');
+                state.sortMode = 'bib';
+                els.selectSortMode.value = 'bib';
+            } else {
+                els.btnModeNearby.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-rust-600 text-mist-100 shadow transition cursor-pointer';
+                els.btnModeAll.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold text-mist-300 hover:text-mist-100 transition cursor-pointer';
+                els.boardTitle.textContent = 'Live Bib Tracker';
+                els.btnClearHistory.classList.add('hidden');
+                state.sortMode = 'position';
+                els.selectSortMode.value = 'position';
+            }
+            renderBibTracker();
+        }
+
+        // ==========================================
+        // 8. Module C: Race Log Keeper & Plain-Text .TXT Export
+        // ==========================================
+        function appendTimelineEvent(category, text, badgeStyle = 'neutral') {
+            const clock = state.focusedRider?.time
+                ? formatRaceClock(state.focusedRider.time)
+                : new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const distKm = getCurrentDistanceKm();
+
+            state.timeline.push({
+                id: crypto.randomUUID(),
+                raceClock: clock,
+                distanceKm: distKm,
+                category,
+                badgeStyle,
+                text,
+            });
+
+            renderTimeline();
+            updateTxtExportPreview();
+        }
+
+        function analyzeTelemetryForLog() {
+            const raceTimeMs = state.focusedRider?.time || 0;
+            const raceSec = Math.floor(raceTimeMs / 1000);
+
+            // 1. Groups & Breakaways
+            if (Array.isArray(state.groups) && state.groups.length > 0) {
+                const groupCount = state.groups.length;
+                const frontGroup = state.groups[0];
+                const frontLeader = frontGroup?.leader || '';
+                const frontLeaderTag = formatRiderTag(frontLeader);
+                const secondGroup = state.groups[1] || null;
+                const gapToSecondSec = secondGroup
+                    ? (Math.abs(secondGroup.timeGap1 || 0) >= 300 ? (secondGroup.timeGap1 || 0) / 1000 : (secondGroup.timeGap1 || 0))
+                    : 0;
+
+                if (state.lastGroupCount > 0 && groupCount !== state.lastGroupCount) {
+                    if (groupCount > state.lastGroupCount) {
+                        const breakDesc = frontGroup.size === 1
+                            ? `Solo attack: ${frontLeaderTag} breaks clear of the pack`
+                            : `Field split: ${frontGroup.size}-rider move led by ${frontLeaderTag} forms at the front`;
+                        const gapNote = secondGroup ? ` (${formatTimeGap(secondGroup.timeGap1)} ahead of ${secondGroup.isPeloton ? 'Main Peloton' : 'Group 2'})` : '';
+                        appendTimelineEvent('BREAKAWAY', `${breakDesc}${gapNote}.`, 'rust');
+                    } else {
+                        const peloton = state.groups.find(g => g.isPeloton) || frontGroup;
+                        appendTimelineEvent('REGROUP', `Field regroups — ${peloton.size} riders together at the front led by ${formatRiderTag(peloton.leader)}.`, 'chestnut');
+                    }
+                } else if (state.lastFrontLeader && frontLeader && frontLeader !== state.lastFrontLeader) {
+                    const grpName = frontGroup.isPeloton ? 'the Main Peloton' : `the ${frontGroup.size}-rider front group`;
+                    appendTimelineEvent('LEAD CHANGE', `${frontLeaderTag} takes over the lead of ${grpName}.`, 'neutral');
+                } else if (groupCount > 1 && Math.abs(gapToSecondSec - state.lastFrontGapSec) >= 6) {
+                    const trend = gapToSecondSec > state.lastFrontGapSec ? 'extends' : 'shrinks';
+                    appendTimelineEvent(
+                        'GAP UPDATE',
+                        `Breakaway led by ${frontLeaderTag} (${frontGroup.size} rider${frontGroup.size === 1 ? '' : 's'}) ${trend} gap to ${formatTimeGap(secondGroup.timeGap1)} over ${secondGroup.isPeloton ? 'the Main Peloton' : 'Group 2'}.`,
+                        trend === 'extends' ? 'rust' : 'chestnut'
+                    );
+                }
+
+                state.lastGroupCount = groupCount;
+                state.lastFrontLeader = frontLeader;
+                state.lastFrontGapSec = gapToSecondSec;
+            }
+
+            // 2. Eliminations
+            if (Array.isArray(state.nearestRiders)) {
+                for (const r of state.nearestRiders) {
+                    if (r && r.isEliminated && r.name && !state.eliminatedNames.has(normalizeName(r.name))) {
+                        state.eliminatedNames.add(normalizeName(r.name));
+                        appendTimelineEvent('ELIMINATED', `${formatRiderTag(r.name, r.country, r.teamCode)} is eliminated.`, 'rust');
+                    }
+                }
+            }
+
+            // 3. Focused Rider Power Surges
+            if (state.focusedRider && state.focusedRider.name) {
+                const f = state.focusedRider;
+                const fNorm = normalizeName(f.name);
+                const fTag = formatRiderTag(f.name, f.country, f.teamCode);
+                const inNearest = state.nearestRiders.find(r => normalizeName(r.name) === fNorm);
+
+                if (raceSec > 20 && f.power >= 480 && f.avgPower > 0 && f.power >= f.avgPower * 1.75 && (raceSec - state.lastFocusSurgeRaceSec) >= 45) {
+                    state.lastFocusSurgeRaceSec = raceSec;
+                    const posText = inNearest?.position ? ` in P${inNearest.position}` : '';
+                    const spdText = formatSpeedKmh(f.speed);
+                    appendTimelineEvent('SURGE', `${fTag} surges to ${Math.round(f.power)}W (${spdText})${posText}.`, 'chestnut');
+                }
+            }
+
+            // 4. Periodic Race Situation Snapshot
+            if (state.checkpointIntervalSec > 0 && raceSec > 0 && (raceSec - state.lastCheckpointRaceSec) >= state.checkpointIntervalSec) {
+                state.lastCheckpointRaceSec = raceSec;
+
+                const parts = [];
+                if (state.groups.length > 0) {
+                    const groupSummaries = state.groups.map((g, idx) => {
+                        const label = g.isPeloton ? 'Peloton' : `Group ${g.groupNum1 || (idx + 1)}`;
+                        const gap = g.timeGap1 ? ` at ${formatTimeGap(g.timeGap1)}` : ' (front)';
+                        return `${label} (${g.size} riders, led by ${formatRiderTag(g.leader)})${gap}`;
+                    });
+                    parts.push(`Groups: ${groupSummaries.join(' | ')}`);
+                }
+
+                if (state.focusedRider && state.focusedRider.name) {
+                    const f = state.focusedRider;
+                    const fNorm = normalizeName(f.name);
+                    const inNearest = state.nearestRiders.find(r => normalizeName(r.name) === fNorm);
+                    const posStr = inNearest?.position ? `P${inNearest.position}` : 'in pack';
+                    const spdStr = formatSpeedKmh(f.speed);
+                    parts.push(`Focused rider ${formatRiderTag(f.name)} is ${posStr} (${Math.round(f.power || 0)}W, avg ${Math.round(f.avgPower || 0)}W, ${spdStr})`);
+                }
+
+                if (parts.length > 0) {
+                    appendTimelineEvent('CHECKPOINT', parts.join('. ') + '.', 'neutral');
+                }
+            }
+
+            // 5. Official Results (resultsIndv.json)
+            if (Array.isArray(state.results) && state.results.length > 0) {
+                const sig = state.results.map(r => `${r.location}:${r.position}:${r.name}:${r.time}`).join('|');
+                if (sig !== state.lastResultsSignature) {
+                    state.lastResultsSignature = sig;
+                    const top3 = state.results.slice(0, 3).map(r => {
+                        const gapStr = r.deltaTime > 0 ? ` (${formatDeltaSec(r.deltaTime)})` : ` (${formatFinishTime(r.time)})`;
+                        return `${r.position}. ${formatRiderTag(r.name, r.country, r.teamCode)}${gapStr}`;
+                    });
+                    const isFinal = state.results[0]?.location === 0;
+                    appendTimelineEvent(
+                        isFinal ? 'FINISH' : `LOC ${state.results[0]?.location}`,
+                        `${isFinal ? 'Official Finish Results recorded.' : 'Intermediate sprint results recorded.'} Top 3: ${top3.join(' | ')}`,
+                        'chestnut'
+                    );
+                }
+            }
+        }
+
+        function renderLoggerOverviewAndResults() {
+            if (state.eventInfo) {
+                const ev = state.eventInfo;
+                const distKm = ev.distance ? `${(ev.distance / 1000).toFixed(2)} km` : '-- km';
+                const elevM = ev.height ? `${ev.height}m elev` : '-- elev';
+                const lapsStr = ev.laps ? `${ev.laps} lap${ev.laps === 1 ? '' : 's'}` : '';
+                els.eventTypeBadge.textContent = ev.type || 'Race';
+                els.headerEventSub.textContent = `${ev.name || 'TPV Race'} • ${ev.route || ''}`;
+                els.eventCourseMeta.textContent = `${ev.name || 'Event'} • Route: ${ev.route || '--'} • ${distKm} • ${elevM}${lapsStr ? ` • ${lapsStr}` : ''}`;
+            }
+
+            if (state.focusedRider) {
+                els.raceClockDisplay.textContent = formatRaceClock(state.focusedRider.time);
+                const dKm = getCurrentDistanceKm();
+                const totalKm = state.eventInfo?.distance ? (state.eventInfo.distance / 1000).toFixed(1) : null;
+                els.raceDistProgress.textContent = dKm ? (totalKm ? `${dKm} / ${totalKm} km` : `${dKm} km`) : '-- km';
+            }
+
+            // Results Section
+            if (state.results.length > 0) {
+                els.resultsSection.classList.remove('hidden');
+                els.resultsCountBadge.textContent = `${state.results.length} classified`;
+
+                const sortedResults = [...state.results].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
+                els.resultsList.innerHTML = sortedResults.map(r => {
+                    const entry = state.entriesByName.get(normalizeName(r.name));
+                    const bib = entry?.bibNum ? `#${entry.bibNum}` : '--';
+                    const isPodium = r.position <= 3;
+                    const timeStr = r.position === 1 ? formatFinishTime(r.time) : formatDeltaSec(r.deltaTime);
+
+                    return `
+                        <div class="px-2.5 py-1.5 rounded-lg bg-pine-850/90 border ${isPodium ? 'border-chestnut-500/50' : 'border-pine-800'} flex items-center justify-between gap-2 text-xs">
+                            <div class="flex items-center gap-1.5 min-w-0">
+                                <span class="font-mono font-extrabold ${isPodium ? 'text-chestnut-400' : 'text-mist-300'}">${r.position}.</span>
+                                <span class="font-mono text-[11px] px-1.5 py-0.2 rounded bg-pine-950 border border-pine-700 text-chestnut-400 font-bold">${escapeHtml(bib)}</span>
+                                <span class="font-bold text-mist-100 truncate">${escapeHtml(r.name)}</span>
+                            </div>
+                            <span class="font-mono font-bold ${r.position === 1 ? 'text-mist-100' : 'text-chestnut-400'} shrink-0">${escapeHtml(timeStr)}</span>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                els.resultsSection.classList.add('hidden');
+            }
+        }
+
+        function renderTimeline() {
+            els.logCountDisplay.textContent = String(state.timeline.length);
+
+            if (state.timeline.length === 0) {
+                els.timelineContainer.innerHTML = `
+                    <div class="py-10 text-center border border-dashed border-pine-700 rounded-xl">
+                        <p class="text-xs sm:text-sm font-semibold text-mist-300">No race events recorded yet</p>
+                        <p class="text-[11px] text-mist-400 mt-1 font-mono">Auto-logs breakaways, regroupings, lead changes, surges & finish results</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const reversed = [...state.timeline].reverse();
+            els.timelineContainer.innerHTML = reversed.map(item => {
+                const badgeColors = item.badgeStyle === 'rust'
+                    ? 'bg-rust-600/30 text-mist-100 border-rust-500/60'
+                    : item.badgeStyle === 'chestnut'
+                        ? 'bg-chestnut-500/20 text-chestnut-400 border-chestnut-500/50'
+                        : 'bg-pine-850 text-mist-300 border-pine-700';
+
+                return `
+                    <div class="bg-pine-950/90 border border-pine-800 rounded-xl px-3 py-2 flex items-start gap-2.5">
+                        <div class="shrink-0 text-right font-mono">
+                            <span class="text-xs font-bold text-chestnut-400 block">${escapeHtml(item.raceClock)}</span>
+                            ${item.distanceKm ? `<span class="text-[10px] text-mist-400 block">${escapeHtml(item.distanceKm)} km</span>` : ''}
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <span class="inline-block text-[10px] font-mono font-bold uppercase px-1.5 py-0.2 rounded border mr-1.5 ${badgeColors}">${escapeHtml(item.category)}</span>
+                            <span class="text-xs text-mist-100 leading-snug">${escapeHtml(item.text)}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /**
+         * Builds a clean, factual plain-text (.txt) race log without any AI prompt boilerplate.
+         */
+        function buildPlainTextRaceLog() {
+            const lines = [];
+
+            lines.push('====================================================================');
+            lines.push('TRAININGPEAKS VIRTUAL - RACE DATA LOG');
+            lines.push('====================================================================');
+            if (state.eventInfo) {
+                const ev = state.eventInfo;
+                lines.push(`Event Name     : ${ev.name || 'Unknown Event'}`);
+                lines.push(`Route          : ${ev.route || 'Unknown Route'}`);
+                lines.push(`Format         : ${ev.type || 'Race'} (${ev.laps || 1} lap${ev.laps === 1 ? '' : 's'})`);
+                if (ev.distance) lines.push(`Distance       : ${(ev.distance / 1000).toFixed(2)} km`);
+                if (ev.height) lines.push(`Elevation Gain : ${ev.height} m`);
+            } else {
+                lines.push('Event Metadata : Not yet loaded');
+            }
+            if (state.focusedRider?.name) {
+                lines.push(`Focused Rider  : ${formatRiderTag(state.focusedRider.name, state.focusedRider.country, state.focusedRider.teamCode)}`);
+            }
+            lines.push(`Exported At    : ${new Date().toLocaleString()}`);
+            lines.push('');
+
+            lines.push('--------------------------------------------------------------------');
+            lines.push('1. CHRONOLOGICAL RACE TIMELINE');
+            lines.push('--------------------------------------------------------------------');
+            if (state.timeline.length > 0) {
+                for (const item of state.timeline) {
+                    const distTag = item.distanceKm ? ` | ${item.distanceKm} km` : '';
+                    lines.push(`[${item.raceClock}${distTag}] [${item.category}] ${item.text}`);
+                }
+            } else {
+                lines.push('No live timeline events recorded yet.');
+            }
+            lines.push('');
+
+            if (state.results.length > 0) {
+                lines.push('--------------------------------------------------------------------');
+                lines.push('2. OFFICIAL CLASSIFICATION (resultsIndv.json)');
+                lines.push('--------------------------------------------------------------------');
+                const sorted = [...state.results].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
+                for (const r of sorted) {
+                    const riderTag = formatRiderTag(r.name, r.country, r.teamCode);
+                    const timeStr = r.position === 1
+                        ? `Time: ${formatFinishTime(r.time)}`
+                        : `Gap: ${formatDeltaSec(r.deltaTime)} (${formatFinishTime(r.time)})`;
+                    const ptsStr = r.pointsTotal > 0 ? ` | Pts: ${r.pointsTotal}` : '';
+                    const elimStr = r.isEliminated ? ' [ELIMINATED]' : '';
+                    lines.push(`${String(r.position).padStart(2, ' ')}. ${riderTag} -- ${timeStr}${ptsStr}${elimStr}`);
+                }
+                lines.push('');
+            }
+
+            if (state.entriesList.length > 0) {
+                lines.push('--------------------------------------------------------------------');
+                lines.push(`${state.results.length > 0 ? '3' : '2'}. START LIST ROSTER (entries.json)`);
+                lines.push('--------------------------------------------------------------------');
+                const sortedEntries = [...state.entriesList].sort((a, b) => (a.bibNum ?? 999) - (b.bibNum ?? 999));
+                for (const e of sortedEntries) {
+                    const teamPart = e.team ? ` | ${e.team}${e.teamCode ? ` (${e.teamCode})` : ''}` : '';
+                    lines.push(`#${String(e.bibNum).padEnd(3, ' ')} ${e.name} [${e.country || '---'}]${teamPart}`);
+                }
+            }
+
+            return lines.join('\n');
+        }
+
+        function updateTxtExportPreview() {
+            const txt = buildPlainTextRaceLog();
+            els.exportPreview.value = txt;
+            const lineCount = txt.split('\n').length;
+            els.exportStatsText.textContent = `${lineCount} lines • ${txt.length.toLocaleString()} chars`;
+        }
+
+        function copyTxtToClipboard() {
+            els.exportPreview.select();
+            try {
+                const ok = document.execCommand('copy');
+                if (ok) {
+                    showBanner('Copied race log text to clipboard.', 'success');
+                } else {
+                    showBanner('Selected log text — press Cmd+C to copy.', 'info');
+                }
+            } catch (_) {
+                showBanner('Selected log text — press Cmd+C to copy.', 'info');
+            }
+        }
+
+        function exportTxtFile() {
+            const text = buildPlainTextRaceLog();
+            const slug = (state.eventInfo?.name || 'tpv_race_log')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '_')
+                .replace(/^_|_$/g, '');
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${slug}_log.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showBanner(`Exported ${slug}_log.txt`, 'success');
+        }
+
+        // ==========================================
+        // 9. Unified Broadcast Polling Loop
+        // ==========================================
+        async function pollBroadcastFolder() {
+            if (!state.dirHandle) return;
+
+            const hasPerm = await verifyDirPermission(false);
+            if (!hasPerm) {
+                state.consecutiveErrors += 1;
+                if (state.consecutiveErrors >= 8) {
+                    setConnectionStatus('error', 'Click to Re-authorize');
+                    showBanner('Browser paused folder access. Click "Select Broadcast Folder" once to resume.', 'error');
+                    stopPolling();
+                }
+                return;
+            }
+
+            const now = performance.now();
+
+            // Refresh entries.json & event.json every 3.5 seconds (or immediately if empty)
+            if (state.entriesByName.size === 0 || (now - state.lastEntriesFetchMs) > 3500) {
+                const entriesData = await readJsonFile('entries.json');
+                if (Array.isArray(entriesData)) {
+                    state.lastEntriesFetchMs = now;
+                    state.entriesList = entriesData;
+                    const map = new Map();
+                    for (const e of entriesData) {
+                        if (e && e.name) map.set(normalizeName(e.name), e);
+                    }
+                    state.entriesByName = map;
+                    els.entriesCountBadge.textContent = `${entriesData.length} Entries`;
+                }
+            }
+
+            if (!state.eventInfo || (now - state.lastEventFetchMs) > 3500) {
+                const eventData = await readJsonFile('event.json');
+                if (eventData) {
+                    state.lastEventFetchMs = now;
+                    state.eventInfo = Array.isArray(eventData) ? eventData[0] : eventData;
+                }
+            }
+
+            // Read live telemetry files in parallel
+            const [focusData, nearestData, groupsData, resultsData] = await Promise.all([
+                readJsonFile('focus.json'),
+                readJsonFile('nearest.json'),
+                readJsonFile('groups.json'),
+                readJsonFile('resultsIndv.json')
+            ]);
+
+            if (!focusData && !nearestData && !groupsData && !resultsData && !state.eventInfo) {
+                state.consecutiveErrors += 1;
+                return;
+            }
+
+            state.consecutiveErrors = 0;
+            setConnectionStatus('connected', 'Live: Broadcast');
+
+            if (focusData) {
+                state.focusedRider = Array.isArray(focusData) ? focusData[0] : focusData;
+            }
+            if (Array.isArray(nearestData)) {
+                state.nearestRiders = nearestData;
+            }
+            if (Array.isArray(groupsData)) {
+                state.groups = groupsData;
+            }
+            if (Array.isArray(resultsData)) {
+                state.results = resultsData;
+            }
+
+            // Update all 3 modules
+            processWBalUpdate();
+            renderBibTracker();
+            analyzeTelemetryForLog();
+            renderLoggerOverviewAndResults();
+            updateTxtExportPreview();
+        }
+
+        async function connectToBroadcastFolder() {
+            if (!('showDirectoryPicker' in window)) {
+                showBanner('Your browser does not support folder access. Please open this file in Chrome, Edge, or Brave on macOS.', 'error');
+                return;
+            }
+
+            try {
+                if (state.dirHandle) {
+                    const ok = await verifyDirPermission(true);
+                    if (ok) {
+                        state.lastWallTimestampMs = null;
+                        state.lastTpvTimeMs = null;
+                        state.consecutiveErrors = 0;
+                        setConnectionStatus('connected', 'Live: Broadcast');
+                        showBanner(`Reconnected to saved "${state.dirHandle.name}" folder.`, 'success');
+                        startPolling();
+                        return;
+                    }
+                }
+
+                const dirHandle = await window.showDirectoryPicker({
+                    id: 'tpv-broadcast-dir',
+                    mode: 'read'
+                });
+
+                state.dirHandle = dirHandle;
+                await dbPut('broadcastDir', dirHandle);
+                state.lastWallTimestampMs = null;
+                state.lastTpvTimeMs = null;
+                state.consecutiveErrors = 0;
+
+                setConnectionStatus('connected', 'Live: Broadcast');
+                showBanner(`Connected to "${dirHandle.name}". Streaming W' Balance, Bibs, and Race Log.`, 'success');
+                startPolling();
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    showBanner(`Could not open Broadcast folder: ${err.message}`, 'error');
+                }
+            }
+        }
+
+        function startPolling() {
+            stopPolling();
+            pollBroadcastFolder();
+            state.pollTimerId = setInterval(pollBroadcastFolder, state.pollIntervalMs);
+        }
+
+        function stopPolling() {
+            if (state.pollTimerId) {
+                clearInterval(state.pollTimerId);
+                state.pollTimerId = null;
+            }
+        }
+
+        // ==========================================
+        // 10. Event Listeners & Initialization
+        // ==========================================
+        els.btnConnect.addEventListener('click', connectToBroadcastFolder);
+        els.btnHeaderExportTxt.addEventListener('click', exportTxtFile);
+        els.btnExportTxt.addEventListener('click', exportTxtFile);
+        els.btnCopyTxt.addEventListener('click', copyTxtToClipboard);
+
+        // W' Balance Controls
+        els.btnResetWbal.addEventListener('click', () => {
+            state.wBalJoules = state.wPrimeMaxJoules;
+            state.minWBalJoules = state.wPrimeMaxJoules;
+            updateWBalVisuals(0, null, 0);
+            showBanner("W' Balance reset to 100%.", 'success');
+        });
+
+        els.inputFtp.addEventListener('input', (e) => {
+            const val = Number(e.target.value);
+            if (!isNaN(val) && val >= 50 && val <= 1000) {
+                state.ftp = val;
+                saveUserSettings();
+            }
+        });
+
+        els.inputWPrime.addEventListener('input', (e) => {
+            const kj = Number(e.target.value);
+            if (!isNaN(kj) && kj >= 1 && kj <= 100) {
+                const prevMax = state.wPrimeMaxJoules;
+                const ratio = prevMax > 0 ? state.wBalJoules / prevMax : 1;
+                state.wPrimeMaxJoules = kj * 1000;
+                state.wBalJoules = state.wPrimeMaxJoules * ratio;
+                state.minWBalJoules = Math.min(state.minWBalJoules, state.wPrimeMaxJoules);
+                saveUserSettings();
+                updateWBalVisuals(0, null, 0);
+            }
+        });
+
+        els.selectPollRate.addEventListener('change', (e) => {
+            state.pollIntervalMs = Number(e.target.value);
+            saveUserSettings();
+            if (state.dirHandle && state.pollTimerId) {
+                startPolling();
+            }
+        });
+
+        // Bib Tracker Controls
+        els.btnModeNearby.addEventListener('click', () => setViewMode('nearby'));
+        els.btnModeAll.addEventListener('click', () => setViewMode('all'));
+
+        els.selectSortMode.addEventListener('change', (e) => {
+            state.sortMode = e.target.value;
+            renderBibTracker();
+        });
+
+        els.btnClearHistory.addEventListener('click', () => {
+            state.riderHistoryByName.clear();
+            renderBibTracker();
+            showBanner('Cleared cached rider positions.', 'info');
+        });
+
+        // Logger Controls
+        els.formCustomNote.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = els.inputCustomNote.value.trim();
+            if (!val) return;
+            appendTimelineEvent('NOTE', val, 'chestnut');
+            els.inputCustomNote.value = '';
+        });
+
+        document.querySelectorAll('.quick-note-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const note = btn.getAttribute('data-quick-note');
+                if (note) appendTimelineEvent('NOTE', note, 'chestnut');
+            });
+        });
+
+        els.selectCheckpointSec.addEventListener('change', (e) => {
+            state.checkpointIntervalSec = Number(e.target.value);
+        });
+
+        els.btnClearLog.addEventListener('click', () => {
+            if (!state.clearConfirmArmed) {
+                state.clearConfirmArmed = true;
+                els.btnClearLog.textContent = 'Confirm Reset?';
+                els.btnClearLog.classList.add('bg-rust-600', 'text-mist-100');
+                setTimeout(() => {
+                    state.clearConfirmArmed = false;
+                    els.btnClearLog.textContent = 'Reset Log';
+                    els.btnClearLog.classList.remove('bg-rust-600', 'text-mist-100');
+                }, 3000);
+                return;
+            }
+
+            state.clearConfirmArmed = false;
+            els.btnClearLog.textContent = 'Reset Log';
+            els.btnClearLog.classList.remove('bg-rust-600', 'text-mist-100');
+
+            state.timeline = [];
+            state.lastCheckpointRaceSec = -999;
+            state.lastGroupCount = 0;
+            state.lastFrontLeader = '';
+            state.lastFrontGapSec = 0;
+            state.eliminatedNames.clear();
+            state.lastResultsSignature = '';
+
+            renderTimeline();
+            updateTxtExportPreview();
+            showBanner('Race log cleared for a new event.', 'info');
+        });
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadUserSettings();
+            updateTxtExportPreview();
+
+            const savedDir = await dbGet('broadcastDir');
+            if (savedDir) {
+                state.dirHandle = savedDir;
+                const ready = await verifyDirPermission(false);
+                if (ready) {
+                    setConnectionStatus('connected', 'Live: Broadcast');
+                    showBanner(`Auto-reconnected to saved "${savedDir.name}" folder.`, 'success');
+                    startPolling();
+                } else {
+                    els.btnConnect.querySelector('span').textContent = `Reconnect (${savedDir.name})`;
+                    showBanner(`Saved folder "${savedDir.name}" found. Click "Reconnect (${savedDir.name})" to resume.`, 'info');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
