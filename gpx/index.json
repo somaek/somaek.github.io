@@ -2140,6 +2140,16 @@
     "upload_date": "2026-03-05T02:05:48.235000"
   },
   {
+    "file": "Criterium Courses/Ba\u00f1os-Ecuador.gpx",
+    "folder": "Criterium Courses",
+    "name": "Ba\u00f1os-Ecuador",
+    "distance_km": 5.38,
+    "elevation_m": 100.4,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-17T18:42:35.849000"
+  },
+  {
     "file": "Criterium Courses/Semonkong-Lesotho.gpx",
     "folder": "Criterium Courses",
     "name": "Semonkong-Lesotho",
@@ -2318,6 +2328,16 @@
     "profile_score": 0,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-08-10T20:41:35.522000"
+  },
+  {
+    "file": "Criterium Courses/Omodos-Cyprus.gpx",
+    "folder": "Criterium Courses",
+    "name": "Omodos-Cyprus",
+    "distance_km": 3.45,
+    "elevation_m": 120.8,
+    "profile_score": 13.7,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-17T18:30:44.456000"
   },
   {
     "file": "Criterium Courses/Luang Prabang Circuit.gpx",
@@ -2630,6 +2650,16 @@
     "upload_date": "2026-08-15T20:12:27"
   },
   {
+    "file": "Criterium Courses/Portsmouth-Dominica.gpx",
+    "folder": "Criterium Courses",
+    "name": "Portsmouth-Dominica",
+    "distance_km": 2.32,
+    "elevation_m": 37.5,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-17T18:37:59.692000"
+  },
+  {
     "file": "Criterium Courses/Presidio Crit.gpx",
     "folder": "Criterium Courses",
     "name": "Presidio Crit",
@@ -2698,6 +2728,16 @@
     "profile_score": 6.4,
     "stage_type": "Flat, flat finish",
     "upload_date": "2026-11-12T21:59:39.652000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Ba\u00f1os-Ecuador.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Ba\u00f1os-Ecuador.gpx",
+    "distance_km": 5.29,
+    "elevation_m": 74.0,
+    "profile_score": 0,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-11-17T18:46:51.091000"
   },
   {
     "file": "Criterium Courses/Crit the whole world/Keren-Eritrea.gpx.json",
@@ -2798,6 +2838,16 @@
     "profile_score": 12.0,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2026-11-12T22:04:53.656000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Portsmouth-Dominica.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Portsmouth-Dominica.gpx",
+    "distance_km": 2.3,
+    "elevation_m": 31.4,
+    "profile_score": 1.7,
+    "stage_type": "Hilly, uphill finish",
+    "upload_date": "2026-11-17T18:39:43.301000"
   },
   {
     "file": "Criterium Courses/Crit the whole world/Benin Ouidah.gpx.json",
@@ -3008,6 +3058,16 @@
     "profile_score": 16.7,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2026-11-12T16:57:43.691000"
+  },
+  {
+    "file": "Criterium Courses/Crit the whole world/Omodos-Cyprus.gpx.json",
+    "folder": "Criterium Courses/Crit the whole world",
+    "name": "Omodos-Cyprus.gpx",
+    "distance_km": 3.46,
+    "elevation_m": 100.7,
+    "profile_score": 11.0,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-11-17T18:30:36.334000"
   },
   {
     "file": "Criterium Courses/Crit the whole world/Angola Lubango.gpx.json",
@@ -6430,16 +6490,6 @@
     "upload_date": "2026-06-20T19:29:20.029000"
   },
   {
-    "file": "Pro Bike Races/CRO Race S3 2026 Circuit.gpx",
-    "folder": "Pro Bike Races",
-    "name": "CRO Race S3 2026 Circuit",
-    "distance_km": 36.77,
-    "elevation_m": 802.9,
-    "profile_score": 113.0,
-    "stage_type": "Climbing, uphill finish",
-    "upload_date": "2026-09-24T16:47:12.995000"
-  },
-  {
     "file": "Pro Bike Races/Tour de Okinawa 2.gpx",
     "folder": "Pro Bike Races",
     "name": "Tour de Okinawa 2",
@@ -7290,16 +7340,6 @@
     "upload_date": "2025-12-15T16:30:47.798000"
   },
   {
-    "file": "Pro Bike Races/CRO Race S6 2026.gpx",
-    "folder": "Pro Bike Races",
-    "name": "CRO Race S6 2026",
-    "distance_km": 82.33,
-    "elevation_m": 342.3,
-    "profile_score": 5.1,
-    "stage_type": "Flat, flat finish",
-    "upload_date": "2026-09-28T15:38:50.262000"
-  },
-  {
     "file": "Pro Bike Races/Week 6 Rwanda Kigali UCI Finishing Circuit.gpx",
     "folder": "Pro Bike Races",
     "name": "Week 6 Rwanda Kigali UCI Finishing Circuit",
@@ -7368,16 +7408,6 @@
     "profile_score": 10.5,
     "stage_type": "Hilly, flat finish",
     "upload_date": "2026-05-19T18:39:47.108000"
-  },
-  {
-    "file": "Pro Bike Races/CRO Race S4 2026.gpx",
-    "folder": "Pro Bike Races",
-    "name": "CRO Race S4 2026",
-    "distance_km": 66.73,
-    "elevation_m": 1353.9,
-    "profile_score": 83.8,
-    "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-09-25T14:49:31.644000"
   },
   {
     "file": "Pro Bike Races/Tour de Langkawi S3 2026.gpx",
@@ -7708,16 +7738,6 @@
     "profile_score": 48.6,
     "stage_type": "Climbing, flat finish",
     "upload_date": "2025-12-22T16:45:49.437000"
-  },
-  {
-    "file": "Pro Bike Races/CRO Race S5 2026.gpx",
-    "folder": "Pro Bike Races",
-    "name": "CRO Race S5 2026",
-    "distance_km": 64.5,
-    "elevation_m": 987.5,
-    "profile_score": 69.0,
-    "stage_type": "Climbing, flat finish",
-    "upload_date": "2026-09-26T17:25:06.297000"
   },
   {
     "file": "Pro Bike Races/BW Classic Circuit (cobbles).gpx",
@@ -8560,16 +8580,6 @@
     "upload_date": "2026-08-17T20:52:38.172000"
   },
   {
-    "file": "Pro Bike Races/CRO Race S1 2026 Circuit.gpx",
-    "folder": "Pro Bike Races",
-    "name": "CRO Race S1 2026 Circuit",
-    "distance_km": 34.35,
-    "elevation_m": 528.4,
-    "profile_score": 30.2,
-    "stage_type": "Hilly, flat finish",
-    "upload_date": "2026-09-22T22:11:40.417000"
-  },
-  {
     "file": "Pro Bike Races/Week 3 Lombardia.gpx",
     "folder": "Pro Bike Races",
     "name": "Week 3 Lombardia",
@@ -8748,16 +8758,6 @@
     "profile_score": 87.7,
     "stage_type": "Climbing, uphill finish",
     "upload_date": "2025-12-11T15:55:37.534000"
-  },
-  {
-    "file": "Pro Bike Races/CRO Race S2 2026 1 hour.gpx",
-    "folder": "Pro Bike Races",
-    "name": "CRO Race S2 2026 1 hour",
-    "distance_km": 34.32,
-    "elevation_m": 372.9,
-    "profile_score": 33.3,
-    "stage_type": "Hilly, flat finish",
-    "upload_date": "2026-09-23T17:25:56.923000"
   },
   {
     "file": "Pro Bike Races/TDU Stage 5 Circuit - Stirling - 21k 398m.gpx",
@@ -9268,6 +9268,66 @@
     "profile_score": 16.4,
     "stage_type": "Hilly, uphill finish",
     "upload_date": "2026-06-13T22:26:57"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race 2026/CRO Race S3 2026 Circuit.gpx",
+    "folder": "Pro Bike Races/CRO Race 2026",
+    "name": "CRO Race S3 2026 Circuit",
+    "distance_km": 36.77,
+    "elevation_m": 802.9,
+    "profile_score": 113.0,
+    "stage_type": "Climbing, uphill finish",
+    "upload_date": "2026-09-24T16:47:12.995000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race 2026/CRO Race S6 2026.gpx",
+    "folder": "Pro Bike Races/CRO Race 2026",
+    "name": "CRO Race S6 2026",
+    "distance_km": 82.33,
+    "elevation_m": 342.3,
+    "profile_score": 5.1,
+    "stage_type": "Flat, flat finish",
+    "upload_date": "2026-09-28T15:38:50.262000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race 2026/CRO Race S4 2026.gpx",
+    "folder": "Pro Bike Races/CRO Race 2026",
+    "name": "CRO Race S4 2026",
+    "distance_km": 66.73,
+    "elevation_m": 1353.9,
+    "profile_score": 83.8,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-25T14:49:31.644000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race 2026/CRO Race S5 2026.gpx",
+    "folder": "Pro Bike Races/CRO Race 2026",
+    "name": "CRO Race S5 2026",
+    "distance_km": 64.5,
+    "elevation_m": 987.5,
+    "profile_score": 69.0,
+    "stage_type": "Climbing, flat finish",
+    "upload_date": "2026-09-26T17:25:06.297000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race 2026/CRO Race S1 2026 Circuit.gpx",
+    "folder": "Pro Bike Races/CRO Race 2026",
+    "name": "CRO Race S1 2026 Circuit",
+    "distance_km": 34.35,
+    "elevation_m": 528.4,
+    "profile_score": 30.2,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-22T22:11:40.417000"
+  },
+  {
+    "file": "Pro Bike Races/CRO Race 2026/CRO Race S2 2026 1 hour.gpx",
+    "folder": "Pro Bike Races/CRO Race 2026",
+    "name": "CRO Race S2 2026 1 hour",
+    "distance_km": 34.32,
+    "elevation_m": 372.9,
+    "profile_score": 33.3,
+    "stage_type": "Hilly, flat finish",
+    "upload_date": "2026-09-23T17:25:56.923000"
   },
   {
     "file": "Climbs/Pine Flat Road near Healdsburg.gpx",
