@@ -88,7 +88,12 @@
                     <span>Export .TXT</span>
                 </button>
 
-                <!-- Connect Folder Button -->
+                <!-- Resume Previously Authorized Folder (Shown only when cached handle needs permission) -->
+                <button id="btnResume" type="button" class="hidden px-3 py-2 rounded-xl bg-pine-850 hover:bg-pine-800 active:scale-[0.99] text-xs font-semibold text-chestnut-400 border border-chestnut-500/50 transition cursor-pointer">
+                    Resume Saved
+                </button>
+
+                <!-- Connect Folder Button (Always opens directory picker) -->
                 <button id="btnConnect" type="button" class="px-4 py-2 rounded-xl bg-rust-600 hover:bg-rust-500 active:scale-[0.99] text-xs font-semibold text-mist-100 shadow-lg shadow-rust-600/30 border border-rust-500/40 transition flex items-center gap-2 cursor-pointer">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
@@ -427,6 +432,7 @@
             dirHandle: null,
             pollTimerId: null,
             consecutiveErrors: 0,
+            hasCheckedEmptyFolder: false,
             clearConfirmArmed: false,
 
             // Integration & 3s Rolling Display Buffers
@@ -468,6 +474,7 @@
             statusDot: document.getElementById('statusDot'),
             statusText: document.getElementById('statusText'),
             btnHeaderExportTxt: document.getElementById('btnHeaderExportTxt'),
+            btnResume: document.getElementById('btnResume'),
             btnConnect: document.getElementById('btnConnect'),
 
             bannerContainer: document.getElementById('bannerContainer'),
@@ -563,7 +570,7 @@
             els.bannerMessage.textContent = message;
             els.bannerBox.className = 'rounded-2xl p-3 border flex items-center justify-between gap-3 text-xs sm:text-sm ';
             if (type === 'error') {
-                els.bannerBox.className += 'bg-rust-700/35 border-rust-500/60 text-mist-100';
+                els.bannerBox.className += 'bg-rust-700/45 border-rust-500 text-mist-100 shadow-lg shadow-rust-700/20';
             } else if (type === 'success') {
                 els.bannerBox.className += 'bg-pine-850 border-chestnut-500/50 text-mist-100';
             } else {
@@ -910,7 +917,6 @@
                 els.wbalEstimateLabel.textContent = `TTE: ${mins}m ${String(secs).padStart(2, '0')}s`;
                 els.wbalEstimateLabel.className = 'text-xs sm:text-sm font-mono font-bold text-rust-500 mt-0.5 block truncate';
             } else if (displayWBalJoules < 0 && netWatts > 1 && tau) {
-                // Time to recover back to 0.0 kJ from negative W'
                 const zeroRatio = state.wPrimeMaxJoules / (state.wPrimeMaxJoules - displayWBalJoules);
                 if (zeroRatio > 0 && zeroRatio < 1) {
                     const tZeroSec = Math.round(-tau * Math.log(zeroRatio));
@@ -1518,9 +1524,6 @@
             }).join('');
         }
 
-        /**
-         * Builds a clean, factual plain-text (.txt) race log without any AI prompt boilerplate.
-         */
         function buildPlainTextRaceLog() {
             const lines = [];
 
@@ -1601,10 +1604,10 @@
                 if (ok) {
                     showBanner('Copied race log text to clipboard.', 'success');
                 } else {
-                    showBanner('Selected log text — press Cmd+C to copy.', 'info');
+                    showBanner('Selected log text — press Cmd+C / Ctrl+C to copy.', 'info');
                 }
             } catch (_) {
-                showBanner('Selected log text — press Cmd+C to copy.', 'info');
+                showBanner('Selected log text — press Cmd+C / Ctrl+C to copy.', 'info');
             }
         }
 
@@ -1636,8 +1639,10 @@
             if (!hasPerm) {
                 state.consecutiveErrors += 1;
                 if (state.consecutiveErrors >= 30) {
-                    setConnectionStatus('error', 'Click to Re-authorize');
-                    showBanner('Browser paused folder access. Click "Select Broadcast Folder" once to resume.', 'error');
+                    setConnectionStatus('error', 'Permission Paused');
+                    els.btnResume.textContent = `Resume (${state.dirHandle.name})`;
+                    els.btnResume.classList.remove('hidden');
+                    showBanner('Browser paused folder access. Click "Resume" or "Select Broadcast Folder" to reconnect.', 'error');
                     stopPolling();
                 }
                 return;
@@ -1701,13 +1706,17 @@
                 }
             }
 
-            if (!focusData && !secondaryUpdated && !state.eventInfo) {
+            if (!focusData && !secondaryUpdated && !state.eventInfo && state.entriesByName.size === 0) {
                 state.consecutiveErrors += 1;
+                if (!state.hasCheckedEmptyFolder && state.consecutiveErrors >= 3) {
+                    state.hasCheckedEmptyFolder = true;
+                    showBanner(`Connected to "${state.dirHandle.name}", but no TPV JSON files were found yet. Ensure you selected the "Broadcast" subfolder and TrainingPeaks Virtual is running.`, 'info');
+                }
                 return;
             }
 
             state.consecutiveErrors = 0;
-            setConnectionStatus('connected', 'Live: Broadcast');
+            setConnectionStatus('connected', `Live: ${state.dirHandle.name}`);
 
             if (secondaryUpdated || focusData) {
                 renderBibTracker();
@@ -1717,46 +1726,75 @@
             }
         }
 
-        async function connectToBroadcastFolder() {
+        function checkBrowserCompatibility() {
+            if (window.self !== window.top) {
+                return 'Folder access is blocked inside embedded previews or iframes. Open tpvhud.html directly in a standalone Google Chrome or Microsoft Edge tab.';
+            }
             if (!('showDirectoryPicker' in window)) {
-                showBanner('Your browser does not support folder access. Please open this file in Chrome, Edge, or Brave on macOS.', 'error');
+                return 'This browser does not support direct folder access (File System Access API). Please open tpvhud.html in Google Chrome or Microsoft Edge (on Brave, enable brave://flags/#file-system-access-api).';
+            }
+            return null;
+        }
+
+        async function connectToBroadcastFolder() {
+            const incompatError = checkBrowserCompatibility();
+            if (incompatError) {
+                setConnectionStatus('error', 'Unsupported Browser');
+                showBanner(incompatError, 'error');
+                alert(incompatError);
                 return;
             }
 
             try {
-                if (state.dirHandle) {
-                    const ok = await verifyDirPermission(true);
-                    if (ok) {
-                        state.lastWallTimestampMs = null;
-                        state.lastTpvTimeMs = null;
-                        state.lastTpvTimeChangeWallMs = null;
-                        state.consecutiveErrors = 0;
-                        setConnectionStatus('connected', 'Live: Broadcast');
-                        showBanner(`Reconnected to saved "${state.dirHandle.name}" folder.`, 'success');
-                        startPolling();
-                        return;
-                    }
-                }
-
+                // Keep showDirectoryPicker() as the very first await so user gesture activation is never lost
                 const dirHandle = await window.showDirectoryPicker({
                     id: 'tpv-broadcast-dir',
                     mode: 'read'
                 });
 
                 state.dirHandle = dirHandle;
+                state.hasCheckedEmptyFolder = false;
                 await dbPut('broadcastDir', dirHandle);
+
+                els.btnResume.classList.add('hidden');
                 state.lastWallTimestampMs = null;
                 state.lastTpvTimeMs = null;
                 state.lastTpvTimeChangeWallMs = null;
                 state.consecutiveErrors = 0;
 
-                setConnectionStatus('connected', 'Live: Broadcast');
+                setConnectionStatus('connected', `Live: ${dirHandle.name}`);
                 showBanner(`Connected to "${dirHandle.name}". Streaming W' Balance, Bibs, and Race Log.`, 'success');
                 startPolling();
             } catch (err) {
-                if (err.name !== 'AbortError') {
+                if (err.name === 'SecurityError') {
+                    const msg = 'Browser security blocked the folder picker (caused by an iframe or restricted system folder). Open tpvhud.html in a standalone Chrome/Edge tab and select the TPVirtual/Broadcast subfolder.';
+                    showBanner(msg, 'error');
+                    alert(msg);
+                } else if (err.name !== 'AbortError') {
                     showBanner(`Could not open Broadcast folder: ${err.message}`, 'error');
                 }
+            }
+        }
+
+        async function resumeSavedFolder() {
+            if (!state.dirHandle) return;
+            try {
+                const ok = await verifyDirPermission(true);
+                if (ok) {
+                    els.btnResume.classList.add('hidden');
+                    state.hasCheckedEmptyFolder = false;
+                    state.lastWallTimestampMs = null;
+                    state.lastTpvTimeMs = null;
+                    state.lastTpvTimeChangeWallMs = null;
+                    state.consecutiveErrors = 0;
+                    setConnectionStatus('connected', `Live: ${state.dirHandle.name}`);
+                    showBanner(`Reconnected to saved "${state.dirHandle.name}" folder.`, 'success');
+                    startPolling();
+                } else {
+                    showBanner('Folder permission was not granted. Click "Select Broadcast Folder" to choose a directory.', 'error');
+                }
+            } catch (err) {
+                showBanner(`Could not resume saved folder: ${err.message}. Click "Select Broadcast Folder" instead.`, 'error');
             }
         }
 
@@ -1777,6 +1815,7 @@
         // 10. Event Listeners & Initialization
         // ==========================================
         els.btnConnect.addEventListener('click', connectToBroadcastFolder);
+        els.btnResume.addEventListener('click', resumeSavedFolder);
         els.btnHeaderExportTxt.addEventListener('click', exportTxtFile);
         els.btnExportTxt.addEventListener('click', exportTxtFile);
         els.btnCopyTxt.addEventListener('click', copyTxtToClipboard);
@@ -1889,17 +1928,25 @@
             await loadUserSettings();
             updateTxtExportPreview();
 
+            const incompatError = checkBrowserCompatibility();
+            if (incompatError) {
+                setConnectionStatus('error', 'Unsupported Browser');
+                showBanner(incompatError, 'error');
+                return;
+            }
+
             const savedDir = await dbGet('broadcastDir');
             if (savedDir) {
                 state.dirHandle = savedDir;
                 const ready = await verifyDirPermission(false);
                 if (ready) {
-                    setConnectionStatus('connected', 'Live: Broadcast');
+                    setConnectionStatus('connected', `Live: ${savedDir.name}`);
                     showBanner(`Auto-reconnected to saved "${savedDir.name}" folder.`, 'success');
                     startPolling();
                 } else {
-                    els.btnConnect.querySelector('span').textContent = `Reconnect (${savedDir.name})`;
-                    showBanner(`Saved folder "${savedDir.name}" found. Click "Reconnect (${savedDir.name})" to resume.`, 'info');
+                    els.btnResume.textContent = `Resume (${savedDir.name})`;
+                    els.btnResume.classList.remove('hidden');
+                    showBanner(`Saved folder "${savedDir.name}" available — click "Resume (${savedDir.name})" or "Select Broadcast Folder" to choose a new folder.`, 'info');
                 }
             }
         });
